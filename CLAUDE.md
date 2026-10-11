@@ -17,7 +17,8 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 ## Personnages
 
 - **Kicuit** : petit robot cuisinier (toque), guide du jeu. Il parle avec la synthèse vocale fr-FR, et toucher sa bulle répète la phrase.
-- **Wanji** : pomsky (gris et blanc, yeux bleus). C'est le goûteur et le « client » des commandes du jour.
+  **Il doit parler peu** : phrases courtes. `say(texte, voix)` : par défaut Nana entend le texte et Raf le lit en silence ; `false` = bulle seule ; une chaîne = phrase courte dite aux deux. Pas de voix sur les ingrédients, les réglages ni la cuisson. Voix pour Raf seulement pour les alertes (chocolat), le résultat en un mot et quand on touche Kicuit.
+- **Wanji** : le vrai chien de la famille, un pomsky au poil brun taupe et crème, calotte brune avec une liste blanche sur le front, masque brun autour des yeux bleu clair, truffe brun foncé, collier noir avec médaille argentée. C'est le goûteur et le « client » des commandes du jour.
 - **Règle du chocolat** : on ne donne **jamais** de chocolat à Wanji. Kicuit l'arrête, l'enfant goûte lui-même et Wanji reçoit une croquette. Cette règle vaut pour tous les futurs ateliers.
 
 ## Principes de conception
@@ -31,9 +32,9 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 ## Progression
 
 - Étoile : +1 par commande de Wanji réussie (le bon plat, cuisson parfaite).
-- **Jardin : 5 étoiles** (décidé). Seuils des autres ateliers : à fixer quand ils seront construits.
+- **Jardin : 10 étoiles** (décidé, constante `JARDIN`). Des autocollants restent à gagner au-delà pour donner envie de revenir. Seuils des autres ateliers : à fixer quand ils seront construits.
 - Ordre de construction : ~~Cuisine~~ → **Jardin** → **Fromagerie** → Garage / Laboratoire / Corps humain.
-- Prochaine étape d'interface (en attente, ne pas faire sans accord) : un compteur « Jardin : x/5 ⭐ » sur la maison.
+- Prochaine étape d'interface (en attente, ne pas faire sans accord) : un compteur « Jardin : x/10 ⭐ » sur la maison.
 
 ## Cuisine (faite, à faire évoluer)
 
@@ -60,9 +61,10 @@ Objectif : un vrai album d'autocollants, celui qu'on a envie de remplir.
 - **Doubles** : un autocollant déjà possédé arrive en double et peut être collé librement sur une **page libre** (déplacer, tourner, agrandir) pour créer sa propre scène.
 - Style : bordure blanche découpée, légère ombre, son de « décollage » et confettis.
 - Pour Nana : autocollants plus grands, pas de texte obligatoire.
-- Cible : environ 60 autocollants sur tout le jeu (environ 12 par atelier).
+- Autocollants de long terme (pour revenir) : 5, 10 (jardin) et 20 étoiles, 10 commandes réussies, jouer 3 puis 7 jours différents (`days`), série de 5 plats parfaits, carnet complet.
+- Cible : environ 60 autocollants sur tout le jeu (environ 12 par atelier). Actuellement 40 pour la cuisine.
 
-## Jardin (prochain atelier, 5 étoiles)
+## Jardin (prochain atelier, 10 étoiles)
 
 - Parcelles, graines (carottes, fraises, blé, radis, tomates, fleurs), arrosoir, croissance accélérée.
 - Obstacles : mauvaises herbes, trop d'engrais, pucerons. Les **abeilles aident** la pollinisation, on ne les chasse pas.
