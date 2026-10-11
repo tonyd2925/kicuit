@@ -19,7 +19,7 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 - **Kicuit** : petit robot cuisinier (toque), guide du jeu. Il parle avec la synthèse vocale fr-FR, et toucher sa bulle répète la phrase.
   **Il doit parler peu** : phrases courtes. `say(texte, voix)` : par défaut Nana entend le texte et Raf le lit en silence ; `false` = bulle seule ; une chaîne = phrase courte dite aux deux. Pas de voix sur les ingrédients, les réglages ni la cuisson. Voix pour Raf seulement pour les alertes (chocolat), le résultat en un mot et quand on touche Kicuit.
 - **Wanji** : le vrai chien de la famille, un pomsky au poil brun taupe et crème, calotte brune avec une liste blanche sur le front, masque brun autour des yeux bleu clair, truffe brun foncé, collier noir avec médaille argentée. C'est le goûteur et le « client » des commandes du jour.
-- **Règle du chocolat** : on ne donne **jamais** de chocolat à Wanji. Kicuit l'arrête, l'enfant goûte lui-même et Wanji reçoit une croquette. Cette règle vaut pour tous les futurs ateliers.
+- **Règle du chocolat** : on ne donne **jamais** de chocolat à Wanji. Kicuit l'arrête, l'enfant goûte lui-même et Wanji reçoit une croquette. Cette règle vaut pour tous les futurs ateliers, et s'étend aux fromages bleus (roquefort) dans la fromagerie.
 
 ## Principes de conception
 
@@ -78,34 +78,50 @@ Objectif : un vrai album d'autocollants, celui qu'on a envie de remplir.
 - **Objectifs du jardin** (carte en haut de l'écran, un à la fois, toucher la carte le relit) : listes `OBJ_NANA` (simples : récolter 2 carottes, arroser 5 fois, faire un bouquet…) et `OBJ_RAF` (6 fraises, 4 cultures différentes en même temps, 3 récoltes sans soif, bouquet de 4 couleurs, plat réussi avec une récolte…). Progression par événements `gEv(type, données)`. Un objectif réussi donne une étoile.
 - **Cadeaux du jardin** selon le nombre d'objectifs réussis (`UNLOCKS`) : 1 épouvantail, 3 ruche (abeilles plus fréquentes), 5 graines de tournesol, 7 tuyau (arrose toutes les parcelles d'un coup).
 - Page d'autocollants Jardin : 19 autocollants (dont tournesol, premier objectif, 10 objectifs), 30 récoltes et des secrets.
-- Plus tard : une vache qui fournit le lait de la fromagerie.
+- La vache Marguerite est dans la fromagerie (pas au jardin).
 
-## Fromagerie (après le jardin)
+## Fromagerie (plan validé, à coder)
 
-Parcours commun, avec des réglages selon le fromage :
+**Ouverture : 20 étoiles** (+ appui long parent de 3 s, comme le jardin). Petite ferme avec **la vache Marguerite** (dans la fromagerie, pas au jardin). Chèvre et brebis arrivent plus tard comme cadeaux d'objectifs (lait de chèvre pour la bûche, lait de brebis pour le roquefort).
 
-1. Choisir le lait (vache, chèvre, brebis).
-2. Chauffer, puis ajouter la présure et les ferments.
-3. Couper le caillé.
-4. Cuire le caillé (pâtes cuites seulement).
-5. Mouler (louche ou presse).
-6. Saler (frotter ou saumure).
-7. Cave d'affinage (accélérée, conservée entre les parties).
-8. Dégustation (Wanji, Kicuit) et carnet des fromages.
+- **Traite** : mini-jeu, tirer les pis à tour de rôle, le seau se remplit. Le lait va aussi au frigo de la cuisine (pastille 🌱).
 
-| Famille | Exemple | Geste spécial |
-|---|---|---|
-| Pâte fraîche | Fromage blanc | Égouttage en faisselle |
-| Fondu | Cancoillotte | Faire fondre le metton en remuant |
-| Croûte fleurie | Camembert | 5 louches par moule, duvet blanc en cave |
-| Croûte lavée | Mont d'Or, munster | Sangle d'épicéa, frotter la croûte (Wanji se bouche le nez) |
-| Pâte pressée | Morbier, reblochon | Tracer la raie noire du morbier |
-| Pâte pressée cuite | Comté, emmental | Cuire le caillé, presser, retourner et frotter la meule ; les trous viennent des bulles de gaz |
-| Persillée | Roquefort (brebis) | Piquer à l'aiguille pour faire pousser le bleu |
+Parcours, un geste par étape :
 
-- Nana : fromage blanc, cancoillotte, camembert, avec des étapes guidées.
-- Raf : tous les fromages, avec réglages ; le comté est le défi final.
-- Catastrophes : lait trop chaud (rien ne caille), mauvais grains, cancoillotte qui attache, fromage oublié et poilu, bleu non piqué, fromage sans sel.
+1. Chauffer le lait (thermomètre, environ 32 °C ; trop chaud = ferments morts, rien ne caille).
+2. Présure et ferments au compte-gouttes ; Raf choisit la flore : blanche (camembert), bleue (roquefort), rouge (croûte lavée).
+3. Caillage : on attend, puis on enfonce le doigt ; caillé qui se casse net = prêt.
+4. Tranchage à la harpe (glisser le doigt) : peu de passages = gros morceaux (pâte molle), beaucoup = grains de riz (comté).
+5. Cuisson du caillé, pâtes cuites seulement : remuer jusqu'à environ 54 °C.
+6. Moulage : 5 louches (camembert) ou levier de presse (comté).
+7. Salage : frotter du doigt ou bain de saumure.
+8. Geste signature du fromage.
+9. Cave d'affinage : étagères, retourner et frotter.
+10. Dégustation (Kicuit, Wanji), puis carnet et frigo.
+
+| Fromage | Région | Geste signature | Cave (temps du fromage) |
+|---|---|---|---|
+| Fromage blanc | partout | Égoutter en faisselle | aucune |
+| Cancoillotte | Franche-Comté | Fondre le metton en remuant, feu doux | aucune |
+| Camembert | Normandie | 5 louches, duvet blanc | 3 semaines |
+| Chèvre (bûche) | Centre | Rouler la bûche | 2 semaines |
+| Reblochon | Savoie | Presser à la main | 3 semaines |
+| Morbier | Franche-Comté | Tracer la raie noire | 2 mois |
+| Mont d'Or | Franche-Comté | Sangle d'épicéa, frotter la croûte (Wanji se bouche le nez) | 3 semaines |
+| Munster | Alsace | Laver la croûte (orange) | 1 mois |
+| Roquefort | Aveyron (brebis) | Piquer à l'aiguille | 3 mois |
+| Emmental | Savoie | Cave chaude : bulles de gaz = trous | 2 mois |
+| Comté | Franche-Comté | Grains fins, cuisson, presse, retourner et frotter la meule | 4 mois minimum |
+
+- **Carte de France** : chaque fromage réussi s'allume sur sa région (carnet de Raf ; carte complète = autocollant doré).
+- **Temps de cave réel** (validé) : l'affinage continue quand on ne joue pas, 1 jour de fromage = 1 minute réelle (camembert ≈ 21 min, comté de 4 mois ≈ 2 h). **Rien ne s'abîme pendant l'absence** : les soins ne sont demandés que quand l'enfant est dans la cave. Raf : fromage négligé pendant qu'il joue = moisissure poilue ; trop affiné = très fort et coulant (Wanji se cache). Nana : cave plus rapide (camembert ≈ 5 min), gestes toujours réussis.
+- **Nana** : fromage blanc, cancoillotte, camembert ; étapes guidées une par une, 3 gros boutons.
+- **Raf** : les 11 fromages, débloqués progressivement ; vrais réglages (°C, grains, durée de cave) ; le comté est le défi final.
+- **Catastrophes** : lait trop chaud (rien ne caille), mauvais grains (comté mou), cancoillotte qui attache, bleu non piqué (roquefort blanc), fromage poilu, fromage sans sel.
+- **Règle de sécurité Wanji** : jamais de roquefort ni de bleu (la moisissure peut rendre un chien malade), même traitement que le chocolat (Kicuit l'arrête, croquette). Les autres fromages : petit morceau autorisé ; il adore le comté, se bouche le nez devant le munster.
+- **Liens** : fromages au frigo → recettes gratin au comté et Mont d'Or chaud (four), tartiflette au reblochon, cancoillotte (casserole). Nouvelle culture au jardin : **pomme de terre**.
+- **Objectifs de la fromagerie** (comme le jardin, +1 étoile chacun), ex. « Prépare un plateau de 3 fromages », « Affine un comté de 4 mois ».
+- **Autocollants** : page Fromagerie d'environ 16 (un par fromage, première traite, Wanji se bouche le nez, « Pas de bleu pour les chiens », fromage poilu, comté de 4 mois holographique, carte de France complète dorée).
 
 ## Ateliers suivants (rappel du plan d'origine)
 
