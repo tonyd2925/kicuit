@@ -14,7 +14,7 @@
 <style>
 :root{--ink:#2b2350;--cream:#fff8ec;--orange:#ff7a59;--orange-d:#c9553a;--green:#3fbf98;--green-d:#2b8c6f;--blue:#4c8dff;--blue-d:#2f62c2;--grey:#9aa3b8;--grey-d:#6c7590;--sun:#ffd25a;--gold:#ffc83a}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-html,body{margin:0;height:100%;overflow:hidden;background:#1d1838;overscroll-behavior:none;touch-action:manipulation;font-family:ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold","Nunito",system-ui,-apple-system,sans-serif;color:var(--ink)}
+html,body{margin:0;height:100%;width:100%;overflow:hidden;background:#1d1838;overscroll-behavior:none;touch-action:manipulation;font-family:ui-rounded,"SF Pro Rounded","Arial Rounded MT Bold","Nunito",system-ui,-apple-system,sans-serif;color:var(--ink)}
 body{position:fixed;inset:0}
 #stage{position:absolute;left:50%;top:50%;width:1180px;height:820px;transform-origin:center center;overflow:hidden;background:var(--cream)}
 .screen{position:absolute;inset:0;display:none}
@@ -280,6 +280,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .slot .sh .sart{--sz:112px}
 .slot.got .sh{border-color:transparent}
 .slots.dense .slot .sh{width:108px;height:108px}.slots.dense .slot .sh .sart{--sz:100px}.slots.dense .ghost{width:94px!important;height:94px!important;--sz:94px!important}.slots.dense .slot .sn{font-size:14px;max-width:124px}
+.slots.dense2 .slot .sh{width:92px;height:92px}.slots.dense2 .slot .sh .sart{--sz:84px;border-width:5px}.slots.dense2 .ghost{width:80px!important;height:80px!important;--sz:80px!important}.slots.dense2 .slot .sn{font-size:12px;max-width:100px}
 .slot .sq{font-size:56px;font-weight:900;color:rgba(43,35,80,.18)}
 .slot .sn{font-size:15px;font-weight:800;text-align:center;line-height:1.1;max-width:136px;min-height:34px}
 .slot.target .sh{border-color:var(--orange);animation:pulse 1s infinite;background:rgba(255,122,89,.08)}
@@ -372,6 +373,21 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .gb{position:absolute;top:2px;right:2px;font-size:12px;font-weight:900;background:#3fbf55;color:#fff;border-radius:10px;padding:1px 6px}
 .ing{position:relative}
 
+#gObj{left:362px;top:116px;width:560px;height:100px;background:#fff;border-radius:28px;box-shadow:0 8px 20px rgba(43,35,80,.18);display:flex;align-items:center;gap:14px;padding:0 18px;z-index:6}
+#gObj.win{animation:boing .6s ease-out;background:#fff6d6}
+#gObj .oi{width:64px;height:64px;flex:none;display:flex;align-items:center;justify-content:center;font-size:48px;background:#f6f1e6;border-radius:20px}
+#gObj .oi svg{width:52px;height:52px}
+#gObj .ot{flex:1;min-width:0}
+#gObj .ox{font-size:22px;font-weight:900;line-height:1.15}
+#gObj .od{display:flex;gap:8px;margin-top:8px}
+#gObj .od i{width:22px;height:22px;border-radius:50%;background:#eee6d4;box-shadow:inset 0 2px 0 rgba(0,0,0,.1)}
+#gObj .od i.on{background:#3fbf55}
+#gObj .ob{height:12px;border-radius:6px;background:#eee6d4;margin-top:8px;overflow:hidden}
+#gObj .ob i{display:block;height:100%;background:linear-gradient(90deg,#9be15d,#3fbf55);border-radius:6px;transition:width .4s}
+#gObj .on{font-size:14px;font-weight:800;opacity:.65;margin-top:4px}
+#gObj .orw{font-size:40px}
+#gScare{left:930px;top:150px;width:80px;height:140px;z-index:3;transform-origin:50% 100%}
+#gHive{left:250px;top:150px;width:100px;height:110px;z-index:3}
 /* iPad en portrait */
 #rotate{position:fixed;inset:0;background:#2b2350;color:#fff;display:none;align-items:center;justify-content:center;flex-direction:column;gap:20px;font-size:34px;font-weight:900;z-index:999;text-align:center}
 #rotate .ph{font-size:110px;animation:rot 2s ease-in-out infinite}
@@ -441,6 +457,9 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
     <div class="abs" id="moulin"></div>
     <div id="gPlots" style="position:absolute;inset:0"></div>
     <div id="gInv"></div>
+    <div class="abs hidden" id="gObj"></div>
+    <div class="abs hidden" id="gScare"></div>
+    <div class="abs hidden" id="gHive"></div>
     <div class="abs" id="gWanji"></div>
     <div id="gTools"></div>
     <button class="iconbtn" id="gHome" style="left:20px;top:14px">🏠</button>
@@ -478,7 +497,10 @@ function onTap(el,fn){
 
 /* ---------- mise à l'échelle ---------- */
 let SCALE=1;
-function fit(){SCALE=Math.min(innerWidth/1180,innerHeight/820);$('stage').style.transform=`translate(-50%,-50%) scale(${SCALE})`;}
+/* taille de l'écran réel : on lit le viewport de mise en page (pas innerWidth, faussé quand Safari a zoomé) */
+function vpW(){return document.documentElement.clientWidth||innerWidth}
+function vpH(){return document.documentElement.clientHeight||innerHeight}
+function fit(){SCALE=Math.min(vpW()/1180,vpH()/820);$('stage').style.transform=`translate(-50%,-50%) scale(${SCALE})`;window.scrollTo(0,0);}
 addEventListener('resize',fit);addEventListener('orientationchange',()=>setTimeout(fit,200));fit();
 document.addEventListener('touchmove',e=>{if(!e.target.closest('input,.blist,#tray'))e.preventDefault()},{passive:false});
 /* Anti-zoom iPad : Safari ignore user-scalable=no, on bloque donc le double-tap et le pincement nous-mêmes.
@@ -486,10 +508,16 @@ document.addEventListener('touchmove',e=>{if(!e.target.closest('input,.blist,#tr
 ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
 let lastTouchEnd=0;
 document.addEventListener('touchend',e=>{const n=Date.now();if(n-lastTouchEnd<450&&!e.target.closest('input'))e.preventDefault();lastTouchEnd=n;},{passive:false});
-document.addEventListener('touchstart',e=>{if(e.touches.length>1)e.preventDefault();},{passive:false});
+/* on annule le geste par défaut de Safari dès le premier contact (zoom, double-tap, défilement) ;
+   les touches du jeu passent par les événements pointer, qui restent actifs. */
+document.addEventListener('touchstart',e=>{if(e.touches.length>1||!e.target.closest('input,.blist,#tray'))e.preventDefault();},{passive:false});
 /* si un zoom passe quand même, on revient automatiquement à la vue normale */
-function unzoom(){const m=document.querySelector('meta[name=viewport]');if(!m)return;const c='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover';m.setAttribute('content',c+', minimum-scale=1');setTimeout(()=>{m.setAttribute('content',c);fit();},60);}
-if(window.visualViewport){let zt=null;visualViewport.addEventListener('resize',()=>{if(visualViewport.scale>1.01){clearTimeout(zt);zt=setTimeout(unzoom,700);}});}
+function unzoom(){const m=document.querySelector('meta[name=viewport]');if(!m)return;const c='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover';
+  m.setAttribute('content',c.replace('maximum-scale=1','maximum-scale=1.0001')+', minimum-scale=1');
+  setTimeout(()=>{m.setAttribute('content',c);window.scrollTo(0,0);fit();},80);
+  [300,700,1200].forEach(t=>setTimeout(()=>{window.scrollTo(0,0);fit();},t));}
+if(window.visualViewport){let zt=null;const chk=()=>{if(visualViewport.scale>1.01||visualViewport.offsetTop>1||visualViewport.offsetLeft>1){clearTimeout(zt);zt=setTimeout(unzoom,400);}};visualViewport.addEventListener('resize',chk);visualViewport.addEventListener('scroll',chk);}
+addEventListener('scroll',()=>{if(scrollX||scrollY)window.scrollTo(0,0);});
 function stagePt(e){const s=$('stage').getBoundingClientRect();return {x:(e.clientX-s.left)/SCALE,y:(e.clientY-s.top)/SCALE};}
 function pos(el){const r=el.getBoundingClientRect(),s=$('stage').getBoundingClientRect();return {x:(r.left-s.left+r.width/2)/SCALE,y:(r.top-s.top+r.height/2)/SCALE};}
 
@@ -776,6 +804,9 @@ const STICK=[
   {id:'wcarotte',pg:'jardin',n:'Carotte pour Wanji',e:'🥰',rar:'b',bg:'#ffe9d6',secret:true,how:'Donne une carotte du jardin à Wanji'},
   {id:'assiette',pg:'jardin',n:"Du jardin à l'assiette",e:'🍽️',rar:'b',bg:'#e8fbe9',how:'Réussis un plat avec une récolte du jardin'},
   {id:'recolte30',pg:'jardin',n:'Trente récoltes',e:'🧺',rar:'h',bg:'#fff3c4',how:'Fais 30 récoltes'},
+  {id:'j_tournesol',pg:'jardin',n:'Tournesol',e:'🌻',rar:'c',bg:'#fff3c4',how:'Fais pousser un tournesol (5 objectifs réussis)'},
+  {id:'obj1',pg:'jardin',n:'Premier objectif',e:'📋',rar:'c',bg:'#e3f4ff',how:'Réussis un objectif du jardin'},
+  {id:'obj10',pg:'jardin',n:'Jardinier expert',e:'🏅',rar:'h',bg:'#fff3c4',how:'Réussis 10 objectifs du jardin'},
   {id:'or_jardin',pg:'jardin',n:'Main verte',e:'👩‍🌾',rar:'o',bg:'#fff3c4',how:'Complète toute la page Jardin'},
   {id:'boom3',pg:'secrets',n:'Triple explosion',e:'💣',rar:'h',bg:'#ffe9d6',secret:true,how:'Fais exploser 3 plats'},
   {id:'chef5',pg:'secrets',n:'Série parfaite',e:'🎯',rar:'h',bg:'#e8fbe9',secret:true,how:"Réussis 5 plats parfaits d'affilée"},
@@ -853,7 +884,7 @@ function renderAlbum(){
   if(AL.page==='libre')renderFree();
   else{
     const list=STICK.filter(s=>s.pg===AL.page);
-    $('apage').innerHTML=`<div class="slots ${list.length>14?'dense':''}" style="grid-template-columns:repeat(${list.length>14?8:Math.min(7,Math.max(4,list.length))},1fr)">${list.map(s=>{const got=owned(s.id);
+    $('apage').innerHTML=`<div class="slots ${list.length>16?'dense dense2':list.length>14?'dense':''}" style="grid-template-columns:repeat(${list.length>16?10:list.length>14?8:Math.min(7,Math.max(4,list.length))},1fr)">${list.map(s=>{const got=owned(s.id);
       return `<div class="slot ${got?'got':''} ${AL.target===s.id?'target':''}" data-id="${s.id}"><div class="sh">${got?sart(s.id):s.secret?'<span class="sq">?</span>':`<div class="ghost" style="width:104px;height:104px;--sz:104px">${sart(s.id)}</div>`}</div><div class="sn">${got||!s.secret?s.n:'???'}</div></div>`;}).join('')}</div>`;
   }
   renderTray();
@@ -1359,7 +1390,7 @@ async function cook(){
   $('plate').innerHTML=plateSVG+`<div class="pdish st-${res.st}">${dishSVG(rid)}</div>`+(smoky?[0,1,2].map(i=>`<div class="wisp" style="left:${100+i*40}px;top:40px;--sc:${wc};animation-delay:${i*.5}s"></div>`).join(''):'');
   $('plate').classList.remove('hidden');
   const p=P();
-  if(res.st==='parfait'){burst($('plate'),['✨','⭐','✨'],10);p.found[rid]=true;S.k.result.fresh=!(owned('r_'+rid)||pending('r_'+rid));p.c.streak++;award('r_'+rid);if(fromG)award('assiette');if(p.c.streak>=5)award('chef5');if(REAL.every(k=>p.found[k]))award('carnet');}
+  if(res.st==='parfait'){burst($('plate'),['✨','⭐','✨'],10);p.found[rid]=true;S.k.result.fresh=!(owned('r_'+rid)||pending('r_'+rid));p.c.streak++;award('r_'+rid);if(fromG){award('assiette');gEv('dish');}if(p.c.streak>=5)award('chef5');if(REAL.every(k=>p.found[k]))award('carnet');}
   else p.c.streak=0;
   saveDB();
   ({vert:'vert',carbonise:'carbo',attache:'attache',rate:'rate'})[res.st]&&award(({vert:'vert',carbonise:'carbo',attache:'attache',rate:'rate'})[res.st]);
@@ -1483,7 +1514,8 @@ const CROPS={
   fraise:{n:'Fraise',sp:.9,yield:3,fruit:true},
   tomate:{n:'Tomate',sp:.8,yield:2,fruit:true},
   ble:{n:'Blé',sp:1.1,yield:1},
-  fleurs:{n:'Fleurs',sp:1.2,yield:1}
+  fleurs:{n:'Fleurs',sp:1.2,yield:1},
+  tournesol:{n:'Tournesol',sp:1,yield:2}
 };
 const FCOL=['#ff5c8a','#ffd25a','#a77bf3','#ff7a59','#5bb8ff'];
 function gBlank(){return ({open:false,plots:Array.from({length:6},()=>({c:null})),stock:{carotte:0,radis:0,ble:0},fridge:{tomate:0,fraise:0,farine:0},flowers:[],bouquet:[],c:{harv:0,weeds:0},seen:{}});}
@@ -1497,7 +1529,8 @@ const FLOWER=c=>`<svg viewBox="0 0 64 64"><line x1="32" y1="36" x2="32" y2="62" 
 const FARINE='<svg viewBox="0 0 64 64">'+ING.farine.svg+'</svg>';
 const CAN='<svg viewBox="0 0 64 64"><path d="M12 28 h30 v24 q0 6 -6 6 h-18 q-6 0 -6 -6z" fill="#4caf9a" stroke="#2b7a66" stroke-width="3"/><path d="M42 34 l16 -14 l3 4 l-14 16z" fill="#4caf9a" stroke="#2b7a66" stroke-width="3"/><circle cx="60" cy="20" r="4" fill="#2b7a66"/><path d="M18 28 q9 -16 18 0" fill="none" stroke="#2b7a66" stroke-width="4"/></svg>';
 const SACK='<svg viewBox="0 0 64 64"><path d="M16 22 q16 -8 32 0 l4 32 q-20 8 -40 0z" fill="#a3d977" stroke="#5f8f3a" stroke-width="3"/><path d="M22 22 q10 -12 20 0" fill="#c8ef9e" stroke="#5f8f3a" stroke-width="3"/><circle cx="32" cy="40" r="7" fill="#fff"/><path d="M32 36 v8 M28 40 h8" stroke="#5f8f3a" stroke-width="3"/></svg>';
-const cropIcon=c=>c==='radis'?RADIS:c==='fleurs'?FLOWER('#ff5c8a'):`<span>${{carotte:'🥕',fraise:'🍓',tomate:'🍅',ble:'🌾'}[c]}</span>`;
+const cropIcon=c=>c==='radis'?RADIS:c==='fleurs'?FLOWER('#ff5c8a'):`<span>${{carotte:'🥕',fraise:'🍓',tomate:'🍅',ble:'🌾',tournesol:'🌻'}[c]}</span>`;
+const HOSE='<svg viewBox="0 0 64 64"><circle cx="26" cy="34" r="18" fill="none" stroke="#3fbf55" stroke-width="8"/><path d="M40 22 l14 -10" stroke="#3fbf55" stroke-width="8" stroke-linecap="round"/><rect x="50" y="6" width="10" height="10" rx="3" fill="#ffc83a"/><g fill="#4ab3ff"><circle cx="60" cy="24" r="2.5"/><circle cx="56" cy="30" r="2.5"/></g></svg>';
 
 /* dessin d'une plante selon son stade */
 function leaf(x,y,r,l,c='#5cc25a'){return `<ellipse cx="${x}" cy="${y}" rx="${l}" ry="${l*.42}" fill="${c}" transform="rotate(${r} ${x} ${y})"/>`;}
@@ -1517,6 +1550,12 @@ function plantSVG(p){
       s+=`<line x1="70" y1="118" x2="${x2}" y2="${y2}" stroke="${D}" stroke-width="3"/>`+(c==='carotte'?[.4,.6,.8,1].map(t=>`<circle cx="${70+(x2-70)*t}" cy="${118+(y2-118)*t}" r="${5-t*2}" fill="${G}"/>`).join(''):leaf(x2,y2,a,12,G));}
     if(st>=3)s+=c==='carotte'?`<path d="M58 118 h24 l-12 ${st===4?26:10}z" fill="#ff8a2a"/>`:`<circle cx="70" cy="${st===4?122:126}" r="${st===4?16:9}" fill="#ff4f8b"/>`;
     return `<svg viewBox="0 0 140 150">${s}<rect x="0" y="${st===4?132:124}" width="140" height="30" fill="none"/></svg>`;
+  }
+  if(c==='tournesol'){
+    s+=stem(st===2?44:96,'#4f9a3a')+leaf(52,100,-30,16,G)+leaf(88,92,30,16,G)+(st>=3?leaf(54,70,-30,14,G)+leaf(86,62,30,14,G):'');
+    if(st===3)s+=`<circle cx="70" cy="26" r="14" fill="#7cc35a"/><path d="M58 22 l6 -10 l6 8 l6 -8 l6 10" fill="#ffd25a"/>`;
+    if(st===4)s+=Array.from({length:14},(_,k)=>`<ellipse cx="70" cy="-4" rx="7" ry="16" fill="#ffc83a" transform="rotate(${k*360/14} 70 22)"/>`).join('')+`<circle cx="70" cy="22" r="15" fill="#7a4a2a"/><g fill="#5a3218">${[[64,18],[74,16],[70,26],[78,24],[62,26]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="2"/>`).join('')}</g>`;
+    return `<svg viewBox="0 0 140 150">${s}</svg>`;
   }
   if(c==='fleurs'){
     s+=stem(st===2?40:70)+leaf(56,100,-30,12,G)+leaf(84,90,30,12,G);
@@ -1550,10 +1589,10 @@ ${Array.from({length:40},(_,i)=>`<rect x="${i*30}" y="236" width="18" height="64
 </svg>`}
 function moulinSVG(){return `<svg viewBox="0 0 160 190" style="width:100%;height:100%"><path d="M58 70 l-14 104 h72 l-14 -104z" fill="#fff1d8" stroke="#b98a5a" stroke-width="4"/><path d="M50 74 l30 -26 l30 26z" fill="#e8674f" stroke="#a9412f" stroke-width="4" stroke-linejoin="round"/><rect x="70" y="136" width="20" height="38" rx="9" fill="#8a5a36"/><g class="sails"><g fill="#fff" stroke="#8a96ad" stroke-width="3">${[0,90,180,270].map(a=>`<rect x="74" y="8" width="12" height="62" rx="3" transform="rotate(${a} 80 70)"/>`).join('')}</g><circle cx="80" cy="70" r="8" fill="#5d6c8c"/></g></svg><div class="mlab">Moulin</div>`}
 
-const TOOLS=[...Object.keys(CROPS).map(c=>({id:'seed:'+c,n:CROPS[c].n,seed:c})),{id:'eau',n:'Arrosoir'},{id:'engrais',n:'Engrais'},{id:'main',n:'Main'},{id:'cocci',n:'Coccinelles'}];
+function TOOLS(){const u=gUnl();return [...Object.keys(CROPS).filter(c=>c!=='tournesol'||u.tournesol).map(c=>({id:'seed:'+c,n:CROPS[c].n,seed:c})),{id:'eau',n:'Arrosoir'},...(u.tuyau?[{id:'tuyau',n:'Tuyau'}]:[]),{id:'engrais',n:'Engrais'},{id:'main',n:'Main'},{id:'cocci',n:'Coccinelles'}];}
 const GS={tool:'main',timer:null,bee:null,beeWait:0,sig:[]};
-function toolIcon(t){if(t.seed)return cropIcon(t.seed);return {eau:CAN,engrais:SACK,main:'<span>✋</span>',cocci:'<span>🐞</span>'}[t.id];}
-function renderTools(){$('gTools').innerHTML=TOOLS.map(t=>`<button class="tool ${t.seed?'seed':''} ${GS.tool===t.id?'sel':''}" data-t="${t.id}"><div class="ti">${toolIcon(t)}</div>${t.n}</button>`).join('');}
+function toolIcon(t){if(t.seed)return cropIcon(t.seed);return {eau:CAN,tuyau:HOSE,engrais:SACK,main:'<span>✋</span>',cocci:'<span>🐞</span>'}[t.id];}
+function renderTools(){$('gTools').innerHTML=TOOLS().map(t=>`<button class="tool ${t.seed?'seed':''} ${GS.tool===t.id?'sel':''}" data-t="${t.id}"><div class="ti">${toolIcon(t)}</div>${t.n}</button>`).join('');}
 function renderInv(){
   const g=G_(),row=(ico,n,act,cls,key)=>`<div class="inv ${n?'':'empty'}" data-k="${key}"><div class="ii">${ico}</div>${n}${act?`<span class="ia ${cls||''}">${act}</span>`:''}</div>`;
   $('gInv').innerHTML='<h3>🧺 Mon panier</h3>'+
@@ -1589,7 +1628,7 @@ function renderPlot(i,force){
 }
 function renderGarden(){
   $('gPlots').innerHTML=PLOTXY.map(([x,y],i)=>`<div class="plot" data-i="${i}" style="left:${x}px;top:${y}px"></div>`).join('');
-  GS.sig=[];G_().plots.forEach((_,i)=>renderPlot(i,true));renderTools();renderInv();updGift();
+  GS.sig=[];G_().plots.forEach((_,i)=>renderPlot(i,true));renderTools();renderInv();renderObj();renderDeco();updGift();
 }
 function seen(k){const g=G_();if(g.seen[k])return true;g.seen[k]=1;saveDB();return false;}
 
@@ -1597,8 +1636,9 @@ function enterGarden(){
   go('s-garden');G_();renderGarden();
   $('gWanji').innerHTML=wanjiSVG();
   clearInterval(GS.timer);GS.timer=setInterval(gTick,250);
+  if(!G_().obj)newObj();
   if(!seen('intro'))say(T('Bienvenue au jardin ! Choisis une graine, puis touche la terre.','Le jardin ! Plante, arrose, protège tes plantes. Les abeilles aident les fraises et les tomates à faire des fruits.'));
-  else say(T('Le jardin !','Le jardin.'));
+  else{const o=G_().obj;say(T(o.x+' !','Objectif : '+o.x+'.'));}
 }
 function leaveGarden(){clearInterval(GS.timer);GS.timer=null;if(GS.bee){GS.bee.el.remove();GS.bee=null;}saveDB();}
 
@@ -1614,6 +1654,7 @@ function gTick(){
     if(!p.weed&&Math.random()<(A?.0012:.0025))p.weed=true;
     if(p.st>=1&&p.st<4&&p.aph<3&&Math.random()<(A?.001:.002)){p.aph++;if(!seen('aph'))say(T('Des pucerons ! Écrase-les avec la main ou appelle les coccinelles.','Des pucerons ! Écrase-les à la main, ou envoie les coccinelles : elles les mangent.'));}
     if(p.w<=0){p.dry=(p.dry||0)+1;if(!A&&p.dry>40){p.dead=true;say('Oh non, une plante est morte de soif ! Arrache-la avec la main.');}}else p.dry=0;
+    if(p.w<25)p.everDry=1;
     if(p.w<25&&p.w>0&&!p.thirsty){p.thirsty=1;if(!seen('thirst'))say(T('Ta plante a soif ! Prends l\'arrosoir.','Une plante a soif : surveille la jauge bleue.'));}
     if(p.w>=25)p.thirsty=0;
     let m=1;if(p.f===1)m*=1.7;if(p.weed)m*=.3;if(p.aph)m*=.3;if(p.burn>0){m=0;p.burn--;}
@@ -1626,7 +1667,8 @@ function gTick(){
   });
   /* abeilles : elles viennent quand une fleur de fraisier ou de tomate attend */
   if(!GS.bee){GS.beeWait++;const i=g.plots.findIndex(p=>p.c&&!p.dead&&p.st===3&&CROPS[p.c].fruit&&!p.pol&&p.gr>=40);
-    if(i>=0&&GS.beeWait>10){GS.beeWait=0;launchBee(i);}}
+    if(i>=0&&GS.beeWait>(gUnl().ruche?3:10)){GS.beeWait=0;launchBee(i);}}
+  if(GS.tickN=(GS.tickN||0)+1,GS.tickN%8===0)gEv('state');
   if(++gSave>20){gSave=0;saveDB();}
 }
 function plotCenter(i){const [x,y]=PLOTXY[i];return {x:x+140,y:y+70};}
@@ -1653,6 +1695,64 @@ function beeAway(bee){
   bee.el.animate([{transform:`translate(${c.x-28}px,${c.y-28}px)`},{transform:`translate(${c.x+300}px,${c.y-400}px)`}],{duration:1200,easing:'ease-in',fill:'forwards'}).onfinish=()=>bee.el.remove();
 }
 
+/* ---------- objectifs du jardin ---------- */
+const OBJ_NANA=[
+  {t:'harvest',crop:'carotte',n:2,x:'Récolte 2 carottes'},{t:'harvest',crop:'fraise',n:3,x:'Récolte 3 fraises'},
+  {t:'harvest',crop:'radis',n:2,x:'Récolte 2 radis'},{t:'harvest',crop:'fleurs',n:2,x:'Cueille 2 fleurs'},
+  {t:'harvest',crop:'tomate',n:2,x:'Récolte 2 tomates'},{t:'water',n:5,x:'Arrose 5 fois tes plantes'},
+  {t:'wanji',crop:'carotte',n:1,x:'Donne une carotte à Wanji'},{t:'full',n:6,x:'Plante dans les 6 parcelles'},
+  {t:'bouquet',n:1,x:'Fais un bouquet'},{t:'weed',n:3,x:'Arrache 3 mauvaises herbes'}];
+const OBJ_RAF=[
+  {t:'harvest',crop:'fraise',n:6,x:'Récolte 6 fraises'},{t:'harvest',crop:'tomate',n:4,x:'Récolte 4 tomates'},
+  {t:'harvest',crop:'carotte',n:4,x:'Récolte 4 carottes'},{t:'moulin',n:2,x:'Fais 2 sacs de farine au moulin'},
+  {t:'cocci',n:2,x:'Sauve 2 plantes des pucerons avec les coccinelles'},{t:'weed',n:6,x:'Arrache 6 mauvaises herbes'},
+  {t:'diverse',n:4,x:'Fais pousser 4 cultures différentes en même temps'},{t:'full',n:6,x:'Occupe les 6 parcelles en même temps'},
+  {t:'nothirst',n:3,x:"Récolte 3 plantes qui n'ont jamais eu soif"},{t:'bouquetc',n:4,x:'Fais un bouquet de 4 couleurs différentes'},
+  {t:'dish',n:1,x:'Réussis un plat avec une récolte du jardin'},{t:'wanji',crop:'carotte',n:2,x:'Donne 2 carottes à Wanji'}];
+/* cadeaux du jardin, débloqués par le nombre d'objectifs réussis */
+const UNLOCKS=[{k:'epouvantail',at:1,n:'un épouvantail'},{k:'ruche',at:3,n:'une ruche : les abeilles viennent plus vite'},{k:'tournesol',at:5,n:'des graines de tournesol'},{k:'tuyau',at:7,n:'un tuyau qui arrose tout le jardin'}];
+function gUnl(){const d=S.player?(G_().objDone||0):0;return Object.fromEntries(UNLOCKS.map(u=>[u.k,d>=u.at]));}
+function objIcon(o){return {harvest:cropIcon(o.crop||'carotte'),water:CAN,wanji:'<span>🐶</span>',full:'<span>🌱</span>',bouquet:'<span>💐</span>',bouquetc:'<span>💐</span>',weed:'<span>🌿</span>',moulin:'<span>🥖</span>',cocci:'<span>🐞</span>',diverse:'<span>🧑‍🌾</span>',nothirst:'<span>💧</span>',dish:'<span>🍽️</span>'}[o.t];}
+function newObj(){
+  const g=G_(),pool=isA()?OBJ_NANA:OBJ_RAF;let o;
+  do{o=pick(pool);}while(pool.length>1&&g.lastObj===o.x);
+  g.obj={...o,p:0};g.lastObj=o.x;saveDB();renderObj();
+}
+function renderObj(){
+  const el=$('gObj');if(!el)return;const o=G_().obj;if(!o){el.classList.add('hidden');return;}
+  el.classList.remove('hidden');const pr=Math.min(o.p,o.n);
+  const next=UNLOCKS.find(u=>(G_().objDone||0)<u.at);
+  el.innerHTML=`<div class="oi">${objIcon(o)}</div><div class="ot"><div class="ox">${o.x}</div>${isA()?`<div class="od">${Array.from({length:o.n},(_,k)=>`<i class="${k<pr?'on':''}"></i>`).join('')}</div>`:`<div class="ob"><i style="width:${pr/o.n*100}%"></i></div><div class="on">${pr}/${o.n}${next?` · prochain cadeau : ${next.n.split(' :')[0]} (${G_().objDone||0}/${next.at})`:''}</div>`}</div><div class="orw">⭐</div>`;
+}
+function gEv(type,d={}){
+  if(!S.player)return;const g=G_(),o=g.obj;if(!o||o.done)return;const before=o.p;
+  if(o.t==='harvest'&&type==='harvest'&&d.c===o.crop)o.p+=d.n;
+  else if(o.t==='nothirst'&&type==='harvest'&&d.nothirst)o.p++;
+  else if(o.t==='bouquetc'&&type==='bouquet'&&new Set(d.cols).size>=o.n)o.p=o.n;
+  else if(o.t==='wanji'&&type==='wanji'&&d.c===o.crop)o.p++;
+  else if(['water','bouquet','moulin','cocci','weed','dish'].includes(o.t)&&type===o.t)o.p++;
+  else if(type==='state'&&(o.t==='full'||o.t==='diverse')){const alive=g.plots.filter(p=>p.c&&!p.dead);o.p=Math.max(o.p,o.t==='full'?alive.length:new Set(alive.map(p=>p.c)).size);}
+  if(o.p===before)return;
+  saveDB();if(S.screen==='s-garden')renderObj();
+  if(o.p>=o.n)objDone();
+}
+async function objDone(){
+  const g=G_(),p=P();g.obj.done=true;g.objDone=(g.objDone||0)+1;p.stars++;saveDB();
+  sfx.fanfare();if(S.screen==='s-garden'){const el=$('gObj');el.classList.add('win');burst(el,['⭐','✨','🎉'],12,180);}
+  award('obj1');if(g.objDone>=10)award('obj10');if(p.stars>=5)award('star5');if(p.stars>=JARDIN)award('star10');if(p.stars>=20)award('star20');
+  const u=UNLOCKS.find(x=>x.at===g.objDone);
+  say(T('Objectif réussi ! Une étoile !'+(u?' Cadeau : '+u.n.split(' :')[0]+' !':''),`Objectif réussi : +1 étoile (${p.stars}).`+(u?` Nouveau : ${u.n}.`:'')),T(undefined,'Objectif réussi !'));
+  await sleep(2600);if(S.screen==='s-garden'){$('gObj').classList.remove('win');renderDeco();renderTools();}
+  newObj();
+}
+function renderDeco(){
+  const u=gUnl();
+  $('gScare').classList.toggle('hidden',!u.epouvantail);$('gHive').classList.toggle('hidden',!u.ruche);
+}
+onTap($('gScare'),()=>{sfx.flip();$('gScare').animate([{transform:'rotate(0)'},{transform:'rotate(-10deg)'},{transform:'rotate(10deg)'},{transform:'rotate(0)'}],{duration:600});say(T("C'est l'épouvantail ! Il fait peur aux oiseaux.","L'épouvantail éloigne les oiseaux qui picorent les graines."),T(undefined,false));});
+onTap($('gHive'),()=>{sfx.bzz();burst($('gHive'),['🐝','🍯'],4,70);say(T('La ruche ! Les abeilles font du miel.','La ruche : les abeilles butinent plus souvent les fleurs.'),T(undefined,false));});
+onTap($('gObj'),()=>{const o=G_().obj;if(o)say(T(o.x+' !','Objectif : '+o.x+'.'),T(o.x+' !',false));});
+
 /* outils */
 onTap($('gTools'),e=>{const b=e.target.closest('[data-t]');if(!b)return;GS.tool=b.dataset.t;sfx.click();renderTools();});
 onTap($('gPlots'),e=>{
@@ -1662,16 +1762,22 @@ onTap($('gPlots'),e=>{
     if(p.c){say(T(p.st===4?"C'est prêt ! Prends la main pour récolter.":'Il y a déjà une plante ici.',p.st===4?'Récolte d\'abord avec la main.':'Parcelle occupée.'));return;}
     if(p.weed){say(T("Arrache d'abord les mauvaises herbes avec la main !",'Désherbe avant de semer.'));return;}
     g.plots[i]={c,st:0,gr:0,w:A?60:45,f:0,weed:false,aph:0,pol:false,dry:0,dead:false,burn:0,col:pick(FCOL)};
-    sfx.pop();renderPlot(i,true);burst(el,['🌱'],3,50);
+    sfx.pop();renderPlot(i,true);burst(el,['🌱'],3,50);gEv('plant',{c});
     if(!seen('plant'))say(T('Bravo ! Maintenant, arrose avec l\'arrosoir.','Semé. Garde la jauge d\'eau dans le bleu.'));
     saveDB();return;
   }
   if(t==='eau'){
     sfx.splash();burst(el,['💧','💦'],5,70);
     if(!p.c)return;
+    gEv('water');
     if(A){if(p.w>=95){award('noyee');say("Elle a assez bu ! Trop d'eau, ça noie les racines.");}p.w=Math.min(100,p.w+35);}
     else{p.w+=35;if(p.w>100){award('noyee');if(!seen('noyee'))say("Trop d'eau : les racines se noient et la plante ne pousse plus tant que ça n'a pas séché.");}}
     renderPlot(i,true);return;
+  }
+  if(t==='tuyau'){
+    sfx.splash();g.plots.forEach((q,j)=>{if(q.c&&!q.dead){q.w=A?Math.min(100,q.w+35):q.w+35;renderPlot(j,true);burst(document.querySelector(`.plot[data-i="${j}"]`),['💧'],3,60);}});
+    gEv('water');if(!A&&g.plots.some(q=>q.c&&q.w>100)){award('noyee');say('Attention, le tuyau arrose tout : certaines plantes ont trop d\'eau !');}
+    return;
   }
   if(t==='engrais'){
     if(!p.c||p.dead){say(T("Il faut d'abord une plante !",'Rien à nourrir ici.'));return;}
@@ -1681,13 +1787,13 @@ onTap($('gPlots'),e=>{
   }
   if(t==='cocci'){
     if(!p.aph){say(T("Pas de pucerons ici !",'Aucun puceron sur cette plante.'));return;}
-    const c=pos(el);fly('<span style="font-size:44px">🐞</span>',$('gTools'),null,{dur:700,size:50,arc:120,to:{x:c.x,y:c.y-20}}).then(()=>{p.aph=0;renderPlot(i,true);burst(el,['🐞','🐞','✨'],5,60);sfx.crunch();award('coccinelle');
+    const c=pos(el);fly('<span style="font-size:44px">🐞</span>',$('gTools'),null,{dur:700,size:50,arc:120,to:{x:c.x,y:c.y-20}}).then(()=>{p.aph=0;renderPlot(i,true);burst(el,['🐞','🐞','✨'],5,60);sfx.crunch();award('coccinelle');gEv('cocci');
       if(!seen('cocci'))say(T('Les coccinelles ont mangé les pucerons !','Les coccinelles mangent les pucerons : un allié naturel du jardin.'));});
     return;
   }
   /* la main : écraser, désherber, arracher, récolter */
   if(p.aph){p.aph=0;sfx.squish();burst(el,['💥'],3,50);renderPlot(i,true);return;}
-  if(p.weed){p.weed=false;g.c.weeds++;sfx.squish();burst(el,['🌿'],4,70);if(g.c.weeds>=10)award('desherbe');renderPlot(i,true);saveDB();return;}
+  if(p.weed){p.weed=false;g.c.weeds++;sfx.squish();burst(el,['🌿'],4,70);if(g.c.weeds>=10)award('desherbe');gEv('weed');renderPlot(i,true);saveDB();return;}
   if(p.dead){g.plots[i]={c:null};sfx.trash();renderPlot(i,true);saveDB();return;}
   if(p.c&&p.st===4){harvest(i,el);return;}
   if(p.c)say(T("Pas encore prêt ! Attends qu'il pousse.",'Pas encore mûr.'),false);
@@ -1696,10 +1802,11 @@ onTap($('gPlots'),e=>{
 async function harvest(i,el){
   const g=G_(),p=g.plots[i],c=p.c,n=CROPS[c].yield;
   g.plots[i]={c:null};renderPlot(i,true);sfx.pop();
-  await fly(c==='fleurs'?FLOWER(p.col):cropIcon(c).replace('<span>','<span style="font-size:52px">'),el,$('gInv'),{dur:600,size:64,arc:100});
-  if(c==='fleurs')g.flowers.push(p.col);else if(c==='fraise'||c==='tomate')g.fridge[c]+=n;else g.stock[c]+=n;
+  await fly(c==='fleurs'?FLOWER(p.col):c==='tournesol'?'<span style="font-size:52px">🌻</span>':cropIcon(c).replace('<span>','<span style="font-size:52px">'),el,$('gInv'),{dur:600,size:64,arc:100});
+  if(c==='fleurs')g.flowers.push(p.col);else if(c==='tournesol')for(let k=0;k<n;k++)g.flowers.push('#ffc83a');else if(c==='fraise'||c==='tomate')g.fridge[c]+=n;else g.stock[c]+=n;
   g.c.harv++;sfx.ding();award('j_'+c);if(g.c.harv>=30)award('recolte30');saveDB();renderInv();
   say(T(c==='fraise'||c==='tomate'?`Super récolte ! Elles vont dans le frigo de la cuisine.`:`Super récolte !`,c==='fraise'||c==='tomate'?`Récolte : ${n} ${CROPS[c].n.toLowerCase()}s, rangées dans le frigo.`:`Récolte : ${CROPS[c].n.toLowerCase()}.`));
+  gEv('harvest',{c,n,nothirst:!p.everDry});
 }
 
 /* panier : Wanji, moulin, bouquet */
@@ -1709,7 +1816,7 @@ onTap($('gInv'),e=>{
     g.stock[k]--;renderInv();
     fly(k==='radis'?RADIS:'<span style="font-size:52px">🥕</span>',r,$('gWanji'),{dur:600,size:60,arc:80}).then(()=>{
       const w=$('gWanji').querySelector('.wj');w.classList.remove('happy','yuck');void w.offsetWidth;
-      if(k==='carotte'){w.classList.add('happy');sfx.bark();sfx.crunch();burst($('gWanji'),['❤️','🥕'],6,80);award('wcarotte');say(T('Wanji adore les carottes !','Les carottes sont bonnes pour les chiens : Wanji adore !'));}
+      if(k==='carotte'){w.classList.add('happy');sfx.bark();sfx.crunch();burst($('gWanji'),['❤️','🥕'],6,80);award('wcarotte');gEv('wanji',{c:'carotte'});say(T('Wanji adore les carottes !','Les carottes sont bonnes pour les chiens : Wanji adore !'));}
       else{w.classList.add('yuck');sfx.yuck();burst($('gWanji'),['😝'],3,60);say(T('Beurk, ça pique ! Wanji fait la grimace.','Le radis pique un peu : Wanji fait la grimace.'));}
       setTimeout(()=>w.classList.remove('happy','yuck'),2200);saveDB();});
     return;
@@ -1722,7 +1829,7 @@ onTap($('moulin'),async()=>{
   const g=G_();if(!g.stock.ble){say(T("Il faut du blé ! Plante-en.","Il faut du blé : sème-en dans une parcelle."));return;}
   if($('moulin').classList.contains('spin'))return;
   $('moulin').classList.add('spin');sfx.whisk();await sleep(1800);$('moulin').classList.remove('spin');
-  g.stock.ble--;g.fridge.farine++;award('moulin');saveDB();
+  g.stock.ble--;g.fridge.farine++;award('moulin');gEv('moulin');saveDB();
   await fly(FARINE,$('moulin'),$('gInv'),{dur:600,size:60,arc:60});renderInv();
   say(T('De la farine ! Elle va dans le frigo.','Le moulin écrase le blé : voilà de la farine pour la cuisine.'));
 });
@@ -1744,7 +1851,7 @@ function bouquetTap(e){
   const b=e.target.closest('[data-bq]');if(!b)return false;
   if(b.dataset.bq==='no'){$('gPanel').classList.add('hidden');return true;}
   const g=G_();BQ.forEach(c=>{const j=g.flowers.indexOf(c);if(j>=0)g.flowers.splice(j,1);});
-  g.bouquet=BQ.slice();BQ=[];award('bouquet');saveDB();$('gPanel').classList.add('hidden');renderInv();
+  g.bouquet=BQ.slice();gEv('bouquet',{cols:BQ.slice()});BQ=[];award('bouquet');saveDB();$('gPanel').classList.add('hidden');renderInv();
   say(T('Quel joli bouquet ! Il est dans la cuisine.','Bouquet posé à la fenêtre de la cuisine.'));
   return true;
 }
@@ -1753,6 +1860,8 @@ onTap($('gPanelCard'),bouquetTap);
 onTap($('gPanel'),e=>{if(e.target.id==='gPanel')$('gPanel').classList.add('hidden');});
 onTap($('gWanji'),()=>wanjiTap($('gWanji')));
 $('gArt').innerHTML=gardenSVG();$('moulin').innerHTML=moulinSVG();
+$('gScare').innerHTML='<svg viewBox="0 0 80 140" style="width:100%;height:100%"><rect x="37" y="40" width="6" height="100" fill="#8a5a36"/><rect x="6" y="56" width="68" height="6" rx="3" fill="#8a5a36"/><path d="M18 60 h44 l6 44 h-56z" fill="#4c8dff"/><path d="M30 60 l10 14 l10 -14" fill="#ff7a59"/><circle cx="40" cy="36" r="16" fill="#f3d9a4"/><path d="M20 26 h40 l-6 -18 h-28z" fill="#a77b4f"/><rect x="16" y="24" width="48" height="5" rx="2" fill="#7a5532"/><circle cx="34" cy="36" r="2.5" fill="#2b2350"/><circle cx="46" cy="36" r="2.5" fill="#2b2350"/><path d="M34 44 q6 5 12 0" stroke="#2b2350" stroke-width="2.5" fill="none"/><g stroke="#e8c36a" stroke-width="3"><path d="M18 104 l-4 10 M26 104 l-2 10 M62 104 l4 10 M54 104 l2 10 M8 58 l-6 -4 M72 58 l6 -4"/></g></svg>';
+$('gHive').innerHTML='<svg viewBox="0 0 100 110" style="width:100%;height:100%"><rect x="46" y="70" width="8" height="40" fill="#8a5a36"/><path d="M50 8 q34 0 38 30 q4 34 -38 36 q-42 -2 -38 -36 q4 -30 38 -30z" fill="#ffc83a" stroke="#c98a1a" stroke-width="4"/><path d="M16 30 h68 M13 44 h74 M16 58 h68" stroke="#c98a1a" stroke-width="4"/><ellipse cx="50" cy="62" rx="9" ry="6" fill="#5a3218"/></svg>';
 function updFridge(){const g=G_();['tomate','fraise','farine'].forEach(k=>{const b=document.querySelector(`#frIn [data-ing="${k}"]`);if(!b)return;let t=b.querySelector('.gb');const n=g.fridge[k];if(n){if(!t){t=document.createElement('span');t.className='gb';b.appendChild(t);}t.textContent='🌱'+n;}else if(t)t.remove();});}
 function updVase(){const b=G_().bouquet;$('kVase').classList.toggle('hidden',!b.length);if(b.length)$('kVase').innerHTML=vaseSVG(b,110,100);}
 

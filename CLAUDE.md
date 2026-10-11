@@ -31,7 +31,7 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 
 ## Progression
 
-- Étoile : +1 par commande de Wanji réussie (le bon plat, cuisson parfaite).
+- Étoile : +1 par commande de Wanji réussie (le bon plat, cuisson parfaite) et +1 par objectif du jardin réussi.
 - **Jardin : 10 étoiles** (décidé, constante `JARDIN`). Des autocollants restent à gagner au-delà pour donner envie de revenir. Seuils des autres ateliers : à fixer quand ils seront construits.
 - Ordre de construction : ~~Cuisine~~ → ~~Jardin~~ → **Fromagerie** → Garage / Laboratoire / Corps humain.
 - Prochaine étape d'interface (en attente, ne pas faire sans accord) : un compteur « Jardin : x/10 ⭐ » sur la maison.
@@ -62,7 +62,7 @@ Objectif : un vrai album d'autocollants, celui qu'on a envie de remplir.
 - Style : bordure blanche découpée, légère ombre, son de « décollage » et confettis.
 - Pour Nana : autocollants plus grands, pas de texte obligatoire.
 - Autocollants de long terme (pour revenir) : 5, 10 (jardin) et 20 étoiles, 10 commandes réussies, jouer 3 puis 7 jours différents (`days`), série de 5 plats parfaits, carnet complet.
-- Cible : environ 60 autocollants sur tout le jeu (environ 12 par atelier). Actuellement 56 (cuisine et jardin).
+- Cible : environ 60 autocollants sur tout le jeu (environ 12 par atelier). Actuellement 59 (cuisine et jardin).
 
 ## Jardin (fait, 10 étoiles)
 
@@ -75,7 +75,9 @@ Objectif : un vrai album d'autocollants, celui qu'on a envie de remplir.
 - Fraises et tomates restent en fleur tant qu'une **abeille** n'est pas venue butiner. Toucher l'abeille la fait fuir (leçon : ne pas chasser les abeilles).
 - Panier : carottes et radis à donner à Wanji (il adore les carottes, le radis le fait grimacer) ; blé au **moulin** pour faire de la farine ; 3 fleurs ou plus pour un **bouquet** posé à la fenêtre de la cuisine.
 - Fraises, tomates et farine vont au frigo (pastille 🌱 sur l'ingrédient). Un plat parfait avec une récolte du jardin donne « Du jardin à l'assiette ».
-- Page d'autocollants Jardin : 16 autocollants, dont 30 récoltes et des secrets.
+- **Objectifs du jardin** (carte en haut de l'écran, un à la fois, toucher la carte le relit) : listes `OBJ_NANA` (simples : récolter 2 carottes, arroser 5 fois, faire un bouquet…) et `OBJ_RAF` (6 fraises, 4 cultures différentes en même temps, 3 récoltes sans soif, bouquet de 4 couleurs, plat réussi avec une récolte…). Progression par événements `gEv(type, données)`. Un objectif réussi donne une étoile.
+- **Cadeaux du jardin** selon le nombre d'objectifs réussis (`UNLOCKS`) : 1 épouvantail, 3 ruche (abeilles plus fréquentes), 5 graines de tournesol, 7 tuyau (arrose toutes les parcelles d'un coup).
+- Page d'autocollants Jardin : 19 autocollants (dont tournesol, premier objectif, 10 objectifs), 30 récoltes et des secrets.
 - Plus tard : une vache qui fournit le lait de la fromagerie.
 
 ## Fromagerie (après le jardin)
@@ -116,7 +118,7 @@ Parcours commun, avec des réglages selon le fromage :
 - Un seul `index.html` (HTML, CSS et JS vanilla, aucune dépendance), graphismes en SVG inline, sons en WebAudio.
 - Scène fixe de 1180×820, mise à l'échelle par `fit()`, iPad en paysage (message si l'iPad est en portrait).
 - **Taps : toujours utiliser `onTap(el, fn)`** (pointerdown/pointerup), jamais `click`. Sur iPad, `click` rate les éléments animés.
-- **Zoom bloqué** : Safari ignore `user-scalable=no`. Le double-tap (`touchend` à moins de 450 ms) et le pincement sont annulés en JS, et un zoom résiduel est annulé via `visualViewport` (`unzoom()`). Ne jamais réintroduire `click`, que ce blocage empêcherait.
+- **Zoom bloqué** : Safari ignore `user-scalable=no`. Tout `touchstart` est annulé (sauf `input`, `.blist`, `#tray`, qui doivent défiler), ainsi que le double-tap et le pincement ; les touches du jeu passent par les événements pointer, qui restent actifs. Un zoom résiduel est annulé via `visualViewport` (`unzoom()` puis `scrollTo(0,0)`). `fit()` lit `clientWidth/clientHeight` et non `innerWidth`, faussé quand Safari a zoomé. Ne jamais réintroduire `click`, que ce blocage empêcherait.
 - Hors ligne : `sw.js`. **Incrémenter `const C='kicuit-vN'` à chaque mise à jour**, sinon l'iPad garde l'ancienne version.
 - Icônes `icon-180.png` / `icon-512.png`, `manifest.webmanifest` (ajout à l'écran d'accueil).
 - Avant de pousser : `node --check` sur le script, test des combinaisons de cuisson, partie complète en navigateur headless (tap tactile).
