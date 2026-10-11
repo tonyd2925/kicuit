@@ -488,12 +488,27 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .meter2 i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffc94a,#3fbf98);transition:width .2s}
 .fhint2{font-size:20px;font-weight:800;opacity:.7;text-align:center;max-width:640px}
 .fgrid{position:absolute;inset:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-content:center}
-.fcard{position:relative;height:136px;border-radius:22px;background:#fffaf0;box-shadow:0 4px 0 #ecdcbc;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px}
+.fcard{position:relative;height:184px;border-radius:22px;background:#fffaf0;box-shadow:0 4px 0 #ecdcbc;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px}
 .fcard .fc{width:100px;height:72px}
 .fcard .fn{font-size:17px;font-weight:900;text-align:center;line-height:1.1}
 .fcard .fr{font-size:13px;font-weight:700;opacity:.65}
 .fcard.lock{filter:grayscale(1);opacity:.45}
 .fcard .fok{position:absolute;right:8px;top:6px;font-size:22px}
+.fcard .ffam{font-size:14px;font-weight:900;color:#a8703f;white-space:nowrap}
+.fcard .fc{width:120px;height:86px}
+.wpill{background:#e3f4ff!important;opacity:1!important}
+.dgrow{display:flex;gap:18px;align-items:center;justify-content:center}
+.dgfam{width:440px;display:flex;flex-direction:column;gap:6px}
+.dgfam b{font-size:22px}
+.ladder{display:flex;gap:6px}
+.ladder span{flex:1;height:50px;border-radius:14px;background:#eee8f7;display:flex;align-items:center;justify-content:center;font-size:28px;filter:grayscale(1);opacity:.5}
+.ladder span.ok{filter:none;opacity:1;background:#fff3c4}
+.ladder span.on{filter:none;opacity:1;box-shadow:0 0 0 4px var(--orange);background:#fff}
+.ladl{display:flex;justify-content:space-between;font-size:14px;font-weight:900;opacity:.7}
+.dgx{font-size:15px;font-weight:700;line-height:1.3}
+.famtop{font-size:18px;font-weight:900;text-align:center;margin:-4px 0 10px;line-height:1.3}
+.wbar{height:10px;border-radius:5px;background:#eee6d4;margin:4px 0;overflow:hidden}
+.wbar i{display:block;height:100%;background:#6ec8ff}
 .fc svg{width:100%;height:100%}
 .fc.big{width:280px;height:210px}
 .fc.bad{filter:saturate(.5) brightness(.9)}
@@ -844,7 +859,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
   <section class="screen" id="s-fromage">
     <svg viewBox="0 0 1180 820" class="full"><defs><pattern id="planks" width="90" height="820" patternUnits="userSpaceOnUse"><rect width="90" height="820" fill="#e2b77e"/><rect width="4" height="820" fill="#c99b62"/></pattern></defs><rect width="1180" height="820" fill="url(#planks)"/><rect y="96" width="1180" height="18" fill="#a8703f"/><rect x="0" y="640" width="310" height="180" fill="#f2d98a"/><rect x="0" y="300" width="310" height="10" fill="#a8703f"/><rect x="0" y="560" width="310" height="10" fill="#a8703f"/><rect x="300" y="300" width="10" height="340" fill="#a8703f"/></svg>
     <button class="iconbtn" id="fHome" style="left:20px;top:14px">🏠</button>
-    <button class="iconbtn" id="fMapBtn" style="right:120px;top:14px">🗺️</button>
+    <button class="iconbtn" id="fMapBtn" style="right:120px;top:14px">📚</button>
     <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
     <div class="abs hidden" id="fObj"></div>
     <button class="abs hidden" id="fGoat">🐐</button>
@@ -1116,7 +1131,7 @@ ING.reblochon={r:'le reblochon',n:'Reblochon',s:'',svg:'<ellipse cx="32" cy="40"
 ING.comte={r:'le comté',n:'Comté',s:'',svg:'<path d="M8 46 L54 22 L56 46z" fill="#ffdc78" stroke="#c98a45" stroke-width="3" stroke-linejoin="round"/><path d="M8 46 h48 v8 h-48z" fill="#c98f48"/>'};
 ING.montdor={r:"le Mont d'Or",n:"Mont d'Or",s:'',svg:'<ellipse cx="32" cy="42" rx="25" ry="9" fill="#a77b4f"/><rect x="7" y="30" width="50" height="12" fill="#b98a5a"/><ellipse cx="32" cy="30" rx="23" ry="8" fill="#f6d79a" stroke="#d9a75a" stroke-width="2.5"/>'};
 ING.cancoillotte={r:'la cancoillotte',n:'Cancoillotte',s:'',svg:'<rect x="18" y="16" width="28" height="40" rx="7" fill="#e8f0f8" stroke="#a7b4cc" stroke-width="3"/><rect x="21" y="30" width="22" height="23" rx="4" fill="#ffe27a"/><rect x="15" y="10" width="34" height="9" rx="3" fill="#4c8dff"/>'};
-const LIMITED=['pdt','reblochon','comte','montdor','cancoillotte'];
+const LIMITED=['pdt','reblochon','comte'];
 function limStock(k){return k==='pdt'?(G_().fridge.pdt||0):(F_().stock[k]||0);}
 function limUse(k){if(k==='pdt')G_().fridge.pdt--;else F_().stock[k]--;}
 const ingSVG=k=>`<svg viewBox="0 0 64 64">${ING[k].svg}</svg>`;
@@ -1139,7 +1154,6 @@ const DISH={
   confiture:'<rect x="34" y="30" width="52" height="50" rx="10" fill="#d9233e" stroke="#a8162c" stroke-width="3"/><rect x="40" y="46" width="40" height="20" rx="4" fill="#fff"/><path d="M60 62 q-8 -5 -7 -10 q4 -3 7 0 q3 -3 7 0 q1 5 -7 10z" fill="#ff4d5e"/><path d="M28 30 q32 -16 64 0 l-4 -12 q-28 -8 -56 0z" fill="#ff9fb8" stroke="#d76b8d" stroke-width="2"/><g fill="#fff"><circle cx="40" cy="22" r="2.5"/><circle cx="52" cy="19" r="2.5"/><circle cx="64" cy="19" r="2.5"/><circle cx="76" cy="21" r="2.5"/></g><rect x="30" y="28" width="60" height="5" rx="2" fill="#d76b8d"/>',
   tartiflette:'<path d="M8 46 h104 l-8 30 q-44 10 -88 0z" fill="#c4553d"/><ellipse cx="60" cy="46" rx="52" ry="14" fill="#a8432e"/><ellipse cx="60" cy="45" rx="45" ry="11" fill="#f6d27a"/><g fill="#c9955a"><ellipse cx="40" cy="44" rx="8" ry="5"/><ellipse cx="62" cy="40" rx="8" ry="5"/><ellipse cx="80" cy="47" rx="7" ry="4"/></g><g fill="#fff6d6" opacity=".9"><ellipse cx="52" cy="46" rx="12" ry="4"/><ellipse cx="74" cy="42" rx="10" ry="3"/></g><g fill="#e0a85a"><circle cx="36" cy="48" r="2.5"/><circle cx="70" cy="49" r="2.5"/></g>',
   gratinComte:'<path d="M8 46 h104 l-8 30 q-44 10 -88 0z" fill="#e8edf5" stroke="#9aa6bf" stroke-width="3"/><ellipse cx="60" cy="46" rx="52" ry="14" fill="#c9d2e3"/><ellipse cx="60" cy="45" rx="45" ry="11" fill="#f2c94a"/><g fill="#d99a3a"><circle cx="40" cy="44" r="4"/><circle cx="60" cy="40" r="3.5"/><circle cx="78" cy="47" r="4"/><circle cx="54" cy="50" r="3"/></g>',
-  montdorChaud:'<ellipse cx="60" cy="62" rx="48" ry="16" fill="#a77b4f"/><rect x="12" y="42" width="96" height="20" fill="#b98a5a"/><ellipse cx="60" cy="42" rx="44" ry="14" fill="#ffe08a" stroke="#d9a75a" stroke-width="3"/><path d="M36 42 q10 10 20 0 q10 -8 20 2" stroke="#fff6c8" stroke-width="4" fill="none"/><path d="M46 26 q-6 -8 0 -16 M66 26 q-6 -8 0 -16" stroke="#c9ced8" stroke-width="3.5" fill="none" stroke-linecap="round"/>',
   pdtCancoillotte:'<path d="M12 40 h96 q-4 38 -48 40 q-44 -2 -48 -40z" fill="#fff" stroke="#c9d2e3" stroke-width="3"/><ellipse cx="60" cy="40" rx="48" ry="11" fill="#ffe27a" stroke="#c9d2e3" stroke-width="3"/><g fill="#d9a35a" stroke="#b07a35" stroke-width="2"><ellipse cx="44" cy="40" rx="10" ry="6"/><ellipse cx="70" cy="38" rx="10" ry="6"/></g>',
   pdtSautees:'<ellipse cx="60" cy="56" rx="52" ry="20" fill="#3d4352"/><ellipse cx="60" cy="52" rx="46" ry="15" fill="#4a5162"/><g fill="#e8b45a" stroke="#b07a35" stroke-width="2"><rect x="30" y="40" width="16" height="13" rx="4"/><rect x="50" y="44" width="16" height="13" rx="4"/><rect x="70" y="38" width="16" height="13" rx="4"/><rect x="42" y="52" width="15" height="12" rx="4"/><rect x="64" y="52" width="16" height="12" rx="4"/></g><g fill="#3fa34d"><circle cx="48" cy="42" r="2"/><circle cx="78" cy="56" r="2"/></g>',
   mystere:'<path d="M16 68 q-10 -28 14 -32 q4 -24 30 -17 q24 -12 38 12 q22 6 11 37 q-44 14 -93 0z" fill="#6ad04a" stroke="#3f9a2c" stroke-width="3"/><g fill="#4fb534"><circle cx="30" cy="58" r="5"/><circle cx="88" cy="56" r="6"/><circle cx="66" cy="30" r="4"/></g><circle cx="50" cy="46" r="8" fill="#fff"/><circle cx="52" cy="48" r="4" fill="#16213a"/><circle cx="72" cy="44" r="9" fill="#fff"/><circle cx="70" cy="46" r="4.5" fill="#16213a"/><path d="M52 62 q10 6 20 0" stroke="#2c6b1f" stroke-width="3" fill="none" stroke-linecap="round"/>'
@@ -1166,8 +1180,6 @@ const RECIPES={
   confiture:{n:'Confiture de fraises',art:'une confiture de fraises',pate:'#e23a54',cook:'#d9233e',req:['fraise','sucre'],opt:[],app:'casserole',r:[4,6],m:[15,40],gesture:'stir'},
   tartiflette:{n:'Tartiflette',art:'une tartiflette',pate:'#f2d38a',req:['pdt','reblochon'],opt:['lait','beurre'],app:'four',r:[180,220],m:[25,40]},
   gratinComte:{n:'Gratin au comté',art:'un gratin au comté',pate:'#f6e2a6',req:['pdt','comte','lait'],opt:['beurre'],app:'four',r:[160,200],m:[40,60]},
-  montdorChaud:{n:"Mont d'Or chaud",art:"un Mont d'Or chaud",pate:'#f6d79a',req:['montdor'],opt:['pdt'],app:'four',r:[180,220],m:[15,30]},
-  pdtCancoillotte:{n:'Patates à la cancoillotte',art:'des patates à la cancoillotte',pate:'#ffe27a',cook:'#ffe27a',req:['pdt','cancoillotte'],opt:['beurre','lait'],app:'casserole',r:[3,5],m:[5,15],gesture:'stir'},
   pdtSautees:{n:'Pommes de terre sautées',art:'des pommes de terre sautées',pate:'#e8c37a',cook:'#e0b060',req:['pdt'],opt:['beurre'],app:'poele',r:[4,6],m:[3,8]},
   mystere:{n:'Mixture mystère',art:'une mixture mystère',pate:'#79d94c',cook:'#79d94c',mystery:true}
 };
@@ -1202,7 +1214,7 @@ function evaluate(r,app,heat,time,list){
 
 /* ---------- autocollants ---------- */
 const PAGES=[{id:'cuisine',n:'Cuisine',e:'🍰'},{id:'catas',n:'Bêtises',e:'💥'},{id:'amis',n:'Copains',e:'🐶'},{id:'jardin',n:'Jardin',e:'🌻'},{id:'fromage',n:'Fromages',e:'🧀'},{id:'corps',n:'Corps',e:'🫀'},{id:'ateliers',n:'Ateliers',e:'🔬'},{id:'secrets',n:'Secrets',e:'✨'},{id:'libre',n:'Ma page',e:'🎨'}];
-const CH_N={blanc:'Fromage blanc',cancoillotte:'Cancoillotte',camembert:'Camembert',chevre:'Bûche de chèvre',reblochon:'Reblochon',morbier:'Morbier',montdor:"Mont d'Or",munster:'Munster',emmental:'Emmental',roquefort:'Roquefort',comte:'Comté'};
+const CH_N={blanc:'Fromage blanc',camembert:'Camembert',munster:'Munster',reblochon:'Reblochon',bleu:"Bleu d'Auvergne",emmental:'Emmental',comte:'Comté'};
 const PASTEL=['#ffe9d6','#e3f4ff','#ffe3ef','#e8fbe9','#fff3c4','#efe6ff'];
 const STICK=[
   ...REAL.map((r,i)=>({id:'r_'+r,pg:'cuisine',n:RECIPES[r].n,dish:r,rar:'c',bg:PASTEL[i%PASTEL.length],how:`Réussis parfaitement : ${RECIPES[r].n.toLowerCase()}`})),
@@ -1245,14 +1257,14 @@ const STICK=[
   {id:'obj1',pg:'jardin',n:'Premier objectif',e:'📋',rar:'c',bg:'#e3f4ff',how:'Réussis un objectif du jardin'},
   {id:'obj10',pg:'jardin',n:'Jardinier expert',e:'🏅',rar:'h',bg:'#fff3c4',how:'Réussis 10 objectifs du jardin'},
   {id:'or_jardin',pg:'jardin',n:'Main verte',e:'👩‍🌾',rar:'o',bg:'#fff3c4',how:'Complète toute la page Jardin'},
-  ...['blanc','cancoillotte','camembert','chevre','reblochon','morbier','montdor','munster','emmental','roquefort','comte'].map((k,i)=>({id:'f_'+k,pg:'fromage',n:k==='comte'?'Comté de 4 mois':CH_N[k],svg:()=>cheeseSVG(k),rar:k==='comte'?'h':k==='roquefort'||k==='montdor'?'b':'c',bg:PASTEL[i%PASTEL.length],how:`Réussis parfaitement : ${CH_N[k].toLowerCase()}`})),
+  ...['blanc','camembert','munster','reblochon','bleu','emmental','comte'].map((k,i)=>({id:'f_'+(k==='bleu'?'bleuauv':k),pg:'fromage',n:k==='comte'?'Comté de 4 mois':CH_N[k],svg:()=>cheeseSVG(k),rar:k==='comte'?'h':k==='bleu'||k==='emmental'?'b':'c',bg:PASTEL[i%PASTEL.length],how:`Réussis parfaitement : ${CH_N[k].toLowerCase()}`})),
   {id:'f_traite',pg:'fromage',n:'Première traite',e:'🐄',rar:'c',bg:'#e8fbe9',how:'Remplis un seau de lait'},
   {id:'f_rien',pg:'fromage',n:'Ça ne caille pas !',e:'🥛',rar:'c',bg:'#e3f4ff',how:'Rate le caillage (lait trop chaud ou trop froid)'},
   {id:'f_nez',pg:'fromage',n:'Wanji se bouche le nez',e:'😷',rar:'b',bg:'#ffe9d6',secret:true,how:"Fais goûter un fromage qui sent fort à Wanji"},
-  {id:'f_bleu',pg:'fromage',n:'Pas de bleu pour les chiens',e:'🚫',rar:'b',bg:'#ffe3ef',how:'Essaie de donner du roquefort à Wanji'},
+  {id:'f_bleu',pg:'fromage',n:'Pas de bleu pour les chiens',e:'🚫',rar:'b',bg:'#ffe3ef',how:'Essaie de donner du bleu à Wanji'},
   {id:'f_poilu',pg:'fromage',n:'Fromage poilu',e:'🦠',rar:'c',bg:'#e8fbe9',secret:true,how:'Oublie de soigner un fromage dans la cave'},
   {id:'f_plateau',pg:'fromage',n:'Plateau de fromages',e:'🍽️',rar:'b',bg:'#fff3c4',how:'Prépare un plateau de 3 fromages'},
-  {id:'f_carte',pg:'fromage',n:'Tour de France',e:'🗺️',rar:'h',bg:'#e3f4ff',how:'Allume toutes les régions de la carte'},
+  {id:'f_carte',pg:'fromage',n:'Toutes les familles',e:'🧀',rar:'h',bg:'#e3f4ff',how:'Réussis un fromage de chaque famille'},
   {id:'or_fromage',pg:'fromage',n:'Maître fromager',e:'🧀',rar:'o',bg:'#fff3c4',how:'Complète toute la page Fromages'},
   {id:'c_squelette',pg:'corps',n:'Squelette complet',e:'🦴',rar:'c',bg:'#e3f4ff',how:'Remets tous les os à leur place'},
   {id:'c_os',pg:'corps',n:'Expert des os',e:'🩻',rar:'b',bg:'#efe6ff',how:'Fais 5/5 au quiz des os'},
@@ -1313,7 +1325,7 @@ const STICK=[
   {id:'or_secrets',pg:'secrets',n:'Grand secret',e:'🗝️',rar:'o',bg:'#fff3c4',how:'Trouve tous les secrets'}
 ];
 /* autocollants réservés à Raf (fromages et plats que Nana ne peut pas fabriquer) */
-['f_chevre','f_reblochon','f_morbier','f_montdor','f_munster','f_emmental','f_roquefort','f_comte','f_nez','f_bleu','f_poilu','f_carte','r_tartiflette','r_gratinComte','r_montdorChaud','c_os','c_fibres','c_cote','l_serie','l_led','l_predict','l_engrenages','g_colline','g_boue','g_course'].forEach(id=>{const s=STICK.find(x=>x.id===id);if(s)s.raf=1;});
+['f_poilu','r_tartiflette','r_gratinComte','c_os','c_fibres','c_cote','l_serie','l_led','l_predict','l_engrenages','g_colline','g_boue','g_course'].forEach(id=>{const s=STICK.find(x=>x.id===id);if(s)s.raf=1;});
 const VIS=()=>STICK.filter(s=>!(isA()&&s.raf));
 const SID=Object.fromEntries(STICK.map(s=>[s.id,s]));
 const RARN={c:'',b:'Brillant !',h:'Holographique !!',o:'Doré !'};
@@ -1682,7 +1694,7 @@ function plaqueHTML(){return `<svg viewBox="0 0 294 176"><defs><radialGradient i
 $('kArt').innerHTML=kitchenSVG();$('oven').innerHTML=ovenSVG();$('plaque').innerHTML=plaqueHTML();
 $('kicuitK').innerHTML=kicuitSVG();$('wanji').innerHTML=wanjiSVG();
 $('wbowl').innerHTML='<svg viewBox="0 0 110 56" style="position:absolute;left:0;bottom:0;width:110px;height:56px"><path d="M6 20 h98 l-10 30 h-78z" fill="#ff7a59" stroke="#c9553a" stroke-width="3"/><ellipse cx="55" cy="20" rx="49" ry="10" fill="#c9553a"/><text x="55" y="44" text-anchor="middle" font-size="14" font-weight="900" fill="#fff" font-family="ui-rounded,sans-serif">WANJI</text></svg>';
-function renderFridge(){const list=FRIDGE.concat(S.player&&fromOpen()?(isA()?['pdt','cancoillotte']:LIMITED):[]);const rows=Math.ceil(list.length/3);$('frIn').classList.toggle('r4',rows>3);$('frIn').classList.toggle('r5',rows>4);$('frIn').style.gridTemplateRows=`repeat(${rows},1fr)`;$('frIn').innerHTML=list.map(k=>`<button class="ing" data-ing="${k}">${ingSVG(k)}<span>${ING[k].n}</span></button>`).join('');}
+function renderFridge(){const list=FRIDGE.concat(S.player&&fromOpen()?(isA()?['pdt']:LIMITED):[]);const rows=Math.ceil(list.length/3);$('frIn').classList.toggle('r4',rows>3);$('frIn').classList.toggle('r5',rows>4);$('frIn').style.gridTemplateRows=`repeat(${rows},1fr)`;$('frIn').innerHTML=list.map(k=>`<button class="ing" data-ing="${k}">${ingSVG(k)}<span>${ING[k].n}</span></button>`).join('');}
 renderFridge();
 $('bowl').innerHTML=`<svg viewBox="0 0 250 156"><ellipse cx="125" cy="44" rx="118" ry="30" fill="#3b6fb0"/><ellipse cx="125" cy="48" rx="108" ry="24" fill="#2f5d99"/></svg><div id="bowlC"></div><svg viewBox="0 0 250 156" style="pointer-events:none"><path d="M7 44 q0 106 118 110 q118 -4 118 -110 q-30 30 -118 30 q-88 0 -118 -30z" fill="#6fb4ff" stroke="#3b6fb0" stroke-width="4"/><path d="M30 80 q20 40 60 52" stroke="#fff" stroke-width="7" fill="none" opacity=".5" stroke-linecap="round"/></svg>`;
 $('ceil').innerHTML=dishSVG('crepes');
@@ -2418,7 +2430,7 @@ onTap($('gWanji'),()=>wanjiTap($('gWanji')));
 $('gArt').innerHTML=gardenSVG();$('moulin').innerHTML=moulinSVG();
 $('gScare').innerHTML='<svg viewBox="0 0 80 140" style="width:100%;height:100%"><rect x="37" y="40" width="6" height="100" fill="#8a5a36"/><rect x="6" y="56" width="68" height="6" rx="3" fill="#8a5a36"/><path d="M18 60 h44 l6 44 h-56z" fill="#4c8dff"/><path d="M30 60 l10 14 l10 -14" fill="#ff7a59"/><circle cx="40" cy="36" r="16" fill="#f3d9a4"/><path d="M20 26 h40 l-6 -18 h-28z" fill="#a77b4f"/><rect x="16" y="24" width="48" height="5" rx="2" fill="#7a5532"/><circle cx="34" cy="36" r="2.5" fill="#2b2350"/><circle cx="46" cy="36" r="2.5" fill="#2b2350"/><path d="M34 44 q6 5 12 0" stroke="#2b2350" stroke-width="2.5" fill="none"/><g stroke="#e8c36a" stroke-width="3"><path d="M18 104 l-4 10 M26 104 l-2 10 M62 104 l4 10 M54 104 l2 10 M8 58 l-6 -4 M72 58 l6 -4"/></g></svg>';
 $('gHive').innerHTML='<svg viewBox="0 0 100 110" style="width:100%;height:100%"><rect x="46" y="70" width="8" height="40" fill="#8a5a36"/><path d="M50 8 q34 0 38 30 q4 34 -38 36 q-42 -2 -38 -36 q4 -30 38 -30z" fill="#ffc83a" stroke="#c98a1a" stroke-width="4"/><path d="M16 30 h68 M13 44 h74 M16 58 h68" stroke="#c98a1a" stroke-width="4"/><ellipse cx="50" cy="62" rx="9" ry="6" fill="#5a3218"/></svg>';
-function updFridge(){const g=G_();(isA()?['pdt','cancoillotte']:LIMITED).forEach(k=>{const b=document.querySelector(`#frIn [data-ing="${k}"]`);if(!b)return;const n=limStock(k);b.classList.toggle('empty',!n);let t=b.querySelector('.gb');if(!t){t=document.createElement('span');t.className='gb';b.appendChild(t);}t.textContent=n;});['tomate','fraise','farine','lait'].forEach(k=>{const b=document.querySelector(`#frIn [data-ing="${k}"]`);if(!b)return;let t=b.querySelector('.gb');const n=g.fridge[k];if(n){if(!t){t=document.createElement('span');t.className='gb';b.appendChild(t);}t.textContent='🌱'+n;}else if(t)t.remove();});}
+function updFridge(){const g=G_();(isA()?['pdt']:LIMITED).forEach(k=>{const b=document.querySelector(`#frIn [data-ing="${k}"]`);if(!b)return;const n=limStock(k);b.classList.toggle('empty',!n);let t=b.querySelector('.gb');if(!t){t=document.createElement('span');t.className='gb';b.appendChild(t);}t.textContent=n;});['tomate','fraise','farine','lait'].forEach(k=>{const b=document.querySelector(`#frIn [data-ing="${k}"]`);if(!b)return;let t=b.querySelector('.gb');const n=g.fridge[k];if(n){if(!t){t=document.createElement('span');t.className='gb';b.appendChild(t);}t.textContent='🌱'+n;}else if(t)t.remove();});}
 function updVase(){const b=G_().bouquet;$('kVase').classList.toggle('hidden',!b.length);if(b.length)$('kVase').innerHTML=vaseSVG(b,110,100);}
 
 /* ---------- FROMAGERIE ---------- */
@@ -2426,48 +2438,53 @@ const FROMAGE=20;
 /* t = °C du lait, d = gouttes de présure, fl = flore, g = passages de harpe (null = pas de tranchage), cuit = caillé cuit,
    m = moulage, sel, sg = geste signature, days = jours de cave, a = lait, reg = région */
 const CH={
-  blanc:{n:'Fromage blanc',a:'vache',reg:'partout',t:[20,30],d:[2,5],fl:'none',g:null,m:null,sel:false,sg:'egoutter',days:0,nana:1},
-  cancoillotte:{n:'Cancoillotte',a:'vache',reg:'fc',t:[28,36],d:[2,5],fl:'none',g:[7,12],m:null,sel:true,sg:'fondre',days:0,nana:1},
-  camembert:{n:'Camembert',a:'vache',reg:'normandie',t:[30,36],d:[3,6],fl:'blanche',g:[1,3],m:'louche',sel:true,sg:null,days:21,nana:1},
-  chevre:{n:'Bûche de chèvre',a:'chevre',reg:'centre',t:[18,26],d:[1,3],fl:'blanche',g:[1,3],m:null,sel:true,sg:'rouler',days:14},
-  reblochon:{n:'Reblochon',a:'vache',reg:'savoie',t:[32,36],d:[3,6],fl:'none',g:[4,6],m:'presse',sel:true,sg:'presser',days:21},
-  morbier:{n:'Morbier',a:'vache',reg:'fc',t:[30,34],d:[3,6],fl:'none',g:[4,6],m:'presse',sel:true,sg:'raie',days:60},
-  montdor:{n:"Mont d'Or",a:'vache',reg:'fc',t:[30,34],d:[3,6],fl:'rouge',g:[1,3],m:'louche',sel:true,sg:'sangle',days:21,smell:1},
-  munster:{n:'Munster',a:'vache',reg:'alsace',t:[32,36],d:[3,6],fl:'rouge',g:[1,3],m:'louche',sel:true,sg:'laver',days:30,smell:1},
-  emmental:{n:'Emmental',a:'vache',reg:'savoie',t:[30,34],d:[3,6],fl:'none',g:[7,12],cuit:1,m:'presse',sel:true,sg:null,days:60,chaud:1},
-  roquefort:{n:'Roquefort',a:'brebis',reg:'aveyron',t:[28,34],d:[3,6],fl:'bleue',g:[4,6],m:'louche',sel:true,sg:'piquer',days:90,bleu:1},
-  comte:{n:'Comté',a:'vache',reg:'fc',t:[30,34],d:[3,6],fl:'none',g:[7,12],cuit:1,m:'presse',sel:true,sg:null,days:120,frotte:1}
+  blanc:{n:'Fromage blanc',fam:'frais',a:'vache',reg:'partout',t:[20,30],d:[2,5],fl:'none',g:null,m:null,sel:false,sg:'egoutter',days:0},
+  camembert:{n:'Camembert',fam:'molle',a:'vache',reg:'normandie',t:[30,36],d:[3,6],fl:'blanche',g:[1,3],m:'louche',sel:true,sg:null,days:21},
+  munster:{n:'Munster',fam:'lavee',a:'vache',reg:'alsace',t:[32,36],d:[3,6],fl:'rouge',g:[1,3],m:'louche',sel:true,sg:'laver',days:30,smell:1},
+  reblochon:{n:'Reblochon',fam:'pressee',a:'vache',reg:'savoie',t:[32,36],d:[3,6],fl:'none',g:[4,6],m:'presse',sel:true,sg:null,days:21},
+  bleu:{n:"Bleu d'Auvergne",fam:'bleu',a:'vache',reg:'auvergne',t:[28,34],d:[3,6],fl:'bleue',g:[4,6],m:'louche',sel:true,sg:'piquer',days:30,bleu:1},
+  emmental:{n:'Emmental',fam:'trous',a:'vache',reg:'savoie',t:[30,34],d:[3,6],fl:'none',g:[7,12],cuit:1,m:'presse',sel:true,sg:null,days:60,chaud:1},
+  comte:{n:'Comté',fam:'dure',a:'vache',reg:'fc',t:[30,34],d:[3,6],fl:'none',g:[7,12],cuit:1,m:'presse',sel:true,sg:null,days:120,frotte:1}
 };
-const CHORDER=['blanc','cancoillotte','camembert','chevre','reblochon','morbier','montdor','munster','emmental','roquefort','comte'];
-const REG={normandie:{n:'Normandie',x:118,y:62},centre:{n:'Centre',x:150,y:118},alsace:{n:'Alsace',x:262,y:76},fc:{n:'Franche-Comté',x:244,y:122},savoie:{n:'Savoie',x:248,y:176},aveyron:{n:'Aveyron',x:176,y:214}};
+const CHORDER=['blanc','camembert','munster','reblochon','bleu','emmental','comte'];
+/* les familles : un fromage, c'est du lait dont on enlève plus ou moins d'eau */
+const FAM={
+  frais:{n:'Fromage frais',e:'🥛',w:82,x:["Juste du lait caillé et égoutté. Plein d'eau, tout mou : on le mange tout de suite !","Pâte fraîche : on égoutte le caillé, sans presse ni cave. Il garde beaucoup d'eau, alors il est tout mou et se garde peu."]},
+  molle:{n:'Pâte molle',e:'🍮',w:55,x:["Des gros morceaux qu'on ne presse pas : ils gardent leur eau, il reste tout mou. Le duvet blanc, c'est une moisissure gentille !","Gros morceaux de caillé, pas de presse : il garde de l'eau, d'où la pâte molle. Le duvet blanc est une moisissure gentille qui fait la croûte fleurie."]},
+  lavee:{n:'Croûte lavée',e:'🧦',w:52,x:["Une pâte molle dont on lave la croûte : elle devient orange… et elle sent les chaussettes ! Mais c'est bon.","Croûte lavée à l'eau salée : des bactéries orange s'y installent et donnent cette odeur de chaussettes. La pâte, elle, reste molle et douce."]},
+  pressee:{n:'Pâte pressée',e:'🧱',w:45,x:["Des morceaux moyens, et on presse pour chasser l'eau : il devient souple, ni mou ni dur.","Pâte pressée non cuite : grains moyens et presse. Moins d'eau qu'une pâte molle, donc plus ferme et souple."]},
+  bleu:{n:'Pâte persillée (bleu)',e:'💙',w:46,x:["On le pique avec une aiguille : l'air entre, et la moisissure bleue pousse dans les petits tunnels !","Pâte persillée : la moisissure bleue a besoin d'air. Les piqûres font des cheminées où le bleu pousse. Jamais pour Wanji !"]},
+  trous:{n:'Pâte dure à trous',e:'🕳️',w:36,x:["Une pâte dure, mais dans une cave chaude des bactéries font des bulles de gaz… comme des petits prouts : ce sont les trous !","Comme le comté, mais affiné en cave chaude : des bactéries rejettent du gaz carbonique qui reste piégé dans la pâte. Ce sont les trous !"]},
+  dure:{n:'Pâte dure',e:'🪨',w:32,x:["Tout petits grains, chauffés, puis pressés très fort : presque plus d'eau. Il devient dur et peut dormir des mois !","Pâte pressée cuite : grains fins comme du riz, caillé chauffé vers 54 °C, presse forte. Très peu d'eau : il est dur et s'affine des mois."]}
+};
+const FAMORDER=['frais','molle','lavee','bleu','pressee','trous','dure'];
+const FST=id=>id==='bleu'?'f_bleuauv':'f_'+id;
+const REG={partout:{n:'Partout en France'},normandie:{n:'Normandie'},alsace:{n:'Alsace'},savoie:{n:'Savoie'},auvergne:{n:'Auvergne'},fc:{n:'Franche-Comté'}};
 const ANIM={vache:{n:'Marguerite',e:'🐄'},chevre:{n:'la chèvre',e:'🐐'},brebis:{n:'la brebis',e:'🐑'}};
 function fBlank(){return {open:false,milk:{vache:0,chevre:0,brebis:0},cave:[],stock:{},found:{},made:{},objDone:0,obj:null,seen:{},c:{traite:0}};}
 function F_(){const p=P();if(!p.f)p.f=fBlank();else if(!p.f._ok){p.f=Object.assign(fBlank(),p.f);p.f._ok=1;}return p.f;}
 function fromOpen(){return !!S.player&&(P().stars>=FROMAGE||F_().open);}
-const UNLOCKS_F=[{k:'chevre',at:2,n:'une chèvre'},{k:'brebis',at:4,n:'une brebis'}];
+const UNLOCKS_F=[];
 function fUnl(){const d=S.player?(F_().objDone||0):0;return Object.fromEntries(UNLOCKS_F.map(u=>[u.k,d>=u.at]));}
 function chUnlocked(id){
-  if(isA())return !!CH[id].nana;
+  if(isA())return true;
   const i=CHORDER.indexOf(id),f=F_();
   if(i>2&&!CHORDER.slice(0,i).some(k=>f.made[k]))return false; /* débloqué une fois le précédent fabriqué */
   if(i>2&&!f.made[CHORDER[i-1]])return false;
   return true;
 }
-const DAYMS=()=>isA()?15000:60000;
+/* durée d'un jour de cave : 1 min pour Raf ; Nana : 15 s, et jamais plus de 5 min en tout */
+const DAYMS=id=>isA()?Math.min(15000,300000/Math.max(1,(CH[id]||{}).days||1)):60000;
 
 /* dessins */
 function cheeseSVG(id){
   const W={
     blanc:'<path d="M14 40 h92 q-4 34 -46 36 q-42 -2 -46 -36z" fill="#fff" stroke="#c9d2e3" stroke-width="3"/><ellipse cx="60" cy="40" rx="46" ry="11" fill="#fffdf6" stroke="#c9d2e3" stroke-width="3"/><path d="M40 38 q10 -8 20 0 q10 6 18 -2" stroke="#efe6d4" stroke-width="4" fill="none"/>',
-    cancoillotte:'<rect x="34" y="24" width="52" height="56" rx="10" fill="#e8f0f8" stroke="#a7b4cc" stroke-width="3"/><rect x="38" y="40" width="44" height="36" rx="6" fill="#ffe27a"/><rect x="30" y="16" width="60" height="12" rx="4" fill="#4c8dff"/><ellipse cx="60" cy="40" rx="22" ry="4" fill="#fff3a8"/>',
     camembert:'<ellipse cx="60" cy="58" rx="46" ry="16" fill="#f3ead6"/><rect x="14" y="40" width="92" height="18" fill="#f8f2e4"/><ellipse cx="60" cy="40" rx="46" ry="16" fill="#fffdf6" stroke="#e8dcc0" stroke-width="3"/><g fill="#efe5cc"><circle cx="44" cy="38" r="3"/><circle cx="70" cy="44" r="3"/><circle cx="62" cy="34" r="2.5"/></g>',
-    chevre:'<rect x="16" y="34" width="88" height="30" rx="15" fill="#fbfbf6" stroke="#d9d6c8" stroke-width="3"/><ellipse cx="100" cy="49" rx="9" ry="15" fill="#fffef8" stroke="#d9d6c8" stroke-width="3"/><g fill="#e6e3d4"><circle cx="40" cy="44" r="3"/><circle cx="62" cy="52" r="3"/><circle cx="80" cy="42" r="3"/></g>',
     reblochon:'<ellipse cx="60" cy="58" rx="44" ry="15" fill="#e0a85a"/><rect x="16" y="42" width="88" height="16" fill="#e8b46a"/><ellipse cx="60" cy="42" rx="44" ry="15" fill="#f2c27a" stroke="#c98a45" stroke-width="3"/><ellipse cx="60" cy="42" rx="14" ry="5" fill="#7ab36a"/>',
-    morbier:'<path d="M14 66 L60 24 L106 66z" fill="#f6dc8e" stroke="#c9a24a" stroke-width="3" stroke-linejoin="round"/><path d="M28 54 L92 54" stroke="#2b2b33" stroke-width="4"/><path d="M14 66 h92 v8 h-92z" fill="#c98a45"/>',
-    montdor:'<ellipse cx="60" cy="60" rx="48" ry="16" fill="#a77b4f"/><rect x="12" y="40" width="96" height="20" fill="#b98a5a"/><path d="M12 46 h96 M12 52 h96" stroke="#8a5a36" stroke-width="2"/><ellipse cx="60" cy="40" rx="44" ry="14" fill="#f6d79a" stroke="#d9a75a" stroke-width="3"/><path d="M34 40 q12 -6 24 0 q12 6 24 0" stroke="#e8be6a" stroke-width="3" fill="none"/>',
     munster:'<ellipse cx="60" cy="58" rx="44" ry="15" fill="#e4732e"/><rect x="16" y="42" width="88" height="16" fill="#ef8a3e"/><ellipse cx="60" cy="42" rx="44" ry="15" fill="#f59a4a" stroke="#c95a1e" stroke-width="3"/><g fill="#d96a28"><circle cx="46" cy="40" r="3"/><circle cx="72" cy="44" r="3"/></g>',
     emmental:'<path d="M14 66 L60 22 L106 66z" fill="#ffe27a" stroke="#d9b23c" stroke-width="3" stroke-linejoin="round"/><g fill="#f2c94a"><circle cx="56" cy="44" r="7"/><circle cx="78" cy="56" r="6"/><circle cx="40" cy="58" r="5"/><circle cx="64" cy="32" r="3"/></g><path d="M14 66 h92 v6 h-92z" fill="#e0b84a"/>',
-    roquefort:'<path d="M14 66 L60 24 L106 66z" fill="#f4f1e6" stroke="#cfcab6" stroke-width="3" stroke-linejoin="round"/><g stroke="#4f7fa8" stroke-width="3" fill="none" stroke-linecap="round"><path d="M40 56 q6 -8 12 -2"/><path d="M60 40 q6 6 12 0"/><path d="M70 60 q6 -6 12 2"/><path d="M52 62 l4 -4"/></g><g fill="#5f8fb8"><circle cx="48" cy="48" r="2.5"/><circle cx="78" cy="50" r="2.5"/><circle cx="60" cy="54" r="2.5"/></g>',
+    bleu:'<ellipse cx="60" cy="58" rx="44" ry="15" fill="#e6e1cf"/><rect x="16" y="40" width="88" height="18" fill="#efeadb"/><ellipse cx="60" cy="40" rx="44" ry="15" fill="#f6f2e4" stroke="#cfcab6" stroke-width="3"/><g stroke="#4f7fa8" stroke-width="3" fill="none" stroke-linecap="round"><path d="M38 40 q6 -6 12 -1"/><path d="M58 34 q6 5 12 0"/><path d="M70 44 q6 -5 12 2"/><path d="M30 52 l5 -3 M86 54 l-4 -4"/></g><g fill="#5f8fb8"><circle cx="48" cy="44" r="2.5"/><circle cx="78" cy="38" r="2.5"/><circle cx="62" cy="46" r="2.5"/></g>',
     comte:'<ellipse cx="54" cy="58" rx="44" ry="15" fill="#b9823f"/><rect x="10" y="40" width="88" height="18" fill="#c98f48"/><ellipse cx="54" cy="40" rx="44" ry="15" fill="#d9a35a" stroke="#a8703f" stroke-width="3"/><path d="M70 64 L110 46 L110 66 L74 76z" fill="#ffdc78" stroke="#d9a35a" stroke-width="2"/><path d="M70 64 L110 46 L96 40z" fill="#ffe89a"/>'
   };
   return `<svg viewBox="0 0 120 90">${W[id]}</svg>`;
@@ -2525,9 +2542,9 @@ onTap($('fSheep'),()=>startTraite('brebis'));
 function renderChooserSafe(){if(!FS.ch&&!FS.traite&&S.screen==='s-fromage')renderChooser();}
 function renderChooser(){
   FS.ch=null;FS.traite=null;renderMilk();renderBar();
-  const f=F_(),list=CHORDER.filter(id=>isA()?CH[id].nana:true);
+  const f=F_(),list=CHORDER;
   $('fWork').innerHTML=`<div class="fgrid">${list.map(id=>{const c=CH[id],ok=chUnlocked(id),need=c.a!=='vache'&&!fUnl()[c.a];
-    return `<button class="fcard ${ok&&!need?'':'lock'}" data-ch="${id}"><div class="fc">${cheeseSVG(id)}</div><div class="fn">${c.n}</div><div class="fr">${ANIM[c.a].e} ${c.days?(isA()?'':c.days+' j de cave'):'sans cave'}</div>${f.found[id]?'<span class="fok">⭐</span>':''}</button>`;}).join('')}</div>`;
+    return `<button class="fcard ${ok&&!need?'':'lock'}" data-ch="${id}"><div class="ffam">${FAM[c.fam].e} ${FAM[c.fam].n}</div><div class="fc">${cheeseSVG(id)}</div><div class="fn">${c.n}</div><div class="fr">${c.days?(isA()?'':c.days+' j de cave'):'sans cave'}</div>${f.found[id]?'<span class="fok">⭐</span>':''}</button>`;}).join('')}</div>`;
 }
 onTap($('fWork'),e=>{
   const card=e.target.closest('.fcard');
@@ -2554,7 +2571,8 @@ onTap($('fWork'),e=>{
 
 /* barre des étapes */
 function renderBar(){
-  $('fBar').innerHTML=(FS.ch?`<div class="chips">${FS.steps.map((s,k)=>`<span class="chip ${k<FS.i?'done':k===FS.i?'on':''}">${STEPN[s]}</span>`).join('')}</div>`:'<div class="chips"><span class="chip on">Choisis un fromage</span></div>')+
+  const wat=FS.ch?Math.round(87-(87-FAM[CH[FS.ch].fam].w)*Math.min(1,FS.i/Math.max(1,FS.steps.length-1))):0;
+  $('fBar').innerHTML=(FS.ch?`<div class="chips"><span class="chip wpill" title="eau">💧 ${wat} %</span>${FS.steps.map((s,k)=>`<span class="chip ${k<FS.i?'done':k===FS.i?'on':''}">${STEPN[s]}</span>`).join('')}</div>`:'<div class="chips"><span class="chip on">Choisis un fromage</span></div>')+
     `<button class="btn b-blue fbtn2" id="fCaveBtn">🕯️ Cave${F_().cave.length?` (${F_().cave.length})`:''}</button><button class="btn fbtn2" id="fPlatBtn">🧀 Plateau</button>`;
 }
 function fNext(){FS.i++;runStep();}
@@ -2571,7 +2589,7 @@ function runStep(){
   }
   if(s==='presure'){
     W.innerHTML=`<div class="fstep"><h3>💧 Présure et ferments</h3><div class="cuve small">${cuveSVG('chaud')}</div><div class="drops"><button class="dropper" id="fDrop">🧪 Ajouter une goutte</button><div class="dc" id="fDc">${FS.drops} goutte${FS.drops>1?'s':''}</div></div>${A?'':`<div class="frow sm">${[['Aucune','none','⚪'],['Blanche','blanche','🤍'],['Bleue','bleue','💙'],['Rouge','rouge','🧡']].map(([l,v,i])=>`<button class="fopt ${FS.flore===v?'sel':''}" data-k="flore" data-v="${v}">${i}<span>${l}</span></button>`).join('')}</div>`}<div class="pfoot"><button class="btn b-orange" id="fGo" ${A?'disabled':''}>Suivant</button></div></div>`;
-    say(T('Ajoute 3 gouttes de présure !',`Présure : ${c.d[0]} à ${c.d[1]} gouttes. Choisis aussi la flore.`));
+    say(T('3 gouttes de présure : elle transforme le lait en flan !',`Présure : ${c.d[0]} à ${c.d[1]} gouttes, elle fait cailler le lait. Flore : blanche = duvet blanc, bleue = bleu, rouge = croûte orange qui sent fort, aucune = pâte nature.`));
     return;
   }
   if(s==='caille'){
@@ -2589,20 +2607,22 @@ function runStep(){
   if(s==='tranche'){
     FS.passes=0;
     W.innerHTML=`<div class="fstep"><h3>🎼 Tranche le caillé</h3><div class="harp" id="fHarp"><div class="hl" id="fHl"></div></div><div class="dc" id="fPc">0 passage</div>${A?'':'<div class="pfoot"><button class="btn b-orange" id="fGo">Suivant</button></div>'}</div>`;
-    say(T('Glisse ton doigt sur le caillé pour le couper !',`Tranche à la harpe : ${c.g[0]>=7?'grains fins comme du riz':c.g[0]>=4?'grains moyens':'gros morceaux'}.`));
+    say(c.g[0]>=7?T('Coupe, coupe, coupe ! Tout petit, comme des grains de riz : comme ça l\'eau s\'en va.','Tranche à la harpe : grains fins comme du riz. Plus les grains sont petits, plus le petit-lait s\'échappe, plus le fromage sera dur.')
+      :c.g[0]>=4?T('Coupe en morceaux comme des noisettes !','Tranche à la harpe : grains moyens, comme des noisettes. Une partie de l\'eau s\'en va.')
+      :T('Pas trop ! De gros morceaux, pour un fromage tout mou.','Tranche à la harpe : quelques passages seulement. De gros morceaux gardent leur eau : la pâte restera molle.'));
     return;
   }
   if(s==='cuisson'){
     FS.ct=32;
     W.innerHTML=`<div class="fstep"><h3>🥄 Cuis le caillé en remuant</h3><div class="cuve stir" id="fStir">${cuveSVG('caille','#f8e7b6')}</div><div class="rval" id="fCt">32 °C</div><div class="pfoot"><button class="btn b-orange" id="fGo">✋ Stop</button></div></div>`;
-    say(T('Remue !','Remue pour chauffer le caillé, et arrête vers 54 °C.'));
+    say(T('Remue ! En chauffant, les grains rétrécissent et crachent leur eau.','Remue pour chauffer le caillé, arrête vers 54 °C : les grains rétrécissent et rejettent encore du petit-lait.'));
     return;
   }
   if(s==='moule'){
     FS.meter=0;FS.louche=0;
     W.innerHTML=c.m==='louche'?`<div class="fstep"><h3>🥄 Moule à la louche</h3><div class="moulds" id="fMould">${[0,1,2,3,4].map(k=>`<div class="mould"><i style="height:0%"></i></div>`).join('')}</div><button class="btn b-blue" id="fLouche">🥄 Une louche</button>${A?'':'<div class="pfoot"><button class="btn b-orange" id="fGo">Suivant</button></div>'}</div>`
       :`<div class="fstep"><h3>🗜️ Presse le fromage</h3><div class="press" id="fPress">${cheeseSVG(id)}</div><div class="meter2"><i id="fPm"></i></div><button class="btn b-blue" id="fLever">⬇️ Appuie sur le levier</button></div>`;
-    say(c.m==='louche'?T('5 louches, une par moule !','Une louche par moule : 5 louches.'):T('Appuie sur le levier !','Presse pour chasser le petit-lait.'));
+    say(c.m==='louche'?T('5 louches, une par moule ! On ne presse pas : il reste tout mou.','Une louche par moule : 5 louches. Pas de presse : l\'eau s\'égoutte toute seule, la pâte restera molle.'):T('Appuie fort ! Ouste, l\'eau !','Presse pour chasser le petit-lait : moins d\'eau, pâte plus ferme.'));
     return;
   }
   if(s==='sel'){
@@ -2615,7 +2635,7 @@ function runStep(){
   if(s==='cave'){
     if(F_().cave.length>=6){say(T('La cave est pleine ! Sors un fromage.','Cave pleine (6 places) : sors un fromage prêt.'));openCave();return;}
     W.innerHTML=`<div class="fstep"><h3>🕯️ Direction la cave</h3><div class="fc big">${cheeseSVG(id)}</div>${A?'<div class="pfoot"><button class="btn b-orange" id="fCaveGo" data-cv="froide">🕯️ Dans la cave</button></div>':'<div class="frow">'+[['Cave froide (12 °C)','froide','❄️'],['Cave chaude (22 °C)','chaude','🌡️']].map(([l,v,i])=>`<button class="fopt" id="fCaveGo" data-cv="${v}">${i}<span>${l}</span></button>`).join('')+'</div>'}</div>`;
-    say(T(`Il doit dormir en cave !`,`${c.n} : ${c.days} jours de cave. Choisis la cave.`));
+    say(T(c.chaud?'Dans la cave chaude, des bactéries vont faire des bulles… des petits prouts dans le fromage !':`Il doit dormir en cave !`,`${c.n} : ${c.days} jours de cave. Choisis la cave${c.chaud?' (les trous ont besoin de chaleur)':''}.`));
     return;
   }
   if(s==='degust')return fDegust({ch:id,q:FS.q});
@@ -2628,8 +2648,8 @@ function runSign(){
     presser:['✋ Presse à la main','Appuie plein de fois !','Presse à la main pour bien égoutter.'],
     raie:['⚫ Trace la raie noire','Glisse ton doigt au milieu du fromage !','Trace la raie de charbon végétal bien au milieu.'],
     sangle:["🌲 Cercle d'épicéa",'Touche pour enrouler la sangle !',"Entoure le Mont d'Or de sa sangle d'épicéa."],
-    laver:['🧽 Lave la croûte','Frotte avec l\'éponge !','Lave la croûte à la saumure : elle deviendra orange.'],
-    piquer:['🪡 Pique le fromage','Touche plein de fois pour piquer !',"Pique à l'aiguille pour que l'air fasse pousser le bleu."]}[c.sg];
+    laver:['🧽 Lave la croûte','Frotte avec l\'éponge ! Pouah, ça va sentir les chaussettes !','Lave la croûte à l\'eau salée : des bactéries orange vont s\'y installer… et ça va sentir très fort !'],
+    piquer:['🪡 Pique le fromage','Pique plein de petits trous : le bleu a besoin d\'air pour respirer !',"Pique à l'aiguille : la moisissure bleue a besoin d'air, elle poussera dans les tunnels."]}[c.sg];
   W.innerHTML=`<div class="fstep"><h3>${T2[0]}</h3><div class="sign ${c.sg}" id="fSign">${c.sg==='fondre'?cuveSVG('caille','#ffe27a'):c.sg==='egoutter'?'<div class="faiss">🫙</div>':cheeseSVG(id)}${c.sg==='raie'?'<div class="midline"></div>':''}</div><div class="meter2"><i id="fSm"></i></div>${A||c.sg==='raie'?'':'<div class="pfoot"><button class="btn b-orange" id="fGo">Suivant</button></div>'}</div>`;
   say(T(T2[1],T2[2]));
   if(c.sg==='fondre'){FS.fondreEnd=Date.now()+(A?60000:7000);}
@@ -2713,11 +2733,11 @@ function toCave(cv){
   if(!isA()&&((c.chaud&&cv!=='chaude')||(!c.chaud&&cv==='chaude')))FS.q.cave=c.chaud?'froide':'chaude';
   f.cave.push({ch:id,start:Date.now(),q:{...FS.q},care:null,careSince:0});saveDB();fEv('cave',{ch:id});
   sfx.pop();FS.ch=null;
-  const mins=Math.ceil(c.days*DAYMS()/60000);
+  const mins=Math.ceil(c.days*DAYMS(id)/60000);
   say(T(`Il dort en cave ! Reviens dans ${mins} minutes.`,`${c.n} en cave : prêt dans environ ${mins} min (${c.days} jours de fromage).`));
   renderChooser();
 }
-function caveDays(it){return (Date.now()-it.start)/DAYMS();}
+function caveDays(it){return (Date.now()-it.start)/DAYMS(it.ch);}
 function openCave(){$('fCaveM').classList.remove('hidden');renderCave();sfx.click();
   say(T('La cave ! Les fromages dorment ici.','La cave : retourne et frotte les fromages quand ils le demandent.'),false);}
 function renderCave(){
@@ -2732,7 +2752,7 @@ onTap($('fCaveIn'),e=>{
   if(cb){const it=f.cave[+cb.dataset.k];it.care=null;sfx.flip();burst(cb,[it.care==='frotter'?'🧽':'✨'],3,50);fEv('soin');saveDB();renderCave();return;}
   const sl=e.target.closest('.slotc[data-k]');if(!sl)return;
   const k=+sl.dataset.k,it=f.cave[k],c=CH[it.ch];
-  if(caveDays(it)<c.days){const mins=Math.ceil((c.days-caveDays(it))*DAYMS()/60000);say(T('Pas encore prêt !',`Encore environ ${mins} min.`));return;}
+  if(caveDays(it)<c.days){const mins=Math.ceil((c.days-caveDays(it))*DAYMS(it.ch)/60000);say(T('Pas encore prêt !',`Encore environ ${mins} min.`));return;}
   f.cave.splice(k,1);saveDB();$('fCaveM').classList.add('hidden');fDegust(it);
 });
 $('fCaveM').addEventListener('pointerdown',e=>{if(e.target.id==='fCaveM')$('fCaveM').classList.add('hidden');});
@@ -2759,20 +2779,22 @@ function fGrade(q){
   if(!major.length)return {g:'bon'};
   return {g:'rate',k:major[0]};
 }
-const RATE_TXT={grain:['Grains mal coupés : la pâte est ratée.','Mauvaise taille de grains : la texture est ratée.'],flore:['Pas la bonne flore !','Mauvaise flore : la croûte et le goût ne sont pas les bons.'],nosel:['Il est tout fade, sans sel !','Sans sel : fade et il se conserve mal.'],poilu:['Il est tout poilu !','Oublié en cave : une moisissure poilue a tout envahi.'],blanc:["Il est tout blanc, pas de bleu !","Pas piqué : l'air n'est pas entré, le bleu n'a pas poussé."],attache:['Ça a attaché au fond !','La cancoillotte a attaché : il fallait remuer.'],cave:['Mauvaise cave !',"Mauvaise cave : l'emmental a besoin de la cave chaude pour faire ses trous, les autres de la cave froide."],cuit:['Le caillé a mal cuit !','Cuisson du caillé ratée : il faut s\'arrêter entre 50 et 56 °C.']};
+const RATE_TXT={grain:['Grains mal coupés : la pâte est ratée.','Mauvaise taille de grains : la texture est ratée.'],flore:['Pas la bonne flore !','Mauvaise flore : la croûte et le goût ne sont pas les bons.'],nosel:['Il est tout fade, sans sel !','Sans sel : fade et il se conserve mal.'],poilu:['Il est tout poilu !','Oublié en cave : une moisissure poilue a tout envahi.'],blanc:["Il est tout blanc, pas de bleu !","Pas piqué : l'air n'est pas entré, le bleu n'a pas poussé."],attache:['Ça a attaché au fond !','Ça a attaché : il fallait remuer.'],cave:['Mauvaise cave !',"Mauvaise cave : l'emmental a besoin de la cave chaude pour faire ses trous, les autres de la cave froide."],cuit:['Le caillé a mal cuit !','Cuisson du caillé ratée : il faut s\'arrêter entre 50 et 56 °C.']};
 function fDegust(it){
   const id=it.ch,c=CH[id],r=isA()?{g:'parfait'}:fGrade(it.q),f=F_();FS.ch=null;FS.taste={id,r};
   renderBar();
   const label={parfait:T('Parfait !','Parfait !'),bon:T('Bon !','Bon, mais perfectible.'),rate:T('Raté…','Raté.')}[r.g];
-  $('fWork').innerHTML=`<div class="fstep"><h3>${c.n} : ${label}</h3><div class="fc big ${it.q&&it.q.poilu?'poilu':''} ${r.g==='rate'?'bad':''}">${cheeseSVG(id)}</div><div class="frow"><button class="btn b-orange" id="fWanji">🐶 Faire goûter à Wanji</button><button class="btn" id="fKeep">🧀 Au frigo</button></div></div>`;
+  const fm=FAM[c.fam];
+  $('fWork').innerHTML=`<div class="fstep"><h3>${c.n} : ${label}</h3><div class="dgrow"><div class="fc big ${it.q&&it.q.poilu?'poilu':''} ${r.g==='rate'?'bad':''}">${cheeseSVG(id)}</div><div class="dgfam"><b>${fm.e} ${fm.n}</b>${famLadder(c.fam)}${isA()?'':`<div class="dgx">${fm.x[1]}</div>`}</div></div><div class="frow"><button class="btn b-orange" id="fWanji">🐶 Faire goûter à Wanji</button><button class="btn" id="fKeep">🧀 Au frigo</button></div></div>`;
   if(r.g!=='rate'){f.stock[id]=(f.stock[id]||0)+1;f.made[id]=1;}
-  if(r.g==='parfait'){f.found[id]=1;award('f_'+id);burst($('fWork'),['✨','⭐','🧀'],10,200);sfx.fanfare();
-    if(Object.keys(REG).every(k=>CHORDER.some(x=>CH[x].reg===k&&f.found[x])))award('f_carte');
+  if(r.g==='parfait'){f.found[id]=1;award(FST(id));burst($('fWork'),['✨','⭐','🧀'],10,200);sfx.fanfare();
+    if(FAMORDER.every(k=>CHORDER.some(x=>CH[x].fam===k&&f.found[x])))award('f_carte');
     fEv('parfait',{ch:id});}
   else if(r.g==='rate'){if(r.k==='poilu')award('f_poilu');sfx.whine();}
   saveDB();
   const why=r.g==='rate'?RATE_TXT[r.k]:null;
-  say(T(r.g==='rate'?why[0]:`${c.n} ! ${label}`,r.g==='rate'?why[1]:r.g==='bon'?`${c.n} réussi, avec un petit défaut (${it.q.amer?'trop de présure, amer':it.q.forme?'mauvais nombre de louches':'geste imparfait'}).`:`${c.n} parfait ! ${CH[id].reg!=='partout'?'Sa région s\'allume sur la carte.':''}`),T(undefined,label));
+  say(T(r.g==='rate'?why[0]:`${c.n} ! ${label}`,r.g==='rate'?why[1]:r.g==='bon'?`${c.n} réussi, avec un petit défaut (${it.q.amer?'trop de présure, amer':it.q.forme?'mauvais nombre de louches':'geste imparfait'}).`:`${c.n} parfait ! Famille : ${fm.n.toLowerCase()}.`),T(undefined,label));
+  if(r.g!=='rate'&&isA())setTimeout(()=>{if(FS.taste&&FS.taste.id===id)say(fm.x[0]);},1800);
 }
 onTap($('fWork'),e=>{
   if(e.target.id==='fKeep'){sfx.pop();say(T('Rangé dans le frigo !','Rangé au frigo de la cuisine.'),false);renderChooser();}
@@ -2781,9 +2803,9 @@ onTap($('fWork'),e=>{
 async function wanjiCheese(id,r){
   const c=CH[id],w=$('fWanji2').querySelector('.wj'),f=F_();
   $('fWanji').disabled=true;
-  if(c.bleu||(r.g==='rate'&&r.k==='flore'&&id==='roquefort')){
+  if(c.bleu||(r.g==='rate'&&r.k==='flore'&&FS.flore==='bleue')){
     const kc=$('fKicuit').querySelector('.kc');if(kc)kc.classList.add('alarm');sfx.alert();award('f_bleu');
-    say(T("Stop ! Pas de fromage bleu pour les chiens, c'est dangereux !","Stop ! La moisissure du bleu peut rendre un chien malade : jamais de roquefort pour Wanji."),T(undefined,'Stop ! Pas de bleu pour les chiens !'));
+    say(T("Stop ! Pas de fromage bleu pour les chiens, c'est dangereux !","Stop ! La moisissure du bleu peut rendre un chien malade : jamais de fromage bleu pour Wanji."),T(undefined,'Stop ! Pas de bleu pour les chiens !'));
     await sleep(2400);if(kc)kc.classList.remove('alarm');
     await fly('<svg viewBox="0 0 40 40"><path d="M8 14 a6 6 0 1 1 8 -6 h8 a6 6 0 1 1 8 6 a6 6 0 1 1 -8 6 h-8 a6 6 0 1 1 -8 -6z" fill="#c98d5a" stroke="#8a5a36" stroke-width="2"/></svg>',$('fWork'),$('fWanji2'),{dur:700,size:46,arc:120,spin:360});
     w.classList.add('happy');sfx.bark();setTimeout(()=>w.classList.remove('happy'),2000);FS.taste=null;renderChooser();return;
@@ -2811,22 +2833,28 @@ function openPlateau(){
 }
 onTap($('fBar'),e=>{if(e.target.closest('#fCaveBtn'))openCave();if(e.target.closest('#fPlatBtn')){if(FS.ch){say(T("Finis d'abord ton fromage !",'Termine la fabrication en cours.'));return;}openPlateau();}});
 
-/* carte de France */
-function franceSVG(){
-  const f=F_();
-  return `<svg viewBox="0 0 320 260" style="width:100%;height:100%"><path d="M118 20 l40 6 l20 -8 l30 22 l40 10 l22 22 l-8 30 l12 22 l-10 24 l16 22 l-18 30 l-34 10 l-30 30 l-36 -8 l-26 8 l-34 -20 l-6 -34 l-22 -28 l8 -22 l-30 -26 l-12 -22 l26 -8 l30 4 l12 -24z" fill="#e8f6e0" stroke="#5b8a4a" stroke-width="4" stroke-linejoin="round"/>${Object.entries(REG).map(([k,r])=>{const ch=CHORDER.filter(x=>CH[x].reg===k),lit=ch.some(x=>f.found[x]);
-    return `<g><circle cx="${r.x}" cy="${r.y}" r="${lit?16:11}" fill="${lit?'#ffc83a':'#d9d2e8'}" stroke="#fff" stroke-width="3"/>${lit?`<text x="${r.x}" y="${r.y+5}" text-anchor="middle" font-size="14">🧀</text>`:''}<text x="${r.x}" y="${r.y+30}" text-anchor="middle" font-size="12" font-weight="900" fill="#2b2350" font-family="ui-rounded,sans-serif">${r.n}</text></g>`;}).join('')}</svg>`;
-}
-onTap($('fMapBtn'),()=>{
-  sfx.click();const f=F_(),A=isA(),list=CHORDER.filter(k=>A?CH[k].nana:true);
-  $('fMapIn').innerHTML=`<h2>🗺️ Le tour de France des fromages</h2><div class="mapw"><div class="map">${franceSVG()}</div><div class="mlist">${list.map(k=>{const c=CH[k],ok=f.found[k];return `<div class="mrow ${ok?'':'lock'}"><div class="mi">${cheeseSVG(k)}</div><div><b>${c.n}</b><div class="mx">${c.reg==='partout'?'Partout en France':REG[c.reg].n} · ${ANIM[c.a].e}${A?'':ok?` · ${c.t[0]}–${c.t[1]} °C${c.cuit?', caillé cuit':''}${c.days?`, ${c.days} j de cave`:''}`:` · ${c.days?c.days+' j de cave':'sans cave'}`}</div></div></div>`;}).join('')}</div></div><div class="pfoot"><button class="btn" id="fMapClose">Fermer</button></div>`;
-  $('fMapM').classList.remove('hidden');
+/* anciennes sauvegardes : retirer fromages, recettes et autocollants supprimés */
+['anna','rafael'].forEach(k=>{const p=DB[k];if(!p)return;
+  ['packs','tray','free'].forEach(n=>{if(Array.isArray(p[n]))p[n]=p[n].filter(t=>t&&SID[t.id]);});
+  if(p.f){if(Array.isArray(p.f.cave))p.f.cave=p.f.cave.filter(it=>CH[it.ch]);['stock','found','made'].forEach(n=>{if(p.f[n])Object.keys(p.f[n]).forEach(x=>{if(!CH[x])delete p.f[n][x];});});
+    if(p.f.obj&&p.f.obj.ch&&!CH[p.f.obj.ch])p.f.obj=null;}
+  if(p.found)Object.keys(p.found).forEach(x=>{if(!RECIPES[x])delete p.found[x];});
 });
+saveDB();
+/* l'échelle des familles : du plus mou au plus dur */
+function famLadder(cur){const f=F_();return `<div class="ladder">${FAMORDER.map(k=>{const ok=CHORDER.some(x=>CH[x].fam===k&&f.found[x]);return `<span class="${k===cur?'on':''} ${ok?'ok':''}">${FAM[k].e}</span>`;}).join('')}</div><div class="ladl"><span>💧 Mou</span><span>Dur 🪨</span></div>`;}
+onTap($('fMapBtn'),()=>{
+  sfx.click();const f=F_(),A=isA();
+  $('fMapIn').innerHTML=`<h2>🧀 Les familles de fromages</h2><div class="famtop">${T('Un fromage, c\'est du lait dont on enlève l\'eau. Plus on enlève d\'eau, plus il est dur !','Un fromage, c\'est du lait dont on enlève l\'eau : petits grains, cuisson et presse en enlèvent beaucoup. Plus on enlève d\'eau, plus il est dur et se garde longtemps.')}</div><div class="mlist">${FAMORDER.map(k=>{const fm=FAM[k],id=CHORDER.find(x=>CH[x].fam===k),ok=f.found[id];return `<div class="mrow ${ok?'':'lock'}" data-fam="${k}"><div class="mi">${cheeseSVG(id)}</div><div style="flex:1"><b>${fm.e} ${fm.n}</b> · ${CH[id].n}<div class="wbar"><i style="width:${fm.w}%"></i></div>${A?'':`<div class="mx">💧 ${fm.w} % d'eau · ${REG[CH[id].reg].n} · ${fm.x[1]}</div>`}</div></div>`;}).join('')}</div><div class="pfoot"><button class="btn" id="fMapClose">Fermer</button></div>`;
+  $('fMapM').classList.remove('hidden');
+  say(T('Du plus mou au plus dur ! Touche une famille pour l\'écouter.','Les 7 familles, de la plus molle à la plus dure.'));
+});
+onTap($('fMapIn'),e=>{const r=e.target.closest('[data-fam]');if(r){sfx.click();const fm=FAM[r.dataset.fam];say(T(fm.x[0],fm.x[1]),T(undefined,false));}});
 onTap($('fMapIn'),e=>{if(e.target.id==='fMapClose'){$('fMapM').classList.add('hidden');sfx.click();}});
 
 /* objectifs de la fromagerie */
-const OBJF_NANA=[{t:'traite',n:2,x:'Remplis 2 seaux de lait'},{t:'parfait',ch:'blanc',n:1,x:'Fais un fromage blanc'},{t:'parfait',ch:'cancoillotte',n:1,x:'Fais une cancoillotte'},{t:'cave',ch:'camembert',n:1,x:'Mets un camembert en cave'},{t:'wanji',n:1,x:'Fais goûter un fromage à Wanji'},{t:'soin',n:2,x:'Soigne 2 fromages dans la cave'}];
-const OBJF_RAF=[{t:'distinct',n:3,x:'Réussis 3 fromages différents'},{t:'parfait',ch:'camembert',n:1,x:'Affine un camembert parfait'},{t:'plateau',n:1,x:'Prépare un plateau de 3 fromages'},{t:'parfait',ch:'comte',n:1,x:'Affine un comté de 4 mois'},{t:'parfait',ch:'roquefort',n:1,x:'Fais un roquefort bien bleu'},{t:'traite',a:'chevre',n:3,x:'Remplis 3 seaux de lait de chèvre'},{t:'soin',n:4,x:'Soigne 4 fromages dans la cave'},{t:'traite',n:3,x:'Remplis 3 seaux de lait'}];
+const OBJF_NANA=[{t:'traite',n:2,x:'Remplis 2 seaux de lait'},{t:'parfait',ch:'blanc',n:1,x:'Fais un fromage blanc'},{t:'parfait',ch:'munster',n:1,x:'Fais un fromage qui pue'},{t:'cave',ch:'camembert',n:1,x:'Mets un camembert en cave'},{t:'wanji',n:1,x:'Fais goûter un fromage à Wanji'},{t:'soin',n:2,x:'Soigne 2 fromages dans la cave'},{t:'parfait',ch:'bleu',n:1,x:'Fais un fromage bleu'}];
+const OBJF_RAF=[{t:'distinct',n:3,x:'Réussis 3 fromages différents'},{t:'parfait',ch:'camembert',n:1,x:'Affine un camembert parfait'},{t:'plateau',n:1,x:'Prépare un plateau de 3 fromages'},{t:'parfait',ch:'comte',n:1,x:'Affine un comté de 4 mois'},{t:'parfait',ch:'bleu',n:1,x:'Fais un bleu bien bleu'},{t:'parfait',ch:'emmental',n:1,x:'Fais un emmental plein de trous'},{t:'soin',n:4,x:'Soigne 4 fromages dans la cave'},{t:'traite',n:3,x:'Remplis 3 seaux de lait'}];
 function fNewObj(){
   const f=F_(),fr=CHORDER.findIndex(k=>!f.made[k]),lim=fr<0?99:fr+1,pool=(isA()?OBJF_NANA:OBJF_RAF).filter(o=>!(o.a&&!fUnl()[o.a])&&!(o.ch&&!isA()&&CHORDER.indexOf(o.ch)>lim));
   let o;do{o=pick(pool);}while(pool.length>1&&f.lastObj===o.x);f.obj={...o,p:0};f.lastObj=o.x;saveDB();fObjRender();
@@ -2860,7 +2888,7 @@ onTap($('fObj'),()=>{const o=F_().obj;if(o)say(T(o.x+' !','Objectif : '+o.x+'.')
 onTap($('fHome'),()=>{if(FS.ch&&!confirmLeave())return;sfx.click();clearInterval(FS.timer);FS.timer=null;enterHub();});
 function confirmLeave(){FS.ch=null;return true;}
 onTap($('fWanji2'),()=>wanjiTap($('fWanji2')));
-onTap($('fKicuit'),()=>{sfx.click();kicuitTap();const t=T(pick(['Marguerite donne du bon lait !','Le fromage, c\'est du lait qui a dormi !']),pick(['Il faut environ 10 litres de lait pour faire 1 kilo de comté.',"Le Mont d'Or ne se fabrique qu'en hiver.","Les trous de l'emmental viennent de bulles de gaz faites par des bactéries.",'Le roquefort affine dans des grottes, en Aveyron.']));say(t,t);});
+onTap($('fKicuit'),()=>{sfx.click();kicuitTap();const t=T(pick(['Marguerite donne du bon lait !','Le fromage, c\'est du lait qui a dormi !','Plus on enlève d\'eau, plus le fromage est dur !']),pick(['Il faut environ 10 litres de lait pour faire 1 kilo de comté.',"Les trous de l'emmental viennent de bulles de gaz faites par des bactéries.","Un fromage, c'est du lait dont on enlève l'eau : plus on en enlève, plus il est dur.","Le petit-lait, c'est l'eau verdâtre qui sort du caillé. Les cochons adorent !",'Le munster sent les chaussettes à cause de bactéries… qui vivent aussi sur nos pieds !']));say(t,t);});
 
 $('fWanji2').innerHTML=wanjiSVG();$('fKicuit').innerHTML=kicuitSVG();
 /* ---------- OUVERTURES COMMUNES ---------- */
@@ -3253,7 +3281,7 @@ function runTick(){
   let wv=R.wv;if(R.sniff>0){R.sniff--;wv=0;}if(R.gap>108)wv=0;
   R.gap=Math.max(0,R.gap+(wv-spd)*.6);
   const tgt=R.stop?125:([0,100,145,180][R.v]+(100-R.o2)*.15)*(A?.9:1);R.bpm+=(tgt-R.bpm)*.035;
-  if(R.bpm>=(A?138:150)){R.hi++;if(R.hi===10){award('c_coeur');if(!A)say('Plus de 150 battements par minute : ton cœur envoie plus de sang, donc plus d\'oxygène, à tes muscles.',false);}}
+  if(R.bpm>=(A?125:150)){R.hi++;if(R.hi===10){award('c_coeur');if(!A)say('Plus de 150 battements par minute : ton cœur envoie plus de sang, donc plus d\'oxygène, à tes muscles.',false);}}
   if(R.bpm>140&&Math.random()<.07){const d=document.createElement('div');d.className='sweat';d.textContent='💧';d.style.left=(80+rnd(0,60))+'px';d.style.top='120px';$('rTrack').appendChild(d);setTimeout(()=>d.remove(),1000);
     if(!A&&!R.said.sweat){R.said.sweat=1;say('Tu transpires : la sueur qui sèche sur la peau refroidit le corps.',false);}}
   R.off+=spd*5;$('rGround').style.backgroundPosition=`${-R.off}px 0`;

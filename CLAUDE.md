@@ -47,7 +47,7 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 - Une commande réussie donne une étoile et, si l'autocollant de la recette est déjà gagné, une pochette double.
 - La leçon « un œuf entier ne se met jamais au micro-ondes » est une astuce de Kicuit.
 
-Recettes liées à la fromagerie (faites) : tartiflette (reblochon), gratin au comté, Mont d'Or chaud (four, Raf), pommes de terre sautées, patates à la cancoillotte (casserole, remuer). Le lait de la traite va aussi au frigo.
+Recettes liées à la fromagerie (faites) : tartiflette (reblochon), gratin au comté, pommes de terre sautées. Le lait de la traite va aussi au frigo. (Cancoillotte et Mont d'Or retirés à la demande d'Anthony.)
 
 ## Autocollants (à soigner en priorité)
 
@@ -55,15 +55,18 @@ Fait : pochettes à déchirer (glisser le doigt sur les pointillés, ou 2 touche
 
 Objectif : un vrai album d'autocollants, celui qu'on a envie de remplir.
 
+- Glisser vers l'album : les écouteurs `pointermove`/`pointerup` sont sur `document`, et `renderTray()` ne redessine pas pendant un glisser (sinon l'autocollant tenu est détruit quand la page change : c'était le bug « parfois ça ne colle pas »). Suppression du plateau par identité (`trayDel`).
+- Les anciennes sauvegardes sont nettoyées au chargement (autocollants, fromages et recettes supprimés).
+
 - **Ouverture d'une pochette** (`openPacks` → `setTear` → `tearDone` → `showCard`) : la pochette porte la couleur et l'emoji de sa page (`PACKPG`), jamais celle de la rareté (surprise). On la déchire en glissant le doigt (jauge `--t`) ; à mi-chemin, une lumière s'échappe (blanche, argent, arc-en-ciel ou dorée) et la pochette tremble si c'est rare. La carte sort de dos (Kicuit « ? »), on la touche pour la retourner (retournement auto après ~3 s), tampon « NOUVEAU ! » ou « DOUBLE », rayons, confettis et flash proportionnels à la rareté. Ensuite on fait **glisser** l'autocollant à son emplacement dans l'album.
-- **Album par pages thématiques** : Cuisine, Bêtises, Copains (Wanji et Kicuit), Jardin, Fromages, Ateliers (corps, labo, garage), Secrets, plus « Ma page » libre. Chaque page a un compteur ; une page complète donne un autocollant doré.
+- **Album par pages thématiques** : Cuisine, Bêtises, Copains (Wanji et Kicuit), Jardin, Fromages, Corps, Ateliers (labo, garage), Secrets, plus « Ma page » libre. Chaque page a un compteur ; une page complète donne un autocollant doré.
 - **Rareté** : commun, **brillant** (reflet) et **holographique** (reflet animé arc-en-ciel) pour les exploits.
 - **Secrets** : silhouettes « ? » obtenues par des actions cachées (ex. : faire exploser 3 plats, caresser Wanji 20 fois).
 - **Doubles** : un autocollant déjà possédé arrive en double et peut être collé librement sur une **page libre** (déplacer, tourner, agrandir) pour créer sa propre scène.
 - Style : bordure blanche découpée, légère ombre, son de « décollage » et confettis.
 - Pour Nana : autocollants plus grands, pas de texte obligatoire.
 - Autocollants de long terme (pour revenir) : 5, 10 (jardin) et 20 étoiles, 10 commandes réussies, jouer 3 puis 7 jours différents (`days`), série de 5 plats parfaits, carnet complet.
-- Total : 109 autocollants, dont 23 réservés à Raf (marqués `raf`, invisibles et non comptés pour Nana : Nana en voit 86). Toute nouvelle récompense impossible pour Nana doit être ajoutée à cette liste, sinon sa page ne pourra jamais être complétée.
+- Total : 127 autocollants, dont 13 réservés à Raf (marqués `raf`, invisibles et non comptés pour Nana : Nana en voit 114). Toute nouvelle récompense impossible pour Nana doit être ajoutée à cette liste, sinon sa page ne pourra jamais être complétée.
 
 ## Jardin (fait, 10 étoiles)
 
@@ -81,63 +84,39 @@ Objectif : un vrai album d'autocollants, celui qu'on a envie de remplir.
 - Page d'autocollants Jardin : 19 autocollants (dont tournesol, premier objectif, 10 objectifs), 30 récoltes et des secrets.
 - La vache Marguerite est dans la fromagerie (pas au jardin).
 
-## Fromagerie (faite)
+## Fromagerie (faite, 20 étoiles, simplifiée par familles)
 
-**Ouverture : 20 étoiles** (+ appui long parent de 3 s, comme le jardin). Petite ferme avec **la vache Marguerite** (dans la fromagerie, pas au jardin). Chèvre et brebis arrivent plus tard comme cadeaux d'objectifs (lait de chèvre pour la bûche, lait de brebis pour le roquefort).
+Idée centrale, répétée par Kicuit : **un fromage, c'est du lait dont on enlève l'eau ; plus on enlève d'eau, plus il est dur.** Une pastille 💧 % dans la barre des étapes descend à chaque geste, et la dégustation place le fromage sur une échelle du plus mou au plus dur (`famLadder`). Le bouton 📚 ouvre « Les familles de fromages » (remplace la carte de France).
 
-- **Traite** : mini-jeu, tirer les pis à tour de rôle, le seau se remplit. Le lait va aussi au frigo de la cuisine (pastille 🌱).
-
-Parcours, un geste par étape :
-
-1. Chauffer le lait (thermomètre, environ 32 °C ; trop chaud = ferments morts, rien ne caille).
-2. Présure et ferments au compte-gouttes ; Raf choisit la flore : blanche (camembert), bleue (roquefort), rouge (croûte lavée).
-3. Caillage : on attend, puis on enfonce le doigt ; caillé qui se casse net = prêt.
-4. Tranchage à la harpe (glisser le doigt) : peu de passages = gros morceaux (pâte molle), beaucoup = grains de riz (comté).
-5. Cuisson du caillé, pâtes cuites seulement : remuer jusqu'à environ 54 °C.
-6. Moulage : 5 louches (camembert) ou levier de presse (comté).
-7. Salage : frotter du doigt ou bain de saumure.
-8. Geste signature du fromage.
-9. Cave d'affinage : étagères, retourner et frotter.
-10. Dégustation (Kicuit, Wanji), puis carnet et frigo.
-
-| Fromage | Région | Geste signature | Cave (temps du fromage) |
+| Famille (`FAM`) | Fromage (`CH`) | Ce qui fait la différence | Cave |
 |---|---|---|---|
-| Fromage blanc | partout | Égoutter en faisselle | aucune |
-| Cancoillotte | Franche-Comté | Fondre le metton en remuant, feu doux | aucune |
-| Camembert | Normandie | 5 louches, duvet blanc | 3 semaines |
-| Chèvre (bûche) | Centre | Rouler la bûche | 2 semaines |
-| Reblochon | Savoie | Presser à la main | 3 semaines |
-| Morbier | Franche-Comté | Tracer la raie noire | 2 mois |
-| Mont d'Or | Franche-Comté | Sangle d'épicéa, frotter la croûte (Wanji se bouche le nez) | 3 semaines |
-| Munster | Alsace | Laver la croûte (orange) | 1 mois |
-| Roquefort | Aveyron (brebis) | Piquer à l'aiguille | 3 mois |
-| Emmental | Savoie | Cave chaude : bulles de gaz = trous | 2 mois |
-| Comté | Franche-Comté | Grains fins, cuisson, presse, retourner et frotter la meule | 4 mois minimum |
+| Fromage frais | Fromage blanc | on égoutte, c'est tout | aucune |
+| Pâte molle | Camembert | gros morceaux, louche, pas de presse, duvet blanc | 21 j |
+| Croûte lavée | Munster | on lave la croûte : orange, sent les chaussettes (Wanji se bouche le nez) | 30 j |
+| Pâte persillée (bleu) | Bleu d'Auvergne (vache) | on pique : l'air fait pousser le bleu (jamais pour Wanji) | 30 j |
+| Pâte pressée | Reblochon | grains moyens, presse | 21 j |
+| Pâte dure à trous | Emmental | grains fins, cuisson, presse, **cave chaude** : les bactéries font des bulles | 60 j |
+| Pâte dure | Comté | grains fins comme du riz, cuisson vers 54 °C, presse forte | 120 j |
 
-- **Carte de France** : chaque fromage réussi s'allume sur sa région (carnet de Raf ; carte complète = autocollant doré).
-- **Temps de cave réel** (validé) : l'affinage continue quand on ne joue pas, 1 jour de fromage = 1 minute réelle (camembert ≈ 21 min, comté de 4 mois ≈ 2 h). **Rien ne s'abîme pendant l'absence** : les soins ne sont demandés que quand l'enfant est dans la cave. Raf : fromage négligé pendant qu'il joue = moisissure poilue. Nana : cave plus rapide (camembert ≈ 5 min), gestes toujours réussis.
-- **Nana** : fromage blanc, cancoillotte, camembert ; étapes guidées une par une, 3 gros boutons.
-- **Raf** : les 11 fromages, débloqués progressivement ; vrais réglages (°C, grains, durée de cave) ; le comté est le défi final.
-- **Catastrophes** : lait trop chaud (rien ne caille), mauvais grains (comté mou), cancoillotte qui attache, bleu non piqué (roquefort blanc), fromage poilu, fromage sans sel.
-- **Règle de sécurité Wanji** : jamais de roquefort ni de bleu (la moisissure peut rendre un chien malade), même traitement que le chocolat (Kicuit l'arrête, croquette). Les autres fromages : petit morceau autorisé ; il adore le comté, se bouche le nez devant le munster.
-- **Liens** : fromages au frigo → tartiflette (reblochon), gratin au comté, pommes de terre sautées. Plus tard : Mont d'Or chaud, cancoillotte en cuisine. Nouvelle culture au jardin : **pomme de terre**.
-- **Objectifs de la fromagerie** (comme le jardin, +1 étoile chacun), ex. « Prépare un plateau de 3 fromages », « Affine un comté de 4 mois ».
-- **Autocollants** : page Fromages de 19 (un par fromage, première traite, ça ne caille pas, Wanji se bouche le nez, « Pas de bleu pour les chiens », fromage poilu, plateau, comté de 4 mois holographique, carte de France, doré).
+- Retirés : cancoillotte, chèvre, morbier, Mont d'Or, roquefort (et la chèvre et la brebis). Ordre de Raf (`CHORDER`) : blanc, camembert, munster, reblochon, bleu, emmental, comté.
+- Chaque étape a une phrase drôle et vraie (« coupe tout petit comme du riz », « ouste l'eau ! », « des petits prouts dans le fromage » pour les trous). Nana entend aussi l'explication de la famille à la dégustation.
+- **Nana** : les 7 fromages, gestes guidés, toujours parfait ; cave de 15 s par jour, **jamais plus de 5 min** (`DAYMS(id)`).
+- **Raf** : vrais réglages (°C, gouttes, flore, nombre de passages de harpe, cuisson, cave froide ou chaude) ; un fromage s'ouvre quand le précédent a été fabriqué ; le comté de 4 mois (2 h réelles) est le défi final.
+- Parcours : chauffer, présure (+ flore pour Raf), caillé, trancher, cuire (pâtes dures), mouler (louche ou presse), saler, geste signature (égoutter, laver, piquer), cave, dégustation. Défauts dans `FS.q`, note par `fGrade()`.
+- Temps de cave réel ; rien ne s'abîme pendant l'absence ; Raf : fromage négligé dans la cave = poilu.
+- **Règle Wanji** : jamais de bleu (même traitement que le chocolat). Il adore le comté, se bouche le nez devant le munster.
+- Données `P().f` (`F_()`) : `milk`, `cave`, `stock`, `found`, `made`, `objDone`, `obj`. Autocollants : un par fromage (le bleu est `f_bleuauv`, car `f_bleu` = « Pas de bleu pour les chiens »), traite, ça ne caille pas, nez bouché, poilu (Raf), plateau, « Toutes les familles » (`f_carte`), doré.
+- Liens : 4e rangée du frigo (`LIMITED` : patates, reblochon, comté ; Nana n'a que les patates), tartiflette, gratin au comté, pommes de terre sautées.
 
-Implémentation :
-- Écran `s-fromage`. Données par enfant `P().f` (`F_()`) : `milk`, `cave` (avec horodatage `start`), `stock` (fromages au frigo), `found` (réussis parfaitement, carte), `made`, `objDone`, `obj`.
-- Recettes de fromage dans `CH` (lait, °C, gouttes, flore, passages de harpe, cuisson, moulage, sel, geste, jours de cave). Étapes calculées par `fSteps()`. Défauts notés dans `FS.q`, note finale par `fGrade()` (parfait / bon / raté). Nana : toujours parfait.
-- Ordre de déblocage pour Raf (`CHORDER`) : un fromage s'ouvre quand le précédent a été fabriqué. Chèvre au 2e objectif, brebis au 4e (`UNLOCKS_F`).
-- Temps de cave : `DAYMS()` = 60 s par jour pour Raf, 15 s pour Nana. Soins (`care`) seulement quand la cave est ouverte ; oublié plus de 25 s = poilu (Raf).
-- Les rafraîchissements différés passent par `renderChooserSafe()` pour ne jamais interrompre une fabrication en cours.
-- Autocollants hors de portée de Nana marqués `raf` (fromages réservés, tartiflette, gratin au comté) : ni affichés ni comptés pour elle (`VIS()`).
-- Liens faits : pomme de terre au jardin (outil « Patates », après l'ouverture de la fromagerie), 4e rangée du frigo (`LIMITED` : patates, reblochon, comté ; stock limité, consommé à la cuisson ; Nana n'a que les patates), recettes tartiflette, gratin au comté (four) et pommes de terre sautées (poêle).
+## Corps humain (fait, 15 étoiles, refait en 5 ateliers)
 
-## Corps humain (fait, 15 étoiles)
-
-- Écran `s-corps`. Puzzle du squelette par glisser-déposer (`dragEl`) sur les ombres : Nana 6 grosses pièces (`BONES_NANA`, tolérance large), Raf 13 os nommés (`BONES_RAF`), nom et rôle affichés quand il prend l'os.
-- Squelette complet : « Le corps vivant » (cœur qui bat avec son, poumons qui respirent, sang artères/veines) et boutons Dormir / Normal / Courir (Raf voit battements et respirations par minute). Raf : quiz de 5 questions (« touche le fémur »).
-- Le battement (`CS.beat`) est coupé par `stopBeat()` dès qu'on quitte l'écran (`go()`).
+Écran `s-corps` : onglets à gauche (`CTABS`), zone `#cWork` (le squelette utilise `#cBoard`). Données `P().cb` (`C_()`). Minuteurs via `cLater`/`cEvery`, tous coupés par `cStop()` (changement d'onglet ou d'écran, dans `go()`).
+1. **Squelette** : glisser les os sur les ombres (Nana 6 pièces, Raf 13 os nommés + quiz).
+2. **Le voyage du repas** : choisir un aliment (`FOODS`), mâcher (toucher la bouche ; avaler trop tôt = « Hic ! »), avaler (glisser vers le bas), malaxer l'estomac (frotter), intestin grêle (toucher les nutriments ⚡💪🧈💧 pour les envoyer dans le sang, laisser passer les fibres 🌿), gros intestin (les bactéries mangent les fibres → « Prout ! », secret), toilettes, puis bilan (énergie, muscles, eau, fibres ; Raf : durées réelles). 3 sucreries de suite = mal au ventre. Plan du corps à gauche qui suit l'organe.
+3. **Cœur et souffle** : course après Wanji (marcher, courir, sprinter ; respirer en touchant ; oxygène, battements ; Raf : point de côté si l'oxygène tombe à 0, Nana jamais bloquée), puis prendre son pouls (Raf : compter 10 s × 6 ; Nana : taper en rythme), puis sieste (le cœur ralentit).
+4. **Les 5 sens** : ouïe (reconnaître des bruits ; Raf : aigu ou grave), vue (pupille selon la lumière, vision de Wanji en couleurs de chien), goût (sucré, salé, acide, amer ; la carte de la langue est une légende), toucher (boîte mystère), odorat (nez bouché, puis le flair de Wanji).
+5. **Docteur Kicuit** : patients (`PATIENTS`) à soigner dans le bon ordre : genou écorché, fièvre, rhume (éternuer dans le coude), dents (mini-jeu de brossage), mains (mini-jeu de 20 s de savon), Wanji (mal au ventre → vétérinaire ; **jamais de médicament humain pour un chien**), épine dans la patte. Nana : 3 outils proposés ; Raf : tous les outils. +1 étoile par patient guéri (Raf : au plus 1 erreur). Les médicaments : « c'est un adulte ou un médecin qui décide ».
+- Étoiles « premières fois » via `firstStar` (squelette, voyage, course, pouls, chaque sens). Page d'album Corps : 28 autocollants (`c_*`, dont `c_os`, `c_fibres`, `c_cote` réservés à Raf).
 
 ## Laboratoire (fait, 25 étoiles)
 
