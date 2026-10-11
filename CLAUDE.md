@@ -33,7 +33,7 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 
 - Étoile : +1 par commande de Wanji réussie (le bon plat, cuisson parfaite).
 - **Jardin : 10 étoiles** (décidé, constante `JARDIN`). Des autocollants restent à gagner au-delà pour donner envie de revenir. Seuils des autres ateliers : à fixer quand ils seront construits.
-- Ordre de construction : ~~Cuisine~~ → **Jardin** → **Fromagerie** → Garage / Laboratoire / Corps humain.
+- Ordre de construction : ~~Cuisine~~ → ~~Jardin~~ → **Fromagerie** → Garage / Laboratoire / Corps humain.
 - Prochaine étape d'interface (en attente, ne pas faire sans accord) : un compteur « Jardin : x/10 ⭐ » sur la maison.
 
 ## Cuisine (faite, à faire évoluer)
@@ -62,13 +62,20 @@ Objectif : un vrai album d'autocollants, celui qu'on a envie de remplir.
 - Style : bordure blanche découpée, légère ombre, son de « décollage » et confettis.
 - Pour Nana : autocollants plus grands, pas de texte obligatoire.
 - Autocollants de long terme (pour revenir) : 5, 10 (jardin) et 20 étoiles, 10 commandes réussies, jouer 3 puis 7 jours différents (`days`), série de 5 plats parfaits, carnet complet.
-- Cible : environ 60 autocollants sur tout le jeu (environ 12 par atelier). Actuellement 40 pour la cuisine.
+- Cible : environ 60 autocollants sur tout le jeu (environ 12 par atelier). Actuellement 56 (cuisine et jardin).
 
-## Jardin (prochain atelier, 10 étoiles)
+## Jardin (fait, 10 étoiles)
 
-- Parcelles, graines (carottes, fraises, blé, radis, tomates, fleurs), arrosoir, croissance accélérée.
-- Obstacles : mauvaises herbes, trop d'engrais, pucerons. Les **abeilles aident** la pollinisation, on ne les chasse pas.
-- Les récoltes vont au frigo (le blé passe au moulin pour devenir de la farine). Les fleurs servent à faire des bouquets.
+- Ouverture : 10 étoiles (`JARDIN`) ou **appui long de 3 s sur le jardin de la maison** (mode parent, par enfant : `g.open`).
+- 6 parcelles. Outils en bas : 6 graines (carotte, radis, fraise, tomate, blé, fleurs), arrosoir, engrais, main, coccinelles.
+- Le temps ne passe que quand on est dans le jardin (`gTick` toutes les 250 ms). Cycle complet : environ 50 s pour Nana, 80 s pour Raf.
+- Eau : la plante ne pousse qu'entre 1 et 100. Raf voit une jauge ; il peut noyer (au-dessus de 100) ou laisser mourir de soif (plante à arracher). Nana : jamais de mort, eau plafonnée, bulle 💧 quand ça a soif.
+- Engrais : une dose accélère. Raf : deux doses brûlent les feuilles (pause). Nana : la 2e dose est refusée gentiment.
+- Mauvaises herbes et pucerons apparaissent au hasard et ralentissent la pousse. Main : écraser, désherber, arracher, récolter. Coccinelles : mangent les pucerons.
+- Fraises et tomates restent en fleur tant qu'une **abeille** n'est pas venue butiner. Toucher l'abeille la fait fuir (leçon : ne pas chasser les abeilles).
+- Panier : carottes et radis à donner à Wanji (il adore les carottes, le radis le fait grimacer) ; blé au **moulin** pour faire de la farine ; 3 fleurs ou plus pour un **bouquet** posé à la fenêtre de la cuisine.
+- Fraises, tomates et farine vont au frigo (pastille 🌱 sur l'ingrédient). Un plat parfait avec une récolte du jardin donne « Du jardin à l'assiette ».
+- Page d'autocollants Jardin : 16 autocollants, dont 30 récoltes et des secrets.
 - Plus tard : une vache qui fournit le lait de la fromagerie.
 
 ## Fromagerie (après le jardin)

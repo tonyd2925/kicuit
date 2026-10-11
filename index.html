@@ -269,7 +269,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 
 #s-album{background:linear-gradient(160deg,#ffe9b8,#ffd0e0)}
 #tabs{position:absolute;left:40px;right:40px;top:112px;height:64px;display:flex;gap:10px}
-.tab{flex:1;height:64px;border-radius:22px 22px 0 0;background:rgba(255,255,255,.55);font-size:21px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:8px}
+.tab{flex:1;height:64px;border-radius:22px 22px 0 0;background:rgba(255,255,255,.55);font-size:19px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:8px}
 .tab.on{background:#fffdf7}
 .tab .tc{font-size:15px;opacity:.6}
 #apage{position:absolute;left:40px;right:40px;top:176px;height:470px;background:#fffdf7;border-radius:0 0 30px 30px;box-shadow:0 10px 24px rgba(43,35,80,.12);overflow:hidden}
@@ -279,6 +279,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .slot .sh{width:120px;height:120px;border-radius:50%;border:4px dashed rgba(43,35,80,.18);display:flex;align-items:center;justify-content:center;position:relative}
 .slot .sh .sart{--sz:112px}
 .slot.got .sh{border-color:transparent}
+.slots.dense .slot .sh{width:108px;height:108px}.slots.dense .slot .sh .sart{--sz:100px}.slots.dense .ghost{width:94px!important;height:94px!important;--sz:94px!important}.slots.dense .slot .sn{font-size:14px;max-width:124px}
 .slot .sq{font-size:56px;font-weight:900;color:rgba(43,35,80,.18)}
 .slot .sn{font-size:15px;font-weight:800;text-align:center;line-height:1.1;max-width:136px;min-height:34px}
 .slot.target .sh{border-color:var(--orange);animation:pulse 1s infinite;background:rgba(255,122,89,.08)}
@@ -322,6 +323,54 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 #toast{position:absolute;right:20px;top:112px;background:#fff;border-radius:26px;box-shadow:0 10px 26px rgba(0,0,0,.25);z-index:80;display:flex;align-items:center;gap:12px;padding:12px 22px;font-size:24px;font-weight:900;transform:translateX(130%);transition:transform .4s cubic-bezier(.3,1.4,.5,1);pointer-events:none}
 #toast.on{transform:none}
 #toast .tpk{width:40px;height:52px;border-radius:8px;background:var(--pk)}
+
+/* jardin */
+#s-garden{background:#bfe8ff}
+#gInv{position:absolute;left:18px;top:112px;width:214px;height:470px;background:rgba(255,253,247,.94);border-radius:28px;box-shadow:0 8px 20px rgba(43,35,80,.15);padding:12px 12px;display:flex;flex-direction:column;gap:6px;z-index:6}
+#gInv h3{margin:0 0 2px;font-size:22px;text-align:center}
+.inv{display:flex;align-items:center;gap:8px;height:52px;border-radius:16px;background:#f6f1e6;padding:0 8px;font-size:22px;font-weight:900}
+.inv .ii{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:32px}
+.inv .ii svg{width:40px;height:40px}
+.inv .ia{margin-left:auto;font-size:15px;font-weight:800;padding:6px 10px;border-radius:12px;background:#fff;box-shadow:0 3px 0 #e2dccd}
+.inv .ia.go{background:var(--orange);color:#fff;box-shadow:0 3px 0 var(--orange-d)}
+.inv.empty{opacity:.45}
+#gWanji{left:24px;top:592px;width:200px;height:210px;z-index:5}
+#gWanji svg{width:100%;height:100%}
+#moulin{left:1006px;top:108px;width:160px;height:190px;z-index:4}
+#moulin .sails{transform-origin:80px 70px}
+#moulin.spin .sails{animation:spin .5s linear infinite}
+#moulin .mlab{position:absolute;left:0;right:0;bottom:-2px;text-align:center;font-size:16px;font-weight:900;background:#fff;border-radius:12px;padding:2px 0;box-shadow:0 3px 8px rgba(0,0,0,.15)}
+.plot{position:absolute;width:280px;height:178px;touch-action:none}
+.plot .soil{position:absolute;left:0;bottom:0;width:280px;height:92px}
+.plot .pl{position:absolute;left:70px;bottom:28px;width:140px;height:150px;transform-origin:50% 100%;transition:filter .6s}
+.plot .pl svg{width:100%;height:100%;overflow:visible}
+.plot.dry .pl{transform:rotate(-12deg) scaleY(.88);filter:saturate(.5)}
+.plot.dead .pl{filter:sepia(1) brightness(.6) grayscale(.4);transform:rotate(-20deg) scaleY(.75)}
+.plot.burn .pl{filter:sepia(.7) saturate(1.8) hue-rotate(-25deg) brightness(1.1)}
+.plot.ripe .pl{animation:ripe 1.4s ease-in-out infinite}
+@keyframes ripe{0%,100%{filter:drop-shadow(0 0 0 rgba(255,220,80,0))}50%{filter:drop-shadow(0 0 14px rgba(255,220,80,.95))}}
+.plot .thirst{position:absolute;right:36px;top:18px;font-size:30px;background:#fff;border-radius:50%;width:48px;height:48px;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px rgba(0,0,0,.2);animation:pulse 1s infinite}
+.plot .gauge{position:absolute;left:40px;right:40px;bottom:6px;height:10px;border-radius:5px;background:rgba(255,255,255,.6);overflow:hidden}
+.plot .gauge i{display:block;height:100%;background:#4ab3ff;border-radius:5px;transition:width .25s}
+.plot .gauge i.hi{background:#2f62c2}
+.plot .gauge i.lo{background:#ff9a3c}
+.plot .puddle{position:absolute;left:60px;bottom:22px;width:160px;height:26px;border-radius:50%;background:rgba(80,160,255,.55)}
+.plot .weeds,.plot .aph{position:absolute;inset:0;pointer-events:none}
+.plot .pol{position:absolute;left:120px;top:10px;font-size:24px}
+#gTools{position:absolute;left:246px;right:14px;top:700px;height:108px;display:flex;gap:8px;align-items:center;justify-content:center;z-index:6}
+.tool{width:86px;height:100px;border-radius:22px;background:#fff;box-shadow:0 5px 0 #d9d2e8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:13px;font-weight:900}
+.tool .ti{width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:40px}
+.tool .ti svg{width:52px;height:52px}
+.tool.sel{background:#fff1ea;box-shadow:0 0 0 5px var(--orange),0 5px 0 #d9d2e8;transform:translateY(-6px)}
+.tool.seed .ti{background:#f3e3c3;border-radius:10px;border:3px solid #d4b98a}
+.bee{position:absolute;left:0;top:0;font-size:46px;z-index:30;width:56px;height:56px;display:flex;align-items:center;justify-content:center}
+.vase{display:flex;gap:10px;justify-content:center;margin:10px 0}
+.fbtn{width:74px;height:74px;border-radius:50%;background:#f3f0fb;display:flex;align-items:center;justify-content:center}
+.fbtn svg{width:60px;height:60px}
+#bqVase{width:300px;height:260px;margin:0 auto}
+#kVase{left:716px;top:204px;width:110px;height:100px;z-index:3}
+.gb{position:absolute;top:2px;right:2px;font-size:12px;font-weight:900;background:#3fbf55;color:#fff;border-radius:10px;padding:1px 6px}
+.ing{position:relative}
 
 /* iPad en portrait */
 #rotate{position:fixed;inset:0;background:#2b2350;color:#fff;display:none;align-items:center;justify-content:center;flex-direction:column;gap:20px;font-size:34px;font-weight:900;z-index:999;text-align:center}
@@ -371,6 +420,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
         <div class="fr-door" id="frDoor"><div class="magnet" id="frMag" style="background:#ff7fa8">N</div><div class="magnet" style="background:#ffc94a">★</div><div class="hint">Ouvre-moi !</div></div>
       </div>
     </div>
+    <div class="abs hidden" id="kVase"></div>
     <div class="abs" id="kicuitK"></div>
     <div class="abs" id="bowl"></div>
     <div class="abs hidden" id="plate"></div>
@@ -384,6 +434,18 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
     <div id="flash"></div>
     <div class="modal hidden" id="panel"><div class="card" id="panelCard"></div></div>
     <div class="modal hidden" id="bookM"><div class="card book" id="bookCard"></div></div>
+  </section>
+
+  <section class="screen" id="s-garden">
+    <div id="gArt"></div>
+    <div class="abs" id="moulin"></div>
+    <div id="gPlots" style="position:absolute;inset:0"></div>
+    <div id="gInv"></div>
+    <div class="abs" id="gWanji"></div>
+    <div id="gTools"></div>
+    <button class="iconbtn" id="gHome" style="left:20px;top:14px">🏠</button>
+    <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
+    <div class="modal hidden" id="gPanel"><div class="card" id="gPanelCard"></div></div>
   </section>
 
   <section class="screen" id="s-album">
@@ -471,7 +533,8 @@ const sfx={
   flip:()=>tone(300,900,.18,'triangle',.18),
   splash:()=>{noise(.6,.4,'lowpass',900);tone(500,180,.3,'sine',.15)},
   tear:()=>{for(let i=0;i<6;i++)noise(.05,.22,'highpass',2200+i*300,i*.04)},
-  stick:()=>{tone(200,600,.08,'sine',.2);noise(.06,.2,'highpass',3000,.05)}
+  stick:()=>{tone(200,600,.08,'sine',.2);noise(.06,.2,'highpass',3000,.05)},
+  bzz:()=>{const a=ac();if(!a)return;const t=a.currentTime,o=a.createOscillator(),g=a.createGain(),l=a.createOscillator(),lg=a.createGain();o.type='sawtooth';o.frequency.value=220;l.frequency.value=28;lg.gain.value=30;l.connect(lg).connect(o.frequency);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.04,t+.2);g.gain.exponentialRampToValueAtTime(.0001,t+2.4);o.connect(g).connect(a.destination);o.start(t);l.start(t);o.stop(t+2.5);l.stop(t+2.5)}
 };
 
 /* ---------- voix ---------- */
@@ -666,7 +729,7 @@ function evaluate(r,app,heat,time,list){
 }
 
 /* ---------- autocollants ---------- */
-const PAGES=[{id:'cuisine',n:'Cuisine',e:'🍰'},{id:'catas',n:'Catastrophes',e:'💥'},{id:'amis',n:'Wanji & Kicuit',e:'🐶'},{id:'secrets',n:'Secrets',e:'✨'},{id:'libre',n:'Ma page',e:'🎨'}];
+const PAGES=[{id:'cuisine',n:'Cuisine',e:'🍰'},{id:'catas',n:'Bêtises',e:'💥'},{id:'amis',n:'Copains',e:'🐶'},{id:'jardin',n:'Jardin',e:'🌻'},{id:'secrets',n:'Secrets',e:'✨'},{id:'libre',n:'Ma page',e:'🎨'}];
 const PASTEL=['#ffe9d6','#e3f4ff','#ffe3ef','#e8fbe9','#fff3c4','#efe6ff'];
 const STICK=[
   ...REAL.map((r,i)=>({id:'r_'+r,pg:'cuisine',n:RECIPES[r].n,dish:r,rar:'c',bg:PASTEL[i%PASTEL.length],how:`Réussis parfaitement : ${RECIPES[r].n.toLowerCase()}`})),
@@ -690,6 +753,22 @@ const STICK=[
   {id:'caresse',pg:'amis',n:'Câlins à Wanji',e:'🐾',rar:'b',bg:'#ffe3ef',secret:true,how:'Fais 20 câlins à Wanji'},
   {id:'bavard',pg:'amis',n:'Copain de Kicuit',e:'🤖',rar:'c',bg:'#e3f4ff',secret:true,how:'Parle 10 fois à Kicuit'},
   {id:'or_amis',pg:'amis',n:'Meilleurs amis',e:'💛',rar:'o',bg:'#fff3c4',how:'Complète toute la page Wanji & Kicuit'},
+  {id:'j_carotte',pg:'jardin',n:'Première carotte',e:'🥕',rar:'c',bg:'#ffe9d6',how:'Récolte des carottes'},
+  {id:'j_radis',pg:'jardin',n:'Premier radis',svg:()=>RADIS,rar:'c',bg:'#ffe3ef',how:'Récolte des radis'},
+  {id:'j_fraise',pg:'jardin',n:'Fraises du jardin',e:'🍓',rar:'c',bg:'#ffe3ef',how:'Récolte des fraises'},
+  {id:'j_tomate',pg:'jardin',n:'Tomates du jardin',e:'🍅',rar:'c',bg:'#ffe9d6',how:'Récolte des tomates'},
+  {id:'j_ble',pg:'jardin',n:'Blé doré',e:'🌾',rar:'c',bg:'#fff3c4',how:'Récolte du blé'},
+  {id:'j_fleurs',pg:'jardin',n:'Fleurs',e:'🌷',rar:'c',bg:'#efe6ff',how:'Cueille des fleurs'},
+  {id:'abeille',pg:'jardin',n:'Amie des abeilles',e:'🐝',rar:'b',bg:'#fff3c4',how:'Laisse une abeille butiner une fleur'},
+  {id:'coccinelle',pg:'jardin',n:'Coccinelles',e:'🐞',rar:'b',bg:'#e8fbe9',how:'Envoie les coccinelles sur des pucerons'},
+  {id:'desherbe',pg:'jardin',n:'Désherbeur',e:'🌿',rar:'c',bg:'#e8fbe9',how:'Arrache 10 mauvaises herbes'},
+  {id:'noyee',pg:'jardin',n:"Trop d'eau !",e:'💦',rar:'c',bg:'#e3f4ff',secret:true,how:'Arrose beaucoup trop une plante'},
+  {id:'moulin',pg:'jardin',n:'Meunier',e:'🥖',rar:'b',bg:'#fff3c4',how:'Fais de la farine au moulin'},
+  {id:'bouquet',pg:'jardin',n:'Joli bouquet',e:'💐',rar:'b',bg:'#ffe3ef',how:'Compose un bouquet de 3 fleurs ou plus'},
+  {id:'wcarotte',pg:'jardin',n:'Carotte pour Wanji',e:'🥰',rar:'b',bg:'#ffe9d6',secret:true,how:'Donne une carotte du jardin à Wanji'},
+  {id:'assiette',pg:'jardin',n:"Du jardin à l'assiette",e:'🍽️',rar:'b',bg:'#e8fbe9',how:'Réussis un plat avec une récolte du jardin'},
+  {id:'recolte30',pg:'jardin',n:'Trente récoltes',e:'🧺',rar:'h',bg:'#fff3c4',how:'Fais 30 récoltes'},
+  {id:'or_jardin',pg:'jardin',n:'Main verte',e:'👩‍🌾',rar:'o',bg:'#fff3c4',how:'Complète toute la page Jardin'},
   {id:'boom3',pg:'secrets',n:'Triple explosion',e:'💣',rar:'h',bg:'#ffe9d6',secret:true,how:'Fais exploser 3 plats'},
   {id:'chef5',pg:'secrets',n:'Série parfaite',e:'🎯',rar:'h',bg:'#e8fbe9',secret:true,how:"Réussis 5 plats parfaits d'affilée"},
   {id:'carnet',pg:'secrets',n:'Carnet complet',e:'📖',rar:'h',bg:'#efe6ff',secret:true,how:'Réussis toutes les recettes'},
@@ -702,7 +781,7 @@ const SID=Object.fromEntries(STICK.map(s=>[s.id,s]));
 const RARN={c:'',b:'Brillant !',h:'Holographique !!',o:'Doré !'};
 const RARC={c:'#4c8dff',b:'#8a96ad',h:'linear-gradient(90deg,#ff6ec7,#6ec8ff,#c86eff)',o:'#e0a91f'};
 const PACKBG={c:'linear-gradient(160deg,#7a6cf0,#4c8dff)',b:'linear-gradient(160deg,#eef2f8,#9aa6bf 60%,#dfe5ef)',h:'linear-gradient(160deg,#ff6ec7,#ffd36e,#6effa8,#6ec8ff,#c86eff)',o:'linear-gradient(160deg,#fff1a8,#ffc83a 50%,#e09a1f)'};
-function sart(id){const s=SID[id];return `<div class="sart r-${s.rar}" style="--bg:${s.bg}">${s.dish?dishSVG(s.dish):`<span class="emo">${s.e}</span>`}</div>`;}
+function sart(id){const s=SID[id];return `<div class="sart r-${s.rar}" style="--bg:${s.bg}">${s.dish?dishSVG(s.dish):s.svg?s.svg():`<span class="emo">${s.e}</span>`}</div>`;}
 const owned=id=>!!P().st[id];
 const pending=id=>P().packs.some(t=>t.id===id&&!t.d)||P().tray.some(t=>t.id===id&&!t.d);
 let toastQ=Promise.resolve();
@@ -766,7 +845,7 @@ function renderAlbum(){
   if(AL.page==='libre')renderFree();
   else{
     const list=STICK.filter(s=>s.pg===AL.page);
-    $('apage').innerHTML=`<div class="slots" style="grid-template-columns:repeat(${Math.min(7,Math.max(4,list.length))},1fr)">${list.map(s=>{const got=owned(s.id);
+    $('apage').innerHTML=`<div class="slots ${list.length>14?'dense':''}" style="grid-template-columns:repeat(${list.length>14?8:Math.min(7,Math.max(4,list.length))},1fr)">${list.map(s=>{const got=owned(s.id);
       return `<div class="slot ${got?'got':''} ${AL.target===s.id?'target':''}" data-id="${s.id}"><div class="sh">${got?sart(s.id):s.secret?'<span class="sq">?</span>':`<div class="ghost" style="width:104px;height:104px;--sz:104px">${sart(s.id)}</div>`}</div><div class="sn">${got||!s.secret?s.n:'???'}</div></div>`;}).join('')}</div>`;
   }
   renderTray();
@@ -941,7 +1020,7 @@ function hubSVG(){
 <path d="M0 640 q300 -80 600 -10 t620 0 v200 h-1220z" fill="#a6dc76"/>
 <rect y="704" width="1180" height="116" fill="#8cce5e"/>
 <path d="M560 700 q-20 60 -60 120 h160 q-40 -60 -60 -120z" fill="#e9d3a8"/>
-<g class="room" data-room="jardin"><rect x="22" y="520" width="270" height="226" rx="20" fill="#9bd46c"/>${fence}<rect x="26" y="584" width="262" height="10" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/><rect x="40" y="620" width="234" height="40" rx="12" fill="#8a5a36"/>${carrots}${flowers}<rect x="22" y="520" width="270" height="226" fill="#fff" opacity=".4"/>${lockSVG(157,560)}${banner(157,690,'Jardin',150)}<rect x="22" y="520" width="270" height="226" fill="transparent"/></g>
+<g class="room" data-room="jardin"><rect x="22" y="520" width="270" height="226" rx="20" fill="#9bd46c"/>${fence}<rect x="26" y="584" width="262" height="10" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/><rect x="40" y="620" width="234" height="40" rx="12" fill="#8a5a36"/>${carrots}${flowers}${gardenOpen()?'':`<rect x="22" y="520" width="270" height="226" fill="#fff" opacity=".4"/>${lockSVG(157,560)}`}<g class="${gardenOpen()?'open-pulse':''}">${banner(157,690,'Jardin',150)}</g><rect x="22" y="520" width="270" height="226" fill="transparent"/></g>
 <rect x="760" y="110" width="44" height="90" fill="#b9573f" stroke="#7d3424" stroke-width="4"/>
 <path d="M280 264 L590 96 L900 264z" fill="#e8674f" stroke="#a9412f" stroke-width="6" stroke-linejoin="round"/>
 <circle cx="590" cy="198" r="30" fill="#fff4cc" stroke="#a9412f" stroke-width="5"/><path d="M590 170 v56 M562 198 h56" stroke="#a9412f" stroke-width="4"/>
@@ -952,17 +1031,23 @@ ${rooms}
 <g class="room" data-room="garage"><path d="M886 488 L1030 404 L1172 488z" fill="#6f86c9" stroke="#4a5d9a" stroke-width="5" stroke-linejoin="round"/><rect x="904" y="484" width="252" height="222" fill="#ffe1b8" stroke="#b98a5a" stroke-width="5"/><rect x="934" y="532" width="192" height="174" rx="8" fill="#dfe6f2" stroke="#8a96ad" stroke-width="4"/>${[0,1,2,3,4].map(i=>`<line x1="934" y1="${562+i*28}" x2="1126" y2="${562+i*28}" stroke="#b5bfd2" stroke-width="3"/>`).join('')}<rect x="904" y="484" width="252" height="222" fill="#fff" opacity=".4"/>${lockSVG(1030,580)}${banner(1030,650,'Garage',150)}<rect x="886" y="404" width="286" height="302" fill="transparent"/></g>
 </svg>`}
 function enterHub(){
-  go('s-hub');$('hubAv').innerHTML=avatar(S.player);$('hubStarN').textContent=P().stars;$('voiceBtn').textContent=DB.voice?'🔊':'🔇';updGift();
+  go('s-hub');$('hubArt').innerHTML=hubSVG();$('hubAv').innerHTML=avatar(S.player);$('hubStarN').textContent=P().stars;$('voiceBtn').textContent=DB.voice?'🔊':'🔇';updGift();
   const pk=P().packs.length?T(' Une pochette t\'attend !',' Une pochette t\'attend dans le cadeau.'):'';
   say(T('Coucou Nana ! Touche la cuisine.','Salut Raf ! La cuisine est ouverte.')+pk,T('Coucou Nana !'+pk,false));
 }
 $('hubArt').innerHTML=hubSVG();$('hubW').innerHTML=wanjiSVG();$('hubK').innerHTML=kicuitSVG();
 onTap($('hubArt'),e=>{
+  if(lpFired){lpFired=false;return;}
   const g=e.target.closest('[data-room]');if(!g)return;const k=g.dataset.room;sfx.click();
-  if(k==='cuisine')enterKitchen();else if(k==='album')enterAlbum();
+  if(k==='cuisine')enterKitchen();else if(k==='album')enterAlbum();else if(k==='jardin'&&gardenOpen())enterGarden();
   else{const names={labo:'Le laboratoire',corps:'Le corps humain',jardin:'Le jardin',garage:'Le garage'};
     say(k==='jardin'?T(`Le jardin s'ouvrira avec 10 étoiles !`,`Le jardin s'ouvrira à ${JARDIN} étoiles. Tu en as ${P().stars}.`):`${names[k]} : bientôt !`);}
 });
+/* appui long de 3 s sur le jardin : ouverture par un parent */
+let lpT=null,lpFired=false;
+$('hubArt').addEventListener('pointerdown',e=>{if(!e.target.closest('[data-room="jardin"]')||gardenOpen())return;lpFired=false;clearTimeout(lpT);
+  lpT=setTimeout(()=>{lpFired=true;G_().open=true;saveDB();sfx.holo();$('hubArt').innerHTML=hubSVG();say('Mode parent : le jardin est ouvert !','Mode parent : le jardin est ouvert !');},3000);});
+['pointerup','pointercancel','pointerleave'].forEach(ev=>$('hubArt').addEventListener(ev,()=>clearTimeout(lpT)));
 onTap($('hubAv'),()=>{sfx.click();go('s-profile');});
 onTap($('voiceBtn'),()=>{DB.voice=!DB.voice;saveDB();$('voiceBtn').textContent=DB.voice?'🔊':'🔇';if(!DB.voice&&'speechSynthesis' in window)speechSynthesis.cancel();else say('Me revoilà !','Me revoilà !');});
 function wanjiTap(box){
@@ -1055,6 +1140,7 @@ function enterKitchen(){
   $('kBook').classList.toggle('hidden',isA());$('kGift').style.right=isA()?'20px':'120px';
   $('frMag').textContent=isA()?'N':'R';$('frMag').style.background=isA()?'#ff7fa8':'#4c8dff';
   if(['cooking','feeding','clean'].includes(S.k.phase)){updGift();return;}
+  updFridge();updVase();
   kReset();if(!S.k.order)newOrder();
   const R=RECIPES[S.k.order];
   say(T(`Wanji voudrait ${R.art} !`,`Commande du jour : ${R.n.toLowerCase()}. Trouve les ingrédients, l'ustensile et la bonne cuisson.`));
@@ -1207,6 +1293,7 @@ async function cook(){
   const app=S.k.app,heat=S.k.heat,time=S.k.time,list=[...S.k.bowl];
   const r=resolve(list,app),rid=r.rid,R=RECIPES[rid];
   let res=evaluate(r,app,heat,time,list);
+  const gg=G_();let fromG=false;['tomate','fraise','farine'].forEach(k=>{if(list.includes(k)&&gg.fridge[k]>0){gg.fridge[k]--;fromG=true;}});updFridge();
   S.k.phase='cooking';renderBtns();
   const plaque=app!=='four';
   const el=plaque?$(app):$('oven'),disp=(plaque?$('plaque'):$('oven')).querySelector('.disp');
@@ -1264,7 +1351,7 @@ async function cook(){
   $('plate').innerHTML=plateSVG+`<div class="pdish st-${res.st}">${dishSVG(rid)}</div>`+(smoky?[0,1,2].map(i=>`<div class="wisp" style="left:${100+i*40}px;top:40px;--sc:${wc};animation-delay:${i*.5}s"></div>`).join(''):'');
   $('plate').classList.remove('hidden');
   const p=P();
-  if(res.st==='parfait'){burst($('plate'),['✨','⭐','✨'],10);p.found[rid]=true;S.k.result.fresh=!(owned('r_'+rid)||pending('r_'+rid));p.c.streak++;award('r_'+rid);if(p.c.streak>=5)award('chef5');if(REAL.every(k=>p.found[k]))award('carnet');}
+  if(res.st==='parfait'){burst($('plate'),['✨','⭐','✨'],10);p.found[rid]=true;S.k.result.fresh=!(owned('r_'+rid)||pending('r_'+rid));p.c.streak++;award('r_'+rid);if(fromG)award('assiette');if(p.c.streak>=5)award('chef5');if(REAL.every(k=>p.found[k]))award('carnet');}
   else p.c.streak=0;
   saveDB();
   ({vert:'vert',carbonise:'carbo',attache:'attache',rate:'rate'})[res.st]&&award(({vert:'vert',carbonise:'carbo',attache:'attache',rate:'rate'})[res.st]);
@@ -1380,6 +1467,286 @@ onTap($('kBook'),()=>{
   say(n<REAL.length?'Les recettes grises restent à découvrir. Le nom est un indice !':'Carnet complet ! Tu es un vrai chef.',false);
 });
 onTap($('bookM'),e=>{if(e.target.id==='bookM'||e.target.id==='bookClose'){$('bookM').classList.add('hidden');sfx.click();}});
+
+/* ---------- JARDIN ---------- */
+const CROPS={
+  carotte:{n:'Carotte',sp:1,yield:2},
+  radis:{n:'Radis',sp:1.4,yield:2},
+  fraise:{n:'Fraise',sp:.9,yield:3,fruit:true},
+  tomate:{n:'Tomate',sp:.8,yield:2,fruit:true},
+  ble:{n:'Blé',sp:1.1,yield:1},
+  fleurs:{n:'Fleurs',sp:1.2,yield:1}
+};
+const FCOL=['#ff5c8a','#ffd25a','#a77bf3','#ff7a59','#5bb8ff'];
+function gBlank(){return ({open:false,plots:Array.from({length:6},()=>({c:null})),stock:{carotte:0,radis:0,ble:0},fridge:{tomate:0,fraise:0,farine:0},flowers:[],bouquet:[],c:{harv:0,weeds:0},seen:{}});}
+function G_(){const p=P();if(!p.g)p.g=gBlank();else if(!p.g._ok){p.g=Object.assign(gBlank(),p.g);p.g._ok=1;}return p.g;}
+function gardenOpen(){return !!S.player&&(P().stars>=JARDIN||G_().open);}
+const PLOTXY=[[256,292],[562,292],[868,292],[256,494],[562,494],[868,494]];
+
+/* petites icônes */
+const RADIS='<svg viewBox="0 0 64 64"><path d="M26 22 q-8 -14 -2 -18 q6 4 6 16 M38 22 q8 -14 2 -18 q-6 4 -6 16" fill="#4caf50"/><circle cx="32" cy="36" r="16" fill="#ff4f8b"/><path d="M22 44 q10 10 20 0 q-4 10 -10 18 q-6 -8 -10 -18z" fill="#fff"/><ellipse cx="26" cy="30" rx="4" ry="3" fill="#fff" opacity=".5"/></svg>';
+const FLOWER=c=>`<svg viewBox="0 0 64 64"><line x1="32" y1="36" x2="32" y2="62" stroke="#3fa34d" stroke-width="4"/><ellipse cx="24" cy="52" rx="8" ry="4" fill="#4caf50" transform="rotate(-30 24 52)"/>${[0,72,144,216,288].map(a=>`<ellipse cx="32" cy="20" rx="8" ry="12" fill="${c}" transform="rotate(${a} 32 30)"/>`).join('')}<circle cx="32" cy="30" r="7" fill="#fff4a8"/></svg>`;
+const FARINE='<svg viewBox="0 0 64 64">'+ING.farine.svg+'</svg>';
+const CAN='<svg viewBox="0 0 64 64"><path d="M12 28 h30 v24 q0 6 -6 6 h-18 q-6 0 -6 -6z" fill="#4caf9a" stroke="#2b7a66" stroke-width="3"/><path d="M42 34 l16 -14 l3 4 l-14 16z" fill="#4caf9a" stroke="#2b7a66" stroke-width="3"/><circle cx="60" cy="20" r="4" fill="#2b7a66"/><path d="M18 28 q9 -16 18 0" fill="none" stroke="#2b7a66" stroke-width="4"/></svg>';
+const SACK='<svg viewBox="0 0 64 64"><path d="M16 22 q16 -8 32 0 l4 32 q-20 8 -40 0z" fill="#a3d977" stroke="#5f8f3a" stroke-width="3"/><path d="M22 22 q10 -12 20 0" fill="#c8ef9e" stroke="#5f8f3a" stroke-width="3"/><circle cx="32" cy="40" r="7" fill="#fff"/><path d="M32 36 v8 M28 40 h8" stroke="#5f8f3a" stroke-width="3"/></svg>';
+const cropIcon=c=>c==='radis'?RADIS:c==='fleurs'?FLOWER('#ff5c8a'):`<span>${{carotte:'🥕',fraise:'🍓',tomate:'🍅',ble:'🌾'}[c]}</span>`;
+
+/* dessin d'une plante selon son stade */
+function leaf(x,y,r,l,c='#5cc25a'){return `<ellipse cx="${x}" cy="${y}" rx="${l}" ry="${l*.42}" fill="${c}" transform="rotate(${r} ${x} ${y})"/>`;}
+function plantSVG(p){
+  const c=p.c,st=p.st,G='#5cc25a',D='#3f9a3f';let s='';
+  const stem=(h,col=D)=>`<path d="M70 122 q-2 ${-h/2} 0 ${-h}" stroke="${col}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+  if(st===0)return `<svg viewBox="0 0 140 150"><ellipse cx="70" cy="122" rx="28" ry="8" fill="#6b4423"/><g fill="#e8c38a"><circle cx="62" cy="119" r="2.5"/><circle cx="72" cy="117" r="2.5"/><circle cx="80" cy="120" r="2.5"/></g></svg>`;
+  if(st===1)return `<svg viewBox="0 0 140 150">${stem(24)}${leaf(60,100,-35,12,G)}${leaf(80,100,35,12,G)}</svg>`;
+  if(c==='ble'){
+    const col=st===4?'#e7b84a':'#7cc96a',ear=st===4?'#d9a12e':'#5fae4f';
+    const n=st===2?4:6;for(let i=0;i<n;i++){const x=46+i*(48/(n-1)),h=st===2?40:78;s+=`<path d="M${x} 122 q${(i-n/2)*2} ${-h/2} ${(i-n/2)*3} ${-h}" stroke="${col}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+      if(st>=3)for(let k=0;k<4;k++)s+=leaf(x+(i-n/2)*3+(k%2?4:-4),122-h+8+k*7,k%2?30:-30,6,ear);}
+    return `<svg viewBox="0 0 140 150">${s}</svg>`;
+  }
+  if(c==='carotte'||c==='radis'){
+    const n=st===2?4:6;for(let i=0;i<n;i++){const a=-60+i*(120/(n-1)),h=st===2?34:54;const x2=70+Math.sin(a*Math.PI/180)*h,y2=118-Math.cos(a*Math.PI/180)*h;
+      s+=`<line x1="70" y1="118" x2="${x2}" y2="${y2}" stroke="${D}" stroke-width="3"/>`+(c==='carotte'?[.4,.6,.8,1].map(t=>`<circle cx="${70+(x2-70)*t}" cy="${118+(y2-118)*t}" r="${5-t*2}" fill="${G}"/>`).join(''):leaf(x2,y2,a,12,G));}
+    if(st>=3)s+=c==='carotte'?`<path d="M58 118 h24 l-12 ${st===4?26:10}z" fill="#ff8a2a"/>`:`<circle cx="70" cy="${st===4?122:126}" r="${st===4?16:9}" fill="#ff4f8b"/>`;
+    return `<svg viewBox="0 0 140 150">${s}<rect x="0" y="${st===4?132:124}" width="140" height="30" fill="none"/></svg>`;
+  }
+  if(c==='fleurs'){
+    s+=stem(st===2?40:70)+leaf(56,100,-30,12,G)+leaf(84,90,30,12,G);
+    if(st===3)s+=`<ellipse cx="70" cy="50" rx="10" ry="15" fill="${p.col}"/><path d="M60 58 q10 8 20 0" fill="${G}"/>`;
+    if(st===4)s+=[0,60,120,180,240,300].map(a=>`<ellipse cx="70" cy="36" rx="11" ry="17" fill="${p.col}" transform="rotate(${a} 70 52)"/>`).join('')+`<circle cx="70" cy="52" r="10" fill="#fff4a8"/>`;
+    return `<svg viewBox="0 0 140 150">${s}</svg>`;
+  }
+  /* fraise, tomate */
+  const tall=c==='tomate';
+  if(tall&&st>=2)s+=`<rect x="92" y="${st===2?70:30}" width="6" height="${st===2?56:96}" rx="3" fill="#a77b4f"/>`;
+  s+=stem(st===2?36:tall?82:48);
+  const L=st===2?[[56,104,-30],[84,104,30],[60,88,-40],[80,88,40]]:tall?[[54,104,-30],[86,100,30],[56,80,-40],[84,72,40],[58,56,-30],[82,48,30]]:[[50,108,-20],[90,108,20],[56,92,-40],[84,92,40],[70,84,0]];
+  s+=L.map(([x,y,r])=>leaf(x,y,r,16,G)).join('');
+  const spots=tall?[[60,70],[82,60],[68,96]]:[[52,112],[88,112],[70,100]];
+  if(st===3)s+=spots.map(([x,y])=>c==='fraise'?`<g>${[0,72,144,216,288].map(a=>`<ellipse cx="${x}" cy="${y-6}" rx="4" ry="6" fill="#fff" transform="rotate(${a} ${x} ${y})"/>`).join('')}<circle cx="${x}" cy="${y}" r="4" fill="#ffd34d"/></g>`:`<g>${[0,72,144,216,288].map(a=>`<ellipse cx="${x}" cy="${y-5}" rx="3" ry="5" fill="#ffe14d" transform="rotate(${a} ${x} ${y})"/>`).join('')}</g>`).join('');
+  if(st===4)s+=spots.map(([x,y])=>c==='fraise'?`<path d="M${x} ${y+14} q-12 -8 -11 -17 q1 -6 11 -5 q10 -1 11 5 q1 9 -11 17z" fill="#ff3b4e" stroke="#c9273a" stroke-width="1.5"/><g fill="#ffe17a"><circle cx="${x-4}" cy="${y-2}" r="1.3"/><circle cx="${x+4}" cy="${y}" r="1.3"/><circle cx="${x}" cy="${y+6}" r="1.3"/></g><path d="M${x-6} ${y-8} q6 -6 12 0" fill="#3fbf55"/>`:`<circle cx="${x}" cy="${y}" r="12" fill="#ff4a2e" stroke="#c93a22" stroke-width="2"/><ellipse cx="${x-4}" cy="${y-4}" rx="4" ry="2.5" fill="#fff" opacity=".5"/><path d="M${x-5} ${y-11} l5 3 l5 -3" stroke="#3fbf55" stroke-width="3" fill="none"/>`).join('');
+  return `<svg viewBox="0 0 140 150">${s}</svg>`;
+}
+const SOIL='<svg class="soil" viewBox="0 0 280 92"><rect x="4" y="8" width="272" height="80" rx="26" fill="#7a4e2c"/><rect x="4" y="4" width="272" height="72" rx="26" fill="#946039"/><path d="M30 30 q110 -10 220 0 M26 48 q114 -10 228 0" stroke="#7a4e2c" stroke-width="5" fill="none" stroke-linecap="round"/><g fill="#a8744a"><circle cx="60" cy="60" r="3"/><circle cx="150" cy="22" r="3"/><circle cx="220" cy="58" r="3"/></g></svg>';
+const WEEDS='<svg viewBox="0 0 280 178" style="width:100%;height:100%"><g fill="#2f7d32">'+[[34,130],[236,124],[180,150]].map(([x,y])=>`<path d="M${x} ${y} l-10 -26 l8 10 l2 -24 l6 22 l6 -18 l0 26 l10 -16 l-6 26z"/>`).join('')+'</g></svg>';
+const APH='<svg viewBox="0 0 140 150" style="position:absolute;left:70px;bottom:28px;width:140px;height:150px">'+[[62,92],[78,86],[70,76],[86,100],[56,104],[74,108]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="4.5" ry="3.5" fill="#9be15d" stroke="#3d7a1c" stroke-width="1.5"/>`).join('')+'</svg>';
+
+function gardenSVG(){return `<svg viewBox="0 0 1180 820" class="full"><defs><linearGradient id="gsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fd3ff"/><stop offset="1" stop-color="#dff4ff"/></linearGradient></defs>
+<rect width="1180" height="820" fill="url(#gsky)"/><circle cx="880" cy="150" r="46" fill="#ffd95a"/>
+<g fill="#fff" opacity=".9"><ellipse cx="560" cy="150" rx="56" ry="22"/><ellipse cx="600" cy="132" rx="40" ry="26"/></g>
+<path d="M0 270 q240 -60 480 -10 t480 -20 t240 10 v600 h-1200z" fill="#a6dc76"/>
+<rect y="282" width="1180" height="538" fill="#8fce5e"/>
+${Array.from({length:40},(_,i)=>`<rect x="${i*30}" y="236" width="18" height="64" rx="5" fill="#fff6e0" stroke="#c8a97a" stroke-width="3"/>`).join('')}
+<rect y="252" width="1180" height="10" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/><rect y="280" width="1180" height="10" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/>
+<g fill="#7cc35a">${Array.from({length:30},(_,i)=>`<path d="M${i*41+10} 812 l6 -18 l6 18z"/>`).join('')}</g>
+</svg>`}
+function moulinSVG(){return `<svg viewBox="0 0 160 190" style="width:100%;height:100%"><path d="M58 70 l-14 104 h72 l-14 -104z" fill="#fff1d8" stroke="#b98a5a" stroke-width="4"/><path d="M50 74 l30 -26 l30 26z" fill="#e8674f" stroke="#a9412f" stroke-width="4" stroke-linejoin="round"/><rect x="70" y="136" width="20" height="38" rx="9" fill="#8a5a36"/><g class="sails"><g fill="#fff" stroke="#8a96ad" stroke-width="3">${[0,90,180,270].map(a=>`<rect x="74" y="8" width="12" height="62" rx="3" transform="rotate(${a} 80 70)"/>`).join('')}</g><circle cx="80" cy="70" r="8" fill="#5d6c8c"/></g></svg><div class="mlab">Moulin</div>`}
+
+const TOOLS=[...Object.keys(CROPS).map(c=>({id:'seed:'+c,n:CROPS[c].n,seed:c})),{id:'eau',n:'Arrosoir'},{id:'engrais',n:'Engrais'},{id:'main',n:'Main'},{id:'cocci',n:'Coccinelles'}];
+const GS={tool:'main',timer:null,bee:null,beeWait:0,sig:[]};
+function toolIcon(t){if(t.seed)return cropIcon(t.seed);return {eau:CAN,engrais:SACK,main:'<span>✋</span>',cocci:'<span>🐞</span>'}[t.id];}
+function renderTools(){$('gTools').innerHTML=TOOLS.map(t=>`<button class="tool ${t.seed?'seed':''} ${GS.tool===t.id?'sel':''}" data-t="${t.id}"><div class="ti">${toolIcon(t)}</div>${t.n}</button>`).join('');}
+function renderInv(){
+  const g=G_(),row=(ico,n,act,cls,key)=>`<div class="inv ${n?'':'empty'}" data-k="${key}"><div class="ii">${ico}</div>${n}${act?`<span class="ia ${cls||''}">${act}</span>`:''}</div>`;
+  $('gInv').innerHTML='<h3>🧺 Mon panier</h3>'+
+    row('<span>🥕</span>',g.stock.carotte,g.stock.carotte?'🐶 Wanji':'',g.stock.carotte?'go':'','carotte')+
+    row(RADIS,g.stock.radis,g.stock.radis?'🐶 Wanji':'',g.stock.radis?'go':'','radis')+
+    row('<span>🌾</span>',g.stock.ble,g.stock.ble?'→ moulin':'','','ble')+
+    row(FLOWER(g.flowers[0]||'#ff5c8a'),g.flowers.length,g.flowers.length>=3?'Bouquet':'',g.flowers.length>=3?'go':'','fleurs')+
+    row('<span>🍓</span>',g.fridge.fraise,'frigo','','fraise')+
+    row('<span>🍅</span>',g.fridge.tomate,'frigo','','tomate')+
+    row(FARINE,g.fridge.farine,'frigo','','farine');
+}
+function plotHTML(i){
+  const p=G_().plots[i],A=isA();
+  let h=SOIL;
+  if(p.c){
+    h+=`<div class="pl">${p.dead?plantSVG({...p,st:Math.max(p.st,2)}):plantSVG(p)}</div>`;
+    if(p.w>100)h+='<div class="puddle"></div>';
+    if(p.aph)h+=APH;
+    if(!p.dead&&p.w<25)h+='<div class="thirst">💧</div>';
+    if(p.pol&&p.st===3)h+='<div class="pol">✨</div>';
+    if(!A&&!p.dead)h+=`<div class="gauge"><i style="width:${Math.min(100,p.w)}%" class="${p.w>100?'hi':p.w<25?'lo':''}"></i></div>`;
+  }
+  if(p.weed)h+=`<div class="weeds">${WEEDS}</div>`;
+  return h;
+}
+function plotSig(p){return [p.c,p.st,p.dead,p.weed,p.aph>0,p.w>100,p.w<25,p.pol,p.burn>0,p.w<=0].join('|');}
+function renderPlot(i,force){
+  const p=G_().plots[i],el=document.querySelector(`.plot[data-i="${i}"]`);if(!el)return;
+  const sig=plotSig(p);
+  if(force||GS.sig[i]!==sig){GS.sig[i]=sig;el.innerHTML=plotHTML(i);
+    el.classList.toggle('dry',!!p.c&&!p.dead&&p.w<=0);el.classList.toggle('dead',!!p.dead);el.classList.toggle('burn',p.burn>0);el.classList.toggle('ripe',p.st===4&&!p.dead);}
+  else if(!isA()){const gi=el.querySelector('.gauge i');if(gi){gi.style.width=Math.min(100,p.w)+'%';}}
+}
+function renderGarden(){
+  $('gPlots').innerHTML=PLOTXY.map(([x,y],i)=>`<div class="plot" data-i="${i}" style="left:${x}px;top:${y}px"></div>`).join('');
+  GS.sig=[];G_().plots.forEach((_,i)=>renderPlot(i,true));renderTools();renderInv();updGift();
+}
+function seen(k){const g=G_();if(g.seen[k])return true;g.seen[k]=1;saveDB();return false;}
+
+function enterGarden(){
+  go('s-garden');G_();renderGarden();
+  $('gWanji').innerHTML=wanjiSVG();
+  clearInterval(GS.timer);GS.timer=setInterval(gTick,250);
+  if(!seen('intro'))say(T('Bienvenue au jardin ! Choisis une graine, puis touche la terre.','Le jardin ! Plante, arrose, protège tes plantes. Les abeilles aident les fraises et les tomates à faire des fruits.'));
+  else say(T('Le jardin !','Le jardin.'));
+}
+function leaveGarden(){clearInterval(GS.timer);GS.timer=null;if(GS.bee){GS.bee.el.remove();GS.bee=null;}saveDB();}
+
+/* le temps qui passe (seulement quand on est au jardin) */
+let gSave=0;
+function gTick(){
+  if(S.screen!=='s-garden'){leaveGarden();return;}
+  const A=isA(),g=G_();
+  g.plots.forEach((p,i)=>{
+    if(!p.c){if(!p.weed&&Math.random()<(A?.0006:.0012))p.weed=true;renderPlot(i);return;}
+    if(p.dead){renderPlot(i);return;}
+    p.w=Math.max(0,p.w-(A?.3:.55)-(p.w>100?.8:0));
+    if(!p.weed&&Math.random()<(A?.0012:.0025))p.weed=true;
+    if(p.st>=1&&p.st<4&&p.aph<3&&Math.random()<(A?.001:.002)){p.aph++;if(!seen('aph'))say(T('Des pucerons ! Écrase-les avec la main ou appelle les coccinelles.','Des pucerons ! Écrase-les à la main, ou envoie les coccinelles : elles les mangent.'));}
+    if(p.w<=0){p.dry=(p.dry||0)+1;if(!A&&p.dry>40){p.dead=true;say('Oh non, une plante est morte de soif ! Arrache-la avec la main.');}}else p.dry=0;
+    if(p.w<25&&p.w>0&&!p.thirsty){p.thirsty=1;if(!seen('thirst'))say(T('Ta plante a soif ! Prends l\'arrosoir.','Une plante a soif : surveille la jauge bleue.'));}
+    if(p.w>=25)p.thirsty=0;
+    let m=1;if(p.f===1)m*=1.7;if(p.weed)m*=.3;if(p.aph)m*=.3;if(p.burn>0){m=0;p.burn--;}
+    if(p.w<=0||p.w>100||p.st===4)m=0;
+    const fruit=CROPS[p.c].fruit;
+    if(p.st===3&&fruit&&!p.pol&&p.gr>=100)m=0;
+    p.gr+=(A?2:1.25)*CROPS[p.c].sp*m;
+    if(p.gr>=100&&p.st<4&&!(p.st===3&&fruit&&!p.pol)){p.st++;p.gr=0;if(p.st===4&&!seen('ripe'))say(T("C'est prêt ! Récolte avec la main.",'Une plante est mûre : récolte-la avec la main.'));}
+    renderPlot(i);
+  });
+  /* abeilles : elles viennent quand une fleur de fraisier ou de tomate attend */
+  if(!GS.bee){GS.beeWait++;const i=g.plots.findIndex(p=>p.c&&!p.dead&&p.st===3&&CROPS[p.c].fruit&&!p.pol&&p.gr>=40);
+    if(i>=0&&GS.beeWait>10){GS.beeWait=0;launchBee(i);}}
+  if(++gSave>20){gSave=0;saveDB();}
+}
+function plotCenter(i){const [x,y]=PLOTXY[i];return {x:x+140,y:y+70};}
+function launchBee(i){
+  const el=document.createElement('div');el.className='bee';el.textContent='🐝';$('s-garden').appendChild(el);
+  const t=plotCenter(i),sx=1200,sy=rnd(140,300);
+  const bee={el,i,state:'fly'};GS.bee=bee;
+  const fr=[];for(let k=0;k<=20;k++){const u=k/20;fr.push({transform:`translate(${sx+(t.x-sx)*u-28}px,${sy+(t.y-sy)*u+Math.sin(u*12)*30-28}px) scaleX(-1)`});}
+  bee.anim=el.animate(fr,{duration:2600,easing:'ease-in-out',fill:'forwards'});
+  sfx.bzz();
+  bee.anim.onfinish=async()=>{
+    if(GS.bee!==bee)return;bee.state='hover';
+    el.animate([{transform:`translate(${t.x-28}px,${t.y-28}px) rotate(-8deg)`},{transform:`translate(${t.x-24}px,${t.y-32}px) rotate(8deg)`}],{duration:220,iterations:8,direction:'alternate'});
+    await sleep(1800);if(GS.bee!==bee)return;
+    const p=G_().plots[i];if(p.c&&p.st===3){p.pol=true;renderPlot(i,true);burst(document.querySelector(`.plot[data-i="${i}"]`),['✨','🌼'],5,70);award('abeille');
+      if(!seen('bee'))say(T("L'abeille butine la fleur : bientôt un fruit !","L'abeille a pollinisé la fleur : le fruit va pouvoir pousser."));}
+    beeAway(bee);
+  };
+  onTap(el,()=>{if(GS.bee!==bee)return;say(T("Laisse-la ! L'abeille aide les fleurs à devenir des fruits.","Ne chasse pas les abeilles : sans elles, pas de fraises ni de tomates !"));beeAway(bee);});
+}
+function beeAway(bee){
+  if(GS.bee===bee)GS.bee=null;GS.beeWait=0;
+  const c=pos(bee.el);bee.anim&&bee.anim.cancel();
+  bee.el.animate([{transform:`translate(${c.x-28}px,${c.y-28}px)`},{transform:`translate(${c.x+300}px,${c.y-400}px)`}],{duration:1200,easing:'ease-in',fill:'forwards'}).onfinish=()=>bee.el.remove();
+}
+
+/* outils */
+onTap($('gTools'),e=>{const b=e.target.closest('[data-t]');if(!b)return;GS.tool=b.dataset.t;sfx.click();renderTools();});
+onTap($('gPlots'),e=>{
+  const el=e.target.closest('.plot');if(!el)return;const i=+el.dataset.i,g=G_(),p=g.plots[i],A=isA(),t=GS.tool;
+  if(t.startsWith('seed:')){
+    const c=t.slice(5);
+    if(p.c){say(T(p.st===4?"C'est prêt ! Prends la main pour récolter.":'Il y a déjà une plante ici.',p.st===4?'Récolte d\'abord avec la main.':'Parcelle occupée.'));return;}
+    if(p.weed){say(T("Arrache d'abord les mauvaises herbes avec la main !",'Désherbe avant de semer.'));return;}
+    g.plots[i]={c,st:0,gr:0,w:A?60:45,f:0,weed:false,aph:0,pol:false,dry:0,dead:false,burn:0,col:pick(FCOL)};
+    sfx.pop();renderPlot(i,true);burst(el,['🌱'],3,50);
+    if(!seen('plant'))say(T('Bravo ! Maintenant, arrose avec l\'arrosoir.','Semé. Garde la jauge d\'eau dans le bleu.'));
+    saveDB();return;
+  }
+  if(t==='eau'){
+    sfx.splash();burst(el,['💧','💦'],5,70);
+    if(!p.c)return;
+    if(A){if(p.w>=95){award('noyee');say("Elle a assez bu ! Trop d'eau, ça noie les racines.");}p.w=Math.min(100,p.w+35);}
+    else{p.w+=35;if(p.w>100){award('noyee');if(!seen('noyee'))say("Trop d'eau : les racines se noient et la plante ne pousse plus tant que ça n'a pas séché.");}}
+    renderPlot(i,true);return;
+  }
+  if(t==='engrais'){
+    if(!p.c||p.dead){say(T("Il faut d'abord une plante !",'Rien à nourrir ici.'));return;}
+    if(A){if(p.f>=1){say('Une seule dose suffit !');return;}p.f=1;}
+    else{p.f=(p.f||0)+1;if(p.f>=2){p.f=1;p.burn=32;renderPlot(i,true);say("Trop d'engrais : les feuilles brûlent et jaunissent ! Une seule dose suffit.");return;}}
+    sfx.pop();burst(el,['✨','🌿'],4,60);if(!seen('engrais'))say(T('Miam, ça fait pousser plus vite !','Engrais : la plante pousse plus vite. Une dose, pas plus.'));renderPlot(i,true);return;
+  }
+  if(t==='cocci'){
+    if(!p.aph){say(T("Pas de pucerons ici !",'Aucun puceron sur cette plante.'));return;}
+    const c=pos(el);fly('<span style="font-size:44px">🐞</span>',$('gTools'),null,{dur:700,size:50,arc:120,to:{x:c.x,y:c.y-20}}).then(()=>{p.aph=0;renderPlot(i,true);burst(el,['🐞','🐞','✨'],5,60);sfx.crunch();award('coccinelle');
+      if(!seen('cocci'))say(T('Les coccinelles ont mangé les pucerons !','Les coccinelles mangent les pucerons : un allié naturel du jardin.'));});
+    return;
+  }
+  /* la main : écraser, désherber, arracher, récolter */
+  if(p.aph){p.aph=0;sfx.squish();burst(el,['💥'],3,50);renderPlot(i,true);return;}
+  if(p.weed){p.weed=false;g.c.weeds++;sfx.squish();burst(el,['🌿'],4,70);if(g.c.weeds>=10)award('desherbe');renderPlot(i,true);saveDB();return;}
+  if(p.dead){g.plots[i]={c:null};sfx.trash();renderPlot(i,true);saveDB();return;}
+  if(p.c&&p.st===4){harvest(i,el);return;}
+  if(p.c)say(T("Pas encore prêt ! Attends qu'il pousse.",'Pas encore mûr.'),false);
+  else say(T('Choisis une graine en bas !','Choisis une graine dans la barre du bas.'),false);
+});
+async function harvest(i,el){
+  const g=G_(),p=g.plots[i],c=p.c,n=CROPS[c].yield;
+  g.plots[i]={c:null};renderPlot(i,true);sfx.pop();
+  await fly(c==='fleurs'?FLOWER(p.col):cropIcon(c).replace('<span>','<span style="font-size:52px">'),el,$('gInv'),{dur:600,size:64,arc:100});
+  if(c==='fleurs')g.flowers.push(p.col);else if(c==='fraise'||c==='tomate')g.fridge[c]+=n;else g.stock[c]+=n;
+  g.c.harv++;sfx.ding();award('j_'+c);if(g.c.harv>=30)award('recolte30');saveDB();renderInv();
+  say(T(c==='fraise'||c==='tomate'?`Super récolte ! Elles vont dans le frigo de la cuisine.`:`Super récolte !`,c==='fraise'||c==='tomate'?`Récolte : ${n} ${CROPS[c].n.toLowerCase()}s, rangées dans le frigo.`:`Récolte : ${CROPS[c].n.toLowerCase()}.`));
+}
+
+/* panier : Wanji, moulin, bouquet */
+onTap($('gInv'),e=>{
+  const r=e.target.closest('.inv');if(!r)return;const k=r.dataset.k,g=G_();
+  if((k==='carotte'||k==='radis')&&g.stock[k]>0){
+    g.stock[k]--;renderInv();
+    fly(k==='radis'?RADIS:'<span style="font-size:52px">🥕</span>',r,$('gWanji'),{dur:600,size:60,arc:80}).then(()=>{
+      const w=$('gWanji').querySelector('.wj');w.classList.remove('happy','yuck');void w.offsetWidth;
+      if(k==='carotte'){w.classList.add('happy');sfx.bark();sfx.crunch();burst($('gWanji'),['❤️','🥕'],6,80);award('wcarotte');say(T('Wanji adore les carottes !','Les carottes sont bonnes pour les chiens : Wanji adore !'));}
+      else{w.classList.add('yuck');sfx.yuck();burst($('gWanji'),['😝'],3,60);say(T('Beurk, ça pique ! Wanji fait la grimace.','Le radis pique un peu : Wanji fait la grimace.'));}
+      setTimeout(()=>w.classList.remove('happy','yuck'),2200);saveDB();});
+    return;
+  }
+  if(k==='ble'){say(g.stock.ble?T('Touche le moulin !','Touche le moulin pour faire de la farine.'):T('Plante du blé !','Plante du blé pour faire de la farine.'));return;}
+  if(k==='fleurs'){if(g.flowers.length>=3)openBouquet();else say(T('Il faut 3 fleurs pour un bouquet !','Il faut au moins 3 fleurs pour un bouquet.'));return;}
+  say(T('Ça va dans le frigo de la cuisine !','Rangé dans le frigo : utilise-le en cuisine.'),false);
+});
+onTap($('moulin'),async()=>{
+  const g=G_();if(!g.stock.ble){say(T("Il faut du blé ! Plante-en.","Il faut du blé : sème-en dans une parcelle."));return;}
+  if($('moulin').classList.contains('spin'))return;
+  $('moulin').classList.add('spin');sfx.whisk();await sleep(1800);$('moulin').classList.remove('spin');
+  g.stock.ble--;g.fridge.farine++;award('moulin');saveDB();
+  await fly(FARINE,$('moulin'),$('gInv'),{dur:600,size:60,arc:60});renderInv();
+  say(T('De la farine ! Elle va dans le frigo.','Le moulin écrase le blé : voilà de la farine pour la cuisine.'));
+});
+let BQ=[];
+function openBouquet(){
+  BQ=[];const g=G_();
+  $('gPanelCard').innerHTML=`<h2>💐 Mon bouquet</h2><div id="bqVase"></div><div class="vase" id="bqF">${g.flowers.map((c,j)=>`<button class="fbtn" data-j="${j}">${FLOWER(c)}</button>`).join('')}</div><div class="pfoot"><button class="btn b-grey" data-bq="no">Annuler</button><button class="btn b-orange" data-bq="ok" id="bqOk" disabled>🎁 Mettre dans la cuisine</button></div>`;
+  drawVase();$('gPanel').classList.remove('hidden');
+  say(T('Touche les fleurs pour les mettre dans le vase !','Choisis jusqu\'à 5 fleurs.'));
+}
+function vaseSVG(cols,w=300,h=260){
+  const pos5=[[150,60],[105,80],[195,80],[80,120],[220,120]];
+  return `<svg viewBox="0 0 300 260" style="width:${w}px;height:${h}px">${cols.map((c,j)=>{const [x,y]=pos5[j];return `<line x1="150" y1="200" x2="${x}" y2="${y}" stroke="#3fa34d" stroke-width="5"/>${[0,60,120,180,240,300].map(a=>`<ellipse cx="${x}" cy="${y-16}" rx="12" ry="18" fill="${c}" transform="rotate(${a} ${x} ${y})"/>`).join('')}<circle cx="${x}" cy="${y}" r="10" fill="#fff4a8"/>`;}).join('')}<path d="M104 170 h92 l-10 80 h-72z" fill="#8fc2ff" stroke="#4c8dff" stroke-width="4"/><ellipse cx="150" cy="170" rx="46" ry="8" fill="#cfe5ff" stroke="#4c8dff" stroke-width="4"/></svg>`;
+}
+function drawVase(){$('bqVase').innerHTML=vaseSVG(BQ);if($('bqOk'))$('bqOk').disabled=BQ.length<3;}
+function bouquetTap(e){
+  const f=e.target.closest('.fbtn');
+  if(f){if(BQ.length>=5)return;const g=G_();BQ.push(g.flowers[+f.dataset.j]);f.style.visibility='hidden';sfx.pop();drawVase();return true;}
+  const b=e.target.closest('[data-bq]');if(!b)return false;
+  if(b.dataset.bq==='no'){$('gPanel').classList.add('hidden');return true;}
+  const g=G_();BQ.forEach(c=>{const j=g.flowers.indexOf(c);if(j>=0)g.flowers.splice(j,1);});
+  g.bouquet=BQ.slice();BQ=[];award('bouquet');saveDB();$('gPanel').classList.add('hidden');renderInv();
+  say(T('Quel joli bouquet ! Il est dans la cuisine.','Bouquet posé à la fenêtre de la cuisine.'));
+  return true;
+}
+onTap($('gHome'),()=>{sfx.click();leaveGarden();enterHub();});
+onTap($('gPanelCard'),bouquetTap);
+onTap($('gPanel'),e=>{if(e.target.id==='gPanel')$('gPanel').classList.add('hidden');});
+onTap($('gWanji'),()=>wanjiTap($('gWanji')));
+$('gArt').innerHTML=gardenSVG();$('moulin').innerHTML=moulinSVG();
+function updFridge(){const g=G_();['tomate','fraise','farine'].forEach(k=>{const b=document.querySelector(`#frIn [data-ing="${k}"]`);if(!b)return;let t=b.querySelector('.gb');const n=g.fridge[k];if(n){if(!t){t=document.createElement('span');t.className='gb';b.appendChild(t);}t.textContent='🌱'+n;}else if(t)t.remove();});}
+function updVase(){const b=G_().bouquet;$('kVase').classList.toggle('hidden',!b.length);if(b.length)$('kVase').innerHTML=vaseSVG(b,110,100);}
 
 /* hors ligne */
 if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
