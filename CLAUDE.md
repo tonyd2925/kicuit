@@ -19,7 +19,7 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 - **Kicuit** : petit robot cuisinier (toque), guide du jeu. Il parle avec la synthèse vocale fr-FR, et toucher sa bulle répète la phrase.
   **Il doit parler peu** : phrases courtes. `say(texte, voix)` : par défaut Nana entend le texte et Raf le lit en silence ; `false` = bulle seule ; une chaîne = phrase courte dite aux deux. Pas de voix sur les ingrédients, les réglages ni la cuisson. Voix pour Raf seulement pour les alertes (chocolat), le résultat en un mot et quand on touche Kicuit.
 - **Wanji** : le vrai chien de la famille, un pomsky au poil brun taupe et crème, calotte brune avec une liste blanche sur le front, masque brun autour des yeux bleu clair, truffe brun foncé, collier noir avec médaille argentée. C'est le goûteur et le « client » des commandes du jour.
-- **Règle du chocolat** : on ne donne **jamais** de chocolat à Wanji. Kicuit l'arrête, l'enfant goûte lui-même et Wanji reçoit une croquette. Cette règle vaut pour tous les futurs ateliers, et s'étend aux fromages bleus (roquefort) dans la fromagerie.
+- **Règle du chocolat** : on ne donne **jamais** de chocolat à Wanji. Kicuit l'arrête, l'enfant goûte lui-même et Wanji reçoit une croquette. Cette règle vaut pour tous les futurs ateliers, et s'étend aux fromages bleus (bleu d'Auvergne) dans la fromagerie.
 
 ## Principes de conception
 
