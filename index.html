@@ -270,10 +270,10 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .ghost{filter:grayscale(1) opacity(.22)}
 
 #s-album{background:linear-gradient(160deg,#ffe9b8,#ffd0e0)}
-#tabs{position:absolute;left:40px;right:40px;top:112px;height:64px;display:flex;gap:10px}
-.tab{flex:1;height:64px;border-radius:22px 22px 0 0;background:rgba(255,255,255,.55);font-size:15px;white-space:nowrap;padding:0 4px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:8px}
+#tabs{position:absolute;left:40px;right:40px;top:112px;height:64px;display:flex;gap:6px}
+.tab{flex:1;min-width:0;height:64px;border-radius:22px 22px 0 0;background:rgba(255,255,255,.55);font-size:15px;white-space:nowrap;padding:0 2px;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;line-height:1.15}
 .tab.on{background:#fffdf7}
-.tab .tc{font-size:15px;opacity:.6}
+.tab .tc{font-size:14px;opacity:.6}
 #apage{position:absolute;left:40px;right:40px;top:176px;height:470px;background:#fffdf7;border-radius:0 0 30px 30px;box-shadow:0 10px 24px rgba(43,35,80,.12);overflow:hidden}
 #apage::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(43,35,80,.06) 1.5px,transparent 1.5px);background-size:26px 26px;pointer-events:none}
 .slots{position:absolute;inset:18px 24px;display:grid;grid-template-columns:repeat(7,1fr);gap:8px 10px;align-content:center}
@@ -525,26 +525,173 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .mrow .mx{font-size:14px;font-weight:700;opacity:.75}
 /* corps humain */
 #s-corps{background:linear-gradient(#eaf4ff,#d6e9ff)}
+#cTabs{position:absolute;left:20px;top:124px;width:292px;display:flex;flex-direction:column;gap:12px;z-index:6}
+.ctab{height:100px;border-radius:26px;background:rgba(255,255,255,.6);font-size:22px;font-weight:900;display:flex;align-items:center;gap:12px;padding:0 16px;text-align:left;line-height:1.1}
+.ctab span{font-size:46px;flex:none}
+.ctab.on{background:#fff;box-shadow:0 0 0 5px var(--orange)}
 #cBoard{position:absolute;left:330px;top:96px;width:430px;height:720px;background:rgba(255,255,255,.55);border-radius:30px}
 #cBoard .ghost-b{position:absolute;opacity:.16;filter:grayscale(1)}
 .bone{position:absolute;touch-action:none;cursor:grab;filter:drop-shadow(0 4px 4px rgba(0,0,0,.15))}
 .bone.placed{filter:none}
-#cOrgans{position:absolute;inset:0;pointer-events:none}
-#cOrgans .heart{transform-box:fill-box;transform-origin:center;animation:hbeat var(--beat,.8s) ease-in-out infinite}
-#cOrgans .lungs ellipse{transform-box:fill-box;transform-origin:center bottom;animation:breath var(--breath,3.7s) ease-in-out infinite}
-#cOrgans .art,#cOrgans .vei{fill:none;stroke-width:6;stroke-dasharray:10 14;stroke-linecap:round;animation:flow var(--beat,.8s) linear infinite}
-#cOrgans .art{stroke:#e2263e}#cOrgans .vei{stroke:#4c6fd8;animation-direction:reverse}
-@keyframes hbeat{0%,100%{transform:scale(1)}15%{transform:scale(1.25)}30%{transform:scale(1)}45%{transform:scale(1.15)}}
-@keyframes breath{0%,100%{transform:scale(.9,.92)}50%{transform:scale(1.08,1.1)}}
-@keyframes flow{to{stroke-dashoffset:-24}}
 #cBtns{position:absolute;left:790px;top:536px;width:370px;display:flex;flex-direction:column;gap:10px;z-index:8}
 #cBtns .btn{height:78px;font-size:26px}
-#cLiveP{position:absolute;left:790px;top:130px;width:370px;z-index:8;display:flex;flex-direction:column;gap:14px}
-.lbtns{display:flex;flex-direction:column;gap:10px}
+#cWork{position:absolute;left:326px;top:124px;right:20px;bottom:14px;background:#fffdf7;border-radius:30px;box-shadow:0 10px 24px rgba(43,35,80,.12);overflow:hidden;touch-action:none}
 .lopt{height:84px;border-radius:24px;background:#fff;box-shadow:0 5px 0 #c9d6ee;font-size:40px;display:flex;align-items:center;gap:14px;padding:0 20px}
 .lopt span{font-size:26px;font-weight:900}
 .lopt.sel{box-shadow:0 0 0 5px var(--orange),0 5px 0 #c9d6ee}
-.lnum{background:#fff;border-radius:22px;padding:14px 18px;font-size:22px;font-weight:900;line-height:1.4}
+.vhead{padding:18px 24px 6px;font-size:24px;font-weight:900;text-align:center}
+.cfact{margin:6px 22px;padding:10px 16px;background:#eef6ff;border-radius:18px;font-size:18px;font-weight:800;line-height:1.35}
+.cfoot{display:flex;gap:14px;justify-content:center;align-items:center;padding:10px}
+.cfoot .btn{height:70px;font-size:24px}
+.cbar{height:22px;border-radius:11px;background:#eee6d4;overflow:hidden;flex:1}
+.cbar i{display:block;height:100%;width:0;background:var(--bc,var(--green));border-radius:11px;transition:width .2s}
+/* voyage du repas */
+.foods{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:20px 30px}
+.food{height:150px;border-radius:26px;background:#fff3ea;box-shadow:0 6px 0 #f0d7c4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.food span{font-size:72px;line-height:1}.food b{font-size:20px}
+.food.done{background:#e8fbe9;box-shadow:0 6px 0 #bfe5c4}
+.vy{display:flex;height:100%}
+.vmap{width:220px;flex:none;background:#fff3ea;display:flex;flex-direction:column;align-items:center;padding:14px 8px}
+.vmap svg{width:200px;height:448px}
+.vmap .vlab{font-size:20px;font-weight:900;text-align:center;margin-top:6px}
+.bmap .org{opacity:.35}.bmap .org.done{opacity:.9}
+.bmap .org.on{opacity:1;animation:orgGlow 1s ease-in-out infinite}
+@keyframes orgGlow{50%{filter:drop-shadow(0 0 8px #ff7a59) brightness(1.2)}}
+.vscene{flex:1;position:relative;display:flex;flex-direction:column;align-items:center}
+.vtitle{font-size:26px;font-weight:900;padding:16px 10px 4px;text-align:center}
+.vzone{position:relative;flex:1;width:100%;display:flex;align-items:center;justify-content:center;touch-action:none}
+.mouth{position:relative;width:440px;height:330px}
+.mouth svg{position:absolute;inset:0;width:100%;height:100%}
+.mouth .tu,.mouth .tl{transition:transform .12s}
+.mouth.chomp .tu{transform:translateY(46px)}.mouth.chomp .tl{transform:translateY(-46px)}
+.bites{position:absolute;left:110px;top:105px;width:220px;height:120px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;pointer-events:none}
+.bites span{line-height:1;transition:font-size .2s}
+.bites.mush span{filter:blur(2px) saturate(.6)}
+.vcount{font-size:22px;font-weight:900;display:flex;align-items:center;gap:12px;width:420px}
+.oeso{position:relative;width:180px;height:430px}
+.oeso svg{width:100%;height:100%}
+.bolus{position:absolute;left:58px;width:64px;height:64px;font-size:50px;text-align:center;transition:top .5s cubic-bezier(.3,1.4,.6,1)}
+.stom{position:relative;width:440px;height:380px}
+.stom svg{position:absolute;inset:0;width:100%;height:100%}
+.stom .pcs{position:absolute;inset:0;pointer-events:none}
+.stom .pcs span{position:absolute;font-size:34px;transition:transform .25s}
+.gut svg{width:600px;height:440px}
+.nb{cursor:pointer}
+.nb text{pointer-events:none}
+.nb.f circle{stroke-dasharray:6 5}
+.vres{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;padding:14px 30px;width:100%}
+.vres .rb{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:900}
+.vres .rb span{width:36px;text-align:center;font-size:28px}
+.vtime{width:calc(100% - 44px);margin:4px 22px;border-collapse:collapse;font-size:17px;font-weight:800}
+.vtime td{padding:4px 10px;border-bottom:2px solid #f0e6d8}
+.toil{font-size:120px;line-height:1}
+.toil.flush{animation:flush 1.2s ease-in-out}
+@keyframes flush{30%{transform:rotate(-12deg) scale(1.05)}60%{transform:rotate(12deg)}100%{transform:none}}
+.bact{position:absolute;font-size:44px;transition:left .5s,top .5s;pointer-events:none}
+.fib{position:absolute;font-size:40px;cursor:pointer}
+.gasb{position:absolute;font-size:30px;pointer-events:none;animation:gasup 1.6s ease-out forwards}
+@keyframes gasup{to{transform:translateY(-120px) scale(1.6);opacity:0}}
+/* cœur et souffle */
+.run{display:flex;flex-direction:column;height:100%}
+.track{position:relative;height:300px;flex:none;overflow:hidden;background:linear-gradient(#bfe7ff 0 62%,#8cce5e 62%)}
+.rground{position:absolute;left:0;right:0;bottom:0;height:38%;background:repeating-linear-gradient(90deg,transparent 0 70px,rgba(255,255,255,.35) 70px 80px)}
+.rme{position:absolute;left:60px;bottom:52px;width:110px;--leg:.5s}
+.rme .hd{width:110px;height:110px;animation:hop var(--leg) ease-in-out infinite}
+.rme .legs{display:block;width:110px;height:56px;margin-top:-8px}
+.rme .legs line{transform-box:fill-box;animation:leg var(--leg) ease-in-out infinite alternate}
+.rme .legs line+line{animation-direction:alternate-reverse}
+.rme.still .hd,.rme.still .legs line{animation:none}
+@keyframes leg{from{transform:rotate(-28deg)}to{transform:rotate(28deg)}}
+.rwj{position:absolute;bottom:40px;width:150px;transition:left .1s linear}
+.rwj svg{width:150px;height:156px}
+.rsnif{position:absolute;font-size:30px;top:-20px;right:0}
+.rbot{flex:1;display:flex;gap:14px;padding:14px;align-items:stretch}
+.rbody{width:220px;flex:none;background:#fff0f3;border-radius:24px;position:relative;display:flex;align-items:center;justify-content:center}
+.rbody svg{width:200px;height:220px}
+.rbody .heart{transform-box:fill-box;transform-origin:center}
+.rbody .heart.b{animation:hb1 .32s ease-out}
+@keyframes hb1{0%{transform:scale(1)}30%{transform:scale(1.28)}60%{transform:scale(1.05)}80%{transform:scale(1.14)}100%{transform:scale(1)}}
+.rbody .lungs{transform-box:fill-box;transform-origin:center bottom;transition:transform .5s}
+.rbody .lungs.in{transform:scale(1.14,1.18)}
+.rmid{flex:1;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.rg{display:flex;align-items:center;gap:10px;font-size:30px}
+.rnum{font-size:21px;font-weight:900;line-height:1.5}
+.rspd{display:flex;gap:10px}
+.rspd .lopt{flex:1;height:86px;flex-direction:column;justify-content:center;gap:2px;padding:0;font-size:36px}
+.rspd .lopt span{font-size:18px}
+.rbreath{height:96px;font-size:32px}
+.pheart{width:150px;height:150px;border-radius:50%;background:#fff;font-size:90px;box-shadow:0 8px 0 #f2c2cf;align-self:center}
+.pheart.b{animation:hb1 .32s ease-out}
+.sweat{position:absolute;font-size:26px;pointer-events:none;animation:sweat 1s ease-in forwards}
+@keyframes sweat{to{transform:translateY(60px);opacity:0}}
+.zzz{position:absolute;right:20px;top:10px;font-size:40px;animation:hop 1.4s ease-in-out infinite}
+/* sens */
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:24px 34px}
+.scard{height:200px;border-radius:28px;background:#f3f0fb;box-shadow:0 6px 0 #ddd6ef;font-size:24px;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.scard span{font-size:84px;line-height:1}
+.scard.done{background:#e8fbe9;box-shadow:0 6px 0 #bfe5c4}
+.scard.done::after{content:"✅";font-size:24px}
+.shead{display:flex;align-items:center;gap:14px;padding:14px 18px;font-size:24px;font-weight:900}
+.sback{width:64px;height:64px;border-radius:50%;background:#f3f0fb;font-size:28px;flex:none}
+.splay{width:150px;height:150px;border-radius:50%;background:var(--blue);color:#fff;font-size:76px;box-shadow:0 8px 0 var(--blue-d);display:block;margin:10px auto 22px}
+.splay.on{animation:pulse .5s ease-in-out infinite}
+.schoices{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;padding:0 20px}
+.schoice{width:220px;height:200px;border-radius:28px;background:#fff;box-shadow:0 6px 0 #ddd6ef,0 0 0 3px #eee8f7;font-size:22px;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.schoice span{font-size:96px;line-height:1}
+.schoice.ok{background:#e8fbe9}.schoice.no{background:#ffe3e3}
+.eye{display:block;margin:0 auto;width:440px;height:250px}
+.eye .pup{transform-box:fill-box;transform-origin:center;transition:transform 1s cubic-bezier(.3,1.3,.5,1)}
+.vlight{display:flex;gap:14px;justify-content:center}
+.vlight .lopt{width:190px;justify-content:center}
+.vzonew{border-radius:26px;margin:8px 22px;padding:10px;transition:background .8s}
+.fruits{font-size:70px;text-align:center;letter-spacing:6px;padding:10px;background:#8cce5e;border-radius:22px;margin:8px 60px}
+.fruits.dog{filter:url(#dogF)}
+.tbowls{display:flex;gap:16px;justify-content:center;padding:10px}
+.tbowl{width:170px;height:150px;border-radius:0 0 80px 80px;background:#fff;box-shadow:0 6px 0 #ddd6ef,0 0 0 3px #eee8f7;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:22px;font-weight:900}
+.tbowl span{font-size:60px;line-height:1}
+.titm{font-size:130px;text-align:center;line-height:1.1}
+.titm b{display:block;font-size:28px}
+.tbox{position:relative;width:340px;height:210px;margin:6px auto 14px}
+.tbox svg{width:100%;height:100%}
+.tclue{font-size:28px;font-weight:900;text-align:center;padding:0 30px;min-height:76px}
+.cups{display:flex;gap:40px;justify-content:center;align-items:flex-end;height:250px;position:relative}
+.cup{position:relative;width:160px;height:200px}
+.cup svg{position:relative;z-index:2;width:100%;height:100%;transition:transform .5s}
+.cup.up svg{transform:translateY(-90px) rotate(-12deg)}
+.cup .crq{position:absolute;left:50px;bottom:6px;font-size:52px;z-index:1}
+.cup .waves{position:absolute;left:30px;top:-70px;font-size:40px;opacity:.55;animation:hop 1.2s ease-in-out infinite}
+.nose{display:flex;gap:30px;align-items:center;justify-content:center}
+.nose .face{width:200px;height:200px;position:relative}
+.nose .clip{position:absolute;left:84px;top:96px;font-size:40px}
+/* docteur */
+.doc{display:flex;height:100%}
+.dpat{width:380px;flex:none;position:relative;background:#eef6ff;display:flex;align-items:center;justify-content:center;touch-action:none}
+.dpat .ted svg,.dpat .dme svg{width:300px;height:360px}
+.dpat .dwj svg{width:330px;height:340px}
+.dpat .dme svg{height:300px}
+.ted .tsad,.ted .tcheek,.ted .tdrip,.ted .tknee,.ted .tband,.ted .tzz{display:none}
+.ted.sad .tsad{display:inline}.ted.sad .tsmile{display:none}
+.ted.fever .tcheek,.ted.drip .tdrip,.ted.knee .tknee,.ted.band .tband,.ted.zz .tzz{display:inline}
+.ted.ok svg{animation:hop .5s ease-in-out 4}
+.dfx{position:absolute;inset:0;pointer-events:none}
+.dfx .tag{position:absolute;left:50%;top:30px;transform:translateX(-50%);background:#fff;border-radius:18px;padding:8px 16px;font-size:26px;font-weight:900;box-shadow:0 6px 14px rgba(0,0,0,.15);white-space:nowrap}
+.dside{flex:1;display:flex;flex-direction:column;padding:16px 18px;gap:12px}
+.dcase{font-size:24px;font-weight:900;line-height:1.3;background:#fff3ea;border-radius:20px;padding:14px 18px}
+.ddots{display:flex;gap:10px;justify-content:center}
+.ddots span{width:22px;height:22px;border-radius:50%;background:#eee6d4}
+.ddots span.ok{background:var(--green)}.ddots span.on{box-shadow:0 0 0 4px var(--orange)}
+.dtools{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.dtools.big{grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.dtool{height:100px;border-radius:20px;background:#fff;box-shadow:0 5px 0 #ddd6ef,0 0 0 2px #eee8f7;font-size:14px;font-weight:900;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1.1;padding:0 4px}
+.dtool span{font-size:44px}
+.dtools.big .dtool{height:190px;font-size:20px}
+.dtools.big .dtool span{font-size:92px}
+.teeth{width:360px;height:300px}
+.brush{position:absolute;font-size:70px;pointer-events:none;transform:translate(-30px,-50px) rotate(-30deg);z-index:3}
+.germ{position:absolute;font-size:30px;pointer-events:none;transition:opacity .3s,transform .3s}
+.germ.gone{opacity:0;transform:scale(.2)}
+.dtimer{position:absolute;top:14px;left:0;right:0;text-align:center;font-size:26px;font-weight:900}
+@keyframes popout{0%{transform:scale(.2)}100%{transform:none}}
 /* laboratoire */
 #s-labo{background:linear-gradient(#eef2ff,#dfe7fb)}
 #lTabs,#gaTabs{position:absolute;left:20px;right:20px;top:110px;height:62px;display:flex;gap:10px;z-index:6}
@@ -715,9 +862,10 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
   <section class="screen" id="s-corps">
     <button class="iconbtn" id="cHome" style="left:20px;top:14px">🏠</button>
     <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
+    <div id="cTabs"></div>
     <div id="cBoard"></div>
     <div id="cBtns"></div>
-    <div class="hidden" id="cLiveP"></div>
+    <div id="cWork" class="hidden"></div>
   </section>
 
   <section class="screen" id="s-labo">
@@ -1053,7 +1201,7 @@ function evaluate(r,app,heat,time,list){
 }
 
 /* ---------- autocollants ---------- */
-const PAGES=[{id:'cuisine',n:'Cuisine',e:'🍰'},{id:'catas',n:'Bêtises',e:'💥'},{id:'amis',n:'Copains',e:'🐶'},{id:'jardin',n:'Jardin',e:'🌻'},{id:'fromage',n:'Fromages',e:'🧀'},{id:'ateliers',n:'Ateliers',e:'🔬'},{id:'secrets',n:'Secrets',e:'✨'},{id:'libre',n:'Ma page',e:'🎨'}];
+const PAGES=[{id:'cuisine',n:'Cuisine',e:'🍰'},{id:'catas',n:'Bêtises',e:'💥'},{id:'amis',n:'Copains',e:'🐶'},{id:'jardin',n:'Jardin',e:'🌻'},{id:'fromage',n:'Fromages',e:'🧀'},{id:'corps',n:'Corps',e:'🫀'},{id:'ateliers',n:'Ateliers',e:'🔬'},{id:'secrets',n:'Secrets',e:'✨'},{id:'libre',n:'Ma page',e:'🎨'}];
 const CH_N={blanc:'Fromage blanc',cancoillotte:'Cancoillotte',camembert:'Camembert',chevre:'Bûche de chèvre',reblochon:'Reblochon',morbier:'Morbier',montdor:"Mont d'Or",munster:'Munster',emmental:'Emmental',roquefort:'Roquefort',comte:'Comté'};
 const PASTEL=['#ffe9d6','#e3f4ff','#ffe3ef','#e8fbe9','#fff3c4','#efe6ff'];
 const STICK=[
@@ -1106,10 +1254,34 @@ const STICK=[
   {id:'f_plateau',pg:'fromage',n:'Plateau de fromages',e:'🍽️',rar:'b',bg:'#fff3c4',how:'Prépare un plateau de 3 fromages'},
   {id:'f_carte',pg:'fromage',n:'Tour de France',e:'🗺️',rar:'h',bg:'#e3f4ff',how:'Allume toutes les régions de la carte'},
   {id:'or_fromage',pg:'fromage',n:'Maître fromager',e:'🧀',rar:'o',bg:'#fff3c4',how:'Complète toute la page Fromages'},
-  {id:'c_squelette',pg:'ateliers',n:'Squelette complet',e:'🦴',rar:'c',bg:'#e3f4ff',how:'Remets tous les os à leur place'},
-  {id:'c_os',pg:'ateliers',n:'Expert des os',e:'🩻',rar:'b',bg:'#efe6ff',how:'Fais 5/5 au quiz des os'},
-  {id:'c_coeur',pg:'ateliers',n:'Cœur qui bat vite',e:'❤️',rar:'c',bg:'#ffe3ef',how:'Fais courir le corps vivant'},
-  {id:'c_dodo',pg:'ateliers',n:'Bonne nuit',e:'😴',rar:'c',bg:'#efe6ff',how:'Fais dormir le corps vivant'},
+  {id:'c_squelette',pg:'corps',n:'Squelette complet',e:'🦴',rar:'c',bg:'#e3f4ff',how:'Remets tous les os à leur place'},
+  {id:'c_os',pg:'corps',n:'Expert des os',e:'🩻',rar:'b',bg:'#efe6ff',how:'Fais 5/5 au quiz des os'},
+  {id:'c_mache',pg:'corps',n:'Bien mâché',e:'😋',rar:'c',bg:'#ffe9d6',how:'Mâche bien avant d\'avaler'},
+  {id:'c_hoquet',pg:'corps',n:'Hic !',e:'😵',rar:'c',bg:'#fff3c4',how:'Avale un trop gros morceau'},
+  {id:'c_voyage',pg:'corps',n:'Le grand voyage',e:'🗺️',rar:'c',bg:'#e8fbe9',how:'Suis un repas jusqu\'au bout'},
+  {id:'c_prout',pg:'corps',n:'Prout !',e:'💨',rar:'b',bg:'#e3f4ff',secret:true,how:'Laisse les bactéries manger des fibres'},
+  {id:'c_fibres',pg:'corps',n:'As de l\'intestin',e:'🌿',rar:'b',bg:'#e8fbe9',how:'Attrape tous les nutriments sans toucher une fibre'},
+  {id:'c_5aliments',pg:'corps',n:'Gourmet',e:'🥗',rar:'b',bg:'#fff3c4',how:'Fais voyager 5 aliments différents'},
+  {id:'c_malventre',pg:'corps',n:'Mal au ventre',e:'🤢',rar:'c',bg:'#ffe3ef',how:'Mange 3 sucreries de suite'},
+  {id:'c_course',pg:'corps',n:'Attrape Wanji',e:'🐕',rar:'c',bg:'#e8fbe9',how:'Rattrape Wanji à la course'},
+  {id:'c_coeur',pg:'corps',n:'Cœur qui bat vite',e:'❤️',rar:'c',bg:'#ffe3ef',how:'Sprinte jusqu\'à ce que ton cœur batte très vite'},
+  {id:'c_cote',pg:'corps',n:'Point de côté',e:'😮‍💨',rar:'c',bg:'#e3f4ff',how:'Cours sans respirer assez'},
+  {id:'c_pouls',pg:'corps',n:'Mon pouls',e:'💓',rar:'b',bg:'#ffe3ef',how:'Compte les battements de ton cœur'},
+  {id:'c_dodo',pg:'corps',n:'Bonne nuit',e:'😴',rar:'c',bg:'#efe6ff',how:'Fais une sieste après la course'},
+  {id:'c_oreille',pg:'corps',n:'Super oreilles',e:'👂',rar:'c',bg:'#fff3c4',how:'Reconnais les bruits'},
+  {id:'c_oeil',pg:'corps',n:'Œil de lynx',e:'👁️',rar:'c',bg:'#e3f4ff',how:'Joue avec la pupille et la vision de Wanji'},
+  {id:'c_gout',pg:'corps',n:'Fin gourmet',e:'👅',rar:'c',bg:'#ffe9d6',how:'Range les saveurs'},
+  {id:'c_toucher',pg:'corps',n:'Doigts de fée',e:'✋',rar:'c',bg:'#efe6ff',how:'Devine la boîte mystère'},
+  {id:'c_nez',pg:'corps',n:'Le flair',e:'👃',rar:'c',bg:'#e8fbe9',how:'Bouche ton nez, puis aide Wanji à flairer'},
+  {id:'c_pansement',pg:'corps',n:'Pansement',e:'🩹',rar:'c',bg:'#ffe9d6',how:'Soigne le genou de Nounours'},
+  {id:'c_fievre',pg:'corps',n:'Fièvre',e:'🌡️',rar:'c',bg:'#ffe3ef',how:'Soigne la fièvre de Nounours'},
+  {id:'c_coude',pg:'corps',n:'Atchoum !',e:'🤧',rar:'c',bg:'#e3f4ff',how:'Éternue dans le coude'},
+  {id:'c_dents',pg:'corps',n:'Dents blanches',e:'🪥',rar:'b',bg:'#e3f4ff',how:'Brosse toutes les dents'},
+  {id:'c_mains',pg:'corps',n:'Mains propres',e:'🧼',rar:'c',bg:'#e8fbe9',how:'Lave-toi les mains 20 secondes'},
+  {id:'c_veto',pg:'corps',n:'Chez le vétérinaire',e:'☎️',rar:'b',bg:'#fff3c4',how:'Soigne le ventre de Wanji'},
+  {id:'c_epine',pg:'corps',n:'L\'épine',e:'🐾',rar:'c',bg:'#ffe9d6',how:'Enlève l\'épine de la patte de Wanji'},
+  {id:'c_docteur10',pg:'corps',n:'Grand docteur',e:'🧑‍⚕️',rar:'h',bg:'#e8fbe9',how:'Soigne 10 patients'},
+  {id:'or_corps',pg:'corps',n:'Corps de champion',e:'🏅',rar:'o',bg:'#fff3c4',how:'Complète toute la page Corps'},
   {id:'l_ampoule',pg:'ateliers',n:'Lumière !',e:'💡',rar:'c',bg:'#fff3c4',how:'Allume ta première ampoule'},
   {id:'l_inter',pg:'ateliers',n:'Interrupteur',e:'🔘',rar:'c',bg:'#e3f4ff',how:"Allume l'ampoule avec un interrupteur"},
   {id:'l_serie',pg:'ateliers',n:'Deux ampoules',e:'🔆',rar:'c',bg:'#fff3c4',how:'Allume deux ampoules en série'},
@@ -1141,7 +1313,7 @@ const STICK=[
   {id:'or_secrets',pg:'secrets',n:'Grand secret',e:'🗝️',rar:'o',bg:'#fff3c4',how:'Trouve tous les secrets'}
 ];
 /* autocollants réservés à Raf (fromages et plats que Nana ne peut pas fabriquer) */
-['f_chevre','f_reblochon','f_morbier','f_montdor','f_munster','f_emmental','f_roquefort','f_comte','f_nez','f_bleu','f_poilu','f_carte','r_tartiflette','r_gratinComte','r_montdorChaud','c_os','l_serie','l_led','l_predict','l_engrenages','g_colline','g_boue','g_course'].forEach(id=>{const s=STICK.find(x=>x.id===id);if(s)s.raf=1;});
+['f_chevre','f_reblochon','f_morbier','f_montdor','f_munster','f_emmental','f_roquefort','f_comte','f_nez','f_bleu','f_poilu','f_carte','r_tartiflette','r_gratinComte','r_montdorChaud','c_os','c_fibres','c_cote','l_serie','l_led','l_predict','l_engrenages','g_colline','g_boue','g_course'].forEach(id=>{const s=STICK.find(x=>x.id===id);if(s)s.raf=1;});
 const VIS=()=>STICK.filter(s=>!(isA()&&s.raf));
 const SID=Object.fromEntries(STICK.map(s=>[s.id,s]));
 const RARN={c:'',b:'Brillant !',h:'Holographique !!',o:'Doré !'};
@@ -1168,7 +1340,7 @@ function checkGold(pg){
 
 /* ---------- pochettes ---------- */
 document.querySelectorAll('.gift').forEach(g=>onTap(g,()=>{sfx.click();openPacks();}));
-const PACKPG={cuisine:'linear-gradient(160deg,#ffae5a,#ff5a6a)',catas:'linear-gradient(160deg,#ff7a4a,#c8365a)',amis:'linear-gradient(160deg,#d0a476,#80583a)',jardin:'linear-gradient(160deg,#86da6c,#2f9a5a)',fromage:'linear-gradient(160deg,#ffd86a,#e0961f)',ateliers:'linear-gradient(160deg,#6ec8ff,#4c6fd8)',secrets:'linear-gradient(160deg,#b58bff,#5a3ec8)'};
+const PACKPG={cuisine:'linear-gradient(160deg,#ffae5a,#ff5a6a)',catas:'linear-gradient(160deg,#ff7a4a,#c8365a)',amis:'linear-gradient(160deg,#d0a476,#80583a)',jardin:'linear-gradient(160deg,#86da6c,#2f9a5a)',fromage:'linear-gradient(160deg,#ffd86a,#e0961f)',corps:'linear-gradient(160deg,#ff8aa8,#d9466e)',ateliers:'linear-gradient(160deg,#6ec8ff,#4c6fd8)',secrets:'linear-gradient(160deg,#b58bff,#5a3ec8)'};
 const RGLOW={c:'#ffffff',b:'#e4ecff',h:'#ff9ae0',o:'#ffd23a'};
 const PK={t:0,done:false,it:null,leak:false,rip:0};
 function confetti(n,cols){
@@ -1259,6 +1431,7 @@ function renderAlbum(){
   renderTray();
 }
 function renderTray(){
+  if(DRAG&&DRAG.moved)return;/* ne pas détruire l'autocollant qu'on tient */
   const t=P().tray;
   $('tray').innerHTML=t.length?`<div class="tl">${T('À coller :','À coller :')}</div>`+t.map((it,i)=>`<div class="titem" data-i="${i}">${sart(it.id)}${it.d?'<span class="dbl">double</span>':''}</div>`).join(''):`<div class="tl" style="opacity:.5">${P().packs.length?'Ouvre tes pochettes avec le cadeau 🎁':'Gagne des pochettes en cuisinant !'}</div>`;
 }
@@ -1281,7 +1454,7 @@ $('tray').addEventListener('pointerdown',e=>{
   DRAG={i,it,sx:p.x,sy:p.y,moved:false,el:null,src:ti};
   try{ti.setPointerCapture(e.pointerId)}catch(_){}
 });
-$('tray').addEventListener('pointermove',e=>{
+document.addEventListener('pointermove',e=>{
   if(!DRAG)return;const p=stagePt(e);
   if(!DRAG.moved&&Math.hypot(p.x-DRAG.sx,p.y-DRAG.sy)>12){
     DRAG.moved=true;DRAG.src.style.opacity='.25';
@@ -1292,6 +1465,7 @@ $('tray').addEventListener('pointermove',e=>{
   }
   if(DRAG.el){DRAG.el.style.left=p.x+'px';DRAG.el.style.top=p.y+'px';}
 });
+function trayDel(it){const t=P().tray,i=t.indexOf(it);if(i>=0)t.splice(i,1);}
 function endDrag(e){
   if(!DRAG)return;const d=DRAG;DRAG=null;
   if(!d.moved){ // simple toucher : montrer où il va
@@ -1306,7 +1480,7 @@ function endDrag(e){
   const back=()=>{d.el.animate([{opacity:1},{opacity:0}],{duration:250}).onfinish=()=>d.el.remove();renderTray();};
   if(d.it.d){
     if(AL.page==='libre'&&inPage){
-      P().free.push({id:d.it.id,x:p.x-ax,y:p.y-ay,r:Math.round(rnd(-14,14)),s:1});P().tray.splice(d.i,1);saveDB();d.el.remove();sfx.stick();renderAlbum();updGift();
+      P().free.push({id:d.it.id,x:p.x-ax,y:p.y-ay,r:Math.round(rnd(-14,14)),s:1});trayDel(d.it);saveDB();d.el.remove();sfx.stick();renderAlbum();updGift();
       say(T('Collé ! Tu peux le déplacer quand tu veux.','Collé. Touche-le pour le tourner ou changer sa taille.'),T('Collé !',false));
     }else back();
     return;
@@ -1316,15 +1490,15 @@ function endDrag(e){
   if(ok){
     const s=SID[d.it.id];const c=pos(sl.querySelector('.sh'));
     d.el.animate([{left:p.x+'px',top:p.y+'px'},{left:c.x+'px',top:c.y+'px'}],{duration:220,fill:'forwards'}).onfinish=()=>{
-      d.el.remove();P().st[s.id]=Date.now();P().tray.splice(d.i,1);saveDB();AL.target=null;sfx.stick();renderAlbum();updGift();
+      d.el.remove();P().st[s.id]=Date.now();trayDel(d.it);saveDB();AL.target=null;sfx.stick();renderAlbum();updGift();
       const nsl=document.querySelector(`.slot[data-id="${s.id}"]`);if(nsl){nsl.classList.add('just');burst(nsl,['✨','🎉','⭐'],10,140);}
       say(T(`Bravo, l'autocollant ${s.n} est collé !`,`Autocollant ${s.n} : collé !`),T('Bravo !',false));
       checkGold(s.pg);
     };
   }else{back();say(T("Presque ! Pose-le sur la case qui brille.","Pas tout à fait : vise la case en surbrillance."));}
 }
-$('tray').addEventListener('pointerup',endDrag);
-$('tray').addEventListener('pointercancel',e=>{if(DRAG){if(DRAG.el)DRAG.el.remove();DRAG=null;renderTray();}});
+document.addEventListener('pointerup',endDrag);
+document.addEventListener('pointercancel',e=>{if(DRAG){if(DRAG.el)DRAG.el.remove();DRAG=null;renderTray();}});
 
 /* page libre */
 function renderFree(){
@@ -1352,6 +1526,7 @@ $('apage').addEventListener('pointermove',e=>{
   if(Math.hypot(dx,dy)>8)FD.moved=true;
   if(FD.moved){const it=P().free[FD.i];it.x=Math.max(20,Math.min(1080,FD.ox+dx));it.y=Math.max(20,Math.min(450,FD.oy+dy));FD.el.style.left=it.x+'px';FD.el.style.top=it.y+'px';const t=$('ftools');if(t)t.remove();}
 });
+$('apage').addEventListener('pointercancel',()=>{if(FD){FD=null;saveDB();renderFree();}});
 $('apage').addEventListener('pointerup',()=>{
   if(!FD)return;const d=FD;FD=null;
   if(!d.moved){AL.sel=AL.sel===d.i?null:d.i;sfx.pop();}else sfx.stick();
@@ -1388,7 +1563,7 @@ function smokeFrom(el,color,count=1){
 
 /* ---------- navigation ---------- */
 function go(id){
-  if(id!=='s-corps')try{stopBeat()}catch(_){}
+  if(id!=='s-corps')try{cStop()}catch(_){}
   S.screen=id;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));
   $('bubble').style.display=(id==='s-start'||id==='s-profile')?'none':'flex';
 }
@@ -2755,32 +2930,71 @@ function boneSVG(b){
   return `<svg viewBox="-12 -12 ${w+24} ${h+24}" style="width:100%;height:100%;overflow:visible">${s}</svg>`;
 }
 const CB={left:330,top:96};/* coin du tableau du squelette */
-const CS={placed:{},mode:'puzzle',quiz:null,beat:null,state:'normal'};
+const CTABS=[{id:'squelette',n:'Le squelette',e:'🦴'},{id:'voyage',n:'Le voyage du repas',e:'🍎'},{id:'coeur',n:'Cœur et souffle',e:'❤️'},{id:'sens',n:'Les 5 sens',e:'👂'},{id:'docteur',n:'Docteur Kicuit',e:'🩺'}];
+const CS={tab:'squelette',placed:{},mode:'puzzle',quiz:null,beat:null,tm:[],raf:0};
+function C_(){const p=P();p.cb=p.cb||{};const c=p.cb;c.foods=c.foods||{};c.sens=c.sens||{};c.cured=c.cured||{};c.trips=c.trips||0;c.bon=c.bon||0;c.pat=c.pat||0;return c;}
+const shuf=a=>a.map(x=>[Math.random(),x]).sort((u,v)=>u[0]-v[0]).map(x=>x[1]);
+const AB=()=>isA()?'n':'r';
+function cLater(fn,ms){const t=setTimeout(fn,ms);CS.tm.push(t);return t;}
+function cEvery(fn,ms){const t=setInterval(fn,ms);CS.tm.push(t);return t;}
+function stopBeat(){clearTimeout(CS.beat);CS.beat=null;}
+function cStop(){CS.tm.forEach(t=>{clearTimeout(t);clearInterval(t);});CS.tm=[];cancelAnimationFrame(CS.raf);CS.raf=0;stopBeat();}
 function bonesList(){return isA()?BONES_NANA:BONES_RAF;}
-function enterCorps(){
-  go('s-corps');CS.placed={};CS.mode='puzzle';CS.quiz=null;stopBeat();$('cBtns').innerHTML='';$('cLiveP').classList.add('hidden');
-  renderCorps();updGift();
+function enterCorps(){go('s-corps');C_();renderCTabs();openCTab(CS.tab);updGift();}
+function renderCTabs(){$('cTabs').innerHTML=CTABS.map(t=>`<button class="ctab ${t.id===CS.tab?'on':''}" data-t="${t.id}"><span>${t.e}</span>${t.n}</button>`).join('');}
+onTap($('cTabs'),e=>{const b=e.target.closest('[data-t]');if(!b)return;sfx.click();CS.tab=b.dataset.t;renderCTabs();openCTab(CS.tab);});
+function openCTab(t){
+  cStop();document.querySelectorAll('#s-corps .bone').forEach(x=>x.remove());
+  $('cBoard').classList.toggle('hidden',t!=='squelette');$('cBtns').innerHTML='';
+  $('cWork').classList.toggle('hidden',t==='squelette');$('cWork').innerHTML='';
+  ({squelette:skelStart,voyage:voyStart,coeur:runStart,sens:sensStart,docteur:docStart})[t]();
+}
+onTap($('cHome'),()=>{sfx.click();cStop();document.querySelectorAll('#s-corps .bone').forEach(x=>x.remove());enterHub();});
+/* un seul aiguillage pour les boutons de la zone de travail */
+onTap($('cWork'),e=>{
+  const g=k=>e.target.closest(k);let b;
+  if((b=g('[data-food]')))return voyPick(b.dataset.food);
+  if((b=g('[data-vgo]')))return voyGo(b.dataset.vgo);
+  if((b=g('[data-v]')))return runSpeed(+b.dataset.v);
+  if(g('#rBreath'))return;
+  if((b=g('[data-rgo]')))return runGo(b.dataset.rgo);
+  if((b=g('[data-sens]')))return sensOpen(b.dataset.sens);
+  if(g('[data-sback]')){sfx.click();return sensStart();}
+  if((b=g('[data-sc]')))return sensAnswer(b.dataset.sc);
+  if(g('[data-splay]'))return sensPlay();
+  if((b=g('[data-light]')))return vueLight(b.dataset.light);
+  if((b=g('[data-dogv]')))return vueDog(b.dataset.dogv==='1');
+  if((b=g('[data-pred]')))return vuePred(b.dataset.pred);
+  if((b=g('[data-bowl]')))return goutAnswer(b.dataset.bowl);
+  if((b=g('[data-nose]')))return noseAct(b.dataset.nose);
+  if((b=g('[data-cup]')))return cupPick(+b.dataset.cup);
+  if((b=g('[data-tool]')))return docTool(b.dataset.tool);
+  if(g('[data-dnext]')){sfx.click();return newPatient();}
+});
+
+/* ===== 1. squelette ===== */
+function skelStart(){
+  CS.placed={};CS.mode='puzzle';CS.quiz=null;renderCorps();
   say(T('Remets les os à leur place ! Fais-les glisser sur le squelette.',"Reconstitue le squelette : glisse chaque os à sa place. Son nom s'affiche quand tu le prends."));
 }
 function renderCorps(){
   const list=bonesList(),A=isA();
-  $('cBoard').innerHTML=list.map(b=>`<div class="ghost-b" style="left:${b.x-b.w/2}px;top:${b.y-b.h/2}px;width:${b.w}px;height:${b.h}px;transform:rotate(${b.r||0}deg)">${boneSVG(b)}</div>`).join('')+
-    `<div id="cOrgans" class="hidden"></div>`;
+  $('cBoard').innerHTML=list.map(b=>`<div class="ghost-b" style="left:${b.x-b.w/2}px;top:${b.y-b.h/2}px;width:${b.w}px;height:${b.h}px;transform:rotate(${b.r||0}deg)">${boneSVG(b)}</div>`).join('');
   document.querySelectorAll('#s-corps .bone').forEach(x=>x.remove());
   const cols=A?2:3,cw=A?180:122,ch=A?220:128,cell=A?190:118;
-  list.filter(b=>!CS.placed[b.id]).sort(()=>Math.random()-.5).forEach((b,i)=>{
+  shuf(list.filter(b=>!CS.placed[b.id])).forEach((b,i)=>{
     const el=document.createElement('div');el.className='bone';el.dataset.id=b.id;
     const sc=Math.min(1,cell/Math.max(b.w,b.h));
     el.style.cssText=`width:${b.w}px;height:${b.h}px;left:${800+(i%cols)*cw+cw/2-b.w/2}px;top:${(A?150:140)+Math.floor(i/cols)*ch+ch/2-b.h/2}px;transform:scale(${sc}) rotate(${(i*37)%20-10}deg)`;
     el.innerHTML=boneSVG(b);$('s-corps').appendChild(el);
-    dragEl(el,{onDown:()=>{if(CS.mode!=='puzzle')return false;el.style.transform='none';if(!A)say(`${b.n} : ${b.info}`,false);sfx.click();},
-      onUp:(p)=>{
+    dragEl(el,{onDown:()=>{if(CS.mode!=='puzzle'||el.classList.contains('placed'))return false;el.style.transform='none';if(!A)say(`${b.n} : ${b.info}`,false);sfx.click();},
+      onUp:()=>{
         const tx=CB.left+b.x,ty=CB.top+b.y,cx=parseFloat(el.style.left)+b.w/2,cy=parseFloat(el.style.top)+b.h/2;
         if(Math.hypot(cx-tx,cy-ty)<(A?120:55)){
           el.style.left=(tx-b.w/2)+'px';el.style.top=(ty-b.h/2)+'px';el.style.transform=`rotate(${b.r||0}deg)`;el.classList.add('placed');
           CS.placed[b.id]=1;sfx.stick();burst(el,['✨'],3,50);
           if(Object.keys(CS.placed).length===list.length)corpsDone();
-          else if(A)say(['Bravo !','Super !','Oui !'][Object.keys(CS.placed).length%3],T(undefined,false));
+          else if(A)say(['Bravo !','Super !','Oui !'][Object.keys(CS.placed).length%3]);
         }else{sfx.click();if(A)say("Presque ! Cherche l'ombre de la même forme.");}
       }});
   });
@@ -2789,45 +3003,561 @@ function corpsDone(){
   sfx.fanfare();award('c_squelette');const st=firstStar('squelette');
   burst($('cBoard'),['🦴','✨','⭐'],14,220);
   say(T('Bravo ! Le squelette est complet !'+(st?' Une étoile !':''),'Squelette complet : 13 os en place'+(st?', +1 étoile':'')+'. En vrai, un adulte en a 206 !'),T(undefined,'Squelette complet !'));
-  $('cBtns').innerHTML=`<button class="btn b-orange" id="cLive">❤️ Le corps vivant</button>${isA()?'':'<button class="btn b-blue" id="cQuiz">❓ Quiz des os</button>'}<button class="btn b-grey" id="cAgain">🔄 Recommencer</button>`;
+  $('cBtns').innerHTML=`${isA()?'':'<button class="btn b-blue" id="cQuiz">❓ Quiz des os</button>'}<button class="btn b-orange" id="cNextT">🍎 Le voyage du repas</button><button class="btn b-grey" id="cAgain">🔄 Recommencer</button>`;
 }
 onTap($('cBtns'),e=>{
   const b=e.target.closest('button');if(!b)return;sfx.click();
-  if(b.id==='cAgain'){document.querySelectorAll('#s-corps .bone').forEach(x=>x.remove());$('cBtns').innerHTML='';$('cLiveP').classList.add('hidden');enterCorps();}
-  if(b.id==='cLive')startLive();
+  if(b.id==='cAgain'){$('cBtns').innerHTML='';skelStart();}
   if(b.id==='cQuiz')startQuiz();
+  if(b.id==='cNextT'){CS.tab='voyage';renderCTabs();openCTab('voyage');}
 });
-/* quiz des os (Raf) */
-function startQuiz(){CS.mode='quiz';CS.quiz={n:0,ok:0,ask:null};stopBeat();$('cOrgans').classList.add('hidden');$('cLiveP').classList.add('hidden');nextQuiz();}
+function startQuiz(){CS.mode='quiz';CS.quiz={n:0,ok:0,ask:null};nextQuiz();}
 function nextQuiz(){const q=CS.quiz;if(q.n>=5){CS.mode='done';sfx.fanfare();if(q.ok>=5){award('c_os');firstStar('quizos');}say(`Quiz terminé : ${q.ok}/5.${q.ok>=5?' Parfait, tu connais tes os !':' Réessaie pour faire 5/5.'}`,q.ok>=5?'Parfait !':false);return;}
   const names=[...new Set(BONES_RAF.map(b=>b.n))];q.ask=pick(names.filter(n=>n!==q.last));q.last=q.ask;say(`Question ${q.n+1}/5 : touche ${q.ask==='Côtes'?'les côtes':q.ask==='Radius et cubitus'?'le radius et le cubitus':q.ask==='Tibia et péroné'?'le tibia et le péroné':'le '+q.ask.toLowerCase()} !`,false);}
 $('s-corps').addEventListener('pointerup',e=>{
-  if(CS.mode!=='quiz')return;const el=e.target.closest('.bone.placed');if(!el)return;
-  const b=BONES_RAF.find(x=>x.id===el.dataset.id),q=CS.quiz;q.n++;
+  if(CS.mode!=='quiz'||CS.tab!=='squelette')return;const el=e.target.closest('.bone.placed');if(!el)return;
+  const b=BONES_RAF.find(x=>x.id===el.dataset.id),q=CS.quiz;if(!b)return;q.n++;
   if(b.n===q.ask){q.ok++;sfx.ding();burst(el,['✅'],2,40);say('Oui ! '+b.n+'.',false);}else{sfx.yuck();say(`Non, ça c'est : ${b.n.toLowerCase()}.`,false);}
-  setTimeout(nextQuiz,1100);
+  cLater(nextQuiz,1100);
 });
-/* corps vivant : cœur et poumons */
-const LIVE={dormir:{bpm:55,br:12,n:'Dormir',e:'😴'},normal:{bpm:75,br:16,n:'Normal',e:'🧍'},courir:{bpm:140,br:40,n:'Courir',e:'🏃'}};
-function startLive(){
-  CS.mode='live';$('cOrgans').classList.remove('hidden');
-  $('cOrgans').innerHTML=`<svg viewBox="0 0 430 720" class="full"><g class="vess"><path d="M215 250 L110 330 L90 440" class="art"/><path d="M215 250 L320 330 L340 440" class="art"/><path d="M215 300 L190 560 L180 700" class="art"/><path d="M215 300 L245 560 L252 700" class="art"/><path d="M205 250 L118 330 L98 440" class="vei"/><path d="M225 250 L328 330 L348 440" class="vei"/></g>
-<g class="lungs"><ellipse cx="180" cy="232" rx="34" ry="56" fill="#ff9fb3" opacity=".85"/><ellipse cx="252" cy="232" rx="34" ry="56" fill="#ff9fb3" opacity=".85"/></g>
-<g class="heart"><path d="M232 268 q-20 -16 -30 -4 q-10 14 30 38 q40 -24 30 -38 q-10 -12 -30 4z" fill="#e2263e" stroke="#a8162c" stroke-width="3"/></g></svg>`;
-  $('cLiveP').classList.remove('hidden');setLive('normal');
-  say(T('Regarde : le cœur bat et les poumons respirent ! Touche Courir ou Dormir.','Le cœur pompe le sang, les poumons apportent l\'oxygène. Change d\'activité pour voir ce qui change.'));
+
+/* ===== 2. le voyage du repas (digestion) ===== */
+const FOODS=[
+  {id:'pomme',n:'Pomme',e:'🍎',s:2,p:0,g:0,w:3,f:3,x:"La pomme : de l'eau, du sucre de fruit et plein de fibres."},
+  {id:'carotte',n:'Carotte',e:'🥕',s:1,p:0,g:0,w:2,f:4,x:"La carotte apporte beaucoup de fibres : parfait pour l'intestin."},
+  {id:'pain',n:'Pain',e:'🍞',s:3,p:1,g:0,w:0,f:1,x:"Le pain donne une énergie qui dure : son amidon devient du sucre petit à petit."},
+  {id:'oeuf',n:'Œuf',e:'🥚',s:0,p:3,g:2,w:1,f:0,x:"L'œuf est plein de protéines : elles construisent et réparent les muscles."},
+  {id:'fromage',n:'Fromage',e:'🧀',s:0,p:2,g:3,w:0,f:0,x:"Le fromage : protéines, gras, et du calcium pour les os."},
+  {id:'crepe',n:'Crêpe',e:'🥞',s:3,p:1,g:1,w:0,f:0,x:"La crêpe donne de l'énergie, mais presque pas de fibres."},
+  {id:'bonbon',n:'Bonbon',e:'🍬',s:4,p:0,g:0,w:0,f:0,sweet:1,x:"Le bonbon, c'est du sucre : énergie très rapide… et vite finie. Les bactéries des dents l'adorent !"},
+  {id:'chocolat',n:'Chocolat',e:'🍫',s:3,p:0,g:2,w:0,f:1,sweet:1,x:"Le chocolat : sucre et gras. Délicieux, mais un petit carré suffit."}
+];
+const NUT={s:{e:'⚡',n:'Énergie',c:'#ffd23a'},p:{e:'💪',n:'Muscles',c:'#ff7a7a'},g:{e:'🧈',n:'Réserves',c:'#ffb35a'},w:{e:'💧',n:'Eau',c:'#6ec8ff'},f:{e:'🌿',n:'Fibres',c:'#5cc46a'}};
+const VSTAGES=['bouche','oeso','estomac','grele','gros'];
+const VLAB={bouche:'La bouche',oeso:"L'œsophage",estomac:"L'estomac",grele:"L'intestin grêle",gros:'Le gros intestin',fin:'Fini !'};
+const VY={};
+function bodyMap(st){
+  const i=VSTAGES.indexOf(st),cl=k=>{const j=VSTAGES.indexOf(k);return st==='fin'||j<i?'done':j===i?'on':'';};
+  return `<svg viewBox="0 0 250 560" class="bmap"><circle cx="125" cy="72" r="54" fill="#ffe0c8" stroke="#d9a886" stroke-width="4"/><rect x="104" y="120" width="42" height="34" fill="#ffe0c8"/>
+  <path d="M58 152 q67 -18 134 0 q24 6 24 40 v258 q0 52 -42 58 h-98 q-42 -6 -42 -58 v-258 q0 -34 24 -40z" fill="#ffe0c8" stroke="#d9a886" stroke-width="4"/>
+  <circle cx="104" cy="60" r="6" fill="#2b2350"/><circle cx="146" cy="60" r="6" fill="#2b2350"/>
+  <ellipse class="org ${cl('bouche')}" cx="125" cy="94" rx="22" ry="10" fill="#e2566e"/>
+  <path class="org ${cl('oeso')}" d="M125 106 V222" stroke="#e98aa0" stroke-width="13" fill="none" stroke-linecap="round"/>
+  <path class="org ${cl('estomac')}" d="M120 214 q50 -16 62 22 q10 46 -36 60 q-36 8 -46 -18 q22 8 36 -6 q10 -22 -16 -34z" fill="#f4a3b5" stroke="#c9637c" stroke-width="3"/>
+  <path class="org ${cl('gros')}" d="M78 432 V306 q0 -22 22 -22 h52 q22 0 22 22 v126" stroke="#c98a5a" stroke-width="18" fill="none" stroke-linecap="round"/>
+  <path class="org ${cl('grele')}" d="M148 312 q-50 0 -50 12 q0 12 50 12 q12 0 12 12 q0 12 -50 12 q-12 0 -12 12 q0 12 50 12 q12 0 12 12 q0 12 -50 12" stroke="#f2b97a" stroke-width="11" fill="none" stroke-linecap="round"/>
+  </svg>`;
 }
-function setLive(k){
-  CS.state=k;const L=LIVE[k],A=isA();
-  const o=$('cOrgans');o.style.setProperty('--beat',(60/L.bpm)+'s');o.style.setProperty('--breath',(60/L.br)+'s');
-  $('cLiveP').innerHTML=`<div class="lbtns">${Object.entries(LIVE).map(([kk,l])=>`<button class="lopt ${kk===k?'sel':''}" data-l="${kk}">${l.e}<span>${l.n}</span></button>`).join('')}</div>${A?`<div class="lnum">${k==='courir'?'Ça bat très vite !':k==='dormir'?'Tout doux…':'Boum… boum…'}</div>`:`<div class="lnum">❤️ ${L.bpm} battements / min<br>🫁 ${L.br} respirations / min</div>`}`;
-  stopBeat();CS.beat=setInterval(()=>{tone(70,45,.12,'sine',.35);tone(60,40,.1,'sine',.25,.16);},60000/L.bpm);
-  if(k==='courir'){award('c_coeur');if(!A)say("Quand tu cours, tes muscles ont besoin de plus d'oxygène : le cœur pompe plus vite et tu respires plus vite.",false);}
-  if(k==='dormir'){award('c_dodo');if(!A)say('Pendant le sommeil, le corps se repose : le cœur et la respiration ralentissent.',false);}
+function voyFrame(st,title,inner,fact){
+  $('cWork').innerHTML=`<div class="vy"><div class="vmap">${bodyMap(st)}<div class="vlab">${VLAB[st]}</div></div><div class="vscene"><div class="vtitle">${title}</div>${!isA()&&fact?`<div class="cfact">${fact}</div>`:''}<div class="vzone" id="vZone">${inner}</div><div class="cfoot" id="vFoot"></div></div></div>`;
 }
-function stopBeat(){clearInterval(CS.beat);CS.beat=null;}
-onTap($('cLiveP'),e=>{const b=e.target.closest('[data-l]');if(!b)return;sfx.click();setLive(b.dataset.l);});
-onTap($('cHome'),()=>{sfx.click();stopBeat();document.querySelectorAll('#s-corps .bone').forEach(x=>x.remove());$('cBtns').innerHTML='';$('cLiveP').classList.add('hidden');enterHub();});
+function voyStart(){
+  VY.st='choix';const cb=C_();
+  $('cWork').innerHTML=`<div class="vhead">${T('Qu\'est-ce que tu manges ?','Choisis un aliment et suis son voyage dans ton corps.')}</div><div class="foods">${FOODS.map(f=>`<button class="food ${cb.foods[f.id]?'done':''}" data-food="${f.id}"><span>${f.e}</span><b>${f.n}</b></button>`).join('')}</div>${isA()?'':`<div class="cfact">Voyages réussis : ${cb.trips}. Aliments différents : ${Object.keys(cb.foods).length}/8.</div>`}`;
+  say(T('Qu\'est-ce que tu manges ? Touche un aliment !','Le voyage du repas : choisis un aliment, puis aide ton corps à le digérer.'));
+}
+function voyPick(id){
+  const f=FOODS.find(x=>x.id===id);sfx.pop();
+  Object.assign(VY,{f,chew:0,need:isA()?6:10,hic:false,push:0,mix:0,abs:{s:0,p:0,g:0,w:0},tot:0,got:0,fibTap:0,fib:0,gas:0});
+  if(id==='chocolat'){say('Le chocolat, c\'est pour toi. Jamais pour Wanji !','Jamais pour Wanji !');}
+  cLater(mouthStage,id==='chocolat'?1600:200);
+}
+function bites(){const n=Math.min(1+VY.chew,14),sz=Math.round(96/Math.sqrt(n));return Array.from({length:n},()=>`<span style="font-size:${sz}px">${VY.f.e}</span>`).join('');}
+function mouthStage(){
+  VY.st='bouche';const A=isA();
+  voyFrame('bouche',T('Mâche ! Touche la bouche.','Étape 1 : mâcher'),
+    `<div class="mouth" id="vMouth"><svg viewBox="0 0 440 330"><ellipse cx="220" cy="165" rx="200" ry="150" fill="#e2566e"/><ellipse cx="220" cy="170" rx="160" ry="112" fill="#7a1f33"/><ellipse cx="220" cy="232" rx="104" ry="42" fill="#ff8aa0"/>
+    <g class="tu">${Array.from({length:8},(_,i)=>`<rect x="${88+i*34}" y="58" width="30" height="40" rx="8" fill="#fff" stroke="#e6dccb" stroke-width="2"/>`).join('')}</g>
+    <g class="tl">${Array.from({length:8},(_,i)=>`<rect x="${88+i*34}" y="236" width="30" height="38" rx="8" fill="#fff" stroke="#e6dccb" stroke-width="2"/>`).join('')}</g></svg><div class="bites" id="vBites">${bites()}</div></div>`,
+    "Les dents coupent et écrasent, la salive mouille et commence déjà à transformer l'amidon en sucre.");
+  $('vFoot').innerHTML=`<div class="vcount"><span>🦷</span><div class="cbar"><i id="vChew"></i></div><b id="vChewN">0/${VY.need}</b></div><button class="btn b-orange" data-vgo="avaler">⬇️ Avaler</button>`;
+  const m=$('vMouth');
+  m.addEventListener('pointerdown',()=>{if(VY.st!=='bouche')return;VY.chew++;m.classList.add('chomp');sfx.crunch();setTimeout(()=>m.classList.remove('chomp'),130);
+    $('vBites').innerHTML=bites();if(VY.chew>=VY.need)$('vBites').classList.add('mush');
+    if(Math.random()<.35)burst(m,['💧'],1,60);
+    $('vChew').style.width=Math.min(100,VY.chew/VY.need*100)+'%';$('vChewN').textContent=`${Math.min(VY.chew,99)}/${VY.need}`;
+    if(VY.chew===VY.need){sfx.ding();say(T('C\'est tout mou : avale !','Bien mâché : tu peux avaler.'),false);}
+  });
+  say(T('Mâche bien ! Touche la bouche.','Touche la bouche pour mâcher. Conseil : au moins 10 fois.'),T(undefined,false));
+}
+function voyGo(k){
+  sfx.click();
+  if(k==='avaler'){
+    if(VY.chew<VY.need/2){VY.hic=true;sfx.yuck();award('c_hoquet');const m=$('vMouth');if(m)m.animate([{transform:'translateY(0)'},{transform:'translateY(-30px)'},{transform:'translateY(0)'},{transform:'translateY(-20px)'},{transform:'none'}],{duration:900});
+      say(T('Hic ! Un trop gros morceau ! Mâche encore.','Hic ! Les gros morceaux passent mal : mâche encore, la salive doit tout mouiller.'),'Hic !');return;}
+    if(VY.chew>=VY.need)award('c_mache');
+    return oesoStage();
+  }
+  if(k==='pousse')return oesoPush();
+  if(k==='gas')return gasOut();
+  if(k==='toil')return toilet();
+  if(k==='again'){return voyStart();}
+}
+function oesoStage(){
+  VY.st='oeso';VY.push=0;
+  voyFrame('oeso',T('Pousse vers le bas !','Étape 2 : avaler'),
+    `<div class="oeso" id="vOeso"><svg viewBox="0 0 180 430"><rect x="50" y="0" width="80" height="430" rx="36" fill="#f6b6c4" stroke="#d9879c" stroke-width="4"/>${[1,2,3,4].map(i=>`<ellipse class="ring" data-r="${i}" cx="90" cy="${i*90}" rx="44" ry="10" fill="none" stroke="#c9637c" stroke-width="5"/>`).join('')}</svg><div class="bolus" id="vBolus" style="top:10px">${VY.f.e}</div></div>`,
+    "L'œsophage est un tuyau de muscles : des vagues de serrage poussent la bouchée. Ça marche même la tête en bas !");
+  $('vFoot').innerHTML=`<button class="btn b-orange" data-vgo="pousse">⬇️ ${T('Pousse !','Serrer le muscle')}</button>`;
+  let sy=null;const z=$('vOeso');
+  z.addEventListener('pointerdown',e=>{sy=stagePt(e).y;});
+  z.addEventListener('pointermove',e=>{if(sy==null)return;const y=stagePt(e).y;if(y-sy>70){sy=y;oesoPush();}});
+  z.addEventListener('pointerup',()=>{sy=null;});
+  say(T('Glisse ton doigt vers le bas pour avaler !','Glisse le doigt vers le bas le long du tuyau (ou touche le bouton).'),T(undefined,false));
+}
+function oesoPush(){
+  if(VY.st!=='oeso')return;VY.push++;tone(180,90,.25,'sine',.2);
+  const r=document.querySelector(`#vOeso .ring[data-r="${VY.push}"]`);if(r)r.animate([{rx:44},{rx:22},{rx:44}],{duration:500});
+  $('vBolus').style.top=(10+VY.push*92)+'px';
+  if(VY.push>=4){VY.st='x';sfx.splash();cLater(stomStage,700);}
+}
+function stomStage(){
+  VY.st='estomac';VY.mix=0;
+  const pcs=Array.from({length:9},(_,i)=>`<span style="left:${130+(i%3)*70}px;top:${140+Math.floor(i/3)*55}px">${VY.f.e}</span>`).join('');
+  voyFrame('estomac',T('Frotte le ventre pour mélanger !','Étape 3 : l\'estomac malaxe'),
+    `<div class="stom" id="vStom"><svg viewBox="0 0 440 380"><path id="vStomP" d="M150 30 q190 -30 230 110 q40 170 -150 220 q-150 30 -200 -80 q90 40 150 -20 q50 -80 -40 -130z" fill="#f4a3b5" stroke="#c9637c" stroke-width="6"/></svg><div class="pcs" id="vPcs">${pcs}</div></div>`,
+    "L'estomac malaxe le repas avec un suc très acide (pH 2) qui tue les microbes : ça devient une bouillie, le chyme. Ça dure 2 à 4 heures !");
+  $('vFoot').innerHTML=`<div class="vcount"><span>🌀</span><div class="cbar"><i id="vMix" style="--bc:#f4a3b5"></i></div></div>`;
+  let lp=null;const z=$('vStom');
+  z.addEventListener('pointerdown',e=>{lp=stagePt(e);});
+  z.addEventListener('pointermove',e=>{if(!lp||VY.st!=='estomac')return;const p=stagePt(e),d=Math.hypot(p.x-lp.x,p.y-lp.y);lp=p;VY.mix+=d/(isA()?14:20);
+    $('vMix').style.width=Math.min(100,VY.mix)+'%';
+    if(Math.random()<.25){document.querySelectorAll('#vPcs span').forEach(s=>s.style.transform=`translate(${rnd(-30,30)}px,${rnd(-20,20)}px) rotate(${rnd(-60,60)}deg) scale(${Math.max(.4,1-VY.mix/140)})`);noise(.12,.05,'lowpass',400);}
+    if(Math.random()<.08)burst(z,['🫧'],1,80);
+    if(VY.mix>=100){VY.st='x';sfx.ding();$('vStomP').setAttribute('fill','#e8c79a');$('vPcs').innerHTML='';say(T('Une bonne bouillie !','Le repas est devenu une bouillie : direction l\'intestin.'),false);cLater(gutStage,1300);}
+  });
+  z.addEventListener('pointerup',()=>{lp=null;});
+  say(T('Frotte le ventre avec ton doigt !','Frotte l\'estomac avec le doigt pour malaxer.'),T(undefined,false));
+}
+/* intestin grêle : on attrape les nutriments pour les envoyer dans le sang ; les fibres continuent leur route */
+const GUTD='M40 60 H540 Q580 60 580 100 Q580 140 540 140 H80 Q40 140 40 180 Q40 220 80 220 H540 Q580 220 580 260 Q580 300 540 300 H80 Q40 300 40 340 Q40 380 80 380 H570';
+function gutStage(){
+  VY.st='grele';const A=isA(),f=VY.f;
+  let list=[];['s','p','g','w'].forEach(k=>{for(let i=0;i<f[k]*2;i++)list.push(k);});list=shuf(list).slice(0,10);for(let i=0;i<f.f;i++)list.push('f');
+  VY.q=shuf(list);VY.tot=list.filter(k=>k!=='f').length;VY.got=0;VY.fib=list.length-VY.tot;VY.bub=[];VY.done=0;
+  voyFrame('grele',T('Attrape les bulles qui brillent !','Étape 4 : l\'intestin grêle'),
+    `<div class="gut"><svg viewBox="0 0 620 440" id="vGut"><rect x="0" y="0" width="620" height="26" fill="#ff6a6a" opacity=".85"/><text x="310" y="19" text-anchor="middle" font-size="16" font-weight="900" fill="#fff">🩸 Le sang</text>
+    <path id="vGutP" d="${GUTD}" stroke="#f2b97a" stroke-width="58" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${GUTD}" stroke="#f9d6a8" stroke-width="40" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g id="vNb"></g></svg></div>`,
+    "L'intestin grêle mesure environ 6 mètres ! Ses milliers de petites villosités font passer les nutriments dans le sang. Les fibres, elles, ne passent pas : ne les touche pas.");
+  $('vFoot').innerHTML=`<div class="vcount" style="width:460px">${['s','p','g','w','f'].map(k=>`<span title="${NUT[k].n}">${NUT[k].e}</span>`).join('')}<b id="vGot">0/${VY.tot}</b></div>`;
+  const path=$('vGutP'),L=path.getTotalLength(),speed=L/(A?8500:6500),gap=A?850:650;let last=0,t0=performance.now();
+  $('vGut').addEventListener('pointerdown',e=>{const nb=e.target.closest('.nb');if(!nb)return;const b=VY.bub[+nb.dataset.i];if(!b||b.out)return;
+    if(b.k==='f'){if(A){tone(300,200,.1,'sine',.1);return;}VY.fibTap++;sfx.yuck();say('Non ! Les fibres ne passent pas dans le sang : elles vont vers le gros intestin.',false);return;}
+    b.out=1;VY.got++;VY.abs[b.k]++;sfx.pop();$('vGot').textContent=`${VY.got}/${VY.tot}`;
+    burst(nb,['❤️','✨'],2,40);nb.style.transition='opacity .3s';nb.style.opacity=0;setTimeout(()=>nb.remove(),320);});
+  const step=now=>{
+    if(VY.st!=='grele')return;
+    if(VY.q.length&&now-last>gap){last=now;const k=VY.q.shift(),i=VY.bub.length;VY.bub.push({k,t:0,i});
+      $('vNb').insertAdjacentHTML('beforeend',`<g class="nb ${k}" data-i="${i}"><circle r="26" fill="${NUT[k].c}" stroke="${k==='f'?'#2f8a3e':'#fff'}" stroke-width="4" ${k!=='f'?'filter="url(#glowN)"':''}/><text y="10" text-anchor="middle" font-size="28">${NUT[k].e}</text></g>`);}
+    const dt=Math.min(50,now-t0);t0=now;
+    VY.bub.forEach(b=>{if(b.out||b.end)return;b.t+=speed*dt;const el=document.querySelector(`#vNb .nb[data-i="${b.i}"]`);if(!el)return;
+      if(b.t>=L){b.end=1;el.remove();VY.done++;return;}const pt=path.getPointAtLength(b.t);b.x=pt.x;el.setAttribute('transform',`translate(${pt.x} ${pt.y})`);});
+    const left=VY.bub.filter(b=>!b.out&&!b.end).length;
+    if(!VY.q.length&&!left){VY.st='x';return cLater(gutEnd,400);}
+    CS.raf=requestAnimationFrame(step);
+  };
+  $('vGut').insertAdjacentHTML('afterbegin','<defs><filter id="glowN" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>');
+  CS.raf=requestAnimationFrame(step);
+  say(T('Touche les bulles qui brillent : elles vont dans le sang !','Touche les nutriments (⚡💪🧈💧) pour les envoyer dans le sang. Laisse passer les fibres 🌿.'),T(undefined,false));
+}
+function gutEnd(){
+  const A=isA(),r=VY.tot?VY.got/VY.tot:1;
+  if(!A&&VY.tot&&VY.got===VY.tot&&!VY.fibTap){award('c_fibres');}
+  say(T(r>=.6?'Miam, le sang a tout reçu !':'Bien joué !',`${VY.got} nutriments sur ${VY.tot} passés dans le sang${VY.fibTap?`, et ${VY.fibTap} fibre${VY.fibTap>1?'s':''} touchée${VY.fibTap>1?'s':''} par erreur`:''}.`),false);
+  cLater(grosStage,1200);
+}
+function grosStage(){
+  VY.st='gros';const A=isA(),nf=VY.f.f;VY.ate=0;
+  voyFrame('gros',T(nf?'Les bactéries ont faim : touche les fibres !':'Le gros intestin','Étape 5 : le gros intestin'),
+    `<div style="position:relative;width:560px;height:360px" id="vGros"><svg viewBox="0 0 560 360" style="position:absolute;inset:0;width:100%;height:100%"><path d="M70 350 V90 q0 -60 60 -60 h300 q60 0 60 60 v260" stroke="#c98a5a" stroke-width="90" fill="none" stroke-linecap="round"/><path d="M70 350 V90 q0 -60 60 -60 h300 q60 0 60 60 v260" stroke="#e7b98a" stroke-width="66" fill="none" stroke-linecap="round"/></svg>
+    ${Array.from({length:nf},(_,i)=>{const pts=[[70,300],[70,190],[110,60],[230,40],[350,40],[470,90],[490,200],[490,300]][i%8];return `<div class="fib" data-fib="${i}" style="left:${pts[0]-20}px;top:${pts[1]-24}px">🌿</div>`;}).join('')}
+    ${['🦠','🦠','🦠'].map((b,i)=>`<div class="bact" id="vB${i}" style="left:${150+i*110}px;top:${70+i%2*14}px">${b}</div>`).join('')}</div>`,
+    "Ici, le corps récupère l'eau. Des milliards de bactéries amies mangent les fibres… et fabriquent des gaz. C'est normal !");
+  $('vFoot').innerHTML=nf?'':`<button class="btn b-orange" data-vgo="toil">🚽 ${T('Aux toilettes !','Direction les toilettes')}</button>`;
+  if(nf)$('vGros').addEventListener('pointerdown',e=>{const fb=e.target.closest('[data-fib]');if(!fb||fb.dataset.eaten)return;fb.dataset.eaten=1;
+    const bi=VY.ate%3,b=$('vB'+bi);b.style.left=fb.style.left;b.style.top=fb.style.top;sfx.crunch();
+    setTimeout(()=>{fb.remove();const g=document.createElement('div');g.className='gasb';g.textContent='🫧';g.style.left=fb.style.left;g.style.top=fb.style.top;$('vGros')&&$('vGros').appendChild(g);},450);
+    VY.ate++;VY.gas++;if(VY.ate>=nf){cLater(()=>{$('vFoot').innerHTML=`<button class="btn b-blue" data-vgo="gas">💨 ${T('Pfff…','Laisser sortir le gaz')}</button>`;say(T('Oh oh… ça gonfle !','Les bactéries ont tout mangé : du gaz s\'accumule…'),false);},700);}});
+  else say(T('Pas de fibres ici… ça avance tout doucement.','Pas de fibres dans cet aliment : les bactéries ont faim et ça avance lentement. Les fruits et légumes en apportent.'),false);
+  if(nf)say(T('Touche les fibres pour nourrir les bactéries !','Touche les fibres pour que les bactéries les mangent.'),T(undefined,false));
+}
+function gasOut(){
+  noise(.7,.5,'lowpass',160);tone(110,70,.7,'sawtooth',.12);setTimeout(()=>tone(140,60,.3,'square',.06),200);
+  award('c_prout');burst($('vGros'),['💨','💨','😂'],8,200);
+  say(T('Prout ! C\'est normal, ce sont les bactéries !','Prout ! Les gaz viennent des bactéries qui digèrent les fibres : c\'est normal et c\'est le signe d\'un intestin en forme.'),'Prout !');
+  $('vFoot').innerHTML=`<button class="btn b-orange" data-vgo="toil">🚽 ${T('Aux toilettes !','Direction les toilettes')}</button>`;
+}
+function toilet(){
+  VY.st='x';$('vZone').innerHTML='<div class="toil flush" id="vToil">🚽</div>';$('vFoot').innerHTML='';noise(1.4,.35,'lowpass',700);tone(400,120,1.2,'sine',.08);
+  cLater(voyResult,1400);
+}
+function voyResult(){
+  const A=isA(),f=VY.f,cb=C_();VY.st='fin';
+  const first=!cb.trips;cb.trips++;cb.foods[f.id]=1;cb.bon=f.sweet?cb.bon+1:0;saveDB();
+  award('c_voyage');const st=firstStar('voyage'+AB());
+  if(Object.keys(cb.foods).length>=5)award('c_5aliments');
+  const ache=cb.bon>=3;if(ache){award('c_malventre');cb.bon=0;saveDB();}
+  const v=k=>k==='f'?Math.min(100,f.f*25):Math.min(100,((k==='s'?VY.abs.s+VY.abs.g:VY.abs[k])/ (A?6:8))*100);
+  voyFrame('fin',ache?T('Aïe, mal au ventre !','Mal au ventre !'):T('Ton corps a reçu :','Ce que ton corps a reçu'),
+    `<div style="width:100%">${ache?`<div class="cfact" style="background:#ffe3e3">${T('Trois sucreries de suite, c\'est trop pour le ventre !','Trois sucreries de suite : trop de sucre d\'un coup, le ventre proteste. Et les bactéries des dents font de l\'acide avec le sucre !')}</div>`:''}
+    <div class="vres">${['s','p','w','f'].map(k=>`<div class="rb"><span>${NUT[k].e}</span>${A?'':NUT[k].n}<div class="cbar"><i style="width:${v(k)}%;--bc:${NUT[k].c}"></i></div></div>`).join('')}</div>
+    <div class="cfact">${f.e} ${f.x}</div>
+    ${A?'':`<table class="vtime"><tr><td>👄 Bouche</td><td>1 minute</td></tr><tr><td>⬇️ Œsophage</td><td>10 secondes</td></tr><tr><td>🫃 Estomac</td><td>2 à 4 heures</td></tr><tr><td>🌀 Intestin grêle (6 m)</td><td>4 à 6 heures</td></tr><tr><td>🟤 Gros intestin</td><td>1 à 2 jours</td></tr></table>`}</div>`);
+  $('vFoot').innerHTML=`<button class="btn b-orange" data-vgo="again">🍽️ ${T('Encore !','Un autre aliment')}</button>`;
+  sfx.fanfare();burst($('vFoot'),['⭐','✨'],8,160);
+  say(ache?T('Aïe, trop de sucre ! Mal au ventre !','Trop de sucreries d\'affilée : mal au ventre !'):T(`Bravo, le voyage est fini !${st?' Une étoile !':''}`,`Voyage terminé${st?' : +1 étoile':''} !`),T(undefined,ache?'Mal au ventre !':'Bravo !'));
+}
+
+/* ===== 3. cœur et souffle : rattraper Wanji ===== */
+const RN={};
+function organsSVG(){return `<svg viewBox="0 0 200 220"><g class="lungs" id="rLungs"><path d="M92 40 q-56 -6 -66 70 q-6 60 30 70 q30 6 36 -30z" fill="#ff9fb3" stroke="#d96a84" stroke-width="3"/><path d="M108 40 q56 -6 66 70 q6 60 -30 70 q-30 6 -36 -30z" fill="#ff9fb3" stroke="#d96a84" stroke-width="3"/><path d="M100 0 V50 M100 50 l-14 16 M100 50 l14 16" stroke="#d96a84" stroke-width="8" fill="none" stroke-linecap="round"/></g>
+<g class="heart" id="rHeart"><path d="M112 118 q-22 -18 -34 -4 q-12 16 34 44 q46 -28 34 -44 q-12 -14 -34 4z" fill="#e2263e" stroke="#a8162c" stroke-width="3"/></g></svg>`;}
+function legsSVG(){return `<svg class="legs" viewBox="0 0 110 56"><line x1="46" y1="0" x2="46" y2="52" stroke="#2b2350" stroke-width="12" stroke-linecap="round" style="transform-origin:46px 0"/><line x1="64" y1="0" x2="64" y2="52" stroke="#2b2350" stroke-width="12" stroke-linecap="round" style="transform-origin:64px 0"/></svg>`;}
+function beatLoop(){
+  stopBeat();
+  const f=()=>{if(S.screen!=='s-corps'||CS.tab!=='coeur')return;tone(70,45,.12,'sine',.16);tone(60,40,.1,'sine',.11,.16);RN.lastBeat=performance.now();
+    ['rHeart','pHeart'].forEach(id=>{const h=$(id);if(h){h.classList.remove('b');h.getBoundingClientRect();h.classList.add('b');}});
+    CS.beat=setTimeout(f,60000/Math.max(40,RN.bpm||80));};
+  f();
+}
+function runStart(){
+  const A=isA();Object.assign(RN,{v:2,o2:100,bpm:88,gap:55,wv:2,wt:0,sniff:0,stop:0,lastB:0,br:[],phase:'run',hi:0,off:0,said:{}});
+  $('cWork').innerHTML=`<div class="run"><div class="track" id="rTrack"><div class="rground" id="rGround"></div><div class="rme" id="rMe"><div class="hd">${avatar(S.player)}</div>${legsSVG()}</div><div class="rwj" id="rWj">${wanjiSVG()}<span class="rsnif hidden" id="rSnif">👃</span></div></div>
+  <div class="rbot"><div class="rbody" id="rBody">${organsSVG()}</div><div class="rmid"><div class="rg"><span>🫁</span><div class="cbar"><i id="rO2" style="width:100%;--bc:#6ec8ff"></i></div></div>${A?'':'<div class="rnum" id="rNum"></div>'}<div id="rCtl"></div></div></div></div>`;
+  runCtl();
+  $('rBody').addEventListener('pointerdown',()=>breathe());
+  say(T('Rattrape Wanji ! Touche « Respire » pour garder ton souffle.','Rattrape Wanji ! Choisis ta vitesse et respire : tes muscles ont besoin d\'oxygène.'));
+  beatLoop();cEvery(runTick,100);
+}
+function runCtl(){
+  $('rCtl').innerHTML=`<div class="rspd">${[[1,'🚶','Marcher'],[2,'🏃','Courir'],[3,'⚡','Sprinter']].map(([v,e,n])=>`<button class="lopt ${RN.v===v?'sel':''}" data-v="${v}">${e}<span>${n}</span></button>`).join('')}</div><button class="btn b-blue rbreath" id="rBreath" style="width:100%;margin-top:12px">🫁 ${T('Respire !','Respirer à fond')}</button>`;
+  $('rBreath').addEventListener('pointerdown',()=>breathe());
+}
+function runSpeed(v){if(RN.phase!=='run')return;sfx.click();RN.v=v;runCtl();}
+function breathe(){
+  if(RN.phase!=='run')return;const A=isA(),now=performance.now(),dt=now-RN.lastB;RN.lastB=now;RN.br.push(now);
+  RN.o2=Math.min(100,RN.o2+(A?14:dt>500?8:3));noise(.35,.06,'bandpass',700);
+  const l=$('rLungs');if(l){l.classList.add('in');setTimeout(()=>l.classList.remove('in'),380);}
+  if(!A&&dt<300&&!RN.said.fast){RN.said.fast=1;say('Respire plus lentement et plus fort : des petites respirations rapides ne remplissent pas les poumons.',false);}
+}
+function runTick(){
+  const A=isA(),R=RN;
+  if(R.phase==='pulse'||R.phase==='rest'||R.phase==='sleep'){const tg=R.phase==='sleep'?65:A?80:95;R.bpm+=(tg-R.bpm)*(R.phase==='pulse'?.006:.03);if(R.phase==='pulse')R.samp.push(R.bpm);runNum();return;}
+  if(R.phase!=='run')return;
+  const dem=[0,.25,.75,1.7][R.v]*(A?.55:1);
+  if(R.stop>0){R.stop--;R.o2=Math.min(100,R.o2+1.6);if(!R.stop)say(T('C\'est reparti !','Ça va mieux : reprends doucement.'),false);}
+  else R.o2=Math.max(A?18:0,R.o2-dem);
+  if(!A&&R.o2<=0&&!R.stop){R.stop=30;R.v=1;runCtl();sfx.whine();award('c_cote');say('Point de côté ! Tes muscles manquent d\'oxygène. Ralentis et respire profondément.','Point de côté !');}
+  const spd=R.stop?0:[0,1,2.4,3.6][R.v]*(A&&R.o2<25?.7:1);
+  if(--R.wt<=0){R.wt=15+Math.floor(Math.random()*20);R.sniff=Math.random()<.2?14:0;R.wv=1.5+Math.random()*1.2;}
+  let wv=R.wv;if(R.sniff>0){R.sniff--;wv=0;}if(R.gap>108)wv=0;
+  R.gap=Math.max(0,R.gap+(wv-spd)*.6);
+  const tgt=R.stop?125:([0,100,145,180][R.v]+(100-R.o2)*.15)*(A?.9:1);R.bpm+=(tgt-R.bpm)*.035;
+  if(R.bpm>=(A?138:150)){R.hi++;if(R.hi===10){award('c_coeur');if(!A)say('Plus de 150 battements par minute : ton cœur envoie plus de sang, donc plus d\'oxygène, à tes muscles.',false);}}
+  if(R.bpm>140&&Math.random()<.07){const d=document.createElement('div');d.className='sweat';d.textContent='💧';d.style.left=(80+rnd(0,60))+'px';d.style.top='120px';$('rTrack').appendChild(d);setTimeout(()=>d.remove(),1000);
+    if(!A&&!R.said.sweat){R.said.sweat=1;say('Tu transpires : la sueur qui sèche sur la peau refroidit le corps.',false);}}
+  R.off+=spd*5;$('rGround').style.backgroundPosition=`${-R.off}px 0`;
+  const me=$('rMe');me.classList.toggle('still',!spd);me.style.setProperty('--leg',(.9/Math.max(1,spd)).toFixed(2)+'s');
+  $('rWj').style.left=(190+R.gap*5)+'px';$('rSnif').classList.toggle('hidden',!(R.sniff>0||R.gap>108));
+  const o=$('rO2');o.style.width=R.o2+'%';o.style.setProperty('--bc',R.o2<25?'#ff6a6a':'#6ec8ff');
+  runNum();
+  if(R.gap<=0)runWin();
+}
+function runNum(){const n=$('rNum');if(!n)return;const now=performance.now(),b=RN.br.filter(t=>now-t<15000).length*4;n.innerHTML=`❤️ ${Math.round(RN.bpm)} battements / min<br>🫁 ${RN.phase==='run'?b:Math.round(RN.phase==='sleep'?12:18)} respirations / min`;}
+function runWin(){
+  const A=isA();RN.phase='win';$('rMe').classList.add('still');
+  const w=$('rWj').querySelector('.wj');if(w)w.classList.add('happy');sfx.bark();sfx.fanfare();burst($('rWj'),['❤️','⭐','🐾'],10,140);
+  award('c_course');const st=firstStar('course'+AB());
+  say(T(`Attrapé ! Wanji est tout content !${st?' Une étoile !':''}`,`Wanji est rattrapé${st?' : +1 étoile':''} ! Maintenant, prends ton pouls.`),T(undefined,'Attrapé !'));
+  cLater(pulseStart,2200);
+}
+function pulseStart(){
+  const A=isA();RN.phase='pulse';RN.taps=0;RN.good=0;RN.samp=[];RN.t0=0;if(A)RN.bpm=80;
+  $('rCtl').innerHTML=`<div class="rnum">${T('Tape sur le cœur en même temps : boum, boum !','Prends ton pouls : touche le cœur à chaque battement pendant 10 secondes.')}</div><button class="pheart" id="pHeart">❤️</button><div class="rnum" id="pInfo" style="text-align:center">${A?'':'⏱️ Touche pour commencer'}</div>`;
+  $('pHeart').addEventListener('pointerdown',pulseTap);
+  say(T('Tape sur le cœur en même temps : boum, boum !','Touche le cœur à chaque battement pendant 10 secondes. Je multiplierai par 6.'));
+}
+function pulseTap(){
+  const A=isA(),now=performance.now();if(RN.phase!=='pulse')return;
+  if(A){const ph=now-RN.lastBeat,per=60000/RN.bpm,near=Math.min(ph,per-ph)<280;RN.taps++;if(near){RN.good++;burst($('pHeart'),['💓'],1,50);}
+    $('pInfo').textContent='💓'.repeat(RN.good);if(RN.good>=6||RN.taps>=14)pulseEnd(true);return;}
+  if(!RN.t0){RN.t0=now;RN.samp=[];cLater(()=>pulseEnd(),10000);const tick=cEvery(()=>{const s=Math.max(0,10-Math.floor((performance.now()-RN.t0)/1000));const i=$('pInfo');if(i)i.textContent=`⏱️ ${s} s · ${RN.taps} battements`;},200);}
+  RN.taps++;
+}
+function pulseEnd(){
+  const A=isA();RN.phase='rest';
+  let ok=true,msg;
+  if(A){msg='Bravo ! Tu as senti le cœur battre !';}
+  else{const real=Math.round(RN.samp.reduce((a,b)=>a+b,0)/Math.max(1,RN.samp.length)),est=RN.taps*6;ok=Math.abs(est-real)<=Math.max(12,real*.12);
+    msg=ok?`${RN.taps} battements en 10 s × 6 = ${est} par minute. Ton cœur battait à ${real} : bien compté ! Au repos, un enfant de 10 ans est entre 70 et 110.`:`Tu as compté ${est} par minute, le cœur battait à ${real}. Réessaie en touchant à chaque « boum ».`;}
+  if(ok){award('c_pouls');firstStar('pouls'+AB());sfx.ding();}else sfx.whine();
+  $('rCtl').innerHTML=`<div class="rnum">${msg}</div><div class="rspd" style="margin-top:10px">${ok?'':'<button class="lopt" data-rgo="pulse">💓<span>Recompter</span></button>'}<button class="lopt" data-rgo="sleep">😴<span>Faire dodo</span></button><button class="lopt" data-rgo="again">🏃<span>Rejouer</span></button></div>`;
+  say(msg,T(undefined,ok?'Bien compté !':false));
+}
+function runGo(k){
+  sfx.click();
+  if(k==='again')return runStart();
+  if(k==='pulse')return pulseStart();
+  if(k==='sleep'){RN.phase='sleep';$('rTrack').insertAdjacentHTML('beforeend','<div class="zzz">💤</div>');
+    say(T('Chut… le cœur ralentit quand on dort.','Pendant le sommeil, le cœur et la respiration ralentissent : le corps se répare.'));
+    cLater(()=>{award('c_dodo');burst($('rBody'),['💤','⭐'],5,100);},6000);}
+}
+
+/* ===== 4. les 5 sens ===== */
+const SENS=[{id:'ouie',e:'👂',n:"L'ouïe",st:'c_oreille'},{id:'vue',e:'👁️',n:'La vue',st:'c_oeil'},{id:'gout',e:'👅',n:'Le goût',st:'c_gout'},{id:'toucher',e:'✋',n:'Le toucher',st:'c_toucher'},{id:'odorat',e:'👃',n:"L'odorat",st:'c_nez'}];
+const SN={};
+function sensStart(){
+  const cb=C_();SN.k=null;
+  $('cWork').innerHTML=`<div class="vhead">${T('Choisis un sens !','Les 5 sens : choisis une expérience.')}</div><div class="sgrid">${SENS.map(s=>`<button class="scard ${cb.sens[s.id]?'done':''}" data-sens="${s.id}"><span>${s.e}</span>${s.n}</button>`).join('')}</div>`;
+  say(T('Tes oreilles, tes yeux, ta langue, tes mains, ton nez : choisis !','Choisis un sens à tester.'),T(undefined,false));
+}
+function sensOpen(k){sfx.click();SN.k=k;({ouie:ouieStart,vue:vueStart,gout:goutStart,toucher:touchStart,odorat:noseStart})[k]();}
+function sHead(t){return `<div class="shead"><button class="sback" data-sback="1">◀</button><span>${t}</span></div>`;}
+const SFACT={ouie:"Le son est une vibration de l'air : elle fait vibrer ton tympan, et ton cerveau la reconnaît. Aigu = vibrations rapides, grave = vibrations lentes.",
+  vue:"La pupille est un trou dans l'iris : elle rétrécit au soleil pour protéger l'œil, et s'agrandit dans le noir pour capter le peu de lumière.",
+  gout:"La « carte de la langue » est une légende : on sent toutes les saveurs partout sur la langue. Il existe même une 5e saveur, l'umami (le goût du bouillon ou du parmesan).",
+  toucher:"Le bout des doigts a des milliers de petits capteurs : pour le chaud, le froid, la pression, la douleur.",
+  odorat:"Le nez fait presque tout le goût : quand on est enrhumé, tout semble fade. Et le nez de Wanji est des milliers de fois plus fin que le nôtre !"};
+function sensEnd(win,score){
+  const k=SN.k,s=SENS.find(x=>x.id===k),A=isA();SN.q=null;
+  if(win){C_().sens[k]=1;saveDB();award(s.st);const st=firstStar('sens_'+k+AB());sfx.fanfare();burst($('cWork'),['⭐','✨'],10,200);
+    say(T(`Bravo !${st?' Une étoile !':''}`,`${score?score+' : ':''}bravo${st?', +1 étoile':''} !`),T(undefined,'Bravo !'));}
+  else{sfx.whine();say(T('Presque ! On réessaie ?',`${score} : il en faut un peu plus. Réessaie !`),false);}
+  $('cWork').innerHTML=sHead(`${s.e} ${s.n}`)+`<div style="font-size:120px;text-align:center;margin-top:10px">${win?'🏆':'💪'}</div>${A?'':`<div class="cfact">${SFACT[k]}</div>`}<div class="cfoot"><button class="btn b-orange" data-sens="${k}">🔄 ${T('Encore','Rejouer')}</button><button class="btn b-grey" data-sback="1">◀ ${T('Les sens','Les 5 sens')}</button></div>`;
+}
+/* ouïe */
+const SOUNDS=[
+  {id:'chien',e:'🐶',n:'Un chien',p:()=>sfx.bark()},{id:'eau',e:'💦',n:"De l'eau",p:()=>sfx.splash()},
+  {id:'cloche',e:'🔔',n:'Une cloche',p:()=>{tone(880,0,1.4,'sine',.2);tone(1760,0,1,'sine',.07);tone(2640,0,.7,'sine',.04);}},
+  {id:'orage',e:'⛈️',n:"L'orage",p:()=>sfx.boom()},{id:'abeille',e:'🐝',n:'Une abeille',p:()=>sfx.bzz()},
+  {id:'coeur',e:'❤️',n:'Un cœur',p:()=>{for(let i=0;i<3;i++){tone(70,45,.14,'sine',.45,i*.75);tone(60,40,.12,'sine',.32,i*.75+.18);}}},
+  {id:'croque',e:'🍎',n:'On croque une pomme',p:()=>sfx.crunch()},{id:'papier',e:'📄',n:'Du papier déchiré',p:()=>sfx.tear()},
+  {id:'oiseau',e:'🐦',n:'Un oiseau',p:()=>{for(let i=0;i<4;i++)tone(2600,3600,.09,'sine',.12,i*.16);}}
+];
+function ouieStart(){SN.n=0;SN.ok=0;SN.used=[];ouieRound();}
+function ouieRound(){
+  const A=isA();if(SN.n>=5)return sensEnd(SN.ok>=4,`${SN.ok}/5`);
+  if(!A&&SN.n===4){SN.q={pitch:1,hi:Math.random()<.5?0:1,lock:false};
+    $('cWork').innerHTML=sHead(`👂 Lequel est le plus aigu ? (5/5)`)+`<button class="splay" data-splay="1">🔊</button><div class="schoices"><button class="schoice" data-sc="0"><span>1️⃣</span>Le 1er son</button><button class="schoice" data-sc="1"><span>2️⃣</span>Le 2e son</button></div>`;}
+  else{const s=pick(SOUNDS.filter(x=>!SN.used.includes(x.id)));SN.used.push(s.id);const ch=shuf([s,...shuf(SOUNDS.filter(x=>x!==s)).slice(0,2)]);SN.q={s,lock:false};
+    $('cWork').innerHTML=sHead(`👂 ${T('Quel est ce bruit ?','Quel est ce bruit ?')} (${SN.n+1}/5)`)+`<button class="splay" data-splay="1">🔊</button><div class="schoices">${ch.map(c=>`<button class="schoice" data-sc="${c.id}"><span>${c.e}</span>${A?'':c.n}</button>`).join('')}</div>`;}
+  if(SN.n===0)say(T('Écoute bien ! Touche le haut-parleur pour réécouter.','Écoute et choisis. Le haut-parleur rejoue le son.'),T(undefined,false));
+  cLater(sensPlay,700);
+}
+function sensPlay(){
+  const q=SN.q;if(!q)return;const b=document.querySelector('.splay');if(b){b.classList.add('on');setTimeout(()=>b.classList.remove('on'),1400);}
+  if(SN.k==='ouie'){if(q.pitch){const lo=262,hi=880;tone(q.hi===0?hi:lo,0,.6,'triangle',.2);tone(q.hi===0?lo:hi,0,.6,'triangle',.2,1);}else q.s.p();}
+  if(SN.k==='gout'||SN.k==='toucher')say(SN.k==='gout'?q.it[1]:q.it[2]);
+}
+function sensAnswer(id){
+  const q=SN.q;if(!q||q.lock)return;
+  if(SN.k==='toucher')return touchAnswer(id);
+  q.lock=true;const ok=q.pitch?+id===q.hi:id===q.s.id;const el=document.querySelector(`[data-sc="${id}"]`);
+  if(ok){SN.ok++;sfx.ding();el.classList.add('ok');burst(el,['✨'],4,80);}
+  else{sfx.yuck();el.classList.add('no');const r=q.pitch?document.querySelector(`[data-sc="${q.hi}"]`):document.querySelector(`[data-sc="${q.s.id}"]`);if(r)r.classList.add('ok');
+    say(q.pitch?'Non : un son aigu fait vibrer l\'air plus vite.':T(`C'était : ${q.s.n.toLowerCase()} !`,`C'était : ${q.s.n.toLowerCase()}.`),false);}
+  SN.n++;cLater(ouieRound,1400);
+}
+/* vue */
+const LIGHTS={nuit:{e:'🌙',n:'Noir',s:1.55,bg:'#1d2340'},lampe:{e:'💡',n:'Lampe',s:1,bg:'#fff3c4'},soleil:{e:'☀️',n:'Soleil',s:.42,bg:'#fff9d6'}};
+function vueStart(){SN.vdone=0;SN.seen={};SN.light='lampe';SN.pred=null;SN.dog=false;vueRender();say(T('Change la lumière et regarde le rond noir de l\'œil !','Change la lumière et observe la pupille.'));}
+function vueRender(){
+  const L=LIGHTS[SN.light];
+  $('cWork').innerHTML=sHead(`👁️ ${T('L\'œil','La pupille et la vision de Wanji')}`)+`<div class="vzonew" style="background:${L.bg}"><svg class="eye" viewBox="0 0 440 250"><path d="M20 125 Q220 -40 420 125 Q220 290 20 125z" fill="#fff" stroke="#2b2350" stroke-width="6"/><circle cx="220" cy="125" r="82" fill="#4c8dff"/><circle cx="220" cy="125" r="82" fill="none" stroke="#2f62c2" stroke-width="6" stroke-dasharray="4 8"/><g class="pup" id="vPup" style="transform:scale(${L.s})"><circle cx="220" cy="125" r="34" fill="#11111b"/></g><circle cx="196" cy="102" r="11" fill="#fff" opacity=".9"/></svg></div>
+  <div class="vlight">${Object.entries(LIGHTS).map(([k,l])=>`<button class="lopt ${SN.light===k?'sel':''}" data-light="${k}">${l.e}<span>${l.n}</span></button>`).join('')}</div>
+  <div class="fruits ${SN.dog?'dog':''}">🍓🍊🍋🥝🫐🍇🎾</div><div class="vlight"><button class="lopt ${!SN.dog?'sel':''}" data-dogv="0">${avatar(S.player).replace('<svg ','<svg style="width:44px;height:44px" ')}<span>Mes yeux</span></button><button class="lopt ${SN.dog?'sel':''}" data-dogv="1">🐶<span>Yeux de Wanji</span></button></div>
+  <svg width="0" height="0" style="position:absolute"><filter id="dogF"><feColorMatrix type="matrix" values="0.625 0.375 0 0 0  0.7 0.3 0 0 0  0 0.3 0.7 0 0  0 0 0 1 0"/></filter></svg>
+  <div id="vPred"></div>`;
+}
+function vueLight(k){
+  if(k===SN.light)return;
+  if(k==='soleil'&&!isA()&&SN.pred==null){SN.pred='ask';$('vPred').innerHTML=`<div class="predict">☀️ Au soleil, la pupille va… <button class="btn b-blue" data-pred="grand">Grandir</button><button class="btn b-orange" data-pred="petit">Rétrécir</button></div>`;return;}
+  sfx.click();const old=LIGHTS[SN.light].s;SN.light=k;SN.seen[k]=1;
+  const pup=$('vPup'),bg=document.querySelector('.vzonew');
+  document.querySelectorAll('[data-light]').forEach(b=>b.classList.toggle('sel',b.dataset.light===k));
+  if(bg)bg.style.background=LIGHTS[k].bg;if(pup)pup.style.transform=`scale(${LIGHTS[k].s})`;
+  if(k==='soleil')say(T('Oh, le rond noir devient tout petit !','La pupille rétrécit : moins de lumière entre dans l\'œil.'),false);
+  if(k==='nuit')say(T('Dans le noir, il devient tout grand !','Dans le noir, la pupille s\'agrandit pour capter le peu de lumière.'),false);
+  vueCheck();
+}
+function vuePred(v){const ok=v==='petit';SN.pred=v;$('vPred').innerHTML='';if(ok)sfx.ding();else sfx.yuck();say(ok?'Bonne prédiction !':'Non, regarde bien…',false);setTimeout(()=>vueLight('soleil'),600);}
+function vueDog(on){
+  sfx.click();SN.dog=on;document.querySelector('.fruits').classList.toggle('dog',on);document.querySelectorAll('[data-dogv]').forEach(b=>b.classList.toggle('sel',(b.dataset.dogv==='1')===on));
+  if(on){SN.seen.dog=1;say(T('Wanji voit moins de couleurs : le rouge, il le voit tout terne !','Un chien voit surtout le bleu et le jaune : le rouge et le vert lui paraissent brun-gris. La balle rouge dans l\'herbe, Wanji la trouve avec son nez !'),false);}
+  vueCheck();
+}
+function vueCheck(){if(SN.seen.nuit&&SN.seen.soleil&&SN.seen.dog&&!SN.vdone){SN.vdone=1;cLater(()=>sensEnd(true),2600);}}
+/* goût */
+const TASTES=[['🍬','Un bonbon','sucre'],['🍯','Du miel','sucre'],['🍓','Une fraise bien mûre','sucre'],['🥨','Un bretzel','sale'],['🍟','Des frites','sale'],['🫒','Une olive','sale'],['🍋','Un citron','acide'],['🥒','Un cornichon','acide'],['🍏','Une pomme verte','acide'],['☕','Du café','amer'],['🍫','Du chocolat noir à 90 %','amer'],['🥬','Une endive','amer']];
+const TBOWLS={sucre:['😋','Sucré'],sale:['🧂','Salé'],acide:['😖','Acide'],amer:['🤢','Amer']};
+function goutStart(){SN.list=shuf(TASTES).slice(0,6);SN.n=0;SN.ok=0;goutRound();say(T('Goûte et choisis : sucré, salé, acide ou amer ?','Range chaque aliment dans la bonne saveur.'),T(undefined,false));}
+function goutRound(){
+  if(SN.n>=6)return sensEnd(SN.ok>=5,`${SN.ok}/6`);
+  const it=SN.list[SN.n];SN.q={it,lock:false};
+  $('cWork').innerHTML=sHead(`👅 ${T('Ça a quel goût ?','Quelle saveur ?')} (${SN.n+1}/6)`)+`<div class="titm" id="tItm">${it[0]}<b>${it[1]}</b></div><div class="tbowls">${Object.entries(TBOWLS).map(([k,b])=>`<button class="tbowl" data-bowl="${k}"><span>${b[0]}</span>${b[1]}</button>`).join('')}</div>`;
+  if(isA()&&SN.n)say(it[1]);
+}
+function goutAnswer(k){
+  const q=SN.q;if(!q||q.lock)return;q.lock=true;const ok=k===q.it[2],el=document.querySelector(`[data-bowl="${k}"]`);
+  if(ok){SN.ok++;sfx.ding();fly(`<div style="font-size:60px">${q.it[0]}</div>`,$('tItm'),el,{size:70,dur:500});}
+  else{sfx.yuck();el.style.background='#ffe3e3';const r=document.querySelector(`[data-bowl="${q.it[2]}"]`);r.style.background='#e8fbe9';say(`${q.it[1]}, c'est ${TBOWLS[q.it[2]][1].toLowerCase()} !`,false);}
+  SN.n++;cLater(goutRound,1200);
+}
+/* toucher : la boîte mystère */
+const TOUCH=[['🧸','Une peluche',"C'est tout doux et moelleux."],['🌵','Un cactus',"Aïe ! Ça pique de partout."],['🧊','Un glaçon',"C'est très froid, dur… et ça mouille."],['🪨','Un caillou',"C'est dur, lourd et un peu rugueux."],['🐌','Un escargot',"C'est gluant… et ça bouge tout doucement !"],['🧽','Une éponge',"C'est mou, plein de trous, et ça se serre."],['🥄','Une cuillère',"C'est lisse, froid et dur, avec un long manche."],['🐶','Wanji !',"C'est chaud, poilu… et ça te lèche la main !"],['🌰','Une châtaigne',"Une coque qui pique, et dedans c'est tout lisse."]];
+function touchStart(){SN.list=shuf(TOUCH).slice(0,5);SN.n=0;SN.ok=0;touchRound();}
+function touchRound(){
+  if(SN.n>=5)return sensEnd(SN.ok>=4,`${SN.ok}/5`);
+  const it=SN.list[SN.n],ch=shuf([it,...shuf(TOUCH.filter(x=>x!==it)).slice(0,2)]);SN.q={it,lock:false};
+  $('cWork').innerHTML=sHead(`✋ ${T('La boîte mystère','La boîte mystère')} (${SN.n+1}/5)`)+`<div class="tbox" id="tBox"><svg viewBox="0 0 340 210"><rect x="20" y="40" width="300" height="160" rx="16" fill="#c98a5a" stroke="#8a5a36" stroke-width="5"/><ellipse cx="170" cy="110" rx="62" ry="40" fill="#3a2418"/><text x="170" y="30" text-anchor="middle" font-size="26" font-weight="900" fill="#8a5a36">?</text><text x="230" y="120" font-size="54">✋</text></svg></div>
+  <div class="tclue">« ${it[2]} »</div><div class="schoices">${ch.map(c=>`<button class="schoice" data-sc="${c[0]}"><span>${c[0]}</span>${isA()?'':c[1]}</button>`).join('')}</div>`;
+  say(it[2],T(undefined,false));
+}
+function touchAnswer(id){
+  const q=SN.q;q.lock=true;const ok=id===q.it[0],el=document.querySelector(`[data-sc="${id}"]`);
+  if(ok){SN.ok++;sfx.ding();el.classList.add('ok');}else{sfx.yuck();el.classList.add('no');const r=document.querySelector(`[data-sc="${q.it[0]}"]`);if(r)r.classList.add('ok');}
+  $('tBox').insertAdjacentHTML('beforeend',`<div style="position:absolute;left:130px;top:40px;font-size:80px;animation:popout .5s">${q.it[0]}</div>`);
+  if(q.it[0]==='🐶'){sfx.bark();}
+  say(ok?T('Oui !',`Oui : ${q.it[1].toLowerCase()} !`):T(`C'était ${q.it[1].toLowerCase()} !`,`Non, c'était ${q.it[1].toLowerCase()}.`),false);
+  SN.n++;cLater(touchRound,1500);
+}
+/* odorat : nez bouché, puis le nez de Wanji */
+function noseStart(){SN.pinch=false;SN.tried={};SN.cup=0;SN.found=0;noseRender();say(T('Goûte la fraise, puis bouche ton nez et goûte encore !','Expérience : goûte la fraise nez ouvert, puis nez bouché.'));}
+function noseRender(){
+  $('cWork').innerHTML=sHead(`👃 ${T('Le nez et le goût','Le nez et le goût')}`)+`<div class="nose"><div class="face">${avatar(S.player).replace('<svg ','<svg style="width:200px;height:200px" ')}${SN.pinch?'<div class="clip">🤏</div>':''}</div><div style="font-size:110px">🍓</div></div>
+  <div class="vlight" style="margin-top:14px"><button class="lopt ${SN.pinch?'sel':''}" data-nose="pinch">🤏<span>${SN.pinch?'Nez bouché':'Boucher le nez'}</span></button><button class="lopt" data-nose="taste">😋<span>Goûter</span></button></div><div class="tclue" id="nRes" style="margin-top:14px"></div>`;
+}
+function noseAct(k){
+  sfx.click();
+  if(k==='pinch'){SN.pinch=!SN.pinch;noseRender();return;}
+  if(k==='taste'){sfx.crunch();SN.tried[SN.pinch?'p':'o']=1;$('nRes').textContent=SN.pinch?T('Hmm… c\'est sucré, mais quel fruit ?','Nez bouché : on sent juste « sucré »… impossible de dire que c\'est une fraise !'):T('Miam, ça a le goût de fraise !','Nez ouvert : c\'est une fraise, aucun doute !');
+    say($('nRes').textContent,false);if(SN.tried.p&&SN.tried.o)cLater(cupsStart,2600);}
+}
+function cupsStart(){
+  SN.cup=Math.floor(Math.random()*3);SN.q={lock:false};
+  $('cWork').innerHTML=sHead(`👃 ${T('Le nez de Wanji','Le flair de Wanji')} (${SN.found+1}/3)`)+`<div class="tclue">${T('Wanji sent la croquette. Où est-elle ?','Wanji a flairé une croquette : sous quel bol ? Regarde où son nez le mène.')}</div>
+  <div class="cups">${[0,1,2].map(i=>`<button class="cup" data-cup="${i}">${i===SN.cup?'<span class="waves">〰️</span><span class="crq">🦴</span>':''}<svg viewBox="0 0 160 200"><path d="M20 190 L40 30 Q80 10 120 30 L140 190z" fill="#ff9a5a" stroke="#c9553a" stroke-width="5"/></svg></button>`).join('')}</div>
+  <div style="width:150px;margin:0 auto;transform:translateX(${(SN.cup-1)*180}px);transition:transform 1s" id="cWj">${wanjiSVG()}</div>`;
+  say(T('Où est la croquette ?','Suis le nez de Wanji.'),T(undefined,false));
+}
+function cupPick(i){
+  const q=SN.q;if(!q||q.lock)return;const el=document.querySelector(`[data-cup="${i}"]`);el.classList.add('up');
+  if(i===SN.cup){q.lock=true;SN.found++;sfx.crunch();const w=document.querySelector('#cWj .wj');if(w)w.classList.add('happy');sfx.bark();
+    if(SN.found>=3)cLater(()=>sensEnd(true),1500);else cLater(cupsStart,1600);}
+  else{sfx.click();say(T('Vide ! Regarde Wanji.','Vide. Le nez de Wanji ne se trompe pas : regarde-le.'),false);}
+}
+
+/* ===== 5. docteur Kicuit ===== */
+const DTOOLS={eau:['🚿','Eau propre'],savon:['🧼','Savon'],desinf:['🧴','Désinfectant'],pans:['🩹','Pansement'],thermo:['🌡️','Thermomètre'],boire:['🥤',"Verre d'eau"],repos:['🛏️','Repos au lit'],mouchoir:['🤧','Mouchoir'],coude:['💪','Dans le coude'],main:['🖐️','Dans la main'],brosse:['🪥','Brosse à dents'],pince:['🥢','Pince'],veto:['☎️','Vétérinaire'],medoc:['💊','Médicament'],couette:['🧣','Grosse couverture'],glace:['🧊','Glaçon']};
+const PATIENTS=[
+  {id:'genou',who:'ted',mark:['sad','knee'],x:['Nounours est tombé : il a le genou écorché.','Nounours est tombé de vélo : genou écorché, plein de poussière.'],steps:['eau','desinf','pans'],
+   ok:[['On nettoie avec de l\'eau.','Eau propre : on enlève la terre et les microbes de la plaie.'],['Un peu de désinfectant…','Le désinfectant tue les microbes qui restent.'],['Et un pansement !','Le pansement protège la plaie pendant qu\'elle cicatrise.']],
+   bad:{pans:'Le pansement ne colle pas sur une plaie sale : il faut d\'abord nettoyer !',medoc:'Pas besoin de médicament pour une égratignure.',glace:'Le glaçon, c\'est pour une bosse, pas pour une plaie.'},st:'c_pansement'},
+  {id:'fievre',who:'ted',mark:['sad','fever'],x:['Nounours a tout chaud.','Nounours a les joues rouges et il est tout chaud.'],steps:['thermo','boire','repos'],
+   ok:[['Il fait 38,6 : c\'est la fièvre !','38,6 °C : au-dessus de 38 °C, c\'est de la fièvre. Le corps chauffe pour combattre les microbes.'],['Il boit de l\'eau.','Avec la fièvre on transpire : il faut boire beaucoup.'],['Et au lit !','Le repos aide le corps à guérir.']],
+   bad:{couette:'Trop couvrir garde la chaleur : un drap léger suffit.',medoc:'Un médicament, c\'est seulement un adulte ou un médecin qui le donne.',glace:'Pas de glaçon : boire et se reposer suffit.'},st:'c_fievre'},
+  {id:'rhume',who:'ted',mark:['drip'],x:['Nounours va éternuer… Atchoum !','Nounours est enrhumé et va éternuer !'],steps:['coude','mouchoir','savon'],
+   ok:[['Atchoum… dans le coude !','Dans le coude : les microbes ne vont pas sur les mains.'],['On se mouche.','Un mouchoir, et à la poubelle tout de suite.'],['Et on se lave les mains !','On se lave les mains pour ne pas donner le rhume aux autres.']],
+   bad:{main:'Dans la main, les microbes vont partout sur ce que tu touches ! Dans le coude.',medoc:'Un rhume guérit tout seul en quelques jours.'},st:'c_coude'},
+  {id:'dents',who:'moi',mark:[],x:['Avant de dormir : on se brosse les dents !','Après le goûter : brossage des dents !'],steps:['brosse','eau'],game:['teeth',null],
+   ok:[['',''],['On rince… tout propre !','On crache et on rince : dents propres !']],bad:{medoc:'Pas besoin, il faut brosser !',glace:'Brrr, non : on brosse !'},st:'c_dents'},
+  {id:'mains',who:'moi',mark:[],x:['Tu reviens du jardin : tes mains sont pleines de terre !','Retour du jardin, avant de manger : mains pleines de terre et de microbes.'],steps:['eau','savon','eau'],game:[null,'hands',null],
+   ok:[['On mouille les mains.','On mouille les mains.'],['',''],['On rince : tout propre !','On rince et on sèche : propre !']],bad:{desinf:'Le savon suffit pour les mains.',eau:'Sans savon, l\'eau seule n\'enlève pas les microbes !'},st:'c_mains'},
+  {id:'ventre',who:'wanji',mark:[],x:['Wanji a mal au ventre…','Wanji a mangé quelque chose dans le jardin : il a mal au ventre.'],steps:['veto'],
+   ok:[['On appelle le vétérinaire !','Le vétérinaire est le docteur des animaux : lui seul sait soigner Wanji.']],
+   bad:{medoc:'STOP ! Jamais de médicament pour les humains à un chien : ça peut l\'empoisonner. On appelle le vétérinaire.'},st:'c_veto'},
+  {id:'epine',who:'wanji',mark:[],x:['Wanji a une épine dans la patte.','Wanji boite : une épine est plantée dans sa patte.'],steps:['pince','desinf'],
+   ok:[['Hop, l\'épine est partie !','On retire l\'épine doucement avec une pince.'],['Un peu de désinfectant.','On désinfecte la petite blessure. Si ça gonfle : vétérinaire !']],
+   bad:{medoc:'Jamais de médicament pour les humains à un chien !',pans:'Un pansement ne tient pas sur une patte, et l\'épine est encore dedans !'},st:'c_epine'}
+];
+const DR={p:null,i:0,err:0,last:null,busy:false};
+function teddySVG(){return `<svg viewBox="0 0 240 300"><circle cx="62" cy="50" r="30" fill="#b07a4a"/><circle cx="178" cy="50" r="30" fill="#b07a4a"/><circle cx="62" cy="50" r="15" fill="#e8c39a"/><circle cx="178" cy="50" r="15" fill="#e8c39a"/>
+<ellipse cx="50" cy="196" rx="20" ry="42" fill="#b07a4a" transform="rotate(22 50 196)"/><ellipse cx="190" cy="196" rx="20" ry="42" fill="#b07a4a" transform="rotate(-22 190 196)"/>
+<ellipse cx="120" cy="200" rx="70" ry="76" fill="#b07a4a"/><ellipse cx="120" cy="212" rx="42" ry="50" fill="#e8c39a"/><ellipse cx="70" cy="272" rx="32" ry="24" fill="#b07a4a"/><ellipse cx="170" cy="272" rx="32" ry="24" fill="#b07a4a"/>
+<circle cx="120" cy="96" r="66" fill="#b07a4a"/><ellipse cx="120" cy="120" rx="32" ry="24" fill="#e8c39a"/><ellipse cx="120" cy="108" rx="11" ry="8" fill="#3a2418"/><circle cx="94" cy="84" r="8" fill="#2b2350"/><circle cx="146" cy="84" r="8" fill="#2b2350"/>
+<path class="tsmile" d="M106 126 q14 12 28 0" stroke="#3a2418" stroke-width="4" fill="none" stroke-linecap="round"/><path class="tsad" d="M106 134 q14 -10 28 0" stroke="#3a2418" stroke-width="4" fill="none" stroke-linecap="round"/>
+<g class="tcheek"><circle cx="78" cy="112" r="13" fill="#ff4a4a" opacity=".55"/><circle cx="162" cy="112" r="13" fill="#ff4a4a" opacity=".55"/></g><path class="tdrip" d="M128 116 q5 12 0 20 q-7 -5 0 -20z" fill="#9fd8ff"/>
+<g class="tknee"><path d="M52 262 l28 8 M56 274 l22 6 M58 252 l22 8" stroke="#d61f3a" stroke-width="5" stroke-linecap="round"/><circle cx="76" cy="280" r="4" fill="#7a5a36"/><circle cx="58" cy="268" r="3" fill="#7a5a36"/></g>
+<rect class="tband" x="44" y="254" width="48" height="24" rx="9" fill="#ffd1a8" stroke="#d9a886" stroke-width="2"/><text class="tzz" x="186" y="40" font-size="34">💤</text></svg>`;}
+function docStart(){newPatient();}
+function newPatient(){
+  let p;do{p=pick(PATIENTS);}while(p.id===DR.last);DR.p=p;DR.last=p.id;DR.i=0;DR.err=0;DR.busy=false;DR.marks=new Set(p.mark);
+  docRender();say(T(p.x[0],p.x[1]),T(undefined,false));
+}
+function patientHTML(){const p=DR.p;
+  if(p.who==='ted')return `<div class="ted ${[...DR.marks].join(' ')}">${teddySVG()}</div>`;
+  if(p.who==='wanji')return `<div class="dwj">${wanjiSVG()}${p.id==='epine'&&DR.i===0?'<span style="position:absolute;left:150px;bottom:70px;font-size:40px">🌵</span>':''}</div>`;
+  return `<div class="dme">${avatar(S.player)}</div>`;}
+function docRender(){
+  const p=DR.p,A=isA(),next=p.steps[DR.i];let tools;
+  if(A){const others=shuf(Object.keys(DTOOLS).filter(k=>!p.steps.includes(k)&&k!=='medoc'));const pool=p.bad.medoc&&Math.random()<.5?['medoc',...others]:others;tools=shuf([next,...pool.slice(0,2)]);}
+  else tools=Object.keys(DTOOLS);
+  $('cWork').innerHTML=`<div class="doc"><div class="dpat" id="dPat">${patientHTML()}<div class="dfx" id="dFx"></div></div><div class="dside"><div class="dcase">🩺 ${T(p.x[0],p.x[1])}</div><div class="ddots">${p.steps.map((_,i)=>`<span class="${i<DR.i?'ok':i===DR.i?'on':''}"></span>`).join('')}</div><div class="dtools ${A?'big':''}">${tools.map(k=>`<button class="dtool" data-tool="${k}"><span>${DTOOLS[k][0]}</span>${DTOOLS[k][1]}</button>`).join('')}</div></div></div>`;
+}
+function docTag(t){const f=$('dFx');if(f){f.innerHTML=`<div class="tag">${t}</div>`;}}
+function docTool(k){
+  const p=DR.p,A=isA(),next=p.steps[DR.i];if(DR.busy||!p||DR.i>=p.steps.length)return;
+  const btn=document.querySelector(`[data-tool="${k}"]`);
+  if(k===next){
+    sfx.ding();if(btn)fly(`<div style="font-size:60px">${DTOOLS[k][0]}</div>`,btn,$('dPat'),{size:70,dur:500});
+    const g=p.game&&p.game[DR.i];if(g){DR.busy=true;return cLater(()=>g==='teeth'?teethGame():handsGame(),550);}
+    if(k==='pans')DR.marks.add('band');if(k==='thermo')cLater(()=>docTag('🌡️ 38,6 °C'),500);if(k==='repos')DR.marks.add('zz');
+    if(k==='veto'){sfx.alert();cLater(()=>docTag('☎️ Dring dring !'),300);}if(k==='coude')cLater(()=>docTag('Atchoum ! 💪'),400);
+    return docNext(p.ok[DR.i]);
+  }
+  DR.err++;
+  const bad=p.bad[k];
+  if(p.who==='wanji'&&k==='medoc'){sfx.alert();say(bad,'Stop ! Pas de médicament pour Wanji !');if(btn)btn.animate([{transform:'translateX(-10px)'},{transform:'translateX(10px)'},{transform:'none'}],{duration:300});return;}
+  sfx.yuck();if(btn)btn.animate([{transform:'translateX(-8px)'},{transform:'translateX(8px)'},{transform:'none'}],{duration:260});
+  say(bad||(p.steps.slice(DR.i+1).includes(k)?T('Pas encore ! Autre chose d\'abord.','Pas encore : une autre étape vient avant.'):T('Hmm, pas ça. Essaie autre chose !',`${DTOOLS[k][1]} : ça n'aide pas ici.`)),false);
+}
+function docNext(msg){
+  DR.i++;const p=DR.p;if(msg&&msg[0])say(T(msg[0],msg[1]),false);
+  if(DR.i>=p.steps.length){DR.busy=true;return cLater(docCured,900);}
+  cLater(()=>{const tag=$('dFx')&&$('dFx').innerHTML;docRender();if(tag)$('dFx').innerHTML=tag;},700);
+}
+function docCured(){
+  const p=DR.p,A=isA(),cb=C_();
+  ['sad','knee','fever','drip'].forEach(m=>DR.marks.delete(m));DR.marks.add('ok');
+  const pat=$('dPat');if(pat){pat.innerHTML=patientHTML()+'<div class="dfx" id="dFx"></div>';const w=pat.querySelector('.wj');if(w)w.classList.add('happy');}
+  if(p.who==='wanji')sfx.bark();sfx.fanfare();burst($('dPat'),['❤️','⭐','✨'],10,160);
+  award(p.st);cb.cured[p.id]=1;cb.pat++;saveDB();if(cb.pat>=10)award('c_docteur10');
+  const star=A||DR.err<=1;if(star)addStar();
+  say(T(`Guéri ! Merci docteur !${star?' Une étoile !':''}`,star?'Guéri ! +1 étoile.':`Guéri, mais avec ${DR.err} erreurs : pas d'étoile cette fois.`),T(undefined,'Guéri !'));
+  document.querySelector('.dside').innerHTML=`<div class="dcase">✅ ${T('Guéri !','Patient guéri !')} ${A?'':`<br><span style="font-size:18px">Patients soignés : ${cb.pat}</span>`}</div><div style="font-size:110px;text-align:center">${star?'⭐':'🙂'}</div><div class="cfoot"><button class="btn b-orange" data-dnext="1">🩺 ${T('Patient suivant','Patient suivant')}</button></div>`;
+}
+/* jeu : brosser les dents */
+function teethGame(){
+  const A=isA(),need=A?2:3;DR.teeth=Array(16).fill(need);const t0=performance.now();
+  $('dPat').innerHTML=`<div style="position:relative"><svg class="teeth" viewBox="0 0 360 300"><ellipse cx="180" cy="150" rx="176" ry="146" fill="#e2566e"/><ellipse cx="180" cy="152" rx="146" ry="110" fill="#7a1f33"/>
+    ${Array.from({length:16},(_,i)=>{const top=i<8,x=40+(i%8)*36,y=top?60:180;return `<g data-th="${i}"><rect x="${x}" y="${y}" width="32" height="56" rx="10" fill="#fff" stroke="#e6dccb" stroke-width="2"/><g class="dirt">${Array.from({length:need},(_,k)=>`<circle cx="${x+10+k*7}" cy="${y+(top?40:16)}" r="6" fill="#c9a24a"/>`).join('')}</g></g>`;}).join('')}</svg>
+    ${Array.from({length:7},(_,i)=>`<span class="germ" id="gm${i}" style="left:${40+i*42}px;top:${i%2?190:110}px">🦠</span>`).join('')}<span class="brush hidden" id="dBrush">🪥</span><div class="dtimer" id="dTm"></div></div>`;
+  say(T('Frotte toutes les dents avec la brosse !','Frotte chaque dent, en haut et en bas, jusqu\'à ce qu\'elles soient toutes blanches.'));
+  const z=$('dPat'),br=$('dBrush');
+  const mv=e=>{if(!DR.busy)return;const r=z.getBoundingClientRect();br.classList.remove('hidden');br.style.left=((e.clientX-r.left)/SCALE)+'px';br.style.top=((e.clientY-r.top)/SCALE)+'px';
+    const el=document.elementFromPoint(e.clientX,e.clientY),g=el&&el.closest('[data-th]');
+    if(g){const i=+g.dataset.th;if(DR.teeth[i]>0){DR.teeth[i]-=A?.5:.34;const d=g.querySelector('.dirt');const n=Math.ceil(DR.teeth[i]);while(d.children.length>n)d.lastChild.remove();if(Math.random()<.3)noise(.05,.05,'highpass',3000);}}
+    const left=DR.teeth.filter(v=>v>0).length;for(let i=0;i<7;i++){const gm=$('gm'+i);if(gm&&left<16-(i+1)*2)gm.classList.add('gone');}
+    const s=Math.round((performance.now()-t0)/1000);$('dTm').textContent=`⏱️ ${s} s`;
+    if(!left){DR.busy=false;z.onpointermove=null;sfx.ding();say(T('Toutes blanches !','Dents propres ! Les bactéries mangent le sucre et font de l\'acide qui troue les dents : on brosse 2 minutes, matin et soir.'),false);
+      cLater(()=>{DR.busy=false;docNext(null);},1200);}};
+  z.onpointermove=e=>{if(e.buttons||e.pointerType==='touch')mv(e);};
+  z.onpointerdown=mv;
+}
+/* jeu : se laver les mains 20 secondes */
+function handsGame(){
+  const A=isA();DR.rub=0;
+  $('dPat').innerHTML=`<div style="position:relative;width:340px;height:340px"><svg viewBox="0 0 340 340" style="width:100%;height:100%"><ellipse cx="120" cy="190" rx="70" ry="100" fill="#ffd8bd" stroke="#d9a886" stroke-width="4" transform="rotate(-12 120 190)"/><ellipse cx="220" cy="190" rx="70" ry="100" fill="#ffd8bd" stroke="#d9a886" stroke-width="4" transform="rotate(12 220 190)"/></svg>
+  ${Array.from({length:10},(_,i)=>`<span class="germ" id="hg${i}" style="left:${70+(i%5)*44}px;top:${110+Math.floor(i/5)*90}px">🦠</span>`).join('')}<div class="dtimer" id="dTm">⏱️ 0 / 20 s</div></div>`;
+  say(T('Frotte, frotte, frotte avec le savon !','Frotte avec le savon : il faut 20 secondes, entre les doigts et sous les ongles.'));
+  let lp=null;const z=$('dPat');
+  z.onpointerdown=e=>{lp=stagePt(e);};
+  z.onpointermove=e=>{if(!lp||!DR.busy)return;const p=stagePt(e);DR.rub+=Math.hypot(p.x-lp.x,p.y-lp.y)/(A?22:30);lp=p;
+    const s=Math.min(20,Math.floor(DR.rub));$('dTm').textContent=`⏱️ ${s} / 20 s`;if(Math.random()<.15)burst(z,['🫧'],1,90);
+    for(let i=0;i<10;i++)if(s>=(i+1)*2){const g=$('hg'+i);if(g)g.classList.add('gone');}
+    if(s>=20){DR.busy=false;z.onpointermove=null;sfx.ding();say(T('Plus de microbes !','20 secondes : le savon a décollé le gras où se cachent les microbes. Maintenant, on rince !'),false);cLater(()=>docNext(null),1200);}};
+  z.onpointerup=()=>{lp=null;};
+}
 
 /* ---------- LABORATOIRE ---------- */
 const LTABS=[{id:'circuit',n:'Circuit',e:'⚡'},{id:'flotte',n:'Flotte ou coule',e:'💧'},{id:'aimant',n:'Aimants',e:'🧲'},{id:'couleur',n:'Couleurs',e:'🎨'},{id:'engrenage',n:'Engrenages',e:'⚙️'}];
