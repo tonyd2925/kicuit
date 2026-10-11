@@ -32,8 +32,8 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 ## Progression
 
 - Étoile : +1 par commande de Wanji réussie (le bon plat, cuisson parfaite) et +1 par objectif du jardin réussi.
-- **Jardin : 10 étoiles** (décidé, constante `JARDIN`). Des autocollants restent à gagner au-delà pour donner envie de revenir. Seuils des autres ateliers : à fixer quand ils seront construits.
-- Ordre de construction : ~~Cuisine~~ → ~~Jardin~~ → **Fromagerie** → Garage / Laboratoire / Corps humain.
+- **Jardin : 10 étoiles** (constante `JARDIN`), **Fromagerie : 20 étoiles** (`FROMAGE`), avec appui long parent de 3 s sur chacun. Des autocollants restent à gagner au-delà pour donner envie de revenir. Seuils des autres ateliers : à fixer quand ils seront construits.
+- Ordre de construction : ~~Cuisine~~ → ~~Jardin~~ → ~~Fromagerie~~ → Garage / Laboratoire / Corps humain.
 - Prochaine étape d'interface (en attente, ne pas faire sans accord) : un compteur « Jardin : x/10 ⭐ » sur la maison.
 
 ## Cuisine (faite, à faire évoluer)
@@ -62,7 +62,7 @@ Objectif : un vrai album d'autocollants, celui qu'on a envie de remplir.
 - Style : bordure blanche découpée, légère ombre, son de « décollage » et confettis.
 - Pour Nana : autocollants plus grands, pas de texte obligatoire.
 - Autocollants de long terme (pour revenir) : 5, 10 (jardin) et 20 étoiles, 10 commandes réussies, jouer 3 puis 7 jours différents (`days`), série de 5 plats parfaits, carnet complet.
-- Cible : environ 60 autocollants sur tout le jeu (environ 12 par atelier). Actuellement 59 (cuisine et jardin).
+- Cible : environ 60 autocollants sur tout le jeu (environ 12 par atelier). Actuellement 81 (cuisine, jardin, fromagerie), dont certains réservés à Raf.
 
 ## Jardin (fait, 10 étoiles)
 
@@ -80,7 +80,7 @@ Objectif : un vrai album d'autocollants, celui qu'on a envie de remplir.
 - Page d'autocollants Jardin : 19 autocollants (dont tournesol, premier objectif, 10 objectifs), 30 récoltes et des secrets.
 - La vache Marguerite est dans la fromagerie (pas au jardin).
 
-## Fromagerie (plan validé, à coder)
+## Fromagerie (faite)
 
 **Ouverture : 20 étoiles** (+ appui long parent de 3 s, comme le jardin). Petite ferme avec **la vache Marguerite** (dans la fromagerie, pas au jardin). Chèvre et brebis arrivent plus tard comme cadeaux d'objectifs (lait de chèvre pour la bûche, lait de brebis pour le roquefort).
 
@@ -119,9 +119,18 @@ Parcours, un geste par étape :
 - **Raf** : les 11 fromages, débloqués progressivement ; vrais réglages (°C, grains, durée de cave) ; le comté est le défi final.
 - **Catastrophes** : lait trop chaud (rien ne caille), mauvais grains (comté mou), cancoillotte qui attache, bleu non piqué (roquefort blanc), fromage poilu, fromage sans sel.
 - **Règle de sécurité Wanji** : jamais de roquefort ni de bleu (la moisissure peut rendre un chien malade), même traitement que le chocolat (Kicuit l'arrête, croquette). Les autres fromages : petit morceau autorisé ; il adore le comté, se bouche le nez devant le munster.
-- **Liens** : fromages au frigo → recettes gratin au comté et Mont d'Or chaud (four), tartiflette au reblochon, cancoillotte (casserole). Nouvelle culture au jardin : **pomme de terre**.
+- **Liens** : fromages au frigo → tartiflette (reblochon), gratin au comté, pommes de terre sautées. Plus tard : Mont d'Or chaud, cancoillotte en cuisine. Nouvelle culture au jardin : **pomme de terre**.
 - **Objectifs de la fromagerie** (comme le jardin, +1 étoile chacun), ex. « Prépare un plateau de 3 fromages », « Affine un comté de 4 mois ».
-- **Autocollants** : page Fromagerie d'environ 16 (un par fromage, première traite, Wanji se bouche le nez, « Pas de bleu pour les chiens », fromage poilu, comté de 4 mois holographique, carte de France complète dorée).
+- **Autocollants** : page Fromages de 19 (un par fromage, première traite, ça ne caille pas, Wanji se bouche le nez, « Pas de bleu pour les chiens », fromage poilu, plateau, comté de 4 mois holographique, carte de France, doré).
+
+Implémentation :
+- Écran `s-fromage`. Données par enfant `P().f` (`F_()`) : `milk`, `cave` (avec horodatage `start`), `stock` (fromages au frigo), `found` (réussis parfaitement, carte), `made`, `objDone`, `obj`.
+- Recettes de fromage dans `CH` (lait, °C, gouttes, flore, passages de harpe, cuisson, moulage, sel, geste, jours de cave). Étapes calculées par `fSteps()`. Défauts notés dans `FS.q`, note finale par `fGrade()` (parfait / bon / raté). Nana : toujours parfait.
+- Ordre de déblocage pour Raf (`CHORDER`) : un fromage s'ouvre quand le précédent a été fabriqué. Chèvre au 2e objectif, brebis au 4e (`UNLOCKS_F`).
+- Temps de cave : `DAYMS()` = 60 s par jour pour Raf, 15 s pour Nana. Soins (`care`) seulement quand la cave est ouverte ; oublié plus de 25 s = poilu (Raf).
+- Les rafraîchissements différés passent par `renderChooserSafe()` pour ne jamais interrompre une fabrication en cours.
+- Autocollants hors de portée de Nana marqués `raf` (fromages réservés, tartiflette, gratin au comté) : ni affichés ni comptés pour elle (`VIS()`).
+- Liens faits : pomme de terre au jardin (outil « Patates », après l'ouverture de la fromagerie), 4e rangée du frigo (`LIMITED` : patates, reblochon, comté ; stock limité, consommé à la cuisson ; Nana n'a que les patates), recettes tartiflette, gratin au comté (four) et pommes de terre sautées (poêle).
 
 ## Ateliers suivants (rappel du plan d'origine)
 

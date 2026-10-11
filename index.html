@@ -112,6 +112,8 @@ svg{display:block}
 .fr-top::after{top:34px;height:60px}
 .fr-main{position:absolute;left:0;top:138px;width:100%;height:434px}
 .fr-in{position:absolute;inset:0;border:4px solid #7d8aa6;border-radius:8px 8px 22px 22px;background:linear-gradient(#f2fbff,#d9eefb);display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:8px 6px}
+.fr-in.r4{grid-template-rows:repeat(4,1fr)}.fr-in.r4 .ing svg{width:48px;height:48px}.fr-in.r4 .ing span{font-size:13px}
+.ing.empty{opacity:.35}
 .ing{display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:5px solid rgba(125,138,166,.35);transition:transform .1s}
 .ing:active{transform:scale(.88)}
 .ing svg{width:62px;height:62px}
@@ -269,7 +271,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 
 #s-album{background:linear-gradient(160deg,#ffe9b8,#ffd0e0)}
 #tabs{position:absolute;left:40px;right:40px;top:112px;height:64px;display:flex;gap:10px}
-.tab{flex:1;height:64px;border-radius:22px 22px 0 0;background:rgba(255,255,255,.55);font-size:19px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:8px}
+.tab{flex:1;height:64px;border-radius:22px 22px 0 0;background:rgba(255,255,255,.55);font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:8px}
 .tab.on{background:#fffdf7}
 .tab .tc{font-size:15px;opacity:.6}
 #apage{position:absolute;left:40px;right:40px;top:176px;height:470px;background:#fffdf7;border-radius:0 0 30px 30px;box-shadow:0 10px 24px rgba(43,35,80,.12);overflow:hidden}
@@ -281,6 +283,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .slot.got .sh{border-color:transparent}
 .slots.dense .slot .sh{width:108px;height:108px}.slots.dense .slot .sh .sart{--sz:100px}.slots.dense .ghost{width:94px!important;height:94px!important;--sz:94px!important}.slots.dense .slot .sn{font-size:14px;max-width:124px}
 .slots.dense2 .slot .sh{width:92px;height:92px}.slots.dense2 .slot .sh .sart{--sz:84px;border-width:5px}.slots.dense2 .ghost{width:80px!important;height:80px!important;--sz:80px!important}.slots.dense2 .slot .sn{font-size:12px;max-width:100px}
+.slots.dense2{gap:2px 6px}
 .slot .sq{font-size:56px;font-weight:900;color:rgba(43,35,80,.18)}
 .slot .sn{font-size:15px;font-weight:800;text-align:center;line-height:1.1;max-width:136px;min-height:34px}
 .slot.target .sh{border-color:var(--orange);animation:pulse 1s infinite;background:rgba(255,122,89,.08)}
@@ -329,7 +332,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 #s-garden{background:#bfe8ff}
 #gInv{position:absolute;left:18px;top:112px;width:214px;height:470px;background:rgba(255,253,247,.94);border-radius:28px;box-shadow:0 8px 20px rgba(43,35,80,.15);padding:12px 12px;display:flex;flex-direction:column;gap:6px;z-index:6}
 #gInv h3{margin:0 0 2px;font-size:22px;text-align:center}
-.inv{display:flex;align-items:center;gap:8px;height:52px;border-radius:16px;background:#f6f1e6;padding:0 8px;font-size:22px;font-weight:900}
+.inv{display:flex;align-items:center;gap:8px;height:46px;border-radius:16px;background:#f6f1e6;padding:0 8px;font-size:22px;font-weight:900}
 .inv .ii{width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-size:32px}
 .inv .ii svg{width:40px;height:40px}
 .inv .ia{margin-left:auto;font-size:15px;font-weight:800;padding:6px 10px;border-radius:12px;background:#fff;box-shadow:0 3px 0 #e2dccd}
@@ -359,7 +362,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .plot .weeds,.plot .aph{position:absolute;inset:0;pointer-events:none}
 .plot .pol{position:absolute;left:120px;top:10px;font-size:24px}
 #gTools{position:absolute;left:246px;right:14px;top:700px;height:108px;display:flex;gap:8px;align-items:center;justify-content:center;z-index:6}
-.tool{width:86px;height:100px;border-radius:22px;background:#fff;box-shadow:0 5px 0 #d9d2e8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:13px;font-weight:900}
+.tool{flex:1 1 0;min-width:0;max-width:86px;height:100px;overflow:hidden;border-radius:22px;background:#fff;box-shadow:0 5px 0 #d9d2e8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:13px;font-weight:900}
 .tool .ti{width:52px;height:52px;display:flex;align-items:center;justify-content:center;font-size:40px}
 .tool .ti svg{width:52px;height:52px}
 .tool.sel{background:#fff1ea;box-shadow:0 0 0 5px var(--orange),0 5px 0 #d9d2e8;transform:translateY(-6px)}
@@ -373,21 +376,102 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .gb{position:absolute;top:2px;right:2px;font-size:12px;font-weight:900;background:#3fbf55;color:#fff;border-radius:10px;padding:1px 6px}
 .ing{position:relative}
 
-#gObj{left:362px;top:116px;width:560px;height:100px;background:#fff;border-radius:28px;box-shadow:0 8px 20px rgba(43,35,80,.18);display:flex;align-items:center;gap:14px;padding:0 18px;z-index:6}
-#gObj.win{animation:boing .6s ease-out;background:#fff6d6}
-#gObj .oi{width:64px;height:64px;flex:none;display:flex;align-items:center;justify-content:center;font-size:48px;background:#f6f1e6;border-radius:20px}
-#gObj .oi svg{width:52px;height:52px}
-#gObj .ot{flex:1;min-width:0}
-#gObj .ox{font-size:22px;font-weight:900;line-height:1.15}
-#gObj .od{display:flex;gap:8px;margin-top:8px}
-#gObj .od i{width:22px;height:22px;border-radius:50%;background:#eee6d4;box-shadow:inset 0 2px 0 rgba(0,0,0,.1)}
-#gObj .od i.on{background:#3fbf55}
-#gObj .ob{height:12px;border-radius:6px;background:#eee6d4;margin-top:8px;overflow:hidden}
-#gObj .ob i{display:block;height:100%;background:linear-gradient(90deg,#9be15d,#3fbf55);border-radius:6px;transition:width .4s}
-#gObj .on{font-size:14px;font-weight:800;opacity:.65;margin-top:4px}
-#gObj .orw{font-size:40px}
+#gObj,#fObj{position:absolute;left:362px;top:116px;width:560px;height:100px;background:#fff;border-radius:28px;box-shadow:0 8px 20px rgba(43,35,80,.18);display:flex;align-items:center;gap:14px;padding:0 18px;z-index:6}
+#gObj.win,#fObj.win{animation:boing .6s ease-out;background:#fff6d6}
+#gObj .oi,#fObj .oi{width:64px;height:64px;flex:none;display:flex;align-items:center;justify-content:center;font-size:48px;background:#f6f1e6;border-radius:20px}
+#gObj .oi svg,#fObj .oi svg{width:52px;height:52px}
+#gObj .ot,#fObj .ot{flex:1;min-width:0}
+#gObj .ox,#fObj .ox{font-size:22px;font-weight:900;line-height:1.15}
+#gObj .od,#fObj .od{display:flex;gap:8px;margin-top:8px}
+#gObj .od i,#fObj .od i{width:22px;height:22px;border-radius:50%;background:#eee6d4;box-shadow:inset 0 2px 0 rgba(0,0,0,.1)}
+#gObj .od i.on,#fObj .od i.on{background:#3fbf55}
+#gObj .ob,#fObj .ob{height:12px;border-radius:6px;background:#eee6d4;margin-top:8px;overflow:hidden}
+#gObj .ob i,#fObj .ob i{display:block;height:100%;background:linear-gradient(90deg,#9be15d,#3fbf55);border-radius:6px;transition:width .4s}
+#gObj .on,#fObj .on{font-size:14px;font-weight:800;opacity:.65;margin-top:4px}
+#gObj .orw,#fObj .orw{font-size:40px}
 #gScare{left:930px;top:150px;width:80px;height:140px;z-index:3;transform-origin:50% 100%}
 #gHive{left:250px;top:150px;width:100px;height:110px;z-index:3}
+/* fromagerie */
+#s-fromage{background:#f3dcb4}
+#fWork{position:absolute;left:320px;top:226px;width:840px;height:468px;background:rgba(255,253,247,.96);border-radius:30px;box-shadow:0 10px 24px rgba(43,35,80,.15);overflow:hidden;touch-action:none;z-index:5}
+#fBar{position:absolute;left:320px;top:704px;width:840px;height:104px;display:flex;align-items:center;gap:10px;z-index:5}
+#fBar .chips{flex:1;display:flex;flex-wrap:wrap;gap:6px;align-content:center}
+.chip{font-size:14px;font-weight:900;padding:6px 10px;border-radius:14px;background:rgba(255,255,255,.6);opacity:.6}
+.chip.on{background:var(--orange);color:#fff;opacity:1}
+.chip.done{background:#3fbf55;color:#fff;opacity:.85}
+.fbtn2{height:68px;font-size:22px;padding:0 18px}
+#fCow{left:16px;top:326px;width:290px;height:238px;z-index:4}
+#fGoat,#fSheep{width:100px;height:100px;border-radius:50%;background:#fff;box-shadow:0 5px 0 #d9d2e8;font-size:58px;display:flex;align-items:center;justify-content:center;z-index:4}
+#fGoat{left:30px;top:222px}#fSheep{left:160px;top:222px}
+#fMilk{left:20px;top:566px;width:286px;height:120px;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.8);border-radius:24px;padding:8px 14px;z-index:4}
+#fMilk .mb{width:84px;height:76px;flex:none}
+#fMilk .mc{font-size:22px;font-weight:800}
+#fMilk .ml{font-size:13px;opacity:.6}
+#fWanji2{left:14px;top:690px;width:120px;height:126px;z-index:4}
+#fKicuit{left:160px;top:694px;width:96px;height:120px;z-index:4}
+.fstep{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:14px}
+.fstep h3{margin:0;font-size:30px}
+.cuve{width:360px;height:230px}.cuve.small{width:250px;height:160px}
+.cuve.stir{cursor:grab}
+.frow{display:flex;gap:14px;justify-content:center}
+.frow.sm .fopt{width:110px;height:90px;font-size:28px}
+.fopt{width:200px;height:120px;border-radius:24px;background:#f3f0fb;border:5px solid transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:40px}
+.fopt span{font-size:19px;font-weight:900}
+.fopt.sel{border-color:var(--orange);background:#fff1ea}
+.drops{display:flex;align-items:center;gap:20px}
+.dropper{height:84px;padding:0 26px;border-radius:42px;background:#e3f4ff;font-size:26px;font-weight:900;box-shadow:0 6px 0 #b9d8ee}
+.dropper:active{transform:translateY(4px)}
+.dc{font-size:26px;font-weight:900}
+.harp{position:relative;width:560px;height:260px;border-radius:24px;background:radial-gradient(circle at 40% 40%,#fffbea,#f2e6c0);border:6px solid #c98d5a;overflow:hidden}
+.harp .cut{position:absolute;background:rgba(160,120,60,.55)}
+.harp .cut.h{left:0;right:0;height:4px}.harp .cut.v{top:0;bottom:0;width:4px}
+.moulds{display:flex;gap:16px}
+.mould{position:relative;width:76px;height:140px;border-radius:12px;border:5px solid #9aa6bf;background:#f3f6fb;overflow:hidden}
+.mould i{position:absolute;left:0;right:0;bottom:0;background:#fffbea;transition:height .3s}
+.press,.rub,.sign{position:relative;width:300px;height:220px}
+.press svg,.rub svg,.sign svg{width:100%;height:100%}
+.sign .faiss{font-size:150px;text-align:center;line-height:220px}
+.sign .midline{position:absolute;left:10%;right:10%;top:50%;border-top:3px dashed rgba(43,35,80,.3)}
+.sign .raie{position:absolute;left:8%;right:8%;height:8px;border-radius:4px;background:#2b2b33}
+.meter2{width:520px;height:20px;border-radius:10px;background:#eee6d4;overflow:hidden}
+.meter2 i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ffc94a,#3fbf98);transition:width .2s}
+.fhint2{font-size:20px;font-weight:800;opacity:.7;text-align:center;max-width:640px}
+.fgrid{position:absolute;inset:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;align-content:center}
+.fcard{position:relative;height:136px;border-radius:22px;background:#fffaf0;box-shadow:0 4px 0 #ecdcbc;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6px}
+.fcard .fc{width:100px;height:72px}
+.fcard .fn{font-size:17px;font-weight:900;text-align:center;line-height:1.1}
+.fcard .fr{font-size:13px;font-weight:700;opacity:.65}
+.fcard.lock{filter:grayscale(1);opacity:.45}
+.fcard .fok{position:absolute;right:8px;top:6px;font-size:22px}
+.fc svg{width:100%;height:100%}
+.fc.big{width:280px;height:210px}
+.fc.bad{filter:saturate(.5) brightness(.9)}
+.poilu{filter:sepia(.4) hue-rotate(40deg) saturate(.7) contrast(.9)}
+.poilu svg{outline:none}
+.plat{display:flex;gap:20px}.plat .fc{width:200px;height:170px;text-align:center;font-weight:900}
+.teats{display:flex;align-items:center;gap:30px}
+.teat{width:200px;height:150px;border-radius:30px;background:#ffe3ea;font-size:26px;font-weight:900;box-shadow:0 6px 0 #f2b8c6}
+.teat:active{transform:translateY(4px)}
+.tseau{width:150px;height:134px}
+#fCaveIn{width:1000px}
+.shelves{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:10px;background:linear-gradient(#8a5a36 0 6px,transparent 6px) 0 0/100% 50%,#5a4a3a;border-radius:20px}
+.slotc{position:relative;height:200px;border-radius:18px;background:rgba(255,255,255,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+.slotc.empty{border:3px dashed rgba(255,255,255,.2)}
+.slotc.ready{background:rgba(255,214,90,.25);box-shadow:0 0 0 4px #ffc83a}
+.slotc .cw{width:140px;height:105px}.slotc .cw svg{width:100%;height:100%}
+.slotc .cn{font-size:17px;font-weight:900}
+.slotc .cbar{width:150px;height:10px;border-radius:5px;background:rgba(255,255,255,.25);overflow:hidden;margin-top:4px}
+.slotc .cbar i{display:block;height:100%;background:#ffc83a}
+.slotc .cd{font-size:14px;font-weight:800;opacity:.85}
+.care{position:absolute;right:8px;top:8px;width:66px;height:66px;border-radius:50%;background:#fff;font-size:36px;box-shadow:0 4px 10px rgba(0,0,0,.3);animation:pulse 1s infinite}
+#fMapIn{width:1040px}
+.mapw{display:flex;gap:16px;align-items:flex-start}
+.map{width:420px;height:340px;flex:none}
+.mlist{flex:1;max-height:420px;overflow-y:auto;display:grid;gap:8px}
+.mrow{display:flex;gap:10px;align-items:center;background:#f7f4fd;border-radius:16px;padding:6px 10px}
+.mrow.lock{opacity:.5}
+.mrow .mi{width:70px;height:52px;flex:none}.mrow .mi svg{width:100%;height:100%}
+.mrow .mx{font-size:14px;font-weight:700;opacity:.75}
 /* iPad en portrait */
 #rotate{position:fixed;inset:0;background:#2b2350;color:#fff;display:none;align-items:center;justify-content:center;flex-direction:column;gap:20px;font-size:34px;font-weight:900;z-index:999;text-align:center}
 #rotate .ph{font-size:110px;animation:rot 2s ease-in-out infinite}
@@ -467,6 +551,24 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
     <div class="modal hidden" id="gPanel"><div class="card" id="gPanelCard"></div></div>
   </section>
 
+  <section class="screen" id="s-fromage">
+    <svg viewBox="0 0 1180 820" class="full"><defs><pattern id="planks" width="90" height="820" patternUnits="userSpaceOnUse"><rect width="90" height="820" fill="#e2b77e"/><rect width="4" height="820" fill="#c99b62"/></pattern></defs><rect width="1180" height="820" fill="url(#planks)"/><rect y="96" width="1180" height="18" fill="#a8703f"/><rect x="0" y="640" width="310" height="180" fill="#f2d98a"/><rect x="0" y="300" width="310" height="10" fill="#a8703f"/><rect x="0" y="560" width="310" height="10" fill="#a8703f"/><rect x="300" y="300" width="10" height="340" fill="#a8703f"/></svg>
+    <button class="iconbtn" id="fHome" style="left:20px;top:14px">🏠</button>
+    <button class="iconbtn" id="fMapBtn" style="right:120px;top:14px">🗺️</button>
+    <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
+    <div class="abs hidden" id="fObj"></div>
+    <button class="abs hidden" id="fGoat">🐐</button>
+    <button class="abs hidden" id="fSheep">🐑</button>
+    <div class="abs" id="fCow"></div>
+    <div class="abs" id="fMilk"></div>
+    <div class="abs" id="fWanji2"></div>
+    <div class="abs" id="fKicuit"></div>
+    <div id="fWork"></div>
+    <div id="fBar"></div>
+    <div class="modal hidden" id="fCaveM"><div class="card" id="fCaveIn"></div></div>
+    <div class="modal hidden" id="fMapM"><div class="card" id="fMapIn"></div></div>
+  </section>
+
   <section class="screen" id="s-album">
     <button class="iconbtn" id="aHome" style="left:20px;top:14px">🏠</button>
     <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
@@ -502,7 +604,7 @@ function vpW(){return document.documentElement.clientWidth||innerWidth}
 function vpH(){return document.documentElement.clientHeight||innerHeight}
 function fit(){SCALE=Math.min(vpW()/1180,vpH()/820);$('stage').style.transform=`translate(-50%,-50%) scale(${SCALE})`;window.scrollTo(0,0);}
 addEventListener('resize',fit);addEventListener('orientationchange',()=>setTimeout(fit,200));fit();
-document.addEventListener('touchmove',e=>{if(!e.target.closest('input,.blist,#tray'))e.preventDefault()},{passive:false});
+document.addEventListener('touchmove',e=>{if(!e.target.closest('input,.blist,#tray,.mlist'))e.preventDefault()},{passive:false});
 /* Anti-zoom iPad : Safari ignore user-scalable=no, on bloque donc le double-tap et le pincement nous-mêmes.
    Les touches du jeu passent par les événements pointer, elles ne sont pas affectées. */
 ['gesturestart','gesturechange','gestureend'].forEach(t=>document.addEventListener(t,e=>e.preventDefault(),{passive:false}));
@@ -510,7 +612,7 @@ let lastTouchEnd=0;
 document.addEventListener('touchend',e=>{const n=Date.now();if(n-lastTouchEnd<450&&!e.target.closest('input'))e.preventDefault();lastTouchEnd=n;},{passive:false});
 /* on annule le geste par défaut de Safari dès le premier contact (zoom, double-tap, défilement) ;
    les touches du jeu passent par les événements pointer, qui restent actifs. */
-document.addEventListener('touchstart',e=>{if(e.touches.length>1||!e.target.closest('input,.blist,#tray'))e.preventDefault();},{passive:false});
+document.addEventListener('touchstart',e=>{if(e.touches.length>1||!e.target.closest('input,.blist,#tray,.mlist'))e.preventDefault();},{passive:false});
 /* si un zoom passe quand même, on revient automatiquement à la vue normale */
 function unzoom(){const m=document.querySelector('meta[name=viewport]');if(!m)return;const c='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover';
   m.setAttribute('content',c.replace('maximum-scale=1','maximum-scale=1.0001')+', minimum-scale=1');
@@ -693,6 +795,12 @@ const ING={
   tomate:{r:'la tomate',n:'Tomate',s:'Une tomate !',svg:'<circle cx="32" cy="36" r="21" fill="#ff5a3c" stroke="#c93a22" stroke-width="3"/><ellipse cx="24" cy="29" rx="5" ry="3" fill="#fff" opacity=".5"/><path d="M32 16 l-8 -4 l5 6 l-9 2 l10 2 l2 6 l2 -6 l10 -2 l-9 -2 l5 -6z" fill="#3fbf55"/>'},
   gruyere:{r:'le gruyère',n:'Gruyère',s:'Du gruyère !',svg:'<path d="M8 44 L52 18 L58 44 z" fill="#ffd448" stroke="#e0a91f" stroke-width="3" stroke-linejoin="round"/><path d="M8 44 h50 v10 h-50z" fill="#ffc72e" stroke="#e0a91f" stroke-width="3"/><g fill="#e8b52c"><circle cx="40" cy="34" r="4"/><circle cx="28" cy="40" r="3"/><circle cx="50" cy="28" r="2.5"/><circle cx="20" cy="50" r="2.5"/><circle cx="44" cy="49" r="2.5"/></g>'}
 };
+ING.pdt={r:'la pomme de terre',n:'Patates',s:'',svg:'<g fill="#c9955a" stroke="#8a5a36" stroke-width="3"><ellipse cx="24" cy="38" rx="15" ry="11"/><ellipse cx="42" cy="30" rx="14" ry="10"/></g><g fill="#8a5a36"><circle cx="20" cy="36" r="1.6"/><circle cx="28" cy="42" r="1.6"/><circle cx="44" cy="28" r="1.6"/></g>'};
+ING.reblochon={r:'le reblochon',n:'Reblochon',s:'',svg:'<ellipse cx="32" cy="40" rx="24" ry="9" fill="#e0a85a"/><rect x="8" y="30" width="48" height="10" fill="#e8b46a"/><ellipse cx="32" cy="30" rx="24" ry="9" fill="#f2c27a" stroke="#c98a45" stroke-width="2.5"/><ellipse cx="32" cy="30" rx="7" ry="3" fill="#7ab36a"/>'};
+ING.comte={r:'le comté',n:'Comté',s:'',svg:'<path d="M8 46 L54 22 L56 46z" fill="#ffdc78" stroke="#c98a45" stroke-width="3" stroke-linejoin="round"/><path d="M8 46 h48 v8 h-48z" fill="#c98f48"/>'};
+const LIMITED=['pdt','reblochon','comte'];
+function limStock(k){return k==='pdt'?(G_().fridge.pdt||0):(F_().stock[k]||0);}
+function limUse(k){if(k==='pdt')G_().fridge.pdt--;else F_().stock[k]--;}
 const ingSVG=k=>`<svg viewBox="0 0 64 64">${ING[k].svg}</svg>`;
 const FRIDGE=['oeuf','lait','beurre','farine','sucre','chocolat','tomate','fraise','gruyere'];
 
@@ -711,6 +819,9 @@ const DISH={
   chocolatChaud:'<rect x="32" y="30" width="52" height="52" rx="9" fill="#ff8fb1" stroke="#d76b8d" stroke-width="3"/><path d="M84 42 q22 0 18 18 q-4 14 -18 12" fill="none" stroke="#d76b8d" stroke-width="7"/><ellipse cx="58" cy="32" rx="24" ry="6" fill="#6b3b1f" stroke="#d76b8d" stroke-width="3"/><path d="M48 20 q-7 -8 0 -16 M62 20 q-7 -8 0 -16 M76 22 q-7 -8 0 -16" stroke="#c9ced8" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="58" cy="58" r="8" fill="#fff" opacity=".6"/>',
   soupe:'<path d="M12 40 h96 q-4 38 -48 40 q-44 -2 -48 -40z" fill="#fff" stroke="#c9d2e3" stroke-width="3"/><path d="M20 58 q40 10 80 0" stroke="#8fc2ff" stroke-width="4" fill="none"/><ellipse cx="60" cy="40" rx="48" ry="11" fill="#e9442e" stroke="#c9d2e3" stroke-width="3"/><path d="M44 40 q10 -8 20 0 q8 6 16 -2" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/><g fill="#3fa34d"><ellipse cx="70" cy="37" rx="5" ry="2.5"/><ellipse cx="38" cy="42" rx="4" ry="2"/></g><path d="M50 26 q-6 -8 0 -16 M68 26 q-6 -8 0 -16" stroke="#c9ced8" stroke-width="3.5" fill="none" stroke-linecap="round"/>',
   confiture:'<rect x="34" y="30" width="52" height="50" rx="10" fill="#d9233e" stroke="#a8162c" stroke-width="3"/><rect x="40" y="46" width="40" height="20" rx="4" fill="#fff"/><path d="M60 62 q-8 -5 -7 -10 q4 -3 7 0 q3 -3 7 0 q1 5 -7 10z" fill="#ff4d5e"/><path d="M28 30 q32 -16 64 0 l-4 -12 q-28 -8 -56 0z" fill="#ff9fb8" stroke="#d76b8d" stroke-width="2"/><g fill="#fff"><circle cx="40" cy="22" r="2.5"/><circle cx="52" cy="19" r="2.5"/><circle cx="64" cy="19" r="2.5"/><circle cx="76" cy="21" r="2.5"/></g><rect x="30" y="28" width="60" height="5" rx="2" fill="#d76b8d"/>',
+  tartiflette:'<path d="M8 46 h104 l-8 30 q-44 10 -88 0z" fill="#c4553d"/><ellipse cx="60" cy="46" rx="52" ry="14" fill="#a8432e"/><ellipse cx="60" cy="45" rx="45" ry="11" fill="#f6d27a"/><g fill="#c9955a"><ellipse cx="40" cy="44" rx="8" ry="5"/><ellipse cx="62" cy="40" rx="8" ry="5"/><ellipse cx="80" cy="47" rx="7" ry="4"/></g><g fill="#fff6d6" opacity=".9"><ellipse cx="52" cy="46" rx="12" ry="4"/><ellipse cx="74" cy="42" rx="10" ry="3"/></g><g fill="#e0a85a"><circle cx="36" cy="48" r="2.5"/><circle cx="70" cy="49" r="2.5"/></g>',
+  gratinComte:'<path d="M8 46 h104 l-8 30 q-44 10 -88 0z" fill="#e8edf5" stroke="#9aa6bf" stroke-width="3"/><ellipse cx="60" cy="46" rx="52" ry="14" fill="#c9d2e3"/><ellipse cx="60" cy="45" rx="45" ry="11" fill="#f2c94a"/><g fill="#d99a3a"><circle cx="40" cy="44" r="4"/><circle cx="60" cy="40" r="3.5"/><circle cx="78" cy="47" r="4"/><circle cx="54" cy="50" r="3"/></g>',
+  pdtSautees:'<ellipse cx="60" cy="56" rx="52" ry="20" fill="#3d4352"/><ellipse cx="60" cy="52" rx="46" ry="15" fill="#4a5162"/><g fill="#e8b45a" stroke="#b07a35" stroke-width="2"><rect x="30" y="40" width="16" height="13" rx="4"/><rect x="50" y="44" width="16" height="13" rx="4"/><rect x="70" y="38" width="16" height="13" rx="4"/><rect x="42" y="52" width="15" height="12" rx="4"/><rect x="64" y="52" width="16" height="12" rx="4"/></g><g fill="#3fa34d"><circle cx="48" cy="42" r="2"/><circle cx="78" cy="56" r="2"/></g>',
   mystere:'<path d="M16 68 q-10 -28 14 -32 q4 -24 30 -17 q24 -12 38 12 q22 6 11 37 q-44 14 -93 0z" fill="#6ad04a" stroke="#3f9a2c" stroke-width="3"/><g fill="#4fb534"><circle cx="30" cy="58" r="5"/><circle cx="88" cy="56" r="6"/><circle cx="66" cy="30" r="4"/></g><circle cx="50" cy="46" r="8" fill="#fff"/><circle cx="52" cy="48" r="4" fill="#16213a"/><circle cx="72" cy="44" r="9" fill="#fff"/><circle cx="70" cy="46" r="4.5" fill="#16213a"/><path d="M52 62 q10 6 20 0" stroke="#2c6b1f" stroke-width="3" fill="none" stroke-linecap="round"/>'
 };
 const dishSVG=r=>`<svg viewBox="0 0 120 90">${DISH[r]}</svg>`;
@@ -733,6 +844,9 @@ const RECIPES={
   chocolatChaud:{n:'Chocolat chaud',art:'un chocolat chaud',pate:'#8a5232',cook:'#7a4a2a',req:['lait','chocolat'],opt:['sucre'],app:'casserole',r:[3,5],m:[4,10],gesture:'stir',choco:true},
   soupe:{n:'Soupe de tomates',art:'une soupe de tomates',pate:'#ff6a4a',cook:'#e9442e',req:['tomate'],opt:['beurre','lait'],app:'casserole',r:[4,6],m:[10,30],gesture:'stir'},
   confiture:{n:'Confiture de fraises',art:'une confiture de fraises',pate:'#e23a54',cook:'#d9233e',req:['fraise','sucre'],opt:[],app:'casserole',r:[4,6],m:[15,40],gesture:'stir'},
+  tartiflette:{n:'Tartiflette',art:'une tartiflette',pate:'#f2d38a',req:['pdt','reblochon'],opt:['lait','beurre'],app:'four',r:[180,220],m:[25,40]},
+  gratinComte:{n:'Gratin au comté',art:'un gratin au comté',pate:'#f6e2a6',req:['pdt','comte','lait'],opt:['beurre'],app:'four',r:[160,200],m:[40,60]},
+  pdtSautees:{n:'Pommes de terre sautées',art:'des pommes de terre sautées',pate:'#e8c37a',cook:'#e0b060',req:['pdt'],opt:['beurre'],app:'poele',r:[4,6],m:[3,8]},
   mystere:{n:'Mixture mystère',art:'une mixture mystère',pate:'#79d94c',cook:'#79d94c',mystery:true}
 };
 const REAL=Object.keys(RECIPES).filter(k=>!RECIPES[k].mystery);
@@ -765,7 +879,8 @@ function evaluate(r,app,heat,time,list){
 }
 
 /* ---------- autocollants ---------- */
-const PAGES=[{id:'cuisine',n:'Cuisine',e:'🍰'},{id:'catas',n:'Bêtises',e:'💥'},{id:'amis',n:'Copains',e:'🐶'},{id:'jardin',n:'Jardin',e:'🌻'},{id:'secrets',n:'Secrets',e:'✨'},{id:'libre',n:'Ma page',e:'🎨'}];
+const PAGES=[{id:'cuisine',n:'Cuisine',e:'🍰'},{id:'catas',n:'Bêtises',e:'💥'},{id:'amis',n:'Copains',e:'🐶'},{id:'jardin',n:'Jardin',e:'🌻'},{id:'fromage',n:'Fromages',e:'🧀'},{id:'secrets',n:'Secrets',e:'✨'},{id:'libre',n:'Ma page',e:'🎨'}];
+const CH_N={blanc:'Fromage blanc',cancoillotte:'Cancoillotte',camembert:'Camembert',chevre:'Bûche de chèvre',reblochon:'Reblochon',morbier:'Morbier',montdor:"Mont d'Or",munster:'Munster',emmental:'Emmental',roquefort:'Roquefort',comte:'Comté'};
 const PASTEL=['#ffe9d6','#e3f4ff','#ffe3ef','#e8fbe9','#fff3c4','#efe6ff'];
 const STICK=[
   ...REAL.map((r,i)=>({id:'r_'+r,pg:'cuisine',n:RECIPES[r].n,dish:r,rar:'c',bg:PASTEL[i%PASTEL.length],how:`Réussis parfaitement : ${RECIPES[r].n.toLowerCase()}`})),
@@ -808,6 +923,15 @@ const STICK=[
   {id:'obj1',pg:'jardin',n:'Premier objectif',e:'📋',rar:'c',bg:'#e3f4ff',how:'Réussis un objectif du jardin'},
   {id:'obj10',pg:'jardin',n:'Jardinier expert',e:'🏅',rar:'h',bg:'#fff3c4',how:'Réussis 10 objectifs du jardin'},
   {id:'or_jardin',pg:'jardin',n:'Main verte',e:'👩‍🌾',rar:'o',bg:'#fff3c4',how:'Complète toute la page Jardin'},
+  ...['blanc','cancoillotte','camembert','chevre','reblochon','morbier','montdor','munster','emmental','roquefort','comte'].map((k,i)=>({id:'f_'+k,pg:'fromage',n:k==='comte'?'Comté de 4 mois':CH_N[k],svg:()=>cheeseSVG(k),rar:k==='comte'?'h':k==='roquefort'||k==='montdor'?'b':'c',bg:PASTEL[i%PASTEL.length],how:`Réussis parfaitement : ${CH_N[k].toLowerCase()}`})),
+  {id:'f_traite',pg:'fromage',n:'Première traite',e:'🐄',rar:'c',bg:'#e8fbe9',how:'Remplis un seau de lait'},
+  {id:'f_rien',pg:'fromage',n:'Ça ne caille pas !',e:'🥛',rar:'c',bg:'#e3f4ff',how:'Rate le caillage (lait trop chaud ou trop froid)'},
+  {id:'f_nez',pg:'fromage',n:'Wanji se bouche le nez',e:'😷',rar:'b',bg:'#ffe9d6',secret:true,how:"Fais goûter un fromage qui sent fort à Wanji"},
+  {id:'f_bleu',pg:'fromage',n:'Pas de bleu pour les chiens',e:'🚫',rar:'b',bg:'#ffe3ef',how:'Essaie de donner du roquefort à Wanji'},
+  {id:'f_poilu',pg:'fromage',n:'Fromage poilu',e:'🦠',rar:'c',bg:'#e8fbe9',secret:true,how:'Oublie de soigner un fromage dans la cave'},
+  {id:'f_plateau',pg:'fromage',n:'Plateau de fromages',e:'🍽️',rar:'b',bg:'#fff3c4',how:'Prépare un plateau de 3 fromages'},
+  {id:'f_carte',pg:'fromage',n:'Tour de France',e:'🗺️',rar:'h',bg:'#e3f4ff',how:'Allume toutes les régions de la carte'},
+  {id:'or_fromage',pg:'fromage',n:'Maître fromager',e:'🧀',rar:'o',bg:'#fff3c4',how:'Complète toute la page Fromages'},
   {id:'boom3',pg:'secrets',n:'Triple explosion',e:'💣',rar:'h',bg:'#ffe9d6',secret:true,how:'Fais exploser 3 plats'},
   {id:'chef5',pg:'secrets',n:'Série parfaite',e:'🎯',rar:'h',bg:'#e8fbe9',secret:true,how:"Réussis 5 plats parfaits d'affilée"},
   {id:'carnet',pg:'secrets',n:'Carnet complet',e:'📖',rar:'h',bg:'#efe6ff',secret:true,how:'Réussis toutes les recettes'},
@@ -816,6 +940,9 @@ const STICK=[
   {id:'fidele7',pg:'secrets',n:'Super fidèle',e:'🗓️',rar:'h',bg:'#ffe3ef',secret:true,how:'Joue 7 jours différents'},
   {id:'or_secrets',pg:'secrets',n:'Grand secret',e:'🗝️',rar:'o',bg:'#fff3c4',how:'Trouve tous les secrets'}
 ];
+/* autocollants réservés à Raf (fromages et plats que Nana ne peut pas fabriquer) */
+['f_chevre','f_reblochon','f_morbier','f_montdor','f_munster','f_emmental','f_roquefort','f_comte','f_nez','f_bleu','f_poilu','f_carte','r_tartiflette','r_gratinComte'].forEach(id=>{const s=STICK.find(x=>x.id===id);if(s)s.raf=1;});
+const VIS=()=>STICK.filter(s=>!(isA()&&s.raf));
 const SID=Object.fromEntries(STICK.map(s=>[s.id,s]));
 const RARN={c:'',b:'Brillant !',h:'Holographique !!',o:'Doré !'};
 const RARC={c:'#4c8dff',b:'#8a96ad',h:'linear-gradient(90deg,#ff6ec7,#6ec8ff,#c86eff)',o:'#e0a91f'};
@@ -836,7 +963,7 @@ function updGift(){
   document.querySelectorAll('.gift').forEach(g=>{g.classList.toggle('hidden',!n);g.querySelector('.badge').textContent=n;});
 }
 function checkGold(pg){
-  const list=STICK.filter(s=>s.pg===pg&&s.rar!=='o');const gold=STICK.find(s=>s.pg===pg&&s.rar==='o');
+  const list=VIS().filter(s=>s.pg===pg&&s.rar!=='o');const gold=STICK.find(s=>s.pg===pg&&s.rar==='o');
   if(gold&&list.every(s=>owned(s.id)))award(gold.id);
 }
 
@@ -876,14 +1003,14 @@ function enterAlbum(page,target){
   const p=P(),n=Object.keys(p.st).filter(k=>SID[k]).length;
   if(target)say(T("Fais-le glisser à sa place !","Glisse l'autocollant jusqu'à son emplacement."));
   else if(p.tray.length)say(T('Colle tes autocollants !','Des autocollants attendent en bas : glisse-les à leur place.'));
-  else say(n?T(`Ton album : ${n} autocollant${n>1?'s':''} !`,`${n} autocollants sur ${STICK.length}. Touche une case vide pour un indice.`):T('Ton album est vide !','Album vide : chaque recette réussie et chaque catastrophe rapporte une pochette.'),false);
+  else say(n?T(`Ton album : ${n} autocollant${n>1?'s':''} !`,`${n} autocollants sur ${VIS().length}. Touche une case vide pour un indice.`):T('Ton album est vide !','Album vide : chaque recette réussie et chaque catastrophe rapporte une pochette.'),false);
 }
-function pageCount(pg){const l=STICK.filter(s=>s.pg===pg);return `${l.filter(s=>owned(s.id)).length}/${l.length}`;}
+function pageCount(pg){const l=VIS().filter(s=>s.pg===pg);return `${l.filter(s=>owned(s.id)).length}/${l.length}`;}
 function renderAlbum(){
   $('tabs').innerHTML=PAGES.map(pg=>`<button class="tab ${pg.id===AL.page?'on':''}" data-pg="${pg.id}">${pg.e} ${pg.n}${pg.id!=='libre'?` <span class="tc">${pageCount(pg.id)}</span>`:''}</button>`).join('');
   if(AL.page==='libre')renderFree();
   else{
-    const list=STICK.filter(s=>s.pg===AL.page);
+    const list=VIS().filter(s=>s.pg===AL.page);
     $('apage').innerHTML=`<div class="slots ${list.length>16?'dense dense2':list.length>14?'dense':''}" style="grid-template-columns:repeat(${list.length>16?10:list.length>14?8:Math.min(7,Math.max(4,list.length))},1fr)">${list.map(s=>{const got=owned(s.id);
       return `<div class="slot ${got?'got':''} ${AL.target===s.id?'target':''}" data-id="${s.id}"><div class="sh">${got?sart(s.id):s.secret?'<span class="sq">?</span>':`<div class="ghost" style="width:104px;height:104px;--sz:104px">${sart(s.id)}</div>`}</div><div class="sn">${got||!s.secret?s.n:'???'}</div></div>`;}).join('')}</div>`;
   }
@@ -1060,6 +1187,7 @@ function hubSVG(){
 <rect y="704" width="1180" height="116" fill="#8cce5e"/>
 <path d="M560 700 q-20 60 -60 120 h160 q-40 -60 -60 -120z" fill="#e9d3a8"/>
 <g class="room" data-room="jardin"><rect x="22" y="520" width="270" height="226" rx="20" fill="#9bd46c"/>${fence}<rect x="26" y="584" width="262" height="10" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/><rect x="40" y="620" width="234" height="40" rx="12" fill="#8a5a36"/>${carrots}${flowers}${gardenOpen()?'':`<rect x="22" y="520" width="270" height="226" fill="#fff" opacity=".4"/>${lockSVG(157,560)}`}<g class="${gardenOpen()?'open-pulse':''}">${banner(157,690,'Jardin',150)}</g><rect x="22" y="520" width="270" height="226" fill="transparent"/></g>
+<g class="room" data-room="fromage"><path d="M20 404 L152 300 L284 404z" fill="#8a3a2a" stroke="#5a2418" stroke-width="5" stroke-linejoin="round"/><rect x="34" y="398" width="236" height="114" fill="#c4553d" stroke="#7d3424" stroke-width="5"/><rect x="104" y="430" width="96" height="82" fill="#e8d3b0" stroke="#7d3424" stroke-width="4"/><path d="M104 430 L200 512 M200 430 L104 512" stroke="#7d3424" stroke-width="4"/><circle cx="152" cy="360" r="20" fill="#fff4cc" stroke="#7d3424" stroke-width="4"/><text x="152" y="368" text-anchor="middle" font-size="22">🧀</text>${fromOpen()?'':`<rect x="20" y="300" width="264" height="212" fill="#fff" opacity=".4"/>${lockSVG(152,440)}`}<g class="${fromOpen()?'open-pulse':''}">${banner(152,454,'Fromagerie',170)}</g><rect x="20" y="300" width="264" height="212" fill="transparent"/></g>
 <rect x="760" y="110" width="44" height="90" fill="#b9573f" stroke="#7d3424" stroke-width="4"/>
 <path d="M280 264 L590 96 L900 264z" fill="#e8674f" stroke="#a9412f" stroke-width="6" stroke-linejoin="round"/>
 <circle cx="590" cy="198" r="30" fill="#fff4cc" stroke="#a9412f" stroke-width="5"/><path d="M590 170 v56 M562 198 h56" stroke="#a9412f" stroke-width="4"/>
@@ -1078,14 +1206,14 @@ $('hubArt').innerHTML=hubSVG();$('hubW').innerHTML=wanjiSVG();$('hubK').innerHTM
 onTap($('hubArt'),e=>{
   if(lpFired){lpFired=false;return;}
   const g=e.target.closest('[data-room]');if(!g)return;const k=g.dataset.room;sfx.click();
-  if(k==='cuisine')enterKitchen();else if(k==='album')enterAlbum();else if(k==='jardin'&&gardenOpen())enterGarden();
+  if(k==='cuisine')enterKitchen();else if(k==='album')enterAlbum();else if(k==='jardin'&&gardenOpen())enterGarden();else if(k==='fromage'&&fromOpen())enterFromage();
   else{const names={labo:'Le laboratoire',corps:'Le corps humain',jardin:'Le jardin',garage:'Le garage'};
-    say(k==='jardin'?T(`Le jardin s'ouvrira avec 10 étoiles !`,`Le jardin s'ouvrira à ${JARDIN} étoiles. Tu en as ${P().stars}.`):`${names[k]} : bientôt !`);}
+    say(k==='jardin'?T(`Le jardin s'ouvrira avec 10 étoiles !`,`Le jardin s'ouvrira à ${JARDIN} étoiles. Tu en as ${P().stars}.`):k==='fromage'?T('La fromagerie s\'ouvrira avec 20 étoiles !',`La fromagerie s'ouvrira à ${FROMAGE} étoiles. Tu en as ${P().stars}.`):`${names[k]} : bientôt !`);}
 });
 /* appui long de 3 s sur le jardin : ouverture par un parent */
 let lpT=null,lpFired=false;
-$('hubArt').addEventListener('pointerdown',e=>{if(!e.target.closest('[data-room="jardin"]')||gardenOpen())return;lpFired=false;clearTimeout(lpT);
-  lpT=setTimeout(()=>{lpFired=true;G_().open=true;saveDB();sfx.holo();$('hubArt').innerHTML=hubSVG();say('Mode parent : le jardin est ouvert !','Mode parent : le jardin est ouvert !');},3000);});
+$('hubArt').addEventListener('pointerdown',e=>{const r=e.target.closest('[data-room="jardin"],[data-room="fromage"]');if(!r)return;const k=r.dataset.room;if(k==='jardin'?gardenOpen():fromOpen())return;lpFired=false;clearTimeout(lpT);
+  lpT=setTimeout(()=>{lpFired=true;if(k==='jardin')G_().open=true;else F_().open=true;saveDB();sfx.holo();$('hubArt').innerHTML=hubSVG();const t=k==='jardin'?'Mode parent : le jardin est ouvert !':'Mode parent : la fromagerie est ouverte !';say(t,t);},3000);});
 ['pointerup','pointercancel','pointerleave'].forEach(ev=>$('hubArt').addEventListener(ev,()=>clearTimeout(lpT)));
 onTap($('hubAv'),()=>{sfx.click();go('s-profile');});
 onTap($('voiceBtn'),()=>{DB.voice=!DB.voice;saveDB();$('voiceBtn').textContent=DB.voice?'🔊':'🔇';if(!DB.voice&&'speechSynthesis' in window)speechSynthesis.cancel();else say('Me revoilà !','Me revoilà !');});
@@ -1135,7 +1263,8 @@ function plaqueHTML(){return `<svg viewBox="0 0 294 176"><defs><radialGradient i
 $('kArt').innerHTML=kitchenSVG();$('oven').innerHTML=ovenSVG();$('plaque').innerHTML=plaqueHTML();
 $('kicuitK').innerHTML=kicuitSVG();$('wanji').innerHTML=wanjiSVG();
 $('wbowl').innerHTML='<svg viewBox="0 0 110 56" style="position:absolute;left:0;bottom:0;width:110px;height:56px"><path d="M6 20 h98 l-10 30 h-78z" fill="#ff7a59" stroke="#c9553a" stroke-width="3"/><ellipse cx="55" cy="20" rx="49" ry="10" fill="#c9553a"/><text x="55" y="44" text-anchor="middle" font-size="14" font-weight="900" fill="#fff" font-family="ui-rounded,sans-serif">WANJI</text></svg>';
-$('frIn').innerHTML=FRIDGE.map(k=>`<button class="ing" data-ing="${k}">${ingSVG(k)}<span>${ING[k].n}</span></button>`).join('');
+function renderFridge(){const list=FRIDGE.concat(S.player&&fromOpen()?(isA()?['pdt']:LIMITED):[]);$('frIn').classList.toggle('r4',list.length>9);$('frIn').style.gridTemplateRows=list.length>9?'repeat(4,1fr)':'';$('frIn').innerHTML=list.map(k=>`<button class="ing" data-ing="${k}">${ingSVG(k)}<span>${ING[k].n}</span></button>`).join('');}
+renderFridge();
 $('bowl').innerHTML=`<svg viewBox="0 0 250 156"><ellipse cx="125" cy="44" rx="118" ry="30" fill="#3b6fb0"/><ellipse cx="125" cy="48" rx="108" ry="24" fill="#2f5d99"/></svg><div id="bowlC"></div><svg viewBox="0 0 250 156" style="pointer-events:none"><path d="M7 44 q0 106 118 110 q118 -4 118 -110 q-30 30 -118 30 q-88 0 -118 -30z" fill="#6fb4ff" stroke="#3b6fb0" stroke-width="4"/><path d="M30 80 q20 40 60 52" stroke="#fff" stroke-width="7" fill="none" opacity=".5" stroke-linecap="round"/></svg>`;
 $('ceil').innerHTML=dishSVG('crepes');
 
@@ -1179,7 +1308,7 @@ function enterKitchen(){
   $('kBook').classList.toggle('hidden',isA());$('kGift').style.right=isA()?'20px':'120px';
   $('frMag').textContent=isA()?'N':'R';$('frMag').style.background=isA()?'#ff7fa8':'#4c8dff';
   if(['cooking','feeding','clean'].includes(S.k.phase)){updGift();return;}
-  updFridge();updVase();
+  renderFridge();updFridge();updVase();
   kReset();if(!S.k.order)newOrder();
   const R=RECIPES[S.k.order];
   say(T(`Wanji voudrait ${R.art} !`,`Commande du jour : ${R.n.toLowerCase()}. Trouve les ingrédients, l'ustensile et la bonne cuisson.`));
@@ -1193,6 +1322,7 @@ onTap($('frIn'),async e=>{
   const b=e.target.closest('[data-ing]');if(!b)return;const k=b.dataset.ing;
   if(!['prep','mixed'].includes(S.k.phase)){say(T("Attends, on n'a pas fini !","Termine d'abord ce plat."));return;}
   if(S.k.bowl.length>=6){say(T('Le saladier est plein ! Touche Mélanger.','Le saladier est plein : six ingrédients maximum.'));return;}
+  if(LIMITED.includes(k)&&limStock(k)-S.k.bowl.filter(x=>x===k).length<=0){say(k==='pdt'?T('Plus de pommes de terre ! Plante-en au jardin.','Plus de pommes de terre : plante-en au jardin.'):T('Il faut le fabriquer à la fromagerie !',`Plus de ${CH_N[k].toLowerCase()} : fabrique-le à la fromagerie.`));return;}
   S.k.bowl.push(k);if(S.k.mixed){S.k.mixed=false;S.k.phase='prep';}
   sfx.click();renderBtns();
   await fly(ingSVG(k),b,$('bowl'),{dur:380,size:62,arc:80,spin:200});
@@ -1332,7 +1462,7 @@ async function cook(){
   const app=S.k.app,heat=S.k.heat,time=S.k.time,list=[...S.k.bowl];
   const r=resolve(list,app),rid=r.rid,R=RECIPES[rid];
   let res=evaluate(r,app,heat,time,list);
-  const gg=G_();let fromG=false;['tomate','fraise','farine'].forEach(k=>{if(list.includes(k)&&gg.fridge[k]>0){gg.fridge[k]--;fromG=true;}});updFridge();
+  const gg=G_();let fromG=false;['tomate','fraise','farine'].forEach(k=>{if(list.includes(k)&&gg.fridge[k]>0){gg.fridge[k]--;fromG=true;}});LIMITED.forEach(k=>{if(list.includes(k)&&limStock(k)>0){limUse(k);if(k==='pdt')fromG=true;}});saveDB();updFridge();
   S.k.phase='cooking';renderBtns();
   const plaque=app!=='four';
   const el=plaque?$(app):$('oven'),disp=(plaque?$('plaque'):$('oven')).querySelector('.disp');
@@ -1390,7 +1520,7 @@ async function cook(){
   $('plate').innerHTML=plateSVG+`<div class="pdish st-${res.st}">${dishSVG(rid)}</div>`+(smoky?[0,1,2].map(i=>`<div class="wisp" style="left:${100+i*40}px;top:40px;--sc:${wc};animation-delay:${i*.5}s"></div>`).join(''):'');
   $('plate').classList.remove('hidden');
   const p=P();
-  if(res.st==='parfait'){burst($('plate'),['✨','⭐','✨'],10);p.found[rid]=true;S.k.result.fresh=!(owned('r_'+rid)||pending('r_'+rid));p.c.streak++;award('r_'+rid);if(fromG){award('assiette');gEv('dish');}if(p.c.streak>=5)award('chef5');if(REAL.every(k=>p.found[k]))award('carnet');}
+  if(res.st==='parfait'){burst($('plate'),['✨','⭐','✨'],10);p.found[rid]=true;S.k.result.fresh=!(owned('r_'+rid)||pending('r_'+rid));p.c.streak++;award('r_'+rid);if(fromG){award('assiette');gEv('dish');}if(p.c.streak>=5)award('chef5');if(REAL.filter(k=>!(isA()&&SID['r_'+k]&&SID['r_'+k].raf)).every(k=>p.found[k]))award('carnet');}
   else p.c.streak=0;
   saveDB();
   ({vert:'vert',carbonise:'carbo',attache:'attache',rate:'rate'})[res.st]&&award(({vert:'vert',carbonise:'carbo',attache:'attache',rate:'rate'})[res.st]);
@@ -1515,7 +1645,8 @@ const CROPS={
   tomate:{n:'Tomate',sp:.8,yield:2,fruit:true},
   ble:{n:'Blé',sp:1.1,yield:1},
   fleurs:{n:'Fleurs',sp:1.2,yield:1},
-  tournesol:{n:'Tournesol',sp:1,yield:2}
+  tournesol:{n:'Tournesol',sp:1,yield:2},
+  pdt:{n:'Pomme de terre',short:'Patates',sp:.9,yield:3}
 };
 const FCOL=['#ff5c8a','#ffd25a','#a77bf3','#ff7a59','#5bb8ff'];
 function gBlank(){return ({open:false,plots:Array.from({length:6},()=>({c:null})),stock:{carotte:0,radis:0,ble:0},fridge:{tomate:0,fraise:0,farine:0},flowers:[],bouquet:[],c:{harv:0,weeds:0},seen:{}});}
@@ -1529,7 +1660,7 @@ const FLOWER=c=>`<svg viewBox="0 0 64 64"><line x1="32" y1="36" x2="32" y2="62" 
 const FARINE='<svg viewBox="0 0 64 64">'+ING.farine.svg+'</svg>';
 const CAN='<svg viewBox="0 0 64 64"><path d="M12 28 h30 v24 q0 6 -6 6 h-18 q-6 0 -6 -6z" fill="#4caf9a" stroke="#2b7a66" stroke-width="3"/><path d="M42 34 l16 -14 l3 4 l-14 16z" fill="#4caf9a" stroke="#2b7a66" stroke-width="3"/><circle cx="60" cy="20" r="4" fill="#2b7a66"/><path d="M18 28 q9 -16 18 0" fill="none" stroke="#2b7a66" stroke-width="4"/></svg>';
 const SACK='<svg viewBox="0 0 64 64"><path d="M16 22 q16 -8 32 0 l4 32 q-20 8 -40 0z" fill="#a3d977" stroke="#5f8f3a" stroke-width="3"/><path d="M22 22 q10 -12 20 0" fill="#c8ef9e" stroke="#5f8f3a" stroke-width="3"/><circle cx="32" cy="40" r="7" fill="#fff"/><path d="M32 36 v8 M28 40 h8" stroke="#5f8f3a" stroke-width="3"/></svg>';
-const cropIcon=c=>c==='radis'?RADIS:c==='fleurs'?FLOWER('#ff5c8a'):`<span>${{carotte:'🥕',fraise:'🍓',tomate:'🍅',ble:'🌾',tournesol:'🌻'}[c]}</span>`;
+const cropIcon=c=>c==='radis'?RADIS:c==='fleurs'?FLOWER('#ff5c8a'):`<span>${{carotte:'🥕',fraise:'🍓',tomate:'🍅',ble:'🌾',tournesol:'🌻',pdt:'🥔'}[c]}</span>`;
 const HOSE='<svg viewBox="0 0 64 64"><circle cx="26" cy="34" r="18" fill="none" stroke="#3fbf55" stroke-width="8"/><path d="M40 22 l14 -10" stroke="#3fbf55" stroke-width="8" stroke-linecap="round"/><rect x="50" y="6" width="10" height="10" rx="3" fill="#ffc83a"/><g fill="#4ab3ff"><circle cx="60" cy="24" r="2.5"/><circle cx="56" cy="30" r="2.5"/></g></svg>';
 
 /* dessin d'une plante selon son stade */
@@ -1543,6 +1674,12 @@ function plantSVG(p){
     const col=st===4?'#e7b84a':'#7cc96a',ear=st===4?'#d9a12e':'#5fae4f';
     const n=st===2?4:6;for(let i=0;i<n;i++){const x=46+i*(48/(n-1)),h=st===2?40:78;s+=`<path d="M${x} 122 q${(i-n/2)*2} ${-h/2} ${(i-n/2)*3} ${-h}" stroke="${col}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
       if(st>=3)for(let k=0;k<4;k++)s+=leaf(x+(i-n/2)*3+(k%2?4:-4),122-h+8+k*7,k%2?30:-30,6,ear);}
+    return `<svg viewBox="0 0 140 150">${s}</svg>`;
+  }
+  if(c==='pdt'){
+    s+=[[-40,14],[-14,18],[14,18],[40,14]].map(([dx,l])=>`<line x1="70" y1="118" x2="${70+dx}" y2="${(st===2?92:74)}" stroke="${D}" stroke-width="3"/>`+leaf(70+dx,st===2?90:72,dx,l,G)).join('');
+    if(st>=3)s+=`<g fill="#fff">${st===3?'<circle cx="60" cy="60" r="4"/><circle cx="82" cy="58" r="4"/>':''}</g>`;
+    if(st===4)s+=`<g fill="#c9955a" stroke="#8a5a36" stroke-width="2"><ellipse cx="50" cy="128" rx="13" ry="9"/><ellipse cx="74" cy="132" rx="14" ry="10"/><ellipse cx="96" cy="127" rx="12" ry="8"/></g>`;
     return `<svg viewBox="0 0 140 150">${s}</svg>`;
   }
   if(c==='carotte'||c==='radis'){
@@ -1589,7 +1726,7 @@ ${Array.from({length:40},(_,i)=>`<rect x="${i*30}" y="236" width="18" height="64
 </svg>`}
 function moulinSVG(){return `<svg viewBox="0 0 160 190" style="width:100%;height:100%"><path d="M58 70 l-14 104 h72 l-14 -104z" fill="#fff1d8" stroke="#b98a5a" stroke-width="4"/><path d="M50 74 l30 -26 l30 26z" fill="#e8674f" stroke="#a9412f" stroke-width="4" stroke-linejoin="round"/><rect x="70" y="136" width="20" height="38" rx="9" fill="#8a5a36"/><g class="sails"><g fill="#fff" stroke="#8a96ad" stroke-width="3">${[0,90,180,270].map(a=>`<rect x="74" y="8" width="12" height="62" rx="3" transform="rotate(${a} 80 70)"/>`).join('')}</g><circle cx="80" cy="70" r="8" fill="#5d6c8c"/></g></svg><div class="mlab">Moulin</div>`}
 
-function TOOLS(){const u=gUnl();return [...Object.keys(CROPS).filter(c=>c!=='tournesol'||u.tournesol).map(c=>({id:'seed:'+c,n:CROPS[c].n,seed:c})),{id:'eau',n:'Arrosoir'},...(u.tuyau?[{id:'tuyau',n:'Tuyau'}]:[]),{id:'engrais',n:'Engrais'},{id:'main',n:'Main'},{id:'cocci',n:'Coccinelles'}];}
+function TOOLS(){const u=gUnl();return [...Object.keys(CROPS).filter(c=>(c!=='tournesol'||u.tournesol)&&(c!=='pdt'||fromOpen())).map(c=>({id:'seed:'+c,n:CROPS[c].short||CROPS[c].n,seed:c})),{id:'eau',n:'Arrosoir'},...(u.tuyau?[{id:'tuyau',n:'Tuyau'}]:[]),{id:'engrais',n:'Engrais'},{id:'main',n:'Main'},{id:'cocci',n:'Coccinelles'}];}
 const GS={tool:'main',timer:null,bee:null,beeWait:0,sig:[]};
 function toolIcon(t){if(t.seed)return cropIcon(t.seed);return {eau:CAN,tuyau:HOSE,engrais:SACK,main:'<span>✋</span>',cocci:'<span>🐞</span>'}[t.id];}
 function renderTools(){$('gTools').innerHTML=TOOLS().map(t=>`<button class="tool ${t.seed?'seed':''} ${GS.tool===t.id?'sel':''}" data-t="${t.id}"><div class="ti">${toolIcon(t)}</div>${t.n}</button>`).join('');}
@@ -1602,7 +1739,7 @@ function renderInv(){
     row(FLOWER(g.flowers[0]||'#ff5c8a'),g.flowers.length,g.flowers.length>=3?'Bouquet':'',g.flowers.length>=3?'go':'','fleurs')+
     row('<span>🍓</span>',g.fridge.fraise,'frigo','','fraise')+
     row('<span>🍅</span>',g.fridge.tomate,'frigo','','tomate')+
-    row(FARINE,g.fridge.farine,'frigo','','farine');
+    row(FARINE,g.fridge.farine,'frigo','','farine')+(fromOpen()?row('<span>🥔</span>',g.fridge.pdt||0,'frigo','','pdt'):'');
 }
 function plotHTML(i){
   const p=G_().plots[i],A=isA();
@@ -1803,7 +1940,7 @@ async function harvest(i,el){
   const g=G_(),p=g.plots[i],c=p.c,n=CROPS[c].yield;
   g.plots[i]={c:null};renderPlot(i,true);sfx.pop();
   await fly(c==='fleurs'?FLOWER(p.col):c==='tournesol'?'<span style="font-size:52px">🌻</span>':cropIcon(c).replace('<span>','<span style="font-size:52px">'),el,$('gInv'),{dur:600,size:64,arc:100});
-  if(c==='fleurs')g.flowers.push(p.col);else if(c==='tournesol')for(let k=0;k<n;k++)g.flowers.push('#ffc83a');else if(c==='fraise'||c==='tomate')g.fridge[c]+=n;else g.stock[c]+=n;
+  if(c==='fleurs')g.flowers.push(p.col);else if(c==='tournesol')for(let k=0;k<n;k++)g.flowers.push('#ffc83a');else if(c==='fraise'||c==='tomate'||c==='pdt')g.fridge[c]=(g.fridge[c]||0)+n;else g.stock[c]+=n;
   g.c.harv++;sfx.ding();award('j_'+c);if(g.c.harv>=30)award('recolte30');saveDB();renderInv();
   say(T(c==='fraise'||c==='tomate'?`Super récolte ! Elles vont dans le frigo de la cuisine.`:`Super récolte !`,c==='fraise'||c==='tomate'?`Récolte : ${n} ${CROPS[c].n.toLowerCase()}s, rangées dans le frigo.`:`Récolte : ${CROPS[c].n.toLowerCase()}.`));
   gEv('harvest',{c,n,nothirst:!p.everDry});
@@ -1862,9 +1999,451 @@ onTap($('gWanji'),()=>wanjiTap($('gWanji')));
 $('gArt').innerHTML=gardenSVG();$('moulin').innerHTML=moulinSVG();
 $('gScare').innerHTML='<svg viewBox="0 0 80 140" style="width:100%;height:100%"><rect x="37" y="40" width="6" height="100" fill="#8a5a36"/><rect x="6" y="56" width="68" height="6" rx="3" fill="#8a5a36"/><path d="M18 60 h44 l6 44 h-56z" fill="#4c8dff"/><path d="M30 60 l10 14 l10 -14" fill="#ff7a59"/><circle cx="40" cy="36" r="16" fill="#f3d9a4"/><path d="M20 26 h40 l-6 -18 h-28z" fill="#a77b4f"/><rect x="16" y="24" width="48" height="5" rx="2" fill="#7a5532"/><circle cx="34" cy="36" r="2.5" fill="#2b2350"/><circle cx="46" cy="36" r="2.5" fill="#2b2350"/><path d="M34 44 q6 5 12 0" stroke="#2b2350" stroke-width="2.5" fill="none"/><g stroke="#e8c36a" stroke-width="3"><path d="M18 104 l-4 10 M26 104 l-2 10 M62 104 l4 10 M54 104 l2 10 M8 58 l-6 -4 M72 58 l6 -4"/></g></svg>';
 $('gHive').innerHTML='<svg viewBox="0 0 100 110" style="width:100%;height:100%"><rect x="46" y="70" width="8" height="40" fill="#8a5a36"/><path d="M50 8 q34 0 38 30 q4 34 -38 36 q-42 -2 -38 -36 q4 -30 38 -30z" fill="#ffc83a" stroke="#c98a1a" stroke-width="4"/><path d="M16 30 h68 M13 44 h74 M16 58 h68" stroke="#c98a1a" stroke-width="4"/><ellipse cx="50" cy="62" rx="9" ry="6" fill="#5a3218"/></svg>';
-function updFridge(){const g=G_();['tomate','fraise','farine'].forEach(k=>{const b=document.querySelector(`#frIn [data-ing="${k}"]`);if(!b)return;let t=b.querySelector('.gb');const n=g.fridge[k];if(n){if(!t){t=document.createElement('span');t.className='gb';b.appendChild(t);}t.textContent='🌱'+n;}else if(t)t.remove();});}
+function updFridge(){const g=G_();LIMITED.forEach(k=>{const b=document.querySelector(`#frIn [data-ing="${k}"]`);if(!b)return;const n=limStock(k);b.classList.toggle('empty',!n);let t=b.querySelector('.gb');if(!t){t=document.createElement('span');t.className='gb';b.appendChild(t);}t.textContent=n;});['tomate','fraise','farine'].forEach(k=>{const b=document.querySelector(`#frIn [data-ing="${k}"]`);if(!b)return;let t=b.querySelector('.gb');const n=g.fridge[k];if(n){if(!t){t=document.createElement('span');t.className='gb';b.appendChild(t);}t.textContent='🌱'+n;}else if(t)t.remove();});}
 function updVase(){const b=G_().bouquet;$('kVase').classList.toggle('hidden',!b.length);if(b.length)$('kVase').innerHTML=vaseSVG(b,110,100);}
 
+/* ---------- FROMAGERIE ---------- */
+const FROMAGE=20;
+/* t = °C du lait, d = gouttes de présure, fl = flore, g = passages de harpe (null = pas de tranchage), cuit = caillé cuit,
+   m = moulage, sel, sg = geste signature, days = jours de cave, a = lait, reg = région */
+const CH={
+  blanc:{n:'Fromage blanc',a:'vache',reg:'partout',t:[20,30],d:[2,5],fl:'none',g:null,m:null,sel:false,sg:'egoutter',days:0,nana:1},
+  cancoillotte:{n:'Cancoillotte',a:'vache',reg:'fc',t:[28,36],d:[2,5],fl:'none',g:[7,12],m:null,sel:true,sg:'fondre',days:0,nana:1},
+  camembert:{n:'Camembert',a:'vache',reg:'normandie',t:[30,36],d:[3,6],fl:'blanche',g:[1,3],m:'louche',sel:true,sg:null,days:21,nana:1},
+  chevre:{n:'Bûche de chèvre',a:'chevre',reg:'centre',t:[18,26],d:[1,3],fl:'blanche',g:[1,3],m:null,sel:true,sg:'rouler',days:14},
+  reblochon:{n:'Reblochon',a:'vache',reg:'savoie',t:[32,36],d:[3,6],fl:'none',g:[4,6],m:'presse',sel:true,sg:'presser',days:21},
+  morbier:{n:'Morbier',a:'vache',reg:'fc',t:[30,34],d:[3,6],fl:'none',g:[4,6],m:'presse',sel:true,sg:'raie',days:60},
+  montdor:{n:"Mont d'Or",a:'vache',reg:'fc',t:[30,34],d:[3,6],fl:'rouge',g:[1,3],m:'louche',sel:true,sg:'sangle',days:21,smell:1},
+  munster:{n:'Munster',a:'vache',reg:'alsace',t:[32,36],d:[3,6],fl:'rouge',g:[1,3],m:'louche',sel:true,sg:'laver',days:30,smell:1},
+  emmental:{n:'Emmental',a:'vache',reg:'savoie',t:[30,34],d:[3,6],fl:'none',g:[7,12],cuit:1,m:'presse',sel:true,sg:null,days:60,chaud:1},
+  roquefort:{n:'Roquefort',a:'brebis',reg:'aveyron',t:[28,34],d:[3,6],fl:'bleue',g:[4,6],m:'louche',sel:true,sg:'piquer',days:90,bleu:1},
+  comte:{n:'Comté',a:'vache',reg:'fc',t:[30,34],d:[3,6],fl:'none',g:[7,12],cuit:1,m:'presse',sel:true,sg:null,days:120,frotte:1}
+};
+const CHORDER=['blanc','cancoillotte','camembert','chevre','reblochon','morbier','montdor','munster','emmental','roquefort','comte'];
+const REG={normandie:{n:'Normandie',x:118,y:62},centre:{n:'Centre',x:150,y:118},alsace:{n:'Alsace',x:262,y:76},fc:{n:'Franche-Comté',x:244,y:122},savoie:{n:'Savoie',x:248,y:176},aveyron:{n:'Aveyron',x:176,y:214}};
+const ANIM={vache:{n:'Marguerite',e:'🐄'},chevre:{n:'la chèvre',e:'🐐'},brebis:{n:'la brebis',e:'🐑'}};
+function fBlank(){return {open:false,milk:{vache:0,chevre:0,brebis:0},cave:[],stock:{},found:{},made:{},objDone:0,obj:null,seen:{},c:{traite:0}};}
+function F_(){const p=P();if(!p.f)p.f=fBlank();else if(!p.f._ok){p.f=Object.assign(fBlank(),p.f);p.f._ok=1;}return p.f;}
+function fromOpen(){return !!S.player&&(P().stars>=FROMAGE||F_().open);}
+const UNLOCKS_F=[{k:'chevre',at:2,n:'une chèvre'},{k:'brebis',at:4,n:'une brebis'}];
+function fUnl(){const d=S.player?(F_().objDone||0):0;return Object.fromEntries(UNLOCKS_F.map(u=>[u.k,d>=u.at]));}
+function chUnlocked(id){
+  if(isA())return !!CH[id].nana;
+  const i=CHORDER.indexOf(id),f=F_();
+  if(i>2&&!CHORDER.slice(0,i).some(k=>f.made[k]))return false; /* débloqué une fois le précédent fabriqué */
+  if(i>2&&!f.made[CHORDER[i-1]])return false;
+  return true;
+}
+const DAYMS=()=>isA()?15000:60000;
+
+/* dessins */
+function cheeseSVG(id){
+  const W={
+    blanc:'<path d="M14 40 h92 q-4 34 -46 36 q-42 -2 -46 -36z" fill="#fff" stroke="#c9d2e3" stroke-width="3"/><ellipse cx="60" cy="40" rx="46" ry="11" fill="#fffdf6" stroke="#c9d2e3" stroke-width="3"/><path d="M40 38 q10 -8 20 0 q10 6 18 -2" stroke="#efe6d4" stroke-width="4" fill="none"/>',
+    cancoillotte:'<rect x="34" y="24" width="52" height="56" rx="10" fill="#e8f0f8" stroke="#a7b4cc" stroke-width="3"/><rect x="38" y="40" width="44" height="36" rx="6" fill="#ffe27a"/><rect x="30" y="16" width="60" height="12" rx="4" fill="#4c8dff"/><ellipse cx="60" cy="40" rx="22" ry="4" fill="#fff3a8"/>',
+    camembert:'<ellipse cx="60" cy="58" rx="46" ry="16" fill="#f3ead6"/><rect x="14" y="40" width="92" height="18" fill="#f8f2e4"/><ellipse cx="60" cy="40" rx="46" ry="16" fill="#fffdf6" stroke="#e8dcc0" stroke-width="3"/><g fill="#efe5cc"><circle cx="44" cy="38" r="3"/><circle cx="70" cy="44" r="3"/><circle cx="62" cy="34" r="2.5"/></g>',
+    chevre:'<rect x="16" y="34" width="88" height="30" rx="15" fill="#fbfbf6" stroke="#d9d6c8" stroke-width="3"/><ellipse cx="100" cy="49" rx="9" ry="15" fill="#fffef8" stroke="#d9d6c8" stroke-width="3"/><g fill="#e6e3d4"><circle cx="40" cy="44" r="3"/><circle cx="62" cy="52" r="3"/><circle cx="80" cy="42" r="3"/></g>',
+    reblochon:'<ellipse cx="60" cy="58" rx="44" ry="15" fill="#e0a85a"/><rect x="16" y="42" width="88" height="16" fill="#e8b46a"/><ellipse cx="60" cy="42" rx="44" ry="15" fill="#f2c27a" stroke="#c98a45" stroke-width="3"/><ellipse cx="60" cy="42" rx="14" ry="5" fill="#7ab36a"/>',
+    morbier:'<path d="M14 66 L60 24 L106 66z" fill="#f6dc8e" stroke="#c9a24a" stroke-width="3" stroke-linejoin="round"/><path d="M28 54 L92 54" stroke="#2b2b33" stroke-width="4"/><path d="M14 66 h92 v8 h-92z" fill="#c98a45"/>',
+    montdor:'<ellipse cx="60" cy="60" rx="48" ry="16" fill="#a77b4f"/><rect x="12" y="40" width="96" height="20" fill="#b98a5a"/><path d="M12 46 h96 M12 52 h96" stroke="#8a5a36" stroke-width="2"/><ellipse cx="60" cy="40" rx="44" ry="14" fill="#f6d79a" stroke="#d9a75a" stroke-width="3"/><path d="M34 40 q12 -6 24 0 q12 6 24 0" stroke="#e8be6a" stroke-width="3" fill="none"/>',
+    munster:'<ellipse cx="60" cy="58" rx="44" ry="15" fill="#e4732e"/><rect x="16" y="42" width="88" height="16" fill="#ef8a3e"/><ellipse cx="60" cy="42" rx="44" ry="15" fill="#f59a4a" stroke="#c95a1e" stroke-width="3"/><g fill="#d96a28"><circle cx="46" cy="40" r="3"/><circle cx="72" cy="44" r="3"/></g>',
+    emmental:'<path d="M14 66 L60 22 L106 66z" fill="#ffe27a" stroke="#d9b23c" stroke-width="3" stroke-linejoin="round"/><g fill="#f2c94a"><circle cx="56" cy="44" r="7"/><circle cx="78" cy="56" r="6"/><circle cx="40" cy="58" r="5"/><circle cx="64" cy="32" r="3"/></g><path d="M14 66 h92 v6 h-92z" fill="#e0b84a"/>',
+    roquefort:'<path d="M14 66 L60 24 L106 66z" fill="#f4f1e6" stroke="#cfcab6" stroke-width="3" stroke-linejoin="round"/><g stroke="#4f7fa8" stroke-width="3" fill="none" stroke-linecap="round"><path d="M40 56 q6 -8 12 -2"/><path d="M60 40 q6 6 12 0"/><path d="M70 60 q6 -6 12 2"/><path d="M52 62 l4 -4"/></g><g fill="#5f8fb8"><circle cx="48" cy="48" r="2.5"/><circle cx="78" cy="50" r="2.5"/><circle cx="60" cy="54" r="2.5"/></g>',
+    comte:'<ellipse cx="54" cy="58" rx="44" ry="15" fill="#b9823f"/><rect x="10" y="40" width="88" height="18" fill="#c98f48"/><ellipse cx="54" cy="40" rx="44" ry="15" fill="#d9a35a" stroke="#a8703f" stroke-width="3"/><path d="M70 64 L110 46 L110 66 L74 76z" fill="#ffdc78" stroke="#d9a35a" stroke-width="2"/><path d="M70 64 L110 46 L96 40z" fill="#ffe89a"/>'
+  };
+  return `<svg viewBox="0 0 120 90">${W[id]}</svg>`;
+}
+function cowSVG(){return `<svg viewBox="0 0 280 230" style="width:100%;height:100%"><ellipse cx="140" cy="222" rx="110" ry="8" fill="#000" opacity=".12"/>
+<g fill="#fbfaf6" stroke="#5b4638" stroke-width="3"><rect x="70" y="150" width="22" height="70" rx="10"/><rect x="186" y="150" width="22" height="70" rx="10"/><rect x="100" y="156" width="20" height="62" rx="9"/><rect x="160" y="156" width="20" height="62" rx="9"/></g>
+<path d="M232 92 q28 10 22 60" stroke="#5b4638" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M252 148 q8 6 4 16 q-10 -2 -8 -14z" fill="#b5532f"/>
+<ellipse cx="146" cy="116" rx="96" ry="58" fill="#fbfaf6" stroke="#5b4638" stroke-width="3"/>
+<g fill="#b5532f"><path d="M110 64 q40 -10 70 8 q-6 34 -44 36 q-30 -6 -26 -44z"/><path d="M196 110 q30 4 40 24 q-14 26 -44 18 q-10 -24 4 -42z"/><path d="M76 120 q20 -4 28 14 q-8 20 -28 18z"/></g>
+<g class="udder"><path d="M118 168 q22 22 44 0z" fill="#ffb3c0" stroke="#d9789a" stroke-width="3"/><rect x="122" y="178" width="8" height="16" rx="4" fill="#ff9fb3"/><rect x="150" y="178" width="8" height="16" rx="4" fill="#ff9fb3"/></g>
+<g><path d="M36 50 l-12 -16 l20 6z M76 46 l14 -14 l-4 20z" fill="#f2e6c8" stroke="#a88a5a" stroke-width="2"/>
+<path d="M24 66 l-16 -6 l12 18z M94 62 l16 -8 l-8 18z" fill="#b5532f"/>
+<ellipse cx="58" cy="80" rx="40" ry="44" fill="#fbfaf6" stroke="#5b4638" stroke-width="3"/>
+<ellipse cx="58" cy="110" rx="30" ry="20" fill="#ffc2c8" stroke="#d9789a" stroke-width="3"/><ellipse cx="48" cy="110" rx="4" ry="6" fill="#a8506a"/><ellipse cx="68" cy="110" rx="4" ry="6" fill="#a8506a"/>
+<circle cx="42" cy="74" r="6" fill="#2a1f1a"/><circle cx="74" cy="74" r="6" fill="#2a1f1a"/><circle cx="44" cy="72" r="2" fill="#fff"/><circle cx="76" cy="72" r="2" fill="#fff"/>
+<path d="M36 52 q22 -14 44 0 q-10 10 -22 6 q-12 4 -22 -6z" fill="#b5532f"/></g>
+<path d="M40 130 q18 12 36 0" stroke="#5b4638" stroke-width="5" fill="none"/><path d="M50 136 h16 l-2 16 h-12z" fill="#ffc83a" stroke="#c98a1a" stroke-width="2"/></svg>`}
+function seauSVG(lv){const h=Math.round(46*lv);return `<svg viewBox="0 0 90 80" style="width:100%;height:100%"><path d="M10 14 h70 l-8 60 h-54z" fill="#d5dceb" stroke="#8a96ad" stroke-width="3"/><clipPath id="sq"><path d="M12 16 h66 l-8 56 h-50z"/></clipPath><rect x="0" y="${72-h}" width="90" height="${h}" fill="#fff" clip-path="url(#sq)"/><ellipse cx="45" cy="14" rx="35" ry="6" fill="none" stroke="#8a96ad" stroke-width="3"/><path d="M10 14 q35 -30 70 0" fill="none" stroke="#8a96ad" stroke-width="3"/></svg>`}
+function cuveSVG(state,col){
+  /* state : lait / caille / grains */
+  const top=state==='lait'?'#fffdf6':state==='chaud'?'#fff3d6':'#f5ecd2';
+  return `<svg viewBox="0 0 360 230" style="width:100%;height:100%"><path d="M30 60 h300 l-20 150 q-130 24 -260 0z" fill="#e8b46a" stroke="#a8703f" stroke-width="5"/><path d="M40 92 h280 M44 130 h272 M48 168 h264" stroke="#c98d5a" stroke-width="3"/><ellipse cx="180" cy="60" rx="150" ry="24" fill="#c98d5a" stroke="#a8703f" stroke-width="5"/><ellipse cx="180" cy="62" rx="136" ry="18" fill="${col||top}"/>${state==='caille'?'<path d="M90 58 q40 -6 80 2 q50 6 90 -4" stroke="#e8dcc0" stroke-width="4" fill="none"/>':''}</svg>`;
+}
+
+/* état de la fabrication en cours */
+const FS={ch:null,steps:[],i:0,q:{},cave:null};
+function fSteps(id){const c=CH[id];return ['chauffe','presure','caille',...(c.g?['tranche']:[]),...(c.cuit?['cuisson']:[]),...(c.m?['moule']:[]),...(c.sel?['sel']:[]),...(c.sg?['sign']:[]),c.days?'cave':'degust'];}
+const STEPN={chauffe:'Chauffer',presure:'Présure',caille:'Caillé',tranche:'Trancher',cuisson:'Cuire',moule:'Mouler',sel:'Saler',sign:'Geste',cave:'Cave',degust:'Goûter'};
+
+function enterFromage(){
+  go('s-fromage');F_();
+  $('fCow').innerHTML=cowSVG();renderAnimals();renderMilk();fObjRender();updGift();
+  if(!F_().obj)fNewObj();
+  FS.ch=null;renderChooser();
+  clearInterval(FS.timer);FS.timer=setInterval(fTick,1000);
+  if(!fSeen('intro'))say(T('La fromagerie ! Touche Marguerite pour avoir du lait.',"La fromagerie ! Marguerite est une Montbéliarde, la vache du comté. Trais-la, puis choisis un fromage."));
+  else{const o=F_().obj;if(o)say(T(o.x+' !','Objectif : '+o.x+'.'));}
+}
+function fSeen(k){const f=F_();if(f.seen[k])return true;f.seen[k]=1;saveDB();return false;}
+function renderMilk(){const m=F_().milk;$('fMilk').innerHTML=`<div class="mb">${seauSVG(Math.min(1,FS.traite?FS.traite.lv:0))}</div><div class="mc">🐄 <b>${m.vache}</b>${fUnl().chevre?` 🐐 <b>${m.chevre}</b>`:''}${fUnl().brebis?` 🐑 <b>${m.brebis}</b>`:''}<div class="ml">seaux de lait</div></div>`;}
+function renderAnimals(){const u=fUnl();$('fGoat').classList.toggle('hidden',!u.chevre);$('fSheep').classList.toggle('hidden',!u.brebis);}
+
+/* traite */
+function startTraite(a){
+  if(FS.ch){say(T("Finis d'abord ton fromage !",'Termine la fabrication en cours.'));return;}
+  FS.traite={a,lv:0,last:null};renderMilk();
+  $('fWork').innerHTML=`<div class="fstep"><h3>${ANIM[a].e} Traite de ${ANIM[a].n}</h3><div class="teats"><button class="teat" data-s="L">👈 Gauche</button><div class="tseau" id="tSeau">${seauSVG(0)}</div><button class="teat" data-s="R">Droite 👉</button></div><div class="fhint2">${T('Touche gauche, puis droite, puis gauche…','Alterne gauche et droite pour faire couler le lait.')}</div></div>`;
+  say(T('Touche à gauche, puis à droite !','Alterne gauche, droite, gauche…'));
+}
+onTap($('fCow'),()=>startTraite('vache'));
+onTap($('fGoat'),()=>startTraite('chevre'));
+onTap($('fSheep'),()=>startTraite('brebis'));
+
+/* choix du fromage */
+function renderChooserSafe(){if(!FS.ch&&!FS.traite&&S.screen==='s-fromage')renderChooser();}
+function renderChooser(){
+  FS.ch=null;FS.traite=null;renderMilk();renderBar();
+  const f=F_(),list=CHORDER.filter(id=>isA()?CH[id].nana:true);
+  $('fWork').innerHTML=`<div class="fgrid">${list.map(id=>{const c=CH[id],ok=chUnlocked(id),need=c.a!=='vache'&&!fUnl()[c.a];
+    return `<button class="fcard ${ok&&!need?'':'lock'}" data-ch="${id}"><div class="fc">${cheeseSVG(id)}</div><div class="fn">${c.n}</div><div class="fr">${ANIM[c.a].e} ${c.days?(isA()?'':c.days+' j de cave'):'sans cave'}</div>${f.found[id]?'<span class="fok">⭐</span>':''}</button>`;}).join('')}</div>`;
+}
+onTap($('fWork'),e=>{
+  const card=e.target.closest('.fcard');
+  if(card&&!FS.ch){
+    const id=card.dataset.ch,c=CH[id],f=F_();
+    if(c.a!=='vache'&&!fUnl()[c.a]){say(`Il faut ${ANIM[c.a].n} : réussis des objectifs pour l'avoir !`);return;}
+    if(!chUnlocked(id)){say(T('Pas encore !',`Fabrique d'abord : ${CH[CHORDER[CHORDER.indexOf(id)-1]].n.toLowerCase()}.`));return;}
+    if(f.milk[c.a]<1){say(T(`Il faut un seau de lait ! Touche ${c.a==='vache'?'Marguerite':ANIM[c.a].n}.`,`Il faut un seau de lait de ${c.a}. Trais ${ANIM[c.a].n} d'abord.`));return;}
+    f.milk[c.a]--;saveDB();sfx.pop();
+    Object.assign(FS,{ch:id,steps:fSteps(id),i:0,q:{},temp:null,drops:0,flore:isA()?c.fl:null,passes:0,ct:32,meter:0});
+    renderMilk();runStep();return;
+  }
+  const t=e.target.closest('.teat');
+  if(t&&FS.traite){
+    const T_=FS.traite,s=t.dataset.s,fill=isA()?.125:.1;
+    if(!isA()&&T_.last===s){say('Alterne : gauche, puis droite !',false);return;}
+    T_.last=s;T_.lv=Math.min(1,T_.lv+fill);sfx.squish();burst(t,['🥛'],1,40);
+    $('tSeau').innerHTML=seauSVG(T_.lv);
+    if(T_.lv>=1){const f=F_();f.milk[T_.a]++;f.c.traite++;award('f_traite');fEv('traite',{a:T_.a});saveDB();sfx.ding();
+      say(T('Un seau de lait ! Choisis un fromage.',`Un seau de lait de ${T_.a} (${f.milk[T_.a]}). Choisis un fromage.`));
+      FS.traite=null;setTimeout(renderChooserSafe,900);}
+  }
+});
+
+/* barre des étapes */
+function renderBar(){
+  $('fBar').innerHTML=(FS.ch?`<div class="chips">${FS.steps.map((s,k)=>`<span class="chip ${k<FS.i?'done':k===FS.i?'on':''}">${STEPN[s]}</span>`).join('')}</div>`:'<div class="chips"><span class="chip on">Choisis un fromage</span></div>')+
+    `<button class="btn b-blue fbtn2" id="fCaveBtn">🕯️ Cave${F_().cave.length?` (${F_().cave.length})`:''}</button><button class="btn fbtn2" id="fPlatBtn">🧀 Plateau</button>`;
+}
+function fNext(){FS.i++;runStep();}
+function chooseRow(opts,key,cb){return `<div class="frow">${opts.map(([l,v,ico])=>`<button class="fopt" data-k="${key}" data-v="${v}">${ico||''}<span>${l}</span></button>`).join('')}</div>`;}
+
+function runStep(){
+  renderBar();const id=FS.ch,c=CH[id],s=FS.steps[FS.i],A=isA();
+  const W=$('fWork');
+  if(s==='chauffe'){
+    W.innerHTML=`<div class="fstep"><h3>🔥 Chauffe le lait</h3><div class="cuve" id="fCuve">${cuveSVG('lait')}</div>${A?chooseRow([['Froid',12,'❄️'],['Tiède',32,'🌤️'],['Chaud',55,'🔥']],'temp'):`<div class="rrow"><button class="step" data-fs="-1">−</button><div class="rval" id="fT">${FS.temp||20} °C</div><button class="step" data-fs="1">+</button></div><input type="range" id="fTr" min="5" max="70" value="${FS.temp||20}"><div class="pfoot"><button class="btn b-orange" id="fGo">🔥 Chauffer</button></div>`}</div>`;
+    if(!A){FS.temp=FS.temp||20;}
+    say(T('Le lait doit être tiède, ni froid ni chaud !',`Chauffe le lait. ${c.n} : autour de ${Math.round((c.t[0]+c.t[1])/2)} °C.`));
+    return;
+  }
+  if(s==='presure'){
+    W.innerHTML=`<div class="fstep"><h3>💧 Présure et ferments</h3><div class="cuve small">${cuveSVG('chaud')}</div><div class="drops"><button class="dropper" id="fDrop">🧪 Ajouter une goutte</button><div class="dc" id="fDc">${FS.drops} goutte${FS.drops>1?'s':''}</div></div>${A?'':`<div class="frow sm">${[['Aucune','none','⚪'],['Blanche','blanche','🤍'],['Bleue','bleue','💙'],['Rouge','rouge','🧡']].map(([l,v,i])=>`<button class="fopt ${FS.flore===v?'sel':''}" data-k="flore" data-v="${v}">${i}<span>${l}</span></button>`).join('')}</div>`}<div class="pfoot"><button class="btn b-orange" id="fGo" ${A?'disabled':''}>Suivant</button></div></div>`;
+    say(T('Ajoute 3 gouttes de présure !',`Présure : ${c.d[0]} à ${c.d[1]} gouttes. Choisis aussi la flore.`));
+    return;
+  }
+  if(s==='caille'){
+    W.innerHTML=`<div class="fstep"><h3>⏳ Le lait caille…</h3><div class="cuve" id="fCuve">${cuveSVG('chaud')}</div><div class="fhint2" id="fCh">Attends…</div></div>`;
+    say(T('On attend que le lait devienne du caillé…','Caillage en cours…'),false);
+    setTimeout(()=>{
+      if(FS.steps[FS.i]!=='caille')return;
+      const okT=FS.temp>=c.t[0]-3&&FS.temp<=c.t[1]+3,okD=FS.drops>=c.d[0];
+      if(!okT||!okD){fFail(!okT?(FS.temp>c.t[1]?'Lait trop chaud : les ferments sont morts, rien ne caille !':'Lait trop froid : rien ne caille !'):'Pas assez de présure : rien ne caille !');return;}
+      $('fCuve').innerHTML=cuveSVG('caille');$('fCh').textContent=T('Touche le caillé avec ton doigt !','Teste le caillé du doigt : il doit se casser net.');
+      FS.ready=true;say(T('Touche le caillé avec ton doigt !','Teste le caillé du doigt.'));
+    },3200);
+    FS.ready=false;return;
+  }
+  if(s==='tranche'){
+    FS.passes=0;
+    W.innerHTML=`<div class="fstep"><h3>🎼 Tranche le caillé</h3><div class="harp" id="fHarp"><div class="hl" id="fHl"></div></div><div class="dc" id="fPc">0 passage</div>${A?'':'<div class="pfoot"><button class="btn b-orange" id="fGo">Suivant</button></div>'}</div>`;
+    say(T('Glisse ton doigt sur le caillé pour le couper !',`Tranche à la harpe : ${c.g[0]>=7?'grains fins comme du riz':c.g[0]>=4?'grains moyens':'gros morceaux'}.`));
+    return;
+  }
+  if(s==='cuisson'){
+    FS.ct=32;
+    W.innerHTML=`<div class="fstep"><h3>🥄 Cuis le caillé en remuant</h3><div class="cuve stir" id="fStir">${cuveSVG('caille','#f8e7b6')}</div><div class="rval" id="fCt">32 °C</div><div class="pfoot"><button class="btn b-orange" id="fGo">✋ Stop</button></div></div>`;
+    say(T('Remue !','Remue pour chauffer le caillé, et arrête vers 54 °C.'));
+    return;
+  }
+  if(s==='moule'){
+    FS.meter=0;FS.louche=0;
+    W.innerHTML=c.m==='louche'?`<div class="fstep"><h3>🥄 Moule à la louche</h3><div class="moulds" id="fMould">${[0,1,2,3,4].map(k=>`<div class="mould"><i style="height:0%"></i></div>`).join('')}</div><button class="btn b-blue" id="fLouche">🥄 Une louche</button>${A?'':'<div class="pfoot"><button class="btn b-orange" id="fGo">Suivant</button></div>'}</div>`
+      :`<div class="fstep"><h3>🗜️ Presse le fromage</h3><div class="press" id="fPress">${cheeseSVG(id)}</div><div class="meter2"><i id="fPm"></i></div><button class="btn b-blue" id="fLever">⬇️ Appuie sur le levier</button></div>`;
+    say(c.m==='louche'?T('5 louches, une par moule !','Une louche par moule : 5 louches.'):T('Appuie sur le levier !','Presse pour chasser le petit-lait.'));
+    return;
+  }
+  if(s==='sel'){
+    FS.meter=0;
+    W.innerHTML=`<div class="fstep"><h3>🧂 Sale le fromage</h3><div class="rub" id="fRub">${cheeseSVG(id)}</div><div class="meter2"><i id="fRm"></i></div><div class="fhint2">${T('Frotte avec ton doigt !','Frotte le sel sur toute la croûte.')}</div>${A?'':'<div class="pfoot"><button class="btn b-grey" id="fNoSel">Sans sel</button></div>'}</div>`;
+    say(T('Frotte le sel avec ton doigt !','Frotte le sel.'));
+    return;
+  }
+  if(s==='sign')return runSign();
+  if(s==='cave'){
+    if(F_().cave.length>=6){say(T('La cave est pleine ! Sors un fromage.','Cave pleine (6 places) : sors un fromage prêt.'));openCave();return;}
+    W.innerHTML=`<div class="fstep"><h3>🕯️ Direction la cave</h3><div class="fc big">${cheeseSVG(id)}</div>${A?'<div class="pfoot"><button class="btn b-orange" id="fCaveGo" data-cv="froide">🕯️ Dans la cave</button></div>':'<div class="frow">'+[['Cave froide (12 °C)','froide','❄️'],['Cave chaude (22 °C)','chaude','🌡️']].map(([l,v,i])=>`<button class="fopt" id="fCaveGo" data-cv="${v}">${i}<span>${l}</span></button>`).join('')+'</div>'}</div>`;
+    say(T(`Il doit dormir en cave !`,`${c.n} : ${c.days} jours de cave. Choisis la cave.`));
+    return;
+  }
+  if(s==='degust')return fDegust({ch:id,q:FS.q});
+}
+function runSign(){
+  const id=FS.ch,c=CH[id],A=isA(),W=$('fWork');FS.meter=0;FS.taps=0;
+  const T2={egoutter:['💧 Égoutte dans la faisselle','Touche la faisselle pour faire couler le petit-lait !','Égoutte : touche 3 fois.'],
+    fondre:['🍲 Fais fondre en remuant','Remue avec ton doigt !','Fais fondre le metton à feu doux en remuant, sinon ça attache.'],
+    rouler:['🪵 Roule la bûche','Fais rouler la bûche avec ton doigt !','Roule la bûche en glissant le doigt.'],
+    presser:['✋ Presse à la main','Appuie plein de fois !','Presse à la main pour bien égoutter.'],
+    raie:['⚫ Trace la raie noire','Glisse ton doigt au milieu du fromage !','Trace la raie de charbon végétal bien au milieu.'],
+    sangle:["🌲 Cercle d'épicéa",'Touche pour enrouler la sangle !',"Entoure le Mont d'Or de sa sangle d'épicéa."],
+    laver:['🧽 Lave la croûte','Frotte avec l\'éponge !','Lave la croûte à la saumure : elle deviendra orange.'],
+    piquer:['🪡 Pique le fromage','Touche plein de fois pour piquer !',"Pique à l'aiguille pour que l'air fasse pousser le bleu."]}[c.sg];
+  W.innerHTML=`<div class="fstep"><h3>${T2[0]}</h3><div class="sign ${c.sg}" id="fSign">${c.sg==='fondre'?cuveSVG('caille','#ffe27a'):c.sg==='egoutter'?'<div class="faiss">🫙</div>':cheeseSVG(id)}${c.sg==='raie'?'<div class="midline"></div>':''}</div><div class="meter2"><i id="fSm"></i></div>${A||c.sg==='raie'?'':'<div class="pfoot"><button class="btn b-orange" id="fGo">Suivant</button></div>'}</div>`;
+  say(T(T2[1],T2[2]));
+  if(c.sg==='fondre'){FS.fondreEnd=Date.now()+(A?60000:7000);}
+}
+function meterSet(id,v){const m=$(id);if(m)m.style.width=Math.min(100,v*100)+'%';}
+
+/* gestes : boutons et doigts dans la zone de travail */
+let FD2=null;
+$('fWork').addEventListener('pointerdown',e=>{
+  const id=FS.ch;if(!id)return;const s=FS.steps[FS.i],c=CH[id],A=isA(),p=stagePt(e);
+  const b=e.target.closest('button');
+  if(b){
+    if(b.dataset.k==='temp'){FS.temp=+b.dataset.v;sfx.pop();doChauffe();return;}
+    if(b.dataset.fs){FS.temp=Math.max(5,Math.min(70,FS.temp+ +b.dataset.fs));$('fT').textContent=FS.temp+' °C';$('fTr').value=FS.temp;sfx.click();return;}
+    if(b.id==='fGo'&&s==='chauffe'){doChauffe();return;}
+    if(b.id==='fDrop'){FS.drops++;sfx.pop();$('fDc').textContent=`${FS.drops} goutte${FS.drops>1?'s':''}`;burst(b,['💧'],1,30);if(A&&FS.drops>=3){$('fGo').disabled=false;setTimeout(()=>{if(FS.steps[FS.i]==='presure')fNext();},500);}return;}
+    if(b.dataset.k==='flore'){FS.flore=b.dataset.v;b.parentElement.querySelectorAll('.fopt').forEach(x=>x.classList.toggle('sel',x===b));sfx.click();return;}
+    if(b.id==='fGo'&&s==='presure'){if(!FS.flore){say('Choisis une flore (ou aucune).',false);return;}
+      if(FS.drops>c.d[1]+3)FS.q.amer=1;if(FS.flore!==c.fl)FS.q.flore=1;fNext();return;}
+    if(b.id==='fGo'&&s==='tranche'){if(FS.passes<c.g[0])FS.q.grain=c.g[0]>=7?'gros':'gros';else if(FS.passes>c.g[1]+2)FS.q.grain='fin';fNext();return;}
+    if(b.id==='fGo'&&s==='cuisson'){if(FS.ct>60)FS.q.cuit='brule';else if(FS.ct<50)FS.q.cuit='mou';sfx.click();fNext();return;}
+    if(b.id==='fLouche'){FS.louche++;sfx.splash();const ms=document.querySelectorAll('#fMould .mould i');const k=(FS.louche-1)%5;if(ms[k])ms[k].style.height=Math.min(100,(Math.floor((FS.louche-1)/5)+1)*100)+'%';if(FS.louche>5)burst(b,['💦'],2,40);
+      if(A&&FS.louche>=5)setTimeout(()=>{if(FS.steps[FS.i]==='moule')fNext();},600);return;}
+    if(b.id==='fGo'&&s==='moule'){if(FS.louche<4||FS.louche>6)FS.q.forme=1;fNext();return;}
+    if(b.id==='fLever'){FS.meter+=A?.25:.15;sfx.click();meterSet('fPm',FS.meter);$('fPress').animate([{transform:'scaleY(1)'},{transform:'scaleY(.85)'},{transform:'scaleY(1)'}],{duration:250});
+      if(FS.meter>=1)setTimeout(()=>{if(FS.steps[FS.i]==='moule')fNext();},400);return;}
+    if(b.id==='fNoSel'){FS.q.nosel=1;sfx.click();fNext();return;}
+    if(b.id==='fGo'&&s==='sign'){if(FS.meter<1){if(c.sg==='piquer')FS.q.blanc=1;else if(c.sg==='fondre')FS.q.attache=1;else FS.q.sign=1;}fNext();return;}
+    if(b.dataset.cv){toCave(b.dataset.cv);return;}
+    return;
+  }
+  FD2={x:p.x,y:p.y,lx:p.x,ly:p.y,s};
+  if(s==='caille'&&FS.ready&&e.target.closest('#fCuve')){FS.ready=false;sfx.squish();burst($('fCuve'),['✨'],4,80);$('fCh').textContent='Le caillé se casse net !';setTimeout(fNext,700);FD2=null;return;}
+  if(s==='sign'&&['egoutter','presser','sangle','piquer'].includes(c.sg)&&e.target.closest('#fSign')){
+    FS.taps++;const need={egoutter:3,presser:A?4:8,sangle:A?4:6,piquer:A?6:10}[c.sg];FS.meter=FS.taps/need;meterSet('fSm',FS.meter);
+    sfx[c.sg==='piquer'?'click':'squish']();burst($('fSign'),[{egoutter:'💧',presser:'✋',sangle:'🌲',piquer:'📍'}[c.sg]],1,60);
+    if(FS.meter>=1&&(A||c.sg==='egoutter'))setTimeout(()=>{if(FS.steps[FS.i]==='sign')fNext();},500);
+    FD2=null;
+  }
+});
+$('fWork').addEventListener('pointermove',e=>{
+  if(!FD2||!FS.ch)return;const p=stagePt(e),d=Math.hypot(p.x-FD2.lx,p.y-FD2.ly);FD2.lx=p.x;FD2.ly=p.y;const s=FS.steps[FS.i],c=CH[FS.ch],A=isA();
+  if(s==='cuisson'){FS.ct=Math.min(75,FS.ct+d/(A?20:45));$('fCt').textContent=Math.round(FS.ct)+' °C';$('fCt').style.color=FS.ct>60?'#e23a2e':FS.ct>=50?'#2b8c6f':'';}
+  if(s==='sel'){FS.meter+=d/(A?500:900);meterSet('fRm',FS.meter);if(FS.meter>=1&&!FS.selDone){FS.selDone=1;sfx.ding();setTimeout(()=>{FS.selDone=0;if(FS.steps[FS.i]==='sel')fNext();},400);}}
+  if(s==='sign'&&['fondre','rouler','laver'].includes(c.sg)){FS.meter+=d/(A?600:1300);meterSet('fSm',FS.meter);
+    if(c.sg==='fondre'&&Date.now()>FS.fondreEnd&&FS.meter<1&&!A){FS.q.attache=1;}
+    if(FS.meter>=1&&A&&!FS.sgDone){FS.sgDone=1;setTimeout(()=>{FS.sgDone=0;if(FS.steps[FS.i]==='sign')fNext();},400);}}
+});
+$('fWork').addEventListener('pointerup',e=>{
+  if(!FD2||!FS.ch){FD2=null;return;}const p=stagePt(e),s=FS.steps[FS.i],c=CH[FS.ch],A=isA(),dx=Math.abs(p.x-FD2.x),dy=Math.abs(p.y-FD2.y);
+  if(s==='tranche'&&(dx>80||dy>80)){
+    FS.passes++;sfx.flip();$('fPc').textContent=`${FS.passes} passage${FS.passes>1?'s':''}`;
+    const h=$('fHarp');h.insertAdjacentHTML('beforeend',`<i class="cut ${dx>dy?'h':'v'}" style="${dx>dy?`top:${10+Math.random()*80}%`:`left:${10+Math.random()*80}%`}"></i>`);
+    if(A&&FS.passes>=Math.min(3,c.g[0]))setTimeout(()=>{if(FS.steps[FS.i]==='tranche')fNext();},600);
+  }
+  if(s==='sign'&&c.sg==='raie'&&dx>120){
+    const r=$('fSign').getBoundingClientRect(),st=$('stage').getBoundingClientRect(),mid=(r.top-st.top)/SCALE+r.height/SCALE/2;
+    const off=Math.abs((FD2.y+p.y)/2-mid);if(!A&&off>30)FS.q.sign=1;
+    $('fSign').insertAdjacentHTML('beforeend',`<i class="raie" style="top:${(Math.min(Math.max((FD2.y+p.y)/2-(r.top-st.top)/SCALE,10),r.height/SCALE-10))}px"></i>`);
+    sfx.stick();meterSet('fSm',1);setTimeout(()=>{if(FS.steps[FS.i]==='sign')fNext();},700);
+  }
+  FD2=null;
+});
+$('fWork').addEventListener('input',e=>{if(e.target.id==='fTr'){FS.temp=+e.target.value;$('fT').textContent=FS.temp+' °C';}});
+function doChauffe(){
+  const c=CH[FS.ch];sfx.hum(1.6);
+  const th=$('fCuve');if(th)th.innerHTML=cuveSVG(FS.temp>45?'chaud':'chaud',FS.temp>45?'#fff0c8':FS.temp<15?'#f4fbff':'#fff6e0');
+  say(T(FS.temp===12?'Brrr, c\'est froid…':FS.temp===55?'Ouh, c\'est très chaud…':'Bien tiède !',`Lait à ${FS.temp} °C.`),false);
+  setTimeout(()=>{if(FS.steps[FS.i]==='chauffe')fNext();},1300);
+}
+function fFail(why){
+  sfx.whine();award('f_rien');FS.ch=null;
+  $('fWork').innerHTML=`<div class="fstep"><h3>🥛 Rien ne caille…</h3><div class="cuve">${cuveSVG('lait')}</div><div class="fhint2">${why}</div><div class="pfoot"><button class="btn" id="fBack">Recommencer</button></div></div>`;
+  say(T('Oh non, ça ne caille pas ! On réessaie ?',why),T(undefined,'Ça ne caille pas !'));
+  onTap($('fBack'),()=>{sfx.click();renderChooser();});
+}
+
+/* cave */
+function toCave(cv){
+  const id=FS.ch,c=CH[id],f=F_();
+  if(!isA()&&((c.chaud&&cv!=='chaude')||(!c.chaud&&cv==='chaude')))FS.q.cave=c.chaud?'froide':'chaude';
+  f.cave.push({ch:id,start:Date.now(),q:{...FS.q},care:null,careSince:0});saveDB();fEv('cave',{ch:id});
+  sfx.pop();FS.ch=null;
+  const mins=Math.ceil(c.days*DAYMS()/60000);
+  say(T(`Il dort en cave ! Reviens dans ${mins} minutes.`,`${c.n} en cave : prêt dans environ ${mins} min (${c.days} jours de fromage).`));
+  renderChooser();
+}
+function caveDays(it){return (Date.now()-it.start)/DAYMS();}
+function openCave(){$('fCaveM').classList.remove('hidden');renderCave();sfx.click();
+  say(T('La cave ! Les fromages dorment ici.','La cave : retourne et frotte les fromages quand ils le demandent.'),false);}
+function renderCave(){
+  const f=F_(),A=isA();
+  $('fCaveIn').innerHTML=`<h2>🕯️ La cave d'affinage</h2><div class="shelves">${Array.from({length:6},(_,k)=>{const it=f.cave[k];if(!it)return '<div class="slotc empty"></div>';
+    const c=CH[it.ch],d=caveDays(it),pr=Math.min(1,d/c.days),ready=pr>=1;
+    return `<div class="slotc ${ready?'ready':''}" data-k="${k}"><div class="cw ${it.q.poilu?'poilu':''}">${cheeseSVG(it.ch)}</div><div class="cn">${c.n}</div><div class="cbar"><i style="width:${pr*100}%"></i></div><div class="cd">${ready?'Prêt !':A?'':`${Math.floor(d)}/${c.days} j`}</div>${it.care&&!ready?`<button class="care" data-k="${k}">${it.care==='frotter'?'🧽':'🔄'}</button>`:''}</div>`;}).join('')}</div><div class="pfoot"><button class="btn" id="fCaveClose">Fermer</button></div>`;
+}
+onTap($('fCaveIn'),e=>{
+  if(e.target.id==='fCaveClose'){$('fCaveM').classList.add('hidden');sfx.click();return;}
+  const f=F_(),cb=e.target.closest('.care');
+  if(cb){const it=f.cave[+cb.dataset.k];it.care=null;sfx.flip();burst(cb,[it.care==='frotter'?'🧽':'✨'],3,50);fEv('soin');saveDB();renderCave();return;}
+  const sl=e.target.closest('.slotc[data-k]');if(!sl)return;
+  const k=+sl.dataset.k,it=f.cave[k],c=CH[it.ch];
+  if(caveDays(it)<c.days){const mins=Math.ceil((c.days-caveDays(it))*DAYMS()/60000);say(T('Pas encore prêt !',`Encore environ ${mins} min.`));return;}
+  f.cave.splice(k,1);saveDB();$('fCaveM').classList.add('hidden');fDegust(it);
+});
+$('fCaveM').addEventListener('pointerdown',e=>{if(e.target.id==='fCaveM')$('fCaveM').classList.add('hidden');});
+let fT=0;
+function fTick(){
+  if(S.screen!=='s-fromage'){clearInterval(FS.timer);FS.timer=null;return;}
+  const f=F_(),open=!$('fCaveM').classList.contains('hidden');
+  if(FS.ch&&FS.steps[FS.i]==='sign'&&CH[FS.ch].sg==='fondre'&&!isA()&&Date.now()>FS.fondreEnd&&FS.meter<1&&!FS.q.attache){FS.q.attache=1;say('Ça attache au fond ! Il fallait remuer plus vite.',false);}
+  if(open){
+    fT++;
+    /* soins : seulement quand l'enfant est dans la cave */
+    f.cave.forEach(it=>{const c=CH[it.ch];if(caveDays(it)>=c.days)return;
+      if(it.care){it.careSince++;if(!isA()&&it.careSince>25&&!it.q.poilu){it.q.poilu=1;it.care=null;say('Un fromage oublié est devenu tout poilu !',false);}}
+      else if(Math.random()<.04){it.care=c.frotte||c.smell?'frotter':'retourner';it.careSince=0;}});
+    renderCave();
+  }
+  const n=f.cave.length;if(n!==FS.lastN){FS.lastN=n;renderBar();}
+}
+
+/* dégustation */
+function fGrade(q){
+  const major=['grain','flore','nosel','poilu','blanc','attache','cave','cuit'].filter(k=>q[k]);
+  if(!major.length&&!q.amer&&!q.forme&&!q.sign)return {g:'parfait'};
+  if(!major.length)return {g:'bon'};
+  return {g:'rate',k:major[0]};
+}
+const RATE_TXT={grain:['Grains mal coupés : la pâte est ratée.','Mauvaise taille de grains : la texture est ratée.'],flore:['Pas la bonne flore !','Mauvaise flore : la croûte et le goût ne sont pas les bons.'],nosel:['Il est tout fade, sans sel !','Sans sel : fade et il se conserve mal.'],poilu:['Il est tout poilu !','Oublié en cave : une moisissure poilue a tout envahi.'],blanc:["Il est tout blanc, pas de bleu !","Pas piqué : l'air n'est pas entré, le bleu n'a pas poussé."],attache:['Ça a attaché au fond !','La cancoillotte a attaché : il fallait remuer.'],cave:['Mauvaise cave !',"Mauvaise cave : l'emmental a besoin de la cave chaude pour faire ses trous, les autres de la cave froide."],cuit:['Le caillé a mal cuit !','Cuisson du caillé ratée : il faut s\'arrêter entre 50 et 56 °C.']};
+function fDegust(it){
+  const id=it.ch,c=CH[id],r=isA()?{g:'parfait'}:fGrade(it.q),f=F_();FS.ch=null;FS.taste={id,r};
+  renderBar();
+  const label={parfait:T('Parfait !','Parfait !'),bon:T('Bon !','Bon, mais perfectible.'),rate:T('Raté…','Raté.')}[r.g];
+  $('fWork').innerHTML=`<div class="fstep"><h3>${c.n} : ${label}</h3><div class="fc big ${it.q&&it.q.poilu?'poilu':''} ${r.g==='rate'?'bad':''}">${cheeseSVG(id)}</div><div class="frow"><button class="btn b-orange" id="fWanji">🐶 Faire goûter à Wanji</button><button class="btn" id="fKeep">🧀 Au frigo</button></div></div>`;
+  if(r.g!=='rate'){f.stock[id]=(f.stock[id]||0)+1;f.made[id]=1;}
+  if(r.g==='parfait'){f.found[id]=1;award('f_'+id);burst($('fWork'),['✨','⭐','🧀'],10,200);sfx.fanfare();
+    if(Object.keys(REG).every(k=>CHORDER.some(x=>CH[x].reg===k&&f.found[x])))award('f_carte');
+    fEv('parfait',{ch:id});}
+  else if(r.g==='rate'){if(r.k==='poilu')award('f_poilu');sfx.whine();}
+  saveDB();
+  const why=r.g==='rate'?RATE_TXT[r.k]:null;
+  say(T(r.g==='rate'?why[0]:`${c.n} ! ${label}`,r.g==='rate'?why[1]:r.g==='bon'?`${c.n} réussi, avec un petit défaut (${it.q.amer?'trop de présure, amer':it.q.forme?'mauvais nombre de louches':'geste imparfait'}).`:`${c.n} parfait ! ${CH[id].reg!=='partout'?'Sa région s\'allume sur la carte.':''}`),T(undefined,label));
+}
+onTap($('fWork'),e=>{
+  if(e.target.id==='fKeep'){sfx.pop();say(T('Rangé dans le frigo !','Rangé au frigo de la cuisine.'),false);renderChooser();}
+  if(e.target.id==='fWanji'&&FS.taste){wanjiCheese(FS.taste.id,FS.taste.r);}
+});
+async function wanjiCheese(id,r){
+  const c=CH[id],w=$('fWanji2').querySelector('.wj'),f=F_();
+  $('fWanji').disabled=true;
+  if(c.bleu||(r.g==='rate'&&r.k==='flore'&&id==='roquefort')){
+    const kc=$('fKicuit').querySelector('.kc');if(kc)kc.classList.add('alarm');sfx.alert();award('f_bleu');
+    say(T("Stop ! Pas de fromage bleu pour les chiens, c'est dangereux !","Stop ! La moisissure du bleu peut rendre un chien malade : jamais de roquefort pour Wanji."),T(undefined,'Stop ! Pas de bleu pour les chiens !'));
+    await sleep(2400);if(kc)kc.classList.remove('alarm');
+    await fly('<svg viewBox="0 0 40 40"><path d="M8 14 a6 6 0 1 1 8 -6 h8 a6 6 0 1 1 8 6 a6 6 0 1 1 -8 6 h-8 a6 6 0 1 1 -8 -6z" fill="#c98d5a" stroke="#8a5a36" stroke-width="2"/></svg>',$('fWork'),$('fWanji2'),{dur:700,size:46,arc:120,spin:360});
+    w.classList.add('happy');sfx.bark();setTimeout(()=>w.classList.remove('happy'),2000);FS.taste=null;renderChooser();return;
+  }
+  await fly(cheeseSVG(id),$('fWork'),$('fWanji2'),{dur:700,size:90,arc:80});
+  if(f.stock[id]>0)f.stock[id]--;
+  w.classList.remove('happy','yuck','meh','sniff');void w.offsetWidth;
+  if(c.smell){w.classList.add('yuck');sfx.yuck();burst($('fWanji2'),['💨','😷'],5,80);award('f_nez');
+    say(T('Wanji se bouche le nez ! Ça sent fort !',"Les croûtes lavées sentent très fort : Wanji se bouche le nez !"));}
+  else if(r.g==='rate'){w.classList.add('meh');sfx.whine();say(T('Wanji renifle… non merci.','Wanji renifle et refuse.'));}
+  else{w.classList.add('happy');sfx.bark();sfx.crunch();burst($('fWanji2'),['❤️','🧀'],6,80);fEv('wanji');
+    say(T('Wanji adore ! Juste un petit morceau.',id==='comte'?'Wanji adore le comté. Un petit morceau seulement : trop de fromage, c\'est mauvais pour les chiens.':'Wanji se régale (un petit morceau seulement).'));}
+  saveDB();setTimeout(()=>{w.classList.remove('happy','yuck','meh');FS.taste=null;renderChooserSafe();},2600);
+}
+
+/* plateau de 3 fromages */
+function openPlateau(){
+  const f=F_(),have=CHORDER.filter(k=>f.stock[k]>0);
+  if(have.length<3){say(T('Il faut 3 fromages différents !',`Plateau : il faut 3 fromages différents en stock (tu en as ${have.length}).`));return;}
+  const pick3=have.slice(0,3);pick3.forEach(k=>f.stock[k]--);saveDB();
+  $('fWork').innerHTML=`<div class="fstep"><h3>🧀 Le plateau de fromages</h3><div class="plat">${pick3.map(k=>`<div class="fc">${cheeseSVG(k)}<div class="fn">${CH[k].n}</div></div>`).join('')}</div></div>`;
+  sfx.fanfare();award('f_plateau');fEv('plateau');burst($('fWork'),['🧀','✨','😋'],10,220);
+  say(T('Quel beau plateau ! Kicuit se régale.',`Plateau : ${pick3.map(k=>CH[k].n).join(', ')}. Kicuit se régale !`));
+  setTimeout(renderChooserSafe,3200);
+}
+onTap($('fBar'),e=>{if(e.target.closest('#fCaveBtn'))openCave();if(e.target.closest('#fPlatBtn')){if(FS.ch){say(T("Finis d'abord ton fromage !",'Termine la fabrication en cours.'));return;}openPlateau();}});
+
+/* carte de France */
+function franceSVG(){
+  const f=F_();
+  return `<svg viewBox="0 0 320 260" style="width:100%;height:100%"><path d="M118 20 l40 6 l20 -8 l30 22 l40 10 l22 22 l-8 30 l12 22 l-10 24 l16 22 l-18 30 l-34 10 l-30 30 l-36 -8 l-26 8 l-34 -20 l-6 -34 l-22 -28 l8 -22 l-30 -26 l-12 -22 l26 -8 l30 4 l12 -24z" fill="#e8f6e0" stroke="#5b8a4a" stroke-width="4" stroke-linejoin="round"/>${Object.entries(REG).map(([k,r])=>{const ch=CHORDER.filter(x=>CH[x].reg===k),lit=ch.some(x=>f.found[x]);
+    return `<g><circle cx="${r.x}" cy="${r.y}" r="${lit?16:11}" fill="${lit?'#ffc83a':'#d9d2e8'}" stroke="#fff" stroke-width="3"/>${lit?`<text x="${r.x}" y="${r.y+5}" text-anchor="middle" font-size="14">🧀</text>`:''}<text x="${r.x}" y="${r.y+30}" text-anchor="middle" font-size="12" font-weight="900" fill="#2b2350" font-family="ui-rounded,sans-serif">${r.n}</text></g>`;}).join('')}</svg>`;
+}
+onTap($('fMapBtn'),()=>{
+  sfx.click();const f=F_(),A=isA(),list=CHORDER.filter(k=>A?CH[k].nana:true);
+  $('fMapIn').innerHTML=`<h2>🗺️ Le tour de France des fromages</h2><div class="mapw"><div class="map">${franceSVG()}</div><div class="mlist">${list.map(k=>{const c=CH[k],ok=f.found[k];return `<div class="mrow ${ok?'':'lock'}"><div class="mi">${cheeseSVG(k)}</div><div><b>${c.n}</b><div class="mx">${c.reg==='partout'?'Partout en France':REG[c.reg].n} · ${ANIM[c.a].e}${A?'':ok?` · ${c.t[0]}–${c.t[1]} °C${c.cuit?', caillé cuit':''}${c.days?`, ${c.days} j de cave`:''}`:` · ${c.days?c.days+' j de cave':'sans cave'}`}</div></div></div>`;}).join('')}</div></div><div class="pfoot"><button class="btn" id="fMapClose">Fermer</button></div>`;
+  $('fMapM').classList.remove('hidden');
+});
+onTap($('fMapIn'),e=>{if(e.target.id==='fMapClose'){$('fMapM').classList.add('hidden');sfx.click();}});
+
+/* objectifs de la fromagerie */
+const OBJF_NANA=[{t:'traite',n:2,x:'Remplis 2 seaux de lait'},{t:'parfait',ch:'blanc',n:1,x:'Fais un fromage blanc'},{t:'parfait',ch:'cancoillotte',n:1,x:'Fais une cancoillotte'},{t:'cave',ch:'camembert',n:1,x:'Mets un camembert en cave'},{t:'wanji',n:1,x:'Fais goûter un fromage à Wanji'},{t:'soin',n:2,x:'Soigne 2 fromages dans la cave'}];
+const OBJF_RAF=[{t:'distinct',n:3,x:'Réussis 3 fromages différents'},{t:'parfait',ch:'camembert',n:1,x:'Affine un camembert parfait'},{t:'plateau',n:1,x:'Prépare un plateau de 3 fromages'},{t:'parfait',ch:'comte',n:1,x:'Affine un comté de 4 mois'},{t:'parfait',ch:'roquefort',n:1,x:'Fais un roquefort bien bleu'},{t:'traite',a:'chevre',n:3,x:'Remplis 3 seaux de lait de chèvre'},{t:'soin',n:4,x:'Soigne 4 fromages dans la cave'},{t:'traite',n:3,x:'Remplis 3 seaux de lait'}];
+function fNewObj(){
+  const f=F_(),fr=CHORDER.findIndex(k=>!f.made[k]),lim=fr<0?99:fr+1,pool=(isA()?OBJF_NANA:OBJF_RAF).filter(o=>!(o.a&&!fUnl()[o.a])&&!(o.ch&&!isA()&&CHORDER.indexOf(o.ch)>lim));
+  let o;do{o=pick(pool);}while(pool.length>1&&f.lastObj===o.x);f.obj={...o,p:0};f.lastObj=o.x;saveDB();fObjRender();
+}
+function fObjRender(){
+  const el=$('fObj'),o=F_().obj;if(!o){el.classList.add('hidden');return;}el.classList.remove('hidden');
+  const pr=Math.min(o.p,o.n),next=UNLOCKS_F.find(u=>(F_().objDone||0)<u.at);
+  el.innerHTML=`<div class="oi"><span>${o.ch?'🧀':{traite:'🥛',wanji:'🐶',soin:'🧽',distinct:'🧀',plateau:'🍽️',cave:'🕯️'}[o.t]}</span></div><div class="ot"><div class="ox">${o.x}</div>${isA()?`<div class="od">${Array.from({length:o.n},(_,k)=>`<i class="${k<pr?'on':''}"></i>`).join('')}</div>`:`<div class="ob"><i style="width:${pr/o.n*100}%"></i></div><div class="on">${pr}/${o.n}${next?` · prochain cadeau : ${next.n} (${F_().objDone||0}/${next.at})`:''}</div>`}</div><div class="orw">⭐</div>`;
+}
+function fEv(type,d={}){
+  if(!S.player)return;const f=F_(),o=f.obj;if(!o||o.done)return;const b=o.p;
+  if(o.t==='traite'&&type==='traite'&&(!o.a||o.a===d.a))o.p++;
+  else if(o.t==='parfait'&&type==='parfait'&&d.ch===o.ch)o.p++;
+  else if(o.t==='cave'&&type==='cave'&&d.ch===o.ch)o.p++;
+  else if(o.t==='distinct'&&type==='parfait')o.p=Object.keys(f.found).length;
+  else if(['wanji','soin','plateau'].includes(o.t)&&type===o.t)o.p++;
+  if(o.p===b)return;saveDB();if(S.screen==='s-fromage')fObjRender();
+  if(o.p>=o.n)fObjDone();
+}
+async function fObjDone(){
+  const f=F_(),p=P();f.obj.done=true;f.objDone=(f.objDone||0)+1;p.stars++;saveDB();sfx.fanfare();
+  if(S.screen==='s-fromage'){$('fObj').classList.add('win');burst($('fObj'),['⭐','✨','🧀'],12,180);}
+  if(p.stars>=5)award('star5');if(p.stars>=JARDIN)award('star10');if(p.stars>=20)award('star20');
+  const u=UNLOCKS_F.find(x=>x.at===f.objDone);
+  await sleep(1400);
+  say(T('Objectif réussi ! Une étoile !'+(u?` Cadeau : ${u.n} !`:''),`Objectif réussi : +1 étoile (${p.stars}).`+(u?` Nouveau : ${u.n}.`:'')),T(undefined,'Objectif réussi !'));
+  await sleep(2200);if(S.screen==='s-fromage'){$('fObj').classList.remove('win');renderAnimals();renderMilk();}
+  fNewObj();
+}
+onTap($('fObj'),()=>{const o=F_().obj;if(o)say(T(o.x+' !','Objectif : '+o.x+'.'),T(o.x+' !',false));});
+onTap($('fHome'),()=>{if(FS.ch&&!confirmLeave())return;sfx.click();clearInterval(FS.timer);FS.timer=null;enterHub();});
+function confirmLeave(){FS.ch=null;return true;}
+onTap($('fWanji2'),()=>wanjiTap($('fWanji2')));
+onTap($('fKicuit'),()=>{sfx.click();kicuitTap();const t=T(pick(['Marguerite donne du bon lait !','Le fromage, c\'est du lait qui a dormi !']),pick(['Il faut environ 10 litres de lait pour faire 1 kilo de comté.',"Le Mont d'Or ne se fabrique qu'en hiver.","Les trous de l'emmental viennent de bulles de gaz faites par des bactéries.",'Le roquefort affine dans des grottes, en Aveyron.']));say(t,t);});
+
+$('fWanji2').innerHTML=wanjiSVG();$('fKicuit').innerHTML=kicuitSVG();
 /* hors ligne */
 if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
