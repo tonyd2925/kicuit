@@ -1271,7 +1271,7 @@ const STICK=[
   {id:'c_mache',pg:'corps',n:'Bien mâché',e:'😋',rar:'c',bg:'#ffe9d6',how:'Mâche bien avant d\'avaler'},
   {id:'c_hoquet',pg:'corps',n:'Hic !',e:'😵',rar:'c',bg:'#fff3c4',how:'Avale un trop gros morceau'},
   {id:'c_voyage',pg:'corps',n:'Le grand voyage',e:'🗺️',rar:'c',bg:'#e8fbe9',how:'Suis un repas jusqu\'au bout'},
-  {id:'c_prout',pg:'corps',n:'Prout !',e:'💨',rar:'b',bg:'#e3f4ff',secret:true,how:'Laisse les bactéries manger des fibres'},
+  {id:'c_prout',pg:'corps',n:'Bactéries amies',e:'🦠',rar:'b',bg:'#e3f4ff',how:'Laisse les bactéries manger des fibres'},
   {id:'c_fibres',pg:'corps',n:'As de l\'intestin',e:'🌿',rar:'b',bg:'#e8fbe9',how:'Attrape tous les nutriments sans toucher une fibre'},
   {id:'c_5aliments',pg:'corps',n:'Gourmet',e:'🥗',rar:'b',bg:'#fff3c4',how:'Fais voyager 5 aliments différents'},
   {id:'c_malventre',pg:'corps',n:'Mal au ventre',e:'🤢',rar:'c',bg:'#ffe3ef',how:'Mange 3 sucreries de suite'},
@@ -2454,7 +2454,7 @@ const FAM={
   lavee:{n:'Croûte lavée',e:'🧦',w:52,x:["Une pâte molle dont on lave la croûte : elle devient orange… et elle sent les chaussettes ! Mais c'est bon.","Croûte lavée à l'eau salée : des bactéries orange s'y installent et donnent cette odeur de chaussettes. La pâte, elle, reste molle et douce."]},
   pressee:{n:'Pâte pressée',e:'🧱',w:45,x:["Des morceaux moyens, et on presse pour chasser l'eau : il devient souple, ni mou ni dur.","Pâte pressée non cuite : grains moyens et presse. Moins d'eau qu'une pâte molle, donc plus ferme et souple."]},
   bleu:{n:'Pâte persillée (bleu)',e:'💙',w:46,x:["On le pique avec une aiguille : l'air entre, et la moisissure bleue pousse dans les petits tunnels !","Pâte persillée : la moisissure bleue a besoin d'air. Les piqûres font des cheminées où le bleu pousse. Jamais pour Wanji !"]},
-  trous:{n:'Pâte dure à trous',e:'🕳️',w:36,x:["Une pâte dure, mais dans une cave chaude des bactéries font des bulles de gaz… comme des petits prouts : ce sont les trous !","Comme le comté, mais affiné en cave chaude : des bactéries rejettent du gaz carbonique qui reste piégé dans la pâte. Ce sont les trous !"]},
+  trous:{n:'Pâte dure à trous',e:'🕳️',w:36,x:["Une pâte dure, mais dans une cave chaude des bactéries font des petites bulles de gaz qui restent coincées : ce sont les trous !","Comme le comté, mais affiné en cave chaude : des bactéries rejettent du gaz carbonique qui reste piégé dans la pâte. Ce sont les trous !"]},
   dure:{n:'Pâte dure',e:'🪨',w:32,x:["Tout petits grains, chauffés, puis pressés très fort : presque plus d'eau. Il devient dur et peut dormir des mois !","Pâte pressée cuite : grains fins comme du riz, caillé chauffé vers 54 °C, presse forte. Très peu d'eau : il est dur et s'affine des mois."]}
 };
 const FAMORDER=['frais','molle','lavee','bleu','pressee','trous','dure'];
@@ -2635,7 +2635,7 @@ function runStep(){
   if(s==='cave'){
     if(F_().cave.length>=6){say(T('La cave est pleine ! Sors un fromage.','Cave pleine (6 places) : sors un fromage prêt.'));openCave();return;}
     W.innerHTML=`<div class="fstep"><h3>🕯️ Direction la cave</h3><div class="fc big">${cheeseSVG(id)}</div>${A?'<div class="pfoot"><button class="btn b-orange" id="fCaveGo" data-cv="froide">🕯️ Dans la cave</button></div>':'<div class="frow">'+[['Cave froide (12 °C)','froide','❄️'],['Cave chaude (22 °C)','chaude','🌡️']].map(([l,v,i])=>`<button class="fopt" id="fCaveGo" data-cv="${v}">${i}<span>${l}</span></button>`).join('')+'</div>'}</div>`;
-    say(T(c.chaud?'Dans la cave chaude, des bactéries vont faire des bulles… des petits prouts dans le fromage !':`Il doit dormir en cave !`,`${c.n} : ${c.days} jours de cave. Choisis la cave${c.chaud?' (les trous ont besoin de chaleur)':''}.`));
+    say(T(c.chaud?'Dans la cave chaude, des bactéries vont faire des petites bulles : ce seront les trous !':`Il doit dormir en cave !`,`${c.n} : ${c.days} jours de cave. Choisis la cave${c.chaud?' (les trous ont besoin de chaleur)':''}.`));
     return;
   }
   if(s==='degust')return fDegust({ch:id,q:FS.q});
@@ -3117,7 +3117,6 @@ function voyGo(k){
     return oesoStage();
   }
   if(k==='pousse')return oesoPush();
-  if(k==='gas')return gasOut();
   if(k==='toil')return toilet();
   if(k==='again'){return voyStart();}
 }
@@ -3200,20 +3199,14 @@ function grosStage(){
     `<div style="position:relative;width:560px;height:360px" id="vGros"><svg viewBox="0 0 560 360" style="position:absolute;inset:0;width:100%;height:100%"><path d="M70 350 V90 q0 -60 60 -60 h300 q60 0 60 60 v260" stroke="#c98a5a" stroke-width="90" fill="none" stroke-linecap="round"/><path d="M70 350 V90 q0 -60 60 -60 h300 q60 0 60 60 v260" stroke="#e7b98a" stroke-width="66" fill="none" stroke-linecap="round"/></svg>
     ${Array.from({length:nf},(_,i)=>{const pts=[[70,300],[70,190],[110,60],[230,40],[350,40],[470,90],[490,200],[490,300]][i%8];return `<div class="fib" data-fib="${i}" style="left:${pts[0]-20}px;top:${pts[1]-24}px">🌿</div>`;}).join('')}
     ${['🦠','🦠','🦠'].map((b,i)=>`<div class="bact" id="vB${i}" style="left:${150+i*110}px;top:${70+i%2*14}px">${b}</div>`).join('')}</div>`,
-    "Ici, le corps récupère l'eau. Des milliards de bactéries amies mangent les fibres… et fabriquent des gaz. C'est normal !");
+    "Ici, le corps récupère l'eau. Des milliards de bactéries amies mangent les fibres et aident l'intestin à bien travailler.");
   $('vFoot').innerHTML=nf?'':`<button class="btn b-orange" data-vgo="toil">🚽 ${T('Aux toilettes !','Direction les toilettes')}</button>`;
   if(nf)$('vGros').addEventListener('pointerdown',e=>{const fb=e.target.closest('[data-fib]');if(!fb||fb.dataset.eaten)return;fb.dataset.eaten=1;
     const bi=VY.ate%3,b=$('vB'+bi);b.style.left=fb.style.left;b.style.top=fb.style.top;sfx.crunch();
     setTimeout(()=>{fb.remove();const g=document.createElement('div');g.className='gasb';g.textContent='🫧';g.style.left=fb.style.left;g.style.top=fb.style.top;$('vGros')&&$('vGros').appendChild(g);},450);
-    VY.ate++;VY.gas++;if(VY.ate>=nf){cLater(()=>{$('vFoot').innerHTML=`<button class="btn b-blue" data-vgo="gas">💨 ${T('Pfff…','Laisser sortir le gaz')}</button>`;say(T('Oh oh… ça gonfle !','Les bactéries ont tout mangé : du gaz s\'accumule…'),false);},700);}});
+    VY.ate++;VY.gas++;if(VY.ate>=nf){cLater(()=>{award('c_prout');sfx.ding();burst($('vGros'),['🦠','✨'],6,160);$('vFoot').innerHTML=`<button class="btn b-orange" data-vgo="toil">🚽 ${T('Aux toilettes !','Direction les toilettes')}</button>`;say(T('Miam ! Les bactéries amies ont tout mangé.','Les bactéries amies ont mangé les fibres : elles aident l\'intestin à bien travailler.'),false);},700);}});
   else say(T('Pas de fibres ici… ça avance tout doucement.','Pas de fibres dans cet aliment : les bactéries ont faim et ça avance lentement. Les fruits et légumes en apportent.'),false);
   if(nf)say(T('Touche les fibres pour nourrir les bactéries !','Touche les fibres pour que les bactéries les mangent.'),T(undefined,false));
-}
-function gasOut(){
-  noise(.7,.5,'lowpass',160);tone(110,70,.7,'sawtooth',.12);setTimeout(()=>tone(140,60,.3,'square',.06),200);
-  award('c_prout');burst($('vGros'),['💨','💨','😂'],8,200);
-  say(T('Prout ! C\'est normal, ce sont les bactéries !','Prout ! Les gaz viennent des bactéries qui digèrent les fibres : c\'est normal et c\'est le signe d\'un intestin en forme.'),'Prout !');
-  $('vFoot').innerHTML=`<button class="btn b-orange" data-vgo="toil">🚽 ${T('Aux toilettes !','Direction les toilettes')}</button>`;
 }
 function toilet(){
   VY.st='x';$('vZone').innerHTML='<div class="toil flush" id="vToil">🚽</div>';$('vFoot').innerHTML='';noise(1.4,.35,'lowpass',700);tone(400,120,1.2,'sine',.08);
