@@ -515,7 +515,8 @@ const DISH={
   pizza:'<ellipse cx="60" cy="52" rx="54" ry="27" fill="#d9954a"/><ellipse cx="60" cy="50" rx="46" ry="21" fill="#e2442c"/><g fill="#ffd34d"><ellipse cx="42" cy="44" rx="10" ry="5"/><ellipse cx="70" cy="40" rx="9" ry="5"/><ellipse cx="78" cy="56" rx="10" ry="5"/><ellipse cx="50" cy="58" rx="9" ry="5"/><ellipse cx="62" cy="50" rx="6" ry="3"/></g><g fill="#3fa34d"><ellipse cx="56" cy="40" rx="4" ry="2.5"/><ellipse cx="88" cy="46" rx="4" ry="2.5"/><ellipse cx="34" cy="54" rx="4" ry="2.5"/></g>',
   cookies:'<g stroke="#b07a35" stroke-width="2.5"><ellipse cx="36" cy="62" rx="24" ry="13" fill="#d9a35a"/><ellipse cx="84" cy="62" rx="24" ry="13" fill="#d9a35a"/><ellipse cx="60" cy="44" rx="24" ry="13" fill="#e2ad62"/></g><g fill="#4a2612"><circle cx="30" cy="60" r="3"/><circle cx="42" cy="65" r="3"/><circle cx="80" cy="58" r="3"/><circle cx="90" cy="65" r="3"/><circle cx="52" cy="42" r="3"/><circle cx="66" cy="46" r="3"/><circle cx="60" cy="38" r="2.5"/></g>',
   gratin:'<path d="M8 46 h104 l-8 30 q-44 10 -88 0z" fill="#c4553d"/><ellipse cx="60" cy="46" rx="52" ry="14" fill="#a8432e"/><ellipse cx="60" cy="45" rx="45" ry="11" fill="#ffcf4a"/><g fill="#ff5a3c" stroke="#c93a22" stroke-width="1.5"><ellipse cx="42" cy="44" rx="8" ry="4"/><ellipse cx="62" cy="41" rx="8" ry="4"/><ellipse cx="80" cy="46" rx="8" ry="4"/><ellipse cx="56" cy="50" rx="7" ry="3.5"/></g><g fill="#e8a13a"><circle cx="34" cy="48" r="2"/><circle cx="72" cy="50" r="2"/><circle cx="88" cy="42" r="2"/></g>',
-  omelette:'<path d="M10 62 q50 -60 100 0 q-50 16 -100 0z" fill="#ffd84d" stroke="#e8b52a" stroke-width="3"/><g fill="#f0b43a"><circle cx="42" cy="46" r="4"/><circle cx="66" cy="38" r="3"/><circle cx="78" cy="52" r="4"/><circle cx="52" cy="58" r="3"/></g><g fill="#3fa34d"><circle cx="58" cy="48" r="2"/><circle cx="36" cy="56" r="2"/><circle cx="86" cy="58" r="2"/></g>',
+  quiche:'<path d="M8 50 l8 22 q44 10 88 0 l8 -22z" fill="#d99a4e" stroke="#b07a35" stroke-width="3"/><ellipse cx="60" cy="50" rx="52" ry="16" fill="#e6ad62" stroke="#b07a35" stroke-width="3"/><ellipse cx="60" cy="49" rx="43" ry="11" fill="#ffd86b"/><g fill="#e8a13a"><circle cx="44" cy="47" r="3"/><circle cx="66" cy="45" r="3.5"/><circle cx="78" cy="52" r="3"/><circle cx="54" cy="54" r="2.5"/></g><g fill="#3fa34d"><circle cx="58" cy="47" r="1.8"/><circle cx="72" cy="49" r="1.8"/></g>',
+  oeufCocotte:'<path d="M24 40 h72 l-6 34 q-30 8 -60 0z" fill="#fff" stroke="#c9d2e3" stroke-width="3"/><path d="M30 50 h60 M32 60 h56" stroke="#e3e8f2" stroke-width="3"/><ellipse cx="60" cy="40" rx="36" ry="10" fill="#fff" stroke="#c9d2e3" stroke-width="3"/><ellipse cx="60" cy="40" rx="30" ry="7" fill="#fffaf0"/><ellipse cx="60" cy="38" rx="11" ry="6" fill="#ffb52e"/><ellipse cx="57" cy="36.5" rx="3" ry="1.6" fill="#fff" opacity=".7"/><g fill="#3fa34d"><circle cx="44" cy="40" r="1.8"/><circle cx="76" cy="41" r="1.8"/></g>',
   chocolatChaud:'<rect x="32" y="30" width="52" height="52" rx="9" fill="#ff8fb1" stroke="#d76b8d" stroke-width="3"/><path d="M84 42 q22 0 18 18 q-4 14 -18 12" fill="none" stroke="#d76b8d" stroke-width="7"/><ellipse cx="58" cy="32" rx="24" ry="6" fill="#6b3b1f" stroke="#d76b8d" stroke-width="3"/><path d="M48 20 q-7 -8 0 -16 M62 20 q-7 -8 0 -16 M76 22 q-7 -8 0 -16" stroke="#c9ced8" stroke-width="3.5" fill="none" stroke-linecap="round"/><circle cx="58" cy="58" r="8" fill="#fff" opacity=".6"/>',
   mystere:'<path d="M16 68 q-10 -28 14 -32 q4 -24 30 -17 q24 -12 38 12 q22 6 11 37 q-44 14 -93 0z" fill="#6ad04a" stroke="#3f9a2c" stroke-width="3"/><g fill="#4fb534"><circle cx="30" cy="58" r="5"/><circle cx="88" cy="56" r="6"/><circle cx="66" cy="30" r="4"/></g><circle cx="50" cy="46" r="8" fill="#fff"/><circle cx="52" cy="48" r="4" fill="#16213a"/><circle cx="72" cy="44" r="9" fill="#fff"/><circle cx="70" cy="46" r="4.5" fill="#16213a"/><path d="M52 62 q10 6 20 0" stroke="#2c6b1f" stroke-width="3" fill="none" stroke-linecap="round"/>'
 };
@@ -529,13 +530,14 @@ const RECIPES={
   gateauFraise:{n:'Gâteau aux fraises',art:'un gâteau aux fraises',pate:'#ffb3c6',ing:['farine','oeuf','sucre','fraise'],best:'four',four:{t:[160,200],m:[20,40]},micro:{m:[2,4],q:'mou'}},
   pizza:{n:'Pizza',art:'une pizza',pate:'#f1c27d',ing:['farine','tomate','gruyere'],best:'four',four:{t:[190,250],m:[10,25]},micro:{m:[1,3],q:'mou'}},
   cookies:{n:'Cookies',art:'des cookies',pate:'#d9b07a',ing:['farine','beurre','sucre','chocolat'],choco:true,best:'four',four:{t:[160,200],m:[8,15]},micro:{m:[1,2],q:'mou'}},
-  gratin:{n:'Gratin de tomates',art:'un gratin de tomates',pate:'#ff7a59',ing:['tomate','gruyere'],best:'four',four:{t:[180,220],m:[15,30]},micro:{m:[3,6],q:'parfait'}},
-  omelette:{n:'Omelette',art:'une omelette',pate:'#ffd84d',ing:['oeuf','gruyere'],best:'micro',four:{t:[160,200],m:[8,20]},micro:{m:[1,3],q:'parfait'}},
-  chocolatChaud:{n:'Chocolat chaud',art:'un chocolat chaud',pate:'#8a5232',ing:['lait','chocolat'],choco:true,best:'micro',four:{t:[100,180],m:[5,15]},micro:{m:[1,3],q:'parfait'}},
+  gratin:{n:'Gratin de tomates',art:'un gratin de tomates',pate:'#ff7a59',ing:['tomate','gruyere'],best:'four',four:{t:[180,220],m:[15,30]},micro:{m:[3,6],q:'mou',mou:"Au micro-ondes, le fromage fond mais ne gratine pas : c'est tout mou. Le four fait la croûte dorée."}},
+  quiche:{n:'Quiche au fromage',art:'une quiche au fromage',pate:'#ffd86b',ing:['oeuf','lait','gruyere'],best:'four',four:{t:[180,210],m:[25,40]},micro:{m:[3,5],q:'mou',mou:"Au micro-ondes, la quiche ne dore pas et la pâte reste molle. Il faut le four."}},
+  oeufCocotte:{n:'Œuf cocotte',art:'un œuf cocotte',pate:'#ffcf5a',ing:['oeuf','lait'],best:'four',four:{t:[170,200],m:[8,15]},micro:{egg:true}},
+  chocolatChaud:{n:'Chocolat chaud',art:'un chocolat chaud',pate:'#8a5232',ing:['lait','chocolat'],choco:true,best:'micro',four:null,micro:{m:[1,3],q:'parfait'}},
   mystere:{n:'Mixture mystère',art:'une mixture mystère',pate:'#79d94c',ing:[],mystery:true}
 };
 const REAL=Object.keys(RECIPES).filter(k=>!RECIPES[k].mystery);
-const ORDERABLE=['gateau','gateauFraise','pizza','gratin','omelette'];
+const ORDERABLE=['gateau','gateauFraise','pizza','gratin','quiche','oeufCocotte'];
 
 function identify(list){
   const s=new Set(list),h=k=>s.has(k);
@@ -546,8 +548,9 @@ function identify(list){
   if(h('farine')&&h('beurre')&&h('sucre')&&h('chocolat')&&!h('oeuf'))return 'cookies';
   if(h('farine')&&h('tomate')&&h('gruyere'))return 'pizza';
   if(h('lait')&&h('chocolat')&&!h('farine')&&!h('oeuf'))return 'chocolatChaud';
-  if(h('oeuf')&&!h('farine')&&!sweet)return 'omelette';
-  if(h('tomate')&&h('gruyere')&&!h('farine'))return 'gratin';
+  if(h('oeuf')&&h('lait')&&h('gruyere'))return 'quiche';
+  if(h('oeuf')&&!h('farine')&&!sweet&&!salty)return 'oeufCocotte';
+  if(h('tomate')&&h('gruyere')&&!h('farine')&&!h('oeuf'))return 'gratin';
   return 'mystere';
 }
 const fmtMin=m=>{const mm=Math.floor(m),ss=Math.round((m-mm)*60);return ss?`${mm} min ${ss}`:`${mm} min`;};
@@ -559,12 +562,14 @@ function evaluate(rid,app,temp,time){
     const ext=app==='four'?temp>=260:time>=8;
     return ext?{st:'explose',why:'Mixture mystère + énorme chaleur = explosion verte garantie !'}:{st:'vert',why:'Ces ingrédients ne vont pas ensemble… Essaie une vraie recette !'};
   }
+  if(app==='micro'&&R.micro.egg)return {st:'explose',why:"Un œuf au micro-ondes, ça explose : la vapeur reste coincée à l'intérieur. En vrai, il ne faut jamais faire ça ! L'œuf cocotte se fait au four.",anna:"BOUM ! L'œuf a explosé dans le micro-ondes ! En vrai, il ne faut jamais faire ça. Aide-moi à nettoyer : touche les taches !"};
+  if(app==='four'&&!R.four)return temp>=260?{st:'explose',why:"Une tasse dans un four brûlant… elle a éclaté ! Une boisson se chauffe au micro-ondes."}:{st:'brule',why:"Une boisson ne se chauffe pas au four : le lait a débordé et brûlé ! Utilise le micro-ondes.",anna:"Oups ! Le lait a débordé et brûlé ! Le chocolat chaud, c'est au micro-ondes."};
   if(app==='micro'){
     const [a,b]=R.micro.m;
     if(time>=8||time>b*2.5)return {st:'explose',why:"Trop longtemps au micro-ondes : l'eau du plat se change en vapeur d'un coup… BOUM !"};
     if(time>b)return {st:'brule',why:`Trop long : au micro-ondes, ce plat ne doit pas dépasser ${fmtMin(b)}.`};
     if(time<a)return {st:'cru',why:`Pas assez longtemps : il faut au moins ${fmtMin(a)}.`};
-    if(R.micro.q==='mou')return {st:'mou',why:"Le micro-ondes cuit sans dorer : c'est tout mou ! Pour ce plat, le four est meilleur."};
+    if(R.micro.q==='mou')return {st:'mou',why:R.micro.mou||"Le micro-ondes cuit sans dorer : c'est tout mou ! Pour ce plat, le four est meilleur."};
     return {st:'parfait',why:`${fmtMin(time)} au micro-ondes : c'était parfait.`};
   }
   const [t0,t1]=R.four.t,[m0,m1]=R.four.m;
@@ -940,7 +945,7 @@ async function cook(){
   if(res.st==='carbonise')award('carbo');
   if(res.st==='mou')award('eponge');
   S.k.phase='result';renderBtns();
-  say(T(LINES[res.st][0],LINES[res.st][1]+res.why));
+  say(T(res.anna||LINES[res.st][0],LINES[res.st][1]+res.why));
 }
 function splatSVG(c){return `<svg viewBox="0 0 100 100" style="width:100%;height:100%"><g fill="${c}" stroke="rgba(0,0,0,.18)" stroke-width="2"><circle cx="50" cy="50" r="28"/><circle cx="22" cy="40" r="11"/><circle cx="78" cy="34" r="12"/><circle cx="70" cy="76" r="10"/><circle cx="30" cy="74" r="13"/><circle cx="90" cy="60" r="5"/><circle cx="9" cy="62" r="5"/><circle cx="52" cy="11" r="6"/></g><g fill="${c}"><circle cx="50" cy="50" r="26"/><rect x="45" y="70" width="10" height="26" rx="5"/></g><ellipse cx="41" cy="41" rx="9" ry="6" fill="#fff" opacity=".4"/></svg>`}
 async function explode(rid){
@@ -958,7 +963,7 @@ async function explode(rid){
   }
   award('boom');
   S.k.phase='clean';renderBtns();
-  say(T(LINES.explose[0],LINES.explose[1]+S.k.result.why+' Nettoie les taches !'));
+  say(T(S.k.result.anna||LINES.explose[0],LINES.explose[1]+S.k.result.why+' Nettoie les taches !'));
 }
 function wipe(s){
   sfx.squish();s.classList.add('wipe');burst(s,['🫧','✨'],3,60);
