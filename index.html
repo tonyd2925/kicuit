@@ -105,16 +105,17 @@ svg{display:block}
 .fr-top{position:absolute;left:0;top:0;width:100%;height:132px;background:linear-gradient(90deg,#f7f9fc,#e3e9f3);border:4px solid #7d8aa6;border-radius:24px 24px 8px 8px}
 .fr-top::after,.fr-door::after{content:"";position:absolute;right:18px;width:12px;border-radius:6px;background:#9aa6bf}
 .fr-top::after{top:34px;height:60px}
-.fr-main{position:absolute;left:0;top:138px;width:100%;height:434px;perspective:1400px}
+.fr-main{position:absolute;left:0;top:138px;width:100%;height:434px}
 .fr-in{position:absolute;inset:0;border:4px solid #7d8aa6;border-radius:8px 8px 22px 22px;background:linear-gradient(#f2fbff,#d9eefb);display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:8px 6px}
 .fr-in .shelf{grid-column:1/-1}
 .ing{display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:5px solid rgba(125,138,166,.35);transition:transform .1s}
 .ing:active{transform:scale(.88)}
 .ing svg{width:62px;height:62px}
 .ing span{font-size:15px;font-weight:800;margin-top:2px}
-.fr-door{position:absolute;inset:0;border:4px solid #7d8aa6;border-radius:8px 8px 22px 22px;background:linear-gradient(90deg,#f7f9fc,#e3e9f3);transform-origin:left center;transition:transform .6s cubic-bezier(.3,1.3,.5,1);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.fr-door{position:absolute;inset:0;border:4px solid #7d8aa6;border-radius:8px 8px 22px 22px;background:linear-gradient(90deg,#f7f9fc,#e3e9f3);transform-origin:left center;transition:transform .6s cubic-bezier(.3,1.3,.5,1);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px}
 .fr-door::after{top:40px;height:110px}
-.fr-door.open{transform:rotateY(-104deg);pointer-events:none}
+.fr-door.open{transform:scaleX(.07);pointer-events:none}
+.fr-door.open>*{opacity:0}
 .fr-door .hint{font-size:24px;font-weight:900;color:#7d8aa6;animation:pulse 1.6s infinite}
 .magnet{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.15)}
 #kicuitK{left:300px;top:150px;width:150px;height:188px;z-index:5}
@@ -327,6 +328,13 @@ const $=id=>document.getElementById(id);
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const rnd=(a,b)=>a+Math.random()*(b-a);
 const pick=a=>a[Math.floor(Math.random()*a.length)];
+/* Tap fiable sur iPad : on valide au relâchement du doigt, même si l'élément bouge (animations). */
+function onTap(el,fn){
+  let sx=0,sy=0,down=false;
+  el.addEventListener('pointerdown',e=>{if(e.button>0)return;down=true;sx=e.clientX;sy=e.clientY;},{passive:true});
+  el.addEventListener('pointerup',e=>{if(!down)return;down=false;if(Math.hypot(e.clientX-sx,e.clientY-sy)>45)return;fn(e);});
+  el.addEventListener('pointercancel',()=>{down=false;});
+}
 
 /* ---------- mise à l'échelle iPad ---------- */
 let SCALE=1;
@@ -417,7 +425,7 @@ function say(text){
   const b=$('bubble');b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');
   speak(text);
 }
-$('bubble').addEventListener('click',()=>lastSay&&speak(lastSay));
+onTap($('bubble'),()=>lastSay&&speak(lastSay));
 
 /* ---------- dessins ---------- */
 function kicuitSVG(){return `<svg viewBox="0 0 200 250" class="kc"><ellipse cx="100" cy="242" rx="46" ry="7" fill="#000" opacity=".12"/><g class="kc-float">
@@ -647,12 +655,12 @@ $('startW').innerHTML=wanjiSVG();
 $('bubbleHead').innerHTML=kicuitSVG();
 $('avAnna').innerHTML=annaSVG();
 $('avRafael').innerHTML=rafaelSVG();
-$('playBtn').addEventListener('click',()=>{
+onTap($('playBtn'),()=>{
   ac();sfx.fanfare();
   if('speechSynthesis' in window&&DB.voice){S.player='anna';speak('Qui joue ?',true);}
   go('s-profile');
 });
-document.querySelectorAll('.pcard').forEach(c=>c.addEventListener('click',()=>{
+document.querySelectorAll('.pcard').forEach(c=>onTap(c,()=>{
   sfx.pop();S.player=c.dataset.p;DB.last=S.player;saveDB();
   S.k.order=null;enterHub();
 }));
@@ -708,7 +716,7 @@ function enterHub(){
 $('hubArt').innerHTML=hubSVG();
 $('hubW').innerHTML=wanjiSVG();
 $('hubK').innerHTML=kicuitSVG();
-$('hubArt').addEventListener('click',e=>{
+onTap($('hubArt'),e=>{
   const g=e.target.closest('[data-room]');if(!g)return;
   const k=g.dataset.room;sfx.click();
   if(k==='cuisine')enterKitchen();
@@ -718,15 +726,15 @@ $('hubArt').addEventListener('click',e=>{
     say(`${names[k]}, ça arrive bientôt ! Pour l'instant, viens cuisiner avec moi.`);
   }
 });
-$('hubAv').addEventListener('click',()=>{sfx.click();go('s-profile');});
-$('voiceBtn').addEventListener('click',()=>{DB.voice=!DB.voice;saveDB();$('voiceBtn').textContent=DB.voice?'🔊':'🔇';if(!DB.voice&&'speechSynthesis' in window)speechSynthesis.cancel();else say('Me revoilà !');});
+onTap($('hubAv'),()=>{sfx.click();go('s-profile');});
+onTap($('voiceBtn'),()=>{DB.voice=!DB.voice;saveDB();$('voiceBtn').textContent=DB.voice?'🔊':'🔇';if(!DB.voice&&'speechSynthesis' in window)speechSynthesis.cancel();else say('Me revoilà !');});
 function wanjiTap(box){
   const w=box.querySelector('.wj');if(!w||w.classList.length>1)return;
   w.classList.add('happy');sfx.bark();burst(box,['❤️','💕'],4,70);
   setTimeout(()=>w.classList.remove('happy'),1300);
 }
-$('hubW').addEventListener('click',()=>wanjiTap($('hubW')));
-$('hubK').addEventListener('click',()=>{sfx.click();say(T('Bip bip ! Je suis Kicuit, le robot cuisinier !','Bip bip ! Bientôt, on ouvrira le labo et le garage.'));});
+onTap($('hubW'),()=>wanjiTap($('hubW')));
+onTap($('hubK'),()=>{sfx.click();say(T('Bip bip ! Je suis Kicuit, le robot cuisinier !','Bip bip ! Bientôt, on ouvrira le labo et le garage.'));});
 
 /* ---------- ALBUM ---------- */
 function enterAlbum(){
@@ -736,7 +744,7 @@ function enterAlbum(){
   $('albumGrid').innerHTML=STICK.map(s=>{const got=p.st[s.id];return `<div class="stk ${got?'':'lock'}"><div class="si">${got?stickIcon(s):(s.dish?dishSVG(s.dish):s.e)}</div><div class="sn">${got?s.n:'???'}</div></div>`}).join('');
   say(n?T(`Tu as ${n} autocollant${n>1?'s':''} ! Bravo !`,`${n} autocollants sur ${STICK.length}. Les gris sont encore à trouver !`):T('Ton album est vide ! Va cuisiner pour gagner des autocollants.','Album vide pour l\'instant. Chaque recette réussie et chaque catastrophe rapporte un autocollant !'));
 }
-$('aHome').addEventListener('click',()=>{sfx.click();enterHub();});
+onTap($('aHome'),()=>{sfx.click();enterHub();});
 
 /* ---------- CUISINE ---------- */
 function kitchenSVG(){
@@ -808,6 +816,8 @@ function kReset(){
   document.querySelectorAll('.splat').forEach(s=>s.remove());
   setW(null);renderBowl();renderBtns();renderOrder();
 }
+const frOpen=()=>$('frDoor').classList.contains('open');
+const frHint=()=>frOpen()?'Choisis des ingrédients dans le frigo !':'Ouvre le frigo !';
 function enterKitchen(){
   go('s-kitchen');
   $('kBook').classList.toggle('hidden',isA());
@@ -816,32 +826,33 @@ function enterKitchen(){
   kReset();
   if(!S.k.order)newOrder();
   const R=RECIPES[S.k.order];
-  say(T(`Wanji a faim ! Il voudrait ${R.art}. Regarde sa bulle, il te montre les ingrédients. Ouvre le frigo !`,`Commande du jour : Wanji voudrait ${R.art}. À toi de trouver les ingrédients, puis la bonne cuisson !`));
+  say(T(`Wanji a faim ! Il voudrait ${R.art}. Regarde sa bulle, il te montre les ingrédients. ${frHint()}`,`Commande du jour : Wanji voudrait ${R.art}. À toi de trouver les ingrédients, puis la bonne cuisson !`));
 }
-$('kHome').addEventListener('click',()=>{if(S.k.phase==='cooking'||S.k.phase==='feeding')return;sfx.click();enterHub();});
+onTap($('kHome'),()=>{if(S.k.phase==='cooking'||S.k.phase==='feeding')return;sfx.click();enterHub();});
 
 /* frigo */
-$('frDoor').addEventListener('click',()=>{$('frDoor').classList.add('open');sfx.pop();say(T('Le frigo est ouvert ! Touche un ingrédient pour le mettre dans le saladier.','Choisis tes ingrédients. Le saladier en contient six au maximum.'));});
-$('frTop').addEventListener('click',()=>{if($('frDoor').classList.contains('open')){$('frDoor').classList.remove('open');sfx.click();}});
-$('frIn').addEventListener('click',async e=>{
+onTap($('frDoor'),()=>{$('frDoor').classList.add('open');sfx.pop();say(T('Le frigo est ouvert ! Touche un ingrédient pour le mettre dans le saladier.','Choisis tes ingrédients. Le saladier en contient six au maximum.'));});
+onTap($('frTop'),()=>{if($('frDoor').classList.contains('open')){$('frDoor').classList.remove('open');sfx.click();}});
+onTap($('frIn'),async e=>{
   const b=e.target.closest('[data-ing]');if(!b)return;const k=b.dataset.ing;
   if(!['prep','mixed'].includes(S.k.phase)){say(T("Attends, on n'a pas fini !","Termine d'abord ce plat."));return;}
   if(S.k.bowl.length>=6){say(T('Le saladier est plein ! Touche Mélanger.','Le saladier est plein : six ingrédients maximum.'));return;}
   S.k.bowl.push(k);
   if(S.k.mixed){S.k.mixed=null;S.k.phase='prep';}
-  speak(ING[k].s);$('bubbleText').textContent=ING[k].s;lastSay=ING[k].s;
-  await fly(ingSVG(k),b,$('bowl'),{dur:520,size:62,arc:90,spin:200});
-  sfx.pop();renderBowl();renderBtns();
+  sfx.click();speak(ING[k].s);$('bubbleText').textContent=ING[k].s;lastSay=ING[k].s;
+  renderBtns();
+  await fly(ingSVG(k),b,$('bowl'),{dur:380,size:62,arc:80,spin:200});
+  sfx.pop();renderBowl();
 });
 
 /* boutons de la cuisine */
-$('kBtns').addEventListener('click',e=>{
+onTap($('kBtns'),e=>{
   const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a;
   if(a==='mix')mix();
   if(a==='empty'){sfx.trash();S.k.bowl=[];S.k.mixed=null;S.k.phase='prep';renderBowl();renderBtns();say(T('Saladier vidé ! On recommence.','Saladier vide.'));}
   if(a==='feed')feed();
-  if(a==='trash'){sfx.trash();kReset();say(T('À la poubelle ! On recommence ?','Poubelle ! Nouvel essai ?'));}
-  if(a==='again'){sfx.click();if(!S.k.order)newOrder();kReset();say(T('C\'est reparti ! Ouvre le frigo.','Nouvel essai : à toi de jouer.'));}
+  if(a==='trash'){sfx.trash();kReset();say(T(`À la poubelle ! On recommence ? ${frHint()}`,'Poubelle ! Nouvel essai ?'));}
+  if(a==='again'){sfx.click();if(!S.k.order)newOrder();kReset();say(T(`C'est reparti ! ${frHint()}`,'Nouvel essai : à toi de jouer.'));}
 });
 async function mix(){
   S.k.phase='mixing';renderBtns();
@@ -860,7 +871,7 @@ const THERMO=(lv,c)=>`<svg viewBox="0 0 30 70" style="height:64px;width:28px"><r
 const GLASS=h=>`<svg viewBox="0 0 40 60" style="height:${h}px;width:${h*.67}px"><rect x="4" y="2" width="32" height="6" rx="3" fill="#8a5a36"/><rect x="4" y="52" width="32" height="6" rx="3" fill="#8a5a36"/><path d="M9 8 h22 q0 16 -9 22 q9 6 9 22 h-22 q0 -16 9 -22 q-9 -6 -9 -22z" fill="#e8f6ff" stroke="#8a5a36" stroke-width="2.5"/><path d="M13 46 q7 -6 14 0 v6 h-14z" fill="#ffc94a"/><path d="M14 13 h12 q-2 8 -6 10 q-4 -2 -6 -10z" fill="#ffc94a"/></svg>`;
 function openPanel(app){
   if(S.k.phase==='prep'&&S.k.bowl.length){say(T("D'abord, mélange avec la cuillère !",'Mélange d\'abord la pâte.'));return;}
-  if(S.k.phase!=='mixed'){if(S.k.phase==='prep')say(T('Ouvre le frigo et choisis des ingrédients !','Le saladier est vide : commence par le frigo.'));return;}
+  if(S.k.phase!=='mixed'){if(S.k.phase==='prep')say(T(frHint(),'Le saladier est vide : commence par le frigo.'));return;}
   sfx.click();S.k.app=app;S.k.temp=null;S.k.time=null;
   const card=$('panelCard'),four=app==='four';
   let h=`<h2>${four?'🔥 Le four':'⚡ Le micro-ondes'}</h2>`;
@@ -885,7 +896,7 @@ function updR(){
   if($('rvTemp')){$('rvTemp').textContent=S.k.temp+' °C';$('rTemp').value=S.k.temp;}
   if($('rvTime')){$('rvTime').textContent=S.k.app==='four'?S.k.time+' min':fmtMin(S.k.time);$('rTime').value=S.k.time;}
 }
-$('panelCard').addEventListener('click',e=>{
+onTap($('panelCard'),e=>{
   const o=e.target.closest('.opt');
   if(o){o.parentElement.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));o.classList.add('sel');sfx.pop();S.k[o.dataset.k]=+o.dataset.v;
     const lab=o.textContent.replace(/🔥/g,'').trim();speak(lab+' !');
@@ -897,9 +908,9 @@ $('panelCard').addEventListener('click',e=>{
   if(pa&&pa.dataset.pa==='go')cook();
 });
 $('panelCard').addEventListener('input',e=>{if(e.target.id==='rTemp')S.k.temp=+e.target.value;if(e.target.id==='rTime')S.k.time=+e.target.value;updR();});
-$('panel').addEventListener('click',e=>{if(e.target.id==='panel'){$('panel').classList.add('hidden');}});
-$('oven').addEventListener('click',()=>openPanel('four'));
-$('micro').addEventListener('click',()=>openPanel('micro'));
+onTap($('panel'),e=>{if(e.target.id==='panel'){$('panel').classList.add('hidden');}});
+onTap($('oven'),()=>openPanel('four'));
+onTap($('micro'),()=>openPanel('micro'));
 
 /* textes selon le résultat */
 const LINES={
@@ -959,13 +970,14 @@ async function explode(rid){
     const s=document.createElement('div');s.className='splat';const sz=rnd(100,150);
     s.style.cssText=`left:${rnd(300,1020)}px;top:${rnd(120,560)}px;width:${sz}px;height:${sz}px;transform:rotate(${rnd(0,360)}deg)`;
     s.innerHTML=splatSVG(c);kit.appendChild(s);
-    s.addEventListener('click',()=>wipe(s),{once:true});
+    onTap(s,()=>wipe(s));
   }
   award('boom');
   S.k.phase='clean';renderBtns();
   say(T(S.k.result.anna||LINES.explose[0],LINES.explose[1]+S.k.result.why+' Nettoie les taches !'));
 }
 function wipe(s){
+  if(s.classList.contains('wipe'))return;
   sfx.squish();s.classList.add('wipe');burst(s,['🫧','✨'],3,60);
   setTimeout(()=>{s.remove();
     if(!document.querySelector('.splat')){award('menage');setW(null);kReset();say(T('Tout propre ! Merci ! On recommence ?','Cuisine nettoyée. Ajuste tes réglages et retente !'));}
@@ -1023,22 +1035,22 @@ async function feed(){
   await sleep(2800);setW(null);food.remove();
   S.k.phase='done';renderBtns();renderOrder();
 }
-$('wanji').addEventListener('click',()=>{if(['prep','mixed','done'].includes(S.k.phase))wanjiTap($('wanjiBox'));});
-$('kicuitK').addEventListener('click',()=>{
+onTap($('wanji'),()=>{if(['prep','mixed','done'].includes(S.k.phase))wanjiTap($('wanjiBox'));});
+onTap($('kicuitK'),()=>{
   if(S.k.phase==='cooking'||S.k.phase==='feeding')return;
   sfx.click();
   say(T(pick(['Tu peux caresser Wanji, il adore ça !','Essaie le bouton très chaud… si tu oses !','Regarde la bulle de Wanji pour savoir ce qu\'il veut !']),pick(['Astuce : la plupart des gâteaux cuisent entre 160 et 200 °C.','Le micro-ondes chauffe l\'eau à l\'intérieur des aliments, mais il ne dore rien.','Ton carnet de recettes se remplit à chaque plat parfait. Ouvre-le en haut à droite.','Au-delà de 260 °C… je ne réponds plus de rien !'])));
 });
 
 /* carnet de recettes (Rafael) */
-$('kBook').addEventListener('click',()=>{
+onTap($('kBook'),()=>{
   sfx.click();const p=P(),n=REAL.filter(r=>p.found[r]).length;
   $('bookCard').innerHTML=`<h2>📖 Carnet de recettes · ${n}/${REAL.length}</h2><div class="blist">${REAL.map(r=>{const R=RECIPES[r],f=p.found[r],b=R.best==='four'?`🔥 four, ${R.four.t[0]}–${R.four.t[1]} °C, ${R.four.m[0]}–${R.four.m[1]} min`:`⚡ micro-ondes, ${fmtMin(R.micro.m[0])} à ${fmtMin(R.micro.m[1])}`;
     return `<div class="brow"><div class="bd ${f?'':'lock'}">${dishSVG(r)}</div><div><div class="bn">${R.n}</div>${f?`<div class="bi2">${R.ing.map(ingSVG).join('')}</div><div class="bx">${b}</div>`:`<div class="bx">${R.ing.length} ingrédients · meilleur au ${R.best==='four'?'four 🔥':'micro-ondes ⚡'}</div><div class="bx">Pas encore réussie</div>`}</div></div>`;}).join('')}</div><div class="pfoot"><button class="btn" id="bookClose">Fermer</button></div>`;
   $('bookM').classList.remove('hidden');
   say(n<REAL.length?'Les recettes grises restent à découvrir. Le nom est un indice !':'Carnet complet ! Tu es un vrai chef.');
 });
-$('bookM').addEventListener('click',e=>{if(e.target.id==='bookM'||e.target.id==='bookClose'){$('bookM').classList.add('hidden');sfx.click();}});
+onTap($('bookM'),e=>{if(e.target.id==='bookM'||e.target.id==='bookClose'){$('bookM').classList.add('hidden');sfx.click();}});
 
 /* hors ligne */
 if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
