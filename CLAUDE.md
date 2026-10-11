@@ -37,24 +37,19 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 
 ## Cuisine (faite, à faire évoluer)
 
-État actuel : frigo (9 ingrédients), saladier (retirer un ingrédient en le touchant), four, micro-ondes, Wanji, commandes, carnet de recettes (Raf).
+État actuel : frigo (9 ingrédients), saladier (retirer un ingrédient en le touchant), four, **plaque de cuisson avec poêle et casserole** (le micro-ondes a été retiré), Wanji, commandes, carnet de recettes (Raf).
 
-### Prochaine mise à jour : remplacer le micro-ondes par une plaque de cuisson
+- Les recettes sont définies par `req` (ingrédients obligatoires), `opt` (autorisés en plus) et `app` (four, poêle, casserole). La même pâte donne un plat différent selon l'ustensile (farine, œuf, lait donnent des crêpes à la poêle) ; un ustensile inadapté donne le résultat « mauvais ustensile ».
+- Gestes : retourner la crêpe ou plier l'omelette (glisser vers le haut, au-delà de 300 px la crêpe se colle au plafond puis tombe sur Wanji) ; remuer la casserole (jauge ; sans remuer, « ça attache »). Lait sur feu 8 ou plus : ça déborde, taches à nettoyer.
+- Nana : feu doux/moyen/vif = 3/5/9 ; sabliers poêle 2/4/10, casserole 5/15/40, four 10/25/60. Chaque recette est réussissable au réglage « moyen ».
+- Une commande réussie donne une étoile et, si l'autocollant de la recette est déjà gagné, une pochette double.
+- La leçon « un œuf entier ne se met jamais au micro-ondes » est une astuce de Kicuit.
 
-Le micro-ondes est jugé peu utile. On le remplace par une **plaque de cuisson** avec deux ustensiles :
-
-- **Poêle** : omelette, crêpes, œuf au plat.
-  Geste : **retourner** (glisser vers le haut). Trop fort, la crêpe se colle au plafond.
-- **Casserole** : chocolat chaud, soupe de tomates, confiture de fraises, et plus tard la cancoillotte (fromagerie).
-  Geste : **remuer** (mouvement circulaire). Sans remuer, ça attache et ça brûle. Feu trop vif : le lait déborde.
-- Réglages : Nana a 3 flammes (doux, moyen, vif) et 3 sabliers. Raf règle la puissance de 1 à 9 et un temps.
-- **La recette dépend de la pâte ET de l'ustensile** : la même pâte (farine, œuf, lait) donne des crêpes à la poêle, ou un clafoutis ou flan au four.
-- Garder la leçon « un œuf entier ne se met jamais au micro-ondes » sous forme d'astuce de Kicuit.
-
-Le four reste pour : gâteau (nature, chocolat, fraises), pizza, cookies, gratin de tomates, quiche au fromage, œuf cocotte.
-Plus tard, avec la fromagerie : tartiflette (reblochon), croûte au Mont d'Or, gratin au comté.
+Plus tard, avec la fromagerie : tartiflette (reblochon), croûte au Mont d'Or, gratin au comté, cancoillotte à la casserole.
 
 ## Autocollants (à soigner en priorité)
+
+Fait : pochettes à déchirer (2 touches), glisser-déposer vers la case (Nana : n'importe où sur la bonne page), pages avec compteur, autocollant doré par page complète, rareté (brillant, holographique, doré), secrets avec indice pour Raf, doubles sur « Ma page » (déplacer, tourner, agrandir). Données par enfant : `st` (collés), `packs` (à ouvrir), `tray` (à coller), `free` (page libre), `c` (compteurs).
 
 Objectif : un vrai album d'autocollants, celui qu'on a envie de remplir.
 
