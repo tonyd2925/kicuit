@@ -116,6 +116,7 @@ Parcours commun, avec des réglages selon le fromage :
 - Un seul `index.html` (HTML, CSS et JS vanilla, aucune dépendance), graphismes en SVG inline, sons en WebAudio.
 - Scène fixe de 1180×820, mise à l'échelle par `fit()`, iPad en paysage (message si l'iPad est en portrait).
 - **Taps : toujours utiliser `onTap(el, fn)`** (pointerdown/pointerup), jamais `click`. Sur iPad, `click` rate les éléments animés.
+- **Zoom bloqué** : Safari ignore `user-scalable=no`. Le double-tap (`touchend` à moins de 450 ms) et le pincement sont annulés en JS, et un zoom résiduel est annulé via `visualViewport` (`unzoom()`). Ne jamais réintroduire `click`, que ce blocage empêcherait.
 - Hors ligne : `sw.js`. **Incrémenter `const C='kicuit-vN'` à chaque mise à jour**, sinon l'iPad garde l'ancienne version.
 - Icônes `icon-180.png` / `icon-512.png`, `manifest.webmanifest` (ajout à l'écran d'accueil).
 - Avant de pousser : `node --check` sur le script, test des combinaisons de cuisson, partie complète en navigateur headless (tap tactile).
