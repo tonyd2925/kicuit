@@ -270,8 +270,8 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
   <!-- CHOIX DU JOUEUR -->
   <section class="screen" id="s-profile">
     <div class="title">Qui joue ?</div>
-    <button class="pcard" id="pAnna" data-p="anna"><div class="av" id="avAnna"></div><div class="pn">Anna</div><div class="pa">5 ans</div><div class="pt" style="background:#ff7fa8">Mode découverte</div></button>
-    <button class="pcard" id="pRafael" data-p="rafael"><div class="av" id="avRafael"></div><div class="pn">Rafael</div><div class="pa">10 ans</div><div class="pt" style="background:#4c8dff">Mode défis</div></button>
+    <button class="pcard" id="pAnna" data-p="anna"><div class="av" id="avAnna"></div><div class="pn">Nana</div><div class="pa">5 ans</div><div class="pt" style="background:#ff7fa8">Mode découverte</div></button>
+    <button class="pcard" id="pRafael" data-p="rafael"><div class="av" id="avRafael"></div><div class="pn">Raf</div><div class="pa">10 ans</div><div class="pt" style="background:#4c8dff">Mode défis</div></button>
   </section>
 
   <!-- MAISON -->
@@ -293,7 +293,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
       <div class="fr-top" id="frTop"></div>
       <div class="fr-main">
         <div class="fr-in" id="frIn"></div>
-        <div class="fr-door" id="frDoor"><div class="magnet" id="frMag" style="background:#ff7fa8">A</div><div class="magnet" style="background:#ffc94a">★</div><div class="hint">Ouvre-moi !</div></div>
+        <div class="fr-door" id="frDoor"><div class="magnet" id="frMag" style="background:#ff7fa8">N</div><div class="magnet" style="background:#ffc94a">★</div><div class="hint">Ouvre-moi !</div></div>
       </div>
     </div>
     <div class="abs" id="kicuitK"></div>
@@ -698,7 +698,7 @@ function enterHub(){
   $('hubAv').innerHTML=avatar(S.player);
   $('hubStarN').textContent=P().stars;
   $('voiceBtn').textContent=DB.voice?'🔊':'🔇';
-  say(T('Coucou Anna ! Touche la cuisine pour cuisiner avec moi !',"Salut Rafael ! La cuisine est ouverte. Tu as des défis à relever !"));
+  say(T('Coucou Nana ! Touche la cuisine pour cuisiner avec moi !',"Salut Raf ! La cuisine est ouverte. Tu as des défis à relever !"));
 }
 $('hubArt').innerHTML=hubSVG();
 $('hubW').innerHTML=wanjiSVG();
@@ -727,7 +727,7 @@ $('hubK').addEventListener('click',()=>{sfx.click();say(T('Bip bip ! Je suis Kic
 function enterAlbum(){
   go('s-album');
   const p=P(),n=STICK.filter(s=>p.st[s.id]).length;
-  $('albumTitle').textContent=`Album ${T("d'Anna",'de Rafael')} · ${n}/${STICK.length}`;
+  $('albumTitle').textContent=`Album ${T('de Nana','de Raf')} · ${n}/${STICK.length}`;
   $('albumGrid').innerHTML=STICK.map(s=>{const got=p.st[s.id];return `<div class="stk ${got?'':'lock'}"><div class="si">${got?stickIcon(s):(s.dish?dishSVG(s.dish):s.e)}</div><div class="sn">${got?s.n:'???'}</div></div>`}).join('');
   say(n?T(`Tu as ${n} autocollant${n>1?'s':''} ! Bravo !`,`${n} autocollants sur ${STICK.length}. Les gris sont encore à trouver !`):T('Ton album est vide ! Va cuisiner pour gagner des autocollants.','Album vide pour l\'instant. Chaque recette réussie et chaque catastrophe rapporte un autocollant !'));
 }
@@ -806,7 +806,7 @@ function kReset(){
 function enterKitchen(){
   go('s-kitchen');
   $('kBook').classList.toggle('hidden',isA());
-  $('frMag').textContent=isA()?'A':'R';$('frMag').style.background=isA()?'#ff7fa8':'#4c8dff';
+  $('frMag').textContent=isA()?'N':'R';$('frMag').style.background=isA()?'#ff7fa8':'#4c8dff';
   if(S.k.phase==='cooking'||S.k.phase==='feeding')return;
   kReset();
   if(!S.k.order)newOrder();
