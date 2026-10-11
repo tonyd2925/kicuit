@@ -124,6 +124,7 @@ svg{display:block}
 #bowlC{position:absolute;left:0;top:0;width:250px;height:90px}
 #bowlC .bi{position:absolute;width:56px;height:56px;animation:drop .35s ease-out}
 #bowlC .bi svg,.wfood svg{width:100%;height:100%}
+#bowlC .bi{cursor:pointer}
 @keyframes drop{from{transform:translateY(-30px) scale(1.2)}}
 #bowlC .pate{position:absolute;left:18px;top:24px;width:214px;height:44px;border-radius:50%;background:var(--c);box-shadow:inset 0 -8px 0 rgba(0,0,0,.12),inset 0 6px 0 rgba(255,255,255,.35);animation:drop .4s ease-out}
 .whisk{position:absolute;left:90px;top:-70px;width:70px;height:120px;transform-origin:50% 90%;animation:whisk .16s ease-in-out infinite alternate;z-index:8}
@@ -502,15 +503,15 @@ const avatar=p=>p==='anna'?annaSVG():rafaelSVG();
 
 /* ingrédients */
 const ING={
-  oeuf:{n:'Œuf',s:'Un œuf !',svg:'<ellipse cx="32" cy="36" rx="17" ry="22" fill="#fff8ea" stroke="#d6c39d" stroke-width="3"/><ellipse cx="25" cy="27" rx="4" ry="7" fill="#fff" />'},
-  farine:{n:'Farine',s:'De la farine !',svg:'<path d="M14 24 q18 -8 36 0 l5 30 q-23 8 -46 0z" fill="#f3ead6" stroke="#b9a77f" stroke-width="3"/><path d="M20 24 q12 -14 24 0" fill="#fff" stroke="#b9a77f" stroke-width="3"/><path d="M32 34 v16 M32 38 l-5 -4 M32 38 l5 -4 M32 44 l-5 -4 M32 44 l5 -4" stroke="#d9a441" stroke-width="2.5" stroke-linecap="round"/>'},
-  sucre:{n:'Sucre',s:'Du sucre !',svg:'<g stroke="#a7b4cc" stroke-width="3" fill="#fff"><rect x="10" y="32" width="20" height="20" rx="3"/><rect x="34" y="32" width="20" height="20" rx="3"/><rect x="22" y="12" width="20" height="20" rx="3"/></g>'},
-  beurre:{n:'Beurre',s:'Du beurre !',svg:'<rect x="8" y="22" width="48" height="26" rx="5" fill="#ffe27a" stroke="#d8b23c" stroke-width="3"/><path d="M8 34 h48 v14 h-48z" fill="#fff" opacity=".85"/><rect x="8" y="22" width="48" height="26" rx="5" fill="none" stroke="#d8b23c" stroke-width="3"/>'},
-  lait:{n:'Lait',s:'Du lait !',svg:'<path d="M22 20 h20 l6 10 v26 q0 4 -4 4 h-24 q-4 0 -4 -4 v-26z" fill="#fff" stroke="#a7b4cc" stroke-width="3"/><rect x="24" y="8" width="16" height="12" rx="3" fill="#4c8dff"/><rect x="16" y="36" width="32" height="12" fill="#8fc2ff"/>'},
-  chocolat:{n:'Chocolat',s:'Du chocolat !',svg:'<rect x="12" y="10" width="40" height="46" rx="5" fill="#6b3b1f" stroke="#4a2612" stroke-width="3"/><path d="M12 25 h40 M12 40 h40 M32 10 v46" stroke="#8a5232" stroke-width="3"/><path d="M34 56 l18 -18 v13 q0 5 -5 5z" fill="#d4dbe6"/>'},
-  fraise:{n:'Fraise',s:'Une fraise !',svg:'<path d="M32 58 q-22 -14 -20 -30 q2 -10 20 -8 q18 -2 20 8 q2 16 -20 30z" fill="#ff4d5e" stroke="#c9273a" stroke-width="3"/><g fill="#ffe17a"><circle cx="24" cy="32" r="1.8"/><circle cx="34" cy="30" r="1.8"/><circle cx="42" cy="34" r="1.8"/><circle cx="28" cy="42" r="1.8"/><circle cx="38" cy="44" r="1.8"/></g><path d="M20 20 q12 -10 24 0 q-6 -4 -12 6 q-6 -10 -12 -6z" fill="#3fbf55"/>'},
-  tomate:{n:'Tomate',s:'Une tomate !',svg:'<circle cx="32" cy="36" r="21" fill="#ff5a3c" stroke="#c93a22" stroke-width="3"/><ellipse cx="24" cy="29" rx="5" ry="3" fill="#fff" opacity=".5"/><path d="M32 16 l-8 -4 l5 6 l-9 2 l10 2 l2 6 l2 -6 l10 -2 l-9 -2 l5 -6z" fill="#3fbf55"/>'},
-  gruyere:{n:'Gruyère',s:'Du gruyère !',svg:'<path d="M8 44 L52 18 L58 44 z" fill="#ffd448" stroke="#e0a91f" stroke-width="3" stroke-linejoin="round"/><path d="M8 44 h50 v10 h-50z" fill="#ffc72e" stroke="#e0a91f" stroke-width="3"/><g fill="#e8b52c"><circle cx="40" cy="34" r="4"/><circle cx="28" cy="40" r="3"/><circle cx="50" cy="28" r="2.5"/><circle cx="20" cy="50" r="2.5"/><circle cx="44" cy="49" r="2.5"/></g>'}
+  oeuf:{r:"l'œuf",n:'Œuf',s:'Un œuf !',svg:'<ellipse cx="32" cy="36" rx="17" ry="22" fill="#fff8ea" stroke="#d6c39d" stroke-width="3"/><ellipse cx="25" cy="27" rx="4" ry="7" fill="#fff" />'},
+  farine:{r:"la farine",n:'Farine',s:'De la farine !',svg:'<path d="M14 24 q18 -8 36 0 l5 30 q-23 8 -46 0z" fill="#f3ead6" stroke="#b9a77f" stroke-width="3"/><path d="M20 24 q12 -14 24 0" fill="#fff" stroke="#b9a77f" stroke-width="3"/><path d="M32 34 v16 M32 38 l-5 -4 M32 38 l5 -4 M32 44 l-5 -4 M32 44 l5 -4" stroke="#d9a441" stroke-width="2.5" stroke-linecap="round"/>'},
+  sucre:{r:"le sucre",n:'Sucre',s:'Du sucre !',svg:'<g stroke="#a7b4cc" stroke-width="3" fill="#fff"><rect x="10" y="32" width="20" height="20" rx="3"/><rect x="34" y="32" width="20" height="20" rx="3"/><rect x="22" y="12" width="20" height="20" rx="3"/></g>'},
+  beurre:{r:"le beurre",n:'Beurre',s:'Du beurre !',svg:'<rect x="8" y="22" width="48" height="26" rx="5" fill="#ffe27a" stroke="#d8b23c" stroke-width="3"/><path d="M8 34 h48 v14 h-48z" fill="#fff" opacity=".85"/><rect x="8" y="22" width="48" height="26" rx="5" fill="none" stroke="#d8b23c" stroke-width="3"/>'},
+  lait:{r:"le lait",n:'Lait',s:'Du lait !',svg:'<path d="M22 20 h20 l6 10 v26 q0 4 -4 4 h-24 q-4 0 -4 -4 v-26z" fill="#fff" stroke="#a7b4cc" stroke-width="3"/><rect x="24" y="8" width="16" height="12" rx="3" fill="#4c8dff"/><rect x="16" y="36" width="32" height="12" fill="#8fc2ff"/>'},
+  chocolat:{r:"le chocolat",n:'Chocolat',s:'Du chocolat !',svg:'<rect x="12" y="10" width="40" height="46" rx="5" fill="#6b3b1f" stroke="#4a2612" stroke-width="3"/><path d="M12 25 h40 M12 40 h40 M32 10 v46" stroke="#8a5232" stroke-width="3"/><path d="M34 56 l18 -18 v13 q0 5 -5 5z" fill="#d4dbe6"/>'},
+  fraise:{r:"la fraise",n:'Fraise',s:'Une fraise !',svg:'<path d="M32 58 q-22 -14 -20 -30 q2 -10 20 -8 q18 -2 20 8 q2 16 -20 30z" fill="#ff4d5e" stroke="#c9273a" stroke-width="3"/><g fill="#ffe17a"><circle cx="24" cy="32" r="1.8"/><circle cx="34" cy="30" r="1.8"/><circle cx="42" cy="34" r="1.8"/><circle cx="28" cy="42" r="1.8"/><circle cx="38" cy="44" r="1.8"/></g><path d="M20 20 q12 -10 24 0 q-6 -4 -12 6 q-6 -10 -12 -6z" fill="#3fbf55"/>'},
+  tomate:{r:"la tomate",n:'Tomate',s:'Une tomate !',svg:'<circle cx="32" cy="36" r="21" fill="#ff5a3c" stroke="#c93a22" stroke-width="3"/><ellipse cx="24" cy="29" rx="5" ry="3" fill="#fff" opacity=".5"/><path d="M32 16 l-8 -4 l5 6 l-9 2 l10 2 l2 6 l2 -6 l10 -2 l-9 -2 l5 -6z" fill="#3fbf55"/>'},
+  gruyere:{r:"le gruyère",n:'Gruyère',s:'Du gruyère !',svg:'<path d="M8 44 L52 18 L58 44 z" fill="#ffd448" stroke="#e0a91f" stroke-width="3" stroke-linejoin="round"/><path d="M8 44 h50 v10 h-50z" fill="#ffc72e" stroke="#e0a91f" stroke-width="3"/><g fill="#e8b52c"><circle cx="40" cy="34" r="4"/><circle cx="28" cy="40" r="3"/><circle cx="50" cy="28" r="2.5"/><circle cx="20" cy="50" r="2.5"/><circle cx="44" cy="49" r="2.5"/></g>'}
 };
 const ingSVG=k=>`<svg viewBox="0 0 64 64">${ING[k].svg}</svg>`;
 const FRIDGE=['oeuf','lait','beurre','farine','sucre','chocolat','tomate','fraise','gruyere'];
@@ -787,7 +788,7 @@ const BPOS=[[30,8,-12],[84,0,8],[136,6,-5],[176,18,14],[58,26,6],[112,28,-10]];
 function renderBowl(){
   const c=$('bowlC');
   if(S.k.mixed){c.innerHTML=`<div class="pate" style="--c:${RECIPES[S.k.mixed].pate}"></div>`;return;}
-  c.innerHTML=S.k.bowl.map((k,i)=>`<div class="bi" style="left:${BPOS[i][0]}px;top:${BPOS[i][1]}px;transform:rotate(${BPOS[i][2]}deg)">${ingSVG(k)}</div>`).join('');
+  c.innerHTML=S.k.bowl.map((k,i)=>`<div class="bi" data-i="${i}" style="left:${BPOS[i][0]}px;top:${BPOS[i][1]}px;transform:rotate(${BPOS[i][2]}deg)">${ingSVG(k)}</div>`).join('');
 }
 function renderBtns(){
   const ph=S.k.phase,b=[];
@@ -843,6 +844,21 @@ onTap($('frIn'),async e=>{
   renderBtns();
   await fly(ingSVG(k),b,$('bowl'),{dur:380,size:62,arc:80,spin:200});
   sfx.pop();renderBowl();
+});
+
+/* retirer un seul ingrédient en le touchant dans le saladier */
+onTap($('bowl'),async e=>{
+  const it=e.target.closest('.bi');
+  if(S.k.mixed&&S.k.phase==='mixed'){say(T("C'est déjà mélangé ! Touche Vider pour recommencer.",'Pâte déjà mélangée : utilise Vider pour recommencer.'));return;}
+  if(!it||S.k.phase!=='prep')return;
+  const i=+it.dataset.i,k=S.k.bowl[i];if(!k)return;
+  S.k.bowl.splice(i,1);sfx.pop();
+  const t=`Hop, ${ING[k].r} retourne au frigo !`;$('bubbleText').textContent=t;lastSay=t;speak(t);
+  const dest=frOpen()?document.querySelector(`[data-ing="${k}"]`):$('fridge');
+  const from=it.getBoundingClientRect();it.style.visibility='hidden';
+  renderBtns();
+  await fly(ingSVG(k),it,dest,{dur:380,size:56,arc:80,spin:-200});
+  renderBowl();
 });
 
 /* boutons de la cuisine */
