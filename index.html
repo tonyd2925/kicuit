@@ -783,6 +783,59 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 @keyframes rot{0%,30%{transform:rotate(0)}60%,100%{transform:rotate(-90deg)}}
 @media (orientation:portrait) and (max-width:1100px){#rotate{display:flex}}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+/* --- petits effets --- */
+.clouds{animation:cloudDrift 40s ease-in-out infinite alternate}
+.clouds2{animation:cloudDrift 55s ease-in-out infinite alternate-reverse}
+@keyframes cloudDrift{from{transform:translateX(-30px)}to{transform:translateX(50px)}}
+#oven .win{overflow:hidden}
+#oven .win::after,.tank::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(120deg,rgba(255,255,255,.38) 0 12%,transparent 12% 20%,rgba(255,255,255,.18) 20% 25%,transparent 25%)}
+#bookCard{background:linear-gradient(90deg,transparent 0 58px,#ffb3b3 58px 61px,transparent 61px),repeating-linear-gradient(#fffdf6 0 33px,#dfe9f7 33px 35px);box-shadow:inset 18px 0 0 #c99b6b,inset 26px 0 0 #e6c79f,0 20px 50px rgba(0,0,0,.3);padding-left:80px}
+#bookCard::before{content:"";position:absolute;left:-10px;top:40px;bottom:40px;width:24px;background:radial-gradient(circle at 12px 12px,#8a96ad 0 6px,#e8edf5 6px 9px,transparent 9px) 0 0/24px 46px repeat-y}
+#bookCard{position:relative}
+/* --- garde-robe --- */
+#hatBtn{left:20px;top:112px}
+#hatBtn.newacc{animation:pulse .7s ease-in-out infinite;box-shadow:0 0 0 6px var(--gold),0 6px 0 #d9d2e8}
+.wardrobe{width:900px}
+.wardrobe h2{text-align:center;margin:0 0 10px}
+.wrow{display:flex;align-items:center;gap:16px;margin:10px 0}
+.wprev{width:150px;height:160px;flex:none;background:#f3f0fb;border-radius:24px;display:flex;align-items:center;justify-content:center}
+.wprev svg{width:140px;height:150px}
+.wopts{display:flex;gap:10px;flex-wrap:wrap}
+.wopt{width:116px;height:120px;border-radius:22px;background:#fff;box-shadow:0 5px 0 #ddd6ef,0 0 0 2px #eee8f7;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:15px;font-weight:900;gap:2px}
+.wopt span{font-size:50px;line-height:1}
+.wopt.sel{box-shadow:0 0 0 5px var(--orange),0 5px 0 #ddd6ef}
+.wopt.lock{filter:grayscale(1);opacity:.5}
+/* --- paramètres parents --- */
+#parBtn{right:20px;top:20px}
+.parents{width:640px;text-align:center}
+.parents h2{margin:0 0 6px}
+.parents .px{font-size:17px;font-weight:700;opacity:.75;margin:0 0 16px;line-height:1.35}
+.parents .btn{width:100%;margin:8px 0;font-size:26px}
+.hold{position:relative;overflow:hidden}
+.hold i{position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(255,255,255,.35)}
+.hold.on i{transition:width 3s linear;width:100%}
+/* --- fonds de « Ma page » --- */
+#freeArea.bg-plage{background:linear-gradient(#8fd3ff 0 55%,#3fa9e8 55% 63%,#ffe49e 63%)}
+#freeArea.bg-espace{background:radial-gradient(circle at 80% 20%,#5a4fc8 0 8%,transparent 9%),radial-gradient(circle at 30% 30%,#3a2d78,#14102e)}
+#freeArea.bg-espace::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 2px),radial-gradient(#fff8c4 1.5px,transparent 2.5px);background-size:70px 70px,130px 110px;background-position:0 0,35px 50px;opacity:.8;pointer-events:none}
+#freeArea.bg-foret{background:linear-gradient(#bfe9ff 0 45%,#8cce5e 45%),repeating-linear-gradient(90deg,transparent 0 60px,rgba(47,154,90,.25) 60px 100px)}
+#freeArea.bg-foret::before{content:"🌲 🌳 🌲🌲 🌳 🌲 🌳🌲";position:absolute;left:0;right:0;top:36%;font-size:58px;text-align:center;letter-spacing:8px;pointer-events:none;opacity:.9}
+#freeArea.bg-plage::before{content:"☀️                    ⛵";position:absolute;left:30px;right:30px;top:20px;font-size:54px;white-space:pre;pointer-events:none}
+#bgPick{position:absolute;right:14px;top:10px;display:flex;gap:8px;z-index:6}
+#bgPick button{width:54px;height:54px;border-radius:50%;background:#fff;font-size:28px;box-shadow:0 4px 10px rgba(0,0,0,.18)}
+#bgPick button.on{box-shadow:0 0 0 4px var(--orange),0 4px 10px rgba(0,0,0,.18)}
+/* --- météo du jardin --- */
+#wxBtn{left:244px;top:112px;font-size:46px;z-index:6}
+#gWx{position:absolute;inset:0;pointer-events:none;z-index:2;overflow:hidden}
+#gWx .rain{position:absolute;inset:-40px 0 0 0;background:repeating-linear-gradient(105deg,transparent 0 22px,rgba(120,170,230,.55) 22px 24px,transparent 24px 46px);background-size:46px 120px;animation:rainFall .45s linear infinite;opacity:.8}
+#gWx .grey{position:absolute;left:0;right:0;top:0;height:300px;background:linear-gradient(rgba(90,105,130,.55),rgba(90,105,130,0))}
+@keyframes rainFall{to{background-position:-20px 120px}}
+#gWx .rays{position:absolute;left:800px;top:70px;width:160px;height:160px;border-radius:50%;background:repeating-conic-gradient(rgba(255,225,90,.45) 0 10deg,transparent 10deg 25deg);animation:spin 12s linear infinite;-webkit-mask:radial-gradient(circle,transparent 30%,#000 32%,transparent 70%);mask:radial-gradient(circle,transparent 30%,#000 32%,transparent 70%)}
+#gWx .leaf{position:absolute;left:-60px;font-size:34px;animation:leafFly 4s linear infinite}
+@keyframes leafFly{0%{transform:translate(0,0) rotate(0)}50%{transform:translate(640px,40px) rotate(260deg)}100%{transform:translate(1300px,-20px) rotate(540deg)}}
+#s-garden.rainy .gsun{opacity:.2;transition:opacity 1s}
+#moulin.wind .sails{animation:spin 1.6s linear infinite}
+#moulin.spin.wind .sails{animation:spin .3s linear infinite}
 </style>
 </head>
 <body>
@@ -801,6 +854,8 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
     <div class="title">Qui joue ?</div>
     <button class="pcard" id="pAnna" data-p="anna"><div class="av" id="avAnna"></div><div class="pn">Nana</div><div class="pa">5 ans</div><div class="pt" style="background:#ff7fa8">Mode découverte</div></button>
     <button class="pcard" id="pRafael" data-p="rafael"><div class="av" id="avRafael"></div><div class="pn">Raf</div><div class="pa">10 ans</div><div class="pt" style="background:#4c8dff">Mode défis</div></button>
+    <button class="iconbtn" id="parBtn">⚙️</button>
+    <div class="modal hidden" id="parM"><div class="card parents" id="parIn"></div></div>
   </section>
 
   <section class="screen" id="s-hub">
@@ -811,6 +866,8 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
     <div id="hubStars">⭐ <span id="hubStarN">0</span></div>
     <button class="iconbtn gift hidden" style="right:120px;top:14px">🎁<span class="badge">0</span></button>
     <button class="iconbtn" id="voiceBtn" style="right:20px;top:14px">🔊</button>
+    <button class="iconbtn" id="hatBtn">🎩</button>
+    <div class="modal hidden" id="hatM"><div class="card wardrobe" id="hatIn"></div></div>
   </section>
 
   <section class="screen" id="s-kitchen">
@@ -843,7 +900,9 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 
   <section class="screen" id="s-garden">
     <div id="gArt"></div>
+    <div id="gWx"></div>
     <div class="abs" id="moulin"></div>
+    <button class="iconbtn" id="wxBtn">☀️</button>
     <div id="gPlots" style="position:absolute;inset:0"></div>
     <div id="gInv"></div>
     <div class="abs hidden" id="gObj"></div>
@@ -1033,7 +1092,8 @@ function say(text,v){
 onTap($('bubble'),()=>lastSay&&speak(lastSay));
 
 /* ---------- personnages ---------- */
-function kicuitSVG(){return `<svg viewBox="0 0 200 250" class="kc"><ellipse cx="100" cy="242" rx="46" ry="7" fill="#000" opacity=".12"/><g class="kc-float">
+function kicuitSVG(){return kcAcc(kicuitSVG0(),ACC_().k);}
+function kicuitSVG0(){return `<svg viewBox="0 0 200 250" class="kc"><ellipse cx="100" cy="242" rx="46" ry="7" fill="#000" opacity=".12"/><g class="kc-float">
 <rect x="31" y="170" width="28" height="14" rx="7" fill="#cfd9ee" stroke="#5d6c8c" stroke-width="4" transform="rotate(-28 45 177)"/>
 <rect x="141" y="170" width="28" height="14" rx="7" fill="#cfd9ee" stroke="#5d6c8c" stroke-width="4" transform="rotate(28 155 177)"/>
 <rect x="74" y="216" width="52" height="16" rx="8" fill="#5d6c8c"/>
@@ -1048,7 +1108,8 @@ function kicuitSVG(){return `<svg viewBox="0 0 200 250" class="kc"><ellipse cx="
 <g stroke="#c8d0e0" stroke-width="3" fill="#fff"><circle cx="72" cy="36" r="20"/><circle cx="128" cy="36" r="20"/><circle cx="100" cy="26" r="24"/><rect x="62" y="38" width="76" height="28" rx="6"/></g>
 <rect x="65" y="34" width="70" height="22" fill="#fff"/>
 </g></svg>`}
-function wanjiSVG(){
+function wanjiSVG(){return wjAcc(wanjiSVG0(),ACC_().w);}
+function wanjiSVG0(){
   /* Wanji, le vrai : pomsky brun taupe et crème, liste blanche sur le front, yeux bleu clair, collier noir et médaille. */
   const fluff=(pts,r,c)=>pts.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/>`).join('');
   return `<svg viewBox="0 0 240 250" class="wj"><ellipse cx="120" cy="241" rx="84" ry="9" fill="#000" opacity=".13"/>
@@ -1515,7 +1576,8 @@ document.addEventListener('pointercancel',e=>{if(DRAG){if(DRAG.el)DRAG.el.remove
 /* page libre */
 function renderFree(){
   const f=P().free;
-  $('apage').innerHTML=`<div id="freeArea">${f.length?'':`<div class="fhint">${T('Colle ici tes doubles !','Glisse tes doubles ici pour créer ta scène.')}</div>`}${f.map((it,i)=>`<div class="fitem ${AL.sel===i?'sel':''}" data-i="${i}" style="left:${it.x}px;top:${it.y}px;transform:rotate(${it.r}deg) scale(${it.s})">${sart(it.id)}</div>`).join('')}</div>`;
+  const bg=P().freeBg||'creme';
+  $('apage').innerHTML=`<div id="freeArea" class="bg-${bg}"><div id="bgPick">${[['creme','📄'],['plage','🏖️'],['espace','🚀'],['foret','🌲']].map(([k,e])=>`<button data-bg="${k}" class="${bg===k?'on':''}">${e}</button>`).join('')}</div>${f.length?'':`<div class="fhint">${T('Colle ici tes doubles !','Glisse tes doubles ici pour créer ta scène.')}</div>`}${f.map((it,i)=>`<div class="fitem ${AL.sel===i?'sel':''}" data-i="${i}" style="left:${it.x}px;top:${it.y}px;transform:rotate(${it.r}deg) scale(${it.s})">${sart(it.id)}</div>`).join('')}</div>`;
   if(AL.sel!=null&&f[AL.sel]){const it=f[AL.sel];
     $('freeArea').insertAdjacentHTML('beforeend',`<div id="ftools" style="left:${Math.min(Math.max(it.x-160,10),760)}px;top:${it.y+70*it.s>380?it.y-70*it.s-80:it.y+70*it.s+10}px"><button data-t="l">↺</button><button data-t="r">↻</button><button data-t="p">＋</button><button data-t="m">－</button><button data-t="b">↩</button></div>`);}
 }
@@ -1553,7 +1615,7 @@ function fly(html,fromEl,toEl,{dur=650,size=64,arc=120,spin=0,scaleTo=1,to=null}
     const mx=(a.x+b.x)/2,my=Math.min(a.y,b.y)-arc,fr=[];
     for(let i=0;i<=14;i++){const t=i/14,x=(1-t)*(1-t)*a.x+2*(1-t)*t*mx+t*t*b.x,y=(1-t)*(1-t)*a.y+2*(1-t)*t*my+t*t*b.y;
       fr.push({transform:`translate(${x-size/2}px,${y-size/2}px) scale(${1+(scaleTo-1)*t}) rotate(${spin*t}deg)`});}
-    d.animate(fr,{duration:dur,easing:'ease-in-out',fill:'forwards'}).onfinish=()=>{d.remove();res();};
+    d.animate(fr,{duration:dur,easing:'ease-in-out',fill:'forwards'}).onfinish=()=>{d.remove();if(toEl&&!to&&toEl.animate)try{toEl.animate([{scale:'1'},{scale:'1.12 .88'},{scale:'.96 1.04'},{scale:'1'}],{duration:360,easing:'ease-out'});}catch(_){}res();};
   });
 }
 function burst(el,chars,n=8,spread=140){
@@ -1612,7 +1674,7 @@ function hubSVG(){
 <pattern id="htile" width="22" height="22" patternUnits="userSpaceOnUse"><rect width="22" height="22" fill="#fff"/><rect width="11" height="11" fill="#ffe2d6"/><rect x="11" y="11" width="11" height="11" fill="#ffe2d6"/></pattern></defs>
 <rect width="1180" height="820" fill="url(#hsky)"/>
 <circle cx="1080" cy="200" r="52" fill="#ffd95a"/><circle cx="1080" cy="200" r="70" fill="#ffd95a" opacity=".25"/>
-<g fill="#fff" opacity=".95"><ellipse cx="150" cy="190" rx="60" ry="26"/><ellipse cx="200" cy="170" rx="46" ry="30"/><ellipse cx="240" cy="192" rx="44" ry="22"/><ellipse cx="960" cy="330" rx="50" ry="20"/><ellipse cx="1000" cy="314" rx="40" ry="26"/></g>
+<g class="clouds" fill="#fff" opacity=".95"><ellipse cx="150" cy="190" rx="60" ry="26"/><ellipse cx="200" cy="170" rx="46" ry="30"/><ellipse cx="240" cy="192" rx="44" ry="22"/><ellipse cx="960" cy="330" rx="50" ry="20"/><ellipse cx="1000" cy="314" rx="40" ry="26"/></g>
 <path d="M0 640 q300 -80 600 -10 t620 0 v200 h-1220z" fill="#a6dc76"/>
 <rect y="704" width="1180" height="116" fill="#8cce5e"/>
 <path d="M560 700 q-20 60 -60 120 h160 q-40 -60 -60 -120z" fill="#e9d3a8"/>
@@ -1631,6 +1693,7 @@ function enterHub(){
   go('s-hub');$('hubArt').innerHTML=hubSVG();$('hubAv').innerHTML=avatar(S.player);$('hubStarN').textContent=P().stars;$('voiceBtn').textContent=DB.voice?'🔊':'🔇';updGift();
   const pk=P().packs.length?T(' Une pochette t\'attend !',' Une pochette t\'attend dans le cadeau.'):'';
   say(T('Coucou Nana ! Touche la cuisine.','Salut Raf ! La cuisine est ouverte.')+pk,T('Coucou Nana !'+pk,false));
+  refreshMascots();if(accCheck())setTimeout(()=>{if(S.screen==='s-hub')say(T('Un nouvel accessoire t\'attend dans la garde-robe 🎩 !','Nouvel accessoire débloqué : ouvre la garde-robe 🎩.'),T(undefined,false));},2600);
 }
 $('hubArt').innerHTML=hubSVG();$('hubW').innerHTML=wanjiSVG();$('hubK').innerHTML=kicuitSVG();
 onTap($('hubArt'),e=>{
@@ -2147,8 +2210,8 @@ const WEEDS='<svg viewBox="0 0 280 178" style="width:100%;height:100%"><g fill="
 const APH='<svg viewBox="0 0 140 150" style="position:absolute;left:70px;bottom:28px;width:140px;height:150px">'+[[62,92],[78,86],[70,76],[86,100],[56,104],[74,108]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="4.5" ry="3.5" fill="#9be15d" stroke="#3d7a1c" stroke-width="1.5"/>`).join('')+'</svg>';
 
 function gardenSVG(){return `<svg viewBox="0 0 1180 820" class="full"><defs><linearGradient id="gsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fd3ff"/><stop offset="1" stop-color="#dff4ff"/></linearGradient></defs>
-<rect width="1180" height="820" fill="url(#gsky)"/><circle cx="880" cy="150" r="46" fill="#ffd95a"/>
-<g fill="#fff" opacity=".9"><ellipse cx="560" cy="150" rx="56" ry="22"/><ellipse cx="600" cy="132" rx="40" ry="26"/></g>
+<rect width="1180" height="820" fill="url(#gsky)"/><circle class="gsun" cx="880" cy="150" r="46" fill="#ffd95a"/>
+<g class="clouds2" fill="#fff" opacity=".9"><ellipse cx="560" cy="150" rx="56" ry="22"/><ellipse cx="600" cy="132" rx="40" ry="26"/></g>
 <path d="M0 270 q240 -60 480 -10 t480 -20 t240 10 v600 h-1200z" fill="#a6dc76"/>
 <rect y="282" width="1180" height="538" fill="#8fce5e"/>
 ${Array.from({length:40},(_,i)=>`<rect x="${i*30}" y="236" width="18" height="64" rx="5" fill="#fff6e0" stroke="#c8a97a" stroke-width="3"/>`).join('')}
@@ -2204,6 +2267,7 @@ function enterGarden(){
   go('s-garden');G_();renderGarden();
   $('gWanji').innerHTML=wanjiSVG();
   clearInterval(GS.timer);GS.timer=setInterval(gTick,250);
+  {const w=wxPick(),ch=w!==GS.lastWx;GS.lastWx=w;wxSet(w,false);if(ch&&G_().seen&&G_().seen.intro)setTimeout(()=>{if(S.screen==='s-garden'&&GS.wx===w)say(T(WX[w].n[0],WX[w].n[1]),T(undefined,false));},3200);}
   if(!G_().obj)newObj();
   if(!seen('intro'))say(T('Bienvenue au jardin ! Choisis une graine, puis touche la terre.','Le jardin ! Plante, arrose, protège tes plantes. Les abeilles aident les fraises et les tomates à faire des fruits.'));
   else{const o=G_().obj;say(T(o.x+' !','Objectif : '+o.x+'.'));}
@@ -2218,7 +2282,7 @@ function gTick(){
   g.plots.forEach((p,i)=>{
     if(!p.c){if(!p.weed&&Math.random()<(A?.0006:.0012))p.weed=true;renderPlot(i);return;}
     if(p.dead){renderPlot(i);return;}
-    p.w=Math.max(0,p.w-(A?.3:.55)-(p.w>100?.8:0));
+    {const wx=GS.wx,lose=(A?.3:.55)*(wx==='soleil'?(A?1.15:1.35):wx==='vent'?1.15:wx==='pluie'?0:1);p.w=Math.max(0,p.w-lose-(p.w>100?.8:0));if(wx==='pluie'&&p.w<70)p.w=Math.min(70,p.w+(A?.8:.6));}
     if(!p.weed&&Math.random()<(A?.0012:.0025))p.weed=true;
     if(p.st>=1&&p.st<4&&p.aph<3&&Math.random()<(A?.001:.002)){p.aph++;if(!seen('aph'))say(T('Des pucerons ! Écrase-les avec la main ou appelle les coccinelles.','Des pucerons ! Écrase-les à la main, ou envoie les coccinelles : elles les mangent.'));}
     if(p.w<=0){p.dry=(p.dry||0)+1;if(!A&&p.dry>40){p.dead=true;say('Oh non, une plante est morte de soif ! Arrache-la avec la main.');}}else p.dry=0;
@@ -2229,15 +2293,16 @@ function gTick(){
     if(p.w<=0||p.w>100||p.st===4)m=0;
     const fruit=CROPS[p.c].fruit;
     if(p.st===3&&fruit&&!p.pol&&p.gr>=100)m=0;
-    p.gr+=(A?2:1.25)*CROPS[p.c].sp*m;
+    p.gr+=(A?2:1.25)*CROPS[p.c].sp*m*(GS.wx==='soleil'?1.15:1);
     if(p.gr>=100&&p.st<4&&!(p.st===3&&fruit&&!p.pol)){p.st++;p.gr=0;if(p.st===4&&!seen('ripe'))say(T("C'est prêt ! Récolte avec la main.",'Une plante est mûre : récolte-la avec la main.'));}
     renderPlot(i);
   });
   /* abeilles : elles viennent quand une fleur de fraisier ou de tomate attend */
   if(!GS.bee){GS.beeWait++;const i=g.plots.findIndex(p=>p.c&&!p.dead&&p.st===3&&CROPS[p.c].fruit&&!p.pol&&p.gr>=40);
-    if(i>=0&&GS.beeWait>(gUnl().ruche?3:10)){GS.beeWait=0;launchBee(i);}}
+    if(i>=0&&GS.beeWait>(gUnl().ruche?3:10)*(GS.wx==='pluie'||GS.wx==='vent'?3:1)){GS.beeWait=0;launchBee(i);}}
   if(GS.tickN=(GS.tickN||0)+1,GS.tickN%8===0)gEv('state');
   if(++gSave>20){gSave=0;saveDB();}
+  if(++GS.wxT>280){const w=wxPick();if(w!==GS.wx){GS.lastWx=w;wxSet(w,true);}else GS.wxT=0;}
 }
 function plotCenter(i){const [x,y]=PLOTXY[i];return {x:x+140,y:y+70};}
 function launchBee(i){
@@ -2396,7 +2461,7 @@ onTap($('gInv'),e=>{
 onTap($('moulin'),async()=>{
   const g=G_();if(!g.stock.ble){say(T("Il faut du blé ! Plante-en.","Il faut du blé : sème-en dans une parcelle."));return;}
   if($('moulin').classList.contains('spin'))return;
-  $('moulin').classList.add('spin');sfx.whisk();await sleep(1800);$('moulin').classList.remove('spin');
+  $('moulin').classList.add('spin');sfx.whisk();await sleep(GS.wx==='vent'?900:1800);$('moulin').classList.remove('spin');
   g.stock.ble--;g.fridge.farine++;award('moulin');gEv('moulin');saveDB();
   await fly(FARINE,$('moulin'),$('gInv'),{dur:600,size:60,arc:60});renderInv();
   say(T('De la farine ! Elle va dans le frigo.','Le moulin écrase le blé : voilà de la farine pour la cuisine.'));
@@ -3930,6 +3995,113 @@ async function drive(){
   onTap($('dBack'),()=>{sfx.click();$('gaDrive2').classList.add('hidden');GA.busy=false;renderGarage();});
 }
 onTap($('gaHome'),()=>{if(GA.busy)return;sfx.click();enterHub();});
+
+/* ---------- options : garde-robe, parents, météo, ambiance ---------- */
+/* ---------- GARDE-ROBE : accessoires gagnés avec les étoiles ---------- */
+const ACC=[{id:'none',n:'Rien',e:'🚫',need:0},{id:'paille',n:'Chapeau de paille',e:'👒',need:5},{id:'noeud',n:'Nœud papillon',e:'🎀',need:10},{id:'lunettes',n:'Lunettes de labo',e:'🥽',need:20},{id:'couronne',n:'Couronne',e:'👑',need:30}];
+function ACC_(){if(!S.player)return {k:'none',w:'none'};const p=P();p.acc=p.acc||{k:'none',w:'none',seen:0};return p.acc;}
+function accOpen(id){return S.player&&P().stars>=ACC.find(a=>a.id===id).need;}
+function kcAcc(svg,a){
+  if(!a||a==='none')return svg;
+  if(a==='paille'||a==='couronne')svg=svg.replace(/<g stroke="#c8d0e0" stroke-width="3" fill="#fff">[\s\S]*?<\/g>\s*<rect x="65" y="34" width="70" height="22" fill="#fff"\/>/,'');
+  const add={paille:'<ellipse cx="100" cy="66" rx="86" ry="15" fill="#f3d27a" stroke="#c99b42" stroke-width="4"/><path d="M52 64 q8 -50 48 -52 q40 2 48 52z" fill="#f6dc8e" stroke="#c99b42" stroke-width="4"/><path d="M54 56 q46 12 92 0" stroke="#ff5a5a" stroke-width="9" fill="none"/><path d="M66 40 l16 6 M104 22 l4 14 M128 34 l-10 10" stroke="#c99b42" stroke-width="3"/>',
+    couronne:'<path d="M58 66 l-6 -44 l26 20 l22 -34 l22 34 l26 -20 l-6 44z" fill="#ffc83a" stroke="#c98a1a" stroke-width="4" stroke-linejoin="round"/><circle cx="100" cy="50" r="7" fill="#ff4d6d"/><circle cx="72" cy="56" r="5" fill="#4c8dff"/><circle cx="128" cy="56" r="5" fill="#3fbf55"/>',
+    noeud:'<g transform="translate(100 156)"><path d="M0 0 l-26 -15 q-6 15 0 30z M0 0 l26 -15 q6 15 0 30z" fill="#ff4d6d" stroke="#a8162c" stroke-width="3" stroke-linejoin="round"/><circle r="7" fill="#ff8fa3" stroke="#a8162c" stroke-width="2"/></g>',
+    lunettes:'<path d="M30 104 h140" stroke="#5d6c8c" stroke-width="6"/><g fill="rgba(160,230,255,.35)" stroke="#ff9a1a" stroke-width="6"><circle cx="79" cy="103" r="22"/><circle cx="121" cy="103" r="22"/></g><path d="M66 94 l10 -6 M108 94 l10 -6" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8"/>'}[a];
+  return svg.replace(/<\/g><\/svg>$/,add+'</g></svg>');
+}
+function wjAcc(svg,a){
+  if(!a||a==='none')return svg;
+  if(a==='noeud')return svg.replace('<g class="wj-head">','<g transform="translate(150 152) rotate(-12)"><path d="M0 0 l-20 -12 q-5 12 0 24z M0 0 l20 -12 q5 12 0 24z" fill="#ff4d6d" stroke="#a8162c" stroke-width="3" stroke-linejoin="round"/><circle r="6" fill="#ff8fa3" stroke="#a8162c" stroke-width="2"/></g><g class="wj-head">');
+  const add={paille:'<ellipse cx="120" cy="54" rx="74" ry="13" fill="#f3d27a" stroke="#c99b42" stroke-width="4"/><path d="M80 52 q4 -40 40 -42 q36 2 40 42z" fill="#f6dc8e" stroke="#c99b42" stroke-width="4"/><path d="M82 44 q38 10 76 0" stroke="#4c8dff" stroke-width="8" fill="none"/>',
+    couronne:'<path d="M90 56 l-4 -34 l18 14 l16 -26 l16 26 l18 -14 l-4 34z" fill="#ffc83a" stroke="#c98a1a" stroke-width="4" stroke-linejoin="round"/><circle cx="120" cy="42" r="5" fill="#ff4d6d"/>',
+    lunettes:'<g fill="rgba(160,230,255,.3)" stroke="#ff9a1a" stroke-width="5"><circle cx="96" cy="99" r="17"/><circle cx="144" cy="99" r="17"/></g><path d="M113 98 h14 M79 96 l-18 -4 M161 96 l18 -4" stroke="#ff9a1a" stroke-width="5" stroke-linecap="round"/>'}[a];
+  return svg.replace(/<\/g><\/svg>$/,add+'</g></svg>');
+}
+function refreshMascots(){
+  document.querySelectorAll('svg.kc').forEach(s=>{if(!s.closest('.packet,.face,#hatM'))s.outerHTML=kicuitSVG();});
+  document.querySelectorAll('svg.wj').forEach(s=>{if(!s.closest('#hatM'))s.outerHTML=wanjiSVG();});
+}
+function openWardrobe(){
+  const a=ACC_(),A=isA();a.seen=ACC.filter(x=>accOpen(x.id)).length;saveDB();$('hatBtn').classList.remove('newacc');
+  const row=(who)=>`<div class="wrow"><div class="wprev">${who==='k'?kicuitSVG():wanjiSVG()}</div><div class="wopts">${ACC.map(x=>{const ok=accOpen(x.id);return `<button class="wopt ${a[who]===x.id?'sel':''} ${ok?'':'lock'}" data-acc="${who}:${x.id}"><span>${ok?x.e:'🔒'}</span>${ok?(A?'':x.n):x.need+' ⭐'}</button>`;}).join('')}</div></div>`;
+  $('hatIn').innerHTML=`<h2>🎩 La garde-robe</h2>${row('k')}${row('w')}<div class="pfoot"><button class="btn" id="hatClose">Fermer</button></div>`;
+  $('hatM').classList.remove('hidden');
+}
+onTap($('hatIn'),e=>{
+  if(e.target.closest('#hatClose')){sfx.click();$('hatM').classList.add('hidden');refreshMascots();return;}
+  const b=e.target.closest('[data-acc]');if(!b)return;const [who,id]=b.dataset.acc.split(':'),x=ACC.find(q=>q.id===id);
+  if(!accOpen(id)){sfx.click();say(T(`Encore des étoiles ! Il en faut ${x.need}.`,`${x.n} : il faut ${x.need} étoiles (tu en as ${P().stars}).`));return;}
+  ACC_()[who]=id;saveDB();sfx.pop();openWardrobe();burst($('hatIn'),[x.e,'✨'],5,120);
+  if(id!=='none')say(T(`${who==='k'?'Kicuit':'Wanji'} est trop beau !`,`${x.n} pour ${who==='k'?'Kicuit':'Wanji'} !`),T(undefined,false));
+});
+onTap($('hatBtn'),()=>{sfx.click();openWardrobe();say(T('Choisis un accessoire pour Kicuit et Wanji !','La garde-robe : les étoiles débloquent des accessoires.'),T(undefined,false));});
+$('hatM').addEventListener('pointerdown',e=>{if(e.target.id==='hatM'){$('hatM').classList.add('hidden');refreshMascots();}});
+function accCheck(){const a=ACC_(),n=ACC.filter(x=>accOpen(x.id)).length;if(n>(a.seen||1)){$('hatBtn').classList.add('newacc');return true;}return false;}
+
+/* ---------- PARENTS : sauvegarde, restauration, sons d'ambiance ---------- */
+if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+function parRender(){
+  $('parIn').innerHTML=`<h2>⚙️ Espace parents</h2><div class="px">Safari peut effacer les données d'un site qu'on n'a pas ouvert depuis longtemps. Sauvegarde la progression des deux enfants dans un fichier (Fichiers, AirDrop…), et restaure-la si besoin.</div>
+  <button class="btn b-blue" id="parSave">💾 Sauvegarder la progression</button>
+  <button class="btn b-orange hold" id="parLoad"><i></i>📂 Restaurer (maintenir 3 s)</button>
+  <button class="btn b-grey" id="parAmb">${DB.amb===false?'🔇':'🌿'} Sons d'ambiance : ${DB.amb===false?'non':'oui'}</button>
+  <div class="px" id="parMsg"></div><div class="pfoot"><button class="btn" id="parClose" style="width:auto">Fermer</button></div>
+  <input type="file" id="parFile" accept="application/json,.json,text/plain" style="display:none">`;
+  $('parFile').addEventListener('change',parImport);
+  const h=$('parLoad');let t0=0;
+  h.addEventListener('pointerdown',()=>{t0=performance.now();h.classList.add('on');});
+  const end=()=>{h.classList.remove('on');if(t0&&performance.now()-t0>=2900){$('parFile').click();}t0=0;};
+  h.addEventListener('pointerup',end);h.addEventListener('pointercancel',()=>{t0=0;h.classList.remove('on');});
+}
+async function parExport(){
+  const d=new Date(),name=`kicuit-sauvegarde-${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}.json`;
+  const data=JSON.stringify({app:'kicuit',v:1,date:d.toISOString(),db:DB});
+  try{const f=new File([data],name,{type:'application/json'});
+    if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:'Sauvegarde Kicuit'});$('parMsg').textContent='✅ Sauvegarde envoyée.';return;}}catch(e){if(e&&e.name==='AbortError')return;}
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},2000);
+  $('parMsg').textContent='✅ Fichier « '+name+' » créé.';
+}
+function parImport(e){
+  const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{let d=null;try{const j=JSON.parse(r.result);d=j.db||j;}catch(_){}
+    if(!d||typeof d!=='object'||!d.anna||!d.rafael){$('parMsg').textContent='❌ Ce fichier n\'est pas une sauvegarde Kicuit.';return;}
+    const s=k=>`${k==='anna'?'Nana':'Raf'} : ${d[k].stars||0} ⭐, ${Object.keys(d[k].st||{}).length} autocollants`;
+    $('parMsg').innerHTML=`Remplacer la progression actuelle par celle du fichier ?<br>${s('anna')} · ${s('rafael')}<div class="frow" style="margin-top:10px"><button class="btn b-orange" id="parYes" style="width:auto">Oui, restaurer</button><button class="btn b-grey" id="parNo" style="width:auto">Non</button></div>`;
+    onTap($('parYes'),()=>{try{localStorage.setItem('kicuit_v1',JSON.stringify(d));}catch(_){}sfx.fanfare();setTimeout(()=>location.reload(),400);});
+    onTap($('parNo'),()=>{sfx.click();$('parMsg').textContent='';});};
+  r.readAsText(f);
+}
+onTap($('parBtn'),()=>{sfx.click();parRender();$('parM').classList.remove('hidden');});
+onTap($('parIn'),e=>{
+  if(e.target.closest('#parClose')){sfx.click();$('parM').classList.add('hidden');return;}
+  if(e.target.closest('#parSave')){sfx.click();parExport();return;}
+  if(e.target.closest('#parAmb')){DB.amb=DB.amb===false;saveDB();sfx.click();parRender();}
+});
+
+/* ---------- MÉTÉO DU JARDIN ---------- */
+const WX={soleil:{e:'☀️',n:['Grand soleil ! Les plantes poussent vite, mais elles ont plus soif.',"Soleil : la lumière fait pousser les plantes plus vite (c'est la photosynthèse), mais elles boivent plus."]},
+  pluie:{e:'🌧️',n:['Il pleut ! La pluie arrose un peu tes plantes.',"Pluie : elle arrose un peu les plantes. Les abeilles restent à la ruche quand il pleut, elles viendront après."]},
+  vent:{e:'🌬️',n:['Du vent ! Le moulin tourne tout seul.',"Vent : le moulin tourne tout seul et moud plus vite, mais la terre sèche plus vite. Les abeilles volent moins par grand vent."]}};
+function wxPick(){const r=Math.random();return r<.45?'soleil':r<.75?'pluie':'vent';}
+function wxSet(k,talk){
+  GS.wx=k;GS.wxT=0;const W=$('gWx');if(!W)return;
+  W.innerHTML=k==='pluie'?'<div class="grey"></div><div class="rain"></div>':k==='soleil'?'<div class="rays"></div>':['14%','34%','58%','76%'].map((t,i)=>`<span class="leaf" style="top:${t};animation-delay:${i*-1.1}s">${['🍃','🍂','🍃','🍁'][i]}</span>`).join('');
+  $('wxBtn').textContent=WX[k].e;$('s-garden').classList.toggle('rainy',k==='pluie');$('moulin').classList.toggle('wind',k==='vent');
+  if(talk)say(T(WX[k].n[0],WX[k].n[1]),T(undefined,false));
+}
+onTap($('wxBtn'),()=>{sfx.click();const k=GS.wx||'soleil';say(T(WX[k].n[0],WX[k].n[1]),T(undefined,false));});
+
+/* ---------- SONS D'AMBIANCE (très discrets) ---------- */
+setInterval(()=>{
+  if(DB.amb===false||document.hidden)return;
+  if(S.screen==='s-garden'){
+    if(GS.wx==='pluie'){for(let i=0;i<6;i++)noise(.05,.025,'highpass',3000+Math.random()*2000,i*.12+Math.random()*.1);}
+    else if(Math.random()<.45){const b=2300+Math.random()*900;tone(b,b+700,.08,'sine',.025);tone(b+500,b,.09,'sine',.022,.13);if(Math.random()<.5)tone(b,b+800,.07,'sine',.02,.3);}
+  }else if(S.screen==='s-fromage'&&$('fCaveM')&&!$('fCaveM').classList.contains('hidden')&&Math.random()<.5){tone(1400,700,.12,'sine',.035);tone(700,520,.25,'sine',.015,.12);}
+},3800);
+
+onTap($('apage'),e=>{const b=e.target.closest('[data-bg]');if(!b||AL.page!=='libre')return;sfx.pop();P().freeBg=b.dataset.bg;saveDB();AL.sel=null;renderFree();});
 
 /* hors ligne */
 if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});

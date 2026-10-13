@@ -132,6 +132,16 @@ Idée centrale, répétée par Kicuit : **un fromage, c'est du lait dont on enl�
 Écran `s-garage`, voiture `P().car` (`CAR_()`) : châssis (kart, voiture, camion), moteur (pédales, petit, gros, fusée), roues (vélo, normales, tout-terrain, monster), peinture au pistolet (points `dots`, max 600) ou pot entier. L'enfant est au volant (visible dans la vitre).
 - `carOutcome()` donne le résultat selon puissance/poids : envol (fusée sur véhicule léger), roues écrasées, wheelie, escargot, rebonds, recul dans la colline, patinage dans la boue, trop lent. Nana : balade seulement, la voiture de départ roule parfaitement. Raf : missions Colline, Boue, Course (moins de 6 s), une étoile chacune.
 
+## Options (faites)
+
+- **Garde-robe** (🎩 sur la maison) : accessoires pour Kicuit et Wanji, choisis séparément et gagnés avec les étoiles (`ACC` : chapeau de paille 5, nœud papillon 10, lunettes de labo 20, couronne 30). Données `P().acc` ({k, w, seen}). `kicuitSVG()`/`wanjiSVG()` ajoutent l'accessoire (`kcAcc`, `wjAcc` ; dessins de base `kicuitSVG0`/`wanjiSVG0`) ; `refreshMascots()` redessine ceux déjà affichés. Le bouton clignote quand un accessoire est débloqué.
+- **Espace parents** (⚙️ sur l'écran « Qui joue ? ») : sauvegarde de toute la progression en fichier JSON (menu de partage de l'iPad, sinon téléchargement), restauration en **maintenant 3 s** puis en choisissant le fichier (aperçu et confirmation), interrupteur des sons d'ambiance (`DB.amb`). Le jeu demande aussi le stockage persistant (`navigator.storage.persist`).
+- **Météo du jardin** (`GS.wx`, bouton à gauche de l'objectif, toucher = explication) : tirée au hasard à l'entrée puis toutes les ~70 s. Soleil : pousse +15 %, les plantes boivent plus. Pluie : arrose jusqu'à 70 au maximum (jamais de noyade), abeilles 3 fois plus rares. Vent : le moulin tourne seul et moud 2 fois plus vite, la terre sèche un peu plus, abeilles plus rares (réaliste : les abeilles sortent peu par pluie et grand vent).
+- **Ambiance sonore** très discrète : oiseaux ou pluie au jardin, goutte dans la cave à fromage.
+- **« Ma page »** de l'album : 4 fonds (crème, plage, espace, forêt), `P().freeBg`.
+- Petits effets : léger écrasement de l'objet qui reçoit un `fly()`, nuages qui dérivent (maison, jardin), reflets sur la vitre du four et l'aquarium, carnet de recettes en cahier à spirale.
+- Écartés volontairement : zoom de caméra dans `go()` (casse les minuteurs qui vérifient l'écran), texte machine à écrire et babillage (doublon avec la voix), canvas de particules permanent (batterie), filtres SVG sur toutes les mascottes (lenteur sur iPad).
+
 ## Technique
 
 - Un seul `index.html` (HTML, CSS et JS vanilla, aucune dépendance), graphismes en SVG inline, sons en WebAudio.
