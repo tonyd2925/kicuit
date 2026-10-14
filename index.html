@@ -26,14 +26,14 @@ button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:poin
 svg{display:block}
 
 /* boutons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;height:80px;padding:0 30px;border-radius:40px;font-size:30px;font-weight:800;color:#fff;background:var(--c,var(--green));box-shadow:0 7px 0 var(--d,var(--green-d)),0 12px 20px rgba(0,0,0,.18);transition:transform .08s,box-shadow .08s;white-space:nowrap}
-.btn:active{transform:translateY(5px);box-shadow:0 2px 0 var(--d,var(--green-d))}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;height:80px;padding:0 30px;border-radius:40px;font-size:30px;font-weight:800;color:#fff;background:linear-gradient(180deg,rgba(255,255,255,.32),rgba(255,255,255,.06) 48%,rgba(0,0,0,.06)),var(--c,var(--green));box-shadow:inset 0 3px 1px rgba(255,255,255,.45),inset 0 -5px 8px rgba(0,0,0,.1),0 7px 0 var(--d,var(--green-d)),0 12px 20px rgba(0,0,0,.18);text-shadow:0 2px 0 rgba(0,0,0,.12);transition:transform .08s,box-shadow .08s;white-space:nowrap}
+.btn:active{transform:translateY(5px);box-shadow:inset 0 3px 1px rgba(255,255,255,.35),inset 0 -3px 6px rgba(0,0,0,.12),0 2px 0 var(--d,var(--green-d))}
 .btn[disabled]{opacity:.45;pointer-events:none}
 .b-orange{--c:var(--orange);--d:var(--orange-d)}
 .b-blue{--c:var(--blue);--d:var(--blue-d)}
 .b-grey{--c:var(--grey);--d:var(--grey-d)}
-.iconbtn{position:absolute;width:84px;height:84px;border-radius:50%;background:#fff;box-shadow:0 6px 0 #d9d2e8,0 10px 18px rgba(0,0,0,.15);font-size:40px;display:flex;align-items:center;justify-content:center;z-index:20;overflow:hidden}
-.iconbtn:active{transform:translateY(4px);box-shadow:0 2px 0 #d9d2e8}
+.iconbtn{position:absolute;width:84px;height:84px;border-radius:50%;background:radial-gradient(circle at 34% 26%,#fff 0 38%,#f3effa 72%,#e1d9f0);box-shadow:inset 0 -5px 8px rgba(80,60,140,.1),0 6px 0 #d9d2e8,0 10px 18px rgba(0,0,0,.15);font-size:40px;display:flex;align-items:center;justify-content:center;z-index:20;overflow:hidden}
+.iconbtn:active{transform:translateY(4px);box-shadow:inset 0 -3px 6px rgba(80,60,140,.12),0 2px 0 #d9d2e8}
 .iconbtn svg{width:100%;height:100%}
 .gift{overflow:visible;animation:giftbob 1.4s ease-in-out infinite}
 .gift .badge{position:absolute;right:-6px;top:-6px;min-width:34px;height:34px;border-radius:17px;background:var(--orange);color:#fff;font-size:20px;font-weight:900;display:flex;align-items:center;justify-content:center;padding:0 8px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
@@ -227,7 +227,7 @@ svg{display:block}
 
 /* fenêtres modales */
 .modal{position:absolute;inset:0;background:rgba(30,25,60,.5);z-index:60;display:flex;align-items:center;justify-content:center}
-.card{background:#fff;border-radius:40px;box-shadow:0 20px 50px rgba(0,0,0,.3);padding:28px 36px;animation:bpop .3s ease-out}
+.card{background:linear-gradient(#fff,#fbf9ff);border-radius:40px;box-shadow:inset 0 3px 0 #fff,inset 0 -6px 12px rgba(80,60,140,.06),0 20px 50px rgba(0,0,0,.3);padding:28px 36px;animation:bpop .3s ease-out}
 .card h2{margin:0 0 14px;font-size:40px;text-align:center}
 .prow{display:flex;align-items:center;gap:16px;margin:12px 0}
 .plab{width:120px;font-size:26px;font-weight:900}
@@ -841,6 +841,34 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 <body>
 <div id="rotate"><div class="ph">📱</div><div>Tourne l'iPad<br>à l'horizontale !</div></div>
 <div id="stage">
+<svg id="g3defs" width="0" height="0" style="position:absolute;left:0;top:0" aria-hidden="true"><defs>
+<radialGradient id="g3Shad"><stop offset="0" stop-color="#2b2350" stop-opacity=".32"/><stop offset="1" stop-color="#2b2350" stop-opacity="0"/></radialGradient>
+<radialGradient id="k3Head" cx=".35" cy=".28" r=".85"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#e9eff9"/><stop offset="1" stop-color="#b4c2dd"/></radialGradient>
+<radialGradient id="k3Body" cx=".35" cy=".25" r=".9"><stop offset="0" stop-color="#f4f7fd"/><stop offset=".55" stop-color="#d3ddf0"/><stop offset="1" stop-color="#9eb0d2"/></radialGradient>
+<linearGradient id="k3Metal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2fa"/><stop offset="1" stop-color="#a9b8d6"/></linearGradient>
+<linearGradient id="k3Dark" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f9cba"/><stop offset="1" stop-color="#56637f"/></linearGradient>
+<radialGradient id="k3Orange" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#ffc9b2"/><stop offset=".55" stop-color="#ff7a59"/><stop offset="1" stop-color="#d4502f"/></radialGradient>
+<linearGradient id="k3Visor" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#3f5688"/><stop offset=".6" stop-color="#1c2744"/><stop offset="1" stop-color="#111829"/></linearGradient>
+<radialGradient id="k3Toque" cx=".35" cy=".25" r=".95"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f3f5fa"/><stop offset="1" stop-color="#d2d9e7"/></radialGradient>
+<radialGradient id="w3Coat" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#c7ad97"/><stop offset=".55" stop-color="#a88d76"/><stop offset="1" stop-color="#7c6250"/></radialGradient>
+<radialGradient id="w3CoatD" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#a98d78"/><stop offset=".6" stop-color="#8d7262"/><stop offset="1" stop-color="#694f41"/></radialGradient>
+<radialGradient id="w3Cream" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#f7ecdc"/><stop offset="1" stop-color="#e2ccae"/></radialGradient>
+<radialGradient id="w3Cap" cx=".4" cy=".25" r=".9"><stop offset="0" stop-color="#8d7364"/><stop offset=".6" stop-color="#6b5548"/><stop offset="1" stop-color="#4c3b31"/></radialGradient>
+<radialGradient id="w3Nose" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#8f6156"/><stop offset=".6" stop-color="#5a3b33"/><stop offset="1" stop-color="#36231d"/></radialGradient>
+<radialGradient id="w3Eye" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#eef9fd"/><stop offset=".6" stop-color="#bfe0ee"/><stop offset="1" stop-color="#8dc2da"/></radialGradient>
+<radialGradient id="c3White" cx=".35" cy=".28" r=".9"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f6f3ec"/><stop offset="1" stop-color="#d8d0c2"/></radialGradient>
+<radialGradient id="c3Spot" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#d47a52"/><stop offset=".6" stop-color="#b5532f"/><stop offset="1" stop-color="#8a3a20"/></radialGradient>
+<radialGradient id="c3Pink" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#ffe0e4"/><stop offset=".6" stop-color="#ffbcc6"/><stop offset="1" stop-color="#ee94a5"/></radialGradient>
+<linearGradient id="h3Roof" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f58a72"/><stop offset="1" stop-color="#d4523d"/></linearGradient>
+<linearGradient id="h3Wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff7e8"/><stop offset="1" stop-color="#f1d8b2"/></linearGradient>
+<linearGradient id="h3AO" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b2350" stop-opacity=".18"/><stop offset="1" stop-color="#2b2350" stop-opacity="0"/></linearGradient>
+<linearGradient id="h3AOs" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2b2350" stop-opacity=".12"/><stop offset="1" stop-color="#2b2350" stop-opacity="0"/></linearGradient>
+<linearGradient id="h3Hill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#bde894"/><stop offset="1" stop-color="#93cf64"/></linearGradient>
+<linearGradient id="h3Grass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93d266"/><stop offset="1" stop-color="#78bd4c"/></linearGradient>
+<radialGradient id="h3Sun" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff6c4"/><stop offset=".6" stop-color="#ffd95a"/><stop offset="1" stop-color="#ffbf3a"/></radialGradient>
+<radialGradient id="h3Cloud" cx=".4" cy=".3" r=".9"><stop offset="0" stop-color="#ffffff"/><stop offset=".7" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe9f7"/></radialGradient>
+</defs></svg>
+
 
   <section class="screen on" id="s-start">
     <div class="title">La Maison de Kicuit</div>
@@ -1093,49 +1121,52 @@ onTap($('bubble'),()=>lastSay&&speak(lastSay));
 
 /* ---------- personnages ---------- */
 function kicuitSVG(){return kcAcc(kicuitSVG0(),ACC_().k);}
-function kicuitSVG0(){return `<svg viewBox="0 0 200 250" class="kc"><ellipse cx="100" cy="242" rx="46" ry="7" fill="#000" opacity=".12"/><g class="kc-float">
-<rect x="31" y="170" width="28" height="14" rx="7" fill="#cfd9ee" stroke="#5d6c8c" stroke-width="4" transform="rotate(-28 45 177)"/>
-<rect x="141" y="170" width="28" height="14" rx="7" fill="#cfd9ee" stroke="#5d6c8c" stroke-width="4" transform="rotate(28 155 177)"/>
-<rect x="74" y="216" width="52" height="16" rx="8" fill="#5d6c8c"/>
-<rect x="56" y="160" width="88" height="62" rx="24" fill="#cfd9ee" stroke="#5d6c8c" stroke-width="4"/>
-<circle cx="100" cy="190" r="12" fill="#ff7a59" stroke="#5d6c8c" stroke-width="3"/>
-<rect x="88" y="148" width="24" height="16" fill="#9aa8c6"/>
-<circle cx="27" cy="110" r="11" fill="#ff7a59" stroke="#5d6c8c" stroke-width="3"/><circle cx="173" cy="110" r="11" fill="#ff7a59" stroke="#5d6c8c" stroke-width="3"/>
-<rect x="28" y="62" width="144" height="96" rx="40" fill="#e6edf9" stroke="#5d6c8c" stroke-width="4"/>
-<rect x="46" y="78" width="108" height="64" rx="26" fill="#22304f"/>
-<g class="kc-eyes"><rect x="72" y="92" width="14" height="22" rx="7" fill="#5ff2df"/><rect x="114" y="92" width="14" height="22" rx="7" fill="#5ff2df"/></g>
+function kicuitSVG0(){return `<svg viewBox="0 0 200 250" class="kc"><ellipse cx="100" cy="242" rx="52" ry="9" fill="url(#g3Shad)"/><g class="kc-float">
+<rect x="31" y="170" width="28" height="14" rx="7" fill="url(#k3Metal)" stroke="#7484a6" stroke-width="3" transform="rotate(-28 45 177)"/>
+<rect x="141" y="170" width="28" height="14" rx="7" fill="url(#k3Metal)" stroke="#7484a6" stroke-width="3" transform="rotate(28 155 177)"/>
+<rect x="74" y="216" width="52" height="16" rx="8" fill="url(#k3Dark)"/>
+<rect x="56" y="160" width="88" height="62" rx="24" fill="url(#k3Body)" stroke="#7484a6" stroke-width="3"/>
+<ellipse cx="78" cy="173" rx="15" ry="6" fill="#fff" opacity=".6" transform="rotate(-20 78 173)"/>
+<circle cx="100" cy="190" r="12" fill="url(#k3Orange)" stroke="#b9553a" stroke-width="2"/><circle cx="96" cy="186" r="3.5" fill="#fff" opacity=".85"/>
+<rect x="88" y="148" width="24" height="16" fill="url(#k3Dark)"/>
+<circle cx="27" cy="110" r="11" fill="url(#k3Orange)" stroke="#b9553a" stroke-width="2"/><circle cx="173" cy="110" r="11" fill="url(#k3Orange)" stroke="#b9553a" stroke-width="2"/><circle cx="24" cy="106" r="3" fill="#fff" opacity=".8"/><circle cx="170" cy="106" r="3" fill="#fff" opacity=".8"/>
+<rect x="28" y="62" width="144" height="96" rx="40" fill="url(#k3Head)" stroke="#7484a6" stroke-width="3"/>
+<path d="M44 92 q4 -18 30 -22" stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none" opacity=".8"/>
+<rect x="46" y="78" width="108" height="64" rx="26" fill="url(#k3Visor)"/>
+<rect x="46" y="78" width="108" height="64" rx="26" fill="none" stroke="#0d1322" stroke-width="2" opacity=".5"/>
+<g class="kc-eyes"><rect x="72" y="92" width="14" height="22" rx="7" fill="#5ff2df"/><rect x="114" y="92" width="14" height="22" rx="7" fill="#5ff2df"/><rect x="75" y="95" width="4" height="7" rx="2" fill="#fff" opacity=".85"/><rect x="117" y="95" width="4" height="7" rx="2" fill="#fff" opacity=".85"/></g>
 <path class="kc-mouth" d="M86 124 q14 10 28 0" stroke="#5ff2df" stroke-width="4" fill="none" stroke-linecap="round"/>
-<g stroke="#c8d0e0" stroke-width="3" fill="#fff"><circle cx="72" cy="36" r="20"/><circle cx="128" cy="36" r="20"/><circle cx="100" cy="26" r="24"/><rect x="62" y="38" width="76" height="28" rx="6"/></g>
-<rect x="65" y="34" width="70" height="22" fill="#fff"/>
+<path d="M58 92 q2 -10 16 -12 h10 l-22 52 q-6 -6 -6 -16z" fill="#fff" opacity=".14"/>
+<g class="kc-toque"><path d="M62 66 L62 48 A20 20 0 0 1 82 17 A24 24 0 0 1 118 17 A20 20 0 0 1 138 48 L138 66 Z" fill="url(#k3Toque)" stroke="#c4ccdc" stroke-width="3" stroke-linejoin="round"/><path d="M64 54 h72" stroke="#dde3ee" stroke-width="3"/><path d="M84 30 q-2 14 2 24 M116 30 q2 14 -2 24" stroke="#e3e8f1" stroke-width="3" fill="none" stroke-linecap="round"/><ellipse cx="88" cy="20" rx="12" ry="5" fill="#fff" opacity=".9" transform="rotate(-18 88 20)"/></g>
 </g></svg>`}
 function wanjiSVG(){return wjAcc(wanjiSVG0(),ACC_().w);}
 function wanjiSVG0(){
   /* Wanji, le vrai : pomsky brun taupe et crème, liste blanche sur le front, yeux bleu clair, collier noir et médaille. */
   const fluff=(pts,r,c)=>pts.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/>`).join('');
-  return `<svg viewBox="0 0 240 250" class="wj"><ellipse cx="120" cy="241" rx="84" ry="9" fill="#000" opacity=".13"/>
-<g class="wj-tail"><path d="M160 206 q72 -2 66 -80 q-6 -38 -36 -36 q24 26 9 56 q-14 30 -42 36z" fill="#a88d76" stroke="#5b4638" stroke-width="3"/><path d="M188 94 q34 -8 38 32 q-10 -6 -14 -2 q-6 -12 -24 -14z" fill="#f7ecdc"/><path d="M200 140 q8 -6 14 -18" stroke="#8d7262" stroke-width="3" fill="none" stroke-linecap="round"/></g>
-<ellipse cx="120" cy="184" rx="64" ry="54" fill="#a88d76" stroke="#5b4638" stroke-width="3"/>
+  return `<svg viewBox="0 0 240 250" class="wj"><ellipse cx="120" cy="241" rx="90" ry="10" fill="url(#g3Shad)"/>
+<g class="wj-tail"><path d="M160 206 q72 -2 66 -80 q-6 -38 -36 -36 q24 26 9 56 q-14 30 -42 36z" fill="url(#w3Coat)" stroke="#5b4638" stroke-width="3"/><path d="M188 94 q34 -8 38 32 q-10 -6 -14 -2 q-6 -12 -24 -14z" fill="url(#w3Cream)"/><path d="M200 140 q8 -6 14 -18" stroke="#8d7262" stroke-width="3" fill="none" stroke-linecap="round"/></g>
+<ellipse cx="120" cy="184" rx="64" ry="54" fill="url(#w3Coat)" stroke="#5b4638" stroke-width="3"/>
 <path d="M66 170 q10 -26 30 -30 M174 170 q-10 -26 -30 -30" stroke="#8d7262" stroke-width="4" fill="none" stroke-linecap="round"/>
-<ellipse cx="120" cy="190" rx="40" ry="46" fill="#f7ecdc"/>
+<ellipse cx="120" cy="190" rx="40" ry="46" fill="url(#w3Cream)"/>
 ${fluff([[82,152],[96,160],[110,164],[124,165],[138,162],[152,156],[90,172],[150,172]],15,'#f7ecdc')}
 <path d="M84 186 q8 8 16 2 M140 188 q8 8 16 -2 M108 204 q12 8 24 0" stroke="#e6d2b8" stroke-width="3" fill="none" stroke-linecap="round"/>
-<rect x="88" y="198" width="24" height="42" rx="12" fill="#f7ecdc" stroke="#5b4638" stroke-width="3"/>
-<rect x="128" y="198" width="24" height="42" rx="12" fill="#f7ecdc" stroke="#5b4638" stroke-width="3"/>
+<rect x="88" y="198" width="24" height="42" rx="12" fill="url(#w3Cream)" stroke="#5b4638" stroke-width="3"/>
+<rect x="128" y="198" width="24" height="42" rx="12" fill="url(#w3Cream)" stroke="#5b4638" stroke-width="3"/>
 <path d="M78 148 q42 24 84 0" stroke="#26262e" stroke-width="8" fill="none" stroke-linecap="round"/>
 <circle cx="120" cy="161" r="3" fill="#b9c0cc"/><ellipse cx="120" cy="172" rx="7.5" ry="10" fill="#e9ecf1" stroke="#8a96ad" stroke-width="2"/><ellipse cx="118" cy="169" rx="2" ry="3" fill="#fff"/>
 <g class="wj-head">
-<path d="M58 86 L66 12 L116 56z" fill="#8d7262" stroke="#5b4638" stroke-width="3" stroke-linejoin="round"/><path d="M70 72 L74 30 L100 58z" fill="#f3dcc8"/><path d="M76 64 L78 42 L92 58z" fill="#f2b3b0"/>
-<path d="M182 86 L174 12 L124 56z" fill="#8d7262" stroke="#5b4638" stroke-width="3" stroke-linejoin="round"/><path d="M170 72 L166 30 L140 58z" fill="#f3dcc8"/><path d="M164 64 L162 42 L148 58z" fill="#f2b3b0"/>
-<ellipse cx="120" cy="100" rx="64" ry="55" fill="#f7ecdc" stroke="#5b4638" stroke-width="3"/>
+<path d="M58 86 L66 12 L116 56z" fill="url(#w3CoatD)" stroke="#5b4638" stroke-width="3" stroke-linejoin="round"/><path d="M70 72 L74 30 L100 58z" fill="#f3dcc8"/><path d="M76 64 L78 42 L92 58z" fill="#f2b3b0"/>
+<path d="M182 86 L174 12 L124 56z" fill="url(#w3CoatD)" stroke="#5b4638" stroke-width="3" stroke-linejoin="round"/><path d="M170 72 L166 30 L140 58z" fill="#f3dcc8"/><path d="M164 64 L162 42 L148 58z" fill="#f2b3b0"/>
+<ellipse cx="120" cy="100" rx="64" ry="55" fill="url(#w3Cream)" stroke="#5b4638" stroke-width="3"/>
 ${fluff([[58,108],[56,122],[62,136],[182,108],[184,122],[178,136]],11,'#f7ecdc')}
-<path d="M57 100 q-1 -54 63 -56 q64 2 63 56 q-12 -12 -27 -10 q-14 -10 -26 -2 q-10 -6 -20 0 q-12 -8 -26 2 q-15 -2 -27 10z" fill="#6b5548"/>
-<path d="M115 44 q5 -2 10 0 l-1 36 q-4 5 -8 0z" fill="#fbf4ea"/>
-<ellipse cx="94" cy="97" rx="17" ry="11" fill="#6b5548" transform="rotate(-14 94 97)"/><ellipse cx="146" cy="97" rx="17" ry="11" fill="#6b5548" transform="rotate(14 146 97)"/>
-<g class="e-open"><ellipse cx="96" cy="99" rx="10.5" ry="9" fill="#bfe0ee" stroke="#2a1f1a" stroke-width="2.5"/><circle cx="97" cy="99.5" r="4.5" fill="#1d1d24"/><circle cx="99.5" cy="96" r="2.4" fill="#fff"/><ellipse cx="144" cy="99" rx="10.5" ry="9" fill="#bfe0ee" stroke="#2a1f1a" stroke-width="2.5"/><circle cx="143" cy="99.5" r="4.5" fill="#1d1d24"/><circle cx="145.5" cy="96" r="2.4" fill="#fff"/></g>
+<path d="M57 100 q-1 -54 63 -56 q64 2 63 56 q-12 -12 -27 -10 q-14 -10 -26 -2 q-10 -6 -20 0 q-12 -8 -26 2 q-15 -2 -27 10z" fill="url(#w3Cap)"/>
+<path d="M115 44 q5 -2 10 0 l-1 36 q-4 5 -8 0z" fill="#fbf4ea"/><path d="M76 62 q18 -14 34 -16" stroke="#fff" stroke-width="5" opacity=".22" stroke-linecap="round" fill="none"/>
+<ellipse cx="94" cy="97" rx="17" ry="11" fill="url(#w3Cap)" transform="rotate(-14 94 97)"/><ellipse cx="146" cy="97" rx="17" ry="11" fill="url(#w3Cap)" transform="rotate(14 146 97)"/>
+<g class="e-open"><ellipse cx="96" cy="99" rx="10.5" ry="9" fill="url(#w3Eye)" stroke="#2a1f1a" stroke-width="2.5"/><circle cx="97" cy="99.5" r="4.5" fill="#1d1d24"/><circle cx="99.5" cy="96" r="2.4" fill="#fff"/><ellipse cx="144" cy="99" rx="10.5" ry="9" fill="url(#w3Eye)" stroke="#2a1f1a" stroke-width="2.5"/><circle cx="143" cy="99.5" r="4.5" fill="#1d1d24"/><circle cx="145.5" cy="96" r="2.4" fill="#fff"/></g>
 <g class="e-happy" stroke="#2a1f1a" stroke-width="5" fill="none" stroke-linecap="round"><path d="M85 102 q11 -10 22 0"/><path d="M133 102 q11 -10 22 0"/></g>
 <g class="e-squint" stroke="#2a1f1a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M86 92 l18 8 l-18 8"/><path d="M154 92 l-18 8 l18 8"/></g>
 <ellipse cx="120" cy="126" rx="28" ry="20" fill="#fbf4ea"/>
-<ellipse cx="120" cy="119" rx="10.5" ry="7.5" fill="#5a3b33"/><ellipse cx="117" cy="116.5" rx="3.5" ry="2" fill="#fff" opacity=".35"/>
+<ellipse cx="120" cy="119" rx="10.5" ry="7.5" fill="url(#w3Nose)"/><ellipse cx="117" cy="116.5" rx="3.5" ry="2" fill="#fff" opacity=".35"/>
 <g class="m-normal" stroke="#3a2d26" stroke-width="3.5" fill="none" stroke-linecap="round"><path d="M120 126 v5 M120 131 q-8 10 -16 4 M120 131 q8 10 16 4"/></g>
 <g class="m-open"><path d="M103 130 q17 24 34 0z" fill="#7a3b3a"/><path d="M110 138 q10 18 20 0 q-10 -5 -20 0z" fill="#ff8a9a"/></g>
 <g class="m-yuck"><path d="M102 138 q6 -6 12 0 q6 6 12 0 q6 -6 12 0" stroke="#3a2d26" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M121 140 q3 18 13 14 q5 -7 -3 -16z" fill="#ff8a9a"/></g>
@@ -1673,18 +1704,20 @@ function hubSVG(){
 <defs><linearGradient id="hsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fd3ff"/><stop offset="1" stop-color="#e9f8ff"/></linearGradient>
 <pattern id="htile" width="22" height="22" patternUnits="userSpaceOnUse"><rect width="22" height="22" fill="#fff"/><rect width="11" height="11" fill="#ffe2d6"/><rect x="11" y="11" width="11" height="11" fill="#ffe2d6"/></pattern></defs>
 <rect width="1180" height="820" fill="url(#hsky)"/>
-<circle cx="1080" cy="200" r="52" fill="#ffd95a"/><circle cx="1080" cy="200" r="70" fill="#ffd95a" opacity=".25"/>
-<g class="clouds" fill="#fff" opacity=".95"><ellipse cx="150" cy="190" rx="60" ry="26"/><ellipse cx="200" cy="170" rx="46" ry="30"/><ellipse cx="240" cy="192" rx="44" ry="22"/><ellipse cx="960" cy="330" rx="50" ry="20"/><ellipse cx="1000" cy="314" rx="40" ry="26"/></g>
-<path d="M0 640 q300 -80 600 -10 t620 0 v200 h-1220z" fill="#a6dc76"/>
-<rect y="704" width="1180" height="116" fill="#8cce5e"/>
+<circle cx="1080" cy="200" r="82" fill="#ffd95a" opacity=".18"/><circle cx="1080" cy="200" r="52" fill="url(#h3Sun)"/>
+<g class="clouds" fill="url(#h3Cloud)" opacity=".97"><ellipse cx="150" cy="190" rx="60" ry="26"/><ellipse cx="200" cy="170" rx="46" ry="30"/><ellipse cx="240" cy="192" rx="44" ry="22"/><ellipse cx="960" cy="330" rx="50" ry="20"/><ellipse cx="1000" cy="314" rx="40" ry="26"/></g>
+<path d="M0 640 q300 -80 600 -10 t620 0 v200 h-1220z" fill="url(#h3Hill)"/>
+<rect y="704" width="1180" height="116" fill="url(#h3Grass)"/>
+<ellipse cx="590" cy="714" rx="330" ry="20" fill="url(#g3Shad)"/><ellipse cx="1030" cy="710" rx="150" ry="14" fill="url(#g3Shad)"/><ellipse cx="152" cy="516" rx="150" ry="14" fill="url(#g3Shad)"/><ellipse cx="157" cy="750" rx="150" ry="12" fill="url(#g3Shad)"/>
 <path d="M560 700 q-20 60 -60 120 h160 q-40 -60 -60 -120z" fill="#e9d3a8"/>
 <g class="room" data-room="jardin"><rect x="22" y="520" width="270" height="226" rx="20" fill="#9bd46c"/>${fence}<rect x="26" y="584" width="262" height="10" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/><rect x="40" y="620" width="234" height="40" rx="12" fill="#8a5a36"/>${carrots}${flowers}${gardenOpen()?'':`<rect x="22" y="520" width="270" height="226" fill="#fff" opacity=".4"/>${lockSVG(157,560)}`}<g class="${gardenOpen()?'open-pulse':''}">${banner(157,690,'Jardin',150)}</g><rect x="22" y="520" width="270" height="226" fill="transparent"/></g>
 <g class="room" data-room="fromage"><path d="M20 404 L152 300 L284 404z" fill="#8a3a2a" stroke="#5a2418" stroke-width="5" stroke-linejoin="round"/><rect x="34" y="398" width="236" height="114" fill="#c4553d" stroke="#7d3424" stroke-width="5"/><rect x="104" y="430" width="96" height="82" fill="#e8d3b0" stroke="#7d3424" stroke-width="4"/><path d="M104 430 L200 512 M200 430 L104 512" stroke="#7d3424" stroke-width="4"/><circle cx="152" cy="360" r="20" fill="#fff4cc" stroke="#7d3424" stroke-width="4"/><text x="152" y="368" text-anchor="middle" font-size="22">🧀</text>${fromOpen()?'':`<rect x="20" y="300" width="264" height="212" fill="#fff" opacity=".4"/>${lockSVG(152,440)}`}<g class="${fromOpen()?'open-pulse':''}">${banner(152,454,'Fromagerie',170)}</g><rect x="20" y="300" width="264" height="212" fill="transparent"/></g>
 <rect x="760" y="110" width="44" height="90" fill="#b9573f" stroke="#7d3424" stroke-width="4"/>
-<path d="M280 264 L590 96 L900 264z" fill="#e8674f" stroke="#a9412f" stroke-width="6" stroke-linejoin="round"/>
+<path d="M280 264 L590 96 L900 264z" fill="url(#h3Roof)" stroke="#a9412f" stroke-width="6" stroke-linejoin="round"/><path d="M308 252 L590 106" stroke="#fff" stroke-width="5" opacity=".28" stroke-linecap="round"/>
 <circle cx="590" cy="198" r="30" fill="#fff4cc" stroke="#a9412f" stroke-width="5"/><path d="M590 170 v56 M562 198 h56" stroke="#a9412f" stroke-width="4"/>
-<rect x="300" y="258" width="580" height="452" fill="#fff1d8" stroke="#b98a5a" stroke-width="6"/>
+<rect x="300" y="258" width="580" height="452" fill="url(#h3Wall)" stroke="#b98a5a" stroke-width="6"/>
 ${rooms}
+${Object.values(ROOMS).map(r=>`<rect x="${r.x}" y="${r.y}" width="${r.w}" height="26" fill="url(#h3AO)" pointer-events="none"/><rect x="${r.x}" y="${r.y}" width="18" height="${r.h}" fill="url(#h3AOs)" pointer-events="none"/>`).join('')}
 <rect x="300" y="470" width="580" height="16" fill="#c99b6b"/>
 <rect x="582" y="258" width="16" height="452" fill="#c99b6b"/>
 <g class="room" data-room="garage"><path d="M886 488 L1030 404 L1172 488z" fill="#6f86c9" stroke="#4a5d9a" stroke-width="5" stroke-linejoin="round"/><rect x="904" y="484" width="252" height="222" fill="#ffe1b8" stroke="#b98a5a" stroke-width="5"/><rect x="934" y="532" width="192" height="174" rx="8" fill="#dfe6f2" stroke="#8a96ad" stroke-width="4"/>${[0,1,2,3,4].map(i=>`<line x1="934" y1="${562+i*28}" x2="1126" y2="${562+i*28}" stroke="#b5bfd2" stroke-width="3"/>`).join('')}${roomOpen('garage')?'':`<rect x="904" y="484" width="252" height="222" fill="#fff" opacity=".4"/>${lockSVG(1030,580)}`}<g class="${roomOpen('garage')?'open-pulse':''}">${banner(1030,650,'Garage',150)}</g><rect x="886" y="404" width="286" height="302" fill="transparent"/></g>
@@ -2554,18 +2587,18 @@ function cheeseSVG(id){
   };
   return `<svg viewBox="0 0 120 90">${W[id]}</svg>`;
 }
-function cowSVG(){return `<svg viewBox="0 0 280 230" style="width:100%;height:100%"><ellipse cx="140" cy="222" rx="110" ry="8" fill="#000" opacity=".12"/>
-<g fill="#fbfaf6" stroke="#5b4638" stroke-width="3"><rect x="70" y="150" width="22" height="70" rx="10"/><rect x="186" y="150" width="22" height="70" rx="10"/><rect x="100" y="156" width="20" height="62" rx="9"/><rect x="160" y="156" width="20" height="62" rx="9"/></g>
-<path d="M232 92 q28 10 22 60" stroke="#5b4638" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M252 148 q8 6 4 16 q-10 -2 -8 -14z" fill="#b5532f"/>
-<ellipse cx="146" cy="116" rx="96" ry="58" fill="#fbfaf6" stroke="#5b4638" stroke-width="3"/>
-<g fill="#b5532f"><path d="M110 64 q40 -10 70 8 q-6 34 -44 36 q-30 -6 -26 -44z"/><path d="M196 110 q30 4 40 24 q-14 26 -44 18 q-10 -24 4 -42z"/><path d="M76 120 q20 -4 28 14 q-8 20 -28 18z"/></g>
-<g class="udder"><path d="M118 168 q22 22 44 0z" fill="#ffb3c0" stroke="#d9789a" stroke-width="3"/><rect x="122" y="178" width="8" height="16" rx="4" fill="#ff9fb3"/><rect x="150" y="178" width="8" height="16" rx="4" fill="#ff9fb3"/></g>
+function cowSVG(){return `<svg viewBox="0 0 280 230" style="width:100%;height:100%"><ellipse cx="140" cy="222" rx="116" ry="10" fill="url(#g3Shad)"/>
+<g fill="url(#c3White)" stroke="#5b4638" stroke-width="3"><rect x="70" y="150" width="22" height="70" rx="10"/><rect x="186" y="150" width="22" height="70" rx="10"/><rect x="100" y="156" width="20" height="62" rx="9"/><rect x="160" y="156" width="20" height="62" rx="9"/></g>
+<path d="M232 92 q28 10 22 60" stroke="#5b4638" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M252 148 q8 6 4 16 q-10 -2 -8 -14z" fill="url(#c3Spot)"/>
+<ellipse cx="146" cy="116" rx="96" ry="58" fill="url(#c3White)" stroke="#5b4638" stroke-width="3"/>
+<g fill="url(#c3Spot)"><path d="M110 64 q40 -10 70 8 q-6 34 -44 36 q-30 -6 -26 -44z"/><path d="M196 110 q30 4 40 24 q-14 26 -44 18 q-10 -24 4 -42z"/><path d="M76 120 q20 -4 28 14 q-8 20 -28 18z"/></g>
+<g class="udder"><path d="M118 168 q22 22 44 0z" fill="url(#c3Pink)" stroke="#d9789a" stroke-width="3"/><rect x="122" y="178" width="8" height="16" rx="4" fill="#ff9fb3"/><rect x="150" y="178" width="8" height="16" rx="4" fill="#ff9fb3"/></g>
 <g><path d="M36 50 l-12 -16 l20 6z M76 46 l14 -14 l-4 20z" fill="#f2e6c8" stroke="#a88a5a" stroke-width="2"/>
-<path d="M24 66 l-16 -6 l12 18z M94 62 l16 -8 l-8 18z" fill="#b5532f"/>
-<ellipse cx="58" cy="80" rx="40" ry="44" fill="#fbfaf6" stroke="#5b4638" stroke-width="3"/>
-<ellipse cx="58" cy="110" rx="30" ry="20" fill="#ffc2c8" stroke="#d9789a" stroke-width="3"/><ellipse cx="48" cy="110" rx="4" ry="6" fill="#a8506a"/><ellipse cx="68" cy="110" rx="4" ry="6" fill="#a8506a"/>
+<path d="M24 66 l-16 -6 l12 18z M94 62 l16 -8 l-8 18z" fill="url(#c3Spot)"/>
+<ellipse cx="58" cy="80" rx="40" ry="44" fill="url(#c3White)" stroke="#5b4638" stroke-width="3"/>
+<ellipse cx="58" cy="110" rx="30" ry="20" fill="url(#c3Pink)" stroke="#d9789a" stroke-width="3"/><ellipse cx="48" cy="110" rx="4" ry="6" fill="#a8506a"/><ellipse cx="68" cy="110" rx="4" ry="6" fill="#a8506a"/>
 <circle cx="42" cy="74" r="6" fill="#2a1f1a"/><circle cx="74" cy="74" r="6" fill="#2a1f1a"/><circle cx="44" cy="72" r="2" fill="#fff"/><circle cx="76" cy="72" r="2" fill="#fff"/>
-<path d="M36 52 q22 -14 44 0 q-10 10 -22 6 q-12 4 -22 -6z" fill="#b5532f"/></g>
+<path d="M36 52 q22 -14 44 0 q-10 10 -22 6 q-12 4 -22 -6z" fill="url(#c3Spot)"/></g>
 <path d="M40 130 q18 12 36 0" stroke="#5b4638" stroke-width="5" fill="none"/><path d="M50 136 h16 l-2 16 h-12z" fill="#ffc83a" stroke="#c98a1a" stroke-width="2"/></svg>`}
 function seauSVG(lv){const h=Math.round(46*lv);return `<svg viewBox="0 0 90 80" style="width:100%;height:100%"><path d="M10 14 h70 l-8 60 h-54z" fill="#d5dceb" stroke="#8a96ad" stroke-width="3"/><clipPath id="sq"><path d="M12 16 h66 l-8 56 h-50z"/></clipPath><rect x="0" y="${72-h}" width="90" height="${h}" fill="#fff" clip-path="url(#sq)"/><ellipse cx="45" cy="14" rx="35" ry="6" fill="none" stroke="#8a96ad" stroke-width="3"/><path d="M10 14 q35 -30 70 0" fill="none" stroke="#8a96ad" stroke-width="3"/></svg>`}
 function cuveSVG(state,col){
@@ -4003,7 +4036,7 @@ function ACC_(){if(!S.player)return {k:'none',w:'none'};const p=P();p.acc=p.acc|
 function accOpen(id){return S.player&&P().stars>=ACC.find(a=>a.id===id).need;}
 function kcAcc(svg,a){
   if(!a||a==='none')return svg;
-  if(a==='paille'||a==='couronne')svg=svg.replace(/<g stroke="#c8d0e0" stroke-width="3" fill="#fff">[\s\S]*?<\/g>\s*<rect x="65" y="34" width="70" height="22" fill="#fff"\/>/,'');
+  if(a==='paille'||a==='couronne')svg=svg.replace(/<g class="kc-toque">[\s\S]*?<\/g>/,'');
   const add={paille:'<ellipse cx="100" cy="66" rx="86" ry="15" fill="#f3d27a" stroke="#c99b42" stroke-width="4"/><path d="M52 64 q8 -50 48 -52 q40 2 48 52z" fill="#f6dc8e" stroke="#c99b42" stroke-width="4"/><path d="M54 56 q46 12 92 0" stroke="#ff5a5a" stroke-width="9" fill="none"/><path d="M66 40 l16 6 M104 22 l4 14 M128 34 l-10 10" stroke="#c99b42" stroke-width="3"/>',
     couronne:'<path d="M58 66 l-6 -44 l26 20 l22 -34 l22 34 l26 -20 l-6 44z" fill="#ffc83a" stroke="#c98a1a" stroke-width="4" stroke-linejoin="round"/><circle cx="100" cy="50" r="7" fill="#ff4d6d"/><circle cx="72" cy="56" r="5" fill="#4c8dff"/><circle cx="128" cy="56" r="5" fill="#3fbf55"/>',
     noeud:'<g transform="translate(100 156)"><path d="M0 0 l-26 -15 q-6 15 0 30z M0 0 l26 -15 q6 15 0 30z" fill="#ff4d6d" stroke="#a8162c" stroke-width="3" stroke-linejoin="round"/><circle r="7" fill="#ff8fa3" stroke="#a8162c" stroke-width="2"/></g>',
