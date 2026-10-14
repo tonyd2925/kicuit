@@ -819,8 +819,10 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 #freeArea.bg-espace{background:radial-gradient(circle at 80% 20%,#5a4fc8 0 8%,transparent 9%),radial-gradient(circle at 30% 30%,#3a2d78,#14102e)}
 #freeArea.bg-espace::before{content:"";position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 2px),radial-gradient(#fff8c4 1.5px,transparent 2.5px);background-size:70px 70px,130px 110px;background-position:0 0,35px 50px;opacity:.8;pointer-events:none}
 #freeArea.bg-foret{background:linear-gradient(#bfe9ff 0 45%,#8cce5e 45%),repeating-linear-gradient(90deg,transparent 0 60px,rgba(47,154,90,.25) 60px 100px)}
-#freeArea.bg-foret::before{content:"🌲 🌳 🌲🌲 🌳 🌲 🌳🌲";position:absolute;left:0;right:0;top:36%;font-size:58px;text-align:center;letter-spacing:8px;pointer-events:none;opacity:.9}
+#freeArea.bg-foret::before{content:"🌲 🌳 🌲🌲 🌳 🌲 🌳🌲";position:absolute;left:0;right:0;top:31%;font-size:58px;text-align:center;letter-spacing:8px;pointer-events:none;opacity:.9}
 #freeArea.bg-plage::before{content:"☀️                    ⛵";position:absolute;left:30px;right:30px;top:20px;font-size:54px;white-space:pre;pointer-events:none}
+#freeArea.bg-espace .fhint{color:#fff;opacity:.6}
+#freeArea.bg-foret .fhint{top:62%;opacity:.5}
 #bgPick{position:absolute;right:14px;top:10px;display:flex;gap:8px;z-index:6}
 #bgPick button{width:54px;height:54px;border-radius:50%;background:#fff;font-size:28px;box-shadow:0 4px 10px rgba(0,0,0,.18)}
 #bgPick button.on{box-shadow:0 0 0 4px var(--orange),0 4px 10px rgba(0,0,0,.18)}
@@ -1644,6 +1646,7 @@ $('apage').addEventListener('pointerdown',e=>{
     if(t==='l')it.r-=20;if(t==='r')it.r+=20;if(t==='p')it.s=Math.min(2.2,+(it.s+.2).toFixed(1));if(t==='m')it.s=Math.max(.6,+(it.s-.2).toFixed(1));
     if(t==='b'){P().tray.push({id:it.id,d:true});P().free.splice(AL.sel,1);AL.sel=null;updGift();}
     saveDB();renderAlbum();return;}
+  if(e.target.closest('#bgPick'))return;
   const fi=e.target.closest('.fitem');
   if(!fi){if(AL.sel!=null){AL.sel=null;renderFree();}return;}
   const i=+fi.dataset.i,p=stagePt(e),it=P().free[i];
