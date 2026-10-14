@@ -836,6 +836,12 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 #s-garden.rainy .gsun{opacity:.2;transition:opacity 1s}
 #moulin.wind .sails{animation:spin 1.6s linear infinite}
 #moulin.spin.wind .sails{animation:spin .3s linear infinite}
+
+/* --- relief doux : tuiles et panneaux --- */
+.tool,.lopt,.dtool,.schoice,.wopt,.mis,.part,.fopt,.opt,.food,.scard,.fcard,.tbowl,.pheart,.ltab,.ctab,.tab,.pcard,.fobj,.mobj,.sback,.cup,.mrow,.slotc,.ing,.titem{background-image:linear-gradient(180deg,rgba(255,255,255,.85),rgba(255,255,255,0) 46%,rgba(43,35,80,.05))}
+#fWork,#cWork,#lWork,#gaPanel,#gInv,#gObj,#fObj,#order,#bubble,.dres,.lnum,.cfact,.dcase{background-image:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0) 30%,rgba(43,35,80,.03))}
+.fr-door,.fr-top{background:linear-gradient(100deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.7) 38%,rgba(255,255,255,0) 46%),linear-gradient(90deg,#f9fbfe,#dfe6f1)!important}
+.fr-door.open{background:none!important}
 </style>
 </head>
 <body>
@@ -867,6 +873,24 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 <linearGradient id="h3Grass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#93d266"/><stop offset="1" stop-color="#78bd4c"/></linearGradient>
 <radialGradient id="h3Sun" cx=".4" cy=".35" r=".7"><stop offset="0" stop-color="#fff6c4"/><stop offset=".6" stop-color="#ffd95a"/><stop offset="1" stop-color="#ffbf3a"/></radialGradient>
 <radialGradient id="h3Cloud" cx=".4" cy=".3" r=".9"><stop offset="0" stop-color="#ffffff"/><stop offset=".7" stop-color="#ffffff"/><stop offset="1" stop-color="#dbe9f7"/></radialGradient>
+<linearGradient id="k3Cab" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fe0d2"/><stop offset="1" stop-color="#6cc2b0"/></linearGradient>
+<linearGradient id="k3Top" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ddaa74"/><stop offset="1" stop-color="#b97f4c"/></linearGradient>
+<linearGradient id="k3Oven" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6f8fc"/><stop offset="1" stop-color="#cdd5e4"/></linearGradient>
+<linearGradient id="k3Steel" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#b9c3d6"/><stop offset=".35" stop-color="#eef2f8"/><stop offset=".7" stop-color="#ccd4e3"/><stop offset="1" stop-color="#9eaac0"/></linearGradient>
+<linearGradient id="k3Pan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#555c6d"/><stop offset="1" stop-color="#2b303b"/></linearGradient>
+<radialGradient id="k3Bowl" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#b6dbff"/><stop offset=".55" stop-color="#6fb4ff"/><stop offset="1" stop-color="#3f86d6"/></radialGradient>
+<linearGradient id="g3Soil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ab744a"/><stop offset="1" stop-color="#7f5131"/></linearGradient>
+<linearGradient id="g3Mill" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff9ec"/><stop offset="1" stop-color="#ecd6ae"/></linearGradient>
+<linearGradient id="f3Copper" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c98a45"/><stop offset=".35" stop-color="#f2c98a"/><stop offset=".7" stop-color="#e2aa62"/><stop offset="1" stop-color="#b37438"/></linearGradient>
+<radialGradient id="b3Bone" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#f6f0e0"/><stop offset="1" stop-color="#d9cdb0"/></radialGradient>
+<radialGradient id="t3Fur" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#cf9a68"/><stop offset=".6" stop-color="#b07a4a"/><stop offset="1" stop-color="#8a5a34"/></radialGradient>
+<radialGradient id="t3Muz" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#fff1dc"/><stop offset=".6" stop-color="#e8c39a"/><stop offset="1" stop-color="#cfa47a"/></radialGradient>
+<radialGradient id="o3Heart" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#ff8090"/><stop offset=".6" stop-color="#e2263e"/><stop offset="1" stop-color="#a8162c"/></radialGradient>
+<linearGradient id="car3Shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".45" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></linearGradient>
+<radialGradient id="car3Tyre" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#4a4a55"/><stop offset="1" stop-color="#1c1c22"/></radialGradient>
+<radialGradient id="a3SkinA" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#fff1e4"/><stop offset=".6" stop-color="#ffdcc2"/><stop offset="1" stop-color="#f2bf9c"/></radialGradient>
+<radialGradient id="a3SkinR" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#ffe2c8"/><stop offset=".6" stop-color="#f6caa6"/><stop offset="1" stop-color="#e2a985"/></radialGradient>
+<radialGradient id="a3Hair" cx=".4" cy=".25" r=".9"><stop offset="0" stop-color="#9c6640"/><stop offset=".6" stop-color="#7a4a2a"/><stop offset="1" stop-color="#58331c"/></radialGradient>
 </defs></svg>
 
 
@@ -1180,7 +1204,7 @@ function annaSVG(){
 <g fill="#ffd25e" stroke="#e5ac2f" stroke-width="3">${c(back,17)}</g>
 <path d="M36 200 q0 -44 64 -46 q64 2 64 46z" fill="#ff7fa8"/><path d="M84 156 q16 14 32 0" fill="none" stroke="#fff" stroke-width="4"/>
 <rect x="89" y="138" width="22" height="20" fill="#ffd2b3"/>
-<ellipse cx="100" cy="104" rx="46" ry="50" fill="#ffdcc2"/>
+<ellipse cx="100" cy="104" rx="46" ry="50" fill="url(#a3SkinA)"/>
 <g fill="#ffd25e" stroke="#e5ac2f" stroke-width="3">${c(front,14)}</g>
 <g stroke="#2a2a3a" stroke-width="2.5" stroke-linecap="round"><path d="M72 96 l-4 -5"/><path d="M76 93 l-2 -6"/><path d="M128 96 l4 -5"/><path d="M124 93 l2 -6"/></g>
 <circle cx="80" cy="106" r="10" fill="#3d8bff"/><circle cx="80" cy="107" r="5" fill="#16213a"/><circle cx="83.5" cy="103" r="2.8" fill="#fff"/>
@@ -1191,12 +1215,12 @@ function annaSVG(){
 <g transform="translate(142 58) rotate(20)"><path d="M0 0 l-14 -9 v18z M0 0 l14 -9 v18z" fill="#ff5c8a"/><circle r="5" fill="#ff8fb1"/></g>
 </svg>`}
 function rafaelSVG(){return `<svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="99" fill="#e3f0ff"/>
-<path d="M48 108 q-6 -66 52 -68 q58 2 52 68 q-8 -30 -52 -30 q-44 0 -52 30z" fill="#7a4a2a"/>
+<path d="M48 108 q-6 -66 52 -68 q58 2 52 68 q-8 -30 -52 -30 q-44 0 -52 30z" fill="url(#a3Hair)"/>
 <path d="M34 200 q0 -44 66 -46 q66 2 66 46z" fill="#4c8dff"/><path d="M80 156 l20 16 l20 -16" fill="none" stroke="#2f62c2" stroke-width="5"/>
 <rect x="88" y="138" width="24" height="20" fill="#f0bf98"/>
 <circle cx="56" cy="110" r="9" fill="#f0bf98"/><circle cx="144" cy="110" r="9" fill="#f0bf98"/>
-<ellipse cx="100" cy="106" rx="44" ry="50" fill="#f6caa6"/>
-<path d="M54 96 q2 -50 46 -52 q46 2 46 50 q-12 -14 -28 -18 l-6 12 l-8 -14 q-14 0 -24 8 l-6 -10 q-12 8 -20 24z" fill="#7a4a2a"/>
+<ellipse cx="100" cy="106" rx="44" ry="50" fill="url(#a3SkinR)"/>
+<path d="M54 96 q2 -50 46 -52 q46 2 46 50 q-12 -14 -28 -18 l-6 12 l-8 -14 q-14 0 -24 8 l-6 -10 q-12 8 -20 24z" fill="url(#a3Hair)"/>
 <g stroke="#5a3218" stroke-width="4" stroke-linecap="round"><path d="M72 92 q8 -5 16 0"/><path d="M112 92 q8 -5 16 0"/></g>
 <circle cx="80" cy="106" r="8" fill="#6b3a1a"/><circle cx="80" cy="107" r="4.2" fill="#2a1508"/><circle cx="83" cy="103.5" r="2.4" fill="#fff"/>
 <circle cx="120" cy="106" r="8" fill="#6b3a1a"/><circle cx="120" cy="107" r="4.2" fill="#2a1508"/><circle cx="123" cy="103.5" r="2.4" fill="#fff"/>
@@ -1771,28 +1795,28 @@ function kitchenSVG(){
 <path d="M1010 232 h44 l-6 -30 h-32z" fill="#e8674f"/><path d="M1032 202 q-20 -30 -6 -40 M1032 202 q10 -30 22 -34 M1032 202 q-2 -24 4 -44" stroke="#3fbf55" stroke-width="6" fill="none" stroke-linecap="round"/>
 <rect x="1074" y="184" width="44" height="48" rx="8" fill="#e8f6ff" stroke="#8a96ad" stroke-width="3"/><rect x="1070" y="178" width="52" height="10" rx="4" fill="#3fbf98"/>
 <rect x="290" y="378" width="890" height="92" fill="url(#ktile)"/>
-<rect x="290" y="464" width="890" height="30" rx="6" fill="#c98d5a"/><rect x="290" y="488" width="890" height="6" fill="#a8703f"/>
+<rect x="290" y="464" width="890" height="30" rx="6" fill="url(#k3Top)"/><rect x="296" y="467" width="878" height="4" rx="2" fill="#fff" opacity=".3"/><rect x="290" y="488" width="890" height="6" fill="#a8703f"/>
 <rect x="290" y="494" width="890" height="228" fill="#6fc3b2"/>
-${[300,500,700].map(x=>`<rect x="${x}" y="504" width="190" height="206" rx="10" fill="#7fd0bf" stroke="#4b9e8d" stroke-width="3"/><rect x="${x+150}" y="590" width="12" height="40" rx="6" fill="#4b9e8d"/>`).join('')}
+${[300,500,700].map(x=>`<rect x="${x}" y="504" width="190" height="206" rx="10" fill="url(#k3Cab)" stroke="#4b9e8d" stroke-width="3"/><path d="M${x+14} 518 h70" stroke="#fff" stroke-width="5" opacity=".35" stroke-linecap="round"/><rect x="${x+150}" y="590" width="12" height="40" rx="6" fill="#4b9e8d"/>`).join('')}
 <rect x="290" y="712" width="890" height="10" fill="#4b9e8d"/>
 <rect y="720" width="1180" height="100" fill="url(#kfloor)"/>
-<ellipse cx="155" cy="722" rx="140" ry="10" fill="#000" opacity=".1"/>
+<ellipse cx="155" cy="724" rx="150" ry="14" fill="url(#g3Shad)"/><rect x="290" y="720" width="890" height="16" fill="url(#h3AO)"/>
 </svg>`}
-function ovenSVG(){return `<svg viewBox="0 0 232 214"><rect x="2" y="2" width="228" height="210" rx="16" fill="#e8edf5" stroke="#8a96ad" stroke-width="4"/><rect x="2" y="2" width="228" height="48" rx="16" fill="#d5dceb" stroke="#8a96ad" stroke-width="4"/><rect x="70" y="12" width="92" height="30" rx="7" fill="#1d2640"/><circle cx="34" cy="26" r="13" fill="#fff" stroke="#8a96ad" stroke-width="4"/><path d="M34 26 v-9" stroke="#2b2350" stroke-width="4" stroke-linecap="round"/><circle cx="198" cy="26" r="13" fill="#fff" stroke="#8a96ad" stroke-width="4"/><path d="M198 26 l7 -6" stroke="#2b2350" stroke-width="4" stroke-linecap="round"/><rect x="40" y="58" width="152" height="10" rx="5" fill="#8a96ad"/><rect x="24" y="72" width="184" height="108" rx="12" fill="#2d3550" stroke="#8a96ad" stroke-width="4"/><text x="116" y="204" text-anchor="middle" font-size="16" font-weight="900" fill="#8a96ad" font-family="ui-rounded,sans-serif">FOUR</text></svg><div class="win"></div><div class="disp"></div>`}
+function ovenSVG(){return `<svg viewBox="0 0 232 214"><rect x="2" y="2" width="228" height="210" rx="16" fill="url(#k3Oven)" stroke="#8a96ad" stroke-width="4"/><rect x="2" y="2" width="228" height="48" rx="16" fill="#d5dceb" stroke="#8a96ad" stroke-width="4"/><rect x="70" y="12" width="92" height="30" rx="7" fill="#1d2640"/><circle cx="34" cy="26" r="13" fill="#fff" stroke="#8a96ad" stroke-width="4"/><path d="M34 26 v-9" stroke="#2b2350" stroke-width="4" stroke-linecap="round"/><circle cx="198" cy="26" r="13" fill="#fff" stroke="#8a96ad" stroke-width="4"/><path d="M198 26 l7 -6" stroke="#2b2350" stroke-width="4" stroke-linecap="round"/><rect x="40" y="58" width="152" height="10" rx="5" fill="#8a96ad"/><rect x="24" y="72" width="184" height="108" rx="12" fill="#2d3550" stroke="#8a96ad" stroke-width="4"/><text x="116" y="204" text-anchor="middle" font-size="16" font-weight="900" fill="#8a96ad" font-family="ui-rounded,sans-serif">FOUR</text></svg><div class="win"></div><div class="disp"></div>`}
 function plaqueHTML(){return `<svg viewBox="0 0 294 176"><defs><radialGradient id="bg1"><stop offset="0" stop-color="#ffb347"/><stop offset=".6" stop-color="#ff5a2a" stop-opacity=".7"/><stop offset="1" stop-color="#ff5a2a" stop-opacity="0"/></radialGradient></defs>
 <rect x="0" y="148" width="294" height="28" rx="7" fill="#2b2f3a"/><rect x="4" y="150" width="286" height="4" rx="2" fill="#4a5162"/>
 <ellipse cx="96" cy="152" rx="56" ry="6" fill="none" stroke="#5a6070" stroke-width="2"/><ellipse cx="223" cy="152" rx="56" ry="6" fill="none" stroke="#5a6070" stroke-width="2"/>
 <ellipse class="burn" id="burnP" cx="96" cy="150" rx="70" ry="14" fill="url(#bg1)"/><ellipse class="burn" id="burnC" cx="223" cy="150" rx="70" ry="14" fill="url(#bg1)"/>
 <rect x="116" y="155" width="62" height="18" rx="5" fill="#1d2640"/></svg>
-<div class="ust" id="poele"><svg viewBox="0 0 154 72"><rect x="0" y="22" width="58" height="12" rx="6" fill="#8a5a36"/><rect x="40" y="24" width="20" height="8" fill="#5d6c8c"/><path d="M50 18 h100 l-8 30 q-42 12 -84 0z" fill="#3d4352"/><ellipse cx="100" cy="18" rx="50" ry="9" fill="#2a2f3a"/><ellipse cx="100" cy="18" rx="44" ry="6.5" fill="#4a5162"/><path d="M64 44 q36 8 72 0" stroke="#5d6576" stroke-width="3" fill="none"/></svg><div class="pc"></div></div>
-<div class="ust" id="casserole"><svg viewBox="0 0 138 126"><rect x="0" y="40" width="24" height="10" rx="5" fill="#5d6c8c"/><rect x="114" y="40" width="24" height="10" rx="5" fill="#5d6c8c"/><path d="M18 30 h102 v80 q0 14 -14 14 h-74 q-14 0 -14 -14z" fill="#d5dceb" stroke="#8a96ad" stroke-width="4"/><path d="M28 50 v54" stroke="#fff" stroke-width="6" opacity=".6" stroke-linecap="round"/><ellipse cx="69" cy="30" rx="51" ry="10" fill="#aab4c8" stroke="#8a96ad" stroke-width="3"/><ellipse cx="69" cy="30" rx="45" ry="7" fill="#5d6c8c"/></svg><div class="pc"></div></div>
+<div class="ust" id="poele"><svg viewBox="0 0 154 72"><rect x="0" y="22" width="58" height="12" rx="6" fill="#8a5a36"/><rect x="40" y="24" width="20" height="8" fill="#5d6c8c"/><path d="M50 18 h100 l-8 30 q-42 12 -84 0z" fill="url(#k3Pan)"/><path d="M60 26 q8 14 22 18" stroke="#fff" stroke-width="3" opacity=".2" fill="none" stroke-linecap="round"/><ellipse cx="100" cy="18" rx="50" ry="9" fill="#2a2f3a"/><ellipse cx="100" cy="18" rx="44" ry="6.5" fill="#4a5162"/><path d="M64 44 q36 8 72 0" stroke="#5d6576" stroke-width="3" fill="none"/></svg><div class="pc"></div></div>
+<div class="ust" id="casserole"><svg viewBox="0 0 138 126"><rect x="0" y="40" width="24" height="10" rx="5" fill="#5d6c8c"/><rect x="114" y="40" width="24" height="10" rx="5" fill="#5d6c8c"/><path d="M18 30 h102 v80 q0 14 -14 14 h-74 q-14 0 -14 -14z" fill="url(#k3Steel)" stroke="#8a96ad" stroke-width="4"/><path d="M28 50 v54" stroke="#fff" stroke-width="6" opacity=".6" stroke-linecap="round"/><ellipse cx="69" cy="30" rx="51" ry="10" fill="#aab4c8" stroke="#8a96ad" stroke-width="3"/><ellipse cx="69" cy="30" rx="45" ry="7" fill="#5d6c8c"/></svg><div class="pc"></div></div>
 <div class="disp"></div>`}
 $('kArt').innerHTML=kitchenSVG();$('oven').innerHTML=ovenSVG();$('plaque').innerHTML=plaqueHTML();
 $('kicuitK').innerHTML=kicuitSVG();$('wanji').innerHTML=wanjiSVG();
 $('wbowl').innerHTML='<svg viewBox="0 0 110 56" style="position:absolute;left:0;bottom:0;width:110px;height:56px"><path d="M6 20 h98 l-10 30 h-78z" fill="#ff7a59" stroke="#c9553a" stroke-width="3"/><ellipse cx="55" cy="20" rx="49" ry="10" fill="#c9553a"/><text x="55" y="44" text-anchor="middle" font-size="14" font-weight="900" fill="#fff" font-family="ui-rounded,sans-serif">WANJI</text></svg>';
 function renderFridge(){const list=FRIDGE.concat(S.player&&fromOpen()?(isA()?['pdt']:LIMITED):[]);const rows=Math.ceil(list.length/3);$('frIn').classList.toggle('r4',rows>3);$('frIn').classList.toggle('r5',rows>4);$('frIn').style.gridTemplateRows=`repeat(${rows},1fr)`;$('frIn').innerHTML=list.map(k=>`<button class="ing" data-ing="${k}">${ingSVG(k)}<span>${ING[k].n}</span></button>`).join('');}
 renderFridge();
-$('bowl').innerHTML=`<svg viewBox="0 0 250 156"><ellipse cx="125" cy="44" rx="118" ry="30" fill="#3b6fb0"/><ellipse cx="125" cy="48" rx="108" ry="24" fill="#2f5d99"/></svg><div id="bowlC"></div><svg viewBox="0 0 250 156" style="pointer-events:none"><path d="M7 44 q0 106 118 110 q118 -4 118 -110 q-30 30 -118 30 q-88 0 -118 -30z" fill="#6fb4ff" stroke="#3b6fb0" stroke-width="4"/><path d="M30 80 q20 40 60 52" stroke="#fff" stroke-width="7" fill="none" opacity=".5" stroke-linecap="round"/></svg>`;
+$('bowl').innerHTML=`<svg viewBox="0 0 250 156"><ellipse cx="125" cy="44" rx="118" ry="30" fill="#3b6fb0"/><ellipse cx="125" cy="48" rx="108" ry="24" fill="#2f5d99"/></svg><div id="bowlC"></div><svg viewBox="0 0 250 156" style="pointer-events:none"><path d="M7 44 q0 106 118 110 q118 -4 118 -110 q-30 30 -118 30 q-88 0 -118 -30z" fill="url(#k3Bowl)" stroke="#3b6fb0" stroke-width="4"/><path d="M30 80 q20 40 60 52" stroke="#fff" stroke-width="7" fill="none" opacity=".5" stroke-linecap="round"/></svg>`;
 $('ceil').innerHTML=dishSVG('crepes');
 
 const BPOS=[[30,8,-12],[84,0,8],[136,6,-5],[176,18,14],[58,26,6],[112,28,-10]];
@@ -2238,20 +2262,20 @@ function plantSVG(p){
   if(st===4)s+=spots.map(([x,y])=>c==='fraise'?`<path d="M${x} ${y+14} q-12 -8 -11 -17 q1 -6 11 -5 q10 -1 11 5 q1 9 -11 17z" fill="#ff3b4e" stroke="#c9273a" stroke-width="1.5"/><g fill="#ffe17a"><circle cx="${x-4}" cy="${y-2}" r="1.3"/><circle cx="${x+4}" cy="${y}" r="1.3"/><circle cx="${x}" cy="${y+6}" r="1.3"/></g><path d="M${x-6} ${y-8} q6 -6 12 0" fill="#3fbf55"/>`:`<circle cx="${x}" cy="${y}" r="12" fill="#ff4a2e" stroke="#c93a22" stroke-width="2"/><ellipse cx="${x-4}" cy="${y-4}" rx="4" ry="2.5" fill="#fff" opacity=".5"/><path d="M${x-5} ${y-11} l5 3 l5 -3" stroke="#3fbf55" stroke-width="3" fill="none"/>`).join('');
   return `<svg viewBox="0 0 140 150">${s}</svg>`;
 }
-const SOIL='<svg class="soil" viewBox="0 0 280 92"><rect x="4" y="8" width="272" height="80" rx="26" fill="#7a4e2c"/><rect x="4" y="4" width="272" height="72" rx="26" fill="#946039"/><path d="M30 30 q110 -10 220 0 M26 48 q114 -10 228 0" stroke="#7a4e2c" stroke-width="5" fill="none" stroke-linecap="round"/><g fill="#a8744a"><circle cx="60" cy="60" r="3"/><circle cx="150" cy="22" r="3"/><circle cx="220" cy="58" r="3"/></g></svg>';
+const SOIL='<svg class="soil" viewBox="0 0 280 92"><rect x="4" y="8" width="272" height="80" rx="26" fill="#7a4e2c"/><rect x="4" y="4" width="272" height="72" rx="26" fill="url(#g3Soil)"/><path d="M34 12 q100 -8 210 0" stroke="#fff" stroke-width="4" opacity=".18" stroke-linecap="round" fill="none"/><path d="M30 30 q110 -10 220 0 M26 48 q114 -10 228 0" stroke="#7a4e2c" stroke-width="5" fill="none" stroke-linecap="round"/><g fill="#a8744a"><circle cx="60" cy="60" r="3"/><circle cx="150" cy="22" r="3"/><circle cx="220" cy="58" r="3"/></g></svg>';
 const WEEDS='<svg viewBox="0 0 280 178" style="width:100%;height:100%"><g fill="#2f7d32">'+[[34,130],[236,124],[180,150]].map(([x,y])=>`<path d="M${x} ${y} l-10 -26 l8 10 l2 -24 l6 22 l6 -18 l0 26 l10 -16 l-6 26z"/>`).join('')+'</g></svg>';
 const APH='<svg viewBox="0 0 140 150" style="position:absolute;left:70px;bottom:28px;width:140px;height:150px">'+[[62,92],[78,86],[70,76],[86,100],[56,104],[74,108]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="4.5" ry="3.5" fill="#9be15d" stroke="#3d7a1c" stroke-width="1.5"/>`).join('')+'</svg>';
 
 function gardenSVG(){return `<svg viewBox="0 0 1180 820" class="full"><defs><linearGradient id="gsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fd3ff"/><stop offset="1" stop-color="#dff4ff"/></linearGradient></defs>
-<rect width="1180" height="820" fill="url(#gsky)"/><circle class="gsun" cx="880" cy="150" r="46" fill="#ffd95a"/>
-<g class="clouds2" fill="#fff" opacity=".9"><ellipse cx="560" cy="150" rx="56" ry="22"/><ellipse cx="600" cy="132" rx="40" ry="26"/></g>
+<rect width="1180" height="820" fill="url(#gsky)"/><circle cx="880" cy="150" r="70" fill="#ffd95a" opacity=".18" class="gsun"/><circle class="gsun" cx="880" cy="150" r="46" fill="url(#h3Sun)"/>
+<g class="clouds2" fill="url(#h3Cloud)" opacity=".95"><ellipse cx="560" cy="150" rx="56" ry="22"/><ellipse cx="600" cy="132" rx="40" ry="26"/></g>
 <path d="M0 270 q240 -60 480 -10 t480 -20 t240 10 v600 h-1200z" fill="#a6dc76"/>
 <rect y="282" width="1180" height="538" fill="#8fce5e"/>
 ${Array.from({length:40},(_,i)=>`<rect x="${i*30}" y="236" width="18" height="64" rx="5" fill="#fff6e0" stroke="#c8a97a" stroke-width="3"/>`).join('')}
 <rect y="252" width="1180" height="10" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/><rect y="280" width="1180" height="10" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/>
 <g fill="#7cc35a">${Array.from({length:30},(_,i)=>`<path d="M${i*41+10} 812 l6 -18 l6 18z"/>`).join('')}</g>
 </svg>`}
-function moulinSVG(){return `<svg viewBox="0 0 160 190" style="width:100%;height:100%"><path d="M58 70 l-14 104 h72 l-14 -104z" fill="#fff1d8" stroke="#b98a5a" stroke-width="4"/><path d="M50 74 l30 -26 l30 26z" fill="#e8674f" stroke="#a9412f" stroke-width="4" stroke-linejoin="round"/><rect x="70" y="136" width="20" height="38" rx="9" fill="#8a5a36"/><g class="sails"><g fill="#fff" stroke="#8a96ad" stroke-width="3">${[0,90,180,270].map(a=>`<rect x="74" y="8" width="12" height="62" rx="3" transform="rotate(${a} 80 70)"/>`).join('')}</g><circle cx="80" cy="70" r="8" fill="#5d6c8c"/></g></svg><div class="mlab">Moulin</div>`}
+function moulinSVG(){return `<svg viewBox="0 0 160 190" style="width:100%;height:100%"><ellipse cx="80" cy="176" rx="56" ry="8" fill="url(#g3Shad)"/><path d="M58 70 l-14 104 h72 l-14 -104z" fill="url(#g3Mill)" stroke="#b98a5a" stroke-width="4"/><path d="M50 74 l30 -26 l30 26z" fill="#e8674f" stroke="#a9412f" stroke-width="4" stroke-linejoin="round"/><rect x="70" y="136" width="20" height="38" rx="9" fill="#8a5a36"/><g class="sails"><g fill="#fff" stroke="#8a96ad" stroke-width="3">${[0,90,180,270].map(a=>`<rect x="74" y="8" width="12" height="62" rx="3" transform="rotate(${a} 80 70)"/>`).join('')}</g><circle cx="80" cy="70" r="8" fill="#5d6c8c"/></g></svg><div class="mlab">Moulin</div>`}
 
 function TOOLS(){const u=gUnl();return [...Object.keys(CROPS).filter(c=>(c!=='tournesol'||u.tournesol)&&(c!=='pdt'||fromOpen())).map(c=>({id:'seed:'+c,n:CROPS[c].short||CROPS[c].n,seed:c})),{id:'eau',n:'Arrosoir'},...(u.tuyau?[{id:'tuyau',n:'Tuyau'}]:[]),{id:'engrais',n:'Engrais'},{id:'main',n:'Main'},{id:'cocci',n:'Coccinelles'}];}
 const GS={tool:'main',timer:null,bee:null,beeWait:0,sig:[]};
@@ -2604,7 +2628,7 @@ function seauSVG(lv){const h=Math.round(46*lv);return `<svg viewBox="0 0 90 80" 
 function cuveSVG(state,col){
   /* state : lait / caille / grains */
   const top=state==='lait'?'#fffdf6':state==='chaud'?'#fff3d6':'#f5ecd2';
-  return `<svg viewBox="0 0 360 230" style="width:100%;height:100%"><path d="M30 60 h300 l-20 150 q-130 24 -260 0z" fill="#e8b46a" stroke="#a8703f" stroke-width="5"/><path d="M40 92 h280 M44 130 h272 M48 168 h264" stroke="#c98d5a" stroke-width="3"/><ellipse cx="180" cy="60" rx="150" ry="24" fill="#c98d5a" stroke="#a8703f" stroke-width="5"/><ellipse cx="180" cy="62" rx="136" ry="18" fill="${col||top}"/>${state==='caille'?'<path d="M90 58 q40 -6 80 2 q50 6 90 -4" stroke="#e8dcc0" stroke-width="4" fill="none"/>':''}</svg>`;
+  return `<svg viewBox="0 0 360 230" style="width:100%;height:100%"><path d="M30 60 h300 l-20 150 q-130 24 -260 0z" fill="url(#f3Copper)" stroke="#a8703f" stroke-width="5"/><path d="M40 92 h280 M44 130 h272 M48 168 h264" stroke="#c98d5a" stroke-width="3"/><ellipse cx="180" cy="60" rx="150" ry="24" fill="#c98d5a" stroke="#a8703f" stroke-width="5"/><ellipse cx="180" cy="62" rx="136" ry="18" fill="${col||top}"/>${state==='caille'?'<path d="M90 58 q40 -6 80 2 q50 6 90 -4" stroke="#e8dcc0" stroke-width="4" fill="none"/>':''}</svg>`;
 }
 
 /* état de la fabrication en cours */
@@ -3031,7 +3055,7 @@ const BONES_NANA=[
   {id:'brasD',k:'bras',n:'Le bras',x:332,y:318,w:44,h:250,r:-10},
   {id:'jambes',k:'jambes',n:'Les jambes',x:215,y:584,w:120,h:290}
 ];
-const BC='#f6f0e0',BS='#b9ad8f';
+const BC='url(#b3Bone)',BS='#b9ad8f';
 function boneSVG(b){
   const {w,h,k}=b,st=`fill="${BC}" stroke="${BS}" stroke-width="3"`;let s='';
   const longB=(x,y,ww,hh)=>`<rect x="${x+ww*.32}" y="${y+hh*.08}" width="${ww*.36}" height="${hh*.84}" rx="${ww*.18}" ${st}/><circle cx="${x+ww*.3}" cy="${y+hh*.08}" r="${ww*.22}" ${st}/><circle cx="${x+ww*.7}" cy="${y+hh*.08}" r="${ww*.22}" ${st}/><circle cx="${x+ww*.3}" cy="${y+hh*.92}" r="${ww*.22}" ${st}/><circle cx="${x+ww*.7}" cy="${y+hh*.92}" r="${ww*.22}" ${st}/><rect x="${x+ww*.34}" y="${y+hh*.06}" width="${ww*.32}" height="${hh*.88}" fill="${BC}"/>`;
@@ -3330,7 +3354,7 @@ function voyResult(){
 /* ===== 3. cœur et souffle : rattraper Wanji ===== */
 const RN={};
 function organsSVG(){return `<svg viewBox="0 0 200 220"><g class="lungs" id="rLungs"><path d="M92 40 q-56 -6 -66 70 q-6 60 30 70 q30 6 36 -30z" fill="#ff9fb3" stroke="#d96a84" stroke-width="3"/><path d="M108 40 q56 -6 66 70 q6 60 -30 70 q-30 6 -36 -30z" fill="#ff9fb3" stroke="#d96a84" stroke-width="3"/><path d="M100 0 V50 M100 50 l-14 16 M100 50 l14 16" stroke="#d96a84" stroke-width="8" fill="none" stroke-linecap="round"/></g>
-<g class="heart" id="rHeart"><path d="M112 118 q-22 -18 -34 -4 q-12 16 34 44 q46 -28 34 -44 q-12 -14 -34 4z" fill="#e2263e" stroke="#a8162c" stroke-width="3"/></g></svg>`;}
+<g class="heart" id="rHeart"><path d="M112 118 q-22 -18 -34 -4 q-12 16 34 44 q46 -28 34 -44 q-12 -14 -34 4z" fill="url(#o3Heart)" stroke="#a8162c" stroke-width="3"/></g></svg>`;}
 function legsSVG(){return `<svg class="legs" viewBox="0 0 110 56"><line x1="46" y1="0" x2="46" y2="52" stroke="#2b2350" stroke-width="12" stroke-linecap="round" style="transform-origin:46px 0"/><line x1="64" y1="0" x2="64" y2="52" stroke="#2b2350" stroke-width="12" stroke-linecap="round" style="transform-origin:64px 0"/></svg>`;}
 function beatLoop(){
   stopBeat();
@@ -3590,10 +3614,10 @@ const PATIENTS=[
    bad:{medoc:'Jamais de médicament pour les humains à un chien !',pans:'Un pansement ne tient pas sur une patte, et l\'épine est encore dedans !'},st:'c_epine'}
 ];
 const DR={p:null,i:0,err:0,last:null,busy:false};
-function teddySVG(){return `<svg viewBox="0 0 240 300"><circle cx="62" cy="50" r="30" fill="#b07a4a"/><circle cx="178" cy="50" r="30" fill="#b07a4a"/><circle cx="62" cy="50" r="15" fill="#e8c39a"/><circle cx="178" cy="50" r="15" fill="#e8c39a"/>
-<ellipse cx="50" cy="196" rx="20" ry="42" fill="#b07a4a" transform="rotate(22 50 196)"/><ellipse cx="190" cy="196" rx="20" ry="42" fill="#b07a4a" transform="rotate(-22 190 196)"/>
-<ellipse cx="120" cy="200" rx="70" ry="76" fill="#b07a4a"/><ellipse cx="120" cy="212" rx="42" ry="50" fill="#e8c39a"/><ellipse cx="70" cy="272" rx="32" ry="24" fill="#b07a4a"/><ellipse cx="170" cy="272" rx="32" ry="24" fill="#b07a4a"/>
-<circle cx="120" cy="96" r="66" fill="#b07a4a"/><ellipse cx="120" cy="120" rx="32" ry="24" fill="#e8c39a"/><ellipse cx="120" cy="108" rx="11" ry="8" fill="#3a2418"/><circle cx="94" cy="84" r="8" fill="#2b2350"/><circle cx="146" cy="84" r="8" fill="#2b2350"/>
+function teddySVG(){return `<svg viewBox="0 0 240 300"><circle cx="62" cy="50" r="30" fill="url(#t3Fur)"/><circle cx="178" cy="50" r="30" fill="url(#t3Fur)"/><circle cx="62" cy="50" r="15" fill="url(#t3Muz)"/><circle cx="178" cy="50" r="15" fill="url(#t3Muz)"/>
+<ellipse cx="50" cy="196" rx="20" ry="42" fill="url(#t3Fur)" transform="rotate(22 50 196)"/><ellipse cx="190" cy="196" rx="20" ry="42" fill="url(#t3Fur)" transform="rotate(-22 190 196)"/>
+<ellipse cx="120" cy="200" rx="70" ry="76" fill="url(#t3Fur)"/><ellipse cx="120" cy="212" rx="42" ry="50" fill="url(#t3Muz)"/><ellipse cx="70" cy="272" rx="32" ry="24" fill="url(#t3Fur)"/><ellipse cx="170" cy="272" rx="32" ry="24" fill="url(#t3Fur)"/>
+<circle cx="120" cy="96" r="66" fill="url(#t3Fur)"/><ellipse cx="120" cy="120" rx="32" ry="24" fill="url(#t3Muz)"/><ellipse cx="120" cy="108" rx="11" ry="8" fill="#3a2418"/><circle cx="94" cy="84" r="8" fill="#2b2350"/><circle cx="146" cy="84" r="8" fill="#2b2350"/><circle cx="91" cy="81" r="2.5" fill="#fff"/><circle cx="143" cy="81" r="2.5" fill="#fff"/><path d="M80 52 q20 -16 46 -14" stroke="#fff" stroke-width="6" opacity=".22" stroke-linecap="round" fill="none"/>
 <path class="tsmile" d="M106 126 q14 12 28 0" stroke="#3a2418" stroke-width="4" fill="none" stroke-linecap="round"/><path class="tsad" d="M106 134 q14 -10 28 0" stroke="#3a2418" stroke-width="4" fill="none" stroke-linecap="round"/>
 <g class="tcheek"><circle cx="78" cy="112" r="13" fill="#ff4a4a" opacity=".55"/><circle cx="162" cy="112" r="13" fill="#ff4a4a" opacity=".55"/></g><path class="tdrip" d="M128 116 q5 12 0 20 q-7 -5 0 -20z" fill="#9fd8ff"/>
 <g class="tknee"><path d="M52 262 l28 8 M56 274 l22 6 M58 252 l22 8" stroke="#d61f3a" stroke-width="5" stroke-linecap="round"/><circle cx="76" cy="280" r="4" fill="#7a5a36"/><circle cx="58" cy="268" r="3" fill="#7a5a36"/></g>
@@ -3934,7 +3958,7 @@ function bodyPath(ch){return {kart:'M60 150 h300 q14 0 14 14 v14 h-328 v-14 q0 -
 function carSVG(c,{scale=1,driver=true,id='car'}={}){
   const R={velo:{r:34,t:4},normales:{r:30,t:12},tt:{r:38,t:16},monster:{r:54,t:20}}[c.roues];
   const wy=c.chassis==='camion'?196:186,wx=c.chassis==='kart'?[100,320]:c.chassis==='camion'?[100,320]:[110,320];
-  const wheel=x=>`<g class="wheel" transform="translate(${x} ${wy})"><g class="wspin"><circle r="${R.r}" fill="#2b2b33"/>${c.roues==='tt'||c.roues==='monster'?Array.from({length:10},(_,i)=>`<rect x="-5" y="${-R.r-5}" width="10" height="10" fill="#2b2b33" transform="rotate(${i*36})"/>`).join(''):''}<circle r="${R.r-R.t}" fill="${c.roues==='velo'?'none':'#c9d2e3'}" stroke="#9aa6bf" stroke-width="3"/>${c.roues==='velo'?Array.from({length:8},(_,i)=>`<line x1="0" y1="0" x2="${(R.r-4)*Math.cos(i*Math.PI/4)}" y2="${(R.r-4)*Math.sin(i*Math.PI/4)}" stroke="#c9d2e3" stroke-width="2"/>`).join(''):`<line x1="${-(R.r-R.t-4)}" y1="0" x2="${R.r-R.t-4}" y2="0" stroke="#9aa6bf" stroke-width="4"/>`}<circle r="6" fill="#5d6c8c"/></g></g>`;
+  const wheel=x=>`<g class="wheel" transform="translate(${x} ${wy})"><g class="wspin"><circle r="${R.r}" fill="url(#car3Tyre)"/>${c.roues==='tt'||c.roues==='monster'?Array.from({length:10},(_,i)=>`<rect x="-5" y="${-R.r-5}" width="10" height="10" fill="#2b2b33" transform="rotate(${i*36})"/>`).join(''):''}<circle r="${R.r-R.t}" fill="${c.roues==='velo'?'none':'#c9d2e3'}" stroke="#9aa6bf" stroke-width="3"/>${c.roues==='velo'?Array.from({length:8},(_,i)=>`<line x1="0" y1="0" x2="${(R.r-4)*Math.cos(i*Math.PI/4)}" y2="${(R.r-4)*Math.sin(i*Math.PI/4)}" stroke="#c9d2e3" stroke-width="2"/>`).join(''):`<line x1="${-(R.r-R.t-4)}" y1="0" x2="${R.r-R.t-4}" y2="0" stroke="#9aa6bf" stroke-width="4"/>`}<circle r="6" fill="#5d6c8c"/></g></g>`;
   const lift=c.roues==='monster'?-26:c.roues==='tt'?-8:0;
   const motor={pedales:`<g transform="translate(160 186)"><circle r="14" fill="none" stroke="#5d6c8c" stroke-width="4"/><rect x="-22" y="-4" width="44" height="8" rx="3" fill="#5d6c8c" transform="rotate(30)"/></g>`,
     petit:`<rect x="${c.chassis==='camion'?280:300}" y="${c.chassis==='kart'?128:116}" width="46" height="30" rx="6" fill="#9aa6bf" stroke="#5d6c8c" stroke-width="3"/>`,
@@ -3945,7 +3969,7 @@ function carSVG(c,{scale=1,driver=true,id='car'}={}){
   return `<svg viewBox="-40 0 470 ${260} " style="width:${470*scale}px;height:${260*scale}px;overflow:visible"><defs><clipPath id="cl_${id}"><path d="${bodyPath(c.chassis)}"/></clipPath><clipPath id="wl_${id}"><path d="${c.chassis==='camion'?'M252 118 h52 q20 0 30 26 h-82z':'M150 124 q24 -32 66 -32 h40 q30 0 52 32z'}"/></clipPath></defs>
   <g transform="translate(0 ${lift})"><path d="${bodyPath(c.chassis)}" fill="${c.col}" stroke="#2b2350" stroke-width="4" stroke-linejoin="round"/>
   <g clip-path="url(#cl_${id})">${(c.dots||[]).map(d=>`<circle cx="${d[0]}" cy="${d[1]}" r="${d[3]||9}" fill="${d[2]}" opacity=".9"/>`).join('')}</g>
-  <path d="${bodyPath(c.chassis)}" fill="none" stroke="#2b2350" stroke-width="4" stroke-linejoin="round"/>${win}${c.chassis==='kart'?drv:c.chassis==='voiture'?`<g clip-path="url(#wl_${id})">${drv}</g><path d="M150 124 q24 -32 66 -32 h40 q30 0 52 32z" fill="#bfe3ff" opacity=".25" stroke="#2b2350" stroke-width="3"/>`:`<g clip-path="url(#wl_${id})">${drv}</g><path d="M252 118 h52 q20 0 30 26 h-82z" fill="#bfe3ff" opacity=".25" stroke="#2b2350" stroke-width="3"/>`}${motor}</g>
+  <path d="${bodyPath(c.chassis)}" fill="url(#car3Shade)"/><path d="${bodyPath(c.chassis)}" fill="none" stroke="#2b2350" stroke-width="4" stroke-linejoin="round"/>${win}${c.chassis==='kart'?drv:c.chassis==='voiture'?`<g clip-path="url(#wl_${id})">${drv}</g><path d="M150 124 q24 -32 66 -32 h40 q30 0 52 32z" fill="#bfe3ff" opacity=".25" stroke="#2b2350" stroke-width="3"/>`:`<g clip-path="url(#wl_${id})">${drv}</g><path d="M252 118 h52 q20 0 30 26 h-82z" fill="#bfe3ff" opacity=".25" stroke="#2b2350" stroke-width="3"/>`}${motor}</g>
   ${wheel(wx[0])}${wheel(wx[1])}</svg>`;
 }
 function enterGarage(){go('s-garage');CAR_();GA.busy=false;renderGarage();updGift();

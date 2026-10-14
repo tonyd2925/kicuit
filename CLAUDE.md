@@ -140,6 +140,7 @@ Idée centrale, répétée par Kicuit : **un fromage, c'est du lait dont on enl�
 - **Ambiance sonore** très discrète : oiseaux ou pluie au jardin, goutte dans la cave à fromage.
 - **« Ma page »** de l'album : 4 fonds (crème, plage, espace, forêt), `P().freeBg`.
 - Petits effets : léger écrasement de l'objet qui reçoit un `fly()`, nuages qui dérivent (maison, jardin), reflets sur la vitre du four et l'aquarium, carnet de recettes en cahier à spirale.
+- **Style « 3D douce »** : volume dessiné dans les SVG (dégradés radiaux, reflets, ombres au sol `g3Shad`), sans filtre recalculé. Tous les dégradés partagés sont dans un seul bloc `<svg id="g3defs">` au début de `#stage` (toujours affiché : un dégradé dans un écran caché ne s'afficherait pas). Préfixes : `k3` Kicuit et cuisine, `w3` Wanji, `c3` Marguerite, `h3` maison et ciel, `g3` jardin, `f3` fromagerie, `b3`/`t3`/`o3` corps, `car3` garage, `a3` avatars. Les tuiles et panneaux ont un reflet en dégradé (bloc CSS « relief doux »). La toque de Kicuit est le groupe `.kc-toque` (retiré par la garde-robe pour le chapeau et la couronne).
 - Écartés volontairement : zoom de caméra dans `go()` (casse les minuteurs qui vérifient l'écran), texte machine à écrire et babillage (doublon avec la voix), canvas de particules permanent (batterie), filtres SVG sur toutes les mascottes (lenteur sur iPad).
 
 ## Technique
