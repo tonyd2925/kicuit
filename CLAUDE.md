@@ -116,6 +116,10 @@ Idée centrale, répétée par Kicuit : **un fromage, c'est du lait dont on enl�
 3. **Cœur et souffle** : course après Wanji (marcher, courir, sprinter ; respirer en touchant ; oxygène, battements ; Raf : point de côté si l'oxygène tombe à 0, Nana jamais bloquée), puis prendre son pouls (Raf : compter 10 s × 6 ; Nana : taper en rythme), puis sieste (le cœur ralentit).
 4. **Les 5 sens** : ouïe (reconnaître des bruits ; Raf : aigu ou grave), vue (pupille selon la lumière, vision de Wanji en couleurs de chien), goût (sucré, salé, acide, amer ; la carte de la langue est une légende), toucher (boîte mystère), odorat (nez bouché, puis le flair de Wanji).
 5. **Docteur Kicuit** : patients (`PATIENTS`) à soigner dans le bon ordre : genou écorché, fièvre, rhume (éternuer dans le coude), dents (mini-jeu de brossage), mains (mini-jeu de 20 s de savon), Wanji (mal au ventre → vétérinaire ; **jamais de médicament humain pour un chien**), épine dans la patte. Nana : 3 outils proposés ; Raf : tous les outils. +1 étoile par patient guéri (Raf : au plus 1 erreur). Les médicaments : « c'est un adulte ou un médecin qui décide ».
+- **Nana et les onglets** : toucher un onglet ne change pas de jeu (main posée sur le bord par mégarde) ; un gros bouton vert ✔ apparaît à côté pendant 4 s et c'est lui qui change (`askTab`, `hideAsk`, appelé par `cStop`). Raf : un simple toucher.
+- **Aides de Nana** dans le voyage : main 👆 animée (`.hint`), toucher le tuyau pousse aussi la bouchée, toucher l'estomac compte, les bulles de l'intestin s'arrêtent et attendent qu'on les touche (rappel vocal après 7 s), bouton suivant qui pulse (`.cnudge`). La bouche est un visage qui mâche (mâchoire `.jaw`, yeux fermés, joues, salive, miettes).
+- **Cœur pour Nana** : `coach(texte)` parle pendant la course (au plus une phrase toutes les 5,5 s) : vitesse choisie, souffle bas (bouton bleu qui pulse), Wanji loin, presque, cœur rapide, sueur ; puis pouls (« pose ta main sur ton cœur ») et sieste commentés.
+- **Brossage** : la brosse est placée dans son propre conteneur (`br.parentElement`) ; une dent se nettoie quand elle est à moins de 64 px (Nana) ou 40 px (Raf) du centre de la brosse, selon la distance parcourue.
 - Étoiles « premières fois » via `firstStar` (squelette, voyage, course, pouls, chaque sens). Page d'album Corps : 28 autocollants (`c_*`, dont `c_os`, `c_fibres`, `c_cote` réservés à Raf).
 
 ## Laboratoire (fait, 25 étoiles)
@@ -146,6 +150,7 @@ Idée centrale, répétée par Kicuit : **un fromage, c'est du lait dont on enl�
 ## Technique
 
 - Un seul `index.html` (HTML, CSS et JS vanilla, aucune dépendance), graphismes en SVG inline, sons en WebAudio.
+- Bruits réalistes dans le module `SND` (chien, eau, cloche, orage, abeille, cœur, croque, papier, oiseau) : synthèse en couches (bruit filtré, oscillateurs avec enveloppes). `sfx.bark` et les sons de l'ouïe passent par lui.
 - Scène fixe de 1180×820, mise à l'échelle par `fit()`, iPad en paysage (message si l'iPad est en portrait).
 - **Taps : toujours utiliser `onTap(el, fn)`** (pointerdown/pointerup), jamais `click`. Sur iPad, `click` rate les éléments animés.
 - **Zoom bloqué** : Safari ignore `user-scalable=no`. Tout `touchstart` est annulé (sauf `input`, `.blist`, `#tray`, qui doivent défiler), ainsi que le double-tap et le pincement ; les touches du jeu passent par les événements pointer, qui restent actifs. Un zoom résiduel est annulé via `visualViewport` (`unzoom()` puis `scrollTo(0,0)`). `fit()` lit `clientWidth/clientHeight` et non `innerWidth`, faussé quand Safari a zoomé. Ne jamais réintroduire `click`, que ce blocage empêcherait.

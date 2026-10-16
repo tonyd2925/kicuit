@@ -575,13 +575,32 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .vscene{flex:1;position:relative;display:flex;flex-direction:column;align-items:center}
 .vtitle{font-size:26px;font-weight:900;padding:16px 10px 4px;text-align:center}
 .vzone{position:relative;flex:1;width:100%;display:flex;align-items:center;justify-content:center;touch-action:none}
-.mouth{position:relative;width:440px;height:330px}
-.mouth svg{position:absolute;inset:0;width:100%;height:100%}
-.mouth .tu,.mouth .tl{transition:transform .12s}
-.mouth.chomp .tu{transform:translateY(46px)}.mouth.chomp .tl{transform:translateY(-46px)}
-.bites{position:absolute;left:110px;top:105px;width:220px;height:120px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;pointer-events:none}
+.mouth{position:relative;width:440px;height:360px;touch-action:none}
+.mouth svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.mouth .mo,.mouth .jaw,.mouth .ck,.bites{transition:transform .11s ease-out}
+.mouth .mo{transform-box:view-box;transform-origin:220px 198px}
+.mouth .ck{transform-box:fill-box;transform-origin:center}
+.mouth .eyes-c{display:none}
+.mouth.chomp .mo{transform:scaleY(.42)}.mouth.chomp .jaw{transform:translateY(-62px)}
+.mouth.chomp .ck{transform:scale(1.25)}.mouth.chomp .eyes-o{display:none}.mouth.chomp .eyes-c{display:inline}
+.mouth.chomp .bites{transform:translateY(-14px) scale(1.15,.45)}
+.bites{position:absolute;left:142px;top:222px;width:156px;height:66px;border-radius:50%;overflow:hidden;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;align-content:center;pointer-events:none;gap:0 2px}
 .bites span{line-height:1;transition:font-size .2s}
-.bites.mush span{filter:blur(2px) saturate(.6)}
+.bites.mush span{filter:blur(1.2px) saturate(.7)}
+.mouth .sal{position:absolute;width:12px;height:16px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:radial-gradient(circle at 35% 35%,#fff,#9ad8ff 60%);pointer-events:none;animation:salD .7s ease-in forwards}
+@keyframes salD{from{opacity:.95;transform:translateY(0) scale(.6)}to{opacity:0;transform:translateY(34px) scale(1)}}
+.mouth .crumb{position:absolute;font-size:18px;pointer-events:none;animation:crumbF .6s ease-out forwards}
+@keyframes crumbF{to{opacity:0;transform:translate(var(--dx),-50px) rotate(160deg) scale(.5)}}
+.hint{position:absolute;font-size:64px;pointer-events:none;animation:hintB 1s ease-in-out infinite;z-index:5;filter:drop-shadow(0 3px 3px rgba(0,0,0,.2))}
+@keyframes hintB{50%{transform:translateY(18px)}}
+@keyframes hintR{25%{transform:translate(40px,-20px)}50%{transform:translate(0,-40px)}75%{transform:translate(-40px,-20px)}}
+.cnudge{animation:cNudge 1s ease-in-out infinite}
+@keyframes cNudge{50%{transform:scale(1.08);filter:brightness(1.1)}}
+.cask{position:absolute;left:318px;width:150px;height:110px;border-radius:55px;background:linear-gradient(#7be08a,#3fb455);box-shadow:0 6px 0 #2a8a3c,0 10px 22px rgba(0,0,0,.2);color:#fff;font-size:44px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:6px;z-index:30;animation:askIn .25s cubic-bezier(.3,1.6,.6,1)}
+.cask span{font-size:44px}
+@keyframes askIn{from{transform:scale(.3)}}
+.ctab.wig{animation:wig .45s}
+@keyframes wig{25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
 .vcount{font-size:22px;font-weight:900;display:flex;align-items:center;gap:12px;width:420px}
 .oeso{position:relative;width:180px;height:430px}
 .oeso svg{width:100%;height:100%}
@@ -594,6 +613,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .nb{cursor:pointer}
 .nb text{pointer-events:none}
 .nb.f circle{stroke-dasharray:6 5}
+.nb.wait circle{transform-box:fill-box;transform-origin:center;animation:cNudge .9s ease-in-out infinite}
 .vres{display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;padding:14px 30px;width:100%}
 .vres .rb{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:900}
 .vres .rb span{width:36px;text-align:center;font-size:28px}
@@ -1103,7 +1123,7 @@ const sfx={
   sizzle:d=>{for(let i=0;i<d*5;i++)noise(.25,.05,'highpass',3500,i*.2)},
   ding:()=>{tone(1320,0,.7,'sine',.22);tone(1760,0,.9,'sine',.16,.14)},
   boom:()=>{noise(1.3,.8,'lowpass',520);tone(130,28,1,'sine',.7)},
-  bark:()=>{for(let i=0;i<2;i++){tone(640,250,.13,'sawtooth',.14,i*.22);noise(.1,.14,'bandpass',950,i*.22)}},
+  bark:()=>SND.chien(),
   whine:()=>tone(1150,620,.7,'sine',.12),
   yuck:()=>{tone(230,110,.5,'sawtooth',.12);tone(240,120,.5,'square',.05)},
   fanfare:()=>[523,659,784,1047].forEach((f,i)=>tone(f,0,.3,'triangle',.18,i*.12)),
@@ -3091,11 +3111,23 @@ const AB=()=>isA()?'n':'r';
 function cLater(fn,ms){const t=setTimeout(fn,ms);CS.tm.push(t);return t;}
 function cEvery(fn,ms){const t=setInterval(fn,ms);CS.tm.push(t);return t;}
 function stopBeat(){clearTimeout(CS.beat);CS.beat=null;}
-function cStop(){CS.tm.forEach(t=>{clearTimeout(t);clearInterval(t);});CS.tm=[];cancelAnimationFrame(CS.raf);CS.raf=0;stopBeat();}
+function cStop(){hideAsk();CS.tm.forEach(t=>{clearTimeout(t);clearInterval(t);});CS.tm=[];cancelAnimationFrame(CS.raf);CS.raf=0;stopBeat();}
 function bonesList(){return isA()?BONES_NANA:BONES_RAF;}
 function enterCorps(){go('s-corps');C_();renderCTabs();openCTab(CS.tab);updGift();}
 function renderCTabs(){$('cTabs').innerHTML=CTABS.map(t=>`<button class="ctab ${t.id===CS.tab?'on':''}" data-t="${t.id}"><span>${t.e}</span>${t.n}</button>`).join('');}
-onTap($('cTabs'),e=>{const b=e.target.closest('[data-t]');if(!b)return;sfx.click();CS.tab=b.dataset.t;renderCTabs();openCTab(CS.tab);});
+onTap($('cTabs'),e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=b.dataset.t;
+  if(isA()){if(t!==CS.tab)askTab(b,t);return;}
+  sfx.click();CS.tab=t;renderCTabs();openCTab(t);});
+/* Nana : un onglet touché par mégarde (main posée sur le bord) ne change plus de jeu : il faut confirmer avec le gros bouton vert */
+function hideAsk(){clearTimeout(CS.askT);const a=$('cAsk');if(a)a.remove();}
+function askTab(b,t){
+  hideAsk();sfx.click();b.classList.remove('wig');void b.offsetWidth;b.classList.add('wig');
+  const d=document.createElement('button');d.id='cAsk';d.className='cask';d.innerHTML=`<span>${CTABS.find(x=>x.id===t).e}</span>✔`;
+  d.style.top=($('cTabs').offsetTop+b.offsetTop+b.offsetHeight/2-55)+'px';$('s-corps').appendChild(d);
+  onTap(d,()=>{hideAsk();sfx.click();CS.tab=t;renderCTabs();openCTab(t);});
+  CS.askT=setTimeout(hideAsk,4000);
+  say('Tu veux changer de jeu ? Touche le bouton vert.');
+}
 function openCTab(t){
   cStop();document.querySelectorAll('#s-corps .bone').forEach(x=>x.remove());
   $('cBoard').classList.toggle('hidden',t!=='squelette');$('cBtns').innerHTML='';
@@ -3215,21 +3247,34 @@ function voyPick(id){
   if(id==='chocolat'){say('Le chocolat, c\'est pour toi. Jamais pour Wanji !','Jamais pour Wanji !');}
   cLater(mouthStage,id==='chocolat'?1600:200);
 }
-function bites(){const n=Math.min(1+VY.chew,14),sz=Math.round(96/Math.sqrt(n));return Array.from({length:n},()=>`<span style="font-size:${sz}px">${VY.f.e}</span>`).join('');}
+function bites(){const n=Math.min(1+VY.chew,12),sz=Math.round(58/Math.sqrt(n));return Array.from({length:n},()=>`<span style="font-size:${sz}px">${VY.f.e}</span>`).join('');}
 function mouthStage(){
   VY.st='bouche';const A=isA();
+  const tooth=(x,y,h,lo)=>`<rect x="${x}" y="${y}" width="21" height="${h}" rx="7" fill="#fff" stroke="#eadfcf" stroke-width="2"/><rect x="${x+4}" y="${lo?y+h-9:y+3}" width="6" height="6" rx="3" fill="#fff" opacity=".9"/>`;
   voyFrame('bouche',T('Mâche ! Touche la bouche.','Étape 1 : mâcher'),
-    `<div class="mouth" id="vMouth"><svg viewBox="0 0 440 330"><ellipse cx="220" cy="165" rx="200" ry="150" fill="#e2566e"/><ellipse cx="220" cy="170" rx="160" ry="112" fill="#7a1f33"/><ellipse cx="220" cy="232" rx="104" ry="42" fill="#ff8aa0"/>
-    <g class="tu">${Array.from({length:8},(_,i)=>`<rect x="${88+i*34}" y="58" width="30" height="40" rx="8" fill="#fff" stroke="#e6dccb" stroke-width="2"/>`).join('')}</g>
-    <g class="tl">${Array.from({length:8},(_,i)=>`<rect x="${88+i*34}" y="236" width="30" height="38" rx="8" fill="#fff" stroke="#e6dccb" stroke-width="2"/>`).join('')}</g></svg><div class="bites" id="vBites">${bites()}</div></div>`,
+    `<div class="mouth" id="vMouth"><svg viewBox="0 0 440 360">
+    <ellipse cx="220" cy="352" rx="120" ry="10" fill="rgba(43,35,80,.12)"/>
+    <circle cx="220" cy="180" r="168" fill="#ffd9bf" stroke="#e7b08b" stroke-width="5"/>
+    <ellipse cx="150" cy="70" rx="62" ry="26" fill="#fff" opacity=".45" transform="rotate(-18 150 70)"/>
+    <g class="eyes-o"><ellipse cx="148" cy="122" rx="20" ry="24" fill="#2b2350"/><circle cx="155" cy="113" r="7" fill="#fff"/><ellipse cx="292" cy="122" rx="20" ry="24" fill="#2b2350"/><circle cx="299" cy="113" r="7" fill="#fff"/></g>
+    <g class="eyes-c"><path d="M126 128 q22 -24 44 0" stroke="#2b2350" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M270 128 q22 -24 44 0" stroke="#2b2350" stroke-width="8" fill="none" stroke-linecap="round"/></g>
+    <ellipse class="ck" cx="92" cy="192" rx="32" ry="20" fill="#ff9fb0" opacity=".75"/><ellipse class="ck" cx="348" cy="192" rx="32" ry="20" fill="#ff9fb0" opacity=".75"/>
+    <g class="mo"><ellipse cx="220" cy="254" rx="116" ry="68" fill="#e2566e"/><ellipse cx="220" cy="256" rx="102" ry="56" fill="#6b1830"/>
+      <ellipse cx="220" cy="292" rx="66" ry="22" fill="#ff7f98"/><path d="M220 280 v20" stroke="#e2566e" stroke-width="4" stroke-linecap="round"/>
+      <ellipse cx="170" cy="214" rx="26" ry="6" fill="#fff" opacity=".25"/></g>
+    <g class="tu">${[0,1,2,3,4,5].map(i=>tooth(155+i*22,198,i===0||i===5?20:26,0)).join('')}</g>
+    <g class="jaw">${[0,1,2,3,4,5].map(i=>tooth(155+i*22,i===0||i===5?292:286,i===0||i===5?18:22,1)).join('')}</g>
+    </svg><div class="bites" id="vBites">${bites()}</div>${A?'<div class="hint" id="vHint" style="left:250px;top:300px">👆</div>':''}</div>`,
     "Les dents coupent et écrasent, la salive mouille et commence déjà à transformer l'amidon en sucre.");
-  $('vFoot').innerHTML=`<div class="vcount"><span>🦷</span><div class="cbar"><i id="vChew"></i></div><b id="vChewN">0/${VY.need}</b></div><button class="btn b-orange" data-vgo="avaler">⬇️ Avaler</button>`;
+  $('vFoot').innerHTML=`<div class="vcount"><span>🦷</span><div class="cbar"><i id="vChew"></i></div><b id="vChewN">0/${VY.need}</b></div><button class="btn b-orange" id="vSw" data-vgo="avaler">⬇️ Avaler</button>`;
   const m=$('vMouth');
-  m.addEventListener('pointerdown',()=>{if(VY.st!=='bouche')return;VY.chew++;m.classList.add('chomp');sfx.crunch();setTimeout(()=>m.classList.remove('chomp'),130);
+  m.addEventListener('pointerdown',()=>{if(VY.st!=='bouche')return;VY.chew++;const h=$('vHint');if(h)h.remove();
+    m.classList.add('chomp');sfx.crunch();setTimeout(()=>m.classList.remove('chomp'),150);
     $('vBites').innerHTML=bites();if(VY.chew>=VY.need)$('vBites').classList.add('mush');
-    if(Math.random()<.35)burst(m,['💧'],1,60);
+    for(let i=0;i<2;i++){const d=document.createElement('i');d.className='sal';d.style.left=(160+Math.random()*110)+'px';d.style.top=(232+Math.random()*20)+'px';d.style.animationDelay=(i*.12)+'s';m.appendChild(d);setTimeout(()=>d.remove(),900);}
+    if(VY.chew<VY.need&&Math.random()<.5){const c=document.createElement('span');c.className='crumb';c.textContent=VY.f.e;c.style.left=(200+rnd(-40,40))+'px';c.style.top='200px';c.style.setProperty('--dx',rnd(-90,90)+'px');m.appendChild(c);setTimeout(()=>c.remove(),650);}
     $('vChew').style.width=Math.min(100,VY.chew/VY.need*100)+'%';$('vChewN').textContent=`${Math.min(VY.chew,99)}/${VY.need}`;
-    if(VY.chew===VY.need){sfx.ding();say(T('C\'est tout mou : avale !','Bien mâché : tu peux avaler.'),false);}
+    if(VY.chew===VY.need){sfx.ding();$('vSw').classList.add('cnudge');say(T('C\'est tout mou : avale ! Touche le bouton orange.','Bien mâché : tu peux avaler.'),T(undefined,false));}
   });
   say(T('Mâche bien ! Touche la bouche.','Touche la bouche pour mâcher. Conseil : au moins 10 fois.'),T(undefined,false));
 }
@@ -3248,17 +3293,17 @@ function voyGo(k){
 function oesoStage(){
   VY.st='oeso';VY.push=0;
   voyFrame('oeso',T('Pousse vers le bas !','Étape 2 : avaler'),
-    `<div class="oeso" id="vOeso"><svg viewBox="0 0 180 430"><rect x="50" y="0" width="80" height="430" rx="36" fill="#f6b6c4" stroke="#d9879c" stroke-width="4"/>${[1,2,3,4].map(i=>`<ellipse class="ring" data-r="${i}" cx="90" cy="${i*90}" rx="44" ry="10" fill="none" stroke="#c9637c" stroke-width="5"/>`).join('')}</svg><div class="bolus" id="vBolus" style="top:10px">${VY.f.e}</div></div>`,
+    `<div class="oeso" id="vOeso"><svg viewBox="0 0 180 430"><rect x="50" y="0" width="80" height="430" rx="36" fill="#f6b6c4" stroke="#d9879c" stroke-width="4"/>${[1,2,3,4].map(i=>`<ellipse class="ring" data-r="${i}" cx="90" cy="${i*90}" rx="44" ry="10" fill="none" stroke="#c9637c" stroke-width="5"/>`).join('')}</svg><div class="bolus" id="vBolus" style="top:10px">${VY.f.e}</div>${isA()?'<div class="hint" id="vHint" style="left:170px;top:120px">👇</div>':''}</div>`,
     "L'œsophage est un tuyau de muscles : des vagues de serrage poussent la bouchée. Ça marche même la tête en bas !");
   $('vFoot').innerHTML=`<button class="btn b-orange" data-vgo="pousse">⬇️ ${T('Pousse !','Serrer le muscle')}</button>`;
   let sy=null;const z=$('vOeso');
-  z.addEventListener('pointerdown',e=>{sy=stagePt(e).y;});
-  z.addEventListener('pointermove',e=>{if(sy==null)return;const y=stagePt(e).y;if(y-sy>70){sy=y;oesoPush();}});
+  z.addEventListener('pointerdown',e=>{sy=stagePt(e).y;if(isA())oesoPush();});
+  z.addEventListener('pointermove',e=>{if(sy==null)return;const y=stagePt(e).y;if(y-sy>(isA()?50:70)){sy=y;oesoPush();}});
   z.addEventListener('pointerup',()=>{sy=null;});
-  say(T('Glisse ton doigt vers le bas pour avaler !','Glisse le doigt vers le bas le long du tuyau (ou touche le bouton).'),T(undefined,false));
+  say(T('Pousse la bouchée : glisse ton doigt vers le bas, ou touche le tuyau !','Glisse le doigt vers le bas le long du tuyau (ou touche le bouton).'),T(undefined,false));
 }
 function oesoPush(){
-  if(VY.st!=='oeso')return;VY.push++;tone(180,90,.25,'sine',.2);
+  if(VY.st!=='oeso')return;VY.push++;tone(180,90,.25,'sine',.2);const h=$('vHint');if(h)h.remove();
   const r=document.querySelector(`#vOeso .ring[data-r="${VY.push}"]`);if(r)r.animate([{rx:44},{rx:22},{rx:44}],{duration:500});
   $('vBolus').style.top=(10+VY.push*92)+'px';
   if(VY.push>=4){VY.st='x';sfx.splash();cLater(stomStage,700);}
@@ -3267,19 +3312,19 @@ function stomStage(){
   VY.st='estomac';VY.mix=0;
   const pcs=Array.from({length:9},(_,i)=>`<span style="left:${130+(i%3)*70}px;top:${140+Math.floor(i/3)*55}px">${VY.f.e}</span>`).join('');
   voyFrame('estomac',T('Frotte le ventre pour mélanger !','Étape 3 : l\'estomac malaxe'),
-    `<div class="stom" id="vStom"><svg viewBox="0 0 440 380"><path id="vStomP" d="M150 30 q190 -30 230 110 q40 170 -150 220 q-150 30 -200 -80 q90 40 150 -20 q50 -80 -40 -130z" fill="#f4a3b5" stroke="#c9637c" stroke-width="6"/></svg><div class="pcs" id="vPcs">${pcs}</div></div>`,
+    `<div class="stom" id="vStom"><svg viewBox="0 0 440 380"><path id="vStomP" d="M150 30 q190 -30 230 110 q40 170 -150 220 q-150 30 -200 -80 q90 40 150 -20 q50 -80 -40 -130z" fill="#f4a3b5" stroke="#c9637c" stroke-width="6"/></svg><div class="pcs" id="vPcs">${pcs}</div>${isA()?'<div class="hint" id="vHint" style="left:200px;top:170px;animation-name:hintR;animation-duration:1.6s">👆</div>':''}</div>`,
     "L'estomac malaxe le repas avec un suc très acide (pH 2) qui tue les microbes : ça devient une bouillie, le chyme. Ça dure 2 à 4 heures !");
   $('vFoot').innerHTML=`<div class="vcount"><span>🌀</span><div class="cbar"><i id="vMix" style="--bc:#f4a3b5"></i></div></div>`;
   let lp=null;const z=$('vStom');
-  z.addEventListener('pointerdown',e=>{lp=stagePt(e);});
-  z.addEventListener('pointermove',e=>{if(!lp||VY.st!=='estomac')return;const p=stagePt(e),d=Math.hypot(p.x-lp.x,p.y-lp.y);lp=p;VY.mix+=d/(isA()?14:20);
+  z.addEventListener('pointerdown',e=>{lp=stagePt(e);const h=$('vHint');if(h)h.remove();if(isA()&&VY.st==='estomac'){VY.mix+=6;$('vMix').style.width=Math.min(100,VY.mix)+'%';}});
+  z.addEventListener('pointermove',e=>{if(!lp||VY.st!=='estomac')return;const p=stagePt(e),d=Math.hypot(p.x-lp.x,p.y-lp.y);lp=p;VY.mix+=d/(isA()?8:20);
     $('vMix').style.width=Math.min(100,VY.mix)+'%';
     if(Math.random()<.25){document.querySelectorAll('#vPcs span').forEach(s=>s.style.transform=`translate(${rnd(-30,30)}px,${rnd(-20,20)}px) rotate(${rnd(-60,60)}deg) scale(${Math.max(.4,1-VY.mix/140)})`);noise(.12,.05,'lowpass',400);}
     if(Math.random()<.08)burst(z,['🫧'],1,80);
     if(VY.mix>=100){VY.st='x';sfx.ding();$('vStomP').setAttribute('fill','#e8c79a');$('vPcs').innerHTML='';say(T('Une bonne bouillie !','Le repas est devenu une bouillie : direction l\'intestin.'),false);cLater(gutStage,1300);}
   });
   z.addEventListener('pointerup',()=>{lp=null;});
-  say(T('Frotte le ventre avec ton doigt !','Frotte l\'estomac avec le doigt pour malaxer.'),T(undefined,false));
+  say(T('Frotte le ventre avec ton doigt, en rond !','Frotte l\'estomac avec le doigt pour malaxer.'),T(undefined,false));
 }
 /* intestin grêle : on attrape les nutriments pour les envoyer dans le sang ; les fibres continuent leur route */
 const GUTD='M40 60 H540 Q580 60 580 100 Q580 140 540 140 H80 Q40 140 40 180 Q40 220 80 220 H540 Q580 220 580 260 Q580 300 540 300 H80 Q40 300 40 340 Q40 380 80 380 H570';
@@ -3292,17 +3337,18 @@ function gutStage(){
     <path id="vGutP" d="${GUTD}" stroke="#f2b97a" stroke-width="58" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${GUTD}" stroke="#f9d6a8" stroke-width="40" fill="none" stroke-linecap="round" stroke-linejoin="round"/><g id="vNb"></g></svg></div>`,
     "L'intestin grêle mesure environ 6 mètres ! Ses milliers de petites villosités font passer les nutriments dans le sang. Les fibres, elles, ne passent pas : ne les touche pas.");
   $('vFoot').innerHTML=`<div class="vcount" style="width:460px">${['s','p','g','w','f'].map(k=>`<span title="${NUT[k].n}">${NUT[k].e}</span>`).join('')}<b id="vGot">0/${VY.tot}</b></div>`;
-  const path=$('vGutP'),L=path.getTotalLength(),speed=L/(A?8500:6500),gap=A?850:650;let last=0,t0=performance.now();
+  const path=$('vGutP'),L=path.getTotalLength(),speed=L/(A?9000:6500),gap=A?1100:650;let last=0,t0=performance.now();VY.lastTap=performance.now();
+  if(A)cEvery(()=>{if(VY.st==='grele'&&performance.now()-VY.lastTap>7000){VY.lastTap=performance.now();say('Touche les bulles qui brillent !');}},1000);
   $('vGut').addEventListener('pointerdown',e=>{const nb=e.target.closest('.nb');if(!nb)return;const b=VY.bub[+nb.dataset.i];if(!b||b.out)return;
     if(b.k==='f'){if(A){tone(300,200,.1,'sine',.1);return;}VY.fibTap++;sfx.yuck();say('Non ! Les fibres ne passent pas dans le sang : elles vont vers le gros intestin.',false);return;}
-    b.out=1;VY.got++;VY.abs[b.k]++;sfx.pop();$('vGot').textContent=`${VY.got}/${VY.tot}`;
+    b.out=1;VY.got++;VY.abs[b.k]++;VY.lastTap=performance.now();sfx.pop();$('vGot').textContent=`${VY.got}/${VY.tot}`;
     burst(nb,['❤️','✨'],2,40);nb.style.transition='opacity .3s';nb.style.opacity=0;setTimeout(()=>nb.remove(),320);});
   const step=now=>{
     if(VY.st!=='grele')return;
-    if(VY.q.length&&now-last>gap){last=now;const k=VY.q.shift(),i=VY.bub.length;VY.bub.push({k,t:0,i});
-      $('vNb').insertAdjacentHTML('beforeend',`<g class="nb ${k}" data-i="${i}"><circle r="26" fill="${NUT[k].c}" stroke="${k==='f'?'#2f8a3e':'#fff'}" stroke-width="4" ${k!=='f'?'filter="url(#glowN)"':''}/><text y="10" text-anchor="middle" font-size="28">${NUT[k].e}</text></g>`);}
+    if(VY.q.length&&now-last>gap){last=now;const k=VY.q.shift(),i=VY.bub.length;VY.bub.push({k,t:0,i,stop:A&&k!=='f'?L*(.2+Math.random()*.65):0});
+      $('vNb').insertAdjacentHTML('beforeend',`<g class="nb ${k}" data-i="${i}"><circle r="${A?32:26}" fill="${NUT[k].c}" stroke="${k==='f'?'#2f8a3e':'#fff'}" stroke-width="4" ${k!=='f'?'filter="url(#glowN)"':''}/><text y="10" text-anchor="middle" font-size="28">${NUT[k].e}</text></g>`);}
     const dt=Math.min(50,now-t0);t0=now;
-    VY.bub.forEach(b=>{if(b.out||b.end)return;b.t+=speed*dt;const el=document.querySelector(`#vNb .nb[data-i="${b.i}"]`);if(!el)return;
+    VY.bub.forEach(b=>{if(b.out||b.end)return;b.t+=speed*dt;if(b.stop&&b.t>=b.stop){if(b.t!==b.stop||!b.w){b.w=1;const g=document.querySelector(`#vNb .nb[data-i="${b.i}"]`);g&&g.classList.add('wait');}b.t=b.stop;}const el=document.querySelector(`#vNb .nb[data-i="${b.i}"]`);if(!el)return;
       if(b.t>=L){b.end=1;el.remove();VY.done++;return;}const pt=path.getPointAtLength(b.t);b.x=pt.x;el.setAttribute('transform',`translate(${pt.x} ${pt.y})`);});
     const left=VY.bub.filter(b=>!b.out&&!b.end).length;
     if(!VY.q.length&&!left){VY.st='x';return cLater(gutEnd,400);}
@@ -3310,7 +3356,7 @@ function gutStage(){
   };
   $('vGut').insertAdjacentHTML('afterbegin','<defs><filter id="glowN" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>');
   CS.raf=requestAnimationFrame(step);
-  say(T('Touche les bulles qui brillent : elles vont dans le sang !','Touche les nutriments (⚡💪🧈💧) pour les envoyer dans le sang. Laisse passer les fibres 🌿.'),T(undefined,false));
+  say(T('Touche les bulles qui brillent : elles vont dans le sang ! Les feuilles vertes, laisse-les passer.','Touche les nutriments (⚡💪🧈💧) pour les envoyer dans le sang. Laisse passer les fibres 🌿.'),T(undefined,false));
 }
 function gutEnd(){
   const A=isA(),r=VY.tot?VY.got/VY.tot:1;
@@ -3325,12 +3371,12 @@ function grosStage(){
     ${Array.from({length:nf},(_,i)=>{const pts=[[70,300],[70,190],[110,60],[230,40],[350,40],[470,90],[490,200],[490,300]][i%8];return `<div class="fib" data-fib="${i}" style="left:${pts[0]-20}px;top:${pts[1]-24}px">🌿</div>`;}).join('')}
     ${['🦠','🦠','🦠'].map((b,i)=>`<div class="bact" id="vB${i}" style="left:${150+i*110}px;top:${70+i%2*14}px">${b}</div>`).join('')}</div>`,
     "Ici, le corps récupère l'eau. Des milliards de bactéries amies mangent les fibres et aident l'intestin à bien travailler.");
-  $('vFoot').innerHTML=nf?'':`<button class="btn b-orange" data-vgo="toil">🚽 ${T('Aux toilettes !','Direction les toilettes')}</button>`;
+  $('vFoot').innerHTML=nf?'':`<button class="btn b-orange ${isA()?'cnudge':''}" data-vgo="toil">🚽 ${T('Aux toilettes !','Direction les toilettes')}</button>`;
   if(nf)$('vGros').addEventListener('pointerdown',e=>{const fb=e.target.closest('[data-fib]');if(!fb||fb.dataset.eaten)return;fb.dataset.eaten=1;
     const bi=VY.ate%3,b=$('vB'+bi);b.style.left=fb.style.left;b.style.top=fb.style.top;sfx.crunch();
     setTimeout(()=>{fb.remove();const g=document.createElement('div');g.className='gasb';g.textContent='🫧';g.style.left=fb.style.left;g.style.top=fb.style.top;$('vGros')&&$('vGros').appendChild(g);},450);
-    VY.ate++;VY.gas++;if(VY.ate>=nf){cLater(()=>{award('c_prout');sfx.ding();burst($('vGros'),['🦠','✨'],6,160);$('vFoot').innerHTML=`<button class="btn b-orange" data-vgo="toil">🚽 ${T('Aux toilettes !','Direction les toilettes')}</button>`;say(T('Miam ! Les bactéries amies ont tout mangé.','Les bactéries amies ont mangé les fibres : elles aident l\'intestin à bien travailler.'),false);},700);}});
-  else say(T('Pas de fibres ici… ça avance tout doucement.','Pas de fibres dans cet aliment : les bactéries ont faim et ça avance lentement. Les fruits et légumes en apportent.'),false);
+    VY.ate++;VY.gas++;if(VY.ate>=nf){cLater(()=>{award('c_prout');sfx.ding();burst($('vGros'),['🦠','✨'],6,160);$('vFoot').innerHTML=`<button class="btn b-orange ${isA()?'cnudge':''}" data-vgo="toil">🚽 ${T('Aux toilettes !','Direction les toilettes')}</button>`;say(T('Miam ! Les bactéries amies ont tout mangé. Touche les toilettes !','Les bactéries amies ont mangé les fibres : elles aident l\'intestin à bien travailler.'),T(undefined,false));},700);}});
+  else say(T('Pas de fibres ici… ça avance tout doucement. Touche les toilettes !','Pas de fibres dans cet aliment : les bactéries ont faim et ça avance lentement. Les fruits et légumes en apportent.'),T(undefined,false));
   if(nf)say(T('Touche les fibres pour nourrir les bactéries !','Touche les fibres pour que les bactéries les mangent.'),T(undefined,false));
 }
 function toilet(){
@@ -3372,14 +3418,16 @@ function runStart(){
   <div class="rbot"><div class="rbody" id="rBody">${organsSVG()}</div><div class="rmid"><div class="rg"><span>🫁</span><div class="cbar"><i id="rO2" style="width:100%;--bc:#6ec8ff"></i></div></div>${A?'':'<div class="rnum" id="rNum"></div>'}<div id="rCtl"></div></div></div></div>`;
   runCtl();
   $('rBody').addEventListener('pointerdown',()=>breathe());
-  say(T('Rattrape Wanji ! Touche « Respire » pour garder ton souffle.','Rattrape Wanji ! Choisis ta vitesse et respire : tes muscles ont besoin d\'oxygène.'));
+  say(T('Rattrape Wanji ! Touche le bonhomme qui court. Et quand tu n\'as plus de souffle, touche le bouton bleu.','Rattrape Wanji ! Choisis ta vitesse et respire : tes muscles ont besoin d\'oxygène.'));
   beatLoop();cEvery(runTick,100);
 }
 function runCtl(){
   $('rCtl').innerHTML=`<div class="rspd">${[[1,'🚶','Marcher'],[2,'🏃','Courir'],[3,'⚡','Sprinter']].map(([v,e,n])=>`<button class="lopt ${RN.v===v?'sel':''}" data-v="${v}">${e}<span>${n}</span></button>`).join('')}</div><button class="btn b-blue rbreath" id="rBreath" style="width:100%;margin-top:12px">🫁 ${T('Respire !','Respirer à fond')}</button>`;
   $('rBreath').addEventListener('pointerdown',()=>breathe());
 }
-function runSpeed(v){if(RN.phase!=='run')return;sfx.click();RN.v=v;runCtl();}
+function runSpeed(v){if(RN.phase!=='run')return;sfx.click();RN.v=v;runCtl();if(isA()){RN.lc=performance.now();say(['','Je marche. Tout doux !','Je cours !','À fond, comme une fusée !'][v]);}}
+/* Nana : Kicuit l'encourage à voix haute pendant la course (une phrase toutes les 5 s au plus) */
+function coach(t,force){if(!isA())return;const now=performance.now();if(!force&&now-(RN.lc||0)<5500)return;RN.lc=now;say(t);}
 function breathe(){
   if(RN.phase!=='run')return;const A=isA(),now=performance.now(),dt=now-RN.lastB;RN.lastB=now;RN.br.push(now);
   RN.o2=Math.min(100,RN.o2+(A?14:dt>500?8:3));noise(.35,.06,'bandpass',700);
@@ -3390,6 +3438,13 @@ function runTick(){
   const A=isA(),R=RN;
   if(R.phase==='pulse'||R.phase==='rest'||R.phase==='sleep'){const tg=R.phase==='sleep'?65:A?80:95;R.bpm+=(tg-R.bpm)*(R.phase==='pulse'?.006:.03);if(R.phase==='pulse')R.samp.push(R.bpm);runNum();return;}
   if(R.phase!=='run')return;
+  if(A){const bb=$('rBreath');if(bb)bb.classList.toggle('cnudge',R.o2<45);
+    if(R.o2<40&&!R.said.o2l){R.said.o2l=1;coach('Tu n\'as plus de souffle ! Touche le bouton bleu pour respirer.',true);}
+    else if(R.o2<40)coach('Respire ! Le bouton bleu !');
+    if(R.o2>70)R.said.o2l=0;
+    if(R.gap<16&&!R.said.near){R.said.near=1;coach('Presque ! Encore un peu !',true);}
+    else if(R.v===1&&R.gap>45)coach('Wanji va plus vite que toi ! Touche le bonhomme qui court.');
+    else if(R.gap>80)coach('Wanji renifle une fleur… Vite, rattrape-le !');}
   const dem=[0,.25,.75,1.7][R.v]*(A?.55:1);
   if(R.stop>0){R.stop--;R.o2=Math.min(100,R.o2+1.6);if(!R.stop)say(T('C\'est reparti !','Ça va mieux : reprends doucement.'),false);}
   else R.o2=Math.max(A?18:0,R.o2-dem);
@@ -3399,8 +3454,9 @@ function runTick(){
   let wv=R.wv;if(R.sniff>0){R.sniff--;wv=0;}if(R.gap>108)wv=0;
   R.gap=Math.max(0,R.gap+(wv-spd)*.6);
   const tgt=R.stop?125:([0,100,145,180][R.v]+(100-R.o2)*.15)*(A?.9:1);R.bpm+=(tgt-R.bpm)*.035;
-  if(R.bpm>=(A?125:150)){R.hi++;if(R.hi===10){award('c_coeur');if(!A)say('Plus de 150 battements par minute : ton cœur envoie plus de sang, donc plus d\'oxygène, à tes muscles.',false);}}
+  if(R.bpm>=(A?125:150)){R.hi++;if(R.hi===10){award('c_coeur');if(A)coach('Écoute : boum boum ! Quand tu cours, ton cœur bat très vite.',true);else say('Plus de 150 battements par minute : ton cœur envoie plus de sang, donc plus d\'oxygène, à tes muscles.',false);}}
   if(R.bpm>140&&Math.random()<.07){const d=document.createElement('div');d.className='sweat';d.textContent='💧';d.style.left=(80+rnd(0,60))+'px';d.style.top='120px';$('rTrack').appendChild(d);setTimeout(()=>d.remove(),1000);
+    if(A&&!R.said.sweat){R.said.sweat=1;coach('Tu transpires : la sueur rafraîchit ton corps !');}
     if(!A&&!R.said.sweat){R.said.sweat=1;say('Tu transpires : la sueur qui sèche sur la peau refroidit le corps.',false);}}
   R.off+=spd*5;$('rGround').style.backgroundPosition=`${-R.off}px 0`;
   const me=$('rMe');me.classList.toggle('still',!spd);me.style.setProperty('--leg',(.9/Math.max(1,spd)).toFixed(2)+'s');
@@ -3419,21 +3475,21 @@ function runWin(){
 }
 function pulseStart(){
   const A=isA();RN.phase='pulse';RN.taps=0;RN.good=0;RN.samp=[];RN.t0=0;if(A)RN.bpm=80;
-  $('rCtl').innerHTML=`<div class="rnum">${T('Tape sur le cœur en même temps : boum, boum !','Prends ton pouls : touche le cœur à chaque battement pendant 10 secondes.')}</div><button class="pheart" id="pHeart">❤️</button><div class="rnum" id="pInfo" style="text-align:center">${A?'':'⏱️ Touche pour commencer'}</div>`;
+  $('rCtl').innerHTML=`<div class="rnum">${T('Pose ta main sur ton cœur. Tape le gros cœur en même temps : boum, boum !','Prends ton pouls : touche le cœur à chaque battement pendant 10 secondes.')}</div><button class="pheart" id="pHeart">❤️</button><div class="rnum" id="pInfo" style="text-align:center">${A?'':'⏱️ Touche pour commencer'}</div>`;
   $('pHeart').addEventListener('pointerdown',pulseTap);
-  say(T('Tape sur le cœur en même temps : boum, boum !','Touche le cœur à chaque battement pendant 10 secondes. Je multiplierai par 6.'));
+  say(T('Pose ta main sur ton cœur. Tu le sens ? Tape le gros cœur en même temps : boum, boum !','Touche le cœur à chaque battement pendant 10 secondes. Je multiplierai par 6.'));
 }
 function pulseTap(){
   const A=isA(),now=performance.now();if(RN.phase!=='pulse')return;
   if(A){const ph=now-RN.lastBeat,per=60000/RN.bpm,near=Math.min(ph,per-ph)<280;RN.taps++;if(near){RN.good++;burst($('pHeart'),['💓'],1,50);}
-    $('pInfo').textContent='💓'.repeat(RN.good);if(RN.good>=6||RN.taps>=14)pulseEnd(true);return;}
+    $('pInfo').textContent='💓'.repeat(RN.good);if(near&&RN.good===3)say('Bravo, continue : boum, boum !');if(RN.good>=6||RN.taps>=14)pulseEnd(true);return;}
   if(!RN.t0){RN.t0=now;RN.samp=[];cLater(()=>pulseEnd(),10000);const tick=cEvery(()=>{const s=Math.max(0,10-Math.floor((performance.now()-RN.t0)/1000));const i=$('pInfo');if(i)i.textContent=`⏱️ ${s} s · ${RN.taps} battements`;},200);}
   RN.taps++;
 }
 function pulseEnd(){
   const A=isA();RN.phase='rest';
   let ok=true,msg;
-  if(A){msg='Bravo ! Tu as senti le cœur battre !';}
+  if(A){msg='Bravo ! Tu as senti ton cœur battre ! Tu veux faire dodo ? Touche le petit visage qui dort.';}
   else{const real=Math.round(RN.samp.reduce((a,b)=>a+b,0)/Math.max(1,RN.samp.length)),est=RN.taps*6;ok=Math.abs(est-real)<=Math.max(12,real*.12);
     msg=ok?`${RN.taps} battements en 10 s × 6 = ${est} par minute. Ton cœur battait à ${real} : bien compté ! Au repos, un enfant de 10 ans est entre 70 et 110.`:`Tu as compté ${est} par minute, le cœur battait à ${real}. Réessaie en touchant à chaque « boum ».`;}
   if(ok){award('c_pouls');firstStar('pouls'+AB());sfx.ding();}else sfx.whine();
@@ -3446,7 +3502,7 @@ function runGo(k){
   if(k==='pulse')return pulseStart();
   if(k==='sleep'){RN.phase='sleep';$('rTrack').insertAdjacentHTML('beforeend','<div class="zzz">💤</div>');
     say(T('Chut… le cœur ralentit quand on dort.','Pendant le sommeil, le cœur et la respiration ralentissent : le corps se répare.'));
-    cLater(()=>{award('c_dodo');burst($('rBody'),['💤','⭐'],5,100);},6000);}
+    cLater(()=>{award('c_dodo');burst($('rBody'),['💤','⭐'],5,100);say(T('Tu entends ? Le cœur bat tout doucement : il se repose. Bravo !','Au repos, le cœur est redescendu : un cœur entraîné par le sport ralentit encore plus vite.'),T(undefined,false));},6000);}
 }
 
 /* ===== 4. les 5 sens ===== */
@@ -3473,12 +3529,11 @@ function sensEnd(win,score){
 }
 /* ouïe */
 const SOUNDS=[
-  {id:'chien',e:'🐶',n:'Un chien',p:()=>sfx.bark()},{id:'eau',e:'💦',n:"De l'eau",p:()=>sfx.splash()},
-  {id:'cloche',e:'🔔',n:'Une cloche',p:()=>{tone(880,0,1.4,'sine',.2);tone(1760,0,1,'sine',.07);tone(2640,0,.7,'sine',.04);}},
-  {id:'orage',e:'⛈️',n:"L'orage",p:()=>sfx.boom()},{id:'abeille',e:'🐝',n:'Une abeille',p:()=>sfx.bzz()},
-  {id:'coeur',e:'❤️',n:'Un cœur',p:()=>{for(let i=0;i<3;i++){tone(70,45,.14,'sine',.45,i*.75);tone(60,40,.12,'sine',.32,i*.75+.18);}}},
-  {id:'croque',e:'🍎',n:'On croque une pomme',p:()=>sfx.crunch()},{id:'papier',e:'📄',n:'Du papier déchiré',p:()=>sfx.tear()},
-  {id:'oiseau',e:'🐦',n:'Un oiseau',p:()=>{for(let i=0;i<4;i++)tone(2600,3600,.09,'sine',.12,i*.16);}}
+  {id:'chien',e:'🐶',n:'Un chien',p:()=>SND.chien()},{id:'eau',e:'💦',n:"De l'eau",p:()=>SND.eau()},
+  {id:'cloche',e:'🔔',n:'Une cloche',p:()=>SND.cloche()},{id:'orage',e:'⛈️',n:"L'orage",p:()=>SND.orage()},
+  {id:'abeille',e:'🐝',n:'Une abeille',p:()=>SND.abeille()},{id:'coeur',e:'❤️',n:'Un cœur',p:()=>SND.coeur()},
+  {id:'croque',e:'🍎',n:'On croque une pomme',p:()=>SND.croque()},{id:'papier',e:'📄',n:'Du papier déchiré',p:()=>SND.papier()},
+  {id:'oiseau',e:'🐦',n:'Un oiseau',p:()=>SND.oiseau()}
 ];
 function ouieStart(){SN.n=0;SN.ok=0;SN.used=[];ouieRound();}
 function ouieRound(){
@@ -3679,16 +3734,21 @@ function teethGame(){
     ${Array.from({length:16},(_,i)=>{const top=i<8,x=40+(i%8)*36,y=top?60:180;return `<g data-th="${i}"><rect x="${x}" y="${y}" width="32" height="56" rx="10" fill="#fff" stroke="#e6dccb" stroke-width="2"/><g class="dirt">${Array.from({length:need},(_,k)=>`<circle cx="${x+10+k*7}" cy="${y+(top?40:16)}" r="6" fill="#c9a24a"/>`).join('')}</g></g>`;}).join('')}</svg>
     ${Array.from({length:7},(_,i)=>`<span class="germ" id="gm${i}" style="left:${40+i*42}px;top:${i%2?190:110}px">🦠</span>`).join('')}<span class="brush hidden" id="dBrush">🪥</span><div class="dtimer" id="dTm"></div></div>`;
   say(T('Frotte toutes les dents avec la brosse !','Frotte chaque dent, en haut et en bas, jusqu\'à ce qu\'elles soient toutes blanches.'));
-  const z=$('dPat'),br=$('dBrush');
-  const mv=e=>{if(!DR.busy)return;const r=z.getBoundingClientRect();br.classList.remove('hidden');br.style.left=((e.clientX-r.left)/SCALE)+'px';br.style.top=((e.clientY-r.top)/SCALE)+'px';
-    const el=document.elementFromPoint(e.clientX,e.clientY),g=el&&el.closest('[data-th]');
-    if(g){const i=+g.dataset.th;if(DR.teeth[i]>0){DR.teeth[i]-=A?.5:.34;const d=g.querySelector('.dirt');const n=Math.ceil(DR.teeth[i]);while(d.children.length>n)d.lastChild.remove();if(Math.random()<.3)noise(.05,.05,'highpass',3000);}}
+  const z=$('dPat'),br=$('dBrush'),R=A?64:40;let lp=null,last=0;
+  const TC=Array.from({length:16},(_,i)=>({x:40+(i%8)*36+16,y:i<8?88:208}));
+  const mv=e=>{if(!DR.busy)return;const W=br.parentElement.getBoundingClientRect(),x=(e.clientX-W.left)/SCALE,y=(e.clientY-W.top)/SCALE;
+    br.classList.remove('hidden');br.style.left=x+'px';br.style.top=y+'px';
+    const d=lp?Math.min(40,Math.hypot(x-lp.x,y-lp.y)):0;lp={x,y};if(!d)return;
+    let hit=false;TC.forEach((c,i)=>{if(DR.teeth[i]<=0||Math.hypot(c.x-x,c.y-y)>R)return;hit=true;DR.teeth[i]-=d*(A?.03:.016);
+      const g=document.querySelector(`[data-th="${i}"]`),dd=g&&g.querySelector('.dirt'),n=Math.max(0,Math.ceil(DR.teeth[i]));if(dd)while(dd.children.length>n)dd.lastChild.remove();
+      if(DR.teeth[i]<=0&&g){g.querySelector('rect').setAttribute('fill','#ffffff');burst(g,['✨'],1,30);}});
+    if(hit&&performance.now()-last>90){last=performance.now();noise(.06,.05,'highpass',3500);burst(br,['🫧'],1,30);}
     const left=DR.teeth.filter(v=>v>0).length;for(let i=0;i<7;i++){const gm=$('gm'+i);if(gm&&left<16-(i+1)*2)gm.classList.add('gone');}
-    const s=Math.round((performance.now()-t0)/1000);$('dTm').textContent=`⏱️ ${s} s`;
+    $('dTm').textContent=`⏱️ ${Math.round((performance.now()-t0)/1000)} s · 🦷 ${16-left}/16`;
     if(!left){DR.busy=false;z.onpointermove=null;sfx.ding();say(T('Toutes blanches !','Dents propres ! Les bactéries mangent le sucre et font de l\'acide qui troue les dents : on brosse 2 minutes, matin et soir.'),false);
       cLater(()=>{DR.busy=false;docNext(null);},1200);}};
   z.onpointermove=e=>{if(e.buttons||e.pointerType==='touch')mv(e);};
-  z.onpointerdown=mv;
+  z.onpointerdown=e=>{lp=null;mv(e);};z.onpointerup=()=>{lp=null;};
 }
 /* jeu : se laver les mains 20 secondes */
 function handsGame(){
@@ -4162,6 +4222,62 @@ setInterval(()=>{
 },3800);
 
 onTap($('apage'),e=>{const b=e.target.closest('[data-bg]');if(!b||AL.page!=='libre')return;sfx.pop();P().freeBg=b.dataset.bg;saveDB();AL.sel=null;renderFree();});
+
+/* ---------- bruitages réalistes (synthèse WebAudio) ---------- */
+const SND=(()=>{
+  const A=()=>ac();
+  function out(a,node,vol=1){const g=a.createGain();g.gain.value=vol;node.connect(g).connect(a.destination);return g;}
+  function oscv(a,t,dur,type,f0,f1,peak,{att=.01,filt=null,fq=1,ftype='lowpass',vib=0,vibf=6}={}){
+    const o=a.createOscillator(),g=a.createGain();o.type=type;o.frequency.setValueAtTime(f0,t);if(f1&&f1!==f0)o.frequency.exponentialRampToValueAtTime(f1,t+dur);
+    if(vib){const l=a.createOscillator(),lg=a.createGain();l.frequency.value=vibf;lg.gain.value=vib;l.connect(lg).connect(o.frequency);l.start(t);l.stop(t+dur+.05);}
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(peak,t+att);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    let n=o;if(filt){const f=a.createBiquadFilter();f.type=ftype;f.frequency.value=filt;f.Q.value=fq;n.connect(f);n=f;}
+    n.connect(g).connect(a.destination);o.start(t);o.stop(t+dur+.05);return o;
+  }
+  function nz(a,t,dur,ftype,f0,f1,peak,{q=1,att=.005,hold=0}={}){
+    if(!NB){NB=a.createBuffer(1,a.sampleRate*1.5,a.sampleRate);const d=NB.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;}
+    const s=a.createBufferSource(),f=a.createBiquadFilter(),g=a.createGain();s.buffer=NB;s.loop=true;s.loopStart=Math.random();
+    f.type=ftype;f.Q.value=q;f.frequency.setValueAtTime(f0,t);if(f1&&f1!==f0)f.frequency.exponentialRampToValueAtTime(f1,t+dur);
+    g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(peak,t+att);if(hold)g.gain.setValueAtTime(peak,t+att+hold);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+    s.connect(f).connect(g).connect(a.destination);s.start(t,Math.random());s.stop(t+dur+.05);
+  }
+  const S={
+    chien(d=0){const a=A();if(!a)return;const t=a.currentTime+d;
+      [[0,1],[.34,.92]].forEach(([dt,k])=>{const s=t+dt;
+        nz(a,s,.06,'bandpass',1400,900,.35,{q:1.2});
+        oscv(a,s,.2,'sawtooth',560*k,300*k,.5,{att:.012,filt:1500,fq:1.5});
+        oscv(a,s,.18,'square',280*k,160*k,.18,{att:.012,filt:700});});},
+    eau(d=0){const a=A();if(!a)return;const t=a.currentTime+d;
+      nz(a,t,.7,'lowpass',4000,500,.5,{att:.01});nz(a,t+.05,.9,'bandpass',900,300,.25,{q:.8});
+      for(let i=0;i<10;i++){const s=t+.08+Math.random()*.8,f=350+Math.random()*450;oscv(a,s,.07,'sine',f,f*2.6,.12,{att:.004});}},
+    cloche(d=0){const a=A();if(!a)return;const t=a.currentTime+d,f=620;
+      nz(a,t,.05,'highpass',3000,3000,.2);
+      [[1,.32,2.6],[2,.18,1.8],[2.76,.14,1.4],[5.4,.06,.7],[8.93,.03,.35]].forEach(([m,v,dd])=>oscv(a,t,dd,'sine',f*m,0,v,{att:.004}));},
+    orage(d=0){const a=A();if(!a)return;const t=a.currentTime+d;
+      nz(a,t,.25,'highpass',2500,800,.45,{att:.003});
+      nz(a,t+.05,2.8,'lowpass',260,90,.7,{q:.7,att:.25,hold:.4});
+      for(let i=0;i<4;i++)nz(a,t+.3+i*.45+Math.random()*.2,.9,'lowpass',180,70,.45,{att:.08});},
+    abeille(d=0){const a=A();if(!a)return;const t=a.currentTime+d,dur=1.9;
+      const o=a.createOscillator(),o2=a.createOscillator(),f=a.createBiquadFilter(),g=a.createGain(),l=a.createOscillator(),lg=a.createGain();
+      o.type='sawtooth';o2.type='sawtooth';o.frequency.setValueAtTime(205,t);o.frequency.linearRampToValueAtTime(245,t+dur*.5);o.frequency.linearRampToValueAtTime(200,t+dur);
+      o2.frequency.setValueAtTime(208,t);o2.frequency.linearRampToValueAtTime(250,t+dur*.5);o2.frequency.linearRampToValueAtTime(203,t+dur);
+      l.frequency.value=7;lg.gain.value=6;l.connect(lg);lg.connect(o.frequency);lg.connect(o2.frequency);
+      f.type='bandpass';f.frequency.value=600;f.Q.value=1.4;
+      g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.24,t+.4);g.gain.setValueAtTime(.24,t+dur-.5);g.gain.exponentialRampToValueAtTime(.0001,t+dur);
+      o.connect(f);o2.connect(f);f.connect(g).connect(a.destination);[o,o2,l].forEach(x=>{x.start(t);x.stop(t+dur+.05);});},
+    coeur(d=0){const a=A();if(!a)return;const t=a.currentTime+d;
+      for(let i=0;i<3;i++){const s=t+i*.78;oscv(a,s,.16,'sine',62,40,.75,{att:.01,filt:180});oscv(a,s+.2,.13,'sine',74,48,.55,{att:.01,filt:180});}},
+    croque(d=0){const a=A();if(!a)return;const t=a.currentTime+d;
+      [0,.26,.5].forEach(dt=>{const s=t+dt;nz(a,s,.03,'lowpass',500,200,.5);nz(a,s,.12,'bandpass',2600,1600,.45,{q:.9});
+        for(let k=0;k<6;k++)nz(a,s+Math.random()*.1,.018,'highpass',4500,4500,.25);});},
+    papier(d=0){const a=A();if(!a)return;const t=a.currentTime+d;
+      for(let i=0;i<46;i++){const s=t+i*.016+Math.random()*.01;nz(a,s,.02+Math.random()*.02,'bandpass',2200+Math.random()*2400,0,.25+Math.random()*.3,{q:1.5,att:.002});}},
+    oiseau(d=0){const a=A();if(!a)return;const t=a.currentTime+d;
+      [[0,2900,4300,.08],[.12,4300,3200,.06],[.3,3100,4600,.07],[.42,4400,3400,.05]].forEach(([dt,f0,f1,dd])=>oscv(a,t+dt,dd,'sine',f0,f1,.3,{att:.006}));
+      for(let i=0;i<7;i++)oscv(a,t+.62+i*.055,.04,'sine',i%2?3600:4100,i%2?3900:3700,.24,{att:.004});}
+  };
+  return S;
+})();
 
 /* hors ligne */
 if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
