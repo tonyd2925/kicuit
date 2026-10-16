@@ -125,7 +125,7 @@ Idée centrale, répétée par Kicuit : **un fromage, c'est du lait dont on enl�
 ## Laboratoire (fait, 25 étoiles)
 
 Écran `s-labo`, 5 onglets (`LTABS`), données `P().l` (`L_()`).
-- **Circuit** : toucher deux bornes = un fil, toucher un fil l'enlève. `evalCircuit()` cherche les chemins de B+ à B− ; un chemin sans lampe = court-circuit (autocollant secret). L'interrupteur doit être dans la boucle. Nana 2 niveaux, Raf 5 (série, LED avec un sens).
+- **Circuit** : Raf : toucher deux bornes = un fil, toucher un fil l'enlève. **Nana** : les fils à brancher (`g` dans `CIRC_LV.nana`, dans l'ordre du + vers le −) sont dessinés en pointillés ; le prochain clignote avec une prise 🔌 et un seul toucher le branche (sur le fil ou sur une de ses bornes) ; pas de retrait ni de court-circuit possible ; l'interrupteur pulse quand c'est son tour ; une fois allumé, des points jaunes montrent le courant qui fait le tour. `evalCircuit()` cherche les chemins de B+ à B− ; un chemin sans lampe = court-circuit (autocollant secret). L'interrupteur doit être dans la boucle. Nana 2 niveaux, Raf 5 (série, LED avec un sens).
 - **Flotte ou coule** : Raf prédit avant (`L.pred`), boule de pâte à modeler qui coule / la même en bateau qui flotte (Raf).
 - **Aimants** : promener l'aimant ; l'aluminium (canette) n'est pas attiré, les centimes oui.
 - **Couleurs** : peinture soustractive cyan/magenta/jaune (`mixRGB`), objectifs `COL_GOALS` ; mode lumière : superposer rouge, vert, bleu pour faire du blanc.

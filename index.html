@@ -740,6 +740,12 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .board{width:1000px;height:470px;max-height:100%;flex:1}
 .board.gears{width:860px;height:470px}
 .term{cursor:pointer}
+.gw.next path:first-child{stroke:#ffb020;animation:gwP 1s ease-in-out infinite}
+@keyframes gwP{50%{stroke-width:15}}
+.gw text{animation:hintB 1s ease-in-out infinite}
+.flow{animation:flowA .6s linear infinite;pointer-events:none}
+@keyframes flowA{from{stroke-dashoffset:24}to{stroke-dashoffset:0}}
+.swg.cnudge{transform-box:fill-box;transform-origin:center}
 .lfoot{display:flex;gap:16px;align-items:center;padding:8px 0 14px}
 .lfoot .ghint{font-size:17px;font-weight:800;opacity:.65;max-width:620px}
 .spin{animation:spin 4s linear infinite;transform-box:fill-box;transform-origin:center}
@@ -3778,13 +3784,16 @@ onTap($('lHome'),()=>{sfx.click();enterHub();});
 /* ===== circuit électrique ===== */
 /* composants : pile (B+ / B-), ampoule (a/b), ampoule 2, interrupteur, LED (p = patte +, n = patte −) */
 const CIRC_LV={
-  nana:[{c:['bulb'],x:'Allume l\'ampoule !'},{c:['bulb','sw'],x:"Allume l'ampoule avec l'interrupteur !"}],
+  /* Nana : les fils à brancher sont dessinés en pointillés (g, du + vers le −) ; elle touche celui qui clignote */
+  nana:[{c:['bulb'],x:'Allume l\'ampoule !',g:[['B+','bulb:a'],['bulb:b','B-']]},{c:['bulb','sw'],x:"Allume l'ampoule avec l'interrupteur !",g:[['B+','bulb:a'],['bulb:b','sw:b'],['sw:a','B-']]}],
   raf:[{c:['bulb'],x:"Allume l'ampoule : le courant doit faire une boucle complète."},{c:['bulb','sw'],x:"Ajoute l'interrupteur dans la boucle, puis ferme-le."},{c:['bulb','bulb2'],x:'Allume les deux ampoules en série (une seule boucle).'},{c:['led'],x:'Allume la LED. Attention : elle a un sens, la patte + vers le + de la pile !'},{c:['bulb','sw','led'],x:"Boucle finale : pile, interrupteur, ampoule et LED dans le bon sens."}]
 };
 const CPOS={bulb:{x:620,y:110},bulb2:{x:620,y:250},sw:{x:460,y:390},led:{x:800,y:250}};
 const CL={lv:0,wires:[],sel:null,sw:false};
 function cTerms(c){const P0=CPOS[c];return c==='sw'?[{id:c+':a',x:P0.x-50,y:P0.y},{id:c+':b',x:P0.x+50,y:P0.y}]:c==='led'?[{id:c+':p',x:P0.x-22,y:P0.y+70,l:'+'},{id:c+':n',x:P0.x+22,y:P0.y+70,l:'−'}]:[{id:c+':a',x:P0.x-22,y:P0.y+64},{id:c+':b',x:P0.x+22,y:P0.y+64}];}
-function circuitStart(){const L=L_(),lv=(isA()?CIRC_LV.nana:CIRC_LV.raf);CL.lv=Math.min(L.circ,lv.length-1);CL.wires=[];CL.sel=null;CL.sw=false;renderCircuit();say(T(lv[CL.lv].x+' Touche un rond, puis un autre.',lv[CL.lv].x),T(undefined,false));}
+function circuitStart(){const L=L_(),lv=(isA()?CIRC_LV.nana:CIRC_LV.raf);CL.lv=Math.min(L.circ,lv.length-1);CL.wires=[];CL.sel=null;CL.sw=false;CL.wasDone=false;renderCircuit();say(T(lv[CL.lv].x+' Touche le fil qui clignote pour le brancher.',lv[CL.lv].x),T(undefined,false));}
+function circHas([a,b]){return CL.wires.some(([x,y])=>(x===a&&y===b)||(x===b&&y===a));}
+function circMiss(){const g=circLevel().g;return g?g.filter(w=>!circHas(w)).length:0;}
 function circLevel(){return (isA()?CIRC_LV.nana:CIRC_LV.raf)[CL.lv];}
 function allTerms(){const t=[{id:'B+',x:170,y:150,l:'+'},{id:'B-',x:170,y:330,l:'−'}];circLevel().c.forEach(c=>t.push(...cTerms(c)));return t;}
 function evalCircuit(){
@@ -3802,30 +3811,42 @@ function renderCircuit(){
   let done=lv.c.filter(c=>c!=='sw').every(c=>r.lit.has(c));
   if(done&&lv.c.includes('sw')){const keep=CL.sw;CL.sw=false;const r2=evalCircuit();CL.sw=keep;if(r2.lit.size){done=false;if(!CL.warnBy){CL.warnBy=1;say(T("Le courant passe à côté de l'interrupteur ! Fais passer un fil par lui.","Le courant contourne l'interrupteur : il doit être dans la boucle."),false);}}}
   const lamp=(c)=>{const P0=CPOS[c],on=r.lit.has(c);
-    if(c==='sw')return `<g class="swg" data-sw="1"><rect x="${P0.x-70}" y="${P0.y-24}" width="140" height="48" rx="12" fill="#e8edf5" stroke="#8a96ad" stroke-width="3"/><circle cx="${P0.x-50}" cy="${P0.y}" r="7" fill="#5d6c8c"/><circle cx="${P0.x+50}" cy="${P0.y}" r="7" fill="#5d6c8c"/><line x1="${P0.x-50}" y1="${P0.y}" x2="${CL.sw?P0.x+50:P0.x+36}" y2="${CL.sw?P0.y:P0.y-34}" stroke="#2b2350" stroke-width="7" stroke-linecap="round"/><text x="${P0.x}" y="${P0.y+46}" text-anchor="middle" font-size="15" font-weight="900" fill="#2b2350">${CL.sw?'fermé':'ouvert'}</text></g>`;
+    if(c==='sw')return `<g class="swg ${isA()&&lv.g&&!circMiss()&&!CL.sw?'cnudge':''}" data-sw="1">${isA()?`<rect x="${P0.x-95}" y="${P0.y-60}" width="190" height="130" fill="transparent"/>`:''}<rect x="${P0.x-70}" y="${P0.y-24}" width="140" height="48" rx="12" fill="#e8edf5" stroke="#8a96ad" stroke-width="3"/><circle cx="${P0.x-50}" cy="${P0.y}" r="7" fill="#5d6c8c"/><circle cx="${P0.x+50}" cy="${P0.y}" r="7" fill="#5d6c8c"/><line x1="${P0.x-50}" y1="${P0.y}" x2="${CL.sw?P0.x+50:P0.x+36}" y2="${CL.sw?P0.y:P0.y-34}" stroke="#2b2350" stroke-width="7" stroke-linecap="round"/><text x="${P0.x}" y="${P0.y+46}" text-anchor="middle" font-size="15" font-weight="900" fill="#2b2350">${CL.sw?'fermé':'ouvert'}</text></g>`;
     if(c==='led')return `<g>${on?`<circle cx="${P0.x}" cy="${P0.y}" r="60" fill="url(#glowR)"/>`:''}<path d="M${P0.x-22} ${P0.y+10} v-24 a22 22 0 0 1 44 0 v24z" fill="${on?'#ff5a5a':'#f2c2c2'}" stroke="#a8162c" stroke-width="3"/><rect x="${P0.x-28}" y="${P0.y+8}" width="56" height="8" rx="3" fill="#a8162c"/><line x1="${P0.x-14}" y1="${P0.y+16}" x2="${P0.x-22}" y2="${P0.y+64}" stroke="#8a96ad" stroke-width="5"/><line x1="${P0.x+14}" y1="${P0.y+16}" x2="${P0.x+22}" y2="${P0.y+56}" stroke="#8a96ad" stroke-width="5"/><text x="${P0.x}" y="${P0.y-40}" text-anchor="middle" font-size="16" font-weight="900" fill="#2b2350">LED</text></g>`;
     return `<g>${on?`<circle cx="${P0.x}" cy="${P0.y}" r="70" fill="url(#glowY)"/>`:''}<circle cx="${P0.x}" cy="${P0.y}" r="34" fill="${on?'#fff36b':'#eef4fb'}" stroke="#8a96ad" stroke-width="3"/><path d="M${P0.x-10} ${P0.y+6} q10 -22 20 0" stroke="${on?'#ff9a1a':'#8a96ad'}" stroke-width="3" fill="none"/><rect x="${P0.x-20}" y="${P0.y+30}" width="40" height="22" rx="4" fill="#9aa6bf"/><line x1="${P0.x-12}" y1="${P0.y+52}" x2="${P0.x-22}" y2="${P0.y+64}" stroke="#8a96ad" stroke-width="5"/><line x1="${P0.x+12}" y1="${P0.y+52}" x2="${P0.x+22}" y2="${P0.y+64}" stroke="#8a96ad" stroke-width="5"/></g>`;};
   const wires=CL.wires.map(([a,b],i)=>{const A=pos[a],B=pos[b];if(!A||!B)return '';const col=i%2?'#2f62c2':'#e2263e',mx=(A.x+B.x)/2,my=(A.y+B.y)/2+40;
-    return `<path class="wire" data-w="${i}" d="M${A.x} ${A.y} Q${mx} ${my} ${B.x} ${B.y}" stroke="${col}" stroke-width="9" fill="none" stroke-linecap="round"/><path class="wire" data-w="${i}" d="M${A.x} ${A.y} Q${mx} ${my} ${B.x} ${B.y}" stroke="transparent" stroke-width="30" fill="none"/>`;}).join('');
+    return `<path class="wire" data-w="${i}" d="M${A.x} ${A.y} Q${mx} ${my} ${B.x} ${B.y}" stroke="${col}" stroke-width="9" fill="none" stroke-linecap="round"/>${isA()&&lv.g?'':`<path class="wire" data-w="${i}" d="M${A.x} ${A.y} Q${mx} ${my} ${B.x} ${B.y}" stroke="transparent" stroke-width="30" fill="none"/>`}`;}).join('');
+  const G=isA()&&lv.g?lv.g:null;let ghosts='',flow='';
+  if(G){const miss=G.map((w,i)=>circHas(w)?-1:i).filter(i=>i>=0),nx=miss[0];
+    const qd=([a,b])=>{const A=pos[a],B=pos[b],mx=(A.x+B.x)/2,my=(A.y+B.y)/2+40;return {d:`M${A.x} ${A.y} Q${mx} ${my} ${B.x} ${B.y}`,mx,cy:(A.y+B.y)/2+20};};
+    ghosts=miss.slice().reverse().map(i=>{const q=qd(G[i]);return `<g class="gw ${i===nx?'next':''}" data-g="${i}"><path d="${q.d}" stroke="#a7b1c6" stroke-width="8" stroke-dasharray="3 15" stroke-linecap="round" fill="none"/>${i===nx?`<path d="${q.d}" stroke="transparent" stroke-width="90" fill="none"/>`:''}${i===nx?`<text x="${q.mx}" y="${q.cy+16}" text-anchor="middle" font-size="48">🔌</text>`:''}</g>`;}).join('');
+    if(done)flow=G.map(w=>`<path class="flow" d="${qd(w).d}" stroke="#fff36b" stroke-width="6" stroke-dasharray="2 22" stroke-linecap="round" fill="none"/>`).join('');}
   $('lWork').innerHTML=`<div class="lhead">${(isA()?CIRC_LV.nana:CIRC_LV.raf).map((_,i)=>`<span class="lv ${i<L_().circ?'ok':''} ${i===CL.lv?'on':''}">${i+1}</span>`).join('')}<span class="lx">${lv.x}</span></div>
   <svg id="cSvg" viewBox="0 0 1000 470" class="board"><defs><radialGradient id="glowY"><stop offset="0" stop-color="#fff36b" stop-opacity=".9"/><stop offset="1" stop-color="#fff36b" stop-opacity="0"/></radialGradient><radialGradient id="glowR"><stop offset="0" stop-color="#ff6a6a" stop-opacity=".9"/><stop offset="1" stop-color="#ff6a6a" stop-opacity="0"/></radialGradient></defs>
   <rect x="110" y="120" width="120" height="240" rx="18" fill="${r.short?'#ff7a59':'#ffc83a'}" stroke="#2b2350" stroke-width="4"/><rect x="110" y="120" width="120" height="80" rx="18" fill="#2b2350"/><text x="170" y="270" text-anchor="middle" font-size="22" font-weight="900" fill="#2b2350">4,5 V</text>
-  ${lv.c.map(lamp).join('')}${wires}
+  ${lv.c.map(lamp).join('')}${wires}${ghosts}${flow}
   ${T_.map(t=>`<g class="term" data-t="${t.id}"><circle cx="${t.x}" cy="${t.y}" r="${CL.sel===t.id?20:15}" fill="${t.id==='B+'||t.l==='+'?'#e2263e':t.id==='B-'||t.l==='−'?'#2f62c2':'#5d6c8c'}" stroke="#fff" stroke-width="4"/>${t.l?`<text x="${t.x}" y="${t.y+6}" text-anchor="middle" font-size="18" font-weight="900" fill="#fff">${t.l}</text>`:''}<circle cx="${t.x}" cy="${t.y}" r="34" fill="transparent"/></g>`).join('')}
   ${r.short?'<text x="170" y="100" text-anchor="middle" font-size="40">⚡🔥</text>':''}</svg>
-  <div class="lfoot"><span class="ghint">${T('Touche un rond, puis un autre : ça fait un fil.','Touche deux bornes pour tirer un fil. Touche un fil pour l\'enlever.')}</span><button class="btn b-grey" id="cClear">🧹 Enlever les fils</button>${done?`<button class="btn b-orange" id="cNext">Niveau suivant ▶</button>`:''}</div>`;
+  <div class="lfoot"><span class="ghint">${T('Touche le fil qui clignote 🔌','Touche deux bornes pour tirer un fil. Touche un fil pour l\'enlever.')}</span>${G?'':'<button class="btn b-grey" id="cClear">🧹 Enlever les fils</button>'}${done?`<button class="btn b-orange" id="cNext">Niveau suivant ▶</button>`:''}</div>`;
   if(r.short&&!CL.wasShort){sfx.alert();award('l_court');say(T('Oh non, un court-circuit ! La pile chauffe. Enlève ce fil !','Court-circuit : le courant passe directement du + au − sans traverser de lampe. La pile chauffe dangereusement !'),T(undefined,'Court-circuit !'));}
   CL.wasShort=r.short;
   if(done&&!CL.wasDone){sfx.ding();const L=L_();const id=lv.c.includes('led')?'l_led':lv.c.includes('bulb2')?'l_serie':lv.c.includes('sw')?'l_inter':'l_ampoule';award(id);
     if(CL.lv>=L.circ){L.circ=CL.lv+1;saveDB();firstStar('circ'+CL.lv+(isA()?'n':'r'));}
-    say(T('Ça s\'allume ! Bravo !',lv.c.includes('led')?'La LED s\'allume : le courant la traverse dans le bon sens, de la patte + vers la patte −.':'Ça s\'allume : le circuit est fermé, le courant fait une boucle complète.'),T(undefined,'Ça s\'allume !'));}
+    say(T('Ça s\'allume ! Le courant fait le tour : il sort de la pile, passe dans l\'ampoule et revient à la pile.'+(CL.lv<CIRC_LV.nana.length-1?' Touche le bouton orange !':''),lv.c.includes('led')?'La LED s\'allume : le courant la traverse dans le bon sens, de la patte + vers la patte −.':'Ça s\'allume : le circuit est fermé, le courant fait une boucle complète.'),T(undefined,'Ça s\'allume !'));}
   CL.wasDone=done;
 }
 $('lWork').addEventListener('pointerup',e=>{
   if(LS.tab!=='circuit'||S.screen!=='s-labo')return;
   if(e.target.closest('#cClear')){CL.wires=[];CL.sel=null;sfx.trash();renderCircuit();return;}
   if(e.target.closest('#cNext')){const max=(isA()?CIRC_LV.nana:CIRC_LV.raf).length-1;if(CL.lv>=max){say(T('Tu as fini tous les circuits !','Tous les circuits sont réussis !'));return;}CL.lv++;CL.wires=[];CL.sel=null;CL.sw=false;CL.wasDone=false;sfx.click();renderCircuit();say(circLevel().x,T(undefined,false));return;}
-  if(e.target.closest('[data-sw]')){CL.sw=!CL.sw;sfx.click();renderCircuit();return;}
+  if(e.target.closest('[data-sw]')){CL.sw=!CL.sw;sfx.click();renderCircuit();if(isA()&&circMiss()&&CL.sw)say('D\'abord les fils : touche le fil qui clignote !');return;}
+  if(isA()&&circLevel().g){const g=circLevel().g,gw=e.target.closest('.gw');let i=gw?+gw.dataset.g:-1;
+    if(i<0){const t=e.target.closest('.term');if(t)i=g.findIndex(w=>!circHas(w)&&w.includes(t.dataset.t));}
+    if(i<0||circHas(g[i]))return;
+    CL.wires.push(g[i].slice());sfx.stick();renderCircuit();
+    const m=circMiss();if(m)say(m===1?'Encore un fil !':'Bravo ! Encore des fils.');
+    else if(circLevel().c.includes('sw')&&!CL.sw)say('Tous les fils sont branchés ! Maintenant, ferme l\'interrupteur : touche-le.');
+    return;}
   const w=e.target.closest('.wire');if(w&&!e.target.closest('.term')){CL.wires.splice(+w.dataset.w,1);sfx.squish();renderCircuit();return;}
   const t=e.target.closest('.term');if(!t)return;const id=t.dataset.t;
   if(!CL.sel){CL.sel=id;sfx.click();renderCircuit();return;}
