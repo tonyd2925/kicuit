@@ -3,6 +3,8 @@
 Jeu éducatif pour les deux enfants d'Anthony, joué sur **iPad (Safari)**.
 En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, racine).
 
+**Organisation du site** : `index.html` = accueil « À quoi on joue ? » (choix entre les outils) ; `kicuit.html` = le jeu (bouton 🏠 en haut à gauche de l'écran titre pour revenir à l'accueil) ; `cube.html` = « Le Cube de Rafael », entraîneur Rubik's Cube en 9 niveaux (quiz, formules de mémoire, défis sur le vrai cube, chrono ; sauvegarde `cube-rafael-v1`). Tout nouvel outil = une page à part + une tuile sur l'accueil + son fichier dans `FILES` de `sw.js`.
+
 ## Les joueurs
 
 | Clé interne (sauvegarde) | Nom affiché | Âge | Mode |
@@ -149,7 +151,7 @@ Idée centrale, répétée par Kicuit : **un fromage, c'est du lait dont on enl�
 
 ## Technique
 
-- Un seul `index.html` (HTML, CSS et JS vanilla, aucune dépendance), graphismes en SVG inline, sons en WebAudio.
+- Le jeu tient dans un seul `kicuit.html` (HTML, CSS et JS vanilla, aucune dépendance), graphismes en SVG inline, sons en WebAudio.
 - Bruits réalistes dans le module `SND` (chien, eau, cloche, orage, abeille, cœur, croque, papier, oiseau) : synthèse en couches (bruit filtré, oscillateurs avec enveloppes). `sfx.bark` et les sons de l'ouïe passent par lui.
 - Scène fixe de 1180×820, mise à l'échelle par `fit()`, iPad en paysage (message si l'iPad est en portrait).
 - **Taps : toujours utiliser `onTap(el, fn)`** (pointerdown/pointerup), jamais `click`. Sur iPad, `click` rate les éléments animés.
