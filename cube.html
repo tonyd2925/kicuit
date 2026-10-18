@@ -161,7 +161,7 @@ ul.tips { margin: 0; padding-left: 20px; display: flex; flex-direction: column; 
 .times { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; font-family: var(--f-mono); font-size: .9rem; }
 .times li { background: var(--surface-2); border-radius: 8px; padding: 3px 8px; }
 
-.home { align-self: flex-start; color: var(--muted); font-weight: 700; text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; }
+.home { background: none; align-self: flex-start; color: var(--muted); font-weight: 700; text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; }
 
 /* 3D cube viewer */
 .viewer { display: flex; flex-direction: column; align-items: center; gap: 10px; }
@@ -180,6 +180,37 @@ button.chip.now { border-color: var(--accent); background: color-mix(in srgb, va
 .seg { display: flex; gap: 6px; }
 .seg button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 5px 12px; font-weight: 700; font-size: .85rem; }
 .seg button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+/* Who plays + Nana mode */
+.who { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.wcard { border: 1px solid var(--line); background: var(--surface); border-radius: 22px; padding: 22px 16px; box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.wcard .av { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-display); font-weight: 700; font-size: 2.2rem; color: #fff; }
+.wcard .wn { font-family: var(--f-display); font-weight: 700; font-size: 1.6rem; }
+.wcard .wm { color: var(--muted); font-weight: 700; }
+.ntiles { display: flex; flex-direction: column; gap: 12px; }
+.ntile { display: grid; grid-template-columns: 72px 1fr auto; align-items: center; gap: 14px; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 12px 16px; box-shadow: var(--shadow); }
+.ntile[disabled] { opacity: .45; box-shadow: none; }
+.ntile .big { width: 72px; height: 72px; border-radius: 18px; display: grid; place-items: center; font-family: var(--f-display); font-weight: 700; font-size: 2.2rem; color: #fff; background: var(--c); }
+.ntile .nt { font-family: var(--f-display); font-weight: 600; font-size: 1.35rem; }
+.ntile .star { width: 40px; height: 40px; }
+.nprompt { font-family: var(--f-display); font-weight: 600; font-size: 1.6rem; text-align: center; text-wrap: balance; }
+.say { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; width: 52px; height: 52px; font-size: 1.5rem; box-shadow: var(--shadow); }
+.dots { display: flex; justify-content: center; gap: 8px; }
+.dots i { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line); display: block; }
+.dots i.on { background: var(--yellow); border-color: var(--yellow); }
+.colors { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; justify-items: center; }
+.cbtn { width: 86px; height: 86px; border-radius: 22px; border: 4px solid #14161D; box-shadow: 0 5px 0 #14161D; }
+.cbtn:active { transform: translateY(4px); box-shadow: none; }
+.icons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.ibtn { border: 2px solid var(--line); background: var(--surface); border-radius: 22px; padding: 10px; box-shadow: var(--shadow); display: grid; place-items: center; }
+.ibtn svg { width: 100%; max-width: 120px; height: auto; display: block; }
+.ibtn:active { transform: translateY(3px); box-shadow: none; }
+.ibtn.hint { border-color: var(--yellow); animation: pulse 1s infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--yellow) 45%, transparent); } }
+.bigbtn { font-size: 1.5rem; padding: 18px 22px; border-radius: 20px; }
+.count { font-family: var(--f-display); font-weight: 700; font-size: 2.6rem; text-align: center; }
+.win { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding: 24px 0; }
+.win svg { width: 140px; height: 140px; }
+@media (prefers-reduced-motion: reduce) { .ibtn.hint { animation: none; } }
 .foot { display: flex; justify-content: center; }
 .link { background: none; border: none; color: var(--muted); text-decoration: underline; font-size: .85rem; }
 .celebrate { text-align: center; font-family: var(--f-display); font-size: 1.3rem; font-weight: 600; color: var(--good); }
@@ -289,7 +320,7 @@ const LEVELS = [
 
 const KEY = "cube-rafael-v1";
 let S = load();
-let view = { screen: "map" };
+let view = { screen: "who" };
 let quiz = null, drill = null, timer = null;
 
 function blank() { return { levels: LEVELS.map(() => ({ quiz: false, drills: {}, streak: 0, best: null })), unlockAll: false, solves: [] }; }
@@ -344,7 +375,7 @@ const RC = (() => {
   const el = document.createElement("div"); el.className = "viewer";
   el.innerHTML = `<div class="movename" aria-live="polite"></div><div class="scene"><div class="rc"></div></div>`;
   const scene = el.querySelector(".scene"), rc = el.querySelector(".rc"), label = el.querySelector(".movename");
-  let cubies = [], vx = -26, vy = -36, busy = false, token = 0, speed = 900;
+  let cubies = [], vx = -26, vy = -36, busy = false, token = 0, speed = 900, quiet = false;
 
   function place(c, R) {
     const A = R ? mul(R, c.O) : c.O, q = R ? mv(R, c.p) : c.p;
@@ -356,7 +387,7 @@ const RC = (() => {
     token++; busy = false; rc.innerHTML = ""; cubies = [];
     for (let x = -1; x <= 1; x++) for (let y = -1; y <= 1; y++) for (let z = -1; z <= 1; z++) {
       if (!x && !y && !z) continue;
-      const c = { p: [x, y, z], O: I(), el: document.createElement("div") };
+      const c = { p: [x, y, z], h: [x, y, z], O: I(), el: document.createElement("div") };
       c.el.className = "cb";
       c.el.innerHTML = FACES.map(([f, tr, out]) => `<i class="${out(c) ? "st" : ""}" style="transform:${tr};${out(c) ? "background:" + COL[f] : ""}"></i>`).join("");
       rc.appendChild(c.el); place(c); cubies.push(c);
@@ -369,7 +400,7 @@ const RC = (() => {
     const [axis, layer, base] = MV[m[0]];
     const angle = base * (m.includes("'") ? -1 : 1) * (m.includes("2") ? 2 : 1);
     const k = AX[axis], group = cubies.filter(c => rnd(c.p[k]) === layer);
-    label.innerHTML = `<b>${m}</b>${esc(MOVES[m] || "")}`;
+    label.innerHTML = quiet ? "" : `<b>${m}</b>${esc(MOVES[m] || "")}`;
     group.forEach(c => c.el.classList.add("hl"));
     await wait(speed * .35);
     if (tk !== token) return;
@@ -406,7 +437,18 @@ const RC = (() => {
   const end = () => { drag = null; };
   scene.addEventListener("pointerup", end); scene.addEventListener("pointercancel", end);
   build();
-  return { el, play, reset: build, setSpeed: ms => { speed = ms; }, get speed() { return speed; }, get busy() { return busy; } };
+  function apply(seq) {
+    seq.forEach(m => {
+      const [axis, layer, base] = MV[m[0]];
+      const R = rot(axis, base * (m.includes("'") ? -1 : 1) * (m.includes("2") ? 2 : 1)), k = AX[axis];
+      cubies.filter(c => rnd(c.p[k]) === layer).forEach(c => { c.O = mul(R, c.O).map(r => r.map(rnd)); c.p = mv(R, c.p).map(rnd); place(c); });
+    });
+  }
+  function solved() {
+    return cubies.every(c => Math.abs(c.h[0]) + Math.abs(c.h[1]) + Math.abs(c.h[2]) < 2 ||
+      (c.p.every((v, i) => v === c.h[i]) && c.O.every((r, i) => r.every((v, j) => v === (i === j ? 1 : 0)))));
+  }
+  return { el, play, apply, solved, setQuiet: q => { quiet = q; label.innerHTML = ""; }, reset: build, setSpeed: ms => { speed = ms; }, get speed() { return speed; }, get busy() { return busy; } };
 })();
 
 function viewerCard(i) {
@@ -426,6 +468,142 @@ function viewerCard(i) {
   </section>`;
 }
 
+/* ---------- Nana ---------- */
+const NKEY = "cube-nana-v1";
+const NLV = [
+  { t: "Les couleurs", c: "--red", need: 6 },
+  { t: "Ça tourne !", c: "--orange", need: 5 },
+  { t: "Répare le cube", c: "--green", need: 5 },
+  { t: "Deux tours", c: "--blue", need: 4 },
+  { t: "Le tour de magie", c: "--yellow", need: 6 }
+];
+const NCOL = { jaune: "#F4C21B", blanc: "#FFFFFF", vert: "#189A55", bleu: "#2259E0", orange: "#F2841C", rouge: "#E0363A" };
+const DANCE = ["R", "U", "R'", "U'"];
+let NS = (() => { try { const d = JSON.parse(localStorage.getItem(NKEY)); if (d && d.done && d.done.length === NLV.length) return d; } catch (e) {} return { done: NLV.map(() => false), unlockAll: false }; })();
+const nsave = () => { try { localStorage.setItem(NKEY, JSON.stringify(NS)); } catch (e) {} };
+const nopen = i => NS.unlockAll || i === 0 || NS.done[i - 1];
+let NG = null;
+const rand = a => a[Math.floor(Math.random() * a.length)];
+const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+const inv = m => m.endsWith("'") ? m[0] : m + "'";
+const art = c => (/^[aeiou]/.test(c) ? "l'" : "le ") + c;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function say(t) {
+  try { if (!("speechSynthesis" in window)) return; speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(t); u.lang = "fr-FR"; u.rate = .92; speechSynthesis.speak(u); } catch (e) {}
+}
+function starSVG(on) {
+  return `<svg class="star" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 3l5 11 12 1.3-9 8.2 2.6 11.8L20 29.3 9.4 35.3 12 23.5 3 15.3 15 14z" fill="${on ? "var(--yellow)" : "none"}" stroke="${on ? "var(--yellow)" : "var(--line)"}" stroke-width="2.5" stroke-linejoin="round"/></svg>`;
+}
+function moveIcon(m) {
+  const col = m[0] === "R" ? 2 : m[0] === "L" ? 0 : -1, row = m[0] === "U" ? 0 : m[0] === "D" ? 2 : -1;
+  let cells = "";
+  for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) {
+    const on = c === col || r === row;
+    cells += `<rect x="${19 + c * 20}" y="${19 + r * 20}" width="18" height="18" rx="4" fill="${on ? "#189A55" : "#E4E8EF"}" stroke="#14161D" stroke-width="1.5"/>`;
+  }
+  const ends = { "R": [87, 76, 87, 20], "R'": [87, 20, 87, 76], "L": [9, 20, 9, 76], "L'": [9, 76, 9, 20], "U": [76, 9, 20, 9], "U'": [20, 9, 76, 9] }[m];
+  const [x1, y1, x2, y2] = ends, dx = Math.sign(x2 - x1), dy = Math.sign(y2 - y1), nx = -dy, ny = dx;
+  const bx = x2 - dx * 10, by = y2 - dy * 10;
+  const head = `${x2 + dx * 2},${y2 + dy * 2} ${bx + nx * 7.5},${by + ny * 7.5} ${bx - nx * 7.5},${by - ny * 7.5}`;
+  return `<svg viewBox="0 0 96 96" aria-hidden="true">${cells}<line x1="${x1}" y1="${y1}" x2="${bx}" y2="${by}" stroke="#E0363A" stroke-width="6" stroke-linecap="round"/><polygon points="${head}" fill="#E0363A" stroke="#E0363A" stroke-width="2" stroke-linejoin="round"/></svg>`;
+}
+function renderWho() {
+  return `<a class="home" href="./">← Accueil</a>
+  <header class="hero"><div class="stickers" aria-hidden="true"><i style="background:var(--red)"></i><i style="background:var(--orange)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i><i style="background:var(--blue)"></i><i style="background:var(--white);border:1px solid var(--line)"></i></div>
+  <h1>Qui joue ?</h1></header>
+  <div class="who">
+    <button class="wcard" data-go="nana"><span class="av" style="background:#ff7fa8">N</span><span class="wn">Nana</span><span class="wm">5 ans · découverte</span></button>
+    <button class="wcard" data-go="map"><span class="av" style="background:var(--blue)">R</span><span class="wn">Raf</span><span class="wm">10 ans · résoudre le cube</span></button>
+  </div>`;
+}
+function renderNanaMap() {
+  return `<div class="top"><button class="back" data-go="who">← Qui joue ?</button><span class="label">Nana</span></div>
+  <header class="hero"><h1>Le cube de Nana</h1></header>
+  <div class="ntiles">${NLV.map((L, i) => `<button class="ntile" data-nlvl="${i}" ${nopen(i) ? "" : "disabled"} style="--c: var(${L.c})">
+    <span class="big" ${L.c === "--yellow" ? 'style="color:#1A1E2C"' : ""}>${i + 1}</span><span class="nt">${esc(L.t)}</span>${starSVG(NS.done[i])}</button>`).join("")}</div>
+  <div class="foot"><button class="link" id="nunlock">${NS.unlockAll ? "Remettre les verrous" : "Parent : tout débloquer"}</button></div>`;
+}
+function renderNana() {
+  const L = NLV[NG.level];
+  const top = `<div class="top"><button class="back" data-go="nana">← Retour</button><button class="say" data-nsay="1" aria-label="Répéter">🔊</button></div>`;
+  if (NG.win) return `${top}<section class="card win">${starSVG(true)}<h2>Bravo Nana !</h2><p class="nprompt">Tu as gagné une étoile.</p>
+    <button class="btn bigbtn" data-go="nana">Retour aux jeux</button></section>`;
+  const dots = `<div class="dots">${Array.from({ length: L.need }, (_, k) => `<i class="${k < NG.score ? "on" : ""}"></i>`).join("")}</div>`;
+  let opts = "";
+  if (NG.level === 0) opts = `<div class="colors">${NG.opts.map(c => `<button class="cbtn" data-npick="${c}" aria-label="${c}" style="background:${NCOL[c]}"></button>`).join("")}</div>`;
+  else if (NG.level < 4) {
+    const want = NG.level === 1 ? NG.ans : NG.sol && NG.sol[NG.taps.length];
+    opts = `<div class="icons">${NG.opts.map(m => `<button class="ibtn ${NG.hint && m === want ? "hint" : ""}" data-npick="${m}" aria-label="${esc(MOVES[m])}">${moveIcon(m)}</button>`).join("")}</div>`;
+    if (NG.level === 1) opts += `<button class="btn ghost bigbtn" data-nreplay="1">Revoir</button>`;
+  } else opts = `<div class="count">${NG.dances} / 6</div><button class="btn bigbtn" data-ndance="1">▶ ${NG.dances ? "Danse suivante" : "Première danse"}</button>`;
+  return `${top}<p class="nprompt">${esc(NG.prompt)}</p>${dots}<section class="card"><div class="vslot"></div></section>${opts}`;
+}
+
+async function nNext() {
+  const lv = NG.level; NG.hint = false; NG.taps = [];
+  RC.reset(); RC.setQuiet(true); RC.setSpeed(1300);
+  if (lv === 0) {
+    let t; do t = rand(Object.keys(NCOL)); while (t === NG.target); NG.target = t;
+    NG.opts = shuffle(Object.keys(NCOL)); NG.prompt = `Touche ${art(t)} !`; render(); say(NG.prompt);
+  } else if (lv === 1) {
+    const pool = NG.score < 2 ? ["R", "U"] : ["R", "R'", "U", "U'"];
+    NG.ans = rand(pool); NG.opts = shuffle(pool); NG.prompt = "Regarde bien le cube !"; render(); say(NG.prompt);
+    await sleep(900); await RC.play([NG.ans]);
+    if (!NG) return;
+    NG.prompt = "Touche le bon dessin."; render(); say(NG.prompt);
+  } else if (lv === 2) {
+    const m = rand(["R", "R'", "U", "U'"]); RC.apply([m]); NG.sol = [inv(m)];
+    NG.opts = shuffle(["R", "R'", "U", "U'"]); NG.prompt = "Oh non, il est mélangé ! Répare-le."; render(); say(NG.prompt);
+  } else if (lv === 3) {
+    const a = rand(["R", "R'"]), b = rand(["U", "U'"]), seq = Math.random() < .5 ? [a, b] : [b, a];
+    RC.apply(seq); NG.sol = [inv(seq[1]), inv(seq[0])];
+    NG.opts = shuffle(["R", "R'", "U", "U'"]); NG.prompt = "Deux tours à réparer !"; render(); say(NG.prompt);
+  } else {
+    NG.dances = 0; NG.prompt = "Prends ton cube tout neuf, jaune en haut, vert devant. Fais comme moi !"; render(); say(NG.prompt);
+  }
+}
+function nStart(i) { NG = { level: i, score: 0, win: false }; view = { screen: "ngame" }; nNext(); }
+async function nGood() {
+  NG.score++; NG.hint = false;
+  if (NG.score >= NLV[NG.level].need) { NS.done[NG.level] = true; nsave(); NG.win = true; render(); say("Bravo Nana ! Tu as gagné une étoile !"); return; }
+  NG.prompt = rand(["Bravo !", "Super !", "Génial !", "Trop fort !"]); render(); say(NG.prompt);
+  await sleep(1300); if (view.screen === "ngame" && NG && !NG.win) nNext();
+}
+async function nPick(m) {
+  if (RC.busy || NG.win) return;
+  const lv = NG.level;
+  if (lv === 0) {
+    if (m === NG.target) return nGood();
+    say(`Ça, c'est ${art(m)}. Cherche ${art(NG.target)} !`); return;
+  }
+  if (lv === 1) {
+    if (m === NG.ans) return nGood();
+    NG.hint = true; NG.prompt = "Regarde encore !"; render(); say(NG.prompt);
+    RC.reset(); await sleep(600); await RC.play([NG.ans]); return;
+  }
+  NG.taps.push(m); render();
+  await RC.play([m]);
+  if (!NG) return;
+  if (RC.solved()) return nGood();
+  if (NG.taps.length >= NG.sol.length) {
+    NG.prompt = "Oups ! On revient en arrière."; render(); say(NG.prompt);
+    await RC.play(NG.taps.slice().reverse().map(inv));
+    if (!NG) return;
+    NG.taps = []; NG.hint = true; NG.prompt = "Essaie le dessin qui brille."; render(); say(NG.prompt);
+  } else render();
+}
+async function nDance() {
+  if (RC.busy || NG.win || NG.dancing) return;
+  NG.dancing = true;
+  NG.prompt = `Danse numéro ${NG.dances + 1}. Fais pareil !`; render(); say(NG.prompt);
+  await sleep(1500); if (!NG) return; await RC.play(DANCE);
+  if (!NG) return;
+  NG.dancing = false;
+  NG.dances++;
+  if (NG.dances >= 6) { NG.score = 6; NS.done[4] = true; nsave(); NG.win = true; render(); say("Magie ! Ton cube est redevenu tout neuf. Bravo Nana !"); return; }
+  NG.score = NG.dances; NG.prompt = "Bien joué ! Encore une ?"; render();
+}
+
 /* ---------- Screens ---------- */
 function renderMap() {
   const n = doneCount(), final = levelDone(LEVELS.length - 1) || S.unlockAll;
@@ -438,7 +616,7 @@ function renderMap() {
       <span><span class="name">${esc(L.name)}</span><br><span class="sub">${esc(L.sub)}</span></span>${pill}</button>`;
   }).join("");
   return `
-  <a class="home" href="./">← Accueil</a>
+  <button class="home" data-go="who">← Qui joue ?</button>
   <header class="hero">
     <div class="stickers" aria-hidden="true"><i style="background:var(--red)"></i><i style="background:var(--orange)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i><i style="background:var(--blue)"></i><i style="background:var(--white);border:1px solid var(--line)"></i></div>
     <h1>Le Cube de Rafael</h1>
@@ -558,7 +736,10 @@ function renderChrono() {
 
 function render() {
   const app = document.getElementById("app");
-  if (view.screen === "map") app.innerHTML = renderMap();
+  if (view.screen === "who") app.innerHTML = renderWho();
+  else if (view.screen === "nmap") app.innerHTML = renderNanaMap();
+  else if (view.screen === "ngame") app.innerHTML = renderNana();
+  else if (view.screen === "map") app.innerHTML = renderMap();
   else if (view.screen === "level") app.innerHTML = renderLevel(view.level);
   else if (view.screen === "quiz") app.innerHTML = renderQuiz();
   else if (view.screen === "drill") app.innerHTML = renderDrill();
@@ -568,7 +749,10 @@ function render() {
 
 function go(target) {
   stopTimer();
-  if (target === "map") view = { screen: "map" };
+  if (view.screen === "ngame") { NG = null; RC.reset(); RC.setQuiet(false); RC.setSpeed(900); try { speechSynthesis.cancel(); } catch (e) {} }
+  if (target === "who") view = { screen: "who" };
+  else if (target === "nana") view = { screen: "nmap" };
+  else if (target === "map") view = { screen: "map" };
   else if (target === "chrono") view = { screen: "chrono", scr: scramble() };
   else view = { screen: "level", level: Number(target), scr: scramble() };
   render(); window.scrollTo(0, 0);
@@ -577,6 +761,12 @@ function go(target) {
 document.addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b || b.disabled) return;
   const d = b.dataset;
+  if (d.nlvl !== undefined) { nStart(Number(d.nlvl)); return; }
+  if (d.npick) { nPick(d.npick); return; }
+  if (d.nsay) { if (NG) say(NG.win ? "Bravo Nana !" : NG.prompt); return; }
+  if (d.nreplay) { if (!RC.busy) { RC.reset(); RC.play([NG.ans]); } return; }
+  if (d.ndance) { nDance(); return; }
+  if (b.id === "nunlock") { NS.unlockAll = !NS.unlockAll; nsave(); return render(); }
   if (d.one) { if (!RC.busy) RC.play([d.one], k => { document.getElementById("app").querySelectorAll("button.chip.now").forEach(x => x.classList.remove("now")); if (k >= 0) b.classList.add("now"); }); return; }
   if (d.play !== undefined) {
     const row = b.closest(".formrow"), f = LEVELS[view.level].formulas[Number(d.play)];
