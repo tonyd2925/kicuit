@@ -106,6 +106,7 @@ ul.tips { margin: 0; padding-left: 20px; display: flex; flex-direction: column; 
   background: var(--accent); color: #fff; box-shadow: 0 3px 0 color-mix(in srgb, var(--accent) 60%, #000);
 }
 .btn:active { transform: translateY(2px); box-shadow: none; }
+.btn[disabled] { opacity: .45; box-shadow: none; cursor: default; }
 .btn.ghost { background: var(--surface-2); color: var(--ink); box-shadow: 0 3px 0 var(--line); }
 .btn.good { background: var(--good); box-shadow: 0 3px 0 color-mix(in srgb, var(--good) 60%, #000); }
 .btn.bad { background: var(--bad); box-shadow: 0 3px 0 color-mix(in srgb, var(--bad) 60%, #000); }
@@ -211,6 +212,30 @@ button.chip.now { border-color: var(--accent); background: color-mix(in srgb, va
 .win { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding: 24px 0; }
 .win svg { width: 140px; height: 140px; }
 @media (prefers-reduced-motion: reduce) { .ibtn.hint { animation: none; } }
+/* Solver */
+.ftabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.ftab { border: 2px solid var(--line); background: var(--surface); border-radius: 14px; padding: 8px 6px; display: flex; align-items: center; gap: 8px; font-weight: 800; font-size: .9rem; }
+.ftab i { width: 22px; height: 22px; border-radius: 6px; border: 2px solid #14161D; flex: none; display: block; }
+.ftab.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--surface)); }
+.ftab .n { margin-left: auto; color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
+.ftab.full .n { color: var(--good); }
+.editor { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: min(100%, 300px); margin: 0 auto; padding: 10px; background: #14161D; border-radius: 18px; }
+.cell { aspect-ratio: 1; border-radius: 12px; border: none; background: #3A3F4F; }
+.cell.empty { background: repeating-linear-gradient(45deg, #3A3F4F 0 6px, #444A5C 6px 12px); }
+.cell[disabled] { cursor: default; box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .25); }
+.palette { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.pcol { width: 44px; height: 44px; border-radius: 14px; border: 3px solid #14161D; }
+.pcol.on { outline: 4px solid var(--accent); outline-offset: 3px; }
+.net { display: grid; grid-template-columns: repeat(4, max-content); gap: 4px; justify-content: center; }
+.mface { display: grid; grid-template-columns: repeat(3, 12px); gap: 2px; padding: 3px; border-radius: 6px; background: #14161D; border: 2px solid transparent; }
+.mface.on { border-color: var(--accent); }
+.mface i { width: 12px; height: 12px; border-radius: 3px; background: #444A5C; display: block; }
+.err { color: var(--bad); font-weight: 800; }
+.spin { width: 28px; height: 28px; border-radius: 50%; border: 4px solid var(--line); border-top-color: var(--accent); animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.stepcount { font-family: var(--f-display); font-weight: 700; font-size: 1.4rem; text-align: center; }
+.solseq { max-height: 220px; overflow-y: auto; }
+@media (prefers-reduced-motion: reduce) { .spin { animation-duration: 3s; } }
 .foot { display: flex; justify-content: center; }
 .link { background: none; border: none; color: var(--muted); text-decoration: underline; font-size: .85rem; }
 .celebrate { text-align: center; font-family: var(--f-display); font-size: 1.3rem; font-weight: 600; color: var(--good); }
@@ -225,7 +250,9 @@ button.chip.now { border-color: var(--accent); background: color-mix(in srgb, va
 const MOVES = {
   "R": "Droite monte", "R'": "Droite descend", "L": "Gauche descend", "L'": "Gauche monte",
   "U": "Haut à gauche", "U'": "Haut à droite", "U2": "Haut 2 fois", "D": "Bas à droite", "D'": "Bas à gauche",
-  "F": "Devant horaire", "F'": "Devant anti-horaire"
+  "F": "Devant horaire", "F'": "Devant anti-horaire",
+  "R2": "Droite 2 fois", "L2": "Gauche 2 fois", "D2": "Bas 2 fois", "F2": "Devant 2 fois",
+  "B": "Derrière, le haut va à gauche", "B'": "Derrière, le haut va à droite", "B2": "Derrière 2 fois"
 };
 const PAD = ["R","R'","L","L'","U","U'","U2","D","D'","F","F'"];
 const COLORS = ["--white","--yellow","--red","--orange","--green","--blue","--red","--orange","--green"];
@@ -514,7 +541,8 @@ function renderWho() {
   <div class="who">
     <button class="wcard" data-go="nana"><span class="av" style="background:#ff7fa8">N</span><span class="wn">Nana</span><span class="wm">5 ans · découverte</span></button>
     <button class="wcard" data-go="map"><span class="av" style="background:var(--blue)">R</span><span class="wn">Raf</span><span class="wm">10 ans · résoudre le cube</span></button>
-  </div>`;
+  </div>
+  <button class="node" data-go="solver" style="--c: var(--green)"><span class="num">?</span><span><span class="name">Le solveur</span><br><span class="sub">Recopie ton cube mélangé, je te montre comment le finir</span></span><span class="pill go">Ouvrir</span></button>`;
 }
 function renderNanaMap() {
   return `<div class="top"><button class="back" data-go="who">← Qui joue ?</button><span class="label">Nana</span></div>
@@ -604,6 +632,112 @@ async function nDance() {
   NG.score = NG.dances; NG.prompt = "Bien joué ! Encore une ?"; render();
 }
 
+/* ---------- Solver ---------- */
+const SOLVER_BASE = "vendor/cubejs/";
+const USE_WORKER = true;
+const FL = ["U", "R", "F", "D", "L", "B"];
+const FHEX = { U: "#F4C21B", R: "#F2841C", F: "#189A55", D: "#FFFFFF", L: "#E0363A", B: "#2259E0" };
+const FNAME = { U: "jaune", R: "orange", F: "vert", D: "blanc", L: "rouge", B: "bleu" };
+const FORDER = ["F", "R", "B", "L", "U", "D"];
+const FTIP = {
+  F: "Jaune en haut, vert devant toi. Recopie la face qui te regarde.",
+  R: "Tourne tout le cube d'un quart de tour vers la gauche : l'orange est devant toi, le jaune toujours en haut.",
+  B: "Encore un quart de tour vers la gauche : le bleu est devant toi, le jaune en haut.",
+  L: "Encore un quart de tour vers la gauche : le rouge est devant toi, le jaune en haut.",
+  U: "Remets le vert devant toi, puis bascule le cube vers toi : tu vois le jaune, et le vert est en bas.",
+  D: "Remets le vert devant toi, puis bascule le cube vers l'arrière : tu vois le blanc, et le vert est en haut."
+};
+const FWHERE = { F: "devant", R: "droite", B: "derrière", L: "gauche", U: "dessus", D: "dessous" };
+const SOLVED = FL.map(f => f.repeat(9)).join("");
+let SV = null;
+function svNew() {
+  const faces = {}; FL.forEach(f => { faces[f] = Array(9).fill(null); faces[f][4] = f; });
+  return { faces, cur: "F", paint: "F", sol: null, step: 0, err: "", thinking: false };
+}
+const svString = () => FL.map(f => SV.faces[f].map(x => x || "?").join("")).join("");
+const sinv = m => m.endsWith("2") ? m : inv(m);
+function loadScript(src) { return new Promise((res, rej) => { const t = document.createElement("script"); t.src = src; t.onload = res; t.onerror = rej; document.head.appendChild(t); }); }
+let cubeLib = null;
+function needCube() { if (!cubeLib) cubeLib = window.Cube ? Promise.resolve() : loadScript(SOLVER_BASE + "cube.js"); return cubeLib; }
+let worker = null, workerFailed = false, mainSolver = null;
+function getWorker() {
+  if (!USE_WORKER || workerFailed || typeof Worker === "undefined") return null;
+  if (!worker) { try { worker = new Worker("solver-worker.js"); worker.postMessage({ cmd: "init" }); } catch (e) { workerFailed = true; worker = null; } }
+  return worker;
+}
+function solveState(state) {
+  const w = getWorker();
+  if (w) return new Promise((res, rej) => {
+    const on = e => { if (e.data.cmd === "solve") { w.removeEventListener("message", on); res(e.data.sol); } else if (e.data.cmd === "error") { w.removeEventListener("message", on); rej(e.data.msg); } };
+    w.addEventListener("message", on);
+    w.onerror = () => { workerFailed = true; worker = null; solveState(state).then(res, rej); };
+    w.postMessage({ cmd: "solve", state });
+  });
+  if (!mainSolver) mainSolver = needCube().then(() => window.Cube.initSolver ? null : loadScript(SOLVER_BASE + "solve.js")).then(() => new Promise(r => setTimeout(() => { window.Cube.initSolver(); r(); }, 50)));
+  return mainSolver.then(() => window.Cube.fromString(state).solve());
+}
+function validate(str) {
+  const empty = (str.match(/\?/g) || []).length;
+  if (empty) return `Il reste ${empty} case${empty > 1 ? "s" : ""} à colorier.`;
+  for (const f of FL) { const n = str.split(f).length - 1; if (n !== 9) return `Il y a ${n} cases ${FNAME[f]}${n > 1 ? "s" : ""} : il en faut exactement 9. Vérifie tes faces.`; }
+  if (str === SOLVED) return "Ton cube est déjà fini, bravo !";
+  const c = window.Cube.fromString(str);
+  if (c.asString() !== str) return "Une pièce n'existe pas sur un vrai cube : une couleur est mal recopiée. Vérifie les coins et les bords.";
+  const perm = a => a.slice().sort((x, y) => x - y).every((v, i) => v === i);
+  const par = a => { let n = 0; for (let i = 0; i < a.length; i++) for (let j = i + 1; j < a.length; j++) if (a[i] > a[j]) n++; return n % 2; };
+  const sum = a => a.reduce((x, y) => x + y, 0);
+  if (!perm(c.cp) || !perm(c.ep)) return "Une pièce apparaît deux fois : une couleur est mal recopiée.";
+  if (sum(c.co) % 3 || sum(c.eo) % 2 || par(c.cp) !== par(c.ep)) return "Ce mélange est impossible : une case a dû être mal recopiée (ou le cube a été démonté et remonté). Vérifie tes faces.";
+  return "";
+}
+
+function renderSolver() {
+  const top = `<div class="top"><button class="back" data-go="${SV.from || "who"}">← Retour</button><span class="label">Solveur</span></div>`;
+  if (SV.sol) {
+    const n = SV.sol.length, done = SV.step >= n;
+    return `${top}<header class="hero"><h2>${done ? "Cube fini !" : "Fais les coups un par un"}</h2>
+      <p>Tiens ton cube <strong>jaune en haut, vert devant toi</strong>, comme pendant la recopie. Touche « Coup suivant », regarde, puis fais pareil.</p></header>
+      <section class="card"><div class="stepcount">${done ? `Bravo ! ${n} coups` : `Coup ${SV.step + 1} sur ${n}`}</div>
+        <div class="vslot"></div>
+        <div class="row"><button class="btn ghost" data-sprev="1" ${SV.step ? "" : "disabled"}>◀ Retour</button><button class="btn" data-snext="1" ${done ? "disabled" : ""}>Coup suivant ▶</button></div>
+        <div class="seq solseq">${SV.sol.map((m, k) => chip(m, k < SV.step ? "filled" : k === SV.step ? "next" : "")).join("")}</div>
+      </section>
+      <button class="btn ghost" data-snew="1">Recopier un autre cube</button>`;
+  }
+  const f = SV.cur, cells = SV.faces[f];
+  const count = x => SV.faces[x].filter(Boolean).length;
+  const tabs = FORDER.map(x => `<button class="ftab ${x === f ? "on" : ""} ${count(x) === 9 ? "full" : ""}" data-sface="${x}"><i style="background:${FHEX[x]}"></i>${FWHERE[x]}<span class="n">${count(x)}/9</span></button>`).join("");
+  const mini = x => `<button class="mface ${x === f ? "on" : ""}" data-sface="${x}" aria-label="Face ${FNAME[x]}">${SV.faces[x].map(c => `<i style="${c ? "background:" + FHEX[c] : ""}"></i>`).join("")}</button>`;
+  const net = `<div class="net"><span></span>${mini("U")}<span></span><span></span>${mini("L")}${mini("F")}${mini("R")}${mini("B")}<span></span>${mini("D")}<span></span><span></span></div>`;
+  const grid = cells.map((c, k) => `<button class="cell ${c ? "" : "empty"}" data-scell="${k}" ${k === 4 ? "disabled" : ""} style="${c ? "background:" + FHEX[c] : ""}" aria-label="Case ${k + 1}"></button>`).join("");
+  const pal = FL.map(x => `<button class="pcol ${x === SV.paint ? "on" : ""}" data-spaint="${x}" style="background:${FHEX[x]}" aria-label="${FNAME[x]}"></button>`).join("");
+  const next = FORDER[(FORDER.indexOf(f) + 1) % 6];
+  return `${top}<header class="hero"><h2>Recopie ton cube</h2><p>Choisis une couleur, puis touche les cases. Le centre ne bouge jamais : il donne le nom de la face.</p></header>
+    <div class="ftabs">${tabs}</div>
+    <section class="card"><p><strong>Face ${FNAME[f]} (${FWHERE[f]}).</strong> ${esc(FTIP[f])}</p>
+      <div class="editor">${grid}</div>
+      <div class="palette">${pal}</div>
+      <div class="row"><button class="btn ghost" data-sface="${next}">Face suivante</button></div>
+    </section>
+    <section class="card"><span class="label">Tout le cube</span>${net}
+      ${SV.err ? `<p class="err">${esc(SV.err)}</p>` : ""}
+      ${SV.thinking ? `<div class="row" style="align-items:center;justify-content:center"><div class="spin"></div><strong>Je réfléchis…</strong></div>` : `<button class="btn good bigbtn" data-ssolve="1">Trouver la solution</button>`}
+      <div class="row"><button class="btn ghost" data-sclear="1">Tout effacer</button><button class="btn ghost" data-sdemo="1">Exemple mélangé</button></div>
+    </section>`;
+}
+async function svSolve() {
+  SV.err = ""; await needCube();
+  const str = svString(), msg = validate(str);
+  if (msg) { SV.err = msg; return render(); }
+  SV.thinking = true; render();
+  try {
+    const sol = await solveState(str);
+    if (!SV) return;
+    SV.thinking = false; SV.sol = sol.trim() ? sol.trim().split(/\s+/) : []; SV.step = 0;
+    RC.reset(); RC.setQuiet(false); RC.apply(SV.sol.slice().reverse().map(sinv)); render();
+  } catch (e) { SV.thinking = false; SV.err = "Le solveur n'a pas réussi à se lancer. Recharge la page et réessaie."; render(); }
+}
+
 /* ---------- Screens ---------- */
 function renderMap() {
   const n = doneCount(), final = levelDone(LEVELS.length - 1) || S.unlockAll;
@@ -626,6 +760,7 @@ function renderMap() {
     <div class="top"><span class="label">Ta progression</span><strong>${n} / ${LEVELS.length} niveaux</strong></div>
     <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${LEVELS.length}" aria-valuenow="${n}"><span style="width:${(n / LEVELS.length) * 100}%"></span></div>
   </section>
+  <button class="node" data-go="solver" style="--c: var(--green)"><span class="num">?</span><span><span class="name">Le solveur</span><br><span class="sub">Bloqué ? Recopie ton cube, je te montre la suite</span></span><span class="pill go">Ouvrir</span></button>
   <nav class="path" aria-label="Niveaux">${nodes}
     <button class="node" data-go="chrono" ${final ? "" : "disabled"} style="--c: var(--blue)">
       <span class="num">★</span><span><span class="name">Mode chrono</span><br><span class="sub">Bats ton record, gagne des badges</span></span>
@@ -739,6 +874,7 @@ function render() {
   if (view.screen === "who") app.innerHTML = renderWho();
   else if (view.screen === "nmap") app.innerHTML = renderNanaMap();
   else if (view.screen === "ngame") app.innerHTML = renderNana();
+  else if (view.screen === "solver") app.innerHTML = renderSolver();
   else if (view.screen === "map") app.innerHTML = renderMap();
   else if (view.screen === "level") app.innerHTML = renderLevel(view.level);
   else if (view.screen === "quiz") app.innerHTML = renderQuiz();
@@ -750,7 +886,9 @@ function render() {
 function go(target) {
   stopTimer();
   if (view.screen === "ngame") { NG = null; RC.reset(); RC.setQuiet(false); RC.setSpeed(900); try { speechSynthesis.cancel(); } catch (e) {} }
-  if (target === "who") view = { screen: "who" };
+  if (view.screen === "solver" && target !== "solver") RC.reset();
+  if (target === "solver") { const from = view.screen === "map" ? "map" : "who"; if (!SV) SV = svNew(); SV.from = from; view = { screen: "solver" }; needCube().catch(() => {}); getWorker(); }
+  else if (target === "who") view = { screen: "who" };
   else if (target === "nana") view = { screen: "nmap" };
   else if (target === "map") view = { screen: "map" };
   else if (target === "chrono") view = { screen: "chrono", scr: scramble() };
@@ -761,6 +899,15 @@ function go(target) {
 document.addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b || b.disabled) return;
   const d = b.dataset;
+  if (d.sface) { SV.cur = d.sface; SV.err = ""; return render(); }
+  if (d.spaint) { SV.paint = d.spaint; return render(); }
+  if (d.scell !== undefined) { const k = Number(d.scell), a = SV.faces[SV.cur]; a[k] = a[k] === SV.paint ? null : SV.paint; SV.err = ""; return render(); }
+  if (d.sclear) { const keep = SV.from; SV = svNew(); SV.from = keep; return render(); }
+  if (d.sdemo) { needCube().then(() => { const str = window.Cube.random().asString(); FL.forEach((f, i) => { SV.faces[f] = str.slice(i * 9, i * 9 + 9).split(""); }); SV.err = ""; render(); }); return; }
+  if (d.ssolve) { svSolve(); return; }
+  if (d.snext) { if (RC.busy || SV.step >= SV.sol.length) return; const m = SV.sol[SV.step]; SV.step++; render(); RC.play([m]); return; }
+  if (d.sprev) { if (RC.busy || !SV.step) return; SV.step--; render(); RC.play([sinv(SV.sol[SV.step])]); return; }
+  if (d.snew) { const keep = SV.from; SV = svNew(); SV.from = keep; RC.reset(); return render(); }
   if (d.nlvl !== undefined) { nStart(Number(d.nlvl)); return; }
   if (d.npick) { nPick(d.npick); return; }
   if (d.nsay) { if (NG) say(NG.win ? "Bravo Nana !" : NG.prompt); return; }
