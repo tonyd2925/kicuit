@@ -262,6 +262,28 @@ button.chip.now { border-color: var(--accent); background: color-mix(in srgb, va
 .twice i.on { background: #14161D; }
 .mcard.start .mc { font-size: 1.2rem; }
 @media (max-width: 380px) { .mcard { grid-template-columns: 72px 1fr; } .mcard svg { width: 72px; height: 72px; } .mcard .mc { font-size: 1.25rem; } }
+/* v28 */
+.pile { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.pcard { position: relative; width: 120px; border: 3px solid var(--pc); border-radius: 16px; background: var(--surface); padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.pcard svg { width: 70px; height: 70px; }
+.pcard b { position: absolute; left: 8px; top: 4px; font-family: var(--f-display); font-size: 1.2rem; }
+.pcard span { font-size: .78rem; font-weight: 800; text-align: center; min-height: 1.2em; color: var(--muted); }
+.pcard.now { box-shadow: 0 0 0 5px color-mix(in srgb, var(--yellow) 60%, transparent); }
+.pcard.now span { color: var(--ink); }
+.pcard.gone { opacity: .35; }
+.detective { text-align: center; font-weight: 800; color: var(--muted); margin: 0; }
+.chunks { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: flex-start; }
+.chunk { display: flex; flex-direction: column; gap: 4px; }
+.chunk > .seq { gap: 6px; }
+.chunk small { font-size: .72rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.tempo { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.tempo button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-weight: 800; font-size: .9rem; }
+.tempo button.ok { border-color: var(--good); color: var(--good); }
+.coach { border: 3px solid var(--accent); border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }
+.splits { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.splits td { padding: 6px 4px; border-bottom: 1px solid var(--line); }
+.splits td:last-child { text-align: right; font-family: var(--f-mono); font-weight: 700; }
+.splits tr.slow td { color: var(--bad); font-weight: 800; }
 .foot { display: flex; justify-content: center; }
 .ver { text-align: center; color: var(--muted); font-size: .8rem; font-weight: 700; margin: 0; font-variant-numeric: tabular-nums; }
 .link { background: none; border: none; color: var(--muted); text-decoration: underline; font-size: .85rem; }
@@ -282,7 +304,7 @@ const MOVES = {
   "B": "Derrière, le haut va à gauche", "B'": "Derrière, le haut va à droite", "B2": "Derrière 2 fois"
 };
 const PAD = ["R","R'","L","L'","U","U'","U2","D","D'","F","F'"];
-const COLORS = ["--white","--yellow","--red","--orange","--green","--blue","--red","--orange","--green"];
+const COLORS = ["--white","--yellow","--red","--orange","--green","--blue","--red","--orange","--green","--yellow"];
 
 const LEVELS = [
   { name: "Connaître son cube", sub: "Les pièces et les mouvements",
@@ -326,8 +348,8 @@ const LEVELS = [
   { name: "La 2e couronne", sub: "L'étage du milieu",
     tips: ["Cherche en haut une arête sans jaune.", "Fais un « T » : sa couleur de devant au-dessus du même centre.", "Regarde où va sa couleur du dessus : à droite ou à gauche."],
     formulas: [
-      { name: "Vers la droite", seq: ["U","R","U'","R'","U'","F'","U","F"] },
-      { name: "Vers la gauche", seq: ["U'","L'","U","L","U","F","U'","F'"] }
+      { name: "Vers la droite", seq: ["U","R","U'","R'","U'","F'","U","F"], chunks: [[4, "danse à droite"], [4, "danse avec le devant"]] },
+      { name: "Vers la gauche", seq: ["U'","L'","U","L","U","F","U'","F'"], chunks: [[4, "danse à gauche"], [4, "danse avec le devant"]] }
     ],
     quiz: [
       { q: "Quelle arête cherches-tu en haut ?", a: ["Une arête avec du jaune", "Une arête sans jaune", "Un coin"], r: 1 },
@@ -337,7 +359,7 @@ const LEVELS = [
     challenge: "Mélange, puis fais les deux premiers étages complets.", scramble: true },
   { name: "La croix jaune", sub: "Point, L, ligne, croix",
     tips: ["Point : formule une fois.", "L : place-le à 9 h et midi, formule une fois.", "Ligne : mets-la à l'horizontale, formule une fois."],
-    formulas: [{ name: "La croix jaune", seq: ["F","R","U","R'","U'","F'"] }],
+    formulas: [{ name: "La croix jaune", seq: ["F","R","U","R'","U'","F'"], chunks: [[1, "ouvre"], [4, "petite danse"], [1, "ferme"]] }],
     quiz: [
       { q: "Tu vois juste un point jaune. Que fais-tu ?", a: ["La formule une fois", "Rien", "La petite danse"], r: 0 },
       { q: "Tu vois un L. Où le places-tu ?", a: ["En bas à droite", "En haut à gauche (9 h et midi)", "Peu importe"], r: 1 },
@@ -346,7 +368,7 @@ const LEVELS = [
     challenge: "Mélange, fais les deux premiers étages, puis la croix jaune.", scramble: true },
   { name: "Arêtes jaunes placées", sub: "Chaque arête sur son centre",
     tips: ["Tourne le haut pour avoir 2 arêtes bien placées.", "Côte à côte : mets-les derrière et à droite.", "En face l'une de l'autre : formule une fois, puis recommence."],
-    formulas: [{ name: "Les arêtes jaunes", seq: ["R","U","R'","U","R","U2","R'","U"] }],
+    formulas: [{ name: "Les arêtes jaunes", seq: ["R","U","R'","U","R","U2","R'","U"], chunks: [[4, "monte, haut, descend, haut"], [3, "monte, haut 2 fois, descend"], [1, "haut"]] }],
     quiz: [
       { q: "Deux arêtes bonnes, côte à côte. Où les mets-tu ?", a: ["Devant et à gauche", "Derrière et à droite", "En bas"], r: 1 },
       { q: "Les 2 bonnes sont en face l'une de l'autre. Tu…", a: ["fais la formule une fois puis recommences", "abandonnes", "fais la petite danse"], r: 0 }
@@ -354,7 +376,7 @@ const LEVELS = [
     challenge: "Mélange, va jusqu'à la croix jaune, puis place les 4 arêtes jaunes sur leurs centres.", scramble: true },
   { name: "Coins jaunes placés", sub: "Chaque coin dans son angle",
     tips: ["Cherche un coin bien placé (ses 3 couleurs touchent les bons centres).", "Mets-le devant à droite en haut.", "Formule jusqu'à ce que les 4 soient placés."],
-    formulas: [{ name: "Les coins jaunes", seq: ["U","R","U'","L'","U","R'","U'","L"] }],
+    formulas: [{ name: "Les coins jaunes", seq: ["U","R","U'","L'","U","R'","U'","L"], chunks: [[4, "première moitié"], [4, "la même, à l'envers"]] }],
     quiz: [
       { q: "Le coin bien placé, tu le mets…", a: ["devant à droite en haut", "derrière à gauche", "en bas"], r: 0 },
       { q: "Aucun coin n'est bien placé. Tu…", a: ["recommences tout", "fais la formule une fois, il y en aura un", "tournes le cube"], r: 1 },
@@ -369,7 +391,16 @@ const LEVELS = [
       { q: "Pour passer au coin suivant, tu tournes…", a: ["tout le cube", "seulement le haut", "le bas"], r: 1 },
       { q: "Combien de fois R' D' R D pour un coin ?", a: ["2 ou 4 fois", "1 fois", "10 fois"], r: 0 }
     ],
-    challenge: "Mélange et résous le cube en entier, sans regarder le tuto.", scramble: true }
+    challenge: "Mélange et résous le cube en entier, sans regarder le tuto.", scramble: true },
+  { name: "Croix directe", sub: "Bonus : la croix blanche sans marguerite",
+    tips: ["Blanc en bas dès le départ : tu ne fais plus de marguerite.", "Prends une arête blanche, regarde son autre couleur, et pense à son chemin jusqu'à sa place en bas, entre les deux bons centres.", "Pas de formule : c'est de la réflexion. Prévois chaque arête avant de tourner, puis accélère.", "Une arête à l'envers en bas ? Sors-la en haut, puis replace-la dans le bon sens."],
+    formulas: [],
+    quiz: [
+      { q: "Dans la croix directe, où est le blanc ?", a: ["En haut", "En bas, dès le départ", "Devant"], r: 1 },
+      { q: "Avant de tourner, tu…", a: ["prévois le chemin de l'arête", "tournes au hasard", "fais la petite danse"], r: 0 },
+      { q: "Une arête blanche est en bas mais à l'envers. Tu…", a: ["la laisses", "la sors en haut puis la replaces", "démontes le cube"], r: 1 }
+    ],
+    challenge: "Mélange, puis fais la croix blanche directement en bas, sans marguerite, en moins d'une minute.", scramble: true, goal: 60000 }
 ];
 
 const KEY = "cube-rafael-v1";
@@ -377,9 +408,21 @@ let S = load();
 let view = { screen: "who" };
 let quiz = null, drill = null, timer = null;
 
-function blank() { return { levels: LEVELS.map(() => ({ quiz: false, drills: {}, streak: 0, best: null })), unlockAll: false, solves: [] }; }
+function blankLevel() { return { quiz: false, drills: {}, streak: 0, best: null, recog: false, tempo: {} }; }
+function blank() { return { levels: LEVELS.map(blankLevel), unlockAll: false, solves: [], splits: null, rev: null }; }
 function load() {
-  try { const raw = localStorage.getItem(KEY); if (raw) { const d = JSON.parse(raw); if (d && d.levels && d.levels.length === LEVELS.length) return d; } } catch (e) {}
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) {
+      const d = JSON.parse(raw);
+      if (d && d.levels && d.levels.length <= LEVELS.length) {
+        while (d.levels.length < LEVELS.length) d.levels.push(blankLevel());
+        d.levels.forEach(l => { if (!l.tempo) l.tempo = {}; if (l.recog == null) l.recog = false; });
+        if (!d.solves) d.solves = [];
+        return d;
+      }
+    }
+  } catch (e) {}
   return blank();
 }
 function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} }
@@ -509,9 +552,14 @@ const RC = (() => {
 
 function viewerCard(i) {
   const L = LEVELS[i];
+  const st = S.levels[i];
   const forms = L.formulas.map((f, k) => `<div class="formrow" data-f="${k}"><strong>${esc(f.name)}</strong>
-    <div class="seq">${f.seq.map(m => `<button class="chip" data-one="${m}"><span class="m">${esc(m)}</span><span class="n">${esc(MOVES[m])}</span></button>`).join("")}</div>
-    <button class="btn" data-play="${k}">▶ Voir ${L.formulas.length > 1 ? "cette formule" : "la formule"}</button></div>`).join("");
+    ${chunked(f, m => `<button class="chip" data-one="${m}"><span class="m">${esc(m)}</span><span class="n">${esc(MOVES[m])}</span></button>`)}
+    <button class="btn" data-play="${k}">▶ Voir ${L.formulas.length > 1 ? "cette formule" : "la formule"}</button>
+    <span class="label">Fais avec moi, sur ton cube</span>
+    <div class="tempo">${TEMPOS.map(([key, lbl, ms]) => `<button class="${(st.tempo[f.name] || []).includes(key) ? "ok" : ""}" data-tempo="${k}:${key}:${ms}">${lbl}${(st.tempo[f.name] || []).includes(key) ? " ✓" : ""}</button>`).join("")}</div>
+    ${view.tempoAsk && view.tempoAsk.f === k ? `<button class="btn good" data-tempook="${k}:${view.tempoAsk.key}">✔ Je l'ai faite en même temps (${esc(view.tempoAsk.key)})</button>` : ""}
+    </div>`).join("");
   const pad = i === 0 ? `<div><span class="label">Touche un mouvement pour le voir</span>
     <div class="pad" style="margin-top:8px">${PAD.map(m => `<button class="key" data-one="${m}"><span class="m">${m}</span><span class="n">${MOVES[m]}</span></button>`).join("")}</div></div>` : "";
   return `<section class="card">
@@ -526,30 +574,42 @@ function viewerCard(i) {
 
 /* ---------- Nana ---------- */
 const NKEY = "cube-nana-v1";
+/* stages : [côtés, nombre de dessins, "watch" (on voit le mélange) | "hide" (mode détective), pile ?] */
 const NLV = [
   { t: "Les couleurs", c: "--red", need: 6, k: "col" },
   { t: "Ça tourne !", c: "--orange", need: 5, k: "see" },
-  { t: "Répare le cube", c: "--green", need: 5, k: "fix", n: 1, stages: [[["R", "U"], 4], [["R", "U", "L", "F"], 4]] },
-  { t: "Répare avec les couleurs", c: "--blue", need: 5, k: "fix", n: 1, stages: [[["R", "U", "L", "F"], 4], [["R", "U", "L", "F", "D"], 6]] },
-  { t: "Deux tours", c: "--yellow", need: 6, k: "fix", n: 2, stages: [[["R", "U"], 4], [["R", "U", "L"], 4], [["R", "U", "L", "F"], 6]] },
-  { t: "Deux fois pareil", c: "--red", need: 4, k: "fix", n: 2, same: true, stages: [[["R", "U"], 4], [["R", "U", "L", "F"], 4]] },
-  { t: "Deux tours partout", c: "--orange", need: 5, k: "fix", n: 2, stages: [[["R", "U", "L", "F"], 4], [["R", "U", "L", "F", "D"], 6]] },
-  { t: "Trois tours", c: "--green", need: 4, k: "fix", n: 3, stages: [[["R", "U"], 4], [["R", "U", "F"], 6]] },
-  { t: "Le tour de magie", c: "--blue", need: 6, k: "dance" }
+  { t: "Répare le cube", c: "--green", need: 5, k: "fix", n: 1, stages: [[["R", "U"], 4, "watch"], [["R", "U", "L", "F"], 4, "hide"]] },
+  { t: "Répare avec les couleurs", c: "--blue", need: 5, k: "fix", n: 1, stages: [[["R", "U", "L", "F"], 4, "watch"], [["R", "U", "L", "F", "D"], 6, "hide"]] },
+  { t: "Sur ton vrai cube", c: "--yellow", need: 5, k: "real" },
+  { t: "Rembobine", c: "--red", need: 4, k: "fix", n: 2, stages: [[["R", "U"], 4, "watch", true]] },
+  { t: "Deux tours", c: "--orange", need: 6, k: "fix", n: 2, stages: [[["R", "U"], 4, "watch"], [["R", "U", "L"], 4, "watch"], [["R", "U", "L", "F"], 6, "hide"]] },
+  { t: "Deux fois pareil", c: "--green", need: 4, k: "fix", n: 2, same: true, stages: [[["R", "U"], 4, "watch"], [["R", "U", "L", "F"], 4, "hide"]] },
+  { t: "Deux tours partout", c: "--blue", need: 5, k: "fix", n: 2, stages: [[["R", "U", "L", "F"], 4, "watch"], [["R", "U", "L", "F", "D"], 6, "hide"]] },
+  { t: "Trois tours", c: "--yellow", need: 4, k: "fix", n: 3, stages: [[["R", "U"], 4, "watch", true], [["R", "U", "F"], 6, "watch"]] },
+  { t: "La petite danse", c: "--red", need: 1, k: "dance", dances: 1 },
+  { t: "Le tour de magie", c: "--orange", need: 6, k: "dance", dances: 6 }
 ];
 const NCOL = { jaune: "#FFE234", blanc: "#FFFFFF", vert: "#189A55", bleu: "#2259E0", orange: "#FF5F00", rouge: "#E0363A" };
 const DANCE = ["R", "U", "R'", "U'"];
+const dayKey = () => { try { return new Date().toLocaleDateString("fr-CA"); } catch (e) { return new Date().toISOString().slice(0, 10); } };
 let NS = (() => {
+  const blankN = () => ({ done: NLV.map(() => false), unlockAll: false, rev: null });
   try {
     const d = JSON.parse(localStorage.getItem(NKEY));
-    if (d && d.done && d.done.length === NLV.length) return d;
-    if (d && d.done && d.done.length === 5) { const o = d.done; return { done: [o[0], o[1], o[2], false, o[3], false, false, false, o[4]], unlockAll: !!d.unlockAll }; }
-  } catch (e) {}
-  return { done: NLV.map(() => false), unlockAll: false };
+    if (!d || !d.done) return blankN();
+    const o = d.done, f = false;
+    let done = o;
+    if (o.length === 5) done = [o[0], o[1], o[2], f, f, f, o[3], f, f, f, o[4], o[4]];
+    else if (o.length === 9) done = [o[0], o[1], o[2], o[3], f, f, o[4], o[5], o[6], o[7], o[8], o[8]];
+    if (done.length !== NLV.length) return blankN();
+    return { done, unlockAll: !!d.unlockAll, rev: d.rev || null };
+  } catch (e) { return blankN(); }
 })();
 const nsave = () => { try { localStorage.setItem(NKEY, JSON.stringify(NS)); } catch (e) {} };
-const nopen = i => NS.unlockAll || i === 0 || NS.done[i - 1];
+const nopen = i => NS.unlockAll || i === 0 || NS.done[i - 1] || NS.done[i];
+const nRevLevels = () => NLV.map((L, i) => L.k === "fix" && NS.done[i] ? i : -1).filter(i => i >= 0);
 let NG = null;
+const NL = () => NG.L || NLV[NG.level];
 const rand = a => a[Math.floor(Math.random() * a.length)];
 const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
 const inv = m => m.endsWith("'") ? m[0] : m + "'";
@@ -570,12 +630,18 @@ function renderWho() {
     <button class="wcard" data-go="nana"><span class="av" style="background:#ff7fa8">N</span><span class="wn">Nana</span><span class="wm">5 ans · découverte</span></button>
     <button class="wcard" data-go="map"><span class="av" style="background:var(--blue)">R</span><span class="wn">Raf</span><span class="wm">10 ans · résoudre le cube</span></button>
   </div>
-  <button class="node" data-go="solver" style="--c: var(--green)"><span class="num">?</span><span><span class="name">Le solveur</span><br><span class="sub">Recopie ton cube mélangé, je te montre comment le finir</span></span><span class="pill go">Ouvrir</span></button>
+  <button class="node" data-go="solver" style="--c: var(--green)"><span class="num">?</span><span><span class="name">Le solveur</span><br><span class="sub">Recopie ton cube mélangé : un indice ou toute la solution</span></span><span class="pill go">Ouvrir</span></button>
   <p class="ver">${esc(window.KICUIT_VERSION || "")}</p>`;
 }
+function revBadge(rev) {
+  const doneToday = rev && rev.date === dayKey();
+  return doneToday ? `<span class="pill done">Faite · ${rev.days} jour${rev.days > 1 ? "s" : ""}</span>` : `<span class="pill go">À faire</span>`;
+}
 function renderNanaMap() {
+  const canRev = nRevLevels().length > 0;
   return `<div class="top"><button class="back" data-go="who">← Qui joue ?</button><span class="label">Nana</span></div>
   <header class="hero"><h1>Le cube de Nana</h1></header>
+  ${canRev ? `<button class="ntile" data-nrev="1" style="--c: var(--yellow)"><span class="big" style="color:#1A1E2C">☀️</span><span class="nt">La révision du jour</span>${revBadge(NS.rev)}</button>` : ""}
   <div class="ntiles">${NLV.map((L, i) => `<button class="ntile" data-nlvl="${i}" ${nopen(i) ? "" : "disabled"} style="--c: var(${L.c})">
     <span class="big" ${L.c === "--yellow" ? 'style="color:#1A1E2C"' : ""}>${i + 1}</span><span class="nt">${esc(L.t)}</span>${starSVG(NS.done[i])}</button>`).join("")}</div>
   <div class="foot"><button class="link" id="nunlock">${NS.unlockAll ? "Remettre les verrous" : "Parent : tout débloquer"}</button></div>`;
@@ -584,35 +650,62 @@ function moveCard(m, line2) {
   const i = mInfo(m);
   return `<div class="mcard" style="border-color:${i.hex}">${faceIcon(m)}<div><div class="mc"><span class="sw" style="background:${i.hex}"></span>${esc(art(i.col))}</div><div class="md">${esc(i.dir)}</div>${line2 ? `<div class="md">${line2}</div>` : ""}</div></div>`;
 }
+function pileHTML() {
+  // ce qui s'est passé, dans l'ordre ; on défait en partant du dernier
+  const n = NG.seq.length, undone = NG.taps.length, next = n - 1 - undone;
+  return `<div class="pile">${NG.seq.map((m, k) => {
+    const i = mInfo(m), gone = k > next, now = k === next;
+    return `<div class="pcard ${gone ? "gone" : ""} ${now ? "now" : ""}" style="--pc:${i.hex}"><b>${k + 1}</b>${faceIcon(m)}<span>${now ? "à défaire en premier" : gone ? "défait ✓" : ""}</span></div>`;
+  }).join("")}</div>`;
+}
 function renderNana() {
-  const L = NLV[NG.level];
+  const L = NL();
   const top = `<div class="top"><button class="back" data-go="nana">← Retour</button><button class="say" data-nsay="1" aria-label="Répéter">🔊</button></div>`;
-  if (NG.win) return `${top}<section class="card win">${starSVG(true)}<h2>Bravo Nana !</h2><p class="nprompt">Tu as gagné une étoile.</p>
+  if (NG.win) {
+    const isRev = !!NG.L;
+    return `${top}<section class="card win">${isRev ? `<div class="count">☀️</div>` : starSVG(true)}<h2>Bravo Nana !</h2><p class="nprompt">${isRev ? `Révision faite ! ${NS.rev ? NS.rev.days : 1} jour${NS.rev && NS.rev.days > 1 ? "s" : ""} de révision.` : "Tu as gagné une étoile."}</p>
     <button class="btn bigbtn" data-go="nana">Retour aux jeux</button></section>`;
+  }
   const dots = `<div class="dots">${Array.from({ length: L.need }, (_, k) => `<i class="${k < NG.score ? "on" : ""}"></i>`).join("")}</div>`;
-  let opts = "", extra = "";
+  let opts = "", extra = "", cube = true;
   if (L.k === "col") opts = `<div class="colors">${NG.opts.map(c => `<button class="cbtn" data-npick="${c}" aria-label="${c}" style="background:${NCOL[c]}"></button>`).join("")}</div>`;
   else if (L.k === "see" || L.k === "fix") {
     const want = L.k === "see" ? NG.ans : NG.sol && NG.sol[NG.taps.length];
     opts = `<div class="icons">${NG.opts.map(m => `<button class="ibtn ${(NG.hint && m === want) || (NG.hintFace && m[0] === NG.hintFace) ? "hint" : ""}" data-npick="${m}" ${NG.ready ? "" : "disabled"} aria-label="${esc(art(mInfo(m).col) + ", " + mInfo(m).dir)}">${faceIcon(m)}</button>`).join("")}</div>`;
-    if (L.k === "see") opts += `<button class="btn ghost bigbtn" data-nreplay="1">🔁 Revoir</button>`;
-    if (L.k === "fix" && NG.sol && NG.sol.length > 1) {
-      const left = NG.sol.length - NG.taps.length;
-      extra = `<p class="nprompt" style="font-size:1.2rem">${left > 1 ? `Encore ${left} tours` : "Encore 1 tour"} <span class="dots" style="display:inline-flex;vertical-align:middle">${NG.sol.map((_, k) => `<i class="${k < NG.taps.length ? "on" : ""}"></i>`).join("")}</span></p>`;
+    if (L.k === "see") opts += `<button class="btn ghost bigbtn" data-nreplay="1" ${NG.ready ? "" : "disabled"}>🔁 Revoir</button>`;
+    if (L.k === "fix") {
+      if (NG.pile) extra = pileHTML();
+      else if (NG.sol && NG.sol.length > 1) {
+        const left = NG.sol.length - NG.taps.length;
+        extra = `<p class="nprompt" style="font-size:1.2rem">${left > 1 ? `Encore ${left} tours` : "Encore 1 tour"} <span class="dots" style="display:inline-flex;vertical-align:middle">${NG.sol.map((_, k) => `<i class="${k < NG.taps.length ? "on" : ""}"></i>`).join("")}</span></p>`;
+      }
+      if (NG.mode === "watch") opts += `<button class="btn ghost bigbtn" data-nrewatch="1" ${NG.ready && !NG.taps.length ? "" : "disabled"}>🔁 Revoir le mélange</button>`;
+      else extra = `<p class="detective">🔍 Mode détective : le cube a été mélangé en cachette.</p>` + extra;
     }
+  } else if (L.k === "real") {
+    const R = NG.real;
+    if (R.kind === "copy") extra = moveCard(R.phase === "undo" ? inv(R.m) : R.m, R.phase === "do" ? "Fais-le sur ton vrai cube" : "Le contraire, pour réparer");
+    else { extra = `<div class="mcard"><div class="count" style="font-size:3rem">👨‍👧</div><div><div class="mc">Avec papa ou maman</div><div class="md">Un grand tourne UN côté de ton cube. Toi, tu le répares.</div></div></div>`; cube = false; }
+    opts = R.kind === "copy"
+      ? (R.phase === "do"
+        ? `<button class="btn good bigbtn" data-nreal="did">✔ C'est fait</button><button class="btn ghost bigbtn" data-nreal="again">🔁 Revoir</button>`
+        : `<button class="btn good bigbtn" data-nreal="fixed">✔ Mon cube est réparé</button><button class="btn ghost bigbtn" data-nreal="show">Montre-moi le contraire</button>`)
+      : `<button class="btn good bigbtn" data-nreal="fixed">✔ Mon cube est réparé</button>`;
+    if (NG.busyReal) opts = opts.replace(/<button /g, "<button disabled ");
   } else {
-    const shown = NG.dstep > 0 ? DANCE[NG.dstep - 1] : null;
-    extra = `<div class="count">Danse ${Math.min(NG.dances + 1, 6)} / 6</div>
+    const total = L.dances, shown = NG.dstep > 0 ? DANCE[NG.dstep - 1] : null;
+    extra = `<div class="count">Danse ${Math.min(NG.dances + 1, total)} / ${total}</div>
       <div class="dots">${DANCE.map((_, k) => `<i class="${k < NG.dstep ? "on" : ""}"></i>`).join("")}</div>
       ${shown ? moveCard(shown, "À toi, fais pareil !") : moveCard(DANCE[0], "Le premier mouvement")}`;
     opts = `<button class="btn bigbtn" data-ndance="1" ${NG.dancing ? "disabled" : ""}>${NG.dstep === 0 ? (NG.dances ? "▶ Danse suivante" : "▶ Montre-moi") : "▶ Mouvement suivant"}</button>
       ${shown ? `<button class="btn ghost bigbtn" data-nagain="1" ${NG.dancing ? "disabled" : ""}>🔁 Revoir</button>` : ""}`;
   }
-  return `${top}<p class="nprompt">${esc(NG.prompt)}</p>${dots}${extra}<section class="card"><div class="vslot"></div></section>${opts}`;
+  return `${top}<p class="nprompt">${esc(NG.prompt)}</p>${dots}${extra}${cube ? `<section class="card"><div class="vslot"></div></section>` : ""}${opts}`;
 }
 
-function nScramble(L, score) {
-  const [faces, nopt] = L.stages[Math.min(L.stages.length - 1, Math.floor(score * L.stages.length / L.need))];
+function nStage(L, score) { return L.stages[Math.min(L.stages.length - 1, Math.floor(score * L.stages.length / L.need))]; }
+function nScramble(L, stage) {
+  const [faces, nopt] = stage;
   const moves = []; faces.forEach(f => moves.push(f, f + "'"));
   let seq;
   if (L.same) { const m = rand(moves); seq = [m, m]; }
@@ -626,8 +719,20 @@ function nScramble(L, score) {
   return { seq, sol, opts: shuffle(opts) };
 }
 function nGuide() { RC.setQuiet(true); RC.setSpeed(1400); RC.setGuide(650, true); }
+async function nWatch(g, r) {
+  // le cube est remis à neuf, puis Nana regarde le mélange lentement
+  NG.ready = false; RC.reset(); RC.setQuiet(true); RC.setSpeed(1700); RC.setGuide(900, true);
+  render();
+  await sleep(700); if (NG !== g || NG.r !== r) return;
+  await RC.play(NG.seq); if (NG !== g || NG.r !== r) return;
+  nGuide();
+  const L = NL();
+  NG.ready = true;
+  NG.prompt = L.n === 1 && !L.same ? "À toi : répare-le !" : "À toi : rembobine, en commençant par le dernier !";
+  render(); say(NG.prompt);
+}
 async function nNext() {
-  const L = NLV[NG.level]; NG.hint = false; NG.hintFace = null; NG.fails = 0; NG.taps = [];
+  let L = NL(); NG.hint = false; NG.hintFace = null; NG.fails = 0; NG.taps = []; NG.pile = false;
   const g = NG, r = (NG.r = (NG.r || 0) + 1); NG.ready = L.k !== "see";
   RC.reset(); nGuide();
   if (L.k === "col") {
@@ -641,26 +746,57 @@ async function nNext() {
     if (NG !== g || NG.r !== r) return;
     NG.ready = true; NG.prompt = "Touche le bon dessin."; render(); say(NG.prompt);
   } else if (L.k === "fix") {
-    const S = nScramble(L, NG.score); RC.apply(S.seq); NG.sol = S.sol; NG.opts = S.opts;
-    NG.prompt = L.same ? "Le même côté a tourné deux fois ! Répare-le." : L.n === 1 ? "Oh non, il est mélangé ! Répare-le." : L.n === 2 ? "Deux tours à réparer !" : "Trois tours ! Tu es prête ?";
-    render(); say(NG.prompt);
+    let src = L, stage;
+    if (L.mix) { src = NLV[rand(L.mix)]; stage = src.stages[src.stages.length - 1]; NG.src = src; }
+    else stage = nStage(L, NG.score);
+    const S = nScramble(src, stage);
+    NG.seq = S.seq; NG.sol = S.sol; NG.opts = S.opts; NG.mode = stage[2]; NG.pile = !!stage[3];
+    if (NG.mode === "watch") {
+      NG.prompt = "Regarde bien : je mélange !"; say(NG.prompt);
+      await nWatch(g, r);
+    } else {
+      RC.apply(S.seq);
+      NG.prompt = src.same ? "Le même côté a tourné deux fois. Retrouve lequel !" : src.n === 1 ? "Quelle couleur a bougé ? Répare-le !" : `${src.n === 2 ? "Deux" : "Trois"} tours en cachette. Mène l'enquête !`;
+      render(); say(NG.prompt);
+    }
+  } else if (L.k === "real") {
+    const copy = NG.score < 3, pool = NG.score < 1 ? ["R", "U"] : ["R", "R'", "U", "U'", "L", "F"];
+    NG.real = copy ? { kind: "copy", m: rand(pool), phase: "do" } : { kind: "papa" };
+    if (copy) { NG.prompt = "Regarde, puis fais pareil sur ton vrai cube."; await nRealShow(g, r, NG.real.m); }
+    else { NG.prompt = "Demande à papa ou maman de tourner un côté de ton cube. Puis répare-le !"; render(); say(NG.prompt); }
   } else {
     NG.dances = 0; NG.dstep = 0; NG.dancing = false;
-    NG.prompt = "Prends ton cube tout neuf : jaune en haut, vert devant toi. On danse doucement, un mouvement à la fois.";
+    NG.prompt = L.dances === 1 ? "Prends ton cube tout neuf : jaune en haut, vert devant toi. On apprend la petite danse, un mouvement à la fois." : "Six petites danses de suite, et ton cube redevient tout neuf. C'est magique !";
     render(); say(NG.prompt);
   }
 }
+async function nRealShow(g, r, m) {
+  NG.busyReal = true; RC.reset(); RC.setQuiet(true); RC.setSpeed(2200); RC.setGuide(1200, true); render(); sayMove(m);
+  await sleep(600); if (NG !== g || NG.r !== r) return;
+  await RC.play([m]); if (NG !== g || NG.r !== r) return;
+  NG.busyReal = false; render();
+}
 function nStart(i) { NG = { level: i, score: 0, win: false }; view = { screen: "ngame" }; nNext(); }
-async function nGood() {
-  NG.score++; NG.hint = false;
-  if (NG.score >= NLV[NG.level].need) { NS.done[NG.level] = true; nsave(); NG.win = true; render(); say("Bravo Nana ! Tu as gagné une étoile !"); return; }
-  NG.prompt = rand(["Bravo !", "Super !", "Génial !", "Trop fort !", "C'est réparé !"]); render(); say(NG.prompt);
+function nStartRev() {
+  const mix = nRevLevels(); if (!mix.length) return;
+  NG = { level: -1, L: { t: "La révision du jour", need: 3, k: "fix", mix, stages: [] }, score: 0, win: false };
+  view = { screen: "ngame" }; nNext();
+}
+async function nGood(praise) {
+  NG.score++; NG.hint = false; NG.hintFace = null;
+  const L = NL();
+  if (NG.score >= L.need) {
+    NG.win = true;
+    if (NG.L) { const t = dayKey(); if (!NS.rev || NS.rev.date !== t) NS.rev = { date: t, days: (NS.rev ? NS.rev.days : 0) + 1 }; nsave(); render(); say("Bravo Nana ! La révision du jour est faite !"); return; }
+    NS.done[NG.level] = true; nsave(); render(); say("Bravo Nana ! Tu as gagné une étoile !"); return;
+  }
+  NG.prompt = praise || rand(["Bravo !", "Super !", "Génial !", "Trop fort !"]); render(); say(NG.prompt);
   const g = NG, r = NG.r; NG.ready = false;
-  await sleep(1300); if (view.screen === "ngame" && NG === g && NG.r === r && !NG.win) nNext();
+  await sleep(praise ? 2300 : 1300); if (view.screen === "ngame" && NG === g && NG.r === r && !NG.win) nNext();
 }
 async function nPick(m) {
   if (!NG || RC.busy || NG.win || !NG.ready) return;
-  const L = NLV[NG.level];
+  const L = NL();
   if (L.k === "col") {
     if (m === NG.target) return nGood();
     say(`Ça, c'est ${art(m)}. Cherche ${art(NG.target)} !`); return;
@@ -677,7 +813,10 @@ async function nPick(m) {
   NG.taps.push(m); render();
   await RC.play([m]);
   if (NG !== g || NG.r !== r) return;
-  if (RC.solved()) return nGood();
+  if (RC.solved()) {
+    const c = mInfo(NG.seq[0]);
+    return nGood(NG.sol.length === 1 ? `Tu as fait le contraire : ${art(c.col)} est revenu à sa place !` : "Tu as rembobiné, le dernier en premier. Bravo !");
+  }
   if (NG.taps.length >= NG.sol.length) {
     NG.fails++;
     NG.prompt = "Oups ! On revient en arrière."; render(); say(NG.prompt);
@@ -685,13 +824,34 @@ async function nPick(m) {
     if (NG !== g || NG.r !== r) return;
     NG.taps = [];
     const c = mInfo(NG.sol[0]);
-    if (NG.fails === 1) { NG.prompt = "Pas grave ! Regarde bien le cube et essaie encore."; render(); say(NG.prompt); }
-    else if (NG.fails === 2) { NG.hintFace = NG.sol[0][0]; NG.prompt = `Petit indice : commence par ${art(c.col)}.`; render(); say(NG.prompt); }
+    if (NG.fails === 1) { NG.prompt = NG.mode === "watch" ? "Pas grave ! Tu peux revoir le mélange, puis réessayer." : "Pas grave ! Regarde bien le cube et essaie encore."; render(); say(NG.prompt); }
+    else if (NG.fails === 2) { NG.hintFace = NG.sol[0][0]; NG.prompt = `Petit indice : commence par ${art(c.col)}, dans l'autre sens.`; render(); say(NG.prompt); }
     else { NG.hintFace = null; NG.hint = true; NG.prompt = "Essaie le dessin qui brille."; render(); sayMove(NG.sol[0], "Essaie le dessin qui brille : "); }
   } else { if (NG.hintFace) NG.hintFace = NG.sol[NG.taps.length][0]; render(); }
 }
+async function nRewatch() {
+  if (!NG || !NG.ready || NG.taps.length || RC.busy) return;
+  const g = NG, r = NG.r;
+  NG.prompt = "Regarde encore le mélange."; say(NG.prompt);
+  await nWatch(g, r);
+}
+async function nReal(act) {
+  if (!NG || NG.busyReal || NG.win) return;
+  const R = NG.real, g = NG, r = NG.r;
+  if (act === "again") { NG.prompt = "Regarde encore."; return nRealShow(g, r, R.m); }
+  if (act === "did") { R.phase = "undo"; NG.prompt = "Et maintenant, fais le contraire pour réparer ton cube !"; render(); say(NG.prompt); return; }
+  if (act === "show") {
+    NG.prompt = "Le contraire, c'est la même couleur, dans l'autre sens.";
+    NG.busyReal = true; RC.reset(); RC.apply([R.m]); render(); sayMove(inv(R.m), "Le contraire : ");
+    await sleep(700); if (NG !== g || NG.r !== r) return;
+    await RC.play([inv(R.m)]); if (NG !== g || NG.r !== r) return;
+    NG.busyReal = false; render(); return;
+  }
+  if (act === "fixed") return nGood(R.kind === "copy" ? "Bravo ! Tu as fait le contraire sur ton vrai cube !" : "Super ! Tu as réparé le cube de papa ou maman !");
+}
 async function nDance(again) {
   if (RC.busy || NG.win || NG.dancing) return;
+  const L = NL();
   NG.dancing = true;
   let m;
   if (again) { m = DANCE[NG.dstep - 1]; RC.apply([inv(m)]); }
@@ -706,8 +866,11 @@ async function nDance(again) {
   NG.dancing = false;
   if (NG.dstep >= 4) {
     NG.dances++; NG.dstep = 0; NG.score = NG.dances;
-    if (NG.dances >= 6) { NS.done[NG.level] = true; nsave(); NG.win = true; render(); say("Magie ! Ton cube est redevenu tout neuf. Bravo Nana !"); return; }
-    NG.prompt = `Une danse de finie ! Plus que ${6 - NG.dances}.`; render(); say(NG.prompt); return;
+    if (NG.dances >= L.dances) {
+      NS.done[NG.level] = true; nsave(); NG.win = true; render();
+      say(L.dances === 1 ? "Bravo Nana ! Tu connais la petite danse !" : "Magie ! Ton cube est redevenu tout neuf. Bravo Nana !"); return;
+    }
+    NG.prompt = `Une danse de finie ! Plus que ${L.dances - NG.dances}.`; render(); say(NG.prompt); return;
   }
   NG.prompt = "À toi, fais pareil sur ton cube !"; render();
 }
@@ -865,14 +1028,15 @@ function renderSolver() {
     </section>
     <section class="card"><span class="label">Tout le cube</span>${net}
       ${SV.err ? `<p class="err">${esc(SV.err)}</p>` : ""}
-      ${SV.thinking ? `<div class="row" style="align-items:center;justify-content:center"><div class="spin"></div><strong>Je réfléchis…</strong></div>` : `<button class="btn good bigbtn" data-ssolve="1">Trouver la solution</button>`}
+      ${SV.coach != null ? renderCoach() : SV.thinking ? `<div class="row" style="align-items:center;justify-content:center"><div class="spin"></div><strong>Je réfléchis…</strong></div>` : `<div class="row"><button class="btn good bigbtn" data-ssolve="1">💡 Un indice</button><button class="btn ghost bigbtn" data-sfull="1">Toute la solution</button></div>`}
       <div class="row"><button class="btn ${SV.sure ? "bad" : "ghost"}" data-sclear="1">${SV.sure ? "Sûr ? Touche encore" : "Tout effacer"}</button><button class="btn ghost" data-sdemo="1">Exemple mélangé</button></div>
     </section>`;
 }
-async function svSolve() {
+async function svSolve(full) {
   SV.err = ""; await needCube();
   const str = svString(), msg = validate(str);
   if (msg) { SV.err = msg; return render(); }
+  if (!full) { try { SV.coach = coachStage(str); } catch (e) { SV.coach = null; } if (SV.coach != null) return render(); }
   SV.thinking = true; render();
   try {
     const sol = await solveState(str);
@@ -882,9 +1046,75 @@ async function svSolve() {
   } catch (e) { SV.thinking = false; SV.err = "Le solveur n'a pas réussi à se lancer. Recharge la page et réessaie."; render(); }
 }
 
+/* ---------- Raf v28 helpers ---------- */
+function chunked(f, cell) {
+  if (!f.chunks) return `<div class="seq">${f.seq.map((m, k) => cell(m, k)).join("")}</div>`;
+  let k = 0;
+  return `<div class="chunks">${f.chunks.map(([len, label]) => { const part = f.seq.slice(k, k + len).map((m, j) => cell(m, k + j)).join(""); k += len; return `<div class="chunk"><small>${esc(label)}</small><div class="seq">${part}</div></div>`; }).join("")}</div>`;
+}
+const TEMPOS = [["lent", "🐢 Lent", 1600], ["normal", "🚶 Normal", 900], ["rapide", "🐇 Rapide", 450]];
+let RG = null; // reconnaissance
+const recogFormulas = i => { const seen = new Set(), out = []; LEVELS.slice(3, i + 1).forEach(L => L.formulas.forEach(f => { if (!seen.has(f.name)) { seen.add(f.name); out.push(f); } })); return out; };
+const invSeq = seq => seq.slice().reverse().map(m => m.endsWith("2") ? m : inv(m));
+function recogNext() {
+  const pool = recogFormulas(RG.level), mine = LEVELS[RG.level].formulas;
+  const ans = rand(Math.random() < .6 ? mine : pool);
+  const opts = shuffle([ans, ...shuffle(pool.filter(f => f !== ans)).slice(0, 3)]);
+  RG.ans = ans; RG.opts = opts; RG.picked = null;
+  RC.reset(); RC.setQuiet(false); RC.setSpeed(900); RC.setGuide(null, false); RC.apply(invSeq(ans.seq));
+}
+function renderRecog() {
+  const done = RG.idx >= RG.total;
+  const top = `<div class="top"><button class="back" data-go="${RG.level}">← Niveau ${RG.level}</button><span class="qcount">${done ? "Fini" : `Cube ${RG.idx + 1} / ${RG.total}`}</span></div>`;
+  if (done) {
+    const ok = RG.score >= RG.total - 1;
+    return `${top}<section class="card"><h2>${ok ? "Œil de champion !" : "Presque !"}</h2><p>${RG.score} bonne${RG.score > 1 ? "s" : ""} réponse${RG.score > 1 ? "s" : ""} sur ${RG.total}.${ok ? "" : " Il en faut au moins " + (RG.total - 1) + "."}</p>
+      <div class="row"><button class="btn" data-go="${RG.level}">Retour au niveau</button><button class="btn ghost" data-recog="1">Rejouer</button></div></section>`;
+  }
+  const opts = RG.opts.map((f, k) => {
+    let cls = ""; if (RG.picked != null) { if (f === RG.ans) cls = "right"; else if (k === RG.picked) cls = "wrong"; }
+    return `<button class="opt ${cls}" data-rpick="${k}" ${RG.picked != null ? "disabled" : ""}>${esc(f.name)}</button>`;
+  }).join("");
+  return `${top}<header class="hero"><h2>Quelle formule répare ce cube ?</h2><p>Jaune en haut, vert devant toi. Fais tourner le cube du doigt pour bien regarder.</p></header>
+    <section class="card"><div class="vslot"></div><div class="options">${opts}</div>
+    ${RG.picked != null ? `<p class="feedback ${RG.opts[RG.picked] === RG.ans ? "good" : "bad"}">${RG.opts[RG.picked] === RG.ans ? "Bien vu ! Regarde-la réparer le cube." : `C'était « ${esc(RG.ans.name)} ». Regarde-la réparer le cube.`}</p>
+    <button class="btn" data-rnext="1">Cube suivant</button>` : ""}</section>`;
+}
+/* Coach du solveur : à quelle étape de la méthode de Raf en est ce cube ? */
+function coachStage(str) {
+  const C = window.Cube; let c = C.fromString(str);
+  const ok = (idx, o) => idx.every(i => (o === "e" ? c.ep[i] === i && c.eo[i] === 0 : c.cp[i] === i && c.co[i] === 0));
+  if (!ok([4, 5, 6, 7], "e")) return 2;
+  if (!ok([4, 5, 6, 7], "c")) return 3;
+  if (!ok([8, 9, 10, 11], "e")) return 4;
+  if (![0, 1, 2, 3].every(i => c.eo[i] === 0)) return 5;
+  let aligned = null;
+  for (let k = 0; k < 4; k++) { const t = c.clone(); for (let j = 0; j < k; j++) t.move("U"); if ([0, 1, 2, 3].every(i => t.ep[i] === i)) { aligned = t; break; } }
+  if (!aligned) return 6;
+  c = aligned;
+  if (![0, 1, 2, 3].every(i => c.cp[i] === i)) return 7;
+  if ([0, 1, 2, 3].every(i => c.co[i] === 0)) return 9;
+  return 8;
+}
+function renderCoach() {
+  const i = SV.coach;
+  if (i === 9) return `<div class="coach"><span class="label">Indice</span><h3>Presque fini !</h3><p>Tout est rangé : il reste juste à tourner le haut (le jaune) jusqu'à ce que les couleurs des côtés soient alignées.</p>
+    <div class="row"><button class="btn ghost" data-sfull="1">Montre-moi</button></div></div>`;
+  const L = LEVELS[i];
+  const forms = L.formulas.map(f => `<div><strong>${esc(f.name)}</strong>${chunked(f, m => chip(m))}</div>`).join("");
+  return `<div class="coach"><span class="label">Indice de la méthode</span>
+    <h3>Tu en es au niveau ${i} : ${esc(L.name)}</h3>
+    ${i === 2 ? "<p>Pas encore de croix blanche en bas : fais d'abord la marguerite (niveau 1), puis la croix.</p>" : ""}
+    <ul class="tips">${L.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
+    ${forms}
+    <div class="row"><button class="btn" data-go="${i}">Ouvrir le niveau ${i}</button><button class="btn ghost" data-sfull="1">Toute la solution</button></div>
+  </div>`;
+}
+
 /* ---------- Screens ---------- */
+function revPool() { const out = []; LEVELS.forEach((L, i) => { if (levelDone(i)) L.formulas.forEach((f, k) => out.push([i, k])); }); return out; }
 function renderMap() {
-  const n = doneCount(), final = levelDone(LEVELS.length - 1) || S.unlockAll;
+  const n = doneCount(), final = levelDone(8) || S.unlockAll;
   const nodes = LEVELS.map((L, i) => {
     const done = levelDone(i), open = unlocked(i);
     const c = COLORS[i]; const light = c === "--white" || c === "--yellow";
@@ -904,11 +1134,13 @@ function renderMap() {
     <div class="top"><span class="label">Ta progression</span><strong>${n} / ${LEVELS.length} niveaux</strong></div>
     <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="${LEVELS.length}" aria-valuenow="${n}"><span style="width:${(n / LEVELS.length) * 100}%"></span></div>
   </section>
-  <button class="node" data-go="solver" style="--c: var(--green)"><span class="num">?</span><span><span class="name">Le solveur</span><br><span class="sub">Bloqué ? Recopie ton cube, je te montre la suite</span></span><span class="pill go">Ouvrir</span></button>
+  ${revPool().length ? `<button class="node" data-rraf="1" style="--c: var(--yellow)"><span class="num light">☀</span><span><span class="name">Révision du jour</span><br><span class="sub">Une formule déjà apprise, de mémoire</span></span>${revBadge(S.rev)}</button>` : ""}
+  <button class="node" data-go="solver" style="--c: var(--green)"><span class="num">?</span><span><span class="name">Le solveur</span><br><span class="sub">Bloqué ? Un indice de ta méthode, ou toute la solution</span></span><span class="pill go">Ouvrir</span></button>
   <nav class="path" aria-label="Niveaux">${nodes}
     <button class="node" data-go="chrono" ${final ? "" : "disabled"} style="--c: var(--blue)">
       <span class="num">★</span><span><span class="name">Mode chrono</span><br><span class="sub">Bats ton record, gagne des badges</span></span>
       ${final ? `<span class="pill go">Ouvert</span>` : `<span class="pill lock">Après le niveau 8</span>`}</button>
+    <p class="ver">${esc(window.KICUIT_VERSION || "")}</p>
   </nav>
   <div class="foot"><button class="link" id="unlock">${S.unlockAll ? "Remettre les verrous" : "Parent : débloquer tous les niveaux"}</button></div>`;
 }
@@ -918,15 +1150,16 @@ function renderLevel(i) {
   const stepsHtml = [
     ["Quiz", st.quiz],
     ...(L.formulas.length ? [["Formules par cœur", L.formulas.every(f => drillDone(i, f))]] : []),
-    ["3 réussites de suite", st.streak >= 3]
+    ["3 réussites de suite", st.streak >= 3],
+    ...(i >= 4 && L.formulas.length ? [["Bonus : reconnaître", st.recog]] : [])
   ].map(([t, ok], k) => `<div class="step ${ok ? "ok" : ""}"><b>${ok ? "✓" : k + 1}</b>${t}</div>`).join("");
 
   const formulas = L.formulas.map((f, k) => {
     const cnt = st.drills[f.name] || 0;
     return `<section class="card">
       <div class="top"><h3>${esc(f.name)}</h3><div class="stars" aria-label="${Math.min(cnt, 3)} sur 3">${[0, 1, 2].map(s => `<i class="${s < cnt ? "on" : ""}"></i>`).join("")}</div></div>
-      <div class="seq">${f.seq.map(m => chip(m)).join("")}</div>
-      <p class="sub" style="color:var(--muted)">Lis-la à voix haute en la faisant sur ton cube. Puis tape-la de mémoire 3 fois pour gagner les étoiles.</p>
+      ${chunked(f, m => chip(m))}
+      <p class="sub" style="color:var(--muted)">${f.chunks ? "Apprends-la morceau par morceau. " : ""}Lis-la à voix haute en la faisant sur ton cube. Puis tape-la de mémoire 3 fois pour gagner les étoiles.</p>
       <button class="btn" data-drill="${k}">Tape-la de mémoire</button>
     </section>`;
   }).join("");
@@ -936,13 +1169,16 @@ function renderLevel(i) {
   <div class="top"><button class="back" data-go="map">← Carte</button><span class="label">Niveau ${i}</span></div>
   <header class="hero"><h2>${esc(L.name)}</h2><p>${esc(L.sub)}</p></header>
   <div class="steps">${stepsHtml}</div>
-  ${levelDone(i) ? `<p class="celebrate">Niveau gagné ! ${i < LEVELS.length - 1 ? "Le niveau " + (i + 1) + " est ouvert." : "Le mode chrono est ouvert."}</p>` : ""}
+  ${levelDone(i) ? `<p class="celebrate">Niveau gagné ! ${i === 8 ? "Le mode chrono et le niveau bonus sont ouverts." : i < LEVELS.length - 1 ? "Le niveau " + (i + 1) + " est ouvert." : "Tu maîtrises la croix directe !"}</p>` : ""}
   <section class="card"><span class="label">Rappel</span><ul class="tips">${L.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></section>
   ${L.formulas.length ? viewerCard(i) : ""}
   <section class="card"><div class="top"><h3>Quiz</h3>${st.quiz ? `<span class="pill done">Réussi</span>` : ""}</div>
     <p style="color:var(--muted)">${L.quiz.length} questions. Il faut tout juste pour valider.</p>
     <button class="btn ${st.quiz ? "ghost" : ""}" data-quiz="1">${st.quiz ? "Rejouer le quiz" : "Commencer le quiz"}</button></section>
   ${formulas}
+  ${i >= 4 && L.formulas.length ? `<section class="card"><div class="top"><h3>Reconnais la situation</h3>${st.recog ? `<span class="pill done">Réussi</span>` : ""}</div>
+    <p style="color:var(--muted)">Le cube 3D te montre une situation : choisis la formule qui le répare. C'est ce qu'il faut savoir faire avec ton vrai cube.</p>
+    <button class="btn ${st.recog ? "ghost" : ""}" data-recog="1">${st.recog ? "Rejouer" : "Commencer"}</button></section>` : ""}
   <section class="card">
     <div class="top"><h3>Défi sur ton vrai cube</h3></div>
     <p>${esc(L.challenge)}</p>
@@ -952,6 +1188,7 @@ function renderLevel(i) {
     <div class="clock" id="clock">${fmt(timer ? performance.now() - timer.t0 : (view.lastTime || 0))}</div>
     <div class="row"><button class="btn ghost" id="tstart">${timer ? "Stop" : "Lancer le chrono"}</button></div>
     <div class="row"><button class="btn good" data-res="ok">J'ai réussi</button><button class="btn bad" data-res="ko">Raté</button></div>
+    ${view.goalMsg ? `<p class="err">${esc(view.goalMsg)}</p>` : ""}
     <p style="color:var(--muted);font-size:.9rem">Sois honnête : « réussi » veut dire sans regarder le tuto. Un raté remet le compteur à zéro.</p>
     ${best}
   </section>`;
@@ -979,20 +1216,28 @@ function renderQuiz() {
 
 function renderDrill() {
   const f = LEVELS[drill.level].formulas[drill.f], cnt = S.levels[drill.level].drills[f.name] || 0;
-  const slots = f.seq.map((m, k) => k < drill.pos ? chip(m, "filled") : chip(m, "blank" + (k === drill.pos ? " next" : ""))).join("");
+  const slots = chunked(f, (m, k) => k < drill.pos ? chip(m, "filled") : chip(m, "blank" + (k === drill.pos ? " next" : "")));
   const keys = PAD.map(m => `<button class="key" data-key="${m}"><span class="m">${m}</span><span class="n">${MOVES[m]}</span></button>`).join("");
   const finished = drill.pos >= f.seq.length;
-  return `<div class="top"><button class="back" data-go="${drill.level}">← Niveau ${drill.level}</button>
+  return `<div class="top"><button class="back" data-go="${drill.rev ? "map" : drill.level}">← ${drill.rev ? "Carte" : "Niveau " + drill.level}</button>
     <div class="stars">${[0, 1, 2].map(s => `<i class="${s < cnt ? "on" : ""}"></i>`).join("")}</div></div>
-    <section class="card"><span class="label">De mémoire</span><h2>${esc(f.name)}</h2>
+    <section class="card"><span class="label">${drill.rev ? "Révision du jour · niveau " + drill.level : "De mémoire"}</span><h2>${esc(f.name)}</h2>
     <div class="seq" id="slots">${slots}</div>
     <p class="feedback ${drill.msgCls || ""}" id="fb">${esc(drill.msg || "Tape les mouvements dans l'ordre.")}</p>
-    ${finished ? `<div class="row"><button class="btn" data-drill="${drill.f}">Encore une fois</button><button class="btn ghost" data-go="${drill.level}">Retour au niveau</button></div>`
+    ${finished ? (drill.rev ? `<div class="row"><button class="btn" data-go="map">Retour à la carte</button>${drill.errors ? `<button class="btn ghost" data-rraf="1">Réessayer</button>` : ""}</div>` : `<div class="row"><button class="btn" data-drill="${drill.f}">Encore une fois</button><button class="btn ghost" data-go="${drill.level}">Retour au niveau</button></div>`)
       : `<div class="pad">${keys}</div>
         <button class="link" data-hint="1" style="align-self:flex-start">Je ne sais plus (indice)</button>`}
     </section>`;
 }
 
+function splitsHTML() {
+  const sp = S.splits; if (!sp || sp.length !== 4) return "";
+  const names = ["Croix blanche", "Premier étage", "Deuxième couronne", "Dernière couche"], lvl = [2, 3, 4, 5];
+  const d = sp.map((t, k) => t - (k ? sp[k - 1] : 0)), slow = d.indexOf(Math.max(...d));
+  return `<section class="card"><span class="label">Dernier essai, étape par étape</span>
+    <table class="splits">${d.map((t, k) => `<tr class="${k === slow ? "slow" : ""}"><td>${names[k]}</td><td>${fmt(t)}</td></tr>`).join("")}</table>
+    <p>Ton étape la plus lente : <strong>${names[slow]}</strong>. Pour gagner du temps, révise le niveau ${lvl[slow]}${slow === 3 ? " à 8" : ""}${slow === 0 ? " ou le niveau bonus « Croix directe »" : ""}.</p></section>`;
+}
 function renderChrono() {
   const best = S.solves.length ? Math.min(...S.solves) : null;
   const badges = [
@@ -1007,9 +1252,12 @@ function renderChrono() {
     <section class="card"><span class="label">Mélange</span><div class="scramble">${view.scr.join(" ")}</div>
       <button class="link" data-newscr="1" style="align-self:flex-start">Autre mélange</button>
       <div class="clock" id="clock">${fmt(timer ? performance.now() - timer.t0 : 0)}</div>
+      ${timer && (timer.splits || []).length < 3 ? `<button class="btn ghost bigbtn" id="csplit">Étape finie : ${["croix blanche", "premier étage", "deuxième couronne"][(timer.splits || []).length]} ✓</button>` : ""}
       <button class="btn" id="cstart">${timer ? "Stop : cube fini !" : "Lancer le chrono"}</button>
+      <p style="color:var(--muted);font-size:.9rem">Touche « Étape finie » à la fin de chaque étape : tu verras laquelle te prend le plus de temps.</p>
       ${best != null ? `<p><strong>Record :</strong> ${fmt(best)}</p>` : ""}
       ${last ? `<div><span class="label">Derniers temps</span><ul class="times">${last}</ul></div>` : ""}</section>
+    ${splitsHTML()}
     <section class="card"><span class="label">Badges</span><div class="badges">${badges}</div></section>`;
 }
 
@@ -1024,12 +1272,14 @@ function render() {
   else if (view.screen === "quiz") app.innerHTML = renderQuiz();
   else if (view.screen === "drill") app.innerHTML = renderDrill();
   else if (view.screen === "chrono") app.innerHTML = renderChrono();
+  else if (view.screen === "recog") app.innerHTML = renderRecog();
   const slot = app.querySelector(".vslot"); if (slot) slot.appendChild(RC.el);
 }
 
 function go(target) {
   stopTimer();
   if (view.screen === "ngame") { NG = null; RC.reset(); RC.setQuiet(false); RC.setSpeed(900); RC.setGuide(null, false); try { speechSynthesis.cancel(); } catch (e) {} }
+  if (view.screen === "recog") { RG = null; RC.reset(); }
   if (view.screen === "solver" && target !== "solver") { RC.reset(); RC.setGuide(null, false); RC.setSpeed(900); RC.setQuiet(false); try { speechSynthesis.cancel(); } catch (e) {} }
   if (target === "solver") { const from = view.screen === "map" ? "map" : "who"; if (!SV) SV = svNew(); SV.from = from; view = { screen: "solver" }; needCube().catch(() => {}); getWorker(); }
   else if (target === "who") view = { screen: "who" };
@@ -1049,17 +1299,17 @@ document.addEventListener("click", e => {
   if (d.spaint) { SV.paint = d.spaint; return render(); }
   if (d.scell !== undefined) {
     const k = Number(d.scell), a = SV.faces[SV.cur], v = SV.paint === "X" ? null : SV.paint;
-    if (a[k] !== v) { SV.hist.push([[SV.cur, k, a[k]]]); a[k] = v; }
+    if (a[k] !== v) { SV.hist.push([[SV.cur, k, a[k]]]); a[k] = v; SV.coach = null; }
     SV.pop = k; SV.err = ""; return render();
   }
-  if (d.sundo) { const last = SV.hist.pop(); if (last) { last.forEach(([f, k, old]) => { SV.faces[f][k] = old; }); SV.cur = last[0][0]; } SV.err = ""; return render(); }
+  if (d.sundo) { SV.coach = null; const last = SV.hist.pop(); if (last) { last.forEach(([f, k, old]) => { SV.faces[f][k] = old; }); SV.cur = last[0][0]; } SV.err = ""; return render(); }
   if (d.sfaceclear) { const a = SV.faces[SV.cur], ch = []; a.forEach((c, k) => { if (k !== 4 && c) { ch.push([SV.cur, k, c]); a[k] = null; } }); if (ch.length) SV.hist.push(ch); return render(); }
   if (d.sclear) {
     if (!SV.sure) { SV.sure = true; return render(); }
     const keep = SV.from, ch = []; FL.forEach(f => SV.faces[f].forEach((c, k) => { if (k !== 4 && c) ch.push([f, k, c]); }));
     SV = svNew(); SV.from = keep; if (ch.length) SV.hist.push(ch); return render();
   }
-  if (d.sdemo) { needCube().then(() => { const str = window.Cube.random().asString(), ch = []; FL.forEach((f, i) => { SV.faces[f].forEach((c, k) => ch.push([f, k, c])); SV.faces[f] = str.slice(i * 9, i * 9 + 9).split(""); }); SV.hist.push(ch); SV.err = ""; render(); }); return; }
+  if (d.sdemo) { SV.coach = null; needCube().then(() => { const str = window.Cube.random().asString(), ch = []; FL.forEach((f, i) => { SV.faces[f].forEach((c, k) => ch.push([f, k, c])); SV.faces[f] = str.slice(i * 9, i * 9 + 9).split(""); }); SV.hist.push(ch); SV.err = ""; render(); }); return; }
   if (d.ssolve) { svSolve(); return; }
   if (d.snext) { if (RC.busy || SV.step >= SV.steps.length) return; const st = SV.steps[SV.step]; SV.step++; svGuide(); render(); svSay(st); RC.play([st.m]); return; }
   if (d.sreplay) { if (RC.busy || !SV.step) return; const st = SV.steps[SV.step - 1]; svGuide(); RC.apply([inv(st.m)]); svSay(st); RC.play([st.m]); return; }
@@ -1067,6 +1317,35 @@ document.addEventListener("click", e => {
   if (d.svoice) { SV.voice = !SV.voice; if (!SV.voice) { try { speechSynthesis.cancel(); } catch (e) {} } return render(); }
   if (d.snew) { const keep = SV.from; SV = svNew(); SV.from = keep; RC.reset(); return render(); }
   if (d.nlvl !== undefined) { nStart(Number(d.nlvl)); return; }
+  if (d.nrev) { nStartRev(); return; }
+  if (d.nrewatch) { nRewatch(); return; }
+  if (d.nreal) { nReal(d.nreal); return; }
+  if (d.recog) { stopTimer(); RG = { level: view.screen === "recog" ? RG.level : view.level, idx: 0, total: 5, score: 0 }; view = { screen: "recog" }; recogNext(); return render(); }
+  if (d.rpick !== undefined) {
+    if (!RG || RG.picked != null || RC.busy) return;
+    RG.picked = Number(d.rpick); if (RG.opts[RG.picked] === RG.ans) RG.score++;
+    render(); RC.play(RG.ans.seq); return;
+  }
+  if (d.rnext) {
+    if (!RG || RC.busy) return;
+    RG.idx++;
+    if (RG.idx >= RG.total) { if (RG.score >= RG.total - 1) { S.levels[RG.level].recog = true; save(); } RC.reset(); return render(); }
+    recogNext(); return render();
+  }
+  if (d.rraf) { const pool = revPool(); if (!pool.length) return; const [lv, k] = rand(pool); drill = { level: lv, f: k, pos: 0, errors: 0, rev: true }; view = { screen: "drill" }; return render(); }
+  if (d.tempo) {
+    if (RC.busy) return;
+    const [k, key, ms] = d.tempo.split(":"), f = LEVELS[view.level].formulas[Number(k)], row = b.closest(".formrow");
+    view.tempoAsk = null; RC.reset(); RC.setSpeed(Number(ms));
+    row.querySelectorAll("[data-tempo]").forEach(x => x.disabled = true);
+    RC.play(f.seq, j => { row.querySelectorAll("button.chip").forEach((x, n) => x.classList.toggle("now", n === j)); if (j < 0) { RC.setSpeed(900); view.tempoAsk = { f: Number(k), key }; render(); } });
+    return;
+  }
+  if (d.tempook) {
+    const [k, key] = d.tempook.split(":"), f = LEVELS[view.level].formulas[Number(k)], st = S.levels[view.level];
+    const have = st.tempo[f.name] || []; if (!have.includes(key)) have.push(key); st.tempo[f.name] = have; view.tempoAsk = null; save(); return render();
+  }
+  if (d.sfull) { SV.coach = null; svSolve(true); return; }
   if (d.npick) { nPick(d.npick); return; }
   if (d.nsay) { if (NG) say(NG.win ? "Bravo Nana !" : NG.prompt); return; }
   if (d.nreplay) { if (NG && NG.ready && !RC.busy) { const g = NG; g.ready = false; RC.reset(); RC.play([g.ans]).then(() => { if (NG === g) g.ready = true; }); } return; }
@@ -1097,7 +1376,12 @@ document.addEventListener("click", e => {
       drill.pos++; drill.msg = ""; drill.msgCls = "";
       if (drill.pos >= f.seq.length) {
         const st = S.levels[drill.level];
-        if (drill.errors === 0) { st.drills[f.name] = (st.drills[f.name] || 0) + 1; drill.msg = "Parfait, sans erreur ! Une étoile de plus."; drill.msgCls = "good"; }
+        if (drill.rev) {
+          if (drill.errors === 0) { const t = dayKey(); if (!S.rev || S.rev.date !== t) S.rev = { date: t, days: (S.rev ? S.rev.days : 0) + 1 }; drill.msg = `Révision réussie ! ${S.rev.days} jour${S.rev.days > 1 ? "s" : ""} de révision.`; }
+          else drill.msg = "Formule complète, mais avec une erreur. Réessaie pour valider la révision.";
+          drill.msgCls = "good";
+        }
+        else if (drill.errors === 0) { st.drills[f.name] = (st.drills[f.name] || 0) + 1; drill.msg = "Parfait, sans erreur ! Une étoile de plus."; drill.msgCls = "good"; }
         else { drill.msg = "Formule complète. Refais-la sans erreur pour gagner une étoile."; drill.msgCls = "good"; }
         save();
       }
@@ -1112,14 +1396,18 @@ document.addEventListener("click", e => {
   if (d.res) {
     const st = S.levels[view.level];
     const t = timer ? performance.now() - timer.t0 : view.lastTime;
+    const goal = LEVELS[view.level].goal;
+    if (d.res === "ok" && goal && !(t && t <= goal)) { view.goalMsg = t ? `Réussi, mais en ${fmt(t)} : l'objectif est moins de ${fmt(goal)}. Encore un essai !` : "Lance le chrono : ce défi se joue contre la montre."; stopTimer(); view.lastTime = 0; return render(); }
+    view.goalMsg = "";
     if (d.res === "ok") { st.streak = Math.min(st.streak + 1, 3); if (t) st.best = st.best ? Math.min(st.best, t) : t; }
     else st.streak = levelDone(view.level) ? st.streak : 0;
     stopTimer(); view.lastTime = 0; save(); view.scr = scramble(); return render();
   }
+  if (b.id === "csplit") { if (timer) { (timer.splits = timer.splits || []).push(performance.now() - timer.t0); render(); } return; }
   if (b.id === "tstart" || b.id === "cstart") {
     if (timer) {
-      const t = performance.now() - timer.t0; stopTimer();
-      if (b.id === "cstart") { S.solves.push(t); save(); view.scr = scramble(); }
+      const t = performance.now() - timer.t0, timer0 = timer; stopTimer();
+      if (b.id === "cstart") { S.solves.push(t); const sp = timer0 && timer0.splits || []; S.splits = sp.length === 3 ? [...sp, t] : null; save(); view.scr = scramble(); }
       else view.lastTime = t;
       return render();
     }
