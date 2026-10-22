@@ -220,11 +220,18 @@ button.chip.now { border-color: var(--accent); background: color-mix(in srgb, va
 .ftab .n { margin-left: auto; color: var(--muted); font-size: .8rem; font-variant-numeric: tabular-nums; }
 .ftab.full .n { color: var(--good); }
 .editor { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: min(100%, 300px); margin: 0 auto; padding: 10px; background: #14161D; border-radius: 18px; }
-.cell { aspect-ratio: 1; border-radius: 12px; border: none; background: #3A3F4F; }
+.cell { aspect-ratio: 1; border-radius: 12px; border: none; background: #3A3F4F; touch-action: manipulation; }
+.cell.pop { animation: pop .18s ease-out; }
+@keyframes pop { 50% { transform: scale(.9); } }
 .cell.empty { background: repeating-linear-gradient(45deg, #3A3F4F 0 6px, #444A5C 6px 12px); }
 .cell[disabled] { cursor: default; box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .25); }
 .palette { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.pcol { width: 44px; height: 44px; border-radius: 14px; border: 3px solid #14161D; }
+.pcol { width: 46px; height: 58px; border-radius: 14px; border: 3px solid #14161D; touch-action: manipulation; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 3px; }
+.pcol b { font-size: .72rem; font-weight: 800; background: rgba(255, 255, 255, .88); color: #14161D; border-radius: 6px; padding: 0 4px; font-variant-numeric: tabular-nums; }
+.pcol.over b { background: var(--bad); color: #fff; }
+.pcol.erase { background: var(--surface-2); color: var(--ink); justify-content: center; font-size: 1.5rem; padding: 0; }
+.tool { text-align: center; font-weight: 800; }
+.tool i { display: inline-block; width: 16px; height: 16px; border-radius: 5px; border: 2px solid #14161D; vertical-align: -3px; margin-right: 4px; }
 .pcol.on { outline: 4px solid var(--accent); outline-offset: 3px; }
 .net { display: grid; grid-template-columns: repeat(4, max-content); gap: 4px; justify-content: center; }
 .mface { display: grid; grid-template-columns: repeat(3, 12px); gap: 2px; padding: 3px; border-radius: 6px; background: #14161D; border: 2px solid transparent; }
@@ -652,7 +659,7 @@ const SOLVED = FL.map(f => f.repeat(9)).join("");
 let SV = null;
 function svNew() {
   const faces = {}; FL.forEach(f => { faces[f] = Array(9).fill(null); faces[f][4] = f; });
-  return { faces, cur: "F", paint: "F", sol: null, step: 0, err: "", thinking: false };
+  return { faces, cur: "F", paint: "F", sol: null, step: 0, err: "", thinking: false, hist: [], sure: false, pop: -1 };
 }
 const svString = () => FL.map(f => SV.faces[f].map(x => x || "?").join("")).join("");
 const sinv = m => m.endsWith("2") ? m : inv(m);
@@ -709,20 +716,25 @@ function renderSolver() {
   const tabs = FORDER.map(x => `<button class="ftab ${x === f ? "on" : ""} ${count(x) === 9 ? "full" : ""}" data-sface="${x}"><i style="background:${FHEX[x]}"></i>${FWHERE[x]}<span class="n">${count(x)}/9</span></button>`).join("");
   const mini = x => `<button class="mface ${x === f ? "on" : ""}" data-sface="${x}" aria-label="Face ${FNAME[x]}">${SV.faces[x].map(c => `<i style="${c ? "background:" + FHEX[c] : ""}"></i>`).join("")}</button>`;
   const net = `<div class="net"><span></span>${mini("U")}<span></span><span></span>${mini("L")}${mini("F")}${mini("R")}${mini("B")}<span></span>${mini("D")}<span></span><span></span></div>`;
-  const grid = cells.map((c, k) => `<button class="cell ${c ? "" : "empty"}" data-scell="${k}" ${k === 4 ? "disabled" : ""} style="${c ? "background:" + FHEX[c] : ""}" aria-label="Case ${k + 1}"></button>`).join("");
-  const pal = FL.map(x => `<button class="pcol ${x === SV.paint ? "on" : ""}" data-spaint="${x}" style="background:${FHEX[x]}" aria-label="${FNAME[x]}"></button>`).join("");
+  const total = x => FL.reduce((n, f2) => n + SV.faces[f2].filter(c => c === x).length, 0);
+  const grid = cells.map((c, k) => `<button class="cell ${c ? "" : "empty"} ${k === SV.pop ? "pop" : ""}" data-scell="${k}" ${k === 4 ? "disabled" : ""} style="${c ? "background:" + FHEX[c] : ""}" aria-label="Case ${k + 1}"></button>`).join("");
+  const pal = FL.map(x => `<button class="pcol ${x === SV.paint ? "on" : ""} ${total(x) > 9 ? "over" : ""}" data-spaint="${x}" style="background:${FHEX[x]}" aria-label="${FNAME[x]}, ${total(x)} sur 9"><b>${total(x)}/9</b></button>`).join("")
+    + `<button class="pcol erase ${SV.paint === "X" ? "on" : ""}" data-spaint="X" aria-label="Gomme">⌫</button>`;
+  const tool = SV.paint === "X" ? "Gomme : touche une case pour la vider." : `<i style="background:${FHEX[SV.paint]}"></i>Couleur ${FNAME[SV.paint]} : touche une case pour la changer.`;
   const next = FORDER[(FORDER.indexOf(f) + 1) % 6];
-  return `${top}<header class="hero"><h2>Recopie ton cube</h2><p>Choisis une couleur, puis touche les cases. Le centre ne bouge jamais : il donne le nom de la face.</p></header>
+  return `${top}<header class="hero"><h2>Recopie ton cube</h2><p>Choisis une couleur, puis touche les cases. Tu t\'es trompé ? Touche la case avec la bonne couleur, ou prends la gomme ⌫. Le centre ne bouge jamais : il donne le nom de la face.</p></header>
     <div class="ftabs">${tabs}</div>
     <section class="card"><p><strong>Face ${FNAME[f]} (${FWHERE[f]}).</strong> ${esc(FTIP[f])}</p>
+      <p class="tool">${tool}</p>
       <div class="editor">${grid}</div>
       <div class="palette">${pal}</div>
-      <div class="row"><button class="btn ghost" data-sface="${next}">Face suivante</button></div>
+      <div class="row"><button class="btn ghost" data-sundo="1" ${SV.hist.length ? "" : "disabled"}>↶ Annuler</button><button class="btn ghost" data-sface="${next}">Face suivante</button></div>
+      <button class="link" data-sfaceclear="1" style="align-self:center">Vider cette face</button>
     </section>
     <section class="card"><span class="label">Tout le cube</span>${net}
       ${SV.err ? `<p class="err">${esc(SV.err)}</p>` : ""}
       ${SV.thinking ? `<div class="row" style="align-items:center;justify-content:center"><div class="spin"></div><strong>Je réfléchis…</strong></div>` : `<button class="btn good bigbtn" data-ssolve="1">Trouver la solution</button>`}
-      <div class="row"><button class="btn ghost" data-sclear="1">Tout effacer</button><button class="btn ghost" data-sdemo="1">Exemple mélangé</button></div>
+      <div class="row"><button class="btn ${SV.sure ? "bad" : "ghost"}" data-sclear="1">${SV.sure ? "Sûr ? Touche encore" : "Tout effacer"}</button><button class="btn ghost" data-sdemo="1">Exemple mélangé</button></div>
     </section>`;
 }
 async function svSolve() {
@@ -899,11 +911,23 @@ function go(target) {
 document.addEventListener("click", e => {
   const b = e.target.closest("button"); if (!b || b.disabled) return;
   const d = b.dataset;
+  if (SV && view.screen === "solver" && !d.sclear) SV.sure = false;
+  if (SV) SV.pop = -1;
   if (d.sface) { SV.cur = d.sface; SV.err = ""; return render(); }
   if (d.spaint) { SV.paint = d.spaint; return render(); }
-  if (d.scell !== undefined) { const k = Number(d.scell), a = SV.faces[SV.cur]; a[k] = a[k] === SV.paint ? null : SV.paint; SV.err = ""; return render(); }
-  if (d.sclear) { const keep = SV.from; SV = svNew(); SV.from = keep; return render(); }
-  if (d.sdemo) { needCube().then(() => { const str = window.Cube.random().asString(); FL.forEach((f, i) => { SV.faces[f] = str.slice(i * 9, i * 9 + 9).split(""); }); SV.err = ""; render(); }); return; }
+  if (d.scell !== undefined) {
+    const k = Number(d.scell), a = SV.faces[SV.cur], v = SV.paint === "X" ? null : SV.paint;
+    if (a[k] !== v) { SV.hist.push([[SV.cur, k, a[k]]]); a[k] = v; }
+    SV.pop = k; SV.err = ""; return render();
+  }
+  if (d.sundo) { const last = SV.hist.pop(); if (last) { last.forEach(([f, k, old]) => { SV.faces[f][k] = old; }); SV.cur = last[0][0]; } SV.err = ""; return render(); }
+  if (d.sfaceclear) { const a = SV.faces[SV.cur], ch = []; a.forEach((c, k) => { if (k !== 4 && c) { ch.push([SV.cur, k, c]); a[k] = null; } }); if (ch.length) SV.hist.push(ch); return render(); }
+  if (d.sclear) {
+    if (!SV.sure) { SV.sure = true; return render(); }
+    const keep = SV.from, ch = []; FL.forEach(f => SV.faces[f].forEach((c, k) => { if (k !== 4 && c) ch.push([f, k, c]); }));
+    SV = svNew(); SV.from = keep; if (ch.length) SV.hist.push(ch); return render();
+  }
+  if (d.sdemo) { needCube().then(() => { const str = window.Cube.random().asString(), ch = []; FL.forEach((f, i) => { SV.faces[f].forEach((c, k) => ch.push([f, k, c])); SV.faces[f] = str.slice(i * 9, i * 9 + 9).split(""); }); SV.hist.push(ch); SV.err = ""; render(); }); return; }
   if (d.ssolve) { svSolve(); return; }
   if (d.snext) { if (RC.busy || SV.step >= SV.sol.length) return; const m = SV.sol[SV.step]; SV.step++; render(); RC.play([m]); return; }
   if (d.sprev) { if (RC.busy || !SV.step) return; SV.step--; render(); RC.play([sinv(SV.sol[SV.step])]); return; }
