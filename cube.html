@@ -21,8 +21,8 @@
   --muted: #5C6378;
   --line: #D7DCE6;
   --red: #E0363A;
-  --orange: #F2841C;
-  --yellow: #F4C21B;
+  --orange: #FF5F00;
+  --yellow: #FFE234;
   --green: #189A55;
   --blue: #2259E0;
   --white: #FFFFFF;
@@ -225,9 +225,9 @@ button.chip.now { border-color: var(--accent); background: color-mix(in srgb, va
 @keyframes pop { 50% { transform: scale(.9); } }
 .cell.empty { background: repeating-linear-gradient(45deg, #3A3F4F 0 6px, #444A5C 6px 12px); }
 .cell[disabled] { cursor: default; box-shadow: inset 0 0 0 4px rgba(0, 0, 0, .25); }
-.palette { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
-.pcol { width: 46px; height: 58px; border-radius: 14px; border: 3px solid #14161D; touch-action: manipulation; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 3px; }
-.pcol b { font-size: .72rem; font-weight: 800; background: rgba(255, 255, 255, .88); color: #14161D; border-radius: 6px; padding: 0 4px; font-variant-numeric: tabular-nums; }
+.palette { display: grid; grid-template-columns: repeat(4, minmax(0, 76px)); justify-content: center; gap: 8px; }
+.pcol { width: 100%; height: 64px; gap: 2px; border-radius: 14px; border: 3px solid #14161D; touch-action: manipulation; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 3px; }
+.pcol b, .pcol span { font-size: .72rem; font-weight: 800; background: rgba(255, 255, 255, .88); color: #14161D; border-radius: 6px; padding: 0 4px; font-variant-numeric: tabular-nums; }
 .pcol.over b { background: var(--bad); color: #fff; }
 .pcol.erase { background: var(--surface-2); color: var(--ink); justify-content: center; font-size: 1.5rem; padding: 0; }
 .tool { text-align: center; font-weight: 800; }
@@ -382,7 +382,7 @@ function stopTimer() { if (timer) { clearInterval(timer.int); timer = null; } }
 
 /* ---------- 3D cube ---------- */
 const RC = (() => {
-  const COL = { U: "#F4C21B", D: "#FFFFFF", F: "#189A55", B: "#2259E0", R: "#F2841C", L: "#E0363A" };
+  const COL = { U: "#FFE234", D: "#FFFFFF", F: "#189A55", B: "#2259E0", R: "#FF5F00", L: "#E0363A" };
   const S = 52;
   const FACES = [
     ["F", "translateZ(25px)", c => c.p[2] === 1],
@@ -511,7 +511,7 @@ const NLV = [
   { t: "Deux tours", c: "--blue", need: 4 },
   { t: "Le tour de magie", c: "--yellow", need: 6 }
 ];
-const NCOL = { jaune: "#F4C21B", blanc: "#FFFFFF", vert: "#189A55", bleu: "#2259E0", orange: "#F2841C", rouge: "#E0363A" };
+const NCOL = { jaune: "#FFE234", blanc: "#FFFFFF", vert: "#189A55", bleu: "#2259E0", orange: "#FF5F00", rouge: "#E0363A" };
 const DANCE = ["R", "U", "R'", "U'"];
 let NS = (() => { try { const d = JSON.parse(localStorage.getItem(NKEY)); if (d && d.done && d.done.length === NLV.length) return d; } catch (e) {} return { done: NLV.map(() => false), unlockAll: false }; })();
 const nsave = () => { try { localStorage.setItem(NKEY, JSON.stringify(NS)); } catch (e) {} };
@@ -643,7 +643,7 @@ async function nDance() {
 const SOLVER_BASE = "vendor/cubejs/";
 const USE_WORKER = true;
 const FL = ["U", "R", "F", "D", "L", "B"];
-const FHEX = { U: "#F4C21B", R: "#F2841C", F: "#189A55", D: "#FFFFFF", L: "#E0363A", B: "#2259E0" };
+const FHEX = { U: "#FFE234", R: "#FF5F00", F: "#189A55", D: "#FFFFFF", L: "#E0363A", B: "#2259E0" };
 const FNAME = { U: "jaune", R: "orange", F: "vert", D: "blanc", L: "rouge", B: "bleu" };
 const FORDER = ["F", "R", "B", "L", "U", "D"];
 const FTIP = {
@@ -718,7 +718,7 @@ function renderSolver() {
   const net = `<div class="net"><span></span>${mini("U")}<span></span><span></span>${mini("L")}${mini("F")}${mini("R")}${mini("B")}<span></span>${mini("D")}<span></span><span></span></div>`;
   const total = x => FL.reduce((n, f2) => n + SV.faces[f2].filter(c => c === x).length, 0);
   const grid = cells.map((c, k) => `<button class="cell ${c ? "" : "empty"} ${k === SV.pop ? "pop" : ""}" data-scell="${k}" ${k === 4 ? "disabled" : ""} style="${c ? "background:" + FHEX[c] : ""}" aria-label="Case ${k + 1}"></button>`).join("");
-  const pal = FL.map(x => `<button class="pcol ${x === SV.paint ? "on" : ""} ${total(x) > 9 ? "over" : ""}" data-spaint="${x}" style="background:${FHEX[x]}" aria-label="${FNAME[x]}, ${total(x)} sur 9"><b>${total(x)}/9</b></button>`).join("")
+  const pal = FL.map(x => `<button class="pcol ${x === SV.paint ? "on" : ""} ${total(x) > 9 ? "over" : ""}" data-spaint="${x}" style="background:${FHEX[x]}" aria-label="${FNAME[x]}, ${total(x)} sur 9"><span>${FNAME[x]}</span><b>${total(x)}/9</b></button>`).join("")
     + `<button class="pcol erase ${SV.paint === "X" ? "on" : ""}" data-spaint="X" aria-label="Gomme">⌫</button>`;
   const tool = SV.paint === "X" ? "Gomme : touche une case pour la vider." : `<i style="background:${FHEX[SV.paint]}"></i>Couleur ${FNAME[SV.paint]} : touche une case pour la changer.`;
   const next = FORDER[(FORDER.indexOf(f) + 1) % 6];
