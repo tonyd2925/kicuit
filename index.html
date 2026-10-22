@@ -10,6 +10,7 @@
 <meta name="theme-color" content="#2b2350">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
+<script src="version.js"></script>
 <title>Chez Nana et Raf</title>
 <style>
 :root {
@@ -55,6 +56,7 @@ h1 { margin: 0; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; text-alig
 .go { margin-top: 4px; font-size: 1.25rem; font-weight: 800; color: #fff; padding: 12px 30px; border-radius: 999px; }
 .k .go { background: var(--kicuit); box-shadow: 0 5px 0 #c9553a; }
 .c .go { background: var(--cube); box-shadow: 0 5px 0 #173c99; }
+.ver { margin: 0; font-size: .85rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
 @media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:active { transform: none; } }
 </style>
 </head>
@@ -78,7 +80,9 @@ h1 { margin: 0; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; text-alig
       <span class="go">▶ S'entraîner</span>
     </a>
   </nav>
+  <p class="ver" id="ver"></p>
 <script>
+document.getElementById("ver").textContent = window.KICUIT_VERSION || "";
 ["gesturestart", "gesturechange", "gestureend"].forEach(t => document.addEventListener(t, e => e.preventDefault(), { passive: false }));
 document.addEventListener("touchmove", e => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
 if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});

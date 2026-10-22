@@ -10,6 +10,7 @@
 <meta name="theme-color" content="#2b2350">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
+<script src="version.js"></script>
 <title>La Maison de Kicuit</title>
 <style>
 :root{--ink:#2b2350;--cream:#fff8ec;--orange:#ff7a59;--orange-d:#c9553a;--green:#3fbf98;--green-d:#2b8c6f;--blue:#4c8dff;--blue-d:#2f62c2;--grey:#9aa3b8;--grey-d:#6c7590;--sun:#ffd25a;--gold:#ffc83a}
@@ -930,6 +931,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
     <div class="abs" id="startW"></div>
     <button class="btn" id="playBtn">▶ Jouer</button>
     <button class="iconbtn" id="homeBtn" aria-label="Accueil">🏠</button>
+    <div class="abs" id="verTxt" style="right:24px;bottom:16px;font-size:16px;font-weight:800;color:#7a2f1f;opacity:.7"></div>
   </section>
 
   <section class="screen" id="s-profile">
@@ -4216,6 +4218,7 @@ function parImport(e){
   r.readAsText(f);
 }
 onTap($('homeBtn'),()=>{location.href='./';});
+$('verTxt').textContent=window.KICUIT_VERSION||'';
 onTap($('parBtn'),()=>{sfx.click();parRender();$('parM').classList.remove('hidden');});
 onTap($('parIn'),e=>{
   if(e.target.closest('#parClose')){sfx.click();$('parM').classList.add('hidden');return;}
