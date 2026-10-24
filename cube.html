@@ -175,6 +175,7 @@ ul.tips { margin: 0; padding-left: 20px; display: flex; flex-direction: column; 
 .cb > i.st { box-shadow: inset 0 0 0 3.5px #14161D; border-radius: 9px; }
 .rc.focus .cb:not(.hl) > i.st { filter: brightness(.38) saturate(.5); }
 .cb > i.st { transition: filter .25s; }
+.cb.mk > i.st { box-shadow: inset 0 0 0 3.5px #14161D, inset 0 0 0 9px #FF2D95; }
 .cb.hl > i.st { box-shadow: inset 0 0 0 3.5px #14161D, inset 0 0 0 7px rgba(255, 255, 255, .85); }
 .vhint { color: var(--muted); font-size: .9rem; text-align: center; max-width: 34ch; }
 .movename { font-family: var(--f-display); font-weight: 600; font-size: 1.3rem; min-height: 1.6em; text-align: center; }
@@ -319,7 +320,7 @@ const LEVELS = [
     ],
     challenge: "Prends un cube terminé et fais la petite danse 6 fois de suite. S'il redevient comme au départ, c'est réussi.", scramble: false },
   { name: "La marguerite", sub: "4 pétales blancs autour du jaune",
-    tips: ["Centre jaune en haut.", "Amène chaque arête blanche à côté du centre jaune, blanc vers le haut.", "Avant de tourner une face, mets les pétales déjà posés à l'abri avec U."],
+    tips: ["Centre jaune en haut : les pétales sont les 4 arêtes blanches autour de lui, blanc vers le haut.", "Une arête blanche peut être à 4 endroits : en bas blanc vers le bas, en bas blanc sur le côté, au milieu, ou en haut à l'envers.", "En bas, blanc vers le bas : tourne sa face 2 fois. Au milieu : tourne la face d'à côté pour la monter. Sur le côté ou à l'envers : tourne sa face une fois pour l'amener au milieu.", "Avant de monter une arête, regarde si la place au-dessus est libre. Sinon, tourne d'abord le haut (U) pour mettre ce pétale à l'abri."],
     formulas: [],
     quiz: [
       { q: "Autour de quel centre fait-on la marguerite ?", a: ["Le blanc", "Le jaune", "Le rouge"], r: 1 },
@@ -547,7 +548,9 @@ const RC = (() => {
     return cubies.every(c => Math.abs(c.h[0]) + Math.abs(c.h[1]) + Math.abs(c.h[2]) < 2 ||
       (c.p.every((v, i) => v === c.h[i]) && c.O.every((r, i) => r.every((v, j) => v === (i === j ? 1 : 0)))));
   }
-  return { el, play, apply, solved, setQuiet: q => { quiet = q; label.innerHTML = ""; }, reset: build, setSpeed: ms => { speed = ms; }, setGuide: (p, f) => { pre = p; focus = f; }, get speed() { return speed; }, get busy() { return busy; } };
+  const whites = () => cubies.filter(c => c.h[1] === -1 && Math.abs(c.h[0]) + Math.abs(c.h[2]) === 1).map(c => ({ h: c.h.slice(), p: c.p.slice(), n: mv(c.O, [0, -1, 0]).map(rnd) }));
+  const mark = hs => cubies.forEach(c => c.el.classList.toggle("mk", hs.some(h => h[0] === c.h[0] && h[1] === c.h[1] && h[2] === c.h[2])));
+  return { el, play, apply, solved, whites, mark, setQuiet: q => { quiet = q; label.innerHTML = ""; }, reset: build, setSpeed: ms => { speed = ms; }, setGuide: (p, f) => { pre = p; focus = f; }, get speed() { return speed; }, get busy() { return busy; } };
 })();
 
 function viewerCard(i) {
@@ -1123,6 +1126,191 @@ function renderCoach() {
   </div>`;
 }
 
+/* ---------- Marguerite pas à pas (Raf, niveau 1) ---------- */
+/* On ne suit que les 4 arêtes blanches : position p et direction n de leur autocollant blanc. */
+const D_MV = { R: ["x", 1, -90], L: ["x", -1, 90], U: ["y", 1, -90], D: ["y", -1, 90], F: ["z", 1, -90], B: ["z", -1, 90] };
+const D_PAD = ["U", "U'", "D", "D'", "R", "R'", "L", "L'", "F", "F'"];
+function dRot(axis, deg) {
+  const t = deg * Math.PI / 180, c = Math.round(Math.cos(t)), s = Math.round(Math.sin(t));
+  if (axis === "x") return [[1, 0, 0], [0, c, -s], [0, s, c]];
+  if (axis === "y") return [[c, 0, s], [0, 1, 0], [-s, 0, c]];
+  return [[c, -s, 0], [s, c, 0], [0, 0, 1]];
+}
+const dMv = (A, v) => A.map(r => r[0] * v[0] + r[1] * v[1] + r[2] * v[2]);
+function dSim(st, m) {
+  const [axis, layer, base] = D_MV[m[0]], k = { x: 0, y: 1, z: 2 }[axis];
+  const R = dRot(axis, base * (m.includes("'") ? -1 : 1) * (m.includes("2") ? 2 : 1));
+  return st.map(e => e.p[k] === layer ? { h: e.h, p: dMv(R, e.p), n: dMv(R, e.n) } : e);
+}
+const dSolved = () => [[0, -1, 1], [1, -1, 0], [0, -1, -1], [-1, -1, 0]].map(h => ({ h, p: h.slice(), n: [0, -1, 0] }));
+const isPetal = e => e.p[1] === 1 && e.n[1] === 1;
+const dPetals = st => st.filter(isPetal).length;
+const sameH = (a, b) => a[0] === b[0] && a[1] === b[1] && a[2] === b[2];
+function dCase(e) {
+  if (isPetal(e)) return "petal";
+  if (e.p[1] === -1) return e.n[1] === -1 ? "downD" : "downS";
+  if (e.p[1] === 0) return "mid";
+  return "topF";
+}
+/* plus court chemin (≤ max coups) qui fait de « target » un pétale sans faire tomber les autres */
+function dSearch(st, target, max = 4) {
+  const keep = st.filter(e => isPetal(e) && !(target && sameH(e.h, target))).map(e => e.h);
+  const goal = s => {
+    const kept = keep.every(h => isPetal(s.find(e => sameH(e.h, h))));
+    if (!kept) return false;
+    return target ? isPetal(s.find(e => sameH(e.h, target))) : dPetals(s) > keep.length;
+  };
+  for (let d = 1; d <= max; d++) {
+    const path = [];
+    const dfs = (s, depth) => {
+      if (depth === 0) return goal(s);
+      for (const m of D_PAD) {
+        if (path.length && path[path.length - 1] === inv(m)) continue;
+        path.push(m);
+        if (dfs(dSim(s, m), depth - 1)) return true;
+        path.pop();
+      }
+      return false;
+    };
+    if (dfs(st, d)) return path.slice();
+  }
+  return null;
+}
+const DSTEPS = [
+  { t: "En bas, blanc vers le bas", c: "downD", need: 2,
+    why: "L'arête blanche est en bas et son blanc regarde par terre. Tourne sa face 2 fois : elle monte tout en haut, blanc vers le ciel." },
+  { t: "Au milieu", c: "mid", need: 3,
+    why: "L'arête est au milieu. Tourne la face d'à côté (pas celle où est le blanc) dans le sens qui fait monter le blanc vers le haut." },
+  { t: "En bas, blanc sur le côté", c: "downS", need: 3,
+    why: "Tourne sa face une fois : l'arête remonte au milieu. Ensuite, c'est comme l'étape « Au milieu »." },
+  { t: "En haut mais à l'envers", c: "topF", need: 3,
+    why: "Elle est en haut mais son blanc regarde sur le côté. Tourne sa face : elle descend au milieu. Ensuite, c'est comme l'étape « Au milieu »." },
+  { t: "Protège tes pétales", c: "protect", need: 3,
+    why: "La place juste au-dessus est déjà prise par un pétale. Tourne d'abord le haut (U) pour la libérer, sinon ce pétale tombe." },
+  { t: "Marguerite complète", c: "full", need: 1,
+    why: "Fais les 4 pétales tout seul. Bloqué ? Le bouton indice te dit quelle arête prendre et quel coup faire." }
+];
+let DS = null;
+function dGen(c) {
+  const rnd = n => Array.from({ length: n }, () => rand(D_PAD));
+  for (let tries = 0; tries < 3000; tries++) {
+    let seq;
+    if (c === "downD") seq = rand([[], ["D"], ["D'"], ["U", "D"]]);
+    else if (c === "protect") seq = rnd(3 + Math.floor(Math.random() * 4));
+    else if (c === "full") seq = rnd(14);
+    else seq = rnd(1 + Math.floor(Math.random() * 3));
+    let st = dSolved(); seq.forEach(m => { st = dSim(st, m); });
+    const p = dPetals(st);
+    if (c === "full") { if (p === 0) return { seq, target: null }; continue; }
+    if (c === "protect") {
+      if (p < 1 || p > 3) continue;
+      const cands = shuffle(st.filter(e => !isPetal(e)));
+      for (const e of cands) { const path = dSearch(st, e.h, 4); if (path && path[0][0] === "U" && path.length >= 2) return { seq, target: e.h }; }
+      continue;
+    }
+    if (p !== 0) continue;
+    const cands = shuffle(st.filter(e => dCase(e) === c));
+    for (const e of cands) { const path = dSearch(st, e.h, 3); if (path) return { seq, target: e.h }; }
+  }
+  return { seq: [], target: [0, -1, 1] };
+}
+function dExplain(st, target, path) {
+  const e = st.find(x => sameH(x.h, target)), c = dCase(e), m = path[0];
+  const where = { downD: "en bas, blanc vers le bas", downS: "en bas, blanc sur le côté", mid: "au milieu", topF: "en haut mais à l'envers", petal: "déjà un pétale" }[c];
+  let tip = `L'arête marquée en rose est ${where}. `;
+  if (m[0] === "U" && c !== "topF") tip += "La place au-dessus est prise : tourne d'abord le haut pour mettre tes pétales à l'abri.";
+  else if (m[0] === "D") tip += "Tourne le bas pour la placer sous une place libre.";
+  else if (c === "downD") tip += "Tourne sa face : elle va monter.";
+  else if (c === "downS" || c === "topF") tip += "Tourne sa face une fois pour l'amener au milieu.";
+  else tip += "Tourne la face d'à côté pour faire monter le blanc.";
+  return tip;
+}
+function dStart(step) {
+  const st = S.levels[1]; st.daisy = st.daisy || {};
+  DS = { step, score: 0, msg: "", hint: null, busy: false };
+  view = { screen: "daisy" }; dNew();
+}
+function dNew() {
+  const D = DSTEPS[DS.step], g = dGen(D.c);
+  DS.seq = g.seq; DS.target = g.target; DS.hist = []; DS.hint = null; DS.done = false; DS.msg = "";
+  RC.reset(); RC.setQuiet(false); RC.setSpeed(650); RC.setGuide(null, false); RC.apply(g.seq);
+  DS.startPetals = dPetals(RC.whites());
+  RC.mark(DS.target ? [DS.target] : []);
+  render();
+}
+function dTargetNow() {
+  const st = RC.whites();
+  if (DS.target && !isPetal(st.find(e => sameH(e.h, DS.target)))) return DS.target;
+  const path = dSearch(st, null, 6); if (!path) return null;
+  let s = st; path.forEach(m => { s = dSim(s, m); });
+  const t = s.find((e, i) => isPetal(e) && !isPetal(st[i])); return t ? t.h : null;
+}
+async function dMove(m) {
+  if (!DS || DS.busy || DS.done) return;
+  DS.busy = true; DS.hint = null; DS.hist.push(m);
+  await RC.play([m]); if (!DS) return;
+  DS.busy = false;
+  const st = RC.whites(), p = dPetals(st), D = DSTEPS[DS.step];
+  const keptOld = p >= DS.startPetals;
+  const won = D.c === "full" ? p === 4 : (DS.target ? isPetal(st.find(e => sameH(e.h, DS.target))) && p > DS.startPetals : p > DS.startPetals);
+  if (won) {
+    DS.done = true; DS.score++; RC.mark([]);
+    const sd = S.levels[1].daisy; sd[DS.step] = Math.max(sd[DS.step] || 0, DS.score); save();
+    DS.msg = DS.score >= D.need ? (D.c === "full" ? "Marguerite complète, bravo ! Tu peux la faire sur ton vrai cube." : "Étape réussie ! Passe à la suivante.") : "Bravo, c'est un pétale !";
+  } else if (!keptOld) DS.msg = "Attention : un pétale est tombé ! Annule (↶) et tourne d'abord le haut pour le mettre à l'abri.";
+  else DS.msg = DS.hist.length >= 6 && D.c !== "full" ? "Ça devient long : annule tes coups, ou demande un indice." : "";
+  render();
+}
+async function dShow() {
+  if (!DS || DS.busy) return;
+  DS.busy = true; DS.hint = null;
+  RC.reset(); RC.apply(DS.seq); DS.hist = []; DS.done = false;
+  const st = RC.whites(), t = DS.target || dTargetNow(), path = t && dSearch(st, t, 6);
+  if (!path) { DS.busy = false; return; }
+  RC.mark([t]); DS.msg = `Regarde : ${path.map(m => m + " (" + MOVES[m] + ")").join(", puis ")}.`; render();
+  RC.setSpeed(1300); await RC.play(path); if (!DS) return;
+  await new Promise(r => setTimeout(r, 900)); if (!DS) return;
+  RC.reset(); RC.apply(DS.seq); RC.setSpeed(650); RC.mark(t ? [t] : []);
+  DS.busy = false; DS.msg = "À toi, avec les boutons !"; render();
+}
+function dHint() {
+  if (!DS || DS.busy || DS.done) return;
+  const st = RC.whites(), t = dTargetNow(); if (!t) return;
+  const path = dSearch(st, t, 6); if (!path) { DS.msg = "Annule tes derniers coups (↶), l'arête s'est éloignée."; return render(); }
+  RC.mark([t]); DS.hint = { m: path[0], left: path.length, tip: dExplain(st, t, path) }; DS.msg = ""; render();
+}
+async function dUndo() {
+  if (!DS || DS.busy || !DS.hist.length) return;
+  DS.busy = true; DS.hint = null; DS.done = false;
+  const m = DS.hist.pop(); await RC.play([inv(m)]); if (!DS) return;
+  DS.busy = false; DS.msg = ""; render();
+}
+function renderDaisy() {
+  const D = DSTEPS[DS.step], st = RC.whites(), p = dPetals(st);
+  const top = `<div class="top"><button class="back" data-go="1">← Niveau 1</button><span class="qcount">Étape ${DS.step + 1} / ${DSTEPS.length}</span></div>`;
+  const dots = `<div class="dots">${Array.from({ length: D.need }, (_, k) => `<i class="${k < DS.score ? "on" : ""}"></i>`).join("")}</div>`;
+  const finished = DS.done && DS.score >= D.need;
+  const keys = D_PAD.map(m => `<button class="key" data-dmv="${m}" ${DS.busy || DS.done ? "disabled" : ""}><span class="m">${m}</span><span class="n">${MOVES[m]}</span></button>`).join("");
+  return `${top}<header class="hero"><h2>${esc(D.t)}</h2><p>${esc(D.why)}</p></header>${dots}
+    <section class="card">
+      <div class="top"><span class="label">Pétales : ${p} / 4</span>${DS.target && !DS.done ? `<span class="pill go">Arête en rose</span>` : ""}</div>
+      <div class="vslot"></div>
+      <p class="vhint">Jaune en haut, vert devant, comme ton vrai cube. L'arête rose est cachée ? Fais tourner le cube 3D du doigt.</p>
+      ${DS.hint ? `<div class="coach"><span class="label">Indice · encore ${DS.hint.left} coup${DS.hint.left > 1 ? "s" : ""}</span><p>${esc(DS.hint.tip)}</p><div class="seq">${chip(DS.hint.m, "next")}</div></div>` : ""}
+      ${DS.msg ? `<p class="feedback ${DS.done ? "good" : /tombé|long|Annule/.test(DS.msg) ? "bad" : ""}">${esc(DS.msg)}</p>` : ""}
+      ${DS.done
+        ? `<div class="row">${finished ? (DS.step < DSTEPS.length - 1 ? `<button class="btn" data-dstep="${DS.step + 1}">Étape suivante ▶</button>` : `<button class="btn" data-go="1">Retour au niveau 1</button>`) : ""}<button class="btn ${finished ? "ghost" : ""}" data-dnew="1">${finished ? "Encore un" : "Cube suivant ▶"}</button></div>`
+        : `<div class="pad">${keys}</div>
+           <div class="row"><button class="btn ghost" data-dundo="1" ${DS.hist.length && !DS.busy ? "" : "disabled"}>↶ Annuler</button><button class="btn ghost" data-dhint="1" ${DS.busy ? "disabled" : ""}>💡 Indice</button><button class="btn ghost" data-dshow="1" ${DS.busy ? "disabled" : ""}>▶ Montre-moi</button></div>`}
+    </section>`;
+}
+function daisyCard() {
+  const sd = S.levels[1].daisy || {};
+  return `<section class="card"><div class="top"><h3>Apprends la marguerite pas à pas</h3></div>
+    <p style="color:var(--muted)">Sur le cube 3D, tu tournes toi-même avec les boutons. Il y a 4 situations pour une arête blanche : apprends-les une par une, puis fais la marguerite complète.</p>
+    <div class="options">${DSTEPS.map((D, k) => { const ok = (sd[k] || 0) >= D.need; return `<button class="opt ${ok ? "right" : ""}" data-dstep="${k}">${k + 1}. ${esc(D.t)}${ok ? " ✓" : ""}</button>`; }).join("")}</div></section>`;
+}
+
 /* ---------- Screens ---------- */
 function revPool() { const out = []; LEVELS.forEach((L, i) => { if (levelDone(i)) L.formulas.forEach((f, k) => out.push([i, k])); }); return out; }
 function renderMap() {
@@ -1183,6 +1371,7 @@ function renderLevel(i) {
   <div class="steps">${stepsHtml}</div>
   ${levelDone(i) ? `<p class="celebrate">Niveau gagné ! ${i === 8 ? "Le mode chrono et le niveau bonus sont ouverts." : i < LEVELS.length - 1 ? "Le niveau " + (i + 1) + " est ouvert." : "Tu maîtrises la croix directe !"}</p>` : ""}
   <section class="card"><span class="label">Rappel</span><ul class="tips">${L.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></section>
+  ${i === 1 ? daisyCard() : ""}
   ${L.formulas.length ? viewerCard(i) : ""}
   <section class="card"><div class="top"><h3>Quiz</h3>${st.quiz ? `<span class="pill done">Réussi</span>` : ""}</div>
     <p style="color:var(--muted)">${L.quiz.length} questions. Il faut tout juste pour valider.</p>
@@ -1285,6 +1474,7 @@ function render() {
   else if (view.screen === "drill") app.innerHTML = renderDrill();
   else if (view.screen === "chrono") app.innerHTML = renderChrono();
   else if (view.screen === "recog") app.innerHTML = renderRecog();
+  else if (view.screen === "daisy") app.innerHTML = renderDaisy();
   const slot = app.querySelector(".vslot"); if (slot) slot.appendChild(RC.el);
 }
 
@@ -1292,6 +1482,7 @@ function go(target) {
   stopTimer();
   if (view.screen === "ngame") { NG = null; RC.reset(); RC.setQuiet(false); RC.setSpeed(900); RC.setGuide(null, false); try { speechSynthesis.cancel(); } catch (e) {} }
   if (view.screen === "recog") { RG = null; RC.reset(); }
+  if (view.screen === "daisy") { DS = null; RC.mark([]); RC.reset(); RC.setSpeed(900); }
   if (view.screen === "solver" && target !== "solver") { RC.reset(); RC.setGuide(null, false); RC.setSpeed(900); RC.setQuiet(false); try { speechSynthesis.cancel(); } catch (e) {} }
   if (target === "solver") { const from = view.screen === "map" ? "map" : "who"; if (!SV) SV = svNew(); SV.from = from; view = { screen: "solver" }; needCube().catch(() => {}); getWorker(); }
   else if (target === "who") view = { screen: "who" };
@@ -1330,6 +1521,12 @@ document.addEventListener("click", e => {
   if (d.snew) { const keep = SV.from; SV = svNew(); SV.from = keep; RC.reset(); return render(); }
   if (d.nlvl !== undefined) { nStart(Number(d.nlvl)); return; }
   if (d.nrev) { nStartRev(); return; }
+  if (d.dstep !== undefined) { stopTimer(); if (view.screen === "daisy") { DS = null; RC.mark([]); } dStart(Number(d.dstep)); return; }
+  if (d.dmv) { dMove(d.dmv); return; }
+  if (d.dundo) { dUndo(); return; }
+  if (d.dhint) { dHint(); return; }
+  if (d.dshow) { dShow(); return; }
+  if (d.dnew) { if (DS && !DS.busy) { if (DS.done && DS.score >= DSTEPS[DS.step].need) DS.score = 0; dNew(); } return; }
   if (d.nrewatch) { nRewatch(); return; }
   if (d.nreal) { nReal(d.nreal); return; }
   if (d.recog) { stopTimer(); RG = { level: view.screen === "recog" ? RG.level : view.level, idx: 0, total: 5, score: 0 }; view = { screen: "recog" }; recogNext(); return render(); }
