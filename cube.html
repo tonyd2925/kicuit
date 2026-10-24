@@ -1232,7 +1232,7 @@ function dStart(step) {
 }
 function dNew() {
   const D = DSTEPS[DS.step], g = dGen(D.c);
-  DS.seq = g.seq; DS.target = g.target; DS.hist = []; DS.hint = null; DS.done = false; DS.msg = "";
+  DS.seq = g.seq; DS.target = g.target; DS.hist = []; DS.hint = null; DS.done = false; DS.msg = ""; DS.plan = null;
   RC.reset(); RC.setQuiet(false); RC.setSpeed(650); RC.setGuide(null, false); RC.apply(g.seq);
   DS.startPetals = dPetals(RC.whites());
   RC.mark(DS.target ? [DS.target] : []);
@@ -1248,6 +1248,8 @@ function dTargetNow() {
 async function dMove(m) {
   if (!DS || DS.busy || DS.done) return;
   DS.busy = true; DS.hint = null; DS.hist.push(m);
+  // l'indice garde son plan tant que Raf le suit ; sinon il en refera un
+  if (DS.plan && DS.plan[0] === m) DS.plan.shift(); else DS.plan = null;
   await RC.play([m]); if (!DS) return;
   DS.busy = false;
   const st = RC.whites(), p = dPetals(st), D = DSTEPS[DS.step];
@@ -1264,7 +1266,7 @@ async function dMove(m) {
 async function dShow() {
   if (!DS || DS.busy) return;
   DS.busy = true; DS.hint = null;
-  RC.reset(); RC.apply(DS.seq); DS.hist = []; DS.done = false;
+  RC.reset(); RC.apply(DS.seq); DS.hist = []; DS.done = false; DS.plan = null;
   const st = RC.whites(), t = DS.target || dTargetNow(), path = t && dSearch(st, t, 6);
   if (!path) { DS.busy = false; return; }
   RC.mark([t]); DS.msg = `Regarde : ${path.map(m => m + " (" + MOVES[m] + ")").join(", puis ")}.`; render();
@@ -1275,14 +1277,18 @@ async function dShow() {
 }
 function dHint() {
   if (!DS || DS.busy || DS.done) return;
-  const st = RC.whites(), t = dTargetNow(); if (!t) return;
-  const path = dSearch(st, t, 6); if (!path) { DS.msg = "Annule tes derniers coups (↶), l'arête s'est éloignée."; return render(); }
-  RC.mark([t]); DS.hint = { m: path[0], left: path.length, tip: dExplain(st, t, path) }; DS.msg = ""; render();
+  const st = RC.whites();
+  if (!DS.plan || !DS.plan.length) {
+    const t = dTargetNow(); if (!t) return;
+    const path = dSearch(st, t, 6); if (!path) { DS.msg = "Annule tes derniers coups (↶), l'arête s'est éloignée."; return render(); }
+    DS.plan = path; DS.planT = t;
+  }
+  RC.mark([DS.planT]); DS.hint = { m: DS.plan[0], left: DS.plan.length, tip: dExplain(st, DS.planT, DS.plan) }; DS.msg = ""; render();
 }
 async function dUndo() {
   if (!DS || DS.busy || !DS.hist.length) return;
   DS.busy = true; DS.hint = null; DS.done = false;
-  const m = DS.hist.pop(); await RC.play([inv(m)]); if (!DS) return;
+  const m = DS.hist.pop(); DS.plan = null; await RC.play([inv(m)]); if (!DS) return;
   DS.busy = false; DS.msg = ""; render();
 }
 function renderDaisy() {
