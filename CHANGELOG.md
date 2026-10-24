@@ -4,6 +4,7 @@ Le numéro affiché en bas de l'accueil (« Version N · date »), sur l'écran 
 
 | Version | Date | Changements |
 |---|---|---|
+| 29 | 24/10/2026 | Nana : nouveau jeu « Presque trois » entre Deux tours et Trois tours (3 tours dont 2 identiques, puis 3 tours sur 2 couleurs avec la pile, puis sans pile) ; « Trois tours » commence avec la pile. Une erreur ne défait plus que le mauvais tour : les tours justes sont gardés. |
 | 28 | 22/10/2026 | Audit pédagogique appliqué. Nana : on voit le mélange puis on « rembobine », mode détective ensuite, « le contraire » nommé, jeux Rembobine (avec pile) et Sur ton vrai cube, révision du jour, petite danse (1 étoile) séparée du tour de magie (12 jeux). Raf : quiz « Reconnais » sur le cube 3D, « Fais avec moi » en 3 vitesses, formules en morceaux, révision du jour, niveau bonus « Croix directe », chrono par étapes. Solveur : indice de la méthode (coach) avant la solution complète. |
 | 27 | 22/10/2026 | Numéro de version visible partout. « Ça tourne » : les dessins attendent la fin du mouvement (corrige le tour en trop quand Nana touchait trop tôt). Onglets du solveur lisibles sur petit téléphone. Réglages 3D pour Safari. |
 | 26 | 22/10/2026 | Solveur guidé par couleur (voix, cube assombri, doubles coups en deux fois, Revoir). Nana : 9 jeux, « répare » progressifs, aide par paliers, danse un mouvement par touche. Zoom bloqué. |

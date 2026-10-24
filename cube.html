@@ -585,7 +585,8 @@ const NLV = [
   { t: "Deux tours", c: "--orange", need: 6, k: "fix", n: 2, stages: [[["R", "U"], 4, "watch"], [["R", "U", "L"], 4, "watch"], [["R", "U", "L", "F"], 6, "hide"]] },
   { t: "Deux fois pareil", c: "--green", need: 4, k: "fix", n: 2, same: true, stages: [[["R", "U"], 4, "watch"], [["R", "U", "L", "F"], 4, "hide"]] },
   { t: "Deux tours partout", c: "--blue", need: 5, k: "fix", n: 2, stages: [[["R", "U", "L", "F"], 4, "watch"], [["R", "U", "L", "F", "D"], 6, "hide"]] },
-  { t: "Trois tours", c: "--yellow", need: 4, k: "fix", n: 3, stages: [[["R", "U"], 4, "watch", true], [["R", "U", "F"], 6, "watch"]] },
+  { t: "Presque trois", c: "--red", need: 6, k: "fix", n: 3, stages: [[["R", "U"], 4, "watch", true, "pair"], [["R", "U"], 4, "watch", true], [["R", "U"], 4, "watch"]] },
+  { t: "Trois tours", c: "--yellow", need: 4, k: "fix", n: 3, stages: [[["R", "U", "F"], 4, "watch", true], [["R", "U", "F"], 6, "watch"]] },
   { t: "La petite danse", c: "--red", need: 1, k: "dance", dances: 1 },
   { t: "Le tour de magie", c: "--orange", need: 6, k: "dance", dances: 6 }
 ];
@@ -601,6 +602,7 @@ let NS = (() => {
     let done = o;
     if (o.length === 5) done = [o[0], o[1], o[2], f, f, f, o[3], f, f, f, o[4], o[4]];
     else if (o.length === 9) done = [o[0], o[1], o[2], o[3], f, f, o[4], o[5], o[6], o[7], o[8], o[8]];
+    if (done.length === 12) done = [...done.slice(0, 9), done[9], ...done.slice(9)];
     if (done.length !== NLV.length) return blankN();
     return { done, unlockAll: !!d.unlockAll, rev: d.rev || null };
   } catch (e) { return blankN(); }
@@ -655,7 +657,7 @@ function pileHTML() {
   const n = NG.seq.length, undone = NG.taps.length, next = n - 1 - undone;
   return `<div class="pile">${NG.seq.map((m, k) => {
     const i = mInfo(m), gone = k > next, now = k === next;
-    return `<div class="pcard ${gone ? "gone" : ""} ${now ? "now" : ""}" style="--pc:${i.hex}"><b>${k + 1}</b>${faceIcon(m)}<span>${now ? "à défaire en premier" : gone ? "défait ✓" : ""}</span></div>`;
+    return `<div class="pcard ${gone ? "gone" : ""} ${now ? "now" : ""}" style="--pc:${i.hex}"><b>${k + 1}</b>${faceIcon(m)}<span>${now ? (undone ? "à défaire maintenant" : "à défaire en premier") : gone ? "défait ✓" : ""}</span></div>`;
   }).join("")}</div>`;
 }
 function renderNana() {
@@ -705,10 +707,11 @@ function renderNana() {
 
 function nStage(L, score) { return L.stages[Math.min(L.stages.length - 1, Math.floor(score * L.stages.length / L.need))]; }
 function nScramble(L, stage) {
-  const [faces, nopt] = stage;
+  const [faces, nopt] = stage; // stage[4] === "pair" : un des tours est fait deux fois
   const moves = []; faces.forEach(f => moves.push(f, f + "'"));
   let seq;
   if (L.same) { const m = rand(moves); seq = [m, m]; }
+  else if (stage[4] === "pair") { const a = rand(moves); let b; do b = rand(moves); while (b[0] === a[0]); seq = rand([[a, a, b], [a, b, b]]); }
   else {
     seq = [];
     while (seq.length < L.n) { const m = rand(moves); if (seq.length && seq[seq.length - 1][0] === m[0]) continue; seq.push(m); }
@@ -809,25 +812,34 @@ async function nPick(m) {
     await RC.play([NG.ans]); if (NG !== g || NG.r !== r) return;
     NG.ready = true; NG.prompt = "Touche le bon dessin."; render(); return;
   }
-  const g = NG, r = NG.r;
-  NG.taps.push(m); render();
+  const g = NG, r = NG.r, idx = NG.taps.length;
+  let exp = NG.sol[idx];
+  // un tour fait deux fois peut se réparer dans les deux sens (deux fois l'orange vers le haut = deux fois vers le bas)
+  if (m !== exp && m === inv(exp) && NG.sol[idx + 1] === exp) { NG.sol[idx] = m; NG.sol[idx + 1] = m; exp = m; }
+  NG.taps.push(m); NG.ready = false; render();
   await RC.play([m]);
   if (NG !== g || NG.r !== r) return;
-  if (RC.solved()) {
-    const c = mInfo(NG.seq[0]);
-    return nGood(NG.sol.length === 1 ? `Tu as fait le contraire : ${art(c.col)} est revenu à sa place !` : "Tu as rembobiné, le dernier en premier. Bravo !");
+  if (m === exp) {
+    NG.ready = true;
+    if (NG.taps.length >= NG.sol.length && RC.solved()) {
+      const c = mInfo(NG.seq[0]);
+      return nGood(NG.sol.length === 1 ? `Tu as fait le contraire : ${art(c.col)} est revenu à sa place !` : "Tu as rembobiné, le dernier en premier. Bravo !");
+    }
+    if (NG.hintFace) NG.hintFace = NG.sol[NG.taps.length][0];
+    const left = NG.sol.length - NG.taps.length;
+    NG.prompt = left === 1 ? "Bien ! Plus qu'un." : `Bien ! Encore ${left}.`;
+    render(); say(NG.prompt); return;
   }
-  if (NG.taps.length >= NG.sol.length) {
-    NG.fails++;
-    NG.prompt = "Oups ! On revient en arrière."; render(); say(NG.prompt);
-    await RC.play(NG.taps.slice().reverse().map(inv));
-    if (NG !== g || NG.r !== r) return;
-    NG.taps = [];
-    const c = mInfo(NG.sol[0]);
-    if (NG.fails === 1) { NG.prompt = NG.mode === "watch" ? "Pas grave ! Tu peux revoir le mélange, puis réessayer." : "Pas grave ! Regarde bien le cube et essaie encore."; render(); say(NG.prompt); }
-    else if (NG.fails === 2) { NG.hintFace = NG.sol[0][0]; NG.prompt = `Petit indice : commence par ${art(c.col)}, dans l'autre sens.`; render(); say(NG.prompt); }
-    else { NG.hintFace = null; NG.hint = true; NG.prompt = "Essaie le dessin qui brille."; render(); sayMove(NG.sol[0], "Essaie le dessin qui brille : "); }
-  } else { if (NG.hintFace) NG.hintFace = NG.sol[NG.taps.length][0]; render(); }
+  // mauvais tour : on ne défait que celui-là, ce qui était juste reste
+  NG.fails++;
+  NG.prompt = "Oups, pas celui-là ! On le défait."; render(); say(NG.prompt);
+  await RC.play([inv(m)]);
+  if (NG !== g || NG.r !== r) return;
+  NG.taps.pop(); NG.ready = true;
+  const want = NG.sol[NG.taps.length], c = mInfo(want), kept = NG.taps.length;
+  if (NG.fails === 1) { NG.prompt = kept ? (kept === 1 ? "Ton premier tour est bon, on le garde. Essaie un autre dessin." : `Tes ${kept} premiers tours sont bons, on les garde. Essaie un autre dessin.`) : (NG.mode === "watch" ? "Pas grave ! Tu peux revoir le mélange, puis réessayer." : "Pas grave ! Regarde bien le cube et essaie encore."); render(); say(NG.prompt); }
+  else if (NG.fails === 2) { NG.hintFace = want[0]; NG.prompt = `Petit indice : c'est ${art(c.col)}.`; render(); say(NG.prompt); }
+  else { NG.hintFace = null; NG.hint = true; NG.prompt = "Essaie le dessin qui brille."; render(); sayMove(want, "Essaie le dessin qui brille : "); }
 }
 async function nRewatch() {
   if (!NG || !NG.ready || NG.taps.length || RC.busy) return;
