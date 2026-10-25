@@ -123,8 +123,9 @@ ul.tips { margin: 0; padding-left: 20px; display: flex; flex-direction: column; 
 }
 .chip .m { font-family: var(--f-mono); font-weight: 700; font-size: 1.3rem; line-height: 1.1; }
 .chip .n { font-size: .68rem; color: var(--muted); font-weight: 700; text-align: center; line-height: 1.15; }
-.chip.blank > * { visibility: hidden; }
-.chip.blank { min-height: 52px; }
+.chip.blank > * { display: none; }
+.chip.given { border-style: dotted; opacity: .75; }
+.chip.blank, .chip.blank.wd { width: 64px; min-width: 64px; height: 58px; padding: 0; }
 .chip.blank { border-style: dashed; }
 .chip.filled { border-color: var(--good); background: color-mix(in srgb, var(--good) 12%, var(--surface)); }
 .chip.next { border-color: var(--accent); }
@@ -307,6 +308,7 @@ button.chip.now { border-color: var(--accent); background: color-mix(in srgb, va
 .opt.mvopt { display: flex; align-items: center; gap: 12px; }
 .opt.mvopt svg { width: 44px; height: 44px; flex: none; }
 .opt.lt { font-family: var(--f-mono); font-size: 1.5rem; text-align: center; }
+.defi { border: 3px solid var(--accent); }
 .foot { display: flex; justify-content: center; }
 .ver { text-align: center; color: var(--muted); font-size: .8rem; font-weight: 700; margin: 0; font-variant-numeric: tabular-nums; }
 .link { background: none; border: none; color: var(--muted); text-decoration: underline; font-size: .85rem; }
@@ -1097,10 +1099,10 @@ async function svSolve(full) {
 }
 
 /* ---------- Raf v28 helpers ---------- */
-function chunked(f, cell) {
-  if (!f.chunks) return `<div class="seq">${f.seq.map((m, k) => cell(m, k)).join("")}</div>`;
+function chunked(f, cell, mode = "labels") {
+  if (!f.chunks || mode === "flat") return `<div class="seq">${f.seq.map((m, k) => cell(m, k)).join("")}</div>`;
   let k = 0;
-  return `<div class="chunks">${f.chunks.map(([len, label]) => { const part = f.seq.slice(k, k + len).map((m, j) => cell(m, k + j)).join(""); k += len; return `<div class="chunk"><small>${esc(label)}</small><div class="seq">${part}</div></div>`; }).join("")}</div>`;
+  return `<div class="chunks">${f.chunks.map(([len, label]) => { const part = f.seq.slice(k, k + len).map((m, j) => cell(m, k + j)).join(""); k += len; return `<div class="chunk">${mode === "labels" ? `<small>${esc(label)}</small>` : ""}<div class="seq">${part}</div></div>`; }).join("")}</div>`;
 }
 const TEMPOS = [["lent", "🐢 Lent", 1600], ["normal", "🚶 Normal", 900], ["rapide", "🐇 Rapide", 450]];
 let RG = null; // reconnaissance
@@ -1474,6 +1476,7 @@ function renderLevel(i) {
   <header class="hero"><h2>${esc(L.name)}</h2><p>${esc(L.sub)}</p></header>
   <div class="steps">${stepsHtml}</div>
   ${levelDone(i) ? `<p class="celebrate">Niveau gagné ! ${i === 8 ? "Le mode chrono et le niveau bonus sont ouverts." : i < LEVELS.length - 1 ? "Le niveau " + (i + 1) + " est ouvert." : "Tu maîtrises la croix directe !"}</p>` : ""}
+  ${timer ? `<section class="card defi"><strong>Mode défi : le tuto est caché.</strong><p style="color:var(--muted);margin:0">Arrête le chrono pour le revoir.</p></section>` : `
   <section class="card"><span class="label">Rappel</span><ul class="tips">${L.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></section>
   ${i === 0 ? lettersCard() : ""}
   ${i === 1 ? daisyCard() : ""}
@@ -1485,6 +1488,7 @@ function renderLevel(i) {
   ${i >= 4 && L.formulas.length ? `<section class="card"><div class="top"><h3>Reconnais la situation</h3>${st.recog ? `<span class="pill done">Réussi</span>` : ""}</div>
     <p style="color:var(--muted)">Le cube 3D te montre une situation : choisis la formule qui le répare. C'est ce qu'il faut savoir faire avec ton vrai cube.</p>
     <button class="btn ${st.recog ? "ghost" : ""}" data-recog="1">${st.recog ? "Rejouer" : "Commencer"}</button></section>` : ""}
+  `}
   <section class="card">
     <div class="top"><h3>Défi sur ton vrai cube</h3></div>
     <p>${esc(L.challenge)}</p>
@@ -1522,12 +1526,16 @@ function renderQuiz() {
 
 function renderDrill() {
   const f = LEVELS[drill.level].formulas[drill.f], cnt = S.levels[drill.level].drills[f.name] || 0;
-  const slots = chunked(f, (m, k) => k < drill.pos ? chip(m, "filled") : chip(m, "blank" + (k === drill.pos ? " next" : "")));
+  const help = drill.rev ? 2 : Math.min(cnt, 2); // 0 = beaucoup d'aide, 2 = sans aide
+  const mode = help === 0 ? "labels" : help === 1 ? "nolabels" : "flat";
+  const slots = chunked(f, (m, k) => k < drill.pos ? chip(m, k < (drill.given || 0) ? "filled given" : "filled") : chip(m, "blank" + (k === drill.pos ? " next" : "")), mode);
+  const helpTxt = drill.rev ? "Sans aide : c'est une révision." : help === 0 ? (f.chunks ? "Étoile 1 : les noms des morceaux t'aident." : "Étoile 1 : le premier mouvement est donné.") : help === 1 ? (f.chunks ? "Étoile 2 : les morceaux sont là, sans leurs noms." : "Étoile 2 : plus de mouvement donné.") : "Étoile 3 : sans aide, comme sur ton vrai cube.";
   const keys = PAD.map(m => `<button class="${keyCls()}" data-key="${m}">${mvInner(m)}</button>`).join("");
   const finished = drill.pos >= f.seq.length;
   return `<div class="top"><button class="back" data-go="${drill.rev ? "map" : drill.level}">← ${drill.rev ? "Carte" : "Niveau " + drill.level}</button>
     <div class="stars">${[0, 1, 2].map(s => `<i class="${s < cnt ? "on" : ""}"></i>`).join("")}</div></div>
     <section class="card"><span class="label">${drill.rev ? "Révision du jour · niveau " + drill.level : "De mémoire"}</span><h2>${esc(f.name)}</h2>
+    <p style="color:var(--muted);margin:0">${esc(helpTxt)}</p>
     <div class="seq" id="slots">${slots}</div>
     <p class="feedback ${drill.msgCls || ""}" id="fb">${esc(drill.msg || "Tape les mouvements dans l'ordre.")}</p>
     ${finished ? (drill.rev ? `<div class="row"><button class="btn" data-go="map">Retour à la carte</button>${drill.errors ? `<button class="btn ghost" data-rraf="1">Réessayer</button>` : ""}</div>` : `<div class="row"><button class="btn" data-drill="${drill.f}">Encore une fois</button><button class="btn ghost" data-go="${drill.level}">Retour au niveau</button></div>`)
@@ -1695,7 +1703,9 @@ document.addEventListener("click", e => {
     if (quiz.idx >= LEVELS[quiz.level].quiz.length && quiz.score === LEVELS[quiz.level].quiz.length) { S.levels[quiz.level].quiz = true; save(); }
     return render();
   }
-  if (d.drill !== undefined) { const lvl = view.screen === "drill" ? drill.level : view.level; drill = { level: lvl, f: Number(d.drill), pos: 0, errors: 0 }; view = { screen: "drill" }; return render(); }
+  if (d.drill !== undefined) { const lvl = view.screen === "drill" ? drill.level : view.level; drill = { level: lvl, f: Number(d.drill), pos: 0, errors: 0 };
+    { const f0 = LEVELS[lvl].formulas[drill.f]; if (!f0.chunks && !(S.levels[lvl].drills[f0.name] || 0)) { drill.pos = 1; drill.given = 1; } }
+    view = { screen: "drill" }; return render(); }
   if (d.key) {
     const f = LEVELS[drill.level].formulas[drill.f];
     if (d.key === f.seq[drill.pos]) {
