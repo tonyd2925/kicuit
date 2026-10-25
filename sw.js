@@ -1,4 +1,4 @@
-const C='kicuit-v31';
+const C='kicuit-v32';
 const FILES=['./','./index.html','./version.js','./kicuit.html','./cube.html','./solver-worker.js','./vendor/cubejs/cube.js','./vendor/cubejs/solve.js','./manifest.webmanifest','./icon-180.png','./icon-512.png'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll(FILES)));self.skipWaiting();});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))));self.clients.claim();});

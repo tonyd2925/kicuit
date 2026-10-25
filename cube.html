@@ -123,7 +123,8 @@ ul.tips { margin: 0; padding-left: 20px; display: flex; flex-direction: column; 
 }
 .chip .m { font-family: var(--f-mono); font-weight: 700; font-size: 1.3rem; line-height: 1.1; }
 .chip .n { font-size: .68rem; color: var(--muted); font-weight: 700; text-align: center; line-height: 1.15; }
-.chip.blank .m { color: transparent; }
+.chip.blank > * { visibility: hidden; }
+.chip.blank { min-height: 52px; }
 .chip.blank { border-style: dashed; }
 .chip.filled { border-color: var(--good); background: color-mix(in srgb, var(--good) 12%, var(--surface)); }
 .chip.next { border-color: var(--accent); }
@@ -285,6 +286,27 @@ button.chip.now { border-color: var(--accent); background: color-mix(in srgb, va
 .splits td { padding: 6px 4px; border-bottom: 1px solid var(--line); }
 .splits td:last-child { text-align: right; font-family: var(--f-mono); font-weight: 700; }
 .splits tr.slow td { color: var(--bad); font-weight: 800; }
+/* v32 : mouvements en mots */
+.chip.wd { min-width: 74px; padding: 6px 6px 4px; gap: 1px; }
+.chip.wd .ic, .key.wd .ic { position: relative; display: block; width: 38px; height: 38px; }
+.chip.wd .ic svg, .key.wd .ic svg { width: 38px; height: 38px; display: block; }
+.chip .x2, .key .x2 { position: absolute; right: -10px; top: -4px; background: var(--ink); color: var(--bg); border-radius: 999px; font-size: .62rem; padding: 0 4px; }
+.chip.wd .w, .key.wd .w { font-size: .72rem; font-weight: 800; text-align: center; line-height: 1.1; max-width: 86px; }
+.chip.wd .l, .key.wd .l { font-family: var(--f-mono); font-size: .66rem; color: var(--muted); }
+.key.wd { padding: 6px 2px; gap: 2px; }
+.seq.scr { gap: 6px; align-items: flex-start; }
+.scn { font-family: var(--f-mono); font-size: .7rem; color: var(--muted); align-self: center; margin-left: 4px; }
+.notasel { display: flex; flex-wrap: wrap; gap: 6px; }
+.notasel button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-weight: 800; font-size: .9rem; }
+.notasel button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.mnemo { width: 100%; border-collapse: collapse; }
+.mnemo td { padding: 6px 4px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.mnemo td:first-child { font-family: var(--f-mono); font-weight: 700; font-size: 1.3rem; width: 52px; }
+.mnemo td svg { width: 34px; height: 34px; display: block; }
+.bigletter { font-family: var(--f-mono); font-weight: 700; font-size: 4rem; text-align: center; line-height: 1; }
+.opt.mvopt { display: flex; align-items: center; gap: 12px; }
+.opt.mvopt svg { width: 44px; height: 44px; flex: none; }
+.opt.lt { font-family: var(--f-mono); font-size: 1.5rem; text-align: center; }
 .foot { display: flex; justify-content: center; }
 .ver { text-align: center; color: var(--muted); font-size: .8rem; font-weight: 700; margin: 0; font-variant-numeric: tabular-nums; }
 .link { background: none; border: none; color: var(--muted); text-decoration: underline; font-size: .85rem; }
@@ -435,7 +457,20 @@ function doneCount() { return LEVELS.filter((_, i) => levelDone(i)).length; }
 
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 function fmt(ms) { const t = Math.floor(ms / 100), d = t % 10, s = Math.floor(t / 10) % 60, m = Math.floor(t / 600); return `${m}:${String(s).padStart(2, "0")}.${d}`; }
-function chip(m, cls = "") { return `<span class="chip ${cls}"><span class="m">${esc(m)}</span><span class="n">${esc(MOVES[m] || "")}</span></span>`; }
+const NOTA = [["mots", "Mots"], ["mixte", "Mots + lettres"], ["lettres", "Lettres"]];
+const nota = () => (S && S.nota) || "mots";
+function mvInner(m) {
+  const n = nota();
+  if (n === "lettres") return `<span class="m">${esc(m)}</span>`;
+  if (n === "mixte") return `<span class="m">${esc(m)}</span><span class="n">${esc(MOVES[m] || "")}</span>`;
+  return `<span class="ic">${faceIcon(m)}${m.includes("2") ? '<b class="x2">×2</b>' : ""}</span><span class="w">${esc(MOVES[m] || m)}</span><span class="l">${esc(m)}</span>`;
+}
+function chip(m, cls = "") { return `<span class="chip ${cls} ${nota() === "mots" ? "wd" : ""}">${mvInner(m)}</span>`; }
+const keyCls = () => nota() === "mots" ? "key wd" : "key";
+function scrHTML(seq) {
+  if (nota() === "lettres") return `<div class="scramble">${seq.join(" ")}</div>`;
+  return `<div class="seq scr">${seq.map((m, k) => `<span class="scn">${k + 1}</span>${chip(m)}`).join("")}</div>`;
+}
 function scramble(n = 22) {
   const faces = ["R", "L", "U", "D", "F"], suf = ["", "'", "2"]; const out = []; let last = "";
   while (out.length < n) { const f = faces[Math.floor(Math.random() * faces.length)]; if (f === last) continue; last = f; out.push(f + suf[Math.floor(Math.random() * 3)]); }
@@ -557,14 +592,14 @@ function viewerCard(i) {
   const L = LEVELS[i];
   const st = S.levels[i];
   const forms = L.formulas.map((f, k) => `<div class="formrow" data-f="${k}"><strong>${esc(f.name)}</strong>
-    ${chunked(f, m => `<button class="chip" data-one="${m}"><span class="m">${esc(m)}</span><span class="n">${esc(MOVES[m])}</span></button>`)}
+    ${chunked(f, m => `<button class="chip ${nota() === "mots" ? "wd" : ""}" data-one="${m}">${mvInner(m)}</button>`)}
     <button class="btn" data-play="${k}">▶ Voir ${L.formulas.length > 1 ? "cette formule" : "la formule"}</button>
     <span class="label">Fais avec moi, sur ton cube</span>
     <div class="tempo">${TEMPOS.map(([key, lbl, ms]) => `<button class="${(st.tempo[f.name] || []).includes(key) ? "ok" : ""}" data-tempo="${k}:${key}:${ms}">${lbl}${(st.tempo[f.name] || []).includes(key) ? " ✓" : ""}</button>`).join("")}</div>
     ${view.tempoAsk && view.tempoAsk.f === k ? `<button class="btn good" data-tempook="${k}:${view.tempoAsk.key}">✔ Je l'ai faite en même temps (${esc(view.tempoAsk.key)})</button>` : ""}
     </div>`).join("");
   const pad = i === 0 ? `<div><span class="label">Touche un mouvement pour le voir</span>
-    <div class="pad" style="margin-top:8px">${PAD.map(m => `<button class="key" data-one="${m}"><span class="m">${m}</span><span class="n">${MOVES[m]}</span></button>`).join("")}</div></div>` : "";
+    <div class="pad" style="margin-top:8px">${PAD.map(m => `<button class="${keyCls()}" data-one="${m}">${mvInner(m)}</button>`).join("")}</div></div>` : "";
   return `<section class="card">
     <div class="top"><h3>Regarde sur le cube</h3>
       <div class="seg" role="group" aria-label="Vitesse"><button data-speed="1400" class="${RC.speed === 1400 ? "on" : ""}">Lent</button><button data-speed="900" class="${RC.speed === 900 ? "on" : ""}">Normal</button></div></div>
@@ -1296,7 +1331,7 @@ function renderDaisy() {
   const top = `<div class="top"><button class="back" data-go="1">← Niveau 1</button><span class="qcount">Étape ${DS.step + 1} / ${DSTEPS.length}</span></div>`;
   const dots = `<div class="dots">${Array.from({ length: D.need }, (_, k) => `<i class="${k < DS.score ? "on" : ""}"></i>`).join("")}</div>`;
   const finished = DS.done && DS.score >= D.need;
-  const keys = D_PAD.map(m => `<button class="key" data-dmv="${m}" ${DS.busy || DS.done ? "disabled" : ""}><span class="m">${m}</span><span class="n">${MOVES[m]}</span></button>`).join("");
+  const keys = D_PAD.map(m => `<button class="${keyCls()}" data-dmv="${m}" ${DS.busy || DS.done ? "disabled" : ""}>${mvInner(m)}</button>`).join("");
   return `${top}<header class="hero"><h2>${esc(D.t)}</h2><p>${esc(D.why)}</p></header>${dots}
     <section class="card">
       <div class="top"><span class="label">Pétales : ${p} / 4</span>${DS.target && !DS.done ? `<span class="pill go">Arête en rose</span>` : ""}</div>
@@ -1315,6 +1350,68 @@ function daisyCard() {
   return `<section class="card"><div class="top"><h3>Apprends la marguerite pas à pas</h3></div>
     <p style="color:var(--muted)">Sur le cube 3D, tu tournes toi-même avec les boutons. Il y a 4 situations pour une arête blanche : apprends-les une par une, puis fais la marguerite complète.</p>
     <div class="options">${DSTEPS.map((D, k) => { const ok = (sd[k] || 0) >= D.need; return `<button class="opt ${ok ? "right" : ""}" data-dstep="${k}">${k + 1}. ${esc(D.t)}${ok ? " ✓" : ""}</button>`; }).join("")}</div></section>`;
+}
+
+/* ---------- Le code des lettres (Raf) ---------- */
+const LT_FACES = [
+  ["R", "Right = droite (en anglais)", "R'"], ["L", "Left = gauche", "L'"], ["U", "Up = en haut", "U'"],
+  ["D", "Down = en bas", "D'"], ["F", "Front = devant", "F'"], ["B", "Back = derrière", "B'"]
+];
+const LT_POOL = ["R", "R'", "U", "U'", "L", "L'", "F", "F'", "D", "D'"];
+let LT = null;
+function ltStart(mode) { LT = { mode, idx: 0, total: 10, score: 0, picked: null }; view = { screen: "letters" }; ltNext(); }
+function ltNext() {
+  const pool = LT.idx < 4 ? ["R", "R'", "U", "U'"] : LT_POOL;
+  const ans = rand(pool);
+  // un piège utile : le même côté dans l'autre sens
+  const opts = [ans, inv(ans)];
+  for (const m of shuffle(LT_POOL)) { if (opts.length >= 4) break; if (!opts.includes(m)) opts.push(m); }
+  LT.ans = ans; LT.opts = shuffle(opts); LT.picked = null;
+  RC.reset(); RC.setQuiet(true); RC.setSpeed(1100); RC.setGuide(500, true);
+  render();
+  if (LT.mode === "b") RC.play([ans]);
+}
+function renderLetters() {
+  const done = LT.idx >= LT.total;
+  const top = `<div class="top"><button class="back" data-go="0">← Niveau 0</button><span class="qcount">${done ? "Fini" : `${LT.idx + 1} / ${LT.total}`}</span></div>`;
+  if (done) {
+    const ok = LT.score >= 8, both = S.letters && S.letters.a && S.letters.b;
+    return `${top}<section class="card"><h2>${ok ? "Code déchiffré !" : "Presque !"}</h2><p>${LT.score} bonnes réponses sur ${LT.total}.${ok ? "" : " Il en faut 8."}</p>
+      ${ok && both && nota() === "mots" ? `<p>Tu connais les lettres dans les deux sens. Essaie l'affichage « Mots + lettres » : tu peux revenir aux mots quand tu veux.</p><button class="btn good" data-nota="mixte">Passer à « Mots + lettres »</button>` : ""}
+      ${ok && both && nota() === "mixte" ? `<p>Prêt pour les lettres seules, comme les champions ?</p><button class="btn good" data-nota="lettres">Passer aux « Lettres »</button>` : ""}
+      <div class="row"><button class="btn" data-go="0">Retour au niveau 0</button><button class="btn ghost" data-ltgo="${LT.mode}">Rejouer</button></div></section>`;
+  }
+  const answered = LT.picked != null;
+  let q, opts;
+  if (LT.mode === "a") {
+    q = `<p class="label" style="text-align:center">Que veut dire cette lettre ?</p><div class="bigletter">${esc(LT.ans)}</div>`;
+    opts = LT.opts.map((m, k) => { let cls = ""; if (answered) { if (m === LT.ans) cls = "right"; else if (k === LT.picked) cls = "wrong"; } return `<button class="opt mvopt ${cls}" data-ltpick="${k}" ${answered ? "disabled" : ""}>${faceIcon(m)}<span>${esc(MOVES[m])}</span></button>`; }).join("");
+  } else {
+    q = `<p class="label" style="text-align:center">Regarde le cube : quelle lettre ?</p>`;
+    opts = LT.opts.map((m, k) => { let cls = ""; if (answered) { if (m === LT.ans) cls = "right"; else if (k === LT.picked) cls = "wrong"; } return `<button class="opt lt ${cls}" data-ltpick="${k}" ${answered ? "disabled" : ""}>${esc(m)}</button>`; }).join("");
+  }
+  const fb = answered ? (LT.opts[LT.picked] === LT.ans ? `Bravo ! ${LT.ans} = ${MOVES[LT.ans]}.` : `C'était ${LT.ans} = ${MOVES[LT.ans]}. ${LT.ans.endsWith("'") ? "L'apostrophe veut dire : dans l'autre sens." : "Sans apostrophe : le sens normal."}`) : "";
+  return `${top}<header class="hero"><h2>${LT.mode === "a" ? "De la lettre au mouvement" : "Du mouvement à la lettre"}</h2></header>
+    <section class="card">${q}<div class="vslot"></div>
+      ${LT.mode === "b" && !answered ? `<button class="btn ghost" data-ltreplay="1">🔁 Revoir</button>` : ""}
+      <div class="${LT.mode === "b" ? "icons" : "options"}">${opts}</div>
+      ${answered ? `<p class="feedback ${LT.opts[LT.picked] === LT.ans ? "good" : "bad"}">${esc(fb)}</p><button class="btn" data-ltnext="1">Suivant</button>` : ""}
+    </section>`;
+}
+function lettersCard() {
+  const L = S.letters || {};
+  return `<section class="card"><div class="top"><h3>Le code des lettres</h3></div>
+    <p style="color:var(--muted)">Les champions écrivent les mouvements avec des lettres. Chaque lettre est la première lettre d'un mot anglais. L'apostrophe ' veut dire « dans l'autre sens ».</p>
+    <table class="mnemo">${LT_FACES.map(([f, w, p]) => `<tr><td>${f}</td><td>${faceIcon(f)}</td><td><strong>${esc(w)}</strong><br><span style="color:var(--muted)">${f} : ${esc(MOVES[f])} · ${p} : ${esc(MOVES[p])}</span></td></tr>`).join("")}</table>
+    <div class="options">
+      <button class="opt ${L.a ? "right" : ""}" data-ltgo="a">1. De la lettre au mouvement${L.a ? " ✓" : ""}</button>
+      <button class="opt ${L.b ? "right" : ""}" data-ltgo="b">2. Du mouvement à la lettre${L.b ? " ✓" : ""}</button>
+    </div></section>`;
+}
+function notaCard() {
+  return `<section class="card"><span class="label">Affichage des mouvements</span>
+    <div class="notasel">${NOTA.map(([k, l]) => `<button class="${nota() === k ? "on" : ""}" data-nota="${k}">${l}</button>`).join("")}</div>
+    <p style="color:var(--muted);font-size:.9rem">Commence avec les mots. Quand le code des lettres (niveau 0) est réussi, passe à « Mots + lettres », puis aux lettres seules.</p></section>`;
 }
 
 /* ---------- Screens ---------- */
@@ -1342,6 +1439,7 @@ function renderMap() {
   </section>
   ${revPool().length ? `<button class="node" data-rraf="1" style="--c: var(--yellow)"><span class="num light">☀</span><span><span class="name">Révision du jour</span><br><span class="sub">Une formule déjà apprise, de mémoire</span></span>${revBadge(S.rev)}</button>` : ""}
   <button class="node" data-go="solver" style="--c: var(--green)"><span class="num">?</span><span><span class="name">Le solveur</span><br><span class="sub">Bloqué ? Un indice de ta méthode, ou toute la solution</span></span><span class="pill go">Ouvrir</span></button>
+  ${notaCard()}
   <nav class="path" aria-label="Niveaux">${nodes}
     <button class="node" data-go="chrono" ${final ? "" : "disabled"} style="--c: var(--blue)">
       <span class="num">★</span><span><span class="name">Mode chrono</span><br><span class="sub">Bats ton record, gagne des badges</span></span>
@@ -1377,6 +1475,7 @@ function renderLevel(i) {
   <div class="steps">${stepsHtml}</div>
   ${levelDone(i) ? `<p class="celebrate">Niveau gagné ! ${i === 8 ? "Le mode chrono et le niveau bonus sont ouverts." : i < LEVELS.length - 1 ? "Le niveau " + (i + 1) + " est ouvert." : "Tu maîtrises la croix directe !"}</p>` : ""}
   <section class="card"><span class="label">Rappel</span><ul class="tips">${L.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></section>
+  ${i === 0 ? lettersCard() : ""}
   ${i === 1 ? daisyCard() : ""}
   ${L.formulas.length ? viewerCard(i) : ""}
   <section class="card"><div class="top"><h3>Quiz</h3>${st.quiz ? `<span class="pill done">Réussi</span>` : ""}</div>
@@ -1390,7 +1489,7 @@ function renderLevel(i) {
     <div class="top"><h3>Défi sur ton vrai cube</h3></div>
     <p>${esc(L.challenge)}</p>
     <div class="streak" aria-label="${Math.min(st.streak, 3)} réussites de suite sur 3">${[0, 1, 2].map(s => `<i class="${s < st.streak ? "on" : ""}"></i>`).join("")}<span>${Math.min(st.streak, 3)} / 3 de suite</span></div>
-    ${L.scramble ? `<div><span class="label">Mélange à faire</span><div class="scramble" id="scr">${view.scr.join(" ")}</div></div>
+    ${L.scramble ? `<div><span class="label">Mélange à faire</span><div id="scr">${scrHTML(view.scr)}</div></div>
       <button class="link" data-newscr="1" style="align-self:flex-start">Autre mélange</button>` : ""}
     <div class="clock" id="clock">${fmt(timer ? performance.now() - timer.t0 : (view.lastTime || 0))}</div>
     <div class="row"><button class="btn ghost" id="tstart">${timer ? "Stop" : "Lancer le chrono"}</button></div>
@@ -1424,7 +1523,7 @@ function renderQuiz() {
 function renderDrill() {
   const f = LEVELS[drill.level].formulas[drill.f], cnt = S.levels[drill.level].drills[f.name] || 0;
   const slots = chunked(f, (m, k) => k < drill.pos ? chip(m, "filled") : chip(m, "blank" + (k === drill.pos ? " next" : "")));
-  const keys = PAD.map(m => `<button class="key" data-key="${m}"><span class="m">${m}</span><span class="n">${MOVES[m]}</span></button>`).join("");
+  const keys = PAD.map(m => `<button class="${keyCls()}" data-key="${m}">${mvInner(m)}</button>`).join("");
   const finished = drill.pos >= f.seq.length;
   return `<div class="top"><button class="back" data-go="${drill.rev ? "map" : drill.level}">← ${drill.rev ? "Carte" : "Niveau " + drill.level}</button>
     <div class="stars">${[0, 1, 2].map(s => `<i class="${s < cnt ? "on" : ""}"></i>`).join("")}</div></div>
@@ -1456,7 +1555,7 @@ function renderChrono() {
   const last = S.solves.slice(-8).reverse().map(t => `<li>${fmt(t)}</li>`).join("");
   return `<div class="top"><button class="back" data-go="map">← Carte</button><span class="label">Mode chrono</span></div>
     <header class="hero"><h2>Résous le cube en entier</h2><p>Fais le mélange, lance le chrono, et arrête-le quand le cube est fini.</p></header>
-    <section class="card"><span class="label">Mélange</span><div class="scramble">${view.scr.join(" ")}</div>
+    <section class="card"><span class="label">Mélange</span>${scrHTML(view.scr)}
       <button class="link" data-newscr="1" style="align-self:flex-start">Autre mélange</button>
       <div class="clock" id="clock">${fmt(timer ? performance.now() - timer.t0 : 0)}</div>
       ${timer && (timer.splits || []).length < 3 ? `<button class="btn ghost bigbtn" id="csplit">Étape finie : ${["croix blanche", "premier étage", "deuxième couronne"][(timer.splits || []).length]} ✓</button>` : ""}
@@ -1481,6 +1580,7 @@ function render() {
   else if (view.screen === "chrono") app.innerHTML = renderChrono();
   else if (view.screen === "recog") app.innerHTML = renderRecog();
   else if (view.screen === "daisy") app.innerHTML = renderDaisy();
+  else if (view.screen === "letters") app.innerHTML = renderLetters();
   const slot = app.querySelector(".vslot"); if (slot) slot.appendChild(RC.el);
 }
 
@@ -1488,6 +1588,7 @@ function go(target) {
   stopTimer();
   if (view.screen === "ngame") { NG = null; RC.reset(); RC.setQuiet(false); RC.setSpeed(900); RC.setGuide(null, false); try { speechSynthesis.cancel(); } catch (e) {} }
   if (view.screen === "recog") { RG = null; RC.reset(); }
+  if (view.screen === "letters") { LT = null; RC.reset(); RC.setQuiet(false); RC.setGuide(null, false); RC.setSpeed(900); }
   if (view.screen === "daisy") { DS = null; RC.mark([]); RC.reset(); RC.setSpeed(900); }
   if (view.screen === "solver" && target !== "solver") { RC.reset(); RC.setGuide(null, false); RC.setSpeed(900); RC.setQuiet(false); try { speechSynthesis.cancel(); } catch (e) {} }
   if (target === "solver") { const from = view.screen === "map" ? "map" : "who"; if (!SV) SV = svNew(); SV.from = from; view = { screen: "solver" }; needCube().catch(() => {}); getWorker(); }
@@ -1527,6 +1628,16 @@ document.addEventListener("click", e => {
   if (d.snew) { const keep = SV.from; SV = svNew(); SV.from = keep; RC.reset(); return render(); }
   if (d.nlvl !== undefined) { nStart(Number(d.nlvl)); return; }
   if (d.nrev) { nStartRev(); return; }
+  if (d.nota) { S.nota = d.nota; save(); return render(); }
+  if (d.ltgo) { stopTimer(); if (view.screen === "letters") { LT = null; RC.reset(); } ltStart(d.ltgo); return; }
+  if (d.ltreplay) { if (LT && !RC.busy) { RC.reset(); RC.play([LT.ans]); } return; }
+  if (d.ltpick !== undefined) { if (!LT || LT.picked != null || (LT.mode === "b" && RC.busy)) return; LT.picked = Number(d.ltpick); if (LT.opts[LT.picked] === LT.ans) LT.score++; render(); if (LT.mode === "a") { RC.reset(); RC.play([LT.ans]); } return; }
+  if (d.ltnext) {
+    if (!LT || RC.busy) return;
+    LT.idx++;
+    if (LT.idx >= LT.total) { if (LT.score >= 8) { S.letters = S.letters || {}; S.letters[LT.mode] = true; save(); } RC.reset(); return render(); }
+    ltNext(); return;
+  }
   if (d.dstep !== undefined) { stopTimer(); if (view.screen === "daisy") { DS = null; RC.mark([]); } dStart(Number(d.dstep)); return; }
   if (d.dmv) { dMove(d.dmv); return; }
   if (d.dundo) { dUndo(); return; }
