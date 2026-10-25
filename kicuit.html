@@ -11,6 +11,7 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
 <script src="version.js"></script>
+<script src="famille.js"></script>
 <title>La Maison de Kicuit</title>
 <style>
 :root{--ink:#2b2350;--cream:#fff8ec;--orange:#ff7a59;--orange-d:#c9553a;--green:#3fbf98;--green-d:#2b8c6f;--blue:#4c8dff;--blue-d:#2f62c2;--grey:#9aa3b8;--grey-d:#6c7590;--sun:#ffd25a;--gold:#ffc83a}
@@ -776,34 +777,80 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .cname{font-size:32px;font-weight:900}
 .dark{position:relative;width:1000px;flex:1;background:#0b0b14;border-radius:24px;margin-bottom:14px;overflow:hidden}
 .lspot{position:absolute;width:240px;height:240px;margin:-120px 0 0 -120px;border-radius:50%;mix-blend-mode:screen;touch-action:none;cursor:grab}
-/* garage */
+/* garage : atelier de mécanique */
 #s-garage{background:linear-gradient(#dfe6f2,#c9d2e3)}
-#gaCar{position:absolute;left:20px;top:190px;width:740px;height:460px;background:repeating-linear-gradient(90deg,#eef2f8 0 60px,#e6ebf3 60px 120px);border-radius:30px;display:flex;align-items:center;justify-content:center;touch-action:none}
-#gaPanel{position:absolute;left:780px;top:190px;width:380px;height:460px;background:#fff;border-radius:30px;padding:14px;display:flex;flex-direction:column;gap:12px;align-items:center;justify-content:center}
-.parts{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
-.part{height:126px;border-radius:20px;background:#f3f0fb;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:16px;font-weight:900;overflow:hidden}
-.part.sel{box-shadow:0 0 0 5px var(--orange);background:#fff1ea}
-.part .pp{height:84px;display:flex;align-items:center}
+#gaWork{position:absolute;left:20px;right:20px;top:184px;bottom:14px;background:#fffdf7;border-radius:30px;box-shadow:0 10px 24px rgba(43,35,80,.12);overflow:hidden;touch-action:none}
+#gaWork>svg.cock{position:absolute;inset:0;width:100%;height:100%}
+#gaWork .cnudge{transform-box:fill-box;transform-origin:center}
+.gctl{position:absolute;display:flex;flex-direction:column;gap:12px;z-index:3}
+.gbtn{width:200px;height:84px;border-radius:24px;background:#fff;box-shadow:0 5px 0 #b9c3d8;font-size:20px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--ink);line-height:1.05;text-align:center}
+.gbtn span{font-size:34px}
+.gbtn.on{background:#fff4c2;box-shadow:0 0 0 5px var(--orange),0 5px 0 #b9c3d8}
+.gbtn.big{height:104px}
+.gbtn.sq{width:64px;height:64px;font-size:30px;border-radius:20px}
+.gbtn.sm{width:auto;height:58px;font-size:15px;padding:0 10px;border-radius:18px}.gbtn.sm span{font-size:24px}
+.gblink{position:absolute;left:236px;top:520px;display:flex;gap:6px;z-index:3}
+.gpedals{position:absolute;left:752px;bottom:12px;display:flex;gap:12px;align-items:flex-end;z-index:3}
+.pedal{border-radius:14px;background:linear-gradient(#5d6577,#2f3447);box-shadow:0 8px 0 #151826;color:#fff;font-weight:900;font-size:17px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.12) 0 6px,transparent 6px 14px),linear-gradient(#5d6577,#2f3447)}
+.pedal.brake{width:100px;height:120px}.pedal.acc{width:62px;height:150px}
+.pedal.on{transform:translateY(8px);box-shadow:0 0 0 5px var(--orange),0 2px 0 #151826}
+.gstart{width:170px;height:170px;border-radius:50%;margin:0 auto;background:radial-gradient(circle at 40% 35%,#f2f4f8,#9aa6bf);box-shadow:0 0 0 10px #2f3447,0 0 0 14px #9aa6bf,0 10px 20px rgba(0,0,0,.35);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#2b2350}
+.gstart b{font-size:34px;letter-spacing:1px}.gstart small{font-size:16px;font-weight:900;opacity:.7}
+.gstart.run{box-shadow:0 0 0 10px #2f3447,0 0 0 14px #ff7a3c,0 0 30px #ff7a3c}
+.gstart.cnudge{transform-box:border-box}
+.gbelt{position:absolute;left:96px;top:-40px;width:50px;height:520px;background:repeating-linear-gradient(0deg,#3a3f55 0 8px,#2f3447 8px 16px);transform:rotate(-24deg);transform-origin:top;border-radius:10px;pointer-events:none;z-index:2;opacity:.8;box-shadow:0 4px 10px rgba(0,0,0,.3)}
+.gact{position:absolute;left:0;right:0;top:70px;display:flex;justify-content:center;z-index:5}
+.voy{opacity:.16}.voy.on{opacity:1}.voy.on circle{fill:var(--vc)}.voy.weak.on{opacity:.45}
+.gawj.jump{animation:wjJ .5s}
+@keyframes wjJ{40%{transform:translateY(-26px)}}
+.klax{cursor:pointer}
+.gtray{position:absolute;left:0;right:0;bottom:18px;display:flex;justify-content:center;align-items:center;gap:14px;font-size:22px;padding:0 30px;text-align:center}
+.clamp{width:54px;height:30px;border-radius:8px;background:var(--cc);flex:none;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+.term2.glow{animation:cNudge 1s ease-in-out infinite;transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 0 8px #ffb020)}
+.noz.sel rect:first-child{stroke:#ffb020;stroke-width:6}
+.noz.cnudge,.term2{transform-box:fill-box;transform-origin:center}
+#gaWork .btn.hidden{display:none}
+/* moteur */
+.gmot{display:flex;height:100%}
+.gmotL{width:540px;position:relative;background:#eef2f8}.gmotL svg{width:100%;height:100%}
+.gturn{position:absolute;left:16px;bottom:12px;font-size:17px;font-weight:900;opacity:.7}
+.gmotR{flex:1;padding:22px;display:flex;flex-direction:column;gap:14px}
+.gmh{font-size:24px;font-weight:900;text-align:center;line-height:1.2}
+.gmx{font-size:19px;font-weight:800;line-height:1.35;background:#eef6ff;border-radius:18px;padding:10px 14px}
+.gstrokes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.gstk{height:110px;border-radius:24px;background:#fff;box-shadow:0 5px 0 #c9d6ee;font-size:26px;font-weight:900;display:flex;align-items:center;gap:12px;padding:0 16px;color:var(--ink)}
+.gstk span{font-size:50px}.gstk.r{font-size:21px}.gstk.ok{background:#e3f8e6}.gstk small{margin-left:auto;font-size:26px;color:var(--green)}
+/* capot */
+.ghood{display:flex;height:100%}.ghoodL{width:680px;background:#e8edf5}.ghoodL svg{width:100%;height:100%}
+.ghoodR{flex:1;padding:18px;display:flex;flex-direction:column;gap:12px;align-items:stretch;justify-content:center}
+.gbig{font-size:110px;text-align:center}
+.gchk{display:flex;flex-direction:column;gap:8px}
+.gchki{height:56px;border-radius:18px;background:#fff;box-shadow:0 4px 0 #c9d6ee;font-size:19px;font-weight:900;text-align:left;padding:0 14px;display:flex;align-items:center;gap:10px;color:var(--ink)}
+.gchki span{font-size:28px}.gchki.on{box-shadow:0 0 0 4px var(--orange)}.gchki.ok{background:#e3f8e6}
+.gstick{width:100%}
+.hp{cursor:pointer}
+.ghoodR .btn{height:68px;font-size:22px;padding:0 20px}
+/* lumières */
+.glum{display:flex;height:100%}#gaLum{width:760px;height:100%;flex:none}
+.glumR{flex:1;padding:16px;display:flex;flex-direction:column;gap:12px}
+.glctl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.glctl .gbtn{width:auto;height:96px;flex-direction:column;font-size:14px;gap:2px;padding:0 4px}
+.glctl.big{grid-template-columns:1fr 1fr}.glctl.big .gbtn{height:120px;font-size:20px}.glctl.big .gbtn span{font-size:46px}
+/* pneu */
+.gtyre{display:flex;height:100%}.gtyreL{width:600px;position:relative;background:#e9eef6}.gtyreL svg{width:100%;height:100%}
+.glabel{position:absolute;left:20px;bottom:20px;background:#fff;border-radius:14px;padding:8px 14px;font-weight:900;font-size:18px;border:3px dashed #8a96ad}
+.gtyreR{flex:1;display:flex;flex-direction:column;align-items:center;padding:10px;gap:4px}
+.gwh{width:340px;height:333px;flex:none}
+.gyb{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center}
+.gman{width:170px}
+.nut{cursor:pointer}
+/* peinture */
+#gaWork #gaCar{position:absolute;left:0;top:0;width:740px;height:100%;background:repeating-linear-gradient(90deg,#eef2f8 0 60px,#e6ebf3 60px 120px);display:flex;align-items:center;justify-content:center;touch-action:none}
+#gaWork #gaPanel{position:absolute;left:760px;top:0;right:0;height:100%;padding:14px;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
 .paints{display:grid;grid-template-columns:repeat(3,80px);gap:12px}
 .pcol{width:80px;height:80px;border-radius:50%;box-shadow:inset 0 0 0 4px rgba(0,0,0,.15)}
 .pcol.sel{box-shadow:0 0 0 6px var(--ink)}
-#gaGo{position:absolute;left:20px;right:20px;top:670px;height:130px;display:flex;align-items:center;justify-content:center;gap:16px}
-.missions{display:flex;gap:10px}
-.mis{height:70px;padding:0 18px;border-radius:24px;background:#fff;font-size:20px;font-weight:900;box-shadow:0 5px 0 #b9c3d8}
-.mis.sel{box-shadow:0 0 0 5px var(--orange),0 5px 0 #b9c3d8}.mis.ok::after{content:" ✅"}
-#gaDrive2{position:absolute;inset:0;z-index:40;background:#9fdcff}
-.road{position:absolute;inset:0;overflow:hidden;background:linear-gradient(#9fdcff 0 55%,#8cce5e 55% 70%,#6b6f7c 70%)}
-.road .scroll{position:absolute;left:0;right:0;top:72%;height:12px;background:repeating-linear-gradient(90deg,#fff 0 60px,transparent 60px 120px)}
-.road .scroll.move{animation:roadmove .5s linear infinite}
-@keyframes roadmove{to{background-position:-120px 0}}
-.road.colline .hill{position:absolute;left:300px;bottom:30%;width:700px;height:300px;background:#7cc35a;clip-path:polygon(0 100%,100% 0,100% 100%)}
-.road.boue .mud{position:absolute;left:250px;top:66%;width:500px;height:80px;border-radius:50%;background:#7a5532}
-.road .flag{position:absolute;right:60px;top:52%;font-size:80px}
-.dcar{position:absolute;left:40px;top:calc(70% - 210px)}
-.dcar .flame{animation:pulse .15s infinite}
-.dres{position:absolute;left:50%;top:40px;transform:translateX(-50%);width:760px;background:#fff;border-radius:30px;padding:20px 26px;box-shadow:0 16px 40px rgba(0,0,0,.25);display:flex;flex-direction:column;align-items:center;gap:14px}
-.dtxt{font-size:24px;font-weight:900;text-align:center}
-.dcar .wspin.spin{animation-duration:.35s}
+.dres{position:absolute}
 /* iPad en portrait */
 #rotate{position:fixed;inset:0;background:#2b2350;color:#fff;display:none;align-items:center;justify-content:center;flex-direction:column;gap:20px;font-size:34px;font-weight:900;z-index:999;text-align:center}
 #rotate .ph{font-size:110px;animation:rot 2s ease-in-out infinite}
@@ -917,6 +964,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 <radialGradient id="t3Muz" cx=".35" cy=".3" r=".9"><stop offset="0" stop-color="#fff1dc"/><stop offset=".6" stop-color="#e8c39a"/><stop offset="1" stop-color="#cfa47a"/></radialGradient>
 <radialGradient id="o3Heart" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#ff8090"/><stop offset=".6" stop-color="#e2263e"/><stop offset="1" stop-color="#a8162c"/></radialGradient>
 <linearGradient id="car3Shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".45"/><stop offset=".45" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#000" stop-opacity=".18"/></linearGradient>
+<linearGradient id="gaSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd6ff"/><stop offset="1" stop-color="#e6f5ff"/></linearGradient><linearGradient id="gaDash" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a4f63"/><stop offset="1" stop-color="#262938"/></linearGradient><radialGradient id="gaGauge" cx=".5" cy=".4" r=".7"><stop offset="0" stop-color="#2f3447"/><stop offset="1" stop-color="#121522"/></radialGradient>
 <radialGradient id="car3Tyre" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#4a4a55"/><stop offset="1" stop-color="#1c1c22"/></radialGradient>
 <radialGradient id="a3SkinA" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#fff1e4"/><stop offset=".6" stop-color="#ffdcc2"/><stop offset="1" stop-color="#f2bf9c"/></radialGradient>
 <radialGradient id="a3SkinR" cx=".38" cy=".3" r=".85"><stop offset="0" stop-color="#ffe2c8"/><stop offset=".6" stop-color="#f6caa6"/><stop offset="1" stop-color="#e2a985"/></radialGradient>
@@ -1037,10 +1085,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
     <button class="iconbtn" id="gaHome" style="left:20px;top:14px">🏠</button>
     <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
     <div id="gaTabs"></div>
-    <div id="gaCar"></div>
-    <div id="gaPanel"></div>
-    <div id="gaGo"></div>
-    <div class="hidden" id="gaDrive2"></div>
+<div id="gaWork"></div>
   </section>
 
   <section class="screen" id="s-album">
@@ -1100,9 +1145,10 @@ function pos(el){const r=el.getBoundingClientRect(),s=$('stage').getBoundingClie
 /* ---------- sauvegarde ---------- */
 const blank=()=>({st:{},found:{},stars:0,packs:[],tray:[],free:[],c:{booms:0,streak:0,pets:0,ktaps:0}});
 let DB={anna:blank(),rafael:blank(),voice:true};
-try{const s=JSON.parse(localStorage.getItem('kicuit_v1')||'null');if(s)DB=Object.assign(DB,s);}catch(e){}
+const KF=window.FAM||{id:'',a:'Nana',r:'Raf',ages:1};const DBKEY=KF.id?'kicuit_'+KF.id+'_v1':'kicuit_v1';
+try{const s=JSON.parse(localStorage.getItem(DBKEY)||'null');if(s)DB=Object.assign(DB,s);}catch(e){}
 ['anna','rafael'].forEach(k=>{DB[k]=Object.assign(blank(),DB[k]||{});DB[k].c=Object.assign(blank().c,DB[k].c||{});});
-function saveDB(){try{localStorage.setItem('kicuit_v1',JSON.stringify(DB))}catch(e){}}
+function saveDB(){try{localStorage.setItem(DBKEY,JSON.stringify(DB))}catch(e){}}
 
 const S={player:null,screen:'s-start',k:{bowl:[],mixed:false,phase:'prep',app:null,heat:null,time:null,result:null,order:null,lastOrder:null}};
 const P=()=>DB[S.player];
@@ -1260,7 +1306,23 @@ function rafaelSVG(){return `<svg viewBox="0 0 200 200"><circle cx="100" cy="100
 <path d="M84 130 q16 14 32 0" stroke="#8a3a2a" stroke-width="4" fill="#fff" stroke-linecap="round"/>
 <ellipse cx="68" cy="124" rx="8" ry="5" fill="#f29d86" opacity=".5"/><ellipse cx="132" cy="124" rx="8" ry="5" fill="#f29d86" opacity=".5"/>
 </svg>`}
-const avatar=p=>p==='anna'?annaSVG():rafaelSVG();
+function perlineSVG(){return annaSVG().replace(/#ffd25e/g,'#9a6338').replace(/#e5ac2f/g,'#6e4426').replace(/#3d8bff/g,'#3aa66b').replace('#ffe3ef','#e6f7ea').replace(/#ff5c8a/g,'#ffb020').replace(/#ff8fb1/g,'#ffd166');}
+function calypsoSVG(){return `<svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="99" fill="#efe6ff"/>
+<path d="M46 176 q-16 -124 54 -130 q70 6 54 130 q-16 8 -28 0 l-4 -62 h-44 l-4 62 q-12 8 -28 0z" fill="#3b2418"/>
+<path d="M34 200 q0 -44 66 -46 q66 2 66 46z" fill="#a77bf3"/><path d="M84 156 q16 12 32 0" fill="none" stroke="#fff" stroke-width="4"/>
+<rect x="88" y="138" width="24" height="20" fill="#f0bf98"/>
+<ellipse cx="100" cy="106" rx="44" ry="50" fill="url(#a3SkinR)"/>
+<path d="M56 104 q-2 -56 44 -58 q46 2 44 58 q-10 -24 -26 -30 q-6 10 -18 12 q8 -8 6 -14 q-18 6 -36 4 q-8 10 -14 28z" fill="#3b2418"/>
+<path d="M60 74 q40 -32 80 0" stroke="#ff7fb0" stroke-width="8" fill="none" stroke-linecap="round"/>
+<g stroke="#2a1508" stroke-width="2.5" stroke-linecap="round"><path d="M72 99 l-4 -4"/><path d="M128 99 l4 -4"/></g>
+<circle cx="80" cy="106" r="8" fill="#5a3a22"/><circle cx="80" cy="107" r="4.2" fill="#2a1508"/><circle cx="83" cy="103.5" r="2.4" fill="#fff"/>
+<circle cx="120" cy="106" r="8" fill="#5a3a22"/><circle cx="120" cy="107" r="4.2" fill="#2a1508"/><circle cx="123" cy="103.5" r="2.4" fill="#fff"/>
+<path d="M97 116 q3 6 7 2" stroke="#c98a65" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+<path d="M86 130 q14 12 28 0" stroke="#b83a5a" stroke-width="4" fill="#fff" stroke-linecap="round"/>
+<ellipse cx="68" cy="124" rx="8" ry="5" fill="#ff9db5" opacity=".6"/><ellipse cx="132" cy="124" rx="8" ry="5" fill="#ff9db5" opacity=".6"/>
+</svg>`}
+const AVA=KF.id==='pc'?{a:perlineSVG,r:calypsoSVG}:{a:annaSVG,r:rafaelSVG};
+const avatar=p=>p==='anna'?AVA.a():AVA.r();
 
 /* ---------- ingrédients ---------- */
 const ING={
@@ -1454,15 +1516,20 @@ const STICK=[
   {id:'l_lumiere',pg:'ateliers',n:'Lumière blanche',e:'🌈',rar:'h',bg:'#e3f4ff',how:'Mélange les trois lumières'},
   {id:'l_engrenage',pg:'ateliers',n:'Engrenage',e:'⚙️',rar:'c',bg:'#e8fbe9',how:'Fais tourner un mécanisme'},
   {id:'l_engrenages',pg:'ateliers',n:'Maître des engrenages',e:'🕰️',rar:'h',bg:'#fff3c4',how:'Réussis tous les niveaux d\'engrenages'},
-  {id:'g_voiture',pg:'ateliers',n:'Premier essai',e:'🚗',rar:'c',bg:'#ffe9d6',how:'Essaie ta voiture'},
-  {id:'g_parfait',pg:'ateliers',n:'Voiture parfaite',e:'🏎️',rar:'b',bg:'#e3f4ff',how:'Construis une voiture qui roule parfaitement'},
+  {id:'g_demarre',pg:'ateliers',n:'Contact !',e:'🔑',rar:'c',bg:'#ffe9d6',how:'Démarre la voiture : ceinture, frein, START'},
+  {id:'g_batterie',pg:'ateliers',n:'Câbles de secours',e:'🔋',rar:'b',bg:'#e3f4ff',how:'Redémarre une voiture à la batterie à plat'},
+  {id:'g_plein',pg:'ateliers',n:'Le plein',e:'⛽',rar:'c',bg:'#e8fbe9',how:'Fais le plein quand le réservoir est vide'},
+  {id:'g_4temps',pg:'ateliers',n:'Les 4 temps',e:'⚙️',rar:'b',bg:'#efe6ff',how:'Fais tourner le moteur : aspire, serre, boum, souffle'},
+  {id:'g_bougie',pg:'ateliers',n:'Étincelle parfaite',e:'⚡',rar:'h',bg:'#fff3c4',how:'Déclenche 4 étincelles au bon moment'},
+  {id:'g_capot',pg:'ateliers',n:'Mécano',e:'🔧',rar:'c',bg:'#e3f4ff',how:'Fais la révision sous le capot'},
+  {id:'g_clignotant',pg:'ateliers',n:'Clignotant',e:'↪️',rar:'c',bg:'#fff3c4',how:'Mets le bon clignotant avant de tourner'},
+  {id:'g_lumieres',pg:'ateliers',n:'As de la route',e:'🚦',rar:'h',bg:'#e8fbe9',how:'Réussis toutes les situations des lumières'},
+  {id:'g_pneu',pg:'ateliers',n:'Roue changée',e:'🛞',rar:'b',bg:'#ffe9d6',how:'Change la roue crevée et regonfle-la'},
+  {id:'g_etoile',pg:'ateliers',n:'Serrage en étoile',e:'⭐',rar:'b',bg:'#fff3c4',how:'Serre les boulons en étoile du premier coup'},
   {id:'g_peinture',pg:'ateliers',n:'Carrossier',e:'🖌️',rar:'c',bg:'#ffe3ef',how:'Peins ta voiture au pistolet'},
-  {id:'g_fusee',pg:'ateliers',n:'Décollage !',e:'🚀',rar:'h',bg:'#efe6ff',secret:true,how:'Mets une fusée sur une petite voiture'},
-  {id:'g_wheelie',pg:'ateliers',n:'Wheelie',e:'🤸',rar:'b',bg:'#fff3c4',secret:true,how:'Mets un gros moteur sur un kart'},
-  {id:'g_ecrase',pg:'ateliers',n:'Roues écrasées',e:'🛞',rar:'c',bg:'#e8fbe9',secret:true,how:'Mets des roues de vélo sur un véhicule lourd'},
-  {id:'g_colline',pg:'ateliers',n:'Grimpeur',e:'⛰️',rar:'b',bg:'#e8fbe9',how:'Réussis la mission Colline'},
-  {id:'g_boue',pg:'ateliers',n:'Tout-terrain',e:'🟫',rar:'b',bg:'#ffe9d6',how:'Réussis la mission Boue'},
-  {id:'g_course',pg:'ateliers',n:'Champion',e:'🏁',rar:'h',bg:'#fff3c4',how:'Réussis la mission Course'},
+  {id:'g_rupteur',pg:'ateliers',n:'Zone rouge',e:'🔴',rar:'b',bg:'#ffe3ef',secret:true,how:'Fais monter le moteur dans le rouge'},
+  {id:'g_klaxon',pg:'ateliers',n:'Pouet pouet',e:'📯',rar:'c',bg:'#ffe9d6',secret:true,how:'Klaxonne 10 fois'},
+  {id:'g_gazole',pg:'ateliers',n:'Mauvais pistolet',e:'🛢️',rar:'b',bg:'#efe6ff',secret:true,how:'Essaie le gazole dans une voiture essence'},
   {id:'or_ateliers',pg:'ateliers',n:'Petit génie',e:'🧠',rar:'o',bg:'#fff3c4',how:'Complète toute la page Ateliers'},
   {id:'boom3',pg:'secrets',n:'Triple explosion',e:'💣',rar:'h',bg:'#ffe9d6',secret:true,how:'Fais exploser 3 plats'},
   {id:'chef5',pg:'secrets',n:'Série parfaite',e:'🎯',rar:'h',bg:'#e8fbe9',secret:true,how:"Réussis 5 plats parfaits d'affilée"},
@@ -1473,7 +1540,7 @@ const STICK=[
   {id:'or_secrets',pg:'secrets',n:'Grand secret',e:'🗝️',rar:'o',bg:'#fff3c4',how:'Trouve tous les secrets'}
 ];
 /* autocollants réservés à Raf (fromages et plats que Nana ne peut pas fabriquer) */
-['f_poilu','r_tartiflette','r_gratinComte','c_os','c_fibres','c_cote','l_serie','l_led','l_predict','l_engrenages','g_colline','g_boue','g_course'].forEach(id=>{const s=STICK.find(x=>x.id===id);if(s)s.raf=1;});
+['f_poilu','r_tartiflette','r_gratinComte','c_os','c_fibres','c_cote','l_serie','l_led','l_predict','l_engrenages','g_bougie','g_etoile','g_gazole'].forEach(id=>{const s=STICK.find(x=>x.id===id);if(s)s.raf=1;});
 const VIS=()=>STICK.filter(s=>!(isA()&&s.raf));
 const SID=Object.fromEntries(STICK.map(s=>[s.id,s]));
 const RARN={c:'',b:'Brillant !',h:'Holographique !!',o:'Doré !'};
@@ -1726,11 +1793,14 @@ function smokeFrom(el,color,count=1){
 /* ---------- navigation ---------- */
 function go(id){
   if(id!=='s-corps')try{cStop()}catch(_){}
+  if(id!=='s-garage')try{gaStop()}catch(_){}
   S.screen=id;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));
   $('bubble').style.display=(id==='s-start'||id==='s-profile')?'none':'flex';
 }
 $('startK').innerHTML=kicuitSVG();$('startW').innerHTML=wanjiSVG();$('bubbleHead').innerHTML=kicuitSVG();
-$('avAnna').innerHTML=annaSVG();$('avRafael').innerHTML=rafaelSVG();
+$('avAnna').innerHTML=AVA.a();$('avRafael').innerHTML=AVA.r();
+document.querySelector('#pAnna .pn').textContent=KF.a;document.querySelector('#pRafael .pn').textContent=KF.r;
+if(!KF.ages)document.querySelectorAll('.pcard .pa').forEach(x=>x.style.visibility='hidden');
 onTap($('playBtn'),()=>{ac();sfx.fanfare();if('speechSynthesis' in window&&DB.voice){S.player='anna';speak('Qui joue ?',true);S.player=null;}go('s-profile');});
 function markDay(){const p=P(),d=new Date(),k=`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`;p.days=p.days||[];if(!p.days.includes(k)){p.days.push(k);if(p.days.length>30)p.days.shift();saveDB();}if(p.days.length>=3)award('fidele3');if(p.days.length>=7)award('fidele7');}
 document.querySelectorAll('.pcard').forEach(c=>onTap(c,()=>{sfx.pop();S.player=c.dataset.p;DB.last=S.player;saveDB();S.k.order=null;markDay();enterHub();}));
@@ -1782,7 +1852,7 @@ ${Object.values(ROOMS).map(r=>`<rect x="${r.x}" y="${r.y}" width="${r.w}" height
 function enterHub(){
   go('s-hub');$('hubArt').innerHTML=hubSVG();$('hubAv').innerHTML=avatar(S.player);$('hubStarN').textContent=P().stars;$('voiceBtn').textContent=DB.voice?'🔊':'🔇';updGift();
   const pk=P().packs.length?T(' Une pochette t\'attend !',' Une pochette t\'attend dans le cadeau.'):'';
-  say(T('Coucou Nana ! Touche la cuisine.','Salut Raf ! La cuisine est ouverte.')+pk,T('Coucou Nana !'+pk,false));
+  say(T('Coucou '+KF.a+' ! Touche la cuisine.','Salut '+KF.r+' ! La cuisine est ouverte.')+pk,T('Coucou '+KF.a+' !'+pk,false));
   refreshMascots();if(accCheck())setTimeout(()=>{if(S.screen==='s-hub')say(T('Un nouvel accessoire t\'attend dans la garde-robe 🎩 !','Nouvel accessoire débloqué : ouvre la garde-robe 🎩.'),T(undefined,false));},2600);
 }
 $('hubArt').innerHTML=hubSVG();$('hubW').innerHTML=wanjiSVG();$('hubK').innerHTML=kicuitSVG();
@@ -4032,16 +4102,526 @@ $('lWork').addEventListener('pointerup',e=>{
   GS2.sizes[i]=cyc[(cyc.indexOf(GS2.sizes[i])+1)%4];sfx.click();renderGears();
 });
 
-/* ---------- GARAGE ---------- */
-const PARTS={
-  chassis:[{id:'kart',n:'Kart',w:1},{id:'voiture',n:'Voiture',w:3},{id:'camion',n:'Camion',w:6}],
-  moteur:[{id:'pedales',n:'Pédales',p:1},{id:'petit',n:'Petit moteur',p:3},{id:'gros',n:'Gros moteur',p:6},{id:'fusee',n:'Fusée',p:12}],
-  roues:[{id:'velo',n:'Roues de vélo',g:.6},{id:'normales',n:'Roues normales',g:1},{id:'tt',n:'Tout-terrain',g:1.4},{id:'monster',n:'Monster',g:1.2}]
-};
+/* ---------- GARAGE : l'atelier de mécanique (la voiture reste au garage) ---------- */
 const PAINTS=['#ff5a5a','#ff9a3c','#ffd23a','#3fbf55','#4c8dff','#a77bf3','#ff7fb0','#2b2350','#ffffff'];
-const MISSIONS={route:{n:'Balade',e:'🛣️',x:'Une balade tranquille.'},colline:{n:'Colline',e:'⛰️',x:'Monte la colline : il faut assez de puissance pour le poids.'},boue:{n:'Boue',e:'🟫',x:'Traverse la boue : il faut des roues qui accrochent.'},course:{n:'Course',e:'🏁',x:'Fais la course en moins de 6 secondes.'}};
-function CAR_(){const p=P();p.car=p.car||{chassis:'voiture',moteur:'petit',roues:'normales',col:'#ff5a5a',dots:[]};return p.car;}
-const GA={tab:'chassis',mission:'route',color:'#4c8dff',busy:false};
+function CAR_(){const p=P();p.car=p.car||{col:'#ff5a5a',dots:[]};const c=p.car;c.chassis='voiture';c.roues='normales';c.moteur='none';c.dots=c.dots||[];return c;}
+const GA={tab:'start',color:'#4c8dff',tm:[],raf:0};
+function GAD(){const p=P();p.ga=p.ga||{};const g=p.ga;g.done=g.done||{};g.lum=g.lum||{};return g;}
+function gaLater(fn,ms){const t=setTimeout(fn,ms);GA.tm.push(t);return t;}
+function gaEvery(fn,ms){const t=setInterval(fn,ms);GA.tm.push(t);return t;}
+function gaStop(){GA.tm.forEach(t=>{clearTimeout(t);clearInterval(t);});GA.tm=[];cancelAnimationFrame(GA.raf);GA.raf=0;ENG.stop();GA.tap=GA.down=GA.move=GA.up=null;}
+function svgPt(svg,e){const p=svg.createSVGPoint();p.x=e.clientX;p.y=e.clientY;return p.matrixTransform(svg.getScreenCTM().inverse());}
+function gNudge(sel){document.querySelectorAll('#gaWork .cnudge').forEach(x=>x.classList.remove('cnudge'));if(!sel)return;const el=document.querySelector('#gaWork '+sel);if(el)el.classList.add('cnudge');}
+const nestSVG=(s,x,y,w,h)=>s.replace('<svg ',`<svg x="${x}" y="${y}" width="${w}" height="${h}" `);
+
+/* bruit du moteur : suit le régime (4 cylindres : une explosion tous les demi-tours par cylindre) */
+const ENG={o:null,
+  start(){const a=ac();if(!a||ENG.o)return;const t=a.currentTime,o1=a.createOscillator(),o2=a.createOscillator(),f=a.createBiquadFilter(),g=a.createGain(),m=a.createGain(),l=a.createOscillator(),lg=a.createGain();
+    o1.type='sawtooth';o2.type='square';f.type='lowpass';f.Q.value=2;g.gain.value=.0001;m.gain.value=1;l.type='sine';lg.gain.value=.5;
+    o1.connect(f);o2.connect(f);f.connect(m).connect(g).connect(a.destination);l.connect(lg).connect(m.gain);
+    o1.start();o2.start();l.start();ENG.o={o1,o2,f,g,l};ENG.set(800);g.gain.setTargetAtTime(.075,t,.08);},
+  set(rpm){if(!ENG.o)return;const a=ac(),t=a.currentTime,b=rpm/30*1.6+22;ENG.o.o1.frequency.setTargetAtTime(b,t,.04);ENG.o.o2.frequency.setTargetAtTime(b/2,t,.04);ENG.o.f.frequency.setTargetAtTime(380+rpm*.22,t,.05);ENG.o.l.frequency.setTargetAtTime(rpm/30,t,.05);},
+  stop(){if(!ENG.o)return;const a=ac(),{o1,o2,g,l}=ENG.o;ENG.o=null;g.gain.setTargetAtTime(.0001,a.currentTime,.12);setTimeout(()=>{try{o1.stop();o2.stop();l.stop();}catch(_){}} ,700);}
+};
+const gsnd={
+  starter:d=>{for(let i=0;i<d*8;i++){noise(.09,.2,'bandpass',260+(i%2)*60,i*.125);tone(150,105,.1,'sawtooth',.07,i*.125);}},
+  clic:()=>[0,.28,.56].forEach(d=>tone(2200,0,.025,'square',.16,d)),
+  tic:on=>tone(on?1500:1100,0,.025,'square',.07),
+  honk:()=>{tone(415,0,.45,'square',.09);tone(523,0,.45,'square',.08);},
+  belt:()=>{tone(900,0,.04,'square',.12);noise(.05,.2,'highpass',3000,.03);},
+  swish:()=>noise(.35,.12,'bandpass',900),
+  spark:()=>{noise(.12,.35,'highpass',3000);tone(1800,300,.12,'sawtooth',.06);},
+  boum:()=>{noise(.25,.35,'lowpass',500);tone(110,50,.22,'sine',.3);},
+  pump:()=>noise(.18,.12,'bandpass',1500),
+  pour:()=>{for(let i=0;i<5;i++)noise(.12,.1,'bandpass',600+i*120,i*.09);}
+};
+
+const GTABS=[['start','🔑 Démarrer'],['moteur','⚙️ Moteur'],['capot','🔧 Capot'],['lum','💡 Lumières'],['pneu','🛞 Pneu'],['peinture','🎨 Peinture']];
+function enterGarage(){go('s-garage');CAR_();GAD();renderGaTabs();openGaTab(GA.tab);updGift();}
+function renderGaTabs(){$('gaTabs').innerHTML=GTABS.map(([k,n])=>`<button class="ltab ${GA.tab===k?'on':''}" data-gt="${k}">${n}</button>`).join('');}
+onTap($('gaTabs'),e=>{const b=e.target.closest('[data-gt]');if(!b)return;sfx.click();GA.tab=b.dataset.gt;renderGaTabs();openGaTab(GA.tab);});
+function openGaTab(t){gaStop();$('gaWork').innerHTML='';({start:startTab,moteur:motorTab,capot:hoodTab,lum:lumTab,pneu:tyreTab,peinture:paintTab})[t]();}
+onTap($('gaHome'),()=>{sfx.click();gaStop();enterHub();});
+onTap($('gaWork'),e=>{if(GA.tap)GA.tap(e);});
+$('gaWork').addEventListener('pointerdown',e=>{if(GA.down)GA.down(e);});
+$('gaWork').addEventListener('pointermove',e=>{if(GA.move)GA.move(e);});
+document.addEventListener('pointerup',e=>{if(GA.up&&S.screen==='s-garage')GA.up(e);});
+document.addEventListener('pointercancel',e=>{if(GA.up&&S.screen==='s-garage')GA.up(e);});
+const gaDone=(k,sticker,star)=>{const g=GAD();const first=!g.done[k];g.done[k]=1;saveDB();if(sticker)award(sticker);return star?firstStar('ga_'+k+AB()):false;};
+
+/* ===== 1. démarrer : le tableau de bord ===== */
+function pickScen(){const g=GAD();if(!g.done.start)return 'ok';const todo=['batt','fuel'].filter(k=>!g.done[k]);if(todo.length&&Math.random()<.75)return todo[0];return ['ok','ok','batt','fuel'][Math.floor(Math.random()*4)];}
+function startTab(keep){
+  if(keep)gaStop();const old=GA.s||{};
+  GA.s=keep?Object.assign(old,{busy:0,test:0,weak:0}):{belt:0,brake:0,run:0,rpm:0,acc:0,red:0,temp:.1,lights:0,bl:0,wip:0,honk:0,busy:0,scen:pickScen(),rain:Math.random()<.4,said:{}};
+  const s=GA.s;s.fuel=s.scen==='fuel'?0:(s.fuel>.5?s.fuel:.75);
+  const V=[['belt','🧑‍✈️','#ff4d4d'],['batt','🔋','#ff4d4d'],['oil','🛢️','#ff4d4d'],['eng','⚙️','#ffb020'],['fuelv','⛽','#ffb020'],['blL','⬅️','#3fdc6a'],['blR','➡️','#3fdc6a'],['lightv','💡','#3fdc6a']];
+  const drops=Array.from({length:34},(_,i)=>`<circle cx="${110+((i*137)%920)}" cy="${12+((i*71)%220)}" r="${4+i%4}" fill="#fff" opacity=".7"/>`).join('');
+  const tick=(cx,cy,r,a0,a1,n)=>Array.from({length:n+1},(_,i)=>{const a=(a0+(a1-a0)*i/n)*Math.PI/180;return `<line x1="${cx+Math.cos(a)*(r-12)}" y1="${cy+Math.sin(a)*(r-12)}" x2="${cx+Math.cos(a)*r}" y2="${cy+Math.sin(a)*r}" stroke="#fff" stroke-width="3"/>`;}).join('');
+  const num=(cx,cy,r)=>Array.from({length:9},(_,i)=>{const a=(135+i*270/8)*Math.PI/180;return `<text x="${cx+Math.cos(a)*(r-30)}" y="${cy+Math.sin(a)*(r-30)+7}" text-anchor="middle" font-size="19" font-weight="900" fill="${i>=6?'#ff6a6a':'#fff'}">${i}</text>`;}).join('');
+  const redArc=(()=>{const a0=(135+6*270/8)*Math.PI/180,a1=(135+270)*Math.PI/180,r=92,cx=570,cy=320;return `<path d="M${cx+Math.cos(a0)*r} ${cy+Math.sin(a0)*r} A${r} ${r} 0 0 1 ${cx+Math.cos(a1)*r} ${cy+Math.sin(a1)*r}" stroke="#ff4d4d" stroke-width="10" fill="none"/>`;})();
+  $('gaWork').innerHTML=`<svg viewBox="0 0 1140 622" class="cock" id="gaCock">
+  <path d="M40 0 H1100 L1060 250 H80 Z" fill="url(#gaSky)"/>
+  <path d="M58 150 H1082 L1060 250 H80Z" fill="#9ccf6a"/><path d="M530 150 h80 l250 100 h-580z" fill="#8b8f9c"/><path d="M566 160 h8 l10 30 h-28z M561 205 h18 l14 40 h-46z" fill="#fff" opacity=".8"/>
+  <circle cx="200" cy="120" r="40" fill="#5cb85c"/><rect x="194" y="140" width="12" height="30" fill="#8a5a3c"/><circle cx="960" cy="110" r="46" fill="#4fae55"/><rect x="954" y="134" width="12" height="36" fill="#8a5a3c"/>
+  <g id="gaWj" class="gawj">${nestSVG(wanjiSVG(),800,92,120,125)}</g>
+  <g id="gaBeams" opacity="0"><path d="M300 250 L520 160 h100 L840 250z" fill="#fff6a8" opacity=".55"/></g>
+  <g id="gaRain" style="display:${s.rain?'':'none'}">${drops}</g>
+  <g id="gaWip0"><line x1="380" y1="248" x2="110" y2="236" stroke="#2b2350" stroke-width="7" stroke-linecap="round"/><line x1="790" y1="248" x2="520" y2="236" stroke="#2b2350" stroke-width="7" stroke-linecap="round"/></g>
+  <g id="gaWip1" style="display:none"><line x1="380" y1="248" x2="110" y2="236" stroke="#2b2350" stroke-width="7" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="0 380 248;62 380 248;0 380 248" dur="1.1s" repeatCount="indefinite"/></line><line x1="790" y1="248" x2="520" y2="236" stroke="#2b2350" stroke-width="7" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" values="0 790 248;62 790 248;0 790 248" dur="1.1s" repeatCount="indefinite"/></line></g>
+  <path d="M0 236 Q570 196 1140 236 V622 H0Z" fill="url(#gaDash)"/>
+  <circle cx="570" cy="320" r="104" fill="url(#gaGauge)" stroke="#9aa6bf" stroke-width="6"/>${tick(570,320,96,135,405,16)}${redArc}${num(570,320,104)}
+  <text x="570" y="380" text-anchor="middle" font-size="13" font-weight="800" fill="#c9d2e3">tours/min × 1000</text><text x="570" y="403" text-anchor="middle" font-size="17" font-weight="900" fill="#ffd28a" id="gaRpmT">0</text>
+  <g id="gaNeedle" transform="rotate(-135 570 320)"><line x1="570" y1="330" x2="570" y2="236" stroke="#ff7a3c" stroke-width="7" stroke-linecap="round"/><circle cx="570" cy="320" r="13" fill="#e8edf5"/></g>
+  <circle cx="345" cy="335" r="66" fill="url(#gaGauge)" stroke="#9aa6bf" stroke-width="5"/><text x="300" y="370" font-size="20" font-weight="900" fill="#ff8080">E</text><text x="378" y="370" font-size="20" font-weight="900" fill="#fff">F</text><text x="345" y="310" text-anchor="middle" font-size="26">⛽</text>
+  <g id="gaFuelN" transform="rotate(0 345 345)"><line x1="345" y1="350" x2="345" y2="290" stroke="#ff7a3c" stroke-width="6" stroke-linecap="round"/><circle cx="345" cy="350" r="9" fill="#e8edf5"/></g>
+  <circle cx="795" cy="335" r="66" fill="url(#gaGauge)" stroke="#9aa6bf" stroke-width="5"/><text x="750" y="370" font-size="20" font-weight="900" fill="#6ec8ff">C</text><text x="828" y="370" font-size="20" font-weight="900" fill="#ff8080">H</text><text x="795" y="310" text-anchor="middle" font-size="26">🌡️</text>
+  <g id="gaTempN" transform="rotate(-60 795 350)"><line x1="795" y1="350" x2="795" y2="290" stroke="#ff7a3c" stroke-width="6" stroke-linecap="round"/><circle cx="795" cy="350" r="9" fill="#e8edf5"/></g>
+  <g id="gaVoy">${V.map(([k,e,c],i)=>`<g class="voy" id="v_${k}" style="--vc:${c}"><circle cx="${416+i*44}" cy="452" r="19" fill="#1a1d2a"/><text x="${416+i*44}" y="461" text-anchor="middle" font-size="22">${e}</text></g>`).join('')}</g>
+  <circle cx="570" cy="690" r="176" fill="none" stroke="#1d2030" stroke-width="40"/><circle cx="570" cy="690" r="176" fill="none" stroke="#3a3f55" stroke-width="6" opacity=".7"/>
+  <path d="M404 640 H500 M640 640 H736" stroke="#1d2030" stroke-width="34" stroke-linecap="round"/>
+  <g data-g="klax" class="klax"><circle cx="570" cy="650" r="80" fill="#262a3c" stroke="#3a3f55" stroke-width="6"/><text x="570" y="612" text-anchor="middle" font-size="40">📯</text></g>
+  </svg>
+  <div class="gctl" style="left:22px;top:262px">
+    <button class="gbtn big" data-g="belt" id="gBelt"><span>🔗</span>${T('Ceinture','Ceinture')}</button>
+    <button class="gbtn" data-g="lights" id="gLights"><span>💡</span>Phares</button>
+    <button class="gbtn" data-g="wip" id="gWipB"><span>🌧️</span>${T('Essuie-glaces','Essuie-glaces')}</button>
+  </div>
+  <div class="gblink"><button class="gbtn sq" data-g="bl-1" id="gBlL">⬅️</button><button class="gbtn sq" data-g="bl1" id="gBlR">➡️</button></div>
+  <div class="gpedals"><button class="pedal brake" data-g="brake" id="gBrake"><span>Frein</span></button><button class="pedal acc" id="gAcc"><span>${T('Vroum','Accél.')}</span></button></div>
+  <div class="gctl" style="right:22px;top:262px;width:190px">
+    <button class="gstart" data-g="start" id="gStart"><b>START</b><small>STOP</small></button>
+    <button class="gbtn" data-g="bl2" id="gWarn"><span>⚠️</span>Warning</button>
+  </div>
+  <div class="gbelt hidden" id="gBeltS"></div>
+  <div class="gact hidden" id="gAct"></div>`;
+  updCock();
+  GA.tap=startTap;
+  GA.down=e=>{if(e.target.closest('#gAcc')){s.acc=1;$('gAcc').classList.add('on');if(!s.run&&!s.busy){say(T('Le moteur est éteint ! Appuie sur START.','Moteur éteint : la pédale ne fait rien.'));}}};
+  GA.up=()=>{s.acc=0;const a=$('gAcc');if(a)a.classList.remove('on');};
+  let last=performance.now(),bt=0;
+  gaEvery(()=>{const now=performance.now(),dt=Math.min(.1,(now-last)/1000);last=now;
+    if(s.run){
+      if(s.acc&&s.rpm>=5950){s.rpm=6000+Math.random()*450;s.red+=dt;if(Math.random()<.5)noise(.05,.18,'bandpass',300);
+        if(s.red>1.3&&!s.said.red){s.said.red=1;award('g_rupteur');say(T('Houla ! Trop fort, le moteur crie ! On lâche la pédale.','Zone rouge : le rupteur coupe l\'essence par moments pour que le moteur ne tourne pas trop vite et ne casse pas.'),T(undefined,'Zone rouge !'));}}
+      else if(s.acc){s.rpm=Math.min(6400,s.rpm+3200*dt);}
+      else{s.rpm+=(800-s.rpm)*Math.min(1,dt*3.5);s.red=0;}
+      s.temp=Math.min(.5,s.temp+dt*.04);
+      if(s.acc&&!s.said.acc&&s.rpm>3000){s.said.acc=1;if(!isA())say('La voiture n\'avance pas : on est au point mort, le moteur n\'est pas relié aux roues. On fait juste monter le régime.');}
+    }else if(!s.busy)s.rpm=Math.max(0,s.rpm-4000*dt);
+    ENG.set(s.rpm);
+    $('gaNeedle').setAttribute('transform',`rotate(${-135+Math.min(8000,s.rpm)/8000*270} 570 320)`);$('gaRpmT').textContent=Math.round(s.rpm/10)*10;
+    $('gaTempN').setAttribute('transform',`rotate(${-60+s.temp*120} 795 350)`);
+    bt+=dt;if(s.bl&&bt>.36){bt=0;s.blOn=!s.blOn;gsnd.tic(s.blOn);updBlink();}
+  },50);
+  if(!keep)say(T('Démarre la voiture ! D\'abord, attache ta ceinture.','Démarrer : ceinture, pied sur le frein, puis START. Observe le tableau de bord.'));
+  if(isA()&&!s.belt)gNudge('#gBelt');
+}
+function updBlink(){const s=GA.s,l=s.bl===-1||s.bl===2,r=s.bl===1||s.bl===2;
+  ['v_blL','v_blR'].forEach((id,i)=>{const on=!!(s.blOn&&(i?r:l));const v=$(id);if(v)v.classList.toggle('on',on);});}
+function updCock(){
+  const s=GA.s;if(!$('gaCock'))return;
+  const vo=(k,on)=>{const v=$('v_'+k);if(v)v.classList.toggle('on',!!on);};
+  const t=s.test;vo('belt',t||!s.belt&&(s.run||s.busy));vo('batt',t||s.weak);vo('oil',t);vo('eng',t);vo('fuelv',t||s.fuel<.1);vo('lightv',t||s.lights);
+  if(t){vo('blL',1);vo('blR',1);}else updBlink();
+  $('v_batt').classList.toggle('weak',!!s.weak&&!t);
+  $('gaFuelN').setAttribute('transform',`rotate(${-50+s.fuel*100} 345 350)`);
+  $('gBelt').classList.toggle('on',!!s.belt);$('gLights').classList.toggle('on',!!s.lights);$('gWipB').classList.toggle('on',!!s.wip);
+  $('gBlL').classList.toggle('on',s.bl===-1);$('gBlR').classList.toggle('on',s.bl===1);$('gWarn').classList.toggle('on',s.bl===2);
+  $('gBrake').classList.toggle('on',!!s.brake);$('gStart').classList.toggle('run',!!s.run);
+  $('gaBeams').setAttribute('opacity',s.lights?1:0);$('gaWip0').style.display=s.wip?'none':'';$('gaWip1').style.display=s.wip?'':'none';$('gaRain').style.display=s.rain&&!s.wip?'':'none';
+  $('gBeltS').classList.toggle('hidden',!s.belt);
+}
+function startTap(e){
+  const s=GA.s,A=isA(),b=e.target.closest('[data-g]');if(!b)return;const k=b.dataset.g;
+  if(k==='act'){return openRescue(s.scen);}
+  if(k==='belt'){s.belt=!s.belt;gsnd.belt();updCock();
+    if(s.belt&&A&&!s.run){say('Clic ! Maintenant, le pied sur le frein : la grande pédale.');gNudge('#gBrake');}
+    else if(s.belt&&!A&&!s.said.belt){s.said.belt=1;say('Clic ! La ceinture te retient si la voiture freine d\'un coup.');}
+    if(!s.belt&&s.run)say(T('Remets ta ceinture !','La ceinture se met avant de démarrer et reste attachée.'));return;}
+  if(k==='brake'){s.brake=!s.brake;sfx.click();updCock();
+    if(s.brake&&A&&!s.run&&s.belt){say('Bravo ! Appuie sur le bouton START !');gNudge('#gStart');}return;}
+  if(k==='start')return startPress();
+  if(k==='lights'){s.lights=!s.lights;sfx.click();updCock();if(s.lights)say(T('Les phares s\'allument !','Phares allumés : ils éclairent la route et te rendent visible.'));return;}
+  if(k==='wip'){s.wip=!s.wip;gsnd.swish();updCock();if(s.wip&&s.rain)say(T('Tchic tchac, on voit bien !','Les essuie-glaces chassent l\'eau du pare-brise.'));return;}
+  if(k.startsWith('bl')){const v=+k.slice(2);s.bl=s.bl===v?0:v;s.blOn=true;sfx.click();updCock();
+    if(s.bl&&!s.said['bl'+v]){s.said['bl'+v]=1;say(v===2?T('Le warning : tout clignote ! C\'est pour dire « attention, je suis en panne ».','Warning : les 4 clignotants ensemble, pour signaler un danger ou une panne.'):T(v<0?'Le clignotant gauche : je vais à gauche !':'Le clignotant droit : je vais à droite !','Clignotant '+(v<0?'gauche':'droit')+' : il prévient les autres avant de tourner. Le tic-tac t\'aide à savoir qu\'il est allumé.'));}return;}
+  if(k==='klax'){s.honk++;gsnd.honk();const w=$('gaWj');if(w){w.classList.remove('jump');void w.getBoundingClientRect();w.classList.add('jump');}
+    if(s.honk===2)gaLater(()=>sfx.bark(),350);
+    if(s.honk===3)say(T('Pouet ! Le klaxon, c\'est pour prévenir d\'un danger.','Le klaxon sert à prévenir d\'un danger, pas à saluer !'));
+    if(s.honk===10)award('g_klaxon');return;}
+}
+function startPress(){
+  const s=GA.s,A=isA();if(s.busy)return;
+  if(s.run){s.run=0;ENG.stop();sfx.click();updCock();say(T('Moteur éteint.','Moteur coupé.'));return;}
+  if(!s.belt){gNudge('#gBelt');sfx.alert();say(T('D\'abord, attache ta ceinture !','Ceinture d\'abord : c\'est la règle numéro 1.'),T(undefined,false));return;}
+  if(!s.brake){gNudge('#gBrake');say(T('Mets ton pied sur le frein : la grande pédale !','Pied sur le frein : une voiture à bouton START ne démarre que si on freine.'),T(undefined,false));return;}
+  gNudge(null);s.busy=1;s.test=1;updCock();sfx.click();
+  if(!A&&!s.said.test){s.said.test=1;say('Au contact, tous les voyants s\'allument une seconde : la voiture vérifie que chaque lampe marche.');}
+  gaLater(()=>{s.test=0;updCock();crank();},1100);
+}
+function crank(){
+  const s=GA.s;
+  if(s.scen==='batt'){gsnd.clic();s.weak=1;updCock();
+    gaLater(()=>{s.busy=0;sfx.whine();say(T('Clic clic… La batterie est vide ! On va la recharger avec des câbles.','Clic-clic et voyants faibles : la batterie est à plat, elle n\'a plus assez d\'électricité pour faire tourner le démarreur.'),T(undefined,'Batterie à plat !'));showAct('🔋 '+T('Brancher les câbles','Câbles de démarrage'));},900);return;}
+  if(s.scen==='fuel'){gsnd.starter(2.2);s.rpm=250;
+    gaLater(()=>{s.busy=0;s.rpm=0;sfx.whine();say(T('Le moteur tousse… Il n\'y a plus d\'essence ! Regarde la jauge.','Le démarreur tourne mais le moteur ne part pas : la jauge est à zéro. Sans essence, pas d\'explosion dans les cylindres.'),T(undefined,'Plus d\'essence !'));showAct('⛽ '+T('Faire le plein','Aller à la pompe'));},2300);return;}
+  gsnd.starter(1.1);s.rpm=250;
+  gaLater(()=>{s.busy=0;s.run=1;s.rpm=1500;ENG.start();sfx.pop();updCock();
+    let extra='';const from=s.from;s.from=null;
+    if(from==='batt'){gaDone('batt','g_batterie');if(firstStar('ga_batt'+AB()))extra=T(' Une étoile !',' +1 étoile.');}
+    if(from==='fuel'){gaDone('fuel','g_plein');if(firstStar('ga_fuel'+AB()))extra=T(' Une étoile !',' +1 étoile.');}
+    const st=gaDone('start','g_demarre',true);if(st)extra=T(' Une étoile !',' +1 étoile.');
+    say(from==='batt'?T('Vroum ! Grâce aux câbles, ça démarre !'+extra,'Démarré grâce à la batterie de secours !'+extra+' Maintenant, l\'alternateur, entraîné par le moteur, recharge la batterie.')
+      :from==='fuel'?T('Vroum ! Avec de l\'essence, ça marche !'+extra,'Ça démarre : l\'essence arrive aux cylindres.'+extra)
+      :T('Vroum ! Le moteur tourne !'+extra+' Appuie sur la petite pédale pour le faire chanter.','Moteur démarré !'+extra+' La batterie a fait tourner le démarreur, qui a lancé le moteur ; maintenant il tourne tout seul, au ralenti vers 800 tours par minute.'),T(undefined,'Vroum !'));
+    if(isA())gNudge('#gAcc');
+    if(s.rain&&!s.wip)gaLater(()=>{if(GA.s===s&&!s.wip){say(T('Il pleut ! Touche les essuie-glaces.','Il pleut : pense aux essuie-glaces.'));if(isA())gNudge('#gWipB');}},6000);
+  },1200);
+}
+function showAct(txt){const a=$('gAct');a.innerHTML=`<button class="btn b-orange cnudge" data-g="act">${txt}</button>`;a.classList.remove('hidden');}
+
+/* câbles de démarrage et plein d'essence */
+function openRescue(kind){gaStop();if(kind==='batt')cablesScene();else fuelScene();}
+const CLAMPS=[{k:'r1',c:'#e2263e',to:'A+',n:'rouge',x:['Pince rouge sur le + de la batterie vide.','1re pince rouge : sur le + de la batterie à plat.']},{k:'r2',c:'#e2263e',to:'B+',n:'rouge',x:['L\'autre pince rouge sur le + de la voiture de Kicuit.','2e pince rouge : sur le + de la bonne batterie.']},{k:'n1',c:'#2b2350',to:'B-',n:'noire',x:['Pince noire sur le − de la voiture de Kicuit.','1re pince noire : sur le − de la bonne batterie.']},{k:'n2',c:'#2b2350',to:'M',n:'noire',x:['Et la dernière sur le métal du moteur.','Dernière pince noire : sur une partie en métal du moteur en panne (la masse), loin de la batterie.']}];
+function cablesScene(){
+  const A=isA(),C={i:0,done:[]};GA.c=C;
+  const bat=(x,y,lab,id)=>`<g><rect x="${x}" y="${y}" width="200" height="130" rx="14" fill="#2f3447" stroke="#151826" stroke-width="5"/><rect x="${x}" y="${y}" width="200" height="34" rx="12" fill="#454b63"/><text x="${x+100}" y="${y+90}" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">${lab}</text>
+    <g data-t="${id}+" class="term2"><rect x="${x+26}" y="${y-22}" width="40" height="30" rx="6" fill="#e2263e"/><text x="${x+46}" y="${y}" text-anchor="middle" font-size="26" font-weight="900" fill="#fff">+</text><circle cx="${x+46}" cy="${y-8}" r="46" fill="transparent"/></g>
+    <g data-t="${id}-" class="term2"><rect x="${x+134}" y="${y-22}" width="40" height="30" rx="6" fill="#2b2350"/><text x="${x+154}" y="${y}" text-anchor="middle" font-size="26" font-weight="900" fill="#fff">−</text><circle cx="${x+154}" cy="${y-8}" r="46" fill="transparent"/></g></g>`;
+  $('gaWork').innerHTML=`<svg viewBox="0 0 1140 622" class="cock" id="gaCab"><rect width="1140" height="622" fill="#dfe6f2"/>
+    <rect x="40" y="120" width="480" height="420" rx="40" fill="${CAR_().col}" opacity=".35"/><text x="280" y="160" text-anchor="middle" font-size="26" font-weight="900" fill="#2b2350">${T('Ta voiture','Ta voiture (batterie à plat)')}</text>
+    <rect x="620" y="120" width="480" height="420" rx="40" fill="#ffb35a" opacity=".35"/><text x="860" y="160" text-anchor="middle" font-size="26" font-weight="900" fill="#2b2350">${T('La voiture de Kicuit','Voiture de Kicuit (batterie pleine)')}</text>
+    ${bat(110,270,T('vide','12 V · vide'),'A')}${bat(760,270,'12 V','B')}
+    <g data-t="M" class="term2"><rect x="360" y="440" width="120" height="80" rx="16" fill="#9aa6bf" stroke="#5d6c8c" stroke-width="4"/><circle cx="420" cy="470" r="14" fill="#c9d2e3" stroke="#5d6c8c" stroke-width="3"/><text x="420" y="510" text-anchor="middle" font-size="17" font-weight="900" fill="#2b2350">${T('moteur','masse (métal)')}</text><circle cx="420" cy="480" r="56" fill="transparent"/></g>
+    <g id="gaCbl"></g><g id="gaSpk"></g></svg>
+    <div class="gtray" id="gaTray"></div>`;
+  const P0={'A+':[156,262],'A-':[264,262],'B+':[806,262],'B-':[914,262],'M':[420,470]};
+  const draw=()=>{const cl=C.done.map(d=>{const [x,y]=P0[d.to];return `<path d="M${d.k[0]==='r'?560:580} 70 Q${(x+570)/2} ${y-160} ${x} ${y}" stroke="${CLAMPS.find(c=>c.k===d.k).c}" stroke-width="12" fill="none" stroke-linecap="round"/><circle cx="${x}" cy="${y}" r="16" fill="${CLAMPS.find(c=>c.k===d.k).c}" stroke="#fff" stroke-width="4"/>`;}).join('');
+    $('gaCbl').innerHTML=`<rect x="530" y="40" width="80" height="40" rx="12" fill="#5d6c8c"/>`+cl;
+    const cur=CLAMPS[C.i];document.querySelectorAll('#gaCab .term2').forEach(t=>t.classList.toggle('glow',A&&cur&&t.dataset.t===cur.to));
+    $('gaTray').innerHTML=cur?`<span class="clamp" style="--cc:${cur.c}"></span><b>${T(cur.x[0],cur.x[1])}</b>`:'';};
+  draw();say(T(CLAMPS[0].x[0]+' Touche le rond qui brille.','Câbles de démarrage : branche les 4 pinces dans le bon ordre. '+CLAMPS[0].x[1]));
+  GA.tap=e=>{const t=e.target.closest('[data-t]');if(!t)return;const cur=CLAMPS[C.i];if(!cur)return;const id=t.dataset.t;
+    if(id===cur.to||(cur.k==='n2'&&id==='A-')){C.done.push({k:cur.k,to:id==='A-'?'A-':cur.to});sfx.stick();C.i++;draw();
+      if(cur.k==='n2'&&id==='A-'&&!isA())say('Ça marche aussi, mais les garagistes préfèrent le métal du moteur : une étincelle près de la batterie peut être dangereuse.',false);
+      if(C.i>=4){burst($('gaWork'),['⚡','✨'],8,200);sfx.ding();
+        say(T('Tout est branché ! L\'électricité passe. Retourne démarrer !','Circuit fermé : la bonne batterie envoie son courant. Retourne au volant et appuie sur START.'));
+        gaLater(()=>{const s=GA.s;s.scen='ok';s.weak=0;s.from='batt';startTab(true);gNudge('#gStart');},2600);}
+      else say(T(CLAMPS[C.i].x[0],CLAMPS[C.i].x[1]),T(undefined,false));return;}
+    if(isA()){sfx.click();say(T('Pas ici : touche le rond qui brille.',''));return;}
+    sfx.alert();$('gaSpk').innerHTML=(()=>{const [x,y]=P0[id];return `<text x="${x}" y="${y-30}" text-anchor="middle" font-size="60">⚡</text>`;})();gaLater(()=>{const k=$('gaSpk');if(k)k.innerHTML='';},700);
+    say(cur.n==='rouge'?(id.endsWith('-')||id==='M'?'Étincelles ! La pince rouge va toujours sur le + : inverser le + et le − peut abîmer l\'électronique.':'Pas dans cet ordre : '+cur.x[1]):'Non : '+cur.x[1],'Attention !');};
+}
+function fuelScene(){
+  const A=isA(),F={noz:null,lit:0,full:false};GA.f=F;const s=GA.s;
+  $('gaWork').innerHTML=`<svg viewBox="0 0 1140 622" class="cock" id="gaFuel"><rect width="1140" height="622" fill="#e6ecf6"/><rect y="520" width="1140" height="102" fill="#9aa1ad"/>
+    <rect x="90" y="120" width="230" height="400" rx="26" fill="#f2f4f8" stroke="#5d6c8c" stroke-width="5"/><rect x="120" y="160" width="170" height="80" rx="10" fill="#1a1d2a"/><text x="205" y="212" text-anchor="middle" font-size="40" font-weight="900" fill="#7dffa0" id="gaLit">0,0 L</text>
+    <g data-n="sp95" class="noz"><rect x="120" y="280" width="78" height="150" rx="14" fill="#3fbf55"/><text x="159" y="345" text-anchor="middle" font-size="24" font-weight="900" fill="#fff">SP95</text><text x="159" y="380" text-anchor="middle" font-size="15" font-weight="800" fill="#fff">essence</text><rect x="120" y="270" width="78" height="190" fill="transparent"/></g>
+    <g data-n="gazole" class="noz"><rect x="212" y="280" width="78" height="150" rx="14" fill="#2b2350"/><rect x="212" y="280" width="78" height="30" rx="12" fill="#ffd23a"/><text x="251" y="355" text-anchor="middle" font-size="18" font-weight="900" fill="#ffd23a">Gazole</text><rect x="212" y="270" width="78" height="190" fill="transparent"/></g>
+    ${nestSVG(carSVG(CAR_(),{scale:1,driver:false,id:'fuelc'}),430,170,700,388)}
+    <g data-n="trappe"><circle cx="560" cy="300" r="34" fill="#2b2350" stroke="#fff" stroke-width="4"/><circle cx="560" cy="300" r="14" fill="#5d6c8c"/><rect x="480" y="236" width="160" height="30" rx="8" fill="#fff" stroke="#3fbf55" stroke-width="3"/><text x="560" y="257" text-anchor="middle" font-size="17" font-weight="900" fill="#2b8a3e">Essence SP95</text><circle cx="560" cy="300" r="70" fill="transparent"/></g>
+    <g id="gaNoz"></g>
+    <rect x="760" y="60" width="330" height="40" rx="20" fill="#fff" stroke="#c9d2e3" stroke-width="3"/><rect x="766" y="66" width="0" height="28" rx="14" fill="#3fbf55" id="gaTank"/><text x="925" y="88" text-anchor="middle" font-size="18" font-weight="900" fill="#2b2350">${T('réservoir','réservoir 45 L')}</text>
+    </svg><div class="gact" style="top:auto;bottom:24px"><button class="btn b-blue hidden" id="gFill">⛽ ${T('Remplir (garde le doigt)','Remplir (maintenir)')}</button></div>`;
+  if(A){document.querySelector('[data-n="sp95"]').classList.add('cnudge','sv');}
+  say(T('Prends le pistolet vert : c\'est l\'essence de ta voiture.','À la pompe : lis l\'étiquette de la trappe et prends le bon pistolet.'));
+  const tank=()=>{$('gaTank').setAttribute('width',318*Math.min(1,F.lit/45));$('gaLit').textContent=F.lit.toFixed(1).replace('.',',')+' L';};
+  GA.tap=e=>{const n=e.target.closest('[data-n]');if(!n||F.full)return;const k=n.dataset.n;
+    if(k==='sp95'||k==='gazole'){if(A&&k==='gazole'){say('Pas celui-là : le vert !');return;}F.noz=k;sfx.click();document.querySelectorAll('#gaFuel .noz').forEach(z=>z.classList.toggle('sel',z.dataset.n===k));
+      if(A){document.querySelector('[data-n="sp95"]').classList.remove('cnudge');}
+      say(T('Maintenant, mets-le dans la trappe de la voiture.','Pistolet '+(k==='sp95'?'SP95':'gazole')+' en main : approche-le de la trappe.'),T(undefined,false));if(A)gNudge('[data-n="trappe"]');return;}
+    if(k==='trappe'){if(!F.noz){say(T('Prends d\'abord le pistolet vert.','Choisis d\'abord un pistolet.'));return;}
+      if(F.noz==='gazole'){award('g_gazole');sfx.whine();say('Ça ne rentre pas ! Le pistolet gazole est plus gros que la trappe d\'une voiture essence : c\'est fait exprès pour éviter l\'erreur. Du gazole dans un moteur essence l\'empêcherait de marcher.','Ça ne rentre pas !');F.noz=null;document.querySelectorAll('#gaFuel .noz').forEach(z=>z.classList.remove('sel'));return;}
+      gNudge(null);$('gaNoz').innerHTML='<rect x="520" y="250" width="70" height="44" rx="10" fill="#3fbf55" stroke="#2b8a3e" stroke-width="3"/><path d="M200 430 Q360 560 524 280" stroke="#2b2350" stroke-width="10" fill="none"/>';
+      $('gFill').classList.remove('hidden');$('gFill').classList.add('cnudge');sfx.stick();say(T('Garde ton doigt sur le bouton bleu pour remplir !','Maintiens le bouton pour remplir. Le pistolet s\'arrête tout seul quand c\'est plein.'));}};
+  GA.down=e=>{if(e.target.closest('#gFill')&&!F.full)F.hold=1;};
+  GA.up=()=>{F.hold=0;};
+  gaEvery(()=>{if(!F.hold||F.full)return;F.lit=Math.min(45,F.lit+(A?1.6:1.1));if(Math.random()<.5)gsnd.pour();tank();
+    if(F.lit>=45){F.full=true;F.hold=0;tone(900,0,.05,'square',.2);gsnd.clic();$('gFill').classList.add('hidden');
+      say(T('Clac ! C\'est plein ! Retourne démarrer.','Clac ! Le pistolet a senti que l\'essence touchait son bout : il s\'arrête tout seul. 45 litres, c\'est plein.'),T(undefined,'C\'est plein !'));
+      gaLater(()=>{s.scen='ok';s.fuel=1;s.from='fuel';startTab(true);gNudge('#gStart');},2600);}},100);
+}
+
+/* ===== 2. le moteur à 4 temps ===== */
+const STROKES=[
+  {k:'adm',e:'🌬️',n:'Aspire',rn:'Admission',v:'Le moteur aspire de l\'air et de l\'essence.',x:'Soupape d\'admission ouverte : le piston descend et aspire le mélange d\'air et d\'essence.'},
+  {k:'comp',e:'🤏',n:'Serre',rn:'Compression',v:'Le piston remonte et serre très fort.',x:'Les deux soupapes sont fermées : le piston remonte et serre le mélange dans un espace environ 10 fois plus petit.'},
+  {k:'boum',e:'💥',n:'Boum !',rn:'Combustion',v:'L\'étincelle fait boum ! Ça pousse le piston !',x:'La bougie fait une étincelle : le mélange brûle d\'un coup, les gaz chauds poussent le piston vers le bas. C\'est le seul temps qui donne de la force.'},
+  {k:'ech',e:'💨',n:'Souffle',rn:'Échappement',v:'La fumée sort par le pot d\'échappement.',x:'Soupape d\'échappement ouverte : le piston remonte et chasse les gaz brûlés vers le pot d\'échappement.'}];
+function engSVG(th){
+  const r=60,L=170,cx=330,cy=470,a=th*Math.PI/180,pin=cy-(r*Math.cos(a)+Math.sqrt(L*L-(r*Math.sin(a))**2)),top=pin-40,ph=((th%720)+720)%720;
+  const crx=cx+r*Math.sin(a),cry=cy-r*Math.cos(a);
+  const inOpen=ph<180?Math.sin(ph/180*Math.PI)*20:0,exOpen=ph>540?Math.sin((ph-540)/180*Math.PI)*20:0;
+  const gas=ph<180?'#bfe6ff':ph<360?`rgb(${120-(ph-180)/3},${170-(ph-180)/3},255)`:ph<540?`rgb(255,${Math.round(120+(ph-360)/1.5)},40)`:'#b8bcc6';
+  const fire=ph>=355&&ph<420;
+  const dots=ph<180?Array.from({length:8},(_,i)=>`<circle cx="${160+((i*47+ph*2)%110)}" cy="${78+(i%3)*8}" r="5" fill="#4c8dff"/>`).join(''):'';
+  const smoke=ph>560?Array.from({length:5},(_,i)=>`<circle cx="${420+((i*41+ph*2)%140)}" cy="${80+(i%2)*10}" r="${8+i%3*3}" fill="#9aa1ad" opacity=".7"/>`).join(''):'';
+  return `<rect x="140" y="62" width="130" height="44" rx="8" fill="#d6e4f5" stroke="#5d6c8c" stroke-width="4"/>${dots}<text x="150" y="56" font-size="16" font-weight="900" fill="#4c8dff">${T('air + essence','air + essence')}</text>
+  <rect x="390" y="62" width="180" height="44" rx="8" fill="#e3e5ea" stroke="#5d6c8c" stroke-width="4"/>${smoke}<text x="430" y="56" font-size="16" font-weight="900" fill="#5d6c8c">${T('fumée','gaz brûlés')}</text>
+  <rect x="245" y="110" width="170" height="${Math.max(0,top-110)}" fill="${gas}"/>${fire?`<circle cx="330" cy="${(110+top)/2}" r="${40+(ph-355)}" fill="#ffd23a" opacity="${1-(ph-355)/65}"/>`:''}
+  <rect x="225" y="100" width="20" height="340" fill="#8a96ad"/><rect x="415" y="100" width="20" height="340" fill="#8a96ad"/><rect x="225" y="90" width="210" height="22" fill="#6f7a92"/>
+  <g transform="translate(0 ${inOpen})"><line x1="280" y1="40" x2="280" y2="104" stroke="#4c8dff" stroke-width="7"/><ellipse cx="280" cy="106" rx="24" ry="7" fill="#4c8dff"/></g>
+  <g transform="translate(0 ${exOpen})"><line x1="380" y1="40" x2="380" y2="104" stroke="#5d6c8c" stroke-width="7"/><ellipse cx="380" cy="106" rx="24" ry="7" fill="#5d6c8c"/></g>
+  <rect x="320" y="40" width="20" height="56" rx="4" fill="#f2f4f8" stroke="#5d6c8c" stroke-width="3"/>${fire&&ph<375?'<text x="330" y="128" text-anchor="middle" font-size="34">⚡</text>':''}
+  <rect x="247" y="${top}" width="166" height="80" rx="10" fill="#c9d2e3" stroke="#5d6c8c" stroke-width="4"/><line x1="247" y1="${top+16}" x2="413" y2="${top+16}" stroke="#5d6c8c" stroke-width="3"/><line x1="247" y1="${top+28}" x2="413" y2="${top+28}" stroke="#5d6c8c" stroke-width="3"/>
+  <circle cx="${cx}" cy="${cy}" r="92" fill="#e8edf5" stroke="#5d6c8c" stroke-width="5"/><path d="M${cx} ${cy} L${cx-70*Math.sin(a+0.6)} ${cy+70*Math.cos(a+0.6)} A70 70 0 0 0 ${cx-70*Math.sin(a-0.6)} ${cy+70*Math.cos(a-0.6)}z" fill="#9aa6bf"/>
+  <line x1="${crx}" y1="${cry}" x2="${cx}" y2="${pin}" stroke="#5d6c8c" stroke-width="16" stroke-linecap="round"/><circle cx="${crx}" cy="${cry}" r="12" fill="#2b2350"/><circle cx="${cx}" cy="${pin}" r="10" fill="#2b2350"/><circle cx="${cx}" cy="${cy}" r="12" fill="#2b2350"/>`;
+}
+function motorTab(){
+  const A=isA(),M={th:0,i:0,cyc:0,busy:0,phase:A?'nana':'order',order:shuf([0,1,2,3]),good:0,run:0};GA.m=M;
+  $('gaWork').innerHTML=`<div class="gmot"><div class="gmotL"><svg viewBox="100 20 520 580" id="gaEng"><g id="gaEngG">${engSVG(0)}</g></svg><div class="gturn" id="gaTurn"></div></div>
+    <div class="gmotR"><div class="gmh" id="gaMh"></div><div class="gmx" id="gaMx"></div><div class="gstrokes" id="gaStk"></div><div id="gaMf"></div></div></div>`;
+  const draw=()=>{$('gaEngG').innerHTML=engSVG(M.th);$('gaTurn').textContent=T('','Vilebrequin : '+(Math.floor(M.th/360))+' tour'+(M.th>=720?'s':''));};
+  const anim=(to,ms,done)=>{const from=M.th,t0=performance.now();M.busy=1;const step=now=>{const k=Math.min(1,(now-t0)/ms);M.th=from+(to-from)*k;draw();
+    const ph=((M.th%720)+720)%720;if(!M.boom&&ph>=358&&ph<400){M.boom=1;gsnd.boum();}if(ph<300)M.boom=0;
+    if(k<1)GA.raf=requestAnimationFrame(step);else{M.busy=0;done&&done();}};GA.raf=requestAnimationFrame(step);};
+  const renderBtns=()=>{
+    if(M.phase==='nana'){$('gaMh').textContent='Le moteur';$('gaStk').innerHTML=STROKES.map((s,i)=>`<button class="gstk ${i===M.i&&!M.run?'cnudge':''} ${i<M.i?'ok':''}" data-s="${i}"><span>${s.e}</span>${s.n}</button>`).join('');return;}
+    if(M.phase==='order'){$('gaMh').textContent='Les 4 temps du moteur';$('gaStk').innerHTML=M.order.map(i=>`<button class="gstk r ${i<M.i?'ok':''}" data-s="${i}"><span>${STROKES[i].e}</span>${STROKES[i].rn}${i<M.i?` <small>${i+1}</small>`:''}</button>`).join('');return;}
+    if(M.phase==='spark'){$('gaMh').textContent='La bougie : étincelle au bon moment';$('gaStk').innerHTML=`<button class="btn b-orange" data-s="spark" style="height:110px;font-size:34px">⚡ Étincelle !</button><div class="gmx">⚡ ${M.good}/4 · ${T('','fais l\'étincelle quand le piston est tout en haut, après la compression (mélange bleu foncé)')}</div>`;}};
+  renderBtns();draw();
+  $('gaMx').textContent=T('Touche les boutons dans l\'ordre pour faire tourner le moteur.','Un moteur essence fonctionne en 4 temps. Remets-les dans l\'ordre : chaque bon choix fait bouger le piston.');
+  say(T('Voici le cœur du moteur : le piston. Touche le bouton qui bouge !','Le moteur à 4 temps : remets les temps dans l\'ordre.'));
+  const autoRun=()=>{M.run=1;renderBtns();ENG.start();ENG.set(900);let sp=360;const t0=performance.now();
+    const step=now=>{const k=(now-t0)/1000;sp=Math.min(1800,360+k*700);M.th+=sp/60;draw();ENG.set(600+sp*1.4);if(k<4.5)GA.raf=requestAnimationFrame(step);else{ENG.stop();M.run=0;M.th=0;M.i=0;M.cyc=0;draw();renderBtns();}};GA.raf=requestAnimationFrame(step);};
+  GA.tap=e=>{const b=e.target.closest('[data-s]');if(!b||M.busy||M.run)return;const v=b.dataset.s;
+    if(M.phase==='nana'){const i=+v;if(i!==M.i){say('D\'abord : '+STROKES[M.i].n+' !');gNudge(`[data-s="${M.i}"]`);return;}
+      sfx.click();say(STROKES[i].v);$('gaMx').textContent=STROKES[i].e+' '+STROKES[i].v;
+      anim((M.cyc*4+i+1)*180,1300,()=>{M.i++;if(M.i>=4){M.i=0;M.cyc++;
+        if(M.cyc>=2){const st=gaDone('4t','g_4temps',true);say('Bravo ! Maintenant il tourne tout seul : des milliers de boums par minute !'+(st?' Une étoile !':''));$('gaMx').textContent='💥💥💥 Le moteur tourne tout seul !';autoRun();return;}
+        say('Encore un tour ! Aspire !');}renderBtns();});renderBtns();return;}
+    if(M.phase==='order'){const i=+v;if(i<M.i)return;
+      if(i!==M.i){sfx.whine();say('Pas encore : '+(M.i===0?'il faut d\'abord faire entrer le mélange dans le cylindre.':'avant, il faut '+['faire entrer le mélange','le comprimer','le faire brûler'][M.i]+'.'),false);return;}
+      sfx.ding();$('gaMx').innerHTML=`<b>${i+1}. ${STROKES[i].rn}</b> : ${STROKES[i].x}`;
+      anim((i+1)*180,1400,()=>{M.i++;renderBtns();
+        if(M.i>=4){gaDone('4t','g_4temps',true);M.phase='spark';M.th=0;draw();
+          $('gaMx').innerHTML='Bravo ! 4 temps = 2 tours de vilebrequin. Maintenant, c\'est toi la bougie : déclenche l\'étincelle au bon moment.';renderBtns();
+          say('Les 4 temps sont dans l\'ordre ! Maintenant, déclenche l\'étincelle au bon moment.',false);
+          const t0=performance.now(),base=M.th;const step=now=>{M.th=base+(now-t0)/2600*720;draw();GA.raf=requestAnimationFrame(step);};GA.raf=requestAnimationFrame(step);}});
+      renderBtns();return;}
+    if(M.phase==='spark'&&v==='spark'){const ph=((M.th%720)+720)%720;gsnd.spark();
+      let msg;if(ph>=330&&ph<=392){M.good++;gsnd.boum();burst($('gaEng'),['💥'],3,60);msg=['Pile au bon moment ! Le mélange comprimé explose et pousse le piston.','Encore parfait !','Top !','Parfait !'][Math.min(3,M.good-1)];}
+      else if(ph>=180&&ph<330)msg='Trop tôt : le piston remonte encore, l\'explosion le freine. Dans un vrai moteur, ça « cogne ».';
+      else if(ph>392&&ph<540)msg='Trop tard : le piston redescend déjà, on perd de la force.';
+      else msg='Rien ne se passe : à ce moment-là, il n\'y a pas de mélange serré à brûler (soupape ouverte).';
+      $('gaMx').textContent=msg;say(msg,false);renderBtns();
+      if(M.good>=4){cancelAnimationFrame(GA.raf);award('g_bougie');const st=firstStar('ga_spark');sfx.fanfare();
+        $('gaMx').innerHTML=`Bravo, réglage parfait !${st?' +1 étoile.':''} Dans une vraie voiture, un ordinateur décide du moment de chaque étincelle, des dizaines de fois par seconde, et 4 cylindres travaillent chacun leur tour pour que le moteur tourne rond.`;
+        $('gaStk').innerHTML='<button class="btn b-blue" data-s="again">🔁 Recommencer</button>';say('Bravo, réglage parfait !');}
+      return;}
+    if(v==='again'){motorTab();}
+  };
+}
+
+/* ===== 3. sous le capot ===== */
+const HOOD={batt:{n:'la batterie',e:'🔋',x:'Elle garde l\'électricité pour démarrer et allumer les lumières.'},lave:{n:'le lave-glace',e:'🧴',x:'L\'eau savonneuse pour laver le pare-brise.'},huile:{n:'l\'huile du moteur',e:'🛢️',x:'Elle fait glisser les pièces du moteur sans qu\'elles frottent.'},refroid:{n:'le liquide de refroidissement',e:'🌡️',x:'Il refroidit le moteur, qui chauffe beaucoup.'},moteur:{n:'le moteur',e:'⚙️',x:'Là où ont lieu les explosions qui font tourner les roues.'},air:{n:'le filtre à air',e:'🌬️',x:'Il nettoie l\'air avant qu\'il entre dans le moteur.'},frein:{n:'le liquide de frein',e:'🛑',x:'Il transmet la force de ton pied jusqu\'aux freins.'}};
+function hoodSVG(){return `<svg viewBox="0 0 700 600" id="gaHood"><rect x="20" y="20" width="660" height="560" rx="50" fill="#5d6577"/><rect x="40" y="40" width="620" height="520" rx="40" fill="#3d4352"/>
+  <g data-p="batt" class="hp"><rect x="70" y="80" width="170" height="130" rx="12" fill="#262a38" stroke="#151826" stroke-width="5"/><rect x="92" y="62" width="34" height="24" rx="5" fill="#e2263e"/><rect x="184" y="62" width="34" height="24" rx="5" fill="#2b2350" stroke="#fff" stroke-width="2"/><text x="155" y="160" text-anchor="middle" font-size="30" font-weight="900" fill="#fff">12 V</text></g>
+  <g data-p="air" class="hp"><rect x="70" y="260" width="170" height="130" rx="20" fill="#1e212c" stroke="#151826" stroke-width="5"/><path d="M90 300 h130 M90 325 h130 M90 350 h130" stroke="#3a3f55" stroke-width="6"/></g>
+  <g data-p="moteur" class="hp"><rect x="270" y="170" width="250" height="280" rx="24" fill="#c9d2e3" stroke="#8a96ad" stroke-width="6"/><rect x="300" y="200" width="190" height="60" rx="12" fill="#b3bdd1"/><text x="395" y="410" text-anchor="middle" font-size="22" font-weight="900" fill="#5d6c8c">MOTEUR</text></g>
+  <g data-p="huile" class="hp"><circle cx="350" cy="320" r="34" fill="#ffd23a" stroke="#b9881a" stroke-width="5"/><text x="350" y="332" text-anchor="middle" font-size="30">🛢️</text><circle cx="460" cy="330" r="20" fill="none" stroke="#ffd23a" stroke-width="10"/><rect x="455" y="350" width="10" height="70" fill="#ffd23a"/></g>
+  <g data-p="lave" class="hp"><path d="M550 80 h90 v150 q0 20 -20 20 h-50 q-20 0 -20 -20z" fill="#7cc4ff" opacity=".85" stroke="#2f62c2" stroke-width="5"/><rect id="gaLave" x="555" y="200" width="80" height="45" fill="#2f62c2" opacity=".6"/><circle cx="595" cy="78" r="20" fill="#2f62c2"/><text x="595" y="160" text-anchor="middle" font-size="30">🧴</text></g>
+  <g data-p="refroid" class="hp"><path d="M550 300 h90 v150 q0 20 -20 20 h-50 q-20 0 -20 -20z" fill="#ffb3d1" opacity=".85" stroke="#d6336c" stroke-width="5"/><circle cx="595" cy="298" r="20" fill="#d6336c"/><text x="595" y="390" text-anchor="middle" font-size="30">🌡️</text></g>
+  <g data-p="frein" class="hp"><rect x="290" y="70" width="70" height="80" rx="12" fill="#fff6d6" stroke="#b9881a" stroke-width="4"/><circle cx="325" cy="68" r="14" fill="#b9881a"/><text x="325" y="125" text-anchor="middle" font-size="26">🛑</text></g>
+  <rect x="120" y="500" width="460" height="50" rx="10" fill="#262a38"/><path d="M140 510 v30 M170 510 v30 M200 510 v30 M230 510 v30 M260 510 v30 M290 510 v30 M320 510 v30 M350 510 v30 M380 510 v30 M410 510 v30 M440 510 v30 M470 510 v30 M500 510 v30 M530 510 v30 M560 510 v30" stroke="#3a3f55" stroke-width="5"/>
+  <text x="350" y="590" text-anchor="middle" font-size="16" font-weight="900" fill="#2b2350">${T('l\'avant de la voiture','avant de la voiture (radiateur)')}</text></svg>`;}
+function hoodTab(){
+  const A=isA(),H={ask:A?shuf(['batt','lave','huile','moteur']):null,i:0,found:{},lave:.15,oil:.15,temp:95,cool:.2,task:null,tasks:{},hot:false};GA.h=H;
+  $('gaWork').innerHTML=`<div class="ghood"><div class="ghoodL">${hoodSVG()}</div><div class="ghoodR" id="gaHR"></div></div>`;
+  const setLave=()=>{const h=Math.round(150*H.lave);$('gaLave').setAttribute('y',245-h);$('gaLave').setAttribute('height',h);};setLave();
+  const R=$('gaHR');
+  const nanaAsk=()=>{const k=H.ask[H.i];R.innerHTML=`<div class="gbig">${HOOD[k].e}</div><div class="gmh">Où est ${HOOD[k].n} ?</div><div class="gmx">${H.ask.map((x,j)=>j<H.i?'✅':j===H.i?'❓':'⚪').join(' ')}</div>`;say(`Où est ${HOOD[k].n} ? ${HOOD[k].x}`);};
+  const rafList=()=>{const L=[['huile','🛢️','Niveau d\'huile'],['refroid','🌡️','Liquide de refroidissement'],['lave','🧴','Lave-glace'],['batt','🔋','Tension de la batterie']];
+    R.innerHTML=`<div class="gmh">Révision du garagiste</div><div class="gchk">${L.map(([k,e,n])=>`<button class="gchki ${H.tasks[k]?'ok':''} ${H.task===k?'on':''}" data-k="${k}"><span>${e}</span>${n}${H.tasks[k]?' ✅':''}</button>`).join('')}</div><div id="gaTask"></div>`;};
+  if(A)nanaAsk();else{rafList();say('Révision : contrôle les 4 points. Touche une pièce ou une ligne de la liste.');}
+  const checkAll=()=>{if(['huile','refroid','lave','batt'].every(k=>H.tasks[k])){const st=gaDone('capot','g_capot',true);sfx.fanfare();burst($('gaHood'),['🔧','✨'],8,200);
+    $('gaTask').innerHTML=`<div class="gmx">🏆 Révision terminée !${st?' +1 étoile.':''} Les garagistes font ce contrôle à chaque entretien.</div>`;say('Révision terminée, bravo mécano !');}};
+  const task=k=>{H.task=k;rafList();const D=$('gaTask');
+    if(k==='huile'){const lvl=()=>`<svg viewBox="0 0 300 90" class="gstick"><rect x="10" y="38" width="280" height="14" rx="7" fill="#e8edf5" stroke="#8a96ad" stroke-width="2"/><rect x="10" y="38" width="${280*H.oil}" height="14" rx="7" fill="#b9881a"/><line x1="${10+280*.35}" y1="24" x2="${10+280*.35}" y2="66" stroke="#2b2350" stroke-width="3"/><line x1="${10+280*.8}" y1="24" x2="${10+280*.8}" y2="66" stroke="#2b2350" stroke-width="3"/><text x="${10+280*.35}" y="18" text-anchor="middle" font-size="14" font-weight="900">MIN</text><text x="${10+280*.8}" y="18" text-anchor="middle" font-size="14" font-weight="900">MAX</text></svg>`;
+      D.innerHTML=`<div class="gmx">La jauge d'huile : l'huile doit être entre MIN et MAX.</div>${lvl()}<div class="frow"><button class="btn b-orange" data-k="oil+">🛢️ Ajouter</button><button class="btn b-grey" data-k="oil-">⬇️ Retirer</button></div>`;}
+    if(k==='refroid'){D.innerHTML=H.tasks.refroid?'':`<div class="gmx">🌡️ Moteur : <b>${Math.round(H.temp)} °C</b>. Le niveau est bas.</div><div class="frow"><button class="btn b-orange" data-k="open">Ouvrir le bouchon</button><button class="btn b-blue" data-k="wait">⏳ Attendre</button></div>`;}
+    if(k==='lave'){D.innerHTML=`<div class="gmx">Le lave-glace est presque vide.</div><div class="frow"><button class="btn b-blue" data-k="lave+">🫗 Verser</button></div>`;}
+    if(k==='batt'){D.innerHTML=`<div class="gmx">Mesure la tension avec le voltmètre (pince rouge sur +, noire sur −).</div><div class="frow"><button class="btn b-orange" data-k="volt">📟 Mesurer</button></div>`;}};
+  GA.tap=e=>{
+    if(A){const p=e.target.closest('[data-p]');if(H.i>=H.ask.length){if(p&&p.dataset.p==='lave'||e.target.closest('[data-k="lave+"]')){H.lave=Math.min(1,H.lave+.3);gsnd.pour();setLave();if(H.lave>=.95&&!H.ok){H.ok=1;const st=gaDone('capot','g_capot',true);sfx.fanfare();burst($('gaHood'),['🔧','✨'],8,200);R.innerHTML=`<div class="gbig">🏆</div><div class="gmh">Bravo, mécano !</div>`;say('Bravo, mécano ! Tout est prêt.'+(st?' Une étoile !':''));}}return;}
+      if(!p)return;const k=p.dataset.p,want=H.ask[H.i];
+      if(k!==want){sfx.click();say('Ça, c\'est '+HOOD[k].n+'.');return;}
+      sfx.ding();burst(p,['✅'],1,30);H.i++;
+      if(H.i>=H.ask.length){R.innerHTML=`<div class="gbig">🧴</div><div class="gmh">Le lave-glace est presque vide !</div><button class="btn b-blue cnudge" data-k="lave+">🫗 Verser</button>`;say('Bravo ! Le lave-glace est presque vide : verse de l\'eau, touche le bouton bleu.');}
+      else gaLater(nanaAsk,900);return;}
+    const p=e.target.closest('[data-p]');if(p){const k=p.dataset.p;if(['huile','refroid','lave','batt'].includes(k))return task(k);say(HOOD[k].n.charAt(0).toUpperCase()+HOOD[k].n.slice(1)+' : '+HOOD[k].x,false);return;}
+    const b=e.target.closest('[data-k]');if(!b)return;const k=b.dataset.k;
+    if(['huile','refroid','lave','batt'].includes(k))return task(k);
+    if(k==='oil+'||k==='oil-'){H.oil=Math.max(0,Math.min(1,H.oil+(k==='oil+'?.12:-.12)));gsnd.pour();task('huile');
+      if(H.oil>.8)say('Trop d\'huile ! Au-dessus du MAX, elle mousse et le moteur est moins bien protégé. Retire-en un peu.',false);
+      else if(H.oil>=.35&&!H.tasks.huile){H.tasks.huile=1;task('huile');say('Parfait, entre MIN et MAX. Sans huile, les pièces en métal frotteraient, chaufferaient et casseraient.',false);checkAll();}return;}
+    if(k==='open'){if(H.temp>50){sfx.splash();noise(1.2,.3,'highpass',2500);burst($('gaHood'),['💨','♨️','💨'],10,160);say('Pschhh ! Moteur chaud, le liquide est sous pression à plus de 100 °C : il jaillit et peut brûler. On n\'ouvre jamais ce bouchon moteur chaud !','Pschhh !');}
+      else{H.cool=1;H.tasks.refroid=1;sfx.pop();task('refroid');$('gaTask').innerHTML='<div class="gmx">✅ Moteur froid : bouchon ouvert sans danger, liquide rempli jusqu\'au MAX.</div>';checkAll();}return;}
+    if(k==='wait'){const iv=gaEvery(()=>{H.temp=Math.max(30,H.temp-6);const d=$('gaTask');if(d&&H.task==='refroid'&&!H.tasks.refroid)d.querySelector('b').textContent=Math.round(H.temp)+' °C';if(H.temp<=30){clearInterval(iv);say('30 °C : le moteur a refroidi. Tu peux ouvrir.',false);}},120);return;}
+    if(k==='lave+'){H.lave=Math.min(1,H.lave+.3);gsnd.pour();setLave();if(H.lave>=.95&&!H.tasks.lave){H.tasks.lave=1;task('lave');$('gaTask').innerHTML='<div class="gmx">✅ Plein. En hiver, on met du lave-glace antigel pour qu\'il ne gèle pas.</div>';checkAll();}return;}
+    if(k==='volt'){sfx.ding();H.tasks.batt=1;task('batt');$('gaTask').innerHTML='<div class="gmx">📟 <b>12,6 V</b> : batterie en forme ! C\'est presque 3 fois la pile du labo (4,5 V).</div>';checkAll();}
+  };
+}
+
+/* ===== 4. les lumières : situations ===== */
+const LUMS=[
+  {id:'gauche',n:1,need:{bl:-1},ask:['On va chez Wanji : à gauche !','Tu vas tourner à gauche.'],x:['Le clignotant gauche dit aux autres : je tourne à gauche !','Le clignotant prévient AVANT de tourner : les autres peuvent ralentir ou attendre.']},
+  {id:'droite',n:1,need:{bl:1},ask:['On va au parc : à droite !','Tu vas tourner à droite.'],x:['Le clignotant droit dit : je tourne à droite !','Clignotant droit : bras du commodo vers le haut dans une vraie voiture.']},
+  {id:'nuit',n:1,need:{ph:1},ask:['Il fait nuit ! On n\'y voit rien.','Il fait nuit, en ville.'],x:['Les phares éclairent la route !','Feux de croisement : ils éclairent la route sans éblouir ceux d\'en face.']},
+  {id:'pluie',n:1,need:{wip:1},rneed:{wip:1,ph:1},ask:['Il pleut fort !','Il pleut fort et on voit mal.'],x:['Les essuie-glaces chassent l\'eau !','Essuie-glaces ET feux de croisement : pour voir, mais aussi pour être vu.']},
+  {id:'panne',n:1,need:{bl:2},ask:['Oh non, la voiture est en panne !','Panne au bord de la route !'],x:['Le warning : tout clignote, attention !','Warning, puis gilet jaune avant de sortir et triangle posé à 30 mètres derrière.']},
+  {id:'croiser',need:{ph:1},ask:['','La nuit, une voiture arrive en face.'],x:['','Feux de croisement : les feux de route éblouiraient le conducteur d\'en face.']},
+  {id:'route',need:{ph:2},ask:['','La nuit, sur une petite route de campagne, personne en vue.'],x:['','Feux de route : ils éclairent très loin, utiles quand personne n\'arrive en face.']},
+  {id:'brouillard',need:{fog:1},ask:['','Brouillard épais : on voit à peine à 50 mètres.'],x:['','Antibrouillard : un feu rouge très fort à l\'arrière, pour que la voiture de derrière te voie.']},
+  {id:'feu',need:{brk:1},ask:['','Le feu passe au rouge devant toi.'],x:['','Tu freines : les feux stop s\'allument en rouge vif derrière pour prévenir la voiture qui suit.']},
+  {id:'recul',need:{rev:1},ask:['','Tu recules pour te garer.'],x:['','Marche arrière : des feux blancs s\'allument derrière, ils éclairent et préviennent les piétons.']}
+];
+function lumList(){return LUMS.filter(l=>!isA()||l.n);}
+function lumSVG(L,st){
+  const night=['nuit','croiser','route'].includes(L.id),fog=L.id==='brouillard',rain=L.id==='pluie',c=CAR_().col,on=st.blOn;
+  const lb=on&&(st.bl===-1||st.bl===2),rb=on&&(st.bl===1||st.bl===2),beam=st.ph===2?'M250 400 L330 150 h100 L510 400z':st.ph===1?'M240 400 L320 260 h120 L520 400z':'';
+  return `<rect width="760" height="622" fill="${night?'#16204a':fog?'#cfd6df':rain?'#7f93ad':'#9fd6ff'}"/>${night?'<circle cx="640" cy="80" r="34" fill="#fff6c4"/>'+Array.from({length:14},(_,i)=>`<circle cx="${(i*97)%740}" cy="${20+(i*53)%180}" r="2" fill="#fff"/>`).join(''):''}
+  <rect y="250" width="760" height="372" fill="${night?'#1f3a28':'#8cce5e'}"/><path d="M330 250 h100 L700 622 H60z" fill="${night?'#3a3d48':'#7d8190'}"/><path d="M376 260 h8 l6 40 h-20z M372 330 h16 l10 70 h-36z" fill="#fff" opacity=".7"/>
+  ${L.id==='gauche'||L.id==='droite'?`<g transform="translate(${L.id==='gauche'?190:470} 150)"><rect x="40" y="40" width="10" height="90" fill="#8a96ad"/><rect x="0" y="0" width="100" height="56" rx="10" fill="#4c8dff" stroke="#fff" stroke-width="4"/><text x="50" y="40" text-anchor="middle" font-size="34" fill="#fff">${L.id==='gauche'?'⬅ 🏠':'🌳 ➡'}</text></g>`:''}
+  ${L.id==='croiser'?'<circle cx="368" cy="258" r="8" fill="#fff6a8"/><circle cx="392" cy="258" r="8" fill="#fff6a8"/>':''}
+  ${L.id==='feu'?'<g transform="translate(560 120)"><rect x="12" y="80" width="10" height="90" fill="#5d6c8c"/><rect width="34" height="90" rx="8" fill="#2b2350"/><circle cx="17" cy="18" r="11" fill="#ff3b3b"/><circle cx="17" cy="45" r="11" fill="#5a4a20"/><circle cx="17" cy="72" r="11" fill="#1f4a2a"/></g>':''}
+  ${L.id==='recul'?'<rect x="60" y="560" width="640" height="10" fill="#fff" opacity=".8"/><text x="380" y="610" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">P</text>':''}
+  ${beam?`<path d="${beam}" fill="#fff6a8" opacity="${night?.45:.25}"/>`:''}
+  <g transform="translate(0 30)">
+  <path d="M230 360 q10 -60 60 -66 h180 q50 6 60 66z" fill="${c}" stroke="#2b2350" stroke-width="4"/><path d="M262 356 q12 -44 44 -48 h148 q32 4 44 48z" fill="#2b3550"/>
+  <rect x="200" y="356" width="360" height="150" rx="30" fill="${c}" stroke="#2b2350" stroke-width="4"/><rect x="200" y="356" width="360" height="150" rx="30" fill="url(#car3Shade)"/>
+  <rect x="320" y="440" width="120" height="36" rx="6" fill="#fff" stroke="#2b2350" stroke-width="3"/><text x="380" y="466" text-anchor="middle" font-size="20" font-weight="900" fill="#2b2350">KICUIT</text>
+  <line x1="380" y1="354" x2="300" y2="322" stroke="#111" stroke-width="5" stroke-linecap="round">${st.wip?'<animateTransform attributeName="transform" type="rotate" values="0 380 354;75 380 354;0 380 354" dur="1.2s" repeatCount="indefinite"/>':''}</line>
+  <rect x="350" y="294" width="60" height="8" rx="4" fill="${st.brk?'#ff2a2a':'#7a2a2a'}"/>
+  ${[0,1].map(i=>{const x=i?492:212,bl=i?rb:lb;return `<rect x="${x}" y="378" width="56" height="58" rx="12" fill="#3a1d24" stroke="#2b2350" stroke-width="3"/>
+    <rect x="${x+4}" y="382" width="48" height="16" rx="5" fill="${bl?'#ffb020':'#7a5a2a'}"/>${bl?`<circle cx="${x+28}" cy="390" r="30" fill="#ffb020" opacity=".35"/>`:''}
+    <rect x="${x+4}" y="400" width="48" height="16" rx="5" fill="${st.brk?'#ff2a2a':(st.ph?'#c0303a':'#6a2a30')}"/>${st.brk?`<circle cx="${x+28}" cy="408" r="30" fill="#ff2a2a" opacity=".35"/>`:''}
+    <rect x="${x+4}" y="418" width="22" height="14" rx="4" fill="${st.rev?'#ffffff':'#8a8a99'}"/>${st.rev?`<circle cx="${x+15}" cy="425" r="22" fill="#fff" opacity=".45"/>`:''}
+    <rect x="${x+30}" y="418" width="22" height="14" rx="4" fill="${st.fog&&!i?'#ff1a1a':'#6a2a30'}"/>${st.fog&&!i?`<circle cx="${x+41}" cy="425" r="26" fill="#ff1a1a" opacity=".45"/>`:''}`;}).join('')}
+  <rect x="215" y="500" width="70" height="40" rx="10" fill="#1c1c22"/><rect x="475" y="500" width="70" height="40" rx="10" fill="#1c1c22"/></g>
+  ${rain&&!st.wip?Array.from({length:40},(_,i)=>`<line x1="${(i*53)%760}" y1="${(i*97)%600}" x2="${(i*53)%760-8}" y2="${(i*97)%600+24}" stroke="#dff1ff" stroke-width="3" opacity=".8"/>`).join(''):rain?Array.from({length:16},(_,i)=>`<line x1="${(i*53)%760}" y1="${(i*97)%250}" x2="${(i*53)%760-8}" y2="${(i*97)%250+24}" stroke="#dff1ff" stroke-width="3" opacity=".6"/>`).join(''):''}
+  ${fog?`<rect width="760" height="622" fill="#eef1f5" opacity="${st.fog?.45:.7}"/>`:''}`;
+}
+function lumTab(){
+  const A=isA(),Q={st:{bl:0,ph:0,wip:0,fog:0,brk:0,rev:0,blOn:true},cur:null,honk:0,lock:0};GA.q=Q;
+  const g=GAD(),todo=lumList().filter(l=>!g.lum[l.id]);
+  const next=()=>{const g=GAD(),left=lumList().filter(l=>!g.lum[l.id]&&l!==Q.cur);const pool=left.length?left:lumList().filter(l=>l!==Q.cur);Q.cur=left.length?left[0]:pool[Math.floor(Math.random()*pool.length)];
+    Q.st={bl:0,ph:0,wip:0,fog:0,brk:0,rev:0,blOn:true};Q.lock=0;draw();say(T(Q.cur.ask[0],Q.cur.ask[1]+' Que fais-tu ?'));};
+  const ctl=A?[['bl-1','⬅️','Gauche'],['bl1','➡️','Droite'],['bl2','⚠️','Warning'],['ph','💡','Phares'],['wip','🌧️','Essuie-glaces'],['klax','📯','Klaxon']]
+    :[['bl-1','⬅️','Clignotant G'],['bl1','➡️','Clignotant D'],['bl2','⚠️','Warning'],['ph','💡','Phares'],['fog','🌫️','Antibrouillard'],['wip','🌧️','Essuie-glaces'],['brk','🦶','Frein'],['rev','↩️','Marche arr.'],['klax','📯','Klaxon']];
+  $('gaWork').innerHTML=`<div class="glum"><svg viewBox="0 0 760 622" id="gaLum"></svg><div class="glumR"><div class="gmh" id="gaLq"></div><div class="glctl ${A?'big':''}">${ctl.map(([k,e,n])=>`<button class="gbtn" data-l="${k}" id="gl_${k.replace('-','m')}"><span>${e}</span>${n}</button>`).join('')}</div><div class="gmx" id="gaLx"></div></div></div>`;
+  const phName=['éteints','croisement','route'];
+  const draw=()=>{$('gaLum').innerHTML=lumSVG(Q.cur,Q.st);const s=Q.st;$('gaLq').textContent=T(Q.cur.ask[0],Q.cur.ask[1]);
+    const set=(k,on)=>{const b=$('gl_'+k);if(b)b.classList.toggle('on',!!on);};set('blm1',s.bl===-1);set('bl1',s.bl===1);set('bl2',s.bl===2);set('ph',s.ph);set('wip',s.wip);set('fog',s.fog);set('brk',s.brk);set('rev',s.rev);
+    const pb=$('gl_ph');if(pb&&!A)pb.lastChild.textContent='Phares : '+phName[s.ph];
+    const g=GAD(),n=lumList().filter(l=>g.lum[l.id]).length;$('gaLx').textContent=`${'⭐'.repeat(n)}${'☆'.repeat(lumList().length-n)}`;};
+  const check=()=>{const L=Q.cur,need=(!A&&L.rneed)||L.need,s=Q.st;
+    const ok=Object.entries(need).every(([k,v])=>k==='bl'||k==='ph'?(A&&k==='ph'?s.ph>=1:s[k]===v):!!s[k]===!!v);
+    if(ok){Q.lock=1;sfx.ding();burst($('gaLum'),['✨','⭐'],6,160);const g=GAD();const first=!g.lum[L.id];g.lum[L.id]=1;saveDB();
+      if(L.need.bl===-1||L.need.bl===1)award('g_clignotant');
+      say(T(L.x[0],L.x[1]),T(undefined,'Bravo !'));draw();
+      if(lumList().every(l=>g.lum[l.id])&&first){award('g_lumieres');const st=firstStar('ga_lum'+AB());gaLater(()=>{sfx.fanfare();say(T('Tu connais toutes les lumières ! '+(st?'Une étoile !':''),'Toutes les situations réussies !'+(st?' +1 étoile.':'')));},2600);gaLater(next,6000);}
+      else gaLater(next,3200);return;}
+    if(L.id==='croiser'&&s.ph===2){say('Attention : les feux de route éblouissent le conducteur d\'en face ! Passe en croisement.',false);return;}
+    if((L.need.bl===-1&&s.bl===1)||(L.need.bl===1&&s.bl===-1)){say(T('Oups, c\'est l\'autre côté !','C\'est l\'autre côté !'));return;}};
+  GA.tap=e=>{const b=e.target.closest('[data-l]');if(!b||Q.lock)return;const k=b.dataset.l,s=Q.st;
+    if(k==='klax'){gsnd.honk();Q.honk++;if(Q.honk===3)say(T('Le klaxon, c\'est seulement en cas de danger !','Le klaxon ne règle rien ici : il sert seulement à prévenir d\'un danger.'));if(Q.honk>=10)award('g_klaxon');return;}
+    sfx.click();if(k.startsWith('bl')){const v=+k.slice(2);s.bl=s.bl===v?0:v;s.blOn=true;}
+    else if(k==='ph')s.ph=A?(s.ph?0:1):(s.ph+1)%3;else s[k]=s[k]?0:1;
+    if(k==='wip')gsnd.swish();draw();check();};
+  gaEvery(()=>{if(!Q.st.bl)return;Q.st.blOn=!Q.st.blOn;gsnd.tic(Q.st.blOn);if(Q.cur)$('gaLum').innerHTML=lumSVG(Q.cur,Q.st);},380);
+  Q.cur=null;next();
+}
+
+/* ===== 5. le pneu crevé ===== */
+const NUTS=5;
+function tyreTab(){
+  const A=isA(),Y={step:A?'clou':'savon',nuts:Array(NUTS).fill('t'),lift:0,wheel:'flat',pres:1.1,found:0,tight:[],tool:A?null:'eponge',soap:[],errs:0};GA.y=Y;
+  const nailA=200+Math.random()*120;Y.nail=nailA;
+  const car=()=>{const c=CAR_();return `<rect x="0" y="${150+216*1.2}" width="600" height="200" fill="#c9d0db"/><g transform="translate(0 ${Y.lift?-26:0})">${nestSVG(carSVG(c,{scale:1.2,driver:false,id:'tyre'}),20,150,564,312)}${Y.wheel==='flat'?'<ellipse cx="452" cy="398" rx="40" ry="12" fill="#1c1c22"/>':Y.wheel==='off'?'<circle cx="452" cy="373" r="38" fill="#c9d0db"/><circle cx="452" cy="373" r="16" fill="#9aa6bf"/>':''}</g>
+    ${Y.lift?'<g><rect x="360" y="392" width="60" height="18" fill="#e2263e"/><path d="M370 392 l20 -26 l20 26z" fill="#c9d2e3" stroke="#5d6c8c" stroke-width="3"/></g>':''}
+    <circle cx="452" cy="${373+(Y.lift?-26:0)}" r="54" fill="none" stroke="#ffb020" stroke-width="6" stroke-dasharray="8 8"/>`;};
+  const wheel=()=>{const cx=240,cy=250,R=Y.wheel==='flat'?[190,160]:[190,190];if(Y.wheel==='off')return `<text x="${cx}" y="${cy}" text-anchor="middle" font-size="30" font-weight="900" fill="#8a96ad">${T('Plus de roue !','Moyeu (roue enlevée)')}</text><circle cx="${cx}" cy="${cy}" r="70" fill="#9aa6bf"/>${Array.from({length:NUTS},(_,i)=>{const a=i/NUTS*2*Math.PI-Math.PI/2;return `<circle cx="${cx+Math.cos(a)*48}" cy="${cy+Math.sin(a)*48}" r="9" fill="#5d6c8c"/>`;}).join('')}`;
+    const fy=Y.wheel==='flat'?30:0;
+    return `<ellipse cx="${cx}" cy="${cy+fy/2}" rx="${R[0]}" ry="${R[1]}" fill="url(#car3Tyre)"/>${Y.wheel==='flat'?`<rect x="${cx-200}" y="${cy+150}" width="400" height="40" fill="#e9eef6"/>`:''}
+      <circle cx="${cx}" cy="${cy}" r="120" fill="#c9d2e3" stroke="#9aa6bf" stroke-width="6"/><circle cx="${cx}" cy="${cy}" r="32" fill="#9aa6bf"/>
+      ${Y.wheel==='flat'?`<g data-y="clou" class="${A&&Y.step==='clou'?'cnudge':''}" style="${!A&&!Y.found?'opacity:0':''}"><circle cx="${cx+Math.cos(Y.nail*Math.PI/180)*160}" cy="${cy+Math.sin(Y.nail*Math.PI/180)*150}" r="17" fill="#e9edf3" stroke="#5d6c8c" stroke-width="4"/><circle cx="${cx+Math.cos(Y.nail*Math.PI/180)*160-5}" cy="${cy+Math.sin(Y.nail*Math.PI/180)*150-5}" r="5" fill="#fff"/><circle cx="${cx+Math.cos(Y.nail*Math.PI/180)*160}" cy="${cy+Math.sin(Y.nail*Math.PI/180)*150}" r="44" fill="transparent"/></g>`:''}
+      ${Y.soap.map(([x,y,b])=>b?`<circle cx="${x}" cy="${y}" r="${8+Math.random()*10}" fill="none" stroke="#fff" stroke-width="3" opacity=".9"/>`:`<circle cx="${x}" cy="${y}" r="10" fill="#fff" opacity=".35"/>`).join('')}
+      ${Y.nuts.map((n,i)=>{if(n==='o')return '';const a=i/NUTS*2*Math.PI-Math.PI/2,x=cx+Math.cos(a)*72,y=cy+Math.sin(a)*72,nx=A&&((Y.step==='desserrer'&&n==='t')||(Y.step==='serrer'&&n!=='t'));
+        return `<g data-y="n${i}" class="nut ${nx?'cnudge':''}"><polygon points="${Array.from({length:6},(_,j)=>`${x+Math.cos(j*Math.PI/3)*20},${y+Math.sin(j*Math.PI/3)*20}`).join(' ')}" fill="${n==='t'?'#5d6c8c':'#ffb020'}" stroke="#2b2350" stroke-width="3"/>${!A&&Y.tight.includes(i)?`<text x="${x}" y="${y+7}" text-anchor="middle" font-size="18" font-weight="900" fill="#fff">${Y.tight.indexOf(i)+1}</text>`:''}<circle cx="${x}" cy="${y}" r="38" fill="transparent"/></g>`;}).join('')}`;};
+  const gauge=()=>{const a=-135+Math.min(4,Y.pres)/4*270;return `<svg viewBox="0 0 200 140" class="gman"><path d="M30 120 A80 80 0 1 1 170 120" fill="none" stroke="#e8edf5" stroke-width="16"/><path d="${(()=>{const p=v=>{const t=(-225+v/4*270)*Math.PI/180;return [100+Math.cos(t)*80,110+Math.sin(t)*80];};const [x0,y0]=p(2),[x1,y1]=p(2.4);return `M${x0} ${y0} A80 80 0 0 1 ${x1} ${y1}`;})()}" fill="none" stroke="#3fbf55" stroke-width="16"/><g transform="rotate(${a} 100 110)"><line x1="100" y1="110" x2="100" y2="40" stroke="#e2263e" stroke-width="5"/></g><circle cx="100" cy="110" r="8" fill="#2b2350"/><text x="100" y="138" text-anchor="middle" font-size="20" font-weight="900">${Y.pres.toFixed(1).replace('.',',')} bar</text></svg>`;};
+  const tools=A?[]:[['eponge','🧽','Eau savonneuse'],['cle','🔧','Clé en croix'],['cric','🏗️','Cric'],['secours','🛞','Roue de secours'],['pompe','💨','Pompe']];
+  const STEPS={clou:['Le pneu est tout plat ! Trouve ce qui l\'a crevé.',''],savon:['','Le pneu se dégonfle. Passe l\'éponge savonneuse dessus : là où il y a une fuite, des bulles sortent.'],
+    desserrer:['Avec la clé, desserre les boulons : touche-les !','Desserre les 5 boulons (roue encore au sol, sinon elle tourne dans le vide).'],cric:['Lève la voiture avec le cric !','Lève la voiture avec le cric.'],
+    enlever:['Touche la roue pour l\'enlever !','Enlève les boulons et la roue crevée.'],secours:['Mets la roue de secours !','Mets la roue de secours.'],serrer:['Revisse les boulons !','Serre les boulons en étoile : chaque fois celui qui est presque en face.'],
+    baisser:['Redescends la voiture !','Redescends la voiture.'],gonfler:['Gonfle la roue : garde le doigt sur la pompe jusqu\'au vert !','Gonfle à la bonne pression : regarde l\'étiquette dans la portière.'],fini:['Bravo, la roue est changée !','Roue changée !']};
+  const btn=(k,e,n,nx)=>`<button class="gbtn ${nx?'cnudge':''}" data-y="${k}"><span>${e}</span>${n}</button>`;
+  const draw=()=>{const st=Y.step;
+    $('gaWork').innerHTML=`<div class="gtyre"><div class="gtyreL"><svg viewBox="0 0 600 560" id="gaTyC">${car()}</svg>${A?'':'<div class="glabel">Étiquette portière : <b>2,2 bar</b></div>'}</div>
+      <div class="gtyreR"><div class="gmh">${T(STEPS[st][0],STEPS[st][1])}</div><svg viewBox="0 0 480 470" id="gaWh" class="gwh">${wheel()}</svg>
+      <div class="gyb">${A?(st==='cric'||st==='baisser'?btn('cric','🏗️','Cric',1):st==='secours'?btn('secours','🛞','Roue de secours',1):st==='gonfler'?`<span id="gaGauge">${gauge()}</span><button class="gbtn cnudge" data-y="pompe" id="gPump"><span>💨</span>Pompe</button>`:st==='fini'?btn('again','🔁','Encore !',0):'')
+        :(st==='gonfler'||st==='fini'?'':tools.map(([k,e,n])=>`<button class="gbtn sm ${Y.tool===k?'on':''}" data-y="t_${k}"><span>${e}</span>${n}</button>`).join(''))+(st==='gonfler'?`<span id="gaGauge">${gauge()}</span><button class="gbtn" data-y="pompe" id="gPump"><span>💨</span>Gonfler</button><button class="gbtn sm" data-y="degonfle">Dégonfler</button><button class="gbtn sm" data-y="okp">✔ Vérifier</button>`:'')+(st==='fini'?btn('again','🔁','Encore une crevaison',0):'')}</div></div></div>`;};
+  const go2=(s,msg)=>{Y.step=s;draw();say(msg||T(STEPS[s][0],STEPS[s][1]),T(undefined,false));};
+  draw();say(T(STEPS[Y.step][0],STEPS[Y.step][1]));
+  const nutTap=i=>{const n=Y.nuts[i];
+    if(Y.step==='desserrer'){if(Y.lift){sfx.whine();Y.errs++;say('La roue tourne dans le vide ! Desserre les boulons quand la roue touche encore le sol, puis lève la voiture.',false);return;}
+      if(!A&&Y.tool!=='cle'){say('Prends la clé en croix.',false);return;}
+      if(n==='t'){Y.nuts[i]='l';sfx.click();noise(.15,.2,'bandpass',800);draw();if(Y.nuts.every(x=>x==='l'))go2('cric');}return;}
+    if(Y.step==='enlever'){if(!A&&Y.tool!=='cle'){say('Avec la clé en croix.',false);return;}Y.nuts[i]='o';sfx.pop();draw();if(Y.nuts.every(x=>x==='o')){Y.wheel='off';go2('secours');}return;}
+    if(Y.step==='serrer'){if(!A&&Y.tool!=='cle'){say('Prends la clé en croix.',false);return;}if(n==='t')return;
+      if(!A&&Y.tight.length){const last=Y.tight[Y.tight.length-1],ok=[(last+2)%NUTS,(last+3)%NUTS].includes(i);
+        if(!ok){sfx.whine();Y.errs++;Y.star=0;Y.tight=[];Y.nuts=Y.nuts.map(x=>x==='o'?'o':'l');draw();say('Pas celui d\'à côté ! On serre en étoile, presque en face, pour que la roue se plaque bien droite. On recommence.',false);return;}}
+      Y.nuts[i]='t';Y.tight.push(i);sfx.click();noise(.15,.2,'bandpass',600);draw();
+      if(Y.nuts.every(x=>x==='t')){if(!A&&Y.star!==0)award('g_etoile');go2('baisser');}return;}};
+  GA.tap=e=>{if(A&&Y.step==='enlever'&&e.target.closest('#gaWh')){Y.nuts=Y.nuts.map(()=>'o');Y.wheel='off';sfx.pop();go2('secours');return;}
+    const b=e.target.closest('[data-y]');if(!b)return;const k=b.dataset.y;
+    if(k.startsWith('t_')){Y.tool=k.slice(2);sfx.click();draw();
+      if(Y.tool==='cric'){if(!Y.lift){Y.lift=1;sfx.squish();draw();if(Y.step==='cric')go2('enlever');else if(Y.step==='desserrer')say('Voiture levée… Essaie maintenant de desserrer les boulons.',false);}
+        else{if(['baisser'].includes(Y.step)){Y.lift=0;draw();go2('gonfler');}else if(Y.step==='desserrer'){Y.lift=0;draw();say('Voiture redescendue : la roue touche le sol, les boulons peuvent se desserrer.',false);}else say('Pas maintenant : la voiture doit rester levée.',false);}}
+      if(Y.tool==='secours'){if(Y.step==='secours'){Y.wheel='ok';Y.nuts=Y.nuts.map(()=>'l');Y.tight=[];sfx.stick();go2('serrer');}else say('Pas encore : il faut d\'abord enlever la roue crevée.',false);}
+      return;}
+    if(k==='clou'&&Y.step==='clou'){sfx.ding();burst(b,['📍'],1,20);say('Un clou ! L\'air s\'échappe par le petit trou. On change la roue.');gaLater(()=>go2('desserrer'),2200);return;}
+    if(k[0]==='n'&&k.length===2)return nutTap(+k[1]);
+    if(k==='cric'){if(Y.step==='cric'){Y.lift=1;sfx.squish();go2('enlever');}else if(Y.step==='baisser'){Y.lift=0;sfx.squish();go2('gonfler');}return;}
+    if(k==='secours'&&Y.step==='secours'){Y.wheel='ok';Y.nuts=Y.nuts.map(()=>'l');sfx.stick();go2('serrer');return;}
+    if(k==='degonfle'){Y.pres=Math.max(0,Y.pres-.2);noise(.3,.12,'highpass',3000);const gg=$('gaGauge');if(gg)gg.innerHTML=gauge();return;}
+    if(k==='okp'){if(Y.pres>2.6)say('Trop gonflé : le pneu devient dur, il touche moins la route et glisse plus. Dégonfle un peu.',false);else if(Y.pres<1.9)say('Pas assez gonflé : le pneu s\'écrase, chauffe et s\'use vite. Continue.',false);else finish();return;}
+    if(k==='again')tyreTab();};
+  GA.down=e=>{const p=e.target.closest('#gPump');if(p&&Y.step==='gonfler')Y.pump=1;
+    if(!A&&Y.step==='savon'&&Y.tool==='eponge'&&e.target.closest('#gaWh')){Y.sp=1;GA.move(e);}};
+  GA.move=e=>{if(!Y.sp)return;const sv=$('gaWh');if(!sv)return;const p=svgPt(sv,e),d=Math.hypot(p.x-240,p.y-250);if(d<120||d>200)return;
+    const nx=240+Math.cos(Y.nail*Math.PI/180)*160,ny=250+Math.sin(Y.nail*Math.PI/180)*150,near=Math.hypot(p.x-nx,p.y-ny)<45;
+    Y.soap.push([p.x,p.y,near]);if(Y.soap.length>60)Y.soap.shift();if(Math.random()<.3)noise(.06,.05,'highpass',3000);
+    if(near&&!Y.found){Y.found=1;Y.sp=0;sfx.ding();draw();say('Des bulles ! L\'air sort par là : un clou est planté dans le pneu. C\'est comme ça que les garagistes trouvent les fuites.',false);gaLater(()=>{Y.soap=[];go2('desserrer');Y.tool='cle';draw();},2600);return;}
+    if(Math.random()<.5)sv.innerHTML=wheel();};
+  GA.up=()=>{Y.pump=0;Y.sp=0;};
+  gaEvery(()=>{if(!Y.pump||Y.step!=='gonfler')return;Y.pres=Math.min(A?2.2:4,Y.pres+.06);gsnd.pump();const gg=$('gaGauge');if(gg)gg.innerHTML=gauge();if(A&&Y.pres>=2.2)finish();},100);
+  const finish=()=>{if(Y.step==='fini')return;Y.pump=0;sfx.fanfare();burst($('gaWork'),['🛞','⭐','✨'],10,220);const st=gaDone('pneu','g_pneu',true);
+    Y.step='fini';draw();say(T('Bravo, la roue est changée et bien gonflée !'+(st?' Une étoile !':''),'Roue changée, '+Y.pres.toFixed(1).replace('.',',')+' bar : parfait !'+(st?' +1 étoile.':'')+' Pense à faire réparer le pneu crevé : la roue de secours est faite pour dépanner.'));};
+}
+
+/* ===== 6. peinture au pistolet ===== */
+function paintTab(){
+  $('gaWork').innerHTML=`<div id="gaCar"></div><div id="gaPanel"></div>`;
+  const render=()=>{const c=CAR_();$('gaCar').innerHTML=carSVG(c,{scale:1.5,id:'big'});
+    $('gaPanel').innerHTML=`<div class="paints">${PAINTS.map(col=>`<button class="pcol ${GA.color===col?'sel':''}" data-col="${col}" style="background:${col}"></button>`).join('')}</div><div class="ghint">${T('Touche une couleur, puis frotte la voiture avec ton doigt !','Choisis une couleur et peins au pistolet sur la carrosserie.')}</div><div class="frow"><button class="btn b-blue" id="gaFill">🪣 Tout peindre</button><button class="btn b-grey" id="gaErase">🧽 Effacer</button></div>`;};
+  render();say(T('Peins ta voiture ! Choisis une couleur.','Peinture : pistolet ou pot entier.'));
+  let spr=0;
+  GA.tap=e=>{const c=CAR_(),col=e.target.closest('[data-col]');if(col){GA.color=col.dataset.col;sfx.pop();render();return;}
+    if(e.target.closest('#gaFill')){c.col=GA.color;c.dots=[];sfx.splash();saveDB();render();return;}
+    if(e.target.closest('#gaErase')){c.dots=[];sfx.squish();saveDB();render();}};
+  const spray=e=>{const svg=$('gaCar').querySelector('svg');if(!svg)return;const r=svg.getBoundingClientRect(),c=CAR_();
+    const x=-40+(e.clientX-r.left)/r.width*470,y=(e.clientY-r.top)/r.height*260;
+    if(c.dots.length>600)c.dots.shift();c.dots.push([Math.round(x),Math.round(y),GA.color,Math.round(rnd(6,13))]);
+    if(Math.random()<.3)noise(.05,.05,'highpass',4000);
+    const g=svg.querySelector('g[clip-path]');if(g)g.insertAdjacentHTML('beforeend',`<circle cx="${x}" cy="${y}" r="10" fill="${GA.color}" opacity=".9"/>`);
+    if(c.dots.length>=40)award('g_peinture');};
+  GA.down=e=>{if(e.target.closest('#gaCar')){spr=1;spray(e);}};
+  GA.move=e=>{if(spr)spray(e);};
+  GA.up=()=>{if(spr){spr=0;saveDB();}};
+}
+
 function bodyPath(ch){return {kart:'M60 150 h300 q14 0 14 14 v14 h-328 v-14 q0 -14 14 -14z',voiture:'M50 160 q0 -26 30 -30 l60 -8 q30 -40 80 -40 h50 q40 0 66 40 l40 8 q24 4 24 30 v30 h-350z',camion:'M40 70 h200 v120 h-200z M240 110 h70 q34 0 46 34 l14 26 v20 h-130z'}[ch];}
 function carSVG(c,{scale=1,driver=true,id='car'}={}){
   const R={velo:{r:34,t:4},normales:{r:30,t:12},tt:{r:38,t:16},monster:{r:54,t:20}}[c.roues];
@@ -4051,7 +4631,7 @@ function carSVG(c,{scale=1,driver=true,id='car'}={}){
   const motor={pedales:`<g transform="translate(160 186)"><circle r="14" fill="none" stroke="#5d6c8c" stroke-width="4"/><rect x="-22" y="-4" width="44" height="8" rx="3" fill="#5d6c8c" transform="rotate(30)"/></g>`,
     petit:`<rect x="${c.chassis==='camion'?280:300}" y="${c.chassis==='kart'?128:116}" width="46" height="30" rx="6" fill="#9aa6bf" stroke="#5d6c8c" stroke-width="3"/>`,
     gros:`<g><rect x="${c.chassis==='camion'?270:286}" y="${c.chassis==='kart'?98:84}" width="72" height="46" rx="8" fill="#c9d2e3" stroke="#5d6c8c" stroke-width="3"/>${[0,1,2].map(i=>`<rect x="${(c.chassis==='camion'?276:292)+i*22}" y="${c.chassis==='kart'?86:72}" width="12" height="16" rx="3" fill="#9aa6bf"/>`).join('')}</g>`,
-    fusee:`<g><path d="M14 120 h60 l24 20 l-24 20 h-60z" fill="#e8edf5" stroke="#5d6c8c" stroke-width="3"/><path d="M14 126 l-30 14 l30 14z" class="flame" fill="#ff9a1a"/></g>`}[c.moteur];
+    fusee:`<g><path d="M14 120 h60 l24 20 l-24 20 h-60z" fill="#e8edf5" stroke="#5d6c8c" stroke-width="3"/><path d="M14 126 l-30 14 l30 14z" class="flame" fill="#ff9a1a"/></g>`}[c.moteur]||'';
   const drv=driver?`<g transform="translate(${c.chassis==='camion'?262:c.chassis==='kart'?168:206} ${c.chassis==='kart'?72:c.chassis==='camion'?92:70}) scale(.36)">${avatar(S.player||'anna').replace('<svg viewBox="0 0 200 200">','<svg viewBox="0 0 200 200" width="200" height="200">').replace(/<circle cx="100" cy="100" r="99"[^>]*\/>/,'')}</g>`:'';
   const win=c.chassis==='voiture'?'<path d="M150 124 q24 -32 66 -32 h40 q30 0 52 32z" fill="#bfe3ff" stroke="#2b2350" stroke-width="3"/>':c.chassis==='camion'?'<path d="M252 118 h52 q20 0 30 26 h-82z" fill="#bfe3ff" stroke="#2b2350" stroke-width="3"/>':'<rect x="150" y="118" width="60" height="34" rx="10" fill="#5d6c8c"/>';
   return `<svg viewBox="-40 0 470 ${260} " style="width:${470*scale}px;height:${260*scale}px;overflow:visible"><defs><clipPath id="cl_${id}"><path d="${bodyPath(c.chassis)}"/></clipPath><clipPath id="wl_${id}"><path d="${c.chassis==='camion'?'M252 118 h52 q20 0 30 26 h-82z':'M150 124 q24 -32 66 -32 h40 q30 0 52 32z'}"/></clipPath></defs>
@@ -4060,86 +4640,7 @@ function carSVG(c,{scale=1,driver=true,id='car'}={}){
   <path d="${bodyPath(c.chassis)}" fill="url(#car3Shade)"/><path d="${bodyPath(c.chassis)}" fill="none" stroke="#2b2350" stroke-width="4" stroke-linejoin="round"/>${win}${c.chassis==='kart'?drv:c.chassis==='voiture'?`<g clip-path="url(#wl_${id})">${drv}</g><path d="M150 124 q24 -32 66 -32 h40 q30 0 52 32z" fill="#bfe3ff" opacity=".25" stroke="#2b2350" stroke-width="3"/>`:`<g clip-path="url(#wl_${id})">${drv}</g><path d="M252 118 h52 q20 0 30 26 h-82z" fill="#bfe3ff" opacity=".25" stroke="#2b2350" stroke-width="3"/>`}${motor}</g>
   ${wheel(wx[0])}${wheel(wx[1])}</svg>`;
 }
-function enterGarage(){go('s-garage');CAR_();GA.busy=false;renderGarage();updGift();
-  say(T('Construis ta voiture ! Choisis les pièces, puis essaie-la.','Garage : châssis, moteur, roues et peinture. Puis teste-la sur une mission.'));}
-function renderGarage(){
-  const c=CAR_(),A=isA();
-  $('gaTabs').innerHTML=[['chassis','🚙 Châssis'],['moteur','⚙️ Moteur'],['roues','🛞 Roues'],['peinture','🎨 Peinture']].map(([k,n])=>`<button class="ltab ${GA.tab===k?'on':''}" data-gt="${k}">${n}</button>`).join('');
-  $('gaCar').innerHTML=carSVG(c,{scale:1.55,id:'big'});
-  let h='';
-  if(GA.tab==='peinture')h=`<div class="paints">${PAINTS.map(col=>`<button class="pcol ${GA.color===col?'sel':''}" data-col="${col}" style="background:${col}"></button>`).join('')}</div><div class="ghint">${T('Touche une couleur, puis frotte la voiture avec ton doigt !','Choisis une couleur et peins au pistolet sur la carrosserie.')}</div><div class="frow"><button class="btn b-blue" id="gaFill">🪣 Tout peindre</button><button class="btn b-grey" id="gaErase">🧽 Effacer</button></div>`;
-  else h=`<div class="parts">${PARTS[GA.tab].map(p=>`<button class="part ${c[GA.tab]===p.id?'sel':''}" data-part="${p.id}"><div class="pp">${partIcon(GA.tab,p.id)}</div><span>${p.n}</span></button>`).join('')}</div>`;
-  $('gaPanel').innerHTML=h;
-  $('gaGo').innerHTML=(A?'':`<div class="missions">${Object.entries(MISSIONS).map(([k,m])=>`<button class="mis ${GA.mission===k?'sel':''} ${(P().gm||{})[k]?'ok':''}" data-mis="${k}">${m.e} ${m.n}</button>`).join('')}</div>`)+`<button class="btn b-orange" id="gaDrive">🏁 Essayer${A?' sur la route':''} !</button>`;
-}
-function partIcon(t,id){const base={...CAR_(),[t]:id,dots:[],col:CAR_().col};return carSVG(base,{scale:.32,driver:false,id:'ic_'+t+id});}
-onTap($('gaTabs'),e=>{const b=e.target.closest('[data-gt]');if(!b)return;GA.tab=b.dataset.gt;sfx.click();renderGarage();});
-onTap($('gaPanel'),e=>{
-  const c=CAR_(),p=e.target.closest('[data-part]');
-  if(p){c[GA.tab]=p.dataset.part;sfx.stick();saveDB();renderGarage();burst($('gaCar'),['✨'],3,80);return;}
-  const col=e.target.closest('[data-col]');if(col){GA.color=col.dataset.col;sfx.pop();renderGarage();return;}
-  if(e.target.closest('#gaFill')){c.col=GA.color;c.dots=[];sfx.splash();saveDB();renderGarage();return;}
-  if(e.target.closest('#gaErase')){c.dots=[];sfx.squish();saveDB();renderGarage();}
-});
-onTap($('gaGo'),e=>{const m=e.target.closest('[data-mis]');if(m){GA.mission=m.dataset.mis;sfx.click();renderGarage();say(MISSIONS[GA.mission].x,false);return;}if(e.target.closest('#gaDrive'))drive();});
-/* pistolet à peinture : glisser le doigt sur la voiture */
-let SPR=null;
-$('gaCar').addEventListener('pointerdown',e=>{if(GA.tab!=='peinture'||GA.busy)return;SPR=1;spray(e);});
-$('gaCar').addEventListener('pointermove',e=>{if(SPR)spray(e);});
-['pointerup','pointercancel','pointerleave'].forEach(t=>$('gaCar').addEventListener(t,()=>{if(SPR){SPR=null;saveDB();renderGarage();}}));
-function spray(e){
-  const svg=$('gaCar').querySelector('svg');if(!svg)return;const r=svg.getBoundingClientRect(),c=CAR_();
-  const x=-40+(e.clientX-r.left)/r.width*470,y=(e.clientY-r.top)/r.height*260-(c.roues==='monster'?-26:c.roues==='tt'?-8:0);
-  if(c.dots.length>600)c.dots.shift();c.dots.push([Math.round(x),Math.round(y),GA.color,Math.round(rnd(6,13))]);
-  if(Math.random()<.3)noise(.05,.05,'highpass',4000);
-  const g=svg.querySelector('g[clip-path]');if(g)g.insertAdjacentHTML('beforeend',`<circle cx="${x}" cy="${y}" r="10" fill="${GA.color}" opacity=".9"/>`);
-  if(c.dots.length>=40)award('g_peinture');
-}
-/* essai sur route */
-function carOutcome(c,mission){
-  const ch=PARTS.chassis.find(x=>x.id===c.chassis),mo=PARTS.moteur.find(x=>x.id===c.moteur),ro=PARTS.roues.find(x=>x.id===c.roues);
-  const w=ch.w+(c.moteur==='gros'?1:0),ratio=mo.p/w,speed=ratio*ro.g;
-  if(c.moteur==='fusee'&&w<6)return {o:'vole',x:T("Décollage ! La fusée est trop puissante pour une si petite voiture : elle s'envole !","Fusée sur un véhicule léger : la poussée dépasse le poids, la voiture décolle !")};
-  if(c.roues==='velo'&&w>=3)return {o:'ecrase',x:T('Les roues de vélo s\'écrasent sous le poids !',"Roues de vélo trop fragiles pour ce poids : elles s'écrasent.")};
-  if(c.moteur==='gros'&&c.chassis==='kart')return {o:'wheelie',x:T('Le kart se cabre sur ses roues arrière !','Gros moteur sur un kart léger : la voiture se cabre (wheelie).')};
-  if(c.moteur==='pedales'&&w>=3)return {o:'escargot',x:T('Trop lourd pour des pédales… elle avance comme un escargot !','Pédales pour un véhicule lourd : puissance trop faible, elle avance à peine.')};
-  if(c.roues==='monster'&&c.chassis==='kart')return {o:'rebond',x:T('Boing boing ! Le kart rebondit sur ses grosses roues !','Roues monster sur un kart : trop hautes et trop légères, ça rebondit partout.')};
-  if(mission==='colline'&&ratio<1)return {o:'recule',x:`Pas assez de puissance pour le poids (${mo.p} pour ${w}) : la voiture redescend la colline.`};
-  if(mission==='boue'&&!['tt','monster'].includes(c.roues))return {o:'patine',x:'Les roues patinent dans la boue : il faut des roues qui accrochent (tout-terrain ou monster).'};
-  const time=+(10/Math.max(.3,speed)).toFixed(1);
-  if(mission==='course'&&time>6)return {o:'lent',time,x:`Arrivée en ${String(time).replace('.',',')} s : trop lent. Plus de puissance ou moins de poids !`};
-  return {o:'roule',time,x:T('Elle roule super bien ! Bravo !',mission==='course'?`Arrivée en ${String(time).replace('.',',')} s : gagné !`:mission==='colline'?'Assez de puissance : la colline est montée !':mission==='boue'?'Les roues accrochent : la boue est traversée !':'Une voiture bien équilibrée : elle roule parfaitement.')};
-}
-async function drive(){
-  if(GA.busy)return;GA.busy=true;const c=CAR_(),mission=isA()?'route':GA.mission,r=carOutcome(c,mission);
-  const D=$('gaDrive2');D.classList.remove('hidden');
-  D.innerHTML=`<div class="road ${mission}"><div class="scroll"></div>${mission==='colline'?'<div class="hill"></div>':''}${mission==='boue'?'<div class="mud"></div>':''}${mission==='course'?'<div class="flag">🏁</div>':''}<div class="dcar" id="dCar">${carSVG(c,{scale:.9,id:'drive'})}</div></div><div class="dres hidden" id="dRes"></div>`;
-  const car=$('dCar'),sc=D.querySelector('.scroll');sfx.hum(4.5);award('g_voiture');
-  const anim={
-    roule:[[{transform:'translateX(0)'},{transform:'translateX(520px)'}],4200],
-    lent:[[{transform:'translateX(0)'},{transform:'translateX(260px)'}],4200],
-    vole:[[{transform:'translate(0,0) rotate(0)'},{transform:'translate(200px,-20px) rotate(-10deg)'},{transform:'translate(700px,-520px) rotate(-30deg)'}],3600],
-    ecrase:[[{transform:'translateX(0)'},{transform:'translateX(120px) scaleY(.75)'},{transform:'translateX(140px) scaleY(.6) rotate(3deg)'}],2600],
-    wheelie:[[{transform:'translateX(0) rotate(0)'},{transform:'translateX(200px) rotate(-22deg)'},{transform:'translateX(440px) rotate(-26deg)'}],3800],
-    escargot:[[{transform:'translateX(0)'},{transform:'translateX(60px)'}],4200],
-    rebond:[[{transform:'translate(0,0)'},{transform:'translate(100px,-90px)'},{transform:'translate(200px,0)'},{transform:'translate(300px,-80px)'},{transform:'translate(400px,0)'}],3600],
-    recule:[[{transform:'translate(0,0) rotate(0)'},{transform:'translate(260px,-120px) rotate(-24deg)'},{transform:'translate(40px,0) rotate(0)'}],4000],
-    patine:[[{transform:'translateX(0)'},{transform:'translateX(240px)'},{transform:'translateX(250px)'},{transform:'translateX(244px)'}],3600]
-  }[r.o];
-  car.querySelectorAll('.wspin').forEach(w=>w.classList.add('spin'));
-  if(['roule','lent','wheelie','vole'].includes(r.o))sc.classList.add('move');
-  car.animate(anim[0],{duration:anim[1],easing:'ease-in-out',fill:'forwards'});
-  if(r.o==='vole'){sfx.boom();burst(car,['🔥','💨'],8,120);}if(r.o==='ecrase'){setTimeout(()=>{sfx.squish();burst(car,['💥','⭐'],6,90);},1200);}
-  await sleep(anim[1]+300);
-  const good=r.o==='roule';
-  const key={vole:'g_fusee',wheelie:'g_wheelie',ecrase:'g_ecrase'}[r.o];if(key)award(key);
-  if(good){sfx.fanfare();award('g_parfait');if(mission!=='route'){const gm=P().gm=P().gm||{};if(!gm[mission]){gm[mission]=1;saveDB();}award('g_'+mission);firstStar('garage_'+mission);}else firstStar('garage_route'+(isA()?'n':'r'));}
-  else sfx.whine();
-  $('dRes').classList.remove('hidden');$('dRes').innerHTML=`<div class="dtxt">${good?'🏆 ':'😅 '}${r.x}</div><button class="btn" id="dBack">🔧 Retour au garage</button>`;
-  say(r.x,T(undefined,good?'Bravo !':'Oups !'));
-  onTap($('dBack'),()=>{sfx.click();$('gaDrive2').classList.add('hidden');GA.busy=false;renderGarage();});
-}
-onTap($('gaHome'),()=>{if(GA.busy)return;sfx.click();enterHub();});
+
 
 /* ---------- options : garde-robe, parents, météo, ambiance ---------- */
 /* ---------- GARDE-ROBE : accessoires gagnés avec les étoiles ---------- */
@@ -4211,9 +4712,9 @@ function parImport(e){
   const f=e.target.files&&e.target.files[0];if(!f)return;const r=new FileReader();
   r.onload=()=>{let d=null;try{const j=JSON.parse(r.result);d=j.db||j;}catch(_){}
     if(!d||typeof d!=='object'||!d.anna||!d.rafael){$('parMsg').textContent='❌ Ce fichier n\'est pas une sauvegarde Kicuit.';return;}
-    const s=k=>`${k==='anna'?'Nana':'Raf'} : ${d[k].stars||0} ⭐, ${Object.keys(d[k].st||{}).length} autocollants`;
+    const s=k=>`${k==='anna'?KF.a:KF.r} : ${d[k].stars||0} ⭐, ${Object.keys(d[k].st||{}).length} autocollants`;
     $('parMsg').innerHTML=`Remplacer la progression actuelle par celle du fichier ?<br>${s('anna')} · ${s('rafael')}<div class="frow" style="margin-top:10px"><button class="btn b-orange" id="parYes" style="width:auto">Oui, restaurer</button><button class="btn b-grey" id="parNo" style="width:auto">Non</button></div>`;
-    onTap($('parYes'),()=>{try{localStorage.setItem('kicuit_v1',JSON.stringify(d));}catch(_){}sfx.fanfare();setTimeout(()=>location.reload(),400);});
+    onTap($('parYes'),()=>{try{localStorage.setItem(DBKEY,JSON.stringify(d));}catch(_){}sfx.fanfare();setTimeout(()=>location.reload(),400);});
     onTap($('parNo'),()=>{sfx.click();$('parMsg').textContent='';});};
   r.readAsText(f);
 }

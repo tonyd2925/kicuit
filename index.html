@@ -11,6 +11,7 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
 <script src="version.js"></script>
+<script src="famille.js"></script>
 <title>Chez Nana et Raf</title>
 <style>
 :root {
@@ -66,7 +67,7 @@ h1 { margin: 0; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; text-alig
     <a class="tile k" href="kicuit.html">
       <span class="pic"><img src="icon-512.png" alt=""></span>
       <span class="name">La Maison de Kicuit</span>
-      <span class="who">Nana et Raf · cuisine, jardin, labo…</span>
+      <span class="who" data-fam="cuisine, jardin, labo…">Nana et Raf · cuisine, jardin, labo…</span>
       <span class="go">▶ Jouer</span>
     </a>
     <a class="tile c" href="cube.html">
@@ -76,13 +77,14 @@ h1 { margin: 0; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; text-alig
         <i style="background:#ffe234"></i><i style="background:#e0363a"></i><i style="background:#189a55"></i>
       </span>
       <span class="name">Le Rubik's Cube</span>
-      <span class="who">Nana et Raf · apprendre le Rubik's Cube</span>
+      <span class="who" data-fam="apprendre le Rubik's Cube">Nana et Raf · apprendre le Rubik's Cube</span>
       <span class="go">▶ S'entraîner</span>
     </a>
   </nav>
   <p class="ver" id="ver"></p>
 <script>
 document.getElementById("ver").textContent = window.KICUIT_VERSION || "";
+if (window.FAM && FAM.id) { document.title = "Chez " + FAM.a + " et " + FAM.r; document.querySelectorAll("[data-fam]").forEach(e => { e.textContent = FAM.a + " et " + FAM.r + " · " + e.dataset.fam; }); }
 ["gesturestart", "gesturechange", "gestureend"].forEach(t => document.addEventListener(t, e => e.preventDefault(), { passive: false }));
 document.addEventListener("touchmove", e => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
 if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});

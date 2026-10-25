@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Kicuit">
+<meta name="theme-color" content="#2b2350">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<script src="version.js"></script>
+<script src="famille.js"></script>
+<title>Chez Nana et Raf</title>
+<style>
+:root {
+  --ink: #2b2350;
+  --cream: #fff8ec;
+  --peach: #ffb487;
+  --sun: #ffe7b8;
+  --coral: #ff8a6a;
+  --card: #ffffff;
+  --muted: #6c5f86;
+  --kicuit: #ff7a59;
+  --cube: #2259e0;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; min-height: 100%; }
+html { touch-action: manipulation; -webkit-text-size-adjust: 100%; }
+body {
+  background: radial-gradient(circle at 50% 20%, var(--sun) 0, var(--peach) 55%, var(--coral) 100%) fixed;
+  color: var(--ink);
+  font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Nunito", system-ui, -apple-system, sans-serif;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  padding-block: max(28px, env(safe-area-inset-top, 0px)) max(28px, env(safe-area-inset-bottom, 0px));
+  min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+}
+h1 { margin: 0; font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 800; text-align: center; text-wrap: balance; text-shadow: 0 5px 0 rgba(196, 81, 58, .35); }
+.tiles { width: 100%; max-width: 900px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; }
+.tile {
+  display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; text-decoration: none; color: var(--ink);
+  background: var(--card); border-radius: 32px; padding: 28px 22px 26px;
+  box-shadow: 0 8px 0 rgba(43, 35, 80, .18), 0 18px 34px rgba(0, 0, 0, .14);
+  transition: transform .12s;
+}
+.tile:active { transform: translateY(6px); box-shadow: 0 2px 0 rgba(43, 35, 80, .18); }
+.tile:focus-visible { outline: 4px solid var(--ink); outline-offset: 4px; }
+.pic { width: 150px; height: 150px; border-radius: 34px; display: grid; place-items: center; overflow: hidden; }
+.pic img { width: 100%; height: 100%; object-fit: cover; }
+.cubepic { background: #1a1e2c; padding: 18px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); place-items: stretch; gap: 6px; }
+.cubepic i { border-radius: 8px; display: block; }
+.name { font-size: 1.9rem; font-weight: 800; line-height: 1.1; }
+.who { font-size: 1.05rem; font-weight: 700; color: var(--muted); }
+.go { margin-top: 4px; font-size: 1.25rem; font-weight: 800; color: #fff; padding: 12px 30px; border-radius: 999px; }
+.k .go { background: var(--kicuit); box-shadow: 0 5px 0 #c9553a; }
+.c .go { background: var(--cube); box-shadow: 0 5px 0 #173c99; }
+.ver { margin: 0; font-size: .85rem; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+@media (prefers-reduced-motion: reduce) { .tile { transition: none; } .tile:active { transform: none; } }
+</style>
+</head>
+<body>
+  <h1>À quoi on joue ?</h1>
+  <nav class="tiles">
+    <a class="tile k" href="kicuit.html">
+      <span class="pic"><img src="icon-512.png" alt=""></span>
+      <span class="name">La Maison de Kicuit</span>
+      <span class="who" data-fam="cuisine, jardin, labo…">Nana et Raf · cuisine, jardin, labo…</span>
+      <span class="go">▶ Jouer</span>
+    </a>
+    <a class="tile c" href="cube.html">
+      <span class="pic cubepic" aria-hidden="true">
+        <i style="background:#e0363a"></i><i style="background:#ffe234"></i><i style="background:#2259e0"></i>
+        <i style="background:#189a55"></i><i style="background:#ffffff"></i><i style="background:#ff5f00"></i>
+        <i style="background:#ffe234"></i><i style="background:#e0363a"></i><i style="background:#189a55"></i>
+      </span>
+      <span class="name">Le Rubik's Cube</span>
+      <span class="who" data-fam="apprendre le Rubik's Cube">Nana et Raf · apprendre le Rubik's Cube</span>
+      <span class="go">▶ S'entraîner</span>
+    </a>
+  </nav>
+  <p class="ver" id="ver"></p>
+<script>
+document.getElementById("ver").textContent = window.KICUIT_VERSION || "";
+if (window.FAM && FAM.id) { document.title = "Chez " + FAM.a + " et " + FAM.r; document.querySelectorAll("[data-fam]").forEach(e => { e.textContent = FAM.a + " et " + FAM.r + " · " + e.dataset.fam; }); }
+["gesturestart", "gesturechange", "gestureend"].forEach(t => document.addEventListener(t, e => e.preventDefault(), { passive: false }));
+document.addEventListener("touchmove", e => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
+if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
+</script>
+</body>
+</html>

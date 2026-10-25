@@ -8,6 +8,7 @@
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.webmanifest">
 <script src="version.js"></script>
+<script src="famille.js"></script>
 <title>Le Cube de Rafael</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -428,7 +429,9 @@ const LEVELS = [
     challenge: "Mélange, puis fais la croix blanche directement en bas, sans marguerite, en moins d'une minute.", scramble: true, goal: 60000 }
 ];
 
-const KEY = "cube-rafael-v1";
+const FAM = window.FAM || { id: "", a: "Nana", r: "Raf", rf: "Rafael", ages: 1 };
+const KEY = FAM.id ? "cube-" + FAM.id + "-grand-v1" : "cube-rafael-v1";
+if (FAM.id) document.title = "Le Cube de " + FAM.rf;
 let S = load();
 let view = { screen: "who" };
 let quiz = null, drill = null, timer = null;
@@ -613,7 +616,7 @@ function viewerCard(i) {
 }
 
 /* ---------- Nana ---------- */
-const NKEY = "cube-nana-v1";
+const NKEY = FAM.id ? "cube-" + FAM.id + "-petit-v1" : "cube-nana-v1";
 /* stages : [côtés, nombre de dessins, "watch" (on voit le mélange) | "hide" (mode détective), pile ?] */
 const NLV = [
   { t: "Les couleurs", c: "--red", need: 6, k: "col" },
@@ -669,8 +672,8 @@ function renderWho() {
   <header class="hero"><div class="stickers" aria-hidden="true"><i style="background:var(--red)"></i><i style="background:var(--orange)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i><i style="background:var(--blue)"></i><i style="background:var(--white);border:1px solid var(--line)"></i></div>
   <h1>Qui joue ?</h1></header>
   <div class="who">
-    <button class="wcard" data-go="nana"><span class="av" style="background:#ff7fa8">N</span><span class="wn">Nana</span><span class="wm">5 ans · découverte</span></button>
-    <button class="wcard" data-go="map"><span class="av" style="background:var(--blue)">R</span><span class="wn">Raf</span><span class="wm">10 ans · résoudre le cube</span></button>
+    <button class="wcard" data-go="nana"><span class="av" style="background:#ff7fa8">${FAM.a[0]}</span><span class="wn">${FAM.a}</span><span class="wm">${FAM.ages ? "5 ans · " : ""}découverte</span></button>
+    <button class="wcard" data-go="map"><span class="av" style="background:var(--blue)">${FAM.r[0]}</span><span class="wn">${FAM.r}</span><span class="wm">${FAM.ages ? "10 ans · " : ""}résoudre le cube</span></button>
   </div>
   <button class="node" data-go="solver" style="--c: var(--green)"><span class="num">?</span><span><span class="name">Le solveur</span><br><span class="sub">Recopie ton cube mélangé : un indice ou toute la solution</span></span><span class="pill go">Ouvrir</span></button>
   <p class="ver">${esc(window.KICUIT_VERSION || "")}</p>`;
@@ -681,8 +684,8 @@ function revBadge(rev) {
 }
 function renderNanaMap() {
   const canRev = nRevLevels().length > 0;
-  return `<div class="top"><button class="back" data-go="who">← Qui joue ?</button><span class="label">Nana</span></div>
-  <header class="hero"><h1>Le cube de Nana</h1></header>
+  return `<div class="top"><button class="back" data-go="who">← Qui joue ?</button><span class="label">${FAM.a}</span></div>
+  <header class="hero"><h1>Le cube de ${FAM.a}</h1></header>
   ${canRev ? `<button class="ntile" data-nrev="1" style="--c: var(--yellow)"><span class="big" style="color:#1A1E2C">☀️</span><span class="nt">La révision du jour</span>${revBadge(NS.rev)}</button>` : ""}
   <div class="ntiles">${NLV.map((L, i) => `<button class="ntile" data-nlvl="${i}" ${nopen(i) ? "" : "disabled"} style="--c: var(${L.c})">
     <span class="big" ${L.c === "--yellow" ? 'style="color:#1A1E2C"' : ""}>${i + 1}</span><span class="nt">${esc(L.t)}</span>${starSVG(NS.done[i])}</button>`).join("")}</div>
@@ -705,7 +708,7 @@ function renderNana() {
   const top = `<div class="top"><button class="back" data-go="nana">← Retour</button><button class="say" data-nsay="1" aria-label="Répéter">🔊</button></div>`;
   if (NG.win) {
     const isRev = !!NG.L;
-    return `${top}<section class="card win">${isRev ? `<div class="count">☀️</div>` : starSVG(true)}<h2>Bravo Nana !</h2><p class="nprompt">${isRev ? `Révision faite ! ${NS.rev ? NS.rev.days : 1} jour${NS.rev && NS.rev.days > 1 ? "s" : ""} de révision.` : "Tu as gagné une étoile."}</p>
+    return `${top}<section class="card win">${isRev ? `<div class="count">☀️</div>` : starSVG(true)}<h2>Bravo ${FAM.a} !</h2><p class="nprompt">${isRev ? `Révision faite ! ${NS.rev ? NS.rev.days : 1} jour${NS.rev && NS.rev.days > 1 ? "s" : ""} de révision.` : "Tu as gagné une étoile."}</p>
     <button class="btn bigbtn" data-go="nana">Retour aux jeux</button></section>`;
   }
   const dots = `<div class="dots">${Array.from({ length: L.need }, (_, k) => `<i class="${k < NG.score ? "on" : ""}"></i>`).join("")}</div>`;
@@ -830,8 +833,8 @@ async function nGood(praise) {
   const L = NL();
   if (NG.score >= L.need) {
     NG.win = true;
-    if (NG.L) { const t = dayKey(); if (!NS.rev || NS.rev.date !== t) NS.rev = { date: t, days: (NS.rev ? NS.rev.days : 0) + 1 }; nsave(); render(); say("Bravo Nana ! La révision du jour est faite !"); return; }
-    NS.done[NG.level] = true; nsave(); render(); say("Bravo Nana ! Tu as gagné une étoile !"); return;
+    if (NG.L) { const t = dayKey(); if (!NS.rev || NS.rev.date !== t) NS.rev = { date: t, days: (NS.rev ? NS.rev.days : 0) + 1 }; nsave(); render(); say("Bravo " + FAM.a + " ! La révision du jour est faite !"); return; }
+    NS.done[NG.level] = true; nsave(); render(); say("Bravo " + FAM.a + " ! Tu as gagné une étoile !"); return;
   }
   NG.prompt = praise || rand(["Bravo !", "Super !", "Génial !", "Trop fort !"]); render(); say(NG.prompt);
   const g = NG, r = NG.r; NG.ready = false;
@@ -920,7 +923,7 @@ async function nDance(again) {
     NG.dances++; NG.dstep = 0; NG.score = NG.dances;
     if (NG.dances >= L.dances) {
       NS.done[NG.level] = true; nsave(); NG.win = true; render();
-      say(L.dances === 1 ? "Bravo Nana ! Tu connais la petite danse !" : "Magie ! Ton cube est redevenu tout neuf. Bravo Nana !"); return;
+      say(L.dances === 1 ? "Bravo " + FAM.a + " ! Tu connais la petite danse !" : "Magie ! Ton cube est redevenu tout neuf. Bravo " + FAM.a + " !"); return;
     }
     NG.prompt = `Une danse de finie ! Plus que ${L.dances - NG.dances}.`; render(); say(NG.prompt); return;
   }
@@ -1432,7 +1435,7 @@ function renderMap() {
   <button class="home" data-go="who">← Qui joue ?</button>
   <header class="hero">
     <div class="stickers" aria-hidden="true"><i style="background:var(--red)"></i><i style="background:var(--orange)"></i><i style="background:var(--yellow)"></i><i style="background:var(--green)"></i><i style="background:var(--blue)"></i><i style="background:var(--white);border:1px solid var(--line)"></i></div>
-    <h1>Le Cube de Rafael</h1>
+    <h1>Le Cube de ${FAM.rf}</h1>
     <p>Gagne chaque niveau pour débloquer le suivant. Un niveau est gagné avec le quiz, les formules apprises par cœur, et 3 réussites de suite sur ton vrai cube.</p>
   </header>
   <section class="card">
@@ -1681,7 +1684,7 @@ document.addEventListener("click", e => {
   }
   if (d.sfull) { SV.coach = null; svSolve(true); return; }
   if (d.npick) { nPick(d.npick); return; }
-  if (d.nsay) { if (NG) say(NG.win ? "Bravo Nana !" : NG.prompt); return; }
+  if (d.nsay) { if (NG) say(NG.win ? "Bravo " + FAM.a + " !" : NG.prompt); return; }
   if (d.nreplay) { if (NG && NG.ready && !RC.busy) { const g = NG; g.ready = false; RC.reset(); RC.play([g.ans]).then(() => { if (NG === g) g.ready = true; }); } return; }
   if (d.ndance) { nDance(false); return; }
   if (d.nagain) { nDance(true); return; }

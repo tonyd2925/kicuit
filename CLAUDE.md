@@ -35,7 +35,7 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 
 - Étoile : +1 par commande de Wanji réussie (le bon plat, cuisson parfaite) et +1 par objectif du jardin réussi.
 - Seuils : **Jardin 10** (`JARDIN`), **Corps humain 15** (`CORPS`), **Fromagerie 20** (`FROMAGE`), **Laboratoire 25** (`LABO`), **Garage 30** (`GARAGE`). `roomOpen(k)` décide ; appui long parent de 3 s sur n'importe quelle pièce fermée de la maison (par enfant : `P().open`). Des autocollants restent à gagner au-delà pour donner envie de revenir.
-- Les ateliers donnent aussi des étoiles « premières fois » via `firstStar(clé)` (squelette, chaque niveau de circuit et d'engrenage, flotte, aimant, couleurs, lumière, missions du garage) : une seule fois par clé.
+- Les ateliers donnent aussi des étoiles « premières fois » via `firstStar(clé)` (squelette, chaque niveau de circuit et d'engrenage, flotte, aimant, couleurs, lumière, activités du garage `ga_*`) : une seule fois par clé.
 - Tous les ateliers sont construits : Cuisine, Jardin, Fromagerie, Corps humain, Laboratoire, Garage.
 - Prochaine étape d'interface (en attente, ne pas faire sans accord) : un compteur « Jardin : x/10 ⭐ » sur la maison.
 
@@ -68,7 +68,7 @@ Objectif : un vrai album d'autocollants, celui qu'on a envie de remplir.
 - Style : bordure blanche découpée, légère ombre, son de « décollage » et confettis.
 - Pour Nana : autocollants plus grands, pas de texte obligatoire.
 - Autocollants de long terme (pour revenir) : 5, 10 (jardin) et 20 étoiles, 10 commandes réussies, jouer 3 puis 7 jours différents (`days`), série de 5 plats parfaits, carnet complet.
-- Total : 127 autocollants, dont 13 réservés à Raf (marqués `raf`, invisibles et non comptés pour Nana : Nana en voit 114). Toute nouvelle récompense impossible pour Nana doit être ajoutée à cette liste, sinon sa page ne pourra jamais être complétée.
+- Total : 132 autocollants, dont 13 réservés à Raf (marqués `raf`, invisibles et non comptés pour Nana : Nana en voit 119). Toute nouvelle récompense impossible pour Nana doit être ajoutée à cette liste, sinon sa page ne pourra jamais être complétée.
 
 ## Jardin (fait, 10 étoiles)
 
@@ -133,10 +133,15 @@ Idée centrale, répétée par Kicuit : **un fromage, c'est du lait dont on enl�
 - **Couleurs** : peinture soustractive cyan/magenta/jaune (`mixRGB`), objectifs `COL_GOALS` ; mode lumière : superposer rouge, vert, bleu pour faire du blanc.
 - **Engrenages** : tailles 30/50/70 sur des emplacements, `gearSolve()` (engrènement à ±8 px, blocage si deux roues engrenées tournent dans le même sens). Raf : sens inversé, vitesse (petite roue).
 
-## Garage (fait, 30 étoiles)
+## Garage (fait, 30 étoiles) : atelier de mécanique, la voiture ne roule pas
 
-Écran `s-garage`, voiture `P().car` (`CAR_()`) : châssis (kart, voiture, camion), moteur (pédales, petit, gros, fusée), roues (vélo, normales, tout-terrain, monster), peinture au pistolet (points `dots`, max 600) ou pot entier. L'enfant est au volant (visible dans la vitre).
-- `carOutcome()` donne le résultat selon puissance/poids : envol (fusée sur véhicule léger), roues écrasées, wheelie, escargot, rebonds, recul dans la colline, patinage dans la boue, trop lent. Nana : balade seulement, la voiture de départ roule parfaitement. Raf : missions Colline, Boue, Course (moins de 6 s), une étoile chacune.
+Refait le 25/10 à la demande d'Anthony (« apprendre le moteur, comment démarrer, les clignotants… pas de voiture qui roule »). Écran `s-garage`, onglets `GTABS` en haut, zone `#gaWork`. Données `P().ga` (`GAD()` : `done`, `lum`) et `P().car` (`CAR_()` : couleur et points de peinture seulement). Minuteurs `gaLater`/`gaEvery`, tout coupé par `gaStop()` (changement d'onglet, `go()`), y compris le bruit du moteur `ENG` (oscillateurs qui suivent le régime). Gestes délégués : `GA.tap`/`GA.down`/`GA.move`/`GA.up` redéfinis par chaque onglet.
+1. **Démarrer** (tableau de bord) : ceinture, pied sur le frein, START (test des voyants 1 s, démarreur, ralenti 800 tr/min). Pédale « Vroum » : le régime monte, zone rouge et rupteur (secret `g_rupteur`). Phares, essuie-glaces (pluie au hasard), clignotants avec tic-tac, warning, klaxon (Wanji saute ; 10 fois = secret). Scénarios `pickScen()` : normal, **batterie à plat** (clic-clic → câbles : rouge sur + vide, rouge sur + bonne, noir sur − bonne, noir sur la masse ; Nana guidée, Raf : étincelles si erreur) et **réservoir vide** (pompe SP95 / gazole ; le pistolet gazole ne rentre pas, secret Raf `g_gazole` ; arrêt automatique quand c'est plein).
+2. **Moteur** : cylindre animé (`engSVG(θ)`, soupapes, bougie, bielle, vilebrequin). Nana : 4 gros boutons Aspire / Serre / Boum / Souffle dans l'ordre, 2 cycles puis le moteur tourne seul. Raf : remettre Admission / Compression / Combustion / Échappement dans l'ordre, puis déclencher 4 étincelles au bon moment (piston en haut après compression, 330°–392°) (`g_bougie`, Raf).
+3. **Capot** : vue de dessus (`HOOD`). Nana : trouver 4 pièces puis remplir le lave-glace. Raf : révision (jauge d'huile entre MIN et MAX, liquide de refroidissement à n'ouvrir que moteur froid, lave-glace, tension 12,6 V).
+4. **Lumières** : situations `LUMS` (Nana 5 : gauche, droite, nuit, pluie, panne ; Raf 10 : + croiser la nuit, feux de route, brouillard, feu rouge = frein, marche arrière). Voiture vue de derrière, feux réels allumés. Toutes réussies = `g_lumieres` + étoile.
+5. **Pneu** : clou (Raf : éponge savonneuse, des bulles sortent à la fuite), desserrer au sol, cric, enlever, roue de secours, serrer (Raf : en étoile, `g_etoile` du premier coup), baisser, gonfler (Nana jusqu'au vert, Raf 2,2 bar ± avec Vérifier/Dégonfler).
+6. **Peinture** : pistolet ou pot entier (`g_peinture`).
 
 ## Options (faites)
 
@@ -156,7 +161,8 @@ Idée centrale, répétée par Kicuit : **un fromage, c'est du lait dont on enl�
 - Scène fixe de 1180×820, mise à l'échelle par `fit()`, iPad en paysage (message si l'iPad est en portrait).
 - **Taps : toujours utiliser `onTap(el, fn)`** (pointerdown/pointerup), jamais `click`. Sur iPad, `click` rate les éléments animés.
 - **Zoom bloqué** : Safari ignore `user-scalable=no`. Tout `touchstart` est annulé (sauf `input`, `.blist`, `#tray`, qui doivent défiler), ainsi que le double-tap et le pincement ; les touches du jeu passent par les événements pointer, qui restent actifs. Un zoom résiduel est annulé via `visualViewport` (`unzoom()` puis `scrollTo(0,0)`). `fit()` lit `clientWidth/clientHeight` et non `innerWidth`, faussé quand Safari a zoomé. Ne jamais réintroduire `click`, que ce blocage empêcherait.
-- Hors ligne : `sw.js`. **À chaque mise à jour : lancer `./bump-version.sh`** (incrémente `const C='kicuit-vN'` dans `sw.js` et réécrit `version.js`, affiché sur l'accueil, l'écran « Qui joue ? » du cube et l'écran titre de Kicuit), ajouter une ligne en haut du tableau de `CHANGELOG.md`, committer avec « Version N » au début du message, puis `git push origin main` (les étiquettes git ne passent pas depuis les sessions Claude). Sans incrément, l'iPad garde l'ancienne version.
+- **Autres familles** : le dossier `pc/` est une copie exacte du site pour Perline (mode découverte, clé `anna`) et Calypso (mode défis, clé `rafael`), deux filles sous Android. `famille.js` lit le nom du dossier dans l'adresse et donne `window.FAM` (prénoms, avatars `perlineSVG`/`calypsoSVG`, âges masqués) ; sauvegardes séparées (`kicuit_pc_v1`, `cube-pc-…`). Dans `kicuit.html` la variable s'appelle `KF` (`FAM` y est déjà pris par les familles de fromages). Ne jamais modifier `pc/` à la main : `./famille.sh` (lancé par `bump-version.sh`) le recopie. Adresse : https://tonyd2925.github.io/kicuit/pc/
+- Hors ligne : `sw.js`. **À chaque mise à jour : lancer `./bump-version.sh`** (il recopie aussi `pc/`) (incrémente `const C='kicuit-vN'` dans `sw.js` et réécrit `version.js`, affiché sur l'accueil, l'écran « Qui joue ? » du cube et l'écran titre de Kicuit), ajouter une ligne en haut du tableau de `CHANGELOG.md`, committer avec « Version N » au début du message, puis `git push origin main` (les étiquettes git ne passent pas depuis les sessions Claude). Sans incrément, l'iPad garde l'ancienne version.
 - Icônes `icon-180.png` / `icon-512.png`, `manifest.webmanifest` (ajout à l'écran d'accueil).
 - Avant de pousser : `node --check` sur le script, test des combinaisons de cuisson (chaque recette de Nana réussie au feu moyen avec l'un des 3 temps), partie complète en navigateur headless (tap tactile), parcours des ateliers corps/labo/garage pour les deux enfants.
 - Les particules (`burst`, `confetti`) passent au-dessus des fenêtres (z-index 97).
