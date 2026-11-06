@@ -1,1 +1,1 @@
-window.KICUIT_VERSION = "Version 34 · 25/10/2026";
+window.KICUIT_VERSION = "Version 35 · 06/11/2026";

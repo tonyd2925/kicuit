@@ -45,6 +45,7 @@ svg{display:block}
 
 /* bulle de Kicuit */
 #bubble{position:absolute;left:122px;top:12px;width:720px;min-height:88px;background:#fff;border-radius:30px;box-shadow:0 8px 22px rgba(43,35,80,.18);display:none;align-items:center;padding:12px 24px 12px 98px;z-index:30;font-size:25px;font-weight:700;line-height:1.25}
+#bubble.wide{width:900px}#bubble.long{font-size:20px;line-height:1.18}#bubble.xlong{font-size:17px}
 #bubble .bh{position:absolute;left:10px;top:50%;width:80px;height:80px;margin-top:-40px}
 #bubble.pop{animation:bpop .35s ease-out}
 @keyframes bpop{0%{transform:scale(.94)}60%{transform:scale(1.03)}100%{transform:scale(1)}}
@@ -919,6 +920,113 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 #fWork,#cWork,#lWork,#gaPanel,#gInv,#gObj,#fObj,#order,#bubble,.dres,.lnum,.cfact,.dcase{background-image:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,0) 30%,rgba(43,35,80,.03))}
 .fr-door,.fr-top{background:linear-gradient(100deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.7) 38%,rgba(255,255,255,0) 46%),linear-gradient(90deg,#f9fbfe,#dfe6f1)!important}
 .fr-door.open{background:none!important}
+/* ===== village ===== */
+#s-village{background:#8fd3ff}
+.vscr{background:linear-gradient(#fff4e2,#ffe9c9)}#s-ruche{background:linear-gradient(#fff8d6,#ffe9a0)}#s-nature{background:linear-gradient(#dff4ff,#c9ecc0)}#s-tuyaux{background:linear-gradient(#e8f0ff,#d2e0f7)}
+.vtabs{position:absolute;left:120px;right:120px;top:110px;height:62px;display:flex;gap:10px;z-index:6}
+.vwork{position:absolute;left:20px;right:20px;top:184px;bottom:14px;background:#fffdf7;border-radius:30px;box-shadow:0 10px 24px rgba(43,35,80,.12);overflow:hidden;touch-action:none}
+.vwork .cnudge{transform-box:fill-box;transform-origin:center}
+.vq{font-size:22px;font-weight:900;text-align:center;line-height:1.25}.vq.big{font-size:28px}.vq.small{font-size:16px;font-weight:800;opacity:.8}
+.vopts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}.vopts.col{flex-direction:column;align-items:stretch}
+.vopt{min-height:70px;padding:8px 18px;border-radius:22px;background:#fff;box-shadow:0 5px 0 #c9d6ee;font-size:22px;font-weight:900;color:var(--ink)}
+.vopt.big{min-height:96px;font-size:28px}.vopt.huge{width:150px;height:150px;font-size:80px}.vopt.ok{background:#e3f8e6}.vopt.vemo{font-size:64px;min-height:110px}
+.vbig{font-size:100px;text-align:center}
+.vserv{position:absolute;right:16px;top:12px;font-size:22px;font-weight:900;background:#fff;border-radius:16px;padding:4px 12px}
+/* pièces et billets */
+.coin{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:calc(54px*var(--s));height:calc(54px*var(--s));border-radius:50%;font-weight:900;line-height:.9;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18),0 3px 4px rgba(0,0,0,.2);margin:2px;vertical-align:middle}
+.coin b{font-size:calc(20px*var(--s))}.coin i{font-style:normal;font-size:calc(12px*var(--s))}
+.c1e{background:radial-gradient(circle,#d8dde6 0 52%,#e8c25a 54%);color:#2b2350}.c2e{background:radial-gradient(circle,#e8c25a 0 52%,#d8dde6 54%);color:#2b2350}.ccopper{background:radial-gradient(circle at 35% 30%,#ffc39a,#b8673a);color:#5a2a10;width:calc(40px*var(--s));height:calc(40px*var(--s))}.cgold{background:radial-gradient(circle at 35% 30%,#fff1a8,#d9a83a);color:#6b4a10;width:calc(46px*var(--s));height:calc(46px*var(--s))}
+.bill{display:inline-flex;align-items:center;justify-content:center;width:calc(96px*var(--s));height:calc(52px*var(--s));border-radius:8px;font-weight:900;font-size:calc(22px*var(--s));color:#fff;margin:2px;vertical-align:middle;box-shadow:0 3px 4px rgba(0,0,0,.2)}
+.b500{background:linear-gradient(135deg,#a5a9b3,#6f7584)}.b1000{background:linear-gradient(135deg,#f08a8a,#c0394b)}.b2000{background:linear-gradient(135deg,#7fa8f0,#2f62c2)}
+/* pavé */
+.vkp{display:grid;grid-template-columns:repeat(3,76px);gap:8px;justify-content:center}
+.vkd{grid-column:1/4;height:50px;border-radius:16px;background:#1a1d2a;color:#7dffa0;font-size:34px;font-weight:900;display:flex;align-items:center;justify-content:flex-end;padding:0 14px}
+.vk{height:54px;border-radius:16px;background:#fff;box-shadow:0 4px 0 #c9d6ee;font-size:30px;font-weight:900;color:var(--ink)}.vk.ok{grid-column:1/4;background:var(--green);color:#fff;box-shadow:0 4px 0 var(--green-d)}
+/* marché */
+.vmk{position:absolute;inset:0}
+.vcl{position:absolute;left:20px;top:20px;width:330px;text-align:center}.vcle{font-size:130px;line-height:1}.vcln{font-size:22px;font-weight:900}
+.vbub{background:#fff;border-radius:24px;box-shadow:0 4px 12px rgba(0,0,0,.12);padding:12px;margin-top:8px}
+.vord{font-size:34px}.vord b{display:block;font-size:30px}.vord.r{font-size:24px;font-weight:900;line-height:1.4}
+.vmid{position:absolute;left:370px;top:30px;width:380px;height:330px;display:flex;align-items:center;justify-content:center}
+.vright{position:absolute;left:770px;top:14px;right:14px;bottom:200px;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center}
+.vstall{position:absolute;left:14px;right:14px;bottom:14px;height:170px;display:flex;gap:10px;justify-content:center;background:linear-gradient(#c4874e,#9a6534);border-radius:24px;padding:14px}
+.vcrate{flex:1;max-width:170px;border-radius:18px;background:#e8c393;box-shadow:inset 0 -8px 0 #c99b6b;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative}
+.vcrate span{font-size:44px;letter-spacing:-8px}.vcrate small{font-size:18px;font-weight:900;color:#5a3a1a;margin-top:6px}.vcrate em{position:absolute;top:6px;right:8px;font-style:normal;font-size:16px;font-weight:900}
+.vscale{width:300px;cursor:pointer}.vsplate{min-height:110px;background:#c9d2e3;border-radius:50% 50% 20px 20px/30% 30% 20px 20px;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;padding:10px;font-size:40px}
+.vsbody{height:110px;background:linear-gradient(#5d6577,#2f3447);border-radius:16px;margin:0 20px;display:flex;align-items:center;justify-content:center}.vsdisp{background:#1a1d2a;color:#7dffa0;font-size:40px;font-weight:900;padding:6px 20px;border-radius:10px}
+.vbask{width:300px;min-height:220px;position:relative;display:flex;flex-wrap:wrap;align-content:flex-end;justify-content:center;font-size:56px;padding-bottom:70px}.vbaskb{position:absolute;bottom:0;left:0;right:0;font-size:120px;line-height:1;z-index:-1;text-align:center}
+.vchoices{display:flex;flex-direction:column;gap:12px}.vcho{min-height:84px;padding:6px 14px;border-radius:22px;background:#fff;box-shadow:0 5px 0 #c9d6ee}
+.vcho.num{display:flex;align-items:center;gap:14px;font-size:40px;color:var(--ink)}.vcho.num small{font-size:20px;letter-spacing:2px}
+.vticket{background:#fff;border:3px dashed #c9d2e3;border-radius:12px;padding:8px 12px;font-size:18px;font-weight:800;line-height:1.4}
+.vgive{min-height:64px;background:#eef6ff;border-radius:16px;padding:6px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;width:100%}.vgive i{opacity:.5;font-weight:800}
+.vcash{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.vcbtn{background:none}
+.vright.vfull{bottom:14px}.vright .frow{display:flex;gap:10px}.vright .btn{height:64px;font-size:24px;padding:0 20px}
+/* balance */
+.vbal{display:flex;height:100%}.vbalsvg{width:760px;height:100%}.vbalR{flex:1;padding:20px;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
+.vmasses{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}.vmass span{display:flex;align-items:center;justify-content:center;width:var(--w);height:calc(var(--w)*.8);min-width:60px;background:linear-gradient(#c9ced8,#8a91a0);border-radius:10px 10px 4px 4px;color:#fff;font-weight:900;font-size:18px;box-shadow:0 4px 0 #5d6577}
+.vcubebtn{width:220px;height:120px;border-radius:28px;background:#fff;box-shadow:0 6px 0 #c9d6ee;font-size:40px;font-weight:900;color:var(--ink)}
+/* caisse */
+.vcaisse{display:flex;height:100%;align-items:center;justify-content:space-around;padding:20px}.vcq{flex:1;display:flex;flex-direction:column;gap:20px;align-items:center}
+.vpic{font-size:64px;min-height:90px}.vpic s{opacity:.35}.vnum{font-size:22px;font-weight:900;opacity:.6}.vscore{position:absolute;right:20px;bottom:14px;font-size:28px}
+/* rucher */
+.vmead{position:absolute;inset:0;background:linear-gradient(#bfe6ff 0 35%,#9bd46c 35%)}
+.vsun{position:absolute;left:1000px;top:10px;font-size:70px}
+.vhive{position:absolute;left:30px;top:190px;width:150px;text-align:center}.vhivebox svg{width:140px;height:140px}.vhoney{width:120px;height:18px;margin:6px auto;border-radius:9px;background:#fff;overflow:hidden;position:relative}.vhoney i{position:absolute;left:0;bottom:0;top:0;width:100%;background:#ffc21a;transform-origin:left}
+.vflw{position:absolute;width:90px;height:90px;margin:-45px 0 0 -45px;display:flex;align-items:center;justify-content:center;font-size:62px;border-radius:50%}
+.vflw.empty{opacity:.55}.vflw.pol::after{content:'✨';position:absolute;right:-6px;top:-6px;font-size:24px}.vflw em{position:absolute;bottom:-14px;font-size:26px;font-style:normal}
+.vbee{position:absolute;pointer-events:none;z-index:4;transition:left .9s ease-in-out,top .9s ease-in-out}.vpol{position:absolute;left:24px;top:56px;color:#ffb020;font-size:14px;letter-spacing:-2px}
+.vgauge{position:absolute;left:30px;bottom:16px;display:flex;align-items:center;gap:12px;font-size:20px;font-weight:900;background:#fff;border-radius:18px;padding:8px 14px}.vgauge .cbar{width:200px}
+.vdance{display:flex;height:100%;align-items:center;justify-content:space-around;gap:20px;padding:20px;position:relative}.vdance>.vq{position:absolute;bottom:10px;left:0;right:0}
+.vcomb{width:380px;height:440px;border-radius:20px;background:repeating-linear-gradient(60deg,#e8c46a 0 18px,#d9b050 18px 20px),#e8c46a;position:relative;overflow:hidden}
+.vcombt{position:absolute;top:8px;left:0;right:0;text-align:center;font-weight:900;font-size:17px;color:#6b4a10}.vup{position:absolute;top:34px;left:12px;font-weight:900;font-size:16px;color:#6b4a10}
+.vdbee{position:absolute;left:50%;top:55%;width:0;height:0;transform:rotate(var(--a))}.vwline{position:absolute;left:-2px;top:-90px;width:4px;height:180px;background:repeating-linear-gradient(#e2263e 0 8px,transparent 8px 14px)}
+.vwag{position:absolute;left:-30px;top:-24px;animation:wag var(--dur) ease-in-out infinite}
+@keyframes wag{0%{transform:translateY(80px) rotate(-90deg)}10%{transform:translateY(64px) rotate(-80deg)}20%{transform:translateY(48px) rotate(-100deg)}30%{transform:translateY(32px) rotate(-80deg)}40%{transform:translateY(16px) rotate(-100deg)}50%{transform:translateY(0) rotate(-80deg)}60%{transform:translateY(-16px) rotate(-100deg)}70%{transform:translateY(-32px) rotate(-80deg)}80%{transform:translateY(-48px) rotate(-100deg)}90%{transform:translateY(-64px) rotate(-80deg)}100%{transform:translateY(-80px) rotate(-90deg)}}
+.vmap{width:420px;text-align:center}.vmapt{font-weight:900;font-size:18px;margin-bottom:6px}.vmap svg{width:400px;height:400px}.vpt{cursor:pointer}
+.vframe{display:flex;height:100%}.vframe>svg{width:820px;height:100%}.vframeR{flex:1;padding:16px;display:flex;flex-direction:column;gap:12px;justify-content:center}.vframeR .vopt{min-height:56px;font-size:18px}
+.vmiel{display:flex;flex-direction:column;height:100%;align-items:center;padding:16px;gap:12px}
+.vsteps{display:flex;gap:10px}.vsteps span{width:42px;height:42px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;font-weight:900}.vsteps .on{background:var(--orange);color:#fff}.vsteps .ok{background:var(--green);color:#fff}
+.vmielm{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;width:100%}
+.vkc{width:200px;height:200px;position:relative}.vkc.suit svg{filter:sepia(.4)}.vkc .kc{width:200px;height:200px}.vveil{position:absolute;left:60px;top:20px;font-size:80px}
+.vhive2{position:relative;font-size:40px;text-align:center;width:420px}.vhivebig svg{width:220px;height:220px}.vsmoke{font-size:70px;position:absolute;right:0;top:40px;transition:opacity .4s}
+.vfrs{display:flex;gap:20px}.vfr{background:#fff;border-radius:18px;padding:10px;box-shadow:0 5px 0 #c9d6ee;display:flex;flex-direction:column;gap:6px;font-size:16px;font-weight:900;color:var(--ink)}
+.vdesop{position:relative;width:440px;height:310px}.vdesf{position:relative}.vcap{position:absolute;inset:0}.vfork{position:absolute;left:180px;top:120px;font-size:60px;pointer-events:none}
+.cbar.wide{width:440px}
+.vextr{width:320px;height:320px;border-radius:50%;background:radial-gradient(#e8edf5,#9aa6bf);position:relative;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 0 #6f7a92}.vdrum{width:240px;height:240px;border-radius:50%;background:#c9d2e3;display:flex;align-items:center;justify-content:center;overflow:hidden}.vrot{display:flex;gap:4px}.vcrank{position:absolute;right:-20px;top:-10px;font-size:60px}
+.vjars{display:flex;gap:20px}.vjar{width:110px;height:150px;border-radius:18px 18px 26px 26px;border:5px solid #c9d2e3;background:#fff;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}.vjar i{position:absolute;left:0;right:0;bottom:0;background:#ffc21a}.vjar span{position:relative;font-size:40px}
+/* nature */
+.vwsvg{position:absolute;inset:0;width:100%;height:100%}
+.wvap{display:none}.s-evap .wvap{display:block}.wvap path{animation:vapUp 2s ease-in infinite;opacity:0}
+@keyframes vapUp{0%{transform:translateY(0);opacity:0}30%{opacity:.9}100%{transform:translateY(-220px);opacity:0}}
+.wcloud{transition:transform 1.6s ease-in-out}.s-prec .wcloud ellipse:not([fill=transparent]){fill:#b8c2d4}
+.wrain{display:none}.s-prec .wrain{display:block}.wrain>*{animation:rainF .8s linear infinite}
+@keyframes rainF{from{transform:translateY(0);opacity:1}to{transform:translateY(160px);opacity:0}}
+.s-ruis .wriver{stroke-dasharray:30 18;animation:riv .8s linear infinite}@keyframes riv{to{stroke-dashoffset:-48}}
+.vplic{position:absolute;transition:left 1.6s ease-in-out,top 1.6s ease-in-out;pointer-events:none;z-index:3}.vplic.snow svg path:first-child{fill:#fff}
+.vwq{position:absolute;right:20px;bottom:20px;width:360px;background:rgba(255,255,255,.92);border-radius:22px;padding:14px;display:flex;flex-direction:column;gap:10px}.vwn{position:absolute;left:20px;top:14px;font-size:26px}
+.vseas{display:flex;height:100%;align-items:center;padding:20px;gap:20px}.vseasL{position:relative}.vseasL svg{border-radius:24px}.vseasn{position:absolute;left:16px;top:12px;background:#fff;border-radius:16px;padding:4px 14px;font-size:26px;font-weight:900}
+.vseasR{flex:1;display:flex;flex-direction:column;gap:14px;align-items:stretch}.vav{width:150px;height:150px;margin:0 auto}.vav svg{width:100%;height:100%}
+.leaf{animation:leafF 3s linear infinite}@keyframes leafF{from{transform:translate(0,-80px) rotate(0)}to{transform:translate(30px,60px) rotate(240deg)}}
+.flake{animation:flk 4s linear infinite}@keyframes flk{from{transform:translateY(-40px)}to{transform:translateY(120px)}}
+.vorb{display:flex;height:100%}.vorb>svg{width:700px;height:100%}.vorbR{flex:1;padding:20px;display:flex;flex-direction:column;gap:14px;justify-content:center}.vorbR .vopt{font-size:19px}
+.vearth{cursor:pointer}.vearth.sel circle:first-child{fill:rgba(255,210,90,.35)}
+.vmet{display:flex;height:100%;align-items:center;padding:20px;gap:24px}
+.vwin{width:560px;height:480px;border:16px solid #fff;border-radius:20px;position:relative;overflow:hidden;box-shadow:0 0 0 6px #c99b6b}.vwinsky{font-size:140px;text-align:center;margin-top:80px}
+.wx-soleil{background:linear-gradient(#8fd3ff,#e9f8ff)}.wx-pluie{background:linear-gradient(#8a96ad,#c9d2e3)}.wx-neige{background:linear-gradient(#c9d6e6,#fff)}.wx-vent{background:linear-gradient(#a8d8ff,#e0f2ff)}.wx-orage{background:linear-gradient(#3a3f55,#6f7a92)}
+.vrainf{position:absolute;inset:0;background:repeating-linear-gradient(105deg,transparent 0 18px,rgba(255,255,255,.55) 18px 20px);animation:rainBg .4s linear infinite}@keyframes rainBg{to{background-position:0 40px}}
+.vsnowf{position:absolute;inset:0;background-image:radial-gradient(#fff 3px,transparent 4px);background-size:40px 40px;animation:snowBg 3s linear infinite}@keyframes snowBg{to{background-position:20px 120px}}
+.vwindf{position:absolute;top:60%;left:0;font-size:50px;white-space:nowrap;animation:windF 2s linear infinite}@keyframes windF{from{transform:translateX(-200px)}to{transform:translateX(600px)}}
+.vmetR{flex:1;display:flex;flex-direction:column;gap:16px}
+.vstat{display:flex;height:100%}.vstat>svg{width:700px;height:100%}.vstatR{flex:1;padding:20px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.veco{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:22px;padding:20px}.vecoA{font-size:150px;line-height:1}
+.vchain{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center;font-size:30px}.vcard{background:#fff;border-radius:18px;padding:12px 16px;font-size:24px;font-weight:900;box-shadow:0 4px 0 #c9d6ee}.vcard.ok{background:#e3f8e6}.vcard.ghost{opacity:.4}
+.vsim{display:flex;gap:40px;align-items:flex-end;height:280px}.vsimb{width:120px;height:260px;background:#eef2f8;border-radius:16px;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+.vsimf{position:absolute;left:0;right:0;bottom:0;border-radius:16px;transition:height .6s}.vsimb span{position:relative;font-size:46px}.vsimb b{position:relative;font-size:22px}
+/* tuyaux */
+.vpipe{display:flex;height:100%}.vpipe>svg{width:840px;height:100%;flex:none}.vpipeR .btn{height:70px;font-size:24px;padding:0 18px}.vpipeR{flex:1;padding:12px;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center}
+.pcell{cursor:pointer}.vqueue{display:flex;flex-direction:column;gap:6px}.vqueue svg{width:56px;height:56px;opacity:.6}.vqueue svg.next{width:84px;height:84px;opacity:1;outline:4px solid var(--orange);border-radius:10px}
+.vtimer{font-size:40px;font-weight:900}.vpress{width:40px;height:140px;border-radius:20px;background:#fff;border:3px solid #8a96ad;position:relative;overflow:hidden}.vpress i{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(#ff7a3c,#3a8fe0)}.vpress span{position:absolute;left:46px;bottom:4px;font-size:14px;font-weight:900}
+.vsplash{animation:vspl .5s ease-out infinite alternate}@keyframes vspl{to{transform:translateY(-12px) scale(1.15)}}
 </style>
 </head>
 <body>
@@ -1087,6 +1195,31 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
     <div id="gaTabs"></div>
 <div id="gaWork"></div>
   </section>
+  <section class="screen" id="s-village">
+    <div id="vilArt" style="position:absolute;inset:0"></div>
+    <button class="iconbtn" id="vilHome" style="left:20px;top:14px">🏠</button>
+    <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
+  </section>
+  <section class="screen vscr" id="s-marche">
+    <button class="iconbtn" id="marcheBack" style="left:20px;top:14px">🏘️</button>
+    <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
+    <div class="vtabs" id="marcheTabs"></div><div class="vwork" id="marcheWork"></div>
+  </section>
+  <section class="screen vscr" id="s-ruche">
+    <button class="iconbtn" id="rucheBack" style="left:20px;top:14px">🏘️</button>
+    <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
+    <div class="vtabs" id="rucheTabs"></div><div class="vwork" id="rucheWork"></div>
+  </section>
+  <section class="screen vscr" id="s-nature">
+    <button class="iconbtn" id="natureBack" style="left:20px;top:14px">🏘️</button>
+    <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
+    <div class="vtabs" id="natureTabs"></div><div class="vwork" id="natureWork"></div>
+  </section>
+  <section class="screen vscr" id="s-tuyaux">
+    <button class="iconbtn" id="tuyauxBack" style="left:20px;top:14px">🏘️</button>
+    <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
+    <div class="vtabs" id="tuyauxTabs"></div><div class="vwork" id="tuyauxWork"></div>
+  </section>
 
   <section class="screen" id="s-album">
     <button class="iconbtn" id="aHome" style="left:20px;top:14px">🏠</button>
@@ -1215,7 +1348,7 @@ let lastSay='';
 /* say(texte, voix) : sans 2e argument, Nana entend le texte et Raf le lit en silence.
    voix=false : bulle seule. voix='…' : on dit cette phrase courte (pour les deux). */
 function say(text,v){
-  lastSay=text;$('bubbleText').textContent=text;const b=$('bubble');b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');
+  lastSay=text;$('bubbleText').textContent=text;const b=$('bubble');b.classList.toggle('long',text.length>95);b.classList.toggle('xlong',text.length>170);b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');
   const sp=v===undefined?(isA()?text:null):v;
   if(sp)speak(sp);else{clearTimeout(talkTimer);talking(true);talkTimer=setTimeout(()=>talking(false),500);}
 }
@@ -1423,7 +1556,7 @@ function evaluate(r,app,heat,time,list){
 }
 
 /* ---------- autocollants ---------- */
-const PAGES=[{id:'cuisine',n:'Cuisine',e:'🍰'},{id:'catas',n:'Bêtises',e:'💥'},{id:'amis',n:'Copains',e:'🐶'},{id:'jardin',n:'Jardin',e:'🌻'},{id:'fromage',n:'Fromages',e:'🧀'},{id:'corps',n:'Corps',e:'🫀'},{id:'ateliers',n:'Ateliers',e:'🔬'},{id:'secrets',n:'Secrets',e:'✨'},{id:'libre',n:'Ma page',e:'🎨'}];
+const PAGES=[{id:'cuisine',n:'Cuisine',e:'🍰'},{id:'catas',n:'Bêtises',e:'💥'},{id:'amis',n:'Copains',e:'🐶'},{id:'jardin',n:'Jardin',e:'🌻'},{id:'fromage',n:'Fromages',e:'🧀'},{id:'corps',n:'Corps',e:'🫀'},{id:'ateliers',n:'Ateliers',e:'🔬'},{id:'village',n:'Village',e:'🏘️'},{id:'secrets',n:'Secrets',e:'✨'},{id:'libre',n:'Ma page',e:'🎨'}];
 const CH_N={blanc:'Fromage blanc',camembert:'Camembert',munster:'Munster',reblochon:'Reblochon',bleu:"Bleu d'Auvergne",emmental:'Emmental',comte:'Comté'};
 const PASTEL=['#ffe9d6','#e3f4ff','#ffe3ef','#e8fbe9','#fff3c4','#efe6ff'];
 const STICK=[
@@ -1531,6 +1664,34 @@ const STICK=[
   {id:'g_klaxon',pg:'ateliers',n:'Pouet pouet',e:'📯',rar:'c',bg:'#ffe9d6',secret:true,how:'Klaxonne 10 fois'},
   {id:'g_gazole',pg:'ateliers',n:'Mauvais pistolet',e:'🛢️',rar:'b',bg:'#efe6ff',secret:true,how:'Essaie le gazole dans une voiture essence'},
   {id:'or_ateliers',pg:'ateliers',n:'Petit génie',e:'🧠',rar:'o',bg:'#fff3c4',how:'Complète toute la page Ateliers'},
+  {id:'m_client',pg:'village',n:'Premier client',e:'🧺',rar:'c',bg:'#ffe9d6',how:'Sers ton premier client au marché'},
+  {id:'m_10',pg:'village',n:'Marchand du village',e:'🏪',rar:'b',bg:'#fff3c4',how:'Sers 10 clients au marché'},
+  {id:'m_compte',pg:'village',n:'Je sais compter',e:'🔢',rar:'c',bg:'#e3f4ff',how:'Réussis 6 calculs à la caisse'},
+  {id:'m_calcul',pg:'village',n:'Calcul mental',e:'🧮',rar:'h',bg:'#efe6ff',how:'Fais 8 bonnes réponses sur 10 à la caisse'},
+  {id:'m_monnaie',pg:'village',n:'Rendu parfait',e:'🪙',rar:'b',bg:'#fff3c4',how:'Rends la monnaie juste du premier coup 3 fois'},
+  {id:'m_balance',pg:'village',n:'Équilibre',e:'⚖️',rar:'c',bg:'#e8fbe9',how:'Réussis 4 pesées à la balance'},
+  {id:'m_miel',pg:'village',n:'Du rucher au marché',e:'🍯',rar:'b',bg:'#fff3c4',how:'Vends un pot de ton miel'},
+  {id:'u_butine',pg:'village',n:'Butineuse',e:'🌸',rar:'c',bg:'#ffe3ef',how:'Rapporte du nectar à la ruche'},
+  {id:'u_reine',pg:'village',n:'La reine',e:'👑',rar:'c',bg:'#fff3c4',how:'Trouve la reine dans la ruche'},
+  {id:'u_larves',pg:'village',n:'Nounou des abeilles',e:'🍼',rar:'c',bg:'#e3f4ff',how:'Prends soin des bébés abeilles'},
+  {id:'u_cellules',pg:'village',n:'Expert des alvéoles',e:'🔍',rar:'b',bg:'#ffe9d6',how:'Reconnais 5 alvéoles sur 6'},
+  {id:'u_danse',pg:'village',n:'Danse des abeilles',e:'💃',rar:'h',bg:'#efe6ff',how:'Comprends 2 danses frétillantes sur 3'},
+  {id:'u_miel',pg:'village',n:'Mon miel',e:'🍯',rar:'b',bg:'#fff3c4',how:'Récolte et mets ton miel en pots'},
+  {id:'u_pique',pg:'village',n:'Aïe !',e:'🐝',rar:'c',bg:'#ffe3ef',secret:true,how:'Ouvre la ruche sans tenue'},
+  {id:'u_pesticide',pg:'village',n:'Champ traité',e:'☠️',rar:'c',bg:'#e8fbe9',secret:true,how:'Envoie une abeille dans un champ de pesticides'},
+  {id:'n_eau',pg:'village',n:'Le voyage de Plic',e:'💧',rar:'c',bg:'#e3f4ff',how:'Fais faire à Plic le cycle de l\'eau'},
+  {id:'n_neige',pg:'village',n:'Flocon',e:'❄️',rar:'b',bg:'#e3f4ff',how:'Fais neiger sur la montagne'},
+  {id:'n_saisons',pg:'village',n:'Les 4 saisons',e:'🍂',rar:'c',bg:'#ffe9d6',how:'Découvre les 4 saisons'},
+  {id:'n_axe',pg:'village',n:'La Terre penchée',e:'🌍',rar:'h',bg:'#e3f4ff',how:'Explique les saisons (4 bonnes réponses sur 5)'},
+  {id:'n_meteo',pg:'village',n:'Présentateur météo',e:'⛅',rar:'c',bg:'#e8fbe9',how:'Réussis la météo du jour'},
+  {id:'n_station',pg:'village',n:'Station météo',e:'🌡️',rar:'b',bg:'#fff3c4',how:'Lis la station météo (4 sur 5)'},
+  {id:'n_chaine',pg:'village',n:'Qui mange qui',e:'🦊',rar:'c',bg:'#ffe9d6',how:'Réussis les chaînes alimentaires'},
+  {id:'n_equilibre',pg:'village',n:'Équilibre de la nature',e:'🌿',rar:'h',bg:'#e8fbe9',how:'Comprends ce qui arrive sans les renards'},
+  {id:'t_robinet',pg:'village',n:'Ça coule !',e:'🚰',rar:'c',bg:'#e3f4ff',how:'Amène l\'eau au bout des tuyaux'},
+  {id:'t_maitre',pg:'village',n:'Maître plombier',e:'🔧',rar:'h',bg:'#fff3c4',how:'Réussis tous les niveaux de tuyaux'},
+  {id:'t_course',pg:'village',n:'Plus rapide que l\'eau',e:'⏱️',rar:'b',bg:'#e8fbe9',how:'Gagne une course contre l\'eau'},
+  {id:'t_fuite',pg:'village',n:'Inondation',e:'💦',rar:'c',bg:'#e3f4ff',secret:true,how:'Fais fuir l\'eau des tuyaux'},
+  {id:'or_village',pg:'village',n:'Roi du village',e:'🏘️',rar:'o',bg:'#fff3c4',how:'Complète toute la page Village'},
   {id:'boom3',pg:'secrets',n:'Triple explosion',e:'💣',rar:'h',bg:'#ffe9d6',secret:true,how:'Fais exploser 3 plats'},
   {id:'chef5',pg:'secrets',n:'Série parfaite',e:'🎯',rar:'h',bg:'#e8fbe9',secret:true,how:"Réussis 5 plats parfaits d'affilée"},
   {id:'carnet',pg:'secrets',n:'Carnet complet',e:'📖',rar:'h',bg:'#efe6ff',secret:true,how:'Réussis toutes les recettes'},
@@ -1540,7 +1701,7 @@ const STICK=[
   {id:'or_secrets',pg:'secrets',n:'Grand secret',e:'🗝️',rar:'o',bg:'#fff3c4',how:'Trouve tous les secrets'}
 ];
 /* autocollants réservés à Raf (fromages et plats que Nana ne peut pas fabriquer) */
-['f_poilu','r_tartiflette','r_gratinComte','c_os','c_fibres','c_cote','l_serie','l_led','l_predict','l_engrenages','g_bougie','g_etoile','g_gazole'].forEach(id=>{const s=STICK.find(x=>x.id===id);if(s)s.raf=1;});
+['f_poilu','r_tartiflette','r_gratinComte','c_os','c_fibres','c_cote','l_serie','l_led','l_predict','l_engrenages','g_bougie','g_etoile','g_gazole','m_calcul','m_monnaie','u_cellules','u_danse','u_pique','u_pesticide','n_neige','n_axe','n_station','n_equilibre'].forEach(id=>{const s=STICK.find(x=>x.id===id);if(s)s.raf=1;});
 const VIS=()=>STICK.filter(s=>!(isA()&&s.raf));
 const SID=Object.fromEntries(STICK.map(s=>[s.id,s]));
 const RARN={c:'',b:'Brillant !',h:'Holographique !!',o:'Doré !'};
@@ -1567,7 +1728,7 @@ function checkGold(pg){
 
 /* ---------- pochettes ---------- */
 document.querySelectorAll('.gift').forEach(g=>onTap(g,()=>{sfx.click();openPacks();}));
-const PACKPG={cuisine:'linear-gradient(160deg,#ffae5a,#ff5a6a)',catas:'linear-gradient(160deg,#ff7a4a,#c8365a)',amis:'linear-gradient(160deg,#d0a476,#80583a)',jardin:'linear-gradient(160deg,#86da6c,#2f9a5a)',fromage:'linear-gradient(160deg,#ffd86a,#e0961f)',corps:'linear-gradient(160deg,#ff8aa8,#d9466e)',ateliers:'linear-gradient(160deg,#6ec8ff,#4c6fd8)',secrets:'linear-gradient(160deg,#b58bff,#5a3ec8)'};
+const PACKPG={village:'linear-gradient(160deg,#ffd25a,#ff8a3a)',cuisine:'linear-gradient(160deg,#ffae5a,#ff5a6a)',catas:'linear-gradient(160deg,#ff7a4a,#c8365a)',amis:'linear-gradient(160deg,#d0a476,#80583a)',jardin:'linear-gradient(160deg,#86da6c,#2f9a5a)',fromage:'linear-gradient(160deg,#ffd86a,#e0961f)',corps:'linear-gradient(160deg,#ff8aa8,#d9466e)',ateliers:'linear-gradient(160deg,#6ec8ff,#4c6fd8)',secrets:'linear-gradient(160deg,#b58bff,#5a3ec8)'};
 const RGLOW={c:'#ffffff',b:'#e4ecff',h:'#ff9ae0',o:'#ffd23a'};
 const PK={t:0,done:false,it:null,leak:false,rip:0};
 function confetti(n,cols){
@@ -1794,6 +1955,8 @@ function smokeFrom(el,color,count=1){
 function go(id){
   if(id!=='s-corps')try{cStop()}catch(_){}
   if(id!=='s-garage')try{gaStop()}catch(_){}
+  try{vStop()}catch(_){}
+  $('bubble').classList.toggle('wide',/^s-(marche|ruche|nature|tuyaux|village)$/.test(id));
   S.screen=id;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));
   $('bubble').style.display=(id==='s-start'||id==='s-profile')?'none':'flex';
 }
@@ -1837,6 +2000,7 @@ function hubSVG(){
 <rect y="704" width="1180" height="116" fill="url(#h3Grass)"/>
 <ellipse cx="590" cy="714" rx="330" ry="20" fill="url(#g3Shad)"/><ellipse cx="1030" cy="710" rx="150" ry="14" fill="url(#g3Shad)"/><ellipse cx="152" cy="516" rx="150" ry="14" fill="url(#g3Shad)"/><ellipse cx="157" cy="750" rx="150" ry="12" fill="url(#g3Shad)"/>
 <path d="M560 700 q-20 60 -60 120 h160 q-40 -60 -60 -120z" fill="#e9d3a8"/>
+<g class="room" data-room="village"><rect x="1016" y="744" width="12" height="76" fill="#8a5a36"/><path d="M930 718 h190 l30 28 l-30 28 h-190z" fill="#ffd25a" stroke="#c9881a" stroke-width="4"/><text x="1028" y="756" text-anchor="middle" font-size="26" font-weight="900" fill="#5a3a1a" font-family="ui-rounded,'Arial Rounded MT Bold',sans-serif">🏘️ Le village</text><rect x="920" y="708" width="250" height="112" fill="transparent"/></g>
 <g class="room" data-room="jardin"><rect x="22" y="520" width="270" height="226" rx="20" fill="#9bd46c"/>${fence}<rect x="26" y="584" width="262" height="10" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/><rect x="40" y="620" width="234" height="40" rx="12" fill="#8a5a36"/>${carrots}${flowers}${gardenOpen()?'':`<rect x="22" y="520" width="270" height="226" fill="#fff" opacity=".4"/>${lockSVG(157,560)}`}<g class="${gardenOpen()?'open-pulse':''}">${banner(157,690,'Jardin',150)}</g><rect x="22" y="520" width="270" height="226" fill="transparent"/></g>
 <g class="room" data-room="fromage"><path d="M20 404 L152 300 L284 404z" fill="#8a3a2a" stroke="#5a2418" stroke-width="5" stroke-linejoin="round"/><rect x="34" y="398" width="236" height="114" fill="#c4553d" stroke="#7d3424" stroke-width="5"/><rect x="104" y="430" width="96" height="82" fill="#e8d3b0" stroke="#7d3424" stroke-width="4"/><path d="M104 430 L200 512 M200 430 L104 512" stroke="#7d3424" stroke-width="4"/><circle cx="152" cy="360" r="20" fill="#fff4cc" stroke="#7d3424" stroke-width="4"/><text x="152" y="368" text-anchor="middle" font-size="22">🧀</text>${fromOpen()?'':`<rect x="20" y="300" width="264" height="212" fill="#fff" opacity=".4"/>${lockSVG(152,440)}`}<g class="${fromOpen()?'open-pulse':''}">${banner(152,454,'Fromagerie',170)}</g><rect x="20" y="300" width="264" height="212" fill="transparent"/></g>
 <rect x="760" y="110" width="44" height="90" fill="#b9573f" stroke="#7d3424" stroke-width="4"/>
@@ -1858,7 +2022,7 @@ function enterHub(){
 $('hubArt').innerHTML=hubSVG();$('hubW').innerHTML=wanjiSVG();$('hubK').innerHTML=kicuitSVG();
 onTap($('hubArt'),e=>{
   if(lpFired){lpFired=false;return;}
-  const g=e.target.closest('[data-room]');if(!g)return;const k=g.dataset.room;sfx.click();
+  const g=e.target.closest('[data-room]');if(!g)return;const k=g.dataset.room;sfx.click();if(k==='village'){enterVillage();return;}
   if(k==='cuisine')enterKitchen();else if(k==='album')enterAlbum();else if(k==='jardin'&&gardenOpen())enterGarden();else if(k==='fromage'&&fromOpen())enterFromage();else if(k==='corps'&&roomOpen('corps'))enterCorps();else if(k==='labo'&&roomOpen('labo'))enterLabo();else if(k==='garage'&&roomOpen('garage'))enterGarage();
   else{const names={labo:'Le laboratoire',corps:'Le corps humain',jardin:'Le jardin',garage:'Le garage'};
     const need=ROOM_REQ()[k],nm={jardin:'Le jardin',fromage:'La fromagerie',corps:'Le corps humain',labo:'Le laboratoire',garage:'Le garage'}[k];
@@ -4101,6 +4265,622 @@ $('lWork').addEventListener('pointerup',e=>{
   const p=e.target.closest('.peg');if(!p)return;const i=+p.dataset.p,cyc=[null,'S','M','L'];
   GS2.sizes[i]=cyc[(cyc.indexOf(GS2.sizes[i])+1)%4];sfx.click();renderGears();
 });
+
+/* ========== LE VILLAGE : marché, rucher, nature, tuyaux ========== */
+const MARCHE=5,RUCHE=12,NATURE=18,TUYAUX=22;
+const VPL={marche:{n:'Le marché',req:MARCHE,scr:'s-marche'},ruche:{n:'Le rucher',req:RUCHE,scr:'s-ruche'},nature:{n:'La nature',req:NATURE,scr:'s-nature'},tuyaux:{n:'Les tuyaux',req:TUYAUX,scr:'s-tuyaux'}};
+const VTABS={
+  marche:[['vendre','🧺 Vendre'],['balance','⚖️ La balance'],['caisse','🪙 La caisse']],
+  ruche:[['butiner','🌸 Butiner'],['ruche','🐝 Dans la ruche'],['miel','🍯 Le miel']],
+  nature:[['eau','💧 L\'eau'],['saisons','🍂 Les saisons'],['meteo','⛅ La météo'],['eco','🦊 Qui mange qui ?']],
+  tuyaux:[['tourne','🔄 Tourne les tuyaux'],['course','⏱️ Course contre l\'eau']]};
+function V_(){const p=P();p.v=p.v||{};const v=p.v;v.open=v.open||{};v.done=v.done||{};v.honey=v.honey||0;v.served=v.served||0;v.tl=v.tl||0;v.perfect=v.perfect||0;return v;}
+function vOpen(k){return !!S.player&&(P().stars>=VPL[k].req||!!V_().open[k]);}
+const VIL={tm:[],raf:0,cur:null,tab:{marche:'vendre',ruche:'butiner',nature:'eau',tuyaux:'tourne'}};
+const V={};
+function vLater(fn,ms){const t=setTimeout(fn,ms);VIL.tm.push(t);return t;}
+function vEvery(fn,ms){const t=setInterval(fn,ms);VIL.tm.push(t);return t;}
+function vStop(){VIL.tm.forEach(t=>{clearTimeout(t);clearInterval(t);});VIL.tm=[];cancelAnimationFrame(VIL.raf);VIL.raf=0;V.tap=V.down=V.move=V.up=null;}
+function vRaf(fn){const step=now=>{if(fn(now)!==false)VIL.raf=requestAnimationFrame(step);};VIL.raf=requestAnimationFrame(step);}
+const vW=()=>$(VIL.cur+'Work');
+function vNudge(sel){document.querySelectorAll('.vwork .cnudge').forEach(x=>x.classList.remove('cnudge'));if(sel){const e=document.querySelector('#'+VIL.cur+'Work '+sel);if(e)e.classList.add('cnudge');}}
+const vStar=k=>firstStar('v_'+k+AB());
+const vDone=k=>{const v=V_();v.done[k]=(v.done[k]||0)+1;saveDB();return v.done[k];};
+/* écrans */
+['marche','ruche','nature','tuyaux'].forEach(k=>{
+  const w=$(k+'Work');
+  onTap(w,e=>{if(V.tap)V.tap(e);});
+  w.addEventListener('pointerdown',e=>{if(V.down)V.down(e);});
+  w.addEventListener('pointermove',e=>{if(V.move)V.move(e);});
+  onTap($(k+'Tabs'),e=>{const b=e.target.closest('[data-vt]');if(!b)return;sfx.click();VIL.tab[k]=b.dataset.vt;vTabs(k);vOpenTab(k,VIL.tab[k]);});
+  onTap($(k+'Back'),()=>{sfx.click();vStop();enterVillage();});
+});
+document.addEventListener('pointerup',e=>{if(V.up&&VIL.cur&&S.screen==='s-'+VIL.cur)V.up(e);});
+document.addEventListener('pointercancel',e=>{if(V.up&&VIL.cur&&S.screen==='s-'+VIL.cur)V.up(e);});
+document.querySelectorAll('.vscr .gift').forEach(g=>onTap(g,()=>{sfx.click();openPacks();}));
+function vTabs(k){$(k+'Tabs').innerHTML=VTABS[k].map(([t,n])=>`<button class="ltab ${VIL.tab[k]===t?'on':''}" data-vt="${t}">${n}</button>`).join('');}
+const VFN={};
+function vOpenTab(k,t){vStop();vW().innerHTML='';VFN[k+'_'+t]();}
+function vEnter(k){VIL.cur=k;go('s-'+k);vTabs(k);vOpenTab(k,VIL.tab[k]);updGift();}
+
+/* la carte du village */
+function villageSVG(){
+  const lock=(k,x,y,w,h)=>vOpen(k)?'':`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="30" fill="#fff" opacity=".5"/>${lockSVG(x+w/2,y+h/2-20)}`;
+  const box=(k,x,y,w,h,bg,inner)=>`<g class="room" data-vp="${k}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="30" fill="${bg}" stroke="#fff" stroke-width="6"/>${inner}${lock(k,x,y,w,h)}${banner(x+w/2,y+h-58,VPL[k].n,230)}${vOpen(k)?'':`<text x="${x+w/2}" y="${y+h/2+44}" text-anchor="middle" font-size="24" font-weight="900" fill="#2b2350">⭐ ${VPL[k].req}</text>`}</g>`;
+  const marche=`<rect x="100" y="250" width="380" height="20" fill="#c99b6b"/><rect x="110" y="270" width="12" height="110" fill="#8a5a36"/><rect x="458" y="270" width="12" height="110" fill="#8a5a36"/>
+    ${Array.from({length:8},(_,i)=>`<path d="M${90+i*50} 170 h50 v54 q-25 22 -50 0z" fill="${i%2?'#fff':'#ff5a5a'}" stroke="#d94a4a" stroke-width="2"/>`).join('')}
+    <rect x="130" y="216" width="90" height="38" rx="8" fill="#c4874e"/><text x="175" y="246" text-anchor="middle" font-size="30">🍎🍎</text><rect x="235" y="216" width="90" height="38" rx="8" fill="#c4874e"/><text x="280" y="246" text-anchor="middle" font-size="30">🥕🥕</text><rect x="340" y="216" width="90" height="38" rx="8" fill="#c4874e"/><text x="385" y="246" text-anchor="middle" font-size="30">🍯🧀</text>
+    <text x="420" y="330" font-size="60">⚖️</text><text x="150" y="350" font-size="56">🐮</text>`;
+  const ruche=`<path d="M640 300 q150 -40 470 0 v80 h-470z" fill="#9bd46c"/>${[700,820,940].map(x=>`<g><rect x="${x}" y="230" width="90" height="80" rx="6" fill="#fff6d6" stroke="#c9a227" stroke-width="4"/><rect x="${x}" y="254" width="90" height="6" fill="#e8d08a"/><rect x="${x}" y="280" width="90" height="6" fill="#e8d08a"/><path d="M${x-8} 232 h106 l-12 -20 h-82z" fill="#c4553d"/><rect x="${x+30}" y="298" width="30" height="8" rx="3" fill="#6b4a2a"/><rect x="${x+10}" y="310" width="10" height="22" fill="#8a5a36"/><rect x="${x+70}" y="310" width="10" height="22" fill="#8a5a36"/></g>`).join('')}
+    ${['#ff5c8a','#ffd25a','#a77bf3','#ff7a59','#ffffff'].map((c,i)=>`<circle cx="${670+i*95}" cy="352" r="13" fill="${c}"/><circle cx="${670+i*95}" cy="352" r="5" fill="#ffb020"/>`).join('')}
+    <text x="800" y="210" font-size="34">🐝</text><text x="1010" y="196" font-size="30">🐝</text><text x="880" y="186" font-size="26">🐝</text>`;
+  const nature=`<path d="M60 760 L210 560 L300 660 L380 540 L520 760z" fill="#8a96ad"/><path d="M210 560 l30 40 l-20 -6 l-20 14 l-16 -12z M380 540 l34 46 l-18 -6 l-16 12 l-18 -10z" fill="#fff"/>
+    <ellipse cx="420" cy="540" rx="70" ry="28" fill="#fff"/><ellipse cx="460" cy="526" rx="46" ry="26" fill="#fff"/>${[0,1,2,3].map(i=>`<line x1="${400+i*20}" y1="568" x2="${394+i*20}" y2="590" stroke="#4c8dff" stroke-width="4" stroke-linecap="round"/>`).join('')}
+    <path d="M300 760 q40 -60 120 -70 q60 -10 100 70z" fill="#5aa9ff"/><circle cx="110" cy="540" r="34" fill="#ffd25a"/>
+    <text x="90" y="720" font-size="54">🌲</text><text x="150" y="740" font-size="46">🦊</text><text x="250" y="745" font-size="44">🌳</text>`;
+  const tuyaux=`<rect x="760" y="530" width="140" height="90" rx="20" fill="#9ec9ff" stroke="#4a6fa8" stroke-width="5"/><text x="830" y="585" text-anchor="middle" font-size="22" font-weight="900" fill="#2f4a78">EAU</text>
+    <path d="M780 620 l-20 130 M880 620 l20 130 M790 680 h100" stroke="#6f7a92" stroke-width="10" stroke-linecap="round"/>
+    <path d="M900 600 h90 q20 0 20 20 v60 h80" fill="none" stroke="#4c8dff" stroke-width="18" stroke-linecap="round"/><path d="M900 600 h90 q20 0 20 20 v60 h80" fill="none" stroke="#9ec9ff" stroke-width="8" stroke-linecap="round" stroke-dasharray="10 14"/>
+    <path d="M1060 640 l40 -30 l40 30 v60 h-80z" fill="#ffe1b8" stroke="#b98a5a" stroke-width="4"/><text x="1080" y="760" font-size="40">🚰</text>`;
+  return `<svg viewBox="0 0 1180 820" class="full"><rect width="1180" height="820" fill="url(#hsky2)"/>
+    <defs><linearGradient id="hsky2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fd3ff"/><stop offset=".6" stop-color="#e9f8ff"/><stop offset=".6" stop-color="#a6dc76"/><stop offset="1" stop-color="#7cc15a"/></linearGradient></defs>
+    <path d="M590 140 V820 M30 470 H1150" stroke="#e9d3a8" stroke-width="40" stroke-linecap="round"/>
+    ${box('marche',40,130,520,320,'#fff1e0',marche)}${box('ruche',620,130,520,320,'#fff8d6',ruche)}${box('nature',40,490,520,316,'#e6f5ff',nature)}${box('tuyaux',620,490,520,316,'#e8f0ff',tuyaux)}</svg>`;
+}
+function enterVillage(){vStop();VIL.cur=null;go('s-village');$('vilArt').innerHTML=villageSVG();updGift();
+  const open=Object.keys(VPL).filter(vOpen);
+  say(T(open.length?'Le village ! Où veux-tu aller ?':'Le village ! Le marché s\'ouvre avec 5 étoiles.','Le village : choisis un lieu.'));}
+let vlpT=null,vlpF=false;
+onTap($('vilArt'),e=>{if(vlpF){vlpF=false;return;}const g=e.target.closest('[data-vp]');if(!g)return;const k=g.dataset.vp;sfx.click();
+  if(vOpen(k))return vEnter(k);say(T(`${VPL[k].n} s'ouvrira avec ${VPL[k].req} étoiles !`,`${VPL[k].n} s'ouvrira à ${VPL[k].req} étoiles. Tu en as ${P().stars}.`));});
+$('vilArt').addEventListener('pointerdown',e=>{const g=e.target.closest('[data-vp]');if(!g||vOpen(g.dataset.vp))return;const k=g.dataset.vp;clearTimeout(vlpT);vlpF=false;
+  vlpT=setTimeout(()=>{vlpF=true;V_().open[k]=true;saveDB();sfx.holo();$('vilArt').innerHTML=villageSVG();say('Mode parent : '+VPL[k].n.toLowerCase()+' est ouvert.','Mode parent');},3000);});
+['pointerup','pointercancel','pointerleave'].forEach(ev=>$('vilArt').addEventListener(ev,()=>clearTimeout(vlpT)));
+onTap($('vilHome'),()=>{sfx.click();enterHub();});
+
+/* pièces et billets en euros */
+const EURO=[[2000,'20 €'],[1000,'10 €'],[500,'5 €'],[200,'2 €'],[100,'1 €'],[50,'50 c'],[20,'20 c'],[10,'10 c'],[5,'5 c']];
+function coinHTML(c,big){const s=big?1.3:1;
+  if(c>=500)return `<span class="bill b${c}" style="--s:${s}">${c/100} €</span>`;
+  const cls=c===200?'c2e':c===100?'c1e':c<10?'ccopper':'cgold';return `<span class="coin ${cls}" style="--s:${s}"><b>${c>=100?c/100:c}</b><i>${c>=100?'€':'c'}</i></span>`;}
+const euro=c=>(c/100).toFixed(2).replace('.',',')+' €';
+const euroS=c=>c%100?euro(c):(c/100)+' €';
+/* pavé numérique */
+function keypad(id){return `<div class="vkp" id="${id}"><div class="vkd" id="${id}D">&nbsp;</div>${['7','8','9','4','5','6','1','2','3',',','0','⌫'].map(k=>`<button class="vk" data-k="${k}">${k}</button>`).join('')}<button class="vk ok" data-k="ok">✔</button></div>`;}
+function kpTap(e,st,id,unit){const b=e.target.closest('.vk');if(!b)return null;const k=b.dataset.k;sfx.click();
+  if(k==='⌫')st.v=st.v.slice(0,-1);else if(k===','){if(!st.v.includes(','))st.v+=(st.v?'':'0')+',';}else if(k==='ok')return 'ok';else if(st.v.length<8)st.v+=k;
+  $(id+'D').textContent=(st.v||' ')+(unit?' '+unit:'');return 'k';}
+const kpVal=st=>parseFloat((st.v||'').replace(',','.'));
+
+/* ===== MARCHÉ ===== */
+const CLIENTS=[{e:'🐮',n:'Marguerite'},{e:'🐱',n:'Minou'},{e:'🐔',n:'Cocotte'},{e:'🐰',n:'Pompon'},{e:'🐷',n:'Rosette'},{e:'👵',n:'Mamie Jo'},{e:'🦔',n:'Piquant'},{e:'🐻',n:'Martin'}];
+const MG_N=[{k:'pomme',e:'🍎',n:'pomme'},{k:'carotte',e:'🥕',n:'carotte'},{k:'tomate',e:'🍅',n:'tomate'},{k:'pain',e:'🥖',n:'baguette'},{k:'fraise',e:'🍓',n:'fraise'},{k:'miel',e:'🍯',n:'pot de miel'}];
+const MG_R=[{k:'pomme',e:'🍎',n:'pommes',pk:200,u:200},{k:'tomate',e:'🍅',n:'tomates',pk:300,u:100},{k:'carotte',e:'🥕',n:'carottes',pk:150,u:100},{k:'cerise',e:'🍒',n:'cerises',pk:800,u:100,hand:1}];
+const MG_X=[{k:'miel',e:'🍯',n:'un pot de miel',p:600},{k:'pain',e:'🥖',n:'une baguette',p:110},{k:'comte',e:'🧀',n:'un morceau de comté',p:350},{k:'oeufs',e:'🥚',n:'6 œufs',p:240}];
+const NUMW=['zéro','une','deux','trois','quatre','cinq','six'];
+const NUMM=n=>n===1?'un':NUMW[n];
+const plur=(n,w)=>n>1?(w==='pot de miel'?'pots de miel':w+'s'):w;
+VFN.marche_vendre=function(){
+  const A=isA(),M={};VIL.m=M;
+  const newClient=()=>{const v=V_();Object.assign(M,{cl:CLIENTS[Math.floor(Math.random()*CLIENTS.length)],step:'pick',basket:[],kp:{v:''},chg:[],tries:0});
+    if(A){const pool=MG_N.filter(g=>g.k!=='miel'||v.honey>0);M.g=pool[Math.floor(Math.random()*pool.length)];M.q=1+Math.floor(Math.random()*(v.served>=5?5:3));}
+    else{M.g=MG_R[Math.floor(Math.random()*MG_R.length)];M.kg=Math.round((M.g.hand?2+Math.floor(Math.random()*4):M.g.u===200?3+Math.floor(Math.random()*7):5+Math.floor(Math.random()*11))*M.g.u)/1000;
+      M.x=Math.random()<.6?MG_X.filter(x=>x.k!=='miel'||v.honey>0)[Math.floor(Math.random()*(v.honey>0?4:3))]:null;
+      M.total=Math.round(M.kg*M.g.pk)+(M.x?M.x.p:0);const bills=[500,1000,2000].filter(b=>b>=M.total);M.paid=bills[Math.random()<.4&&bills.length>1?1:0]||2000;}
+    draw();
+    const msg=A?`Bonjour ! Je voudrais ${M.g.k==='miel'?NUMM(M.q):NUMW[M.q]} ${plur(M.q,M.g.n)}, s'il te plaît.`:`Bonjour ! Je voudrais ${String(M.kg).replace('.',',')} kg de ${M.g.n}${M.x?' et '+M.x.n:''}, s'il vous plaît.`;
+    M.msg=msg;say(msg,A?undefined:false);};
+  const order=()=>A?`<div class="vord"><b>${M.g.k==='miel'?NUMM(M.q):NUMW[M.q]}</b> ${Array(M.q).fill(M.g.e).join('')}</div>`:`<div class="vord r">${M.g.e} ${String(M.kg).replace('.',',')} kg de ${M.g.n}${M.x?`<br>${M.x.e} ${M.x.n}`:''}</div>`;
+  const stall=()=>{const list=A?MG_N.filter(g=>g.k!=='miel'||V_().honey>0):MG_R;
+    return `<div class="vstall">${list.map(g=>`<button class="vcrate" data-g="${g.k}"><span>${g.e.repeat(3)}</span><small>${A?'1 €':euroS(g.pk)+(g.hand?' le kg':' /kg')}</small>${g.k==='miel'?`<em>🐝 ${V_().honey}</em>`:''}</button>`).join('')}</div>`;};
+  const scale=()=>{const w=M.basket.length*(M.g.u||0);return `<div class="vscale" data-sc="1"><div class="vsplate">${M.basket.map(e=>`<span>${e}</span>`).join('')}</div><div class="vsbody"><div class="vsdisp">${(w/1000).toFixed(1).replace('.',',')} kg</div></div></div>`;};
+  const basket=()=>`<div class="vbask" data-sc="1">${M.basket.map(e=>`<span>${e}</span>`).join('')}<div class="vbaskb">🧺</div></div>`;
+  const right=()=>{
+    if(A&&M.step==='pay'){const ch=shuf([M.q,M.q+1,Math.max(1,M.q-1)===M.q?M.q+2:Math.max(1,M.q-1)]);M.ch=M.ch||ch;
+      return `<div class="vq">Ça coûte combien de pièces ?</div><div class="vchoices">${M.ch.map(n=>`<button class="vcho" data-n="${n}">${Array(n).fill(coinHTML(100)).join('')}</button>`).join('')}</div>`;}
+    if(!A&&M.step==='price')return `<div class="vq">Le ticket</div><div class="vticket">${M.g.e} ${String(M.kg).replace('.',',')} kg × ${euro(M.g.pk)} le kg${M.x?`<br>${M.x.e} ${M.x.n} : ${euro(M.x.p)}`:''}<br><b>Total = ?</b></div>${keypad('mkp')}`;
+    if(!A&&M.step==='change'){const s=M.chg.reduce((a,b)=>a+b,0);
+      return `<div class="vq">${M.cl.n} paie avec ${coinHTML(M.paid,1)} · total ${euro(M.total)}</div><div class="vq">Rends la monnaie : <b>${euro(s)}</b></div><div class="vgive">${M.chg.map((c,i)=>`<span data-ri="${i}">${coinHTML(c)}</span>`).join('')||'<i>touche les pièces</i>'}</div>
+        <div class="vcash">${EURO.filter(([c])=>c<M.paid).map(([c])=>`<button class="vcbtn" data-c="${c}">${coinHTML(c)}</button>`).join('')}</div><div class="frow"><button class="btn b-grey" data-a="clr">↩️</button><button class="btn b-orange" data-a="give">Rendre ✔</button></div>`;}
+    return `<div class="vq">${A?'Touche la bonne cagette !':'Pèse '+String(M.kg).replace('.',',')+' kg de '+M.g.n+' : touche la cagette pour en mettre sur la balance, touche la balance pour en enlever.'}</div>`;};
+  const draw=()=>{vW().innerHTML=`<div class="vmk"><div class="vcl"><div class="vcle">${M.cl.e}</div><div class="vbub">${order()}</div><div class="vcln">${M.cl.n}</div></div>
+    <div class="vmid">${A?basket():scale()}</div><div class="vright ${M.step==='pick'?'':'vfull'}" id="mR">${right()}</div>${M.step==='pick'?stall():''}</div><div class="vserv">🧺 ${V_().served}</div>`;
+    if(A&&M.step==='pick')vNudge(`[data-g="${M.g.k}"]`);};
+  const success=()=>{const v=V_();v.served++;saveDB();sfx.fanfare();burst(vW().querySelector('.vcle'),['❤️','⭐','✨'],8,120);
+    award('m_client');if(v.served>=10)award('m_10');if(M.g.k==='miel'||(M.x&&M.x.k==='miel')){v.honey=Math.max(0,v.honey-1);award('m_miel');}
+    let st=vStar('vendre');if(v.served%5===0){addStar();st=true;}saveDB();
+    say(T('Merci ! Au revoir !'+(st?' Une étoile !':''),`Merci, au revoir !${st?' +1 étoile.':''}`),T(undefined,'Merci !'));
+    vLater(newClient,2600);};
+  V.tap=e=>{
+    const cr=e.target.closest('[data-g]');
+    if(M.step==='pick'&&cr){const k=cr.dataset.g;
+      if(k!==M.g.k){sfx.whine();say(A?`Non, des ${plur(2,M.g.n)} !`:`On t'a demandé des ${M.g.n}.`,A?undefined:false);return;}
+      if(A){if(M.basket.length>=M.q){say(`Juste ${NUMW[M.q]} !`);return;}M.basket.push(M.g.e);sfx.pop();draw();say(String(M.basket.length));
+        if(M.basket.length===M.q){M.step='pay';M.ch=null;vLater(()=>{draw();say(`Bravo ! ${NUMW[M.q]} ${plur(M.q,M.g.n)}. Une pièce chacune : ça coûte combien de pièces ?`);},700);}return;}
+      M.basket.push(M.g.e);sfx.pop();draw();
+      const w=M.basket.length*M.g.u;if(Math.round(w)===Math.round(M.kg*1000)){M.step='price';sfx.ding();vLater(()=>{draw();say(`${String(M.kg).replace('.',',')} kg, c'est pesé ! Calcule le prix.`,false);},500);}
+      else if(w>M.kg*1000)say('Trop lourd ! Touche la balance pour en enlever.',false);return;}
+    if(M.step==='pick'&&e.target.closest('[data-sc]')&&M.basket.length){M.basket.pop();sfx.click();draw();return;}
+    if(A&&M.step==='pay'){const b=e.target.closest('[data-n]');if(!b)return;const n=+b.dataset.n;
+      if(n!==M.q){sfx.whine();say(`Compte les ${plur(2,M.g.n)} : ${NUMW[M.q]}. Il faut ${NUMW[M.q]} pièces !`);return;}
+      M.step='done';sfx.ding();let i=0;const cnt=()=>{if(i>=M.q){success();return;}i++;tone(900+i*60,0,.12,'sine',.2);say(NUMW[i].replace('une','un'));vLater(cnt,650);};cnt();return;}
+    if(!A&&M.step==='price'){const r=kpTap(e,M.kp,'mkp','€');if(r!=='ok')return;const val=Math.round(kpVal(M.kp)*100);
+      if(val===M.total){M.step='change';sfx.ding();draw();say(`${euro(M.total)}, exact ! ${M.cl.n} te donne ${euroS(M.paid)}.`,false);return;}
+      M.tries++;sfx.whine();M.kp.v='';$('mkpD').textContent=' ';
+      say(M.tries>1?`Aide : ${String(M.kg).replace('.',',')} × ${euro(M.g.pk)} = ${euro(Math.round(M.kg*M.g.pk))}${M.x?', plus '+euro(M.x.p):''}.`:'Pas tout à fait. Recompte !',false);return;}
+    if(!A&&M.step==='change'){const c=e.target.closest('[data-c]');if(c){M.chg.push(+c.dataset.c);M.chg.sort((a,b)=>b-a);sfx.pop();$('mR').innerHTML=right();return;}
+      const ri=e.target.closest('[data-ri]');if(ri){M.chg.splice(+ri.dataset.ri,1);sfx.click();$('mR').innerHTML=right();return;}
+      const a=e.target.closest('[data-a]');if(!a)return;if(a.dataset.a==='clr'){M.chg=[];$('mR').innerHTML=right();return;}
+      const s=M.chg.reduce((x,y)=>x+y,0),need=M.paid-M.total;
+      if(s===need){M.step='done';if(!M.tries){V_().perfect++;if(V_().perfect>=3)award('m_monnaie');}say(`Parfait : ${euroS(M.paid)} − ${euro(M.total)} = ${euro(need)}.`,false);success();return;}
+      M.tries++;sfx.whine();say(s>need?`Trop ! Tu rends ${euro(s)}, il faut ${M.tries>1?euro(need):'moins'}.`:`Pas assez : tu rends ${euro(s)}. ${M.tries>1?'Il faut '+euro(need)+'.':'Compte à partir du total jusqu\'à '+euroS(M.paid)+'.'}`,false);}
+  };
+  newClient();
+};
+/* la balance à plateaux (Roberval) */
+const BAL_OBJ=[{e:'🍉',n:'la pastèque'},{e:'🎃',n:'le potiron'},{e:'🍍',n:'l\'ananas'},{e:'🥥',n:'la noix de coco'},{e:'🧀',n:'la meule'},{e:'🍈',n:'le melon'}];
+const MASSES=[1000,500,200,200,100,50];
+VFN.marche_balance=function(){
+  const A=isA(),B={round:0};VIL.b=B;
+  const next=()=>{B.o=BAL_OBJ[Math.floor(Math.random()*BAL_OBJ.length)];B.right=[];B.kp={v:''};B.step='bal';B.tries=0;
+    B.m=A?2+Math.floor(Math.random()*4):50*(3+Math.floor(Math.random()*38));draw();
+    say(T(`Mets des cubes jusqu'à ce que la balance soit droite !`,`Combien pèse ${B.o.n} ? Pose des masses sur le plateau de droite jusqu'à l'équilibre.`));};
+  const sum=()=>A?B.right.length:B.right.reduce((a,i)=>a+MASSES[i],0);
+  const draw=()=>{const d=B.m-sum(),k=A?1/3:1/600,ang=Math.max(-14,Math.min(14,d*k*14)),dy=Math.sin(ang*Math.PI/180)*220;
+    const avail=A?'':MASSES.map((m,i)=>B.right.includes(i)?'':`<button class="vmass" data-m="${i}"><span style="--w:${30+Math.sqrt(m)*1.5}px">${m>=1000?m/1000+' kg':m+' g'}</span></button>`).join('');
+    vW().innerHTML=`<div class="vbal"><svg viewBox="0 0 760 520" class="vbalsvg"><rect x="350" y="150" width="60" height="330" rx="10" fill="#c99b6b"/><rect x="250" y="470" width="260" height="30" rx="12" fill="#8a5a36"/>
+      <g style="transform:rotate(${-ang}deg);transform-origin:380px 150px;transition:transform .6s"><rect x="120" y="140" width="520" height="20" rx="10" fill="#8a96ad"/><path d="M372 150 l8 -16 l8 16z" fill="#2b2350"/></g>
+      <g style="transform:translateY(${dy}px);transition:transform .6s"><line x1="130" y1="150" x2="130" y2="260" stroke="#5d6c8c" stroke-width="4"/><path d="M40 260 h180 q-10 30 -90 30 q-80 0 -90 -30z" fill="#c9d2e3" stroke="#5d6c8c" stroke-width="4"/><text x="130" y="250" text-anchor="middle" font-size="${A?60+B.m*8:90}">${B.o.e}</text></g>
+      <g style="transform:translateY(${-dy}px);transition:transform .6s" data-rp="1"><line x1="630" y1="150" x2="630" y2="260" stroke="#5d6c8c" stroke-width="4"/><path d="M540 260 h180 q-10 30 -90 30 q-80 0 -90 -30z" fill="#c9d2e3" stroke="#5d6c8c" stroke-width="4"/>
+      ${A?B.right.map((_,i)=>`<rect x="${560+(i%4)*36}" y="${222-Math.floor(i/4)*36}" width="32" height="32" rx="6" fill="#ffb020" stroke="#c9881a" stroke-width="3" data-rm="${i}"/>`).join('')
+        :B.right.map((mi,j)=>{const m=MASSES[mi],w=22+Math.sqrt(m)*1.1;return `<g data-rm="${j}"><rect x="${555+(j%3)*52}" y="${255-Math.floor(j/3)*44-w*.7}" width="${Math.min(48,w)}" height="${w*.7}" rx="6" fill="#9aa1ad" stroke="#5d6c8c" stroke-width="3"/><text x="${555+(j%3)*52+Math.min(48,w)/2}" y="${252-Math.floor(j/3)*44}" text-anchor="middle" font-size="12" font-weight="900" fill="#fff">${m>=1000?'1kg':m}</text></g>`;}).join('')}</g>
+      <text x="380" y="80" text-anchor="middle" font-size="30" font-weight="900" fill="${d===0?'#2b8c6f':'#2b2350'}">${d===0?'⚖️ Équilibre !':d>0?(A?'Plus de cubes !':'Le côté gauche est plus lourd'):(A?'Trop de cubes !':'Le côté droit est plus lourd')}</text></svg>
+      <div class="vbalR">${A?`<button class="vcubebtn cnudge" data-add="1">🟧 ${T('Un cube','')}</button><div class="vq">${B.right.length} 🟧</div><div class="vq small">Touche un cube sur la balance pour l'enlever.</div>`
+        :B.step==='bal'?`<div class="vq">Masses</div><div class="vmasses">${avail}</div><div class="vq small">Touche une masse sur le plateau pour la reprendre.</div>`
+        :`<div class="vq">Combien pèse ${B.o.n} ?</div>${keypad('bkp')}<div class="vq small">en grammes</div>`}</div></div>`;};
+  V.tap=e=>{
+    if(A){if(e.target.closest('[data-add]')){if(B.right.length>=12)return;B.right.push(1);sfx.pop();draw();check();return;}
+      const r=e.target.closest('[data-rm]');if(r){B.right.splice(+r.dataset.rm,1);sfx.click();draw();}return;}
+    if(B.step==='bal'){const m=e.target.closest('[data-m]');if(m){B.right.push(+m.dataset.m);sfx.pop();draw();check();return;}
+      const r=e.target.closest('[data-rm]');if(r){B.right.splice(+r.dataset.rm,1);sfx.click();draw();}return;}
+    if(B.step==='ask'){const r=kpTap(e,B.kp,'bkp','g');if(r!=='ok')return;const g=Math.round(kpVal(B.kp));
+      if(g===B.m){sfx.ding();B.round++;say(`Oui : ${B.m} g, c'est ${String(B.m/1000).replace('.',',')} kg. 1 kg = 1 000 g.`,false);roundDone();}
+      else{sfx.whine();B.kp.v='';$('bkpD').textContent=' ';say('Additionne les masses posées : '+B.right.map(i=>MASSES[i]).join(' + ')+' = ?',false);}}
+  };
+  const check=()=>{if(sum()!==B.m)return;sfx.ding();
+    if(A){B.round++;say(`La balance est droite ! ${B.o.n.charAt(0).toUpperCase()+B.o.n.slice(1)} pèse autant que ${NUMW[B.m].replace('une','un')} cubes.`);roundDone();}
+    else{B.step='ask';vLater(draw,700);say('Équilibre ! Les deux plateaux pèsent pareil.',false);}};
+  const roundDone=()=>{if(B.round>=4){award('m_balance');const st=vStar('balance');sfx.fanfare();burst(vW(),['⚖️','⭐'],8,200);say(T('Bravo, tu sais peser !'+(st?' Une étoile !':''),'Bravo, 4 pesées réussies !'+(st?' +1 étoile.':'')));B.round=0;}vLater(next,2400);};
+  next();
+};
+/* la caisse : compter et calculer */
+VFN.marche_caisse=function(){
+  const A=isA(),C={i:0,ok:0,kp:{v:''},tries:0};VIL.c=C;
+  const fr=['🍎','🥕','🍓','🥚','🍅'];
+  const gen=()=>{C.tries=0;C.kp={v:''};
+    if(A){const e=fr[Math.floor(Math.random()*fr.length)],t=Math.random();
+      if(t<.45){const a=1+Math.floor(Math.random()*3),b=1+Math.floor(Math.random()*2);C.q={pic:`${e.repeat(a)} <b>+</b> ${e.repeat(b)}`,txt:`${NUMM(a)} et encore ${NUMM(b)}, ça fait combien ?`,ans:a+b};}
+      else if(t<.75){const a=3+Math.floor(Math.random()*3),b=1+Math.floor(Math.random()*2);C.q={pic:`${e.repeat(a-b)}<s>${e.repeat(b)}</s>`,txt:`J'en avais ${NUMM(a)}, Wanji en a pris ${NUMM(b)}. Combien il en reste ?`,ans:a-b};}
+      else{const a=1+Math.floor(Math.random()*5);C.q={pic:Array(a).fill(coinHTML(100)).join(''),txt:'Combien de pièces ?',ans:a};}
+      const o=new Set([C.q.ans]);while(o.size<3){const n=C.q.ans+[-2,-1,1,2][Math.floor(Math.random()*4)];if(n>=0&&n<=6)o.add(n);}C.q.ch=shuf([...o]);}
+    else{const t=Math.floor(Math.random()*6),r=n=>Math.floor(Math.random()*n);let q;
+      if(t===0){const n=2+r(4),p=[150,250,350,600][r(4)];q={txt:`${n} pots de confiture à ${euro(p)} : combien ?`,ans:n*p/100,u:'€'};}
+      else if(t===1){const a=110+r(30)*10,b=90+r(30)*10;q={txt:`${euro(a)} + ${euro(b)} = ?`,ans:(a+b)/100,u:'€'};}
+      else if(t===2){const p=310+r(150)*10,b=p<1000?1000:2000;q={txt:`Un client paie ${euroS(b)} pour ${euro(p)}. Combien lui rends-tu ?`,ans:(b-p)/100,u:'€'};}
+      else if(t===3){const k=[4,6,8,10,12][r(5)],g=[500,250,100][r(3)];q={txt:`Les cerises coûtent ${k} € le kilo. Combien pour ${g} g ?`,ans:k*g/1000,u:'€'};}
+      else if(t===4){const kg=[1.25,0.75,2.5,0.3,1.8][r(5)];q={txt:`${String(kg).replace('.',',')} kg, ça fait combien de grammes ?`,ans:kg*1000,u:'g'};}
+      else{const n=[3,4,5][r(3)],tot=n*[120,150,200][r(3)];q={txt:`${n} baguettes coûtent ${euro(tot)}. Combien coûte une baguette ?`,ans:tot/n/100,u:'€'};}
+      C.q=q;}
+    draw();say(C.q.txt,A?undefined:false);};
+  const draw=()=>{vW().innerHTML=`<div class="vcaisse"><div class="vcq">${A?`<div class="vpic">${C.q.pic}</div>`:`<div class="vnum">${C.i+1}/10</div>`}<div class="vq big">${C.q.txt}</div>
+    ${A?`<div class="vchoices">${C.q.ch.map(n=>`<button class="vcho num" data-n="${n}"><b>${n}</b><small>${'●'.repeat(n)}</small></button>`).join('')}</div>`:''}</div>${A?'':keypad('ckp')}<div class="vscore">${'⭐'.repeat(C.ok)}</div></div>`;};
+  V.tap=e=>{
+    if(A){const b=e.target.closest('[data-n]');if(!b)return;if(+b.dataset.n===C.q.ans){sfx.ding();C.ok++;say(['Bravo !','Oui !','Super !'][C.ok%3]+' '+NUMW[C.q.ans].replace('une','un')+' !');
+        if(C.ok>=6){award('m_compte');const st=vStar('caisse');sfx.fanfare();say('Tu sais compter comme une vraie marchande !'.replace('une vraie marchande',KF.id?'une vraie marchande':'une vraie marchande')+(st?' Une étoile !':''));C.ok=0;}vLater(gen,1800);}
+      else{sfx.whine();say('Compte encore avec ton doigt !');}return;}
+    const r=kpTap(e,C.kp,'ckp',C.q.u);if(r!=='ok')return;const v=kpVal(C.kp);
+    if(Math.abs(v-C.q.ans)<0.001){sfx.ding();C.ok++;say('Juste ! '+String(+C.q.ans.toFixed(2)).replace('.',',')+' '+C.q.u,false);C.i++;
+      if(C.i>=10){const good=C.ok;C.i=0;C.ok=0;if(good>=8){award('m_calcul');award('m_compte');const st=vStar('caisse');sfx.fanfare();say(`${good}/10 : champion du calcul !${st?' +1 étoile.':''}`,false);}else say(`${good}/10. Il en faut 8 pour l'autocollant, on recommence !`,false);vLater(gen,2600);}else vLater(gen,1500);}
+    else{C.tries++;sfx.whine();C.kp.v='';$('ckpD').textContent=' ';if(C.tries>=2){say('C\'était '+String(+C.q.ans.toFixed(2)).replace('.',',')+' '+C.q.u+'.',false);C.i++;vLater(gen,2600);}else say('Pas tout à fait, réessaie.',false);}
+  };
+  gen();
+};
+/* ===== RUCHER ===== */
+const FLW=[{k:'pommier',e:'🌸',n:'pommier',fruit:'🍎'},{k:'trefle',e:'☘️',n:'trèfle'},{k:'tulipe',e:'🌷',n:'tulipe'},{k:'tournesol',e:'🌻',n:'tournesol'},{k:'coquelicot',e:'🌺',n:'coquelicot'},{k:'fraisier',e:'🌼',n:'fraisier',fruit:'🍓'}];
+function beeSVG(sc=1,q){return `<svg viewBox="-30 -24 60 48" width="${60*sc}" height="${48*sc}"><ellipse cx="-6" cy="-14" rx="12" ry="9" fill="#e8f6ff" opacity=".85"/><ellipse cx="8" cy="-14" rx="12" ry="9" fill="#e8f6ff" opacity=".85"/><ellipse cx="0" cy="2" rx="${q?22:18}" ry="13" fill="#ffc21a" stroke="#3a2a10" stroke-width="2"/><path d="M-6 -10 v24 M4 -11 v25" stroke="#3a2a10" stroke-width="5"/><circle cx="${q?20:16}" cy="0" r="8" fill="#3a2a10"/><circle cx="${q?22:18}" cy="-2" r="2" fill="#fff"/>${q?'<circle cx="-2" cy="-6" r="5" fill="#4c8dff" stroke="#fff" stroke-width="2"/>':''}</svg>`;}
+const HIVE=`<svg viewBox="0 0 140 140"><path d="M10 40 h120 l-14 -26 h-92z" fill="#c4553d" stroke="#8a3a2a" stroke-width="4"/><rect x="20" y="40" width="100" height="84" rx="6" fill="#fff6d6" stroke="#c9a227" stroke-width="5"/><rect x="20" y="66" width="100" height="6" fill="#e8d08a"/><rect x="20" y="94" width="100" height="6" fill="#e8d08a"/><rect x="52" y="110" width="36" height="10" rx="4" fill="#5a3a1a"/><rect x="28" y="124" width="12" height="14" fill="#8a5a36"/><rect x="100" y="124" width="12" height="14" fill="#8a5a36"/></svg>`;
+VFN.ruche_butiner=function(){
+  const A=isA(),R={nec:0,pol:0,vis:new Set(),busy:0,trip:0,dance:0,phase:'fleurs'};VIL.r=R;
+  const pos=[[300,330],[440,230],[580,360],[720,250],[860,370],[1000,240],[380,470],[660,480],[940,480]];
+  R.fl=pos.map((p,i)=>({x:p[0],y:p[1],f:FLW[i%FLW.length],nec:true,pol:false,poison:!A&&i===8}));
+  const draw=()=>{vW().innerHTML=`<div class="vmead" id="rMead"><div class="vsun">☀️</div>
+    <div class="vhive" data-h="1"><div class="vhivebox">${HIVE}</div><div class="vhoney"><i style="height:${Math.min(100,R.nec*20)}%"></i></div></div>
+    ${R.fl.map((f,i)=>`<div class="vflw ${f.pol?'pol':''} ${f.nec?'':'empty'}" data-f="${i}" style="left:${f.x}px;top:${f.y}px"><span>${f.pol&&f.f.fruit&&f.done?f.f.fruit:f.f.e}</span>${f.poison?'<em>☠️</em>':''}</div>`).join('')}
+    <div class="vbee" id="rBee" style="left:120px;top:300px">${beeSVG(1.4)}<div class="vpol">${'●'.repeat(Math.min(6,R.pol))}</div></div>
+    <div class="vgauge"><b>${T('Nectar','Nectar')}</b><div class="cbar"><i style="width:${Math.min(100,R.nec*20)}%"></i></div><span>🍯 ${V_().honey}</span></div></div>`;
+    R.bx=120;R.by=300;};
+  draw();say(T('Touche les fleurs : l\'abeille va chercher le nectar !','Butine : touche les fleurs pour récolter le nectar, puis rentre à la ruche.'));
+  const flyTo=(x,y,done)=>{const b=$('rBee');if(!b)return;R.busy=1;b.style.transition='left .9s ease-in-out, top .9s ease-in-out';b.style.left=x+'px';b.style.top=y+'px';SND.abeille();vLater(()=>{R.busy=0;done&&done();},950);};
+  V.tap=e=>{if(R.busy)return;
+    if(R.phase==='dance')return danceTap(e);
+    const f=e.target.closest('[data-f]');
+    if(f){const i=+f.dataset.f,F=R.fl[i];if(R.nec>=5){say(T('Le sac est plein ! Rentre à la ruche.','Jabot plein : retourne à la ruche.'));vNudge('.vhive');return;}
+      flyTo(F.x-10,F.y-50,()=>{
+        if(F.poison){sfx.whine();R.nec=Math.max(0,R.nec-1);say('Ce champ a été traité aux pesticides : l\'abeille rentre malade ! Les pesticides sont une des causes de la disparition des abeilles.','Pesticides !');award('u_pesticide');draw();return;}
+        if(!F.nec){say(T('Cette fleur est vide, essaie une autre !','Plus de nectar ici : une fleur se recharge en quelques heures.'));return;}
+        F.nec=false;R.nec++;R.pol++;const first=!F.pol;F.pol=true;R.vis.add(F.f.k);sfx.pop();draw();
+        $('rBee').style.left=(F.x-10)+'px';$('rBee').style.top=(F.y-50)+'px';R.bx=F.x;
+        if(first&&F.f.fruit){vLater(()=>{F.done=1;if(!R.busy)draw();const b=$('rBee');if(b){b.style.left=(F.x-10)+'px';b.style.top=(F.y-50)+'px';}},2500);
+          if(!R.saidFruit){R.saidFruit=1;say(T('Du pollen colle sur l\'abeille ! Grâce à elle, la fleur deviendra un fruit.','Pollinisation : le pollen collé à l\'abeille féconde la fleur, qui deviendra un fruit. Sans abeilles, pas de pommes ni de fraises !'));}}
+        else if(R.nec===5)say(T('Le sac est plein ! Rentre à la ruche.','Jabot plein : retourne à la ruche.'));
+        if(R.nec===5)vNudge('.vhive');});return;}
+    if(e.target.closest('[data-h]')){if(!R.nec){say(T('Va d\'abord butiner les fleurs !','Il faut d\'abord du nectar.'));return;}
+      flyTo(160,250,()=>{const v=V_();R.trip++;const got=R.nec;R.nec=0;R.pol=0;R.fl.forEach(f=>f.nec=true);
+        if(got>=3){v.honey++;saveDB();}sfx.ding();burst(vW().querySelector('.vhive'),['🍯','✨'],5,90);
+        award('u_butine');const st=vStar('butiner');
+        say(T(`Miam ! Les abeilles transforment le nectar en miel.${got>=3?' Un pot de miel !':''}${st?' Une étoile !':''}`,`Nectar déposé : les abeilles l'épaississent en miel en faisant évaporer l'eau.${got>=3?' +1 pot de miel.':''}${st?' +1 étoile.':''} Pour 1 pot de 500 g, il faut environ 1 million de fleurs !`));
+        draw();if(!A&&R.trip>=1&&!R.danced)vLater(startDance,3200);});}};
+  /* Raf : la danse frétillante */
+  const startDance=()=>{R.phase='dance';R.danced=1;R.dn=0;R.dok=0;nextDance();};
+  const PATCH=[{a:0,d:'près'},{a:60,d:'loin'},{a:-90,d:'près'},{a:150,d:'loin'},{a:-40,d:'loin'},{a:110,d:'près'}];
+  const nextDance=()=>{const P2=shuf(PATCH).slice(0,4);R.ans=Math.floor(Math.random()*4);R.pt=P2;const t=P2[R.ans];
+    vW().innerHTML=`<div class="vdance"><div class="vcomb"><div class="vcombt">Dans la ruche, sur le rayon</div><div class="vdbee" style="--a:${t.a}deg;--dur:${t.d==='loin'?'1.6s':'.7s'}"><div class="vwag">${beeSVG(1)}</div><div class="vwline"></div></div><div class="vup">⬆️ haut</div></div>
+      <div class="vmap"><div class="vmapt">Vue du ciel : où sont les fleurs ?</div><svg viewBox="-200 -200 400 400"><circle r="190" fill="#bfe3a0"/><text x="0" y="-160" text-anchor="middle" font-size="34">☀️</text><text y="10" text-anchor="middle" font-size="34">🏠</text>
+      ${P2.map((p,i)=>{const r=p.d==='loin'?150:80,x=Math.sin(p.a*Math.PI/180)*r,y=-Math.cos(p.a*Math.PI/180)*r;return `<g data-pt="${i}" class="vpt"><circle cx="${x}" cy="${y}" r="30" fill="#fff" opacity=".7"/><text x="${x}" y="${y+12}" text-anchor="middle" font-size="34">${['🌸','🌻','💜','🌺'][i]}</text></g>`;}).join('')}</svg></div>
+      <div class="vq">${'⭐'.repeat(R.dok)} · Danse ${R.dn+1}/3</div></div>`;
+    say('Une éclaireuse danse pour dire où sont les fleurs. L\'angle de sa ligne frétillante avec le haut = l\'angle des fleurs avec le soleil. Plus elle frétille longtemps, plus c\'est loin. Touche les bonnes fleurs !',false);};
+  const danceTap=e=>{const g=e.target.closest('[data-pt]');if(!g)return;const i=+g.dataset.pt;R.dn++;
+    if(i===R.ans){R.dok++;sfx.ding();say('Bien lu ! Les abeilles ont toutes compris le chemin.',false);}else{sfx.whine();say('Non : regarde l\'angle de la ligne par rapport au haut du rayon, et la durée du frétillement.',false);}
+    if(R.dn>=3){if(R.dok>=2){award('u_danse');const st=vStar('danse');say(`${R.dok}/3 : tu parles abeille !${st?' +1 étoile.':''} C'est Karl von Frisch qui a découvert cette danse (prix Nobel 1973).`,false);}
+      R.phase='fleurs';vLater(()=>{R.fl.forEach(f=>f.nec=true);draw();},3600);return;}
+    vLater(nextDance,1800);};
+};
+/* dans la ruche : le rayon de cire */
+const CELLS={oeuf:{n:'un œuf',c:'#fff3d6'},larve:{n:'une larve',c:'#fff3d6'},couvain:{n:'du couvain operculé (une nymphe dort dessous)',c:'#d9a54a'},pollen:{n:'du pollen',c:'#ff9a3c'},miel:{n:'du miel',c:'#ffc21a'},operc:{n:'du miel operculé (fermé avec de la cire)',c:'#f2dca0'}};
+VFN.ruche_ruche=function(){
+  const A=isA(),H={phase:A?'reine':'reine',q:{x:300,y:250,vx:1.4,vy:.9},fed:0,qn:0,ok:0};VIL.h=H;
+  const W=13,Hh=8;H.cells=[];for(let r=0;r<Hh;r++)for(let c=0;c<W;c++){const x=80+c*62+(r%2)*31,y=60+r*54;const dx=(c-6)/6,dy=(r-3.5)/3.5,d=Math.hypot(dx,dy);
+    H.cells.push({x,y,d});}
+  {const ctr=shuf(H.cells.filter(c=>c.d<.5)),mid=shuf(H.cells.filter(c=>c.d>=.5&&c.d<.8)),out=H.cells.filter(c=>c.d>=.8);ctr.forEach((c,i)=>c.t=['larve','couvain','oeuf'][i%3]);mid.forEach((c,i)=>c.t=['pollen','miel'][i%2]);out.forEach((c,i)=>c.t=Math.random()<.55?'operc':'miel');}
+  const hex=(x,y,r)=>Array.from({length:6},(_,i)=>{const a=Math.PI/180*(60*i+30);return `${x+Math.cos(a)*r},${y+Math.sin(a)*r}`;}).join(' ');
+  const cellSVG=(c,i)=>{const t=c.t,hl=H.hl===i;return `<g data-c="${i}"><polygon points="${hex(c.x,c.y,30)}" fill="${CELLS[t].c}" stroke="${hl?'#e2263e':'#c9a227'}" stroke-width="${hl?6:3}"/>${t==='oeuf'?`<ellipse cx="${c.x}" cy="${c.y}" rx="4" ry="9" fill="#fff" stroke="#e8d8b0"/>`:t==='larve'?`<path d="M${c.x-12} ${c.y+4} a12 12 0 1 1 12 10" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/>${c.fed?`<circle cx="${c.x}" cy="${c.y+2}" r="5" fill="#fffbe6"/>`:''}`:t==='pollen'?`<circle cx="${c.x}" cy="${c.y}" r="15" fill="#ffd25a"/>`:t==='miel'?`<polygon points="${hex(c.x,c.y,22)}" fill="#ffe27a" opacity=".8"/>`:''}</g>`;};
+  const draw=()=>{vW().innerHTML=`<div class="vframe"><svg viewBox="0 0 900 500" id="hSvg"><rect width="900" height="500" rx="20" fill="#8a5a36"/><rect x="20" y="20" width="860" height="460" rx="10" fill="#e8c46a"/>
+    ${H.cells.map(cellSVG).join('')}<g id="hBees"></g></svg><div class="vframeR" id="hR"></div></div>`;panel();};
+  const bees=Array.from({length:14},()=>({x:100+Math.random()*700,y:80+Math.random()*340,a:Math.random()*6}));
+  const animBees=()=>{vRaf(()=>{const g=$('hBees');if(!g)return false;bees.forEach(b=>{b.a+=(Math.random()-.5)*.3;b.x=Math.max(60,Math.min(840,b.x+Math.cos(b.a)*1.2));b.y=Math.max(60,Math.min(440,b.y+Math.sin(b.a)*1.2));});
+    if(H.phase==='reine'){const q=H.q;q.x+=q.vx*.6;q.y+=q.vy*.6;if(q.x<120||q.x>780)q.vx*=-1;if(q.y<100||q.y>400)q.vy*=-1;}
+    g.innerHTML=bees.map(b=>`<g transform="translate(${b.x} ${b.y}) rotate(${b.a*57})" pointer-events="none">${beeSVG(.8).replace('<svg ','<svg x="-24" y="-19" ')}</g>`).join('')+(H.phase==='reine'?`<g data-q="1" transform="translate(${H.q.x} ${H.q.y})"><circle r="44" fill="transparent"/>${beeSVG(1.3,1).replace('<svg ','<svg x="-39" y="-31" ')}</g>`:'');});};
+  const panel=()=>{const R=$('hR');if(!R)return;
+    if(H.phase==='reine')R.innerHTML=`<div class="vbig">👑</div><div class="vq">${T('Trouve la reine ! Elle est plus grande, avec un point bleu.','Trouve la reine (plus longue, marquée d\'un point bleu par l\'apiculteur).')}</div>`;
+    else if(H.phase==='larves')R.innerHTML=`<div class="vbig">🍼</div><div class="vq">Donne à manger aux bébés abeilles : touche les larves blanches !</div><div class="vq">${'🍼'.repeat(H.fed)}</div>`;
+    else if(H.phase==='quiz'){const ops=['oeuf','larve','couvain','pollen','miel','operc'];R.innerHTML=`<div class="vq">Qu'y a-t-il dans l'alvéole entourée de rouge ?</div><div class="vopts">${ops.map(o=>`<button class="vopt" data-o="${o}">${CELLS[o].n.split(' (')[0]}</button>`).join('')}</div><div class="vq">${'⭐'.repeat(H.ok)} ${H.qn}/6</div>`;}
+    else if(H.phase==='roles'){const Q=ROLES[H.ri];R.innerHTML=`<div class="vq">Qui fait ça ?</div><div class="vq big">« ${Q.t} »</div><div class="vopts">${['reine','ouvrière','faux-bourdon'].map(o=>`<button class="vopt" data-ro="${o}">${{reine:'👑 La reine','ouvrière':'🐝 L\'ouvrière','faux-bourdon':'🐝 Le faux-bourdon'}[o]}</button>`).join('')}</div>`;}
+    else R.innerHTML=`<div class="vbig">⬡</div><div class="vq">${T('Bravo ! La ruche va bien.','Pourquoi des hexagones ? C\'est la forme qui remplit tout l\'espace avec le moins de cire possible.')}</div><button class="btn b-orange" data-again="1">🔁 Encore</button>`;};
+  const ROLES=[{t:'Je ponds jusqu\'à 2 000 œufs par jour',a:'reine'},{t:'Je nettoie, je nourris les larves, je fabrique la cire et je butine',a:'ouvrière'},{t:'Je n\'ai pas de dard et je ne fais pas de miel',a:'faux-bourdon'},{t:'Je vis jusqu\'à 4 ou 5 ans',a:'reine'},{t:'En été, je vis environ 6 semaines',a:'ouvrière'}];
+  const quizNext=()=>{H.qn++;const types=['oeuf','larve','couvain','pollen','miel','operc'];const want=types[(H.qn-1)%6];const idx=H.cells.map((c,i)=>c.t===want?i:-1).filter(i=>i>=0);H.hl=idx[Math.floor(Math.random()*idx.length)];draw();};
+  draw();animBees();say(T('Voici l\'intérieur de la ruche. Trouve la reine !','Un cadre de la ruche. Trouve d\'abord la reine.'));
+  V.tap=e=>{
+    if(e.target.closest('[data-again]')){vOpenTab('ruche','ruche');return;}
+    if(H.phase==='reine'){if(e.target.closest('[data-q]')){sfx.ding();award('u_reine');say(T('C\'est la reine ! Elle pond tous les œufs de la ruche.','La reine ! Une seule par ruche ; elle pond tous les œufs.'));H.phase=A?'larves':'quiz';vLater(()=>{if(A){draw();}else{H.qn=0;quizNext();}},1800);}
+      else if(e.target.closest('svg'))say(T('Non, c\'est une ouvrière. La reine est plus grande !','Ça, c\'est une ouvrière.'));return;}
+    if(H.phase==='larves'){const c=e.target.closest('[data-c]');if(!c)return;const C=H.cells[+c.dataset.c];
+      if(C.t!=='larve'){say(C.t==='oeuf'?'C\'est un œuf, il est trop petit pour manger.':'Cherche les petits vers blancs : ce sont les larves.');return;}
+      if(C.fed)return;C.fed=1;H.fed++;sfx.pop();c.outerHTML=cellSVG(C,+c.dataset.c);panel();
+      if(H.fed>=5){award('u_larves');const st=vStar('ruche');sfx.fanfare();say('Bravo, nounou des abeilles ! Les larves deviendront des abeilles en 21 jours.'+(st?' Une étoile !':''));H.phase='fin';vLater(()=>{draw();},1500);}return;}
+    if(H.phase==='quiz'){const o=e.target.closest('[data-o]');if(!o)return;const C=H.cells[H.hl];
+      if(o.dataset.o===C.t){H.ok++;sfx.ding();say('Oui : '+CELLS[C.t].n+'.',false);}else{sfx.whine();say('Non : c\'est '+CELLS[C.t].n+'.',false);}
+      if(H.qn>=6){H.hl=null;if(H.ok>=5)award('u_cellules');H.phase='roles';H.ri=0;H.rok=0;vLater(draw,1600);}else vLater(quizNext,1400);return;}
+    if(H.phase==='roles'){const o=e.target.closest('[data-ro]');if(!o)return;const Q=ROLES[H.ri];if(o.dataset.ro===Q.a){H.rok++;sfx.ding();}else sfx.whine();
+      say((o.dataset.ro===Q.a?'Oui, ':'Non, ')+'c\'est '+(Q.a==='reine'?'la reine':Q.a==='ouvrière'?'l\'ouvrière':'le faux-bourdon')+'.',false);H.ri++;
+      if(H.ri>=ROLES.length){award('u_larves');const st=vStar('ruche');say(`Bravo, ${H.rok}/5 !${st?' +1 étoile.':''} Une ruche en été : 1 reine, des centaines de faux-bourdons et jusqu'à 50 000 ouvrières.`,false);H.phase='fin';vLater(()=>{draw();},2200);}else vLater(panel,1200);}
+  };
+};
+/* la récolte du miel */
+VFN.ruche_miel=function(){
+  const A=isA(),Y={step:'tenue',suit:0,smoke:0,unc:0,spin:0,jars:0,lp:null,ang:0};VIL.y=Y;
+  const STEP={tenue:['Mets ta tenue d\'apiculteur !','Équipe-toi : combinaison, voile et gants.'],enfumoir:['Fais un peu de fumée : les abeilles se calment.','L\'enfumoir : la fumée masque l\'odeur d\'alarme des abeilles, elles restent calmes.'],cadre:['Choisis le cadre plein de miel doré !','Choisis le cadre à récolter.'],desop:['Gratte la cire avec la fourchette : frotte le cadre !','Désoperculer : retire la fine couche de cire qui ferme les alvéoles.'],extract:['Tourne la manivelle : fais des ronds avec ton doigt !','L\'extracteur : en tournant vite, la force centrifuge fait sortir le miel des alvéoles.'],pots:['Remplis les pots : garde le doigt sur le robinet !','Filtre et mets en pots : maintiens le robinet.'],fin:['Bravo, voilà ton miel !','Récolte terminée !']};
+  const frames=shuf([{k:'ok',d:'Doré et fermé de cire'},{k:'brood',d:'Plein de couvain'},{k:'unripe',d:'Miel encore liquide, pas fermé'}]);Y.frames=frames;
+  const frameSVG=(k,w=200)=>`<svg viewBox="0 0 200 140" width="${w}"><rect width="200" height="140" rx="8" fill="#8a5a36"/><rect x="10" y="10" width="180" height="120" fill="${k==='ok'?'#f2dca0':k==='brood'?'#d9a54a':'#ffd75a'}"/>${Array.from({length:40},(_,i)=>`<circle cx="${22+(i%10)*18}" cy="${24+Math.floor(i/10)*28}" r="7" fill="${k==='ok'?'#e8c46a':k==='brood'?'#c48a30':'#ffe9a0'}" opacity=".8"/>`).join('')}</svg>`;
+  const draw=()=>{const s=Y.step;
+    let mid='';
+    if(s==='tenue')mid=`<div class="vkc ${Y.suit>=3?'suit':''}">${kicuitSVG()}${Y.suit>=1?'<div class="vveil">🥽</div>':''}</div><div class="vopts">${[['combi','🥼 Combinaison'],['voile','🎭 Voile'],['gants','🧤 Gants']].map(([k,n],i)=>`<button class="vopt ${(Y.has||{})[k]?'ok':''} ${A&&i===Y.suit?'cnudge':''}" data-s="${k}">${n}</button>`).join('')}${A?'':`<button class="vopt" data-s="skip">😎 Pas besoin</button>`}</div>`;
+    else if(s==='enfumoir')mid=`<div class="vhive2">${'🐝'.repeat(Math.max(0,8-Y.smoke*2))}<div class="vhivebig">${HIVE}</div><div class="vsmoke" style="opacity:${Y.smoke/4}">💨💨</div></div><button class="vopt cnudge" data-s="puff">💨 Enfumoir</button>`;
+    else if(s==='cadre')mid=`<div class="vfrs">${Y.frames.map((f,i)=>`<button class="vfr" data-fr="${i}">${frameSVG(f.k)}<small>${A?'':f.d}</small></button>`).join('')}</div>`;
+    else if(s==='desop')mid=`<div class="vdesop" id="yDes"><div class="vdesf">${frameSVG('unripe',440)}<div class="vcap" style="clip-path:inset(0 0 0 ${Y.unc}%)">${frameSVG('ok',440)}</div></div><div class="vfork" id="yFork">🍴</div></div><div class="cbar wide"><i style="width:${Y.unc}%"></i></div>`;
+    else if(s==='extract')mid=`<div class="vextr" id="yEx"><div class="vdrum"><div class="vrot" style="transform:rotate(${Y.ang}deg)">${frameSVG('unripe',120)}${frameSVG('unripe',120)}</div></div><div class="vcrank">⚙️</div></div><div class="cbar wide"><i style="width:${Y.spin}%"></i></div>`;
+    else if(s==='pots')mid=`<div class="vjars">${Array.from({length:4},(_,i)=>`<div class="vjar"><i style="height:${Math.max(0,Math.min(100,(Y.jars-i)*100))}%"></i><span>🍯</span></div>`).join('')}</div><button class="vopt cnudge" id="yTap">🚰 Robinet</button>`;
+    else mid=`<div class="vbig">🍯🍯🍯🍯</div><div class="vq">${T('Tu as 4 pots de miel ! Tu peux les vendre au marché.','4 pots de 500 g. On laisse toujours assez de miel aux abeilles pour l\'hiver (environ 15 kg par ruche).')}</div><button class="btn b-orange" data-again="1">🔁 Encore une récolte</button>`;
+    vW().innerHTML=`<div class="vmiel"><div class="vsteps">${Object.keys(STEP).slice(0,6).map((k,i)=>`<span class="${k===s?'on':Object.keys(STEP).indexOf(s)>i?'ok':''}">${i+1}</span>`).join('')}</div><div class="vq big">${T(STEP[s][0],STEP[s][1])}</div><div class="vmielm">${mid}</div></div>`;};
+  const go2=s=>{Y.step=s;draw();say(T(STEP[s][0],STEP[s][1]),T(undefined,false));};
+  go2('tenue');
+  V.tap=e=>{const b=e.target.closest('[data-s],[data-fr],[data-again]');if(!b)return;
+    if(b.dataset.again){if(performance.now()-(Y.finT||0)>1500)vOpenTab('ruche','miel');return;}
+    const s=b.dataset.s;
+    if(Y.step==='tenue'){if(s==='skip'){award('u_pique');sfx.whine();burst(vW().querySelector('.vkc'),['🐝','💥'],8,90);say('Aïe ! Piqué ! Sans tenue, les abeilles défendent leur ruche. Une abeille qui pique meurt souvent : elle perd son dard.','Aïe !');return;}
+      const ord=['combi','voile','gants'];if(A&&s!==ord[Y.suit]){say('D\'abord : '+['la combinaison','le voile','les gants'][Y.suit]+' !');return;}
+      Y.has=Y.has||{};if(Y.has[s])return;Y.has[s]=1;Y.suit=Object.keys(Y.has).length;sfx.pop();draw();if(Y.suit>=3)vLater(()=>go2('enfumoir'),900);return;}
+    if(Y.step==='enfumoir'&&s==='puff'){Y.smoke++;noise(.5,.2,'lowpass',600);draw();if(Y.smoke>=4)vLater(()=>go2('cadre'),900);return;}
+    if(Y.step==='cadre'&&b.dataset.fr!=null){const f=Y.frames[+b.dataset.fr];
+      if(f.k==='ok'){sfx.ding();go2('desop');return;}sfx.whine();
+      say(f.k==='brood'?T('Non, il y a les bébés abeilles dedans !','Jamais : ce cadre contient le couvain, les futures abeilles.'):T('Pas encore, le miel n\'est pas prêt.','Pas mûr : le miel non fermé contient trop d\'eau (plus de 18 %) et fermenterait dans le pot.'));}};
+  V.down=e=>{Y.lp=stagePt(e);if(Y.step==='pots'&&e.target.closest('#yTap'))Y.pour=1;};
+  V.move=e=>{if(!Y.lp)return;const p=stagePt(e),d=Math.hypot(p.x-Y.lp.x,p.y-Y.lp.y);
+    if(Y.step==='desop'&&e.target.closest('#yDes')){Y.unc=Math.min(100,Y.unc+d/(A?9:14));const f=$('yFork'),r=$('yDes').getBoundingClientRect();if(f){f.style.left=((e.clientX-r.left)/SCALE-30)+'px';f.style.top=((e.clientY-r.top)/SCALE-30)+'px';}
+      const c=vW().querySelector('.vcap');if(c)c.style.clipPath=`inset(0 0 0 ${Y.unc}%)`;const g=vW().querySelector('.cbar i');if(g)g.style.width=Y.unc+'%';if(Math.random()<.2)noise(.05,.08,'highpass',2500);
+      if(Y.unc>=100){Y.lp=null;sfx.ding();vLater(()=>go2('extract'),600);}}
+    if(Y.step==='extract'&&e.target.closest('#yEx')){const r=$('yEx').getBoundingClientRect(),cx=(r.left+r.width/2),cy=(r.top+r.height/2);      const ang=Math.atan2(e.clientY-cy,e.clientX-cx);if(Y.la!=null){let da=ang-Y.la;if(da>Math.PI)da-=2*Math.PI;if(da<-Math.PI)da+=2*Math.PI;Y.ang+=Math.abs(da)*57*3;Y.spin=Math.min(100,Y.spin+Math.abs(da)*(A?9:6));
+        const ro=vW().querySelector('.vrot');if(ro)ro.style.transform=`rotate(${Y.ang}deg)`;const g=vW().querySelector('.cbar i');if(g)g.style.width=Y.spin+'%';if(Math.random()<.15)tone(120+Y.spin*3,0,.08,'sawtooth',.05);
+        if(Y.spin>=100){Y.lp=null;Y.la=null;sfx.splash();vLater(()=>go2('pots'),600);}}Y.la=ang;}
+    Y.lp=p;};
+  V.up=()=>{Y.lp=null;Y.la=null;Y.pour=0;};
+  vEvery(()=>{if(!Y.pour||Y.step!=='pots')return;Y.jars=Math.min(4,Y.jars+.07);if(Math.random()<.4)noise(.12,.06,'bandpass',500);const js=vW().querySelectorAll('.vjar i');js.forEach((j,i)=>j.style.height=Math.max(0,Math.min(100,(Y.jars-i)*100))+'%');
+    if(Y.jars>=4){Y.pour=0;Y.finT=performance.now();const v=V_();v.honey+=4;saveDB();award('u_miel');const st=vStar('miel');sfx.fanfare();go2('fin');if(st)say(T('Bravo ! Une étoile !','Récolte terminée ! +1 étoile.'));}},100);
+};
+/* ===== LA NATURE ===== */
+const PLIC=`<svg viewBox="0 0 60 76" width="60" height="76"><path d="M30 2 C30 2 4 36 4 50 a26 26 0 0 0 52 0 C56 36 30 2 30 2z" fill="#5aa9ff" stroke="#2f62c2" stroke-width="3"/><ellipse cx="20" cy="40" rx="6" ry="9" fill="#fff" opacity=".5"/><circle cx="22" cy="52" r="5" fill="#fff"/><circle cx="38" cy="52" r="5" fill="#fff"/><circle cx="23" cy="53" r="2.6" fill="#2b2350"/><circle cx="39" cy="53" r="2.6" fill="#2b2350"/><path d="M24 63 q6 5 12 0" stroke="#2b2350" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>`;
+const WSTEPS=[
+  {k:'evap',t:'sun',n:'Évaporation',p:[400,150],a:['Le soleil chauffe la mer : l\'eau monte dans le ciel, en vapeur invisible !','Évaporation : chauffée par le soleil, l\'eau de la mer devient de la vapeur, un gaz invisible qui monte.']},
+  {k:'cond',t:'sky',n:'Condensation',p:[780,120],a:['En haut, il fait froid : la vapeur fait des petites gouttes. C\'est un nuage !','Condensation : en altitude il fait froid, la vapeur redevient de minuscules gouttelettes, qui forment un nuage.']},
+  {k:'prec',t:'cloud',n:'Précipitations',p:[820,330],a:['Le nuage est trop lourd : il pleut sur la montagne !','Précipitations : les gouttelettes se regroupent, deviennent trop lourdes et tombent en pluie, ou en neige quand il fait moins de 0 °C.']},
+  {k:'ruis',t:'river',n:'Ruissellement',p:[300,500],a:['L\'eau coule dans la rivière jusqu\'à la mer. Et ça recommence !','Ruissellement : l\'eau coule sur le sol, dans les ruisseaux et les rivières, jusqu\'à la mer.']},
+  {k:'infi',t:'ground',n:'Infiltration',p:[600,575],a:['','Infiltration : une partie de l\'eau traverse le sol et remplit la nappe phréatique. C\'est là qu\'on pompe une partie de l\'eau du robinet.']}];
+VFN.nature_eau=function(){
+  const A=isA(),W={i:0,cyc:0,cold:!A&&Math.random()<.5,busy:0,ok:0};VIL.w=W;
+  const steps=()=>A?WSTEPS.slice(0,4):WSTEPS;
+  const svg=()=>`<svg viewBox="0 0 1140 622" class="vwsvg" id="wSvg"><defs><linearGradient id="wSky" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8fd3ff"/><stop offset="1" stop-color="#e9f8ff"/></linearGradient></defs>
+    <rect width="1140" height="622" fill="url(#wSky)"/>
+    <g data-w="sun" class="wsun"><circle cx="130" cy="110" r="70" fill="#ffd25a" opacity=".3"/><circle cx="130" cy="110" r="50" fill="#ffd25a"/><circle cx="130" cy="110" r="90" fill="transparent"/></g>
+    <rect data-w="sky" x="300" y="20" width="560" height="200" fill="transparent"/>
+    <path d="M620 470 L820 170 L1000 380 L1140 300 V540 H620z" fill="#8a96ad"/><path d="M820 170 l44 64 l-26 -10 l-22 18 l-24 -16 l-24 10z" fill="#fff"/>
+    <rect y="470" width="1140" height="152" fill="#8cce5e"/><rect y="540" width="1140" height="82" fill="#b08a5a"/><rect y="590" width="1140" height="32" fill="${A?'#b08a5a':'#5aa9ff'}" opacity="${A?1:.75}"/>${A?'':'<text x="1130" y="612" text-anchor="end" font-size="16" font-weight="900" fill="#fff">nappe phréatique</text>'}
+    <path d="M0 440 q200 -10 360 20 L360 540 H0z" fill="#3a8fe0"/><path d="M0 450 q200 -10 340 20" stroke="#fff" stroke-width="4" fill="none" opacity=".5"/><text x="80" y="510" font-size="26" font-weight="900" fill="#fff">la mer</text>
+    <path data-w="river" d="M840 330 q-60 80 -180 120 q-150 50 -300 30" stroke="#3a8fe0" stroke-width="26" fill="none" stroke-linecap="round" class="wriver"/><path d="M840 330 q-60 80 -180 120 q-150 50 -300 30" stroke="transparent" stroke-width="80" fill="none" data-w="river"/>
+    <rect data-w="ground" x="380" y="540" width="560" height="60" fill="transparent"/>
+    <g id="wVap" class="wvap">${[0,1,2,3,4].map(i=>`<path d="M${120+i*45} 430 q10 -20 0 -40 q-10 -20 0 -40" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" style="animation-delay:${i*.25}s"/>`).join('')}</g>
+    <g data-w="cloud" id="wCloud" class="wcloud" style="transform:translate(780px,120px) scale(.3)"><ellipse cx="0" cy="0" rx="110" ry="48" fill="#fff"/><ellipse cx="-50" cy="-30" rx="60" ry="44" fill="#fff"/><ellipse cx="50" cy="-34" rx="66" ry="50" fill="#fff"/><ellipse cx="0" cy="0" rx="150" ry="90" fill="transparent"/></g>
+    <g id="wRain" class="wrain">${Array.from({length:18},(_,i)=>W.cold?`<text x="${700+(i%6)*45}" y="${170+Math.floor(i/6)*30}" font-size="22" style="animation-delay:${(i%5)*.15}s">❄️</text>`:`<line x1="${700+(i%6)*45}" y1="${170+Math.floor(i/6)*30}" x2="${694+(i%6)*45}" y2="${190+Math.floor(i/6)*30}" stroke="#3a8fe0" stroke-width="4" stroke-linecap="round" style="animation-delay:${(i%5)*.15}s"/>`).join('')}</g>
+    ${A?'':`<g><rect x="1050" y="40" width="20" height="120" rx="10" fill="#fff" stroke="#5d6c8c" stroke-width="3"/><rect x="1054" y="${W.cold?120:80}" width="12" height="${W.cold?36:76}" rx="6" fill="#e2263e"/><text x="1060" y="190" text-anchor="middle" font-size="20" font-weight="900" fill="#2b2350">${W.cold?'−5 °C':'8 °C'}</text><text x="1060" y="30" text-anchor="middle" font-size="14" font-weight="900" fill="#2b2350">montagne</text></g>`}
+  </svg><div class="vplic" id="wPlic" style="left:150px;top:420px">${PLIC}</div><div class="vwq" id="wQ"></div><div class="vwn">${'💧'.repeat(W.ok)}</div>`;
+  const ask=()=>{const st=steps()[W.i];
+    if(A){vNudge(`[data-w="${st.t}"]`);$('wQ').innerHTML=`<div class="vq">${['Touche le soleil !','Touche le ciel !','Touche le nuage !','Touche la rivière !'][W.i]}</div>`;}
+    else{const names=shuf(steps().map(s=>s.n)).slice(0,3);if(!names.includes(st.n))names[Math.floor(Math.random()*3)]=st.n;
+      $('wQ').innerHTML=`<div class="vq">Que se passe-t-il ensuite pour Plic ?</div><div class="vopts">${names.map(n=>`<button class="vopt" data-n="${n}">${n}</button>`).join('')}</div>`;}};
+  const play=()=>{const st=steps()[W.i],sv=$('wSvg');W.busy=1;vNudge(null);sv.classList.add('s-'+st.k);
+    if(st.k==='evap'){SND.eau&&0;}if(st.k==='prec')(W.cold?tone(1500,0,.3,'sine',.05):SND.eau());if(st.k==='cond')noise(.8,.08,'bandpass',600);
+    const c=$('wCloud');if(st.k==='cond')c.style.transform='translate(780px,120px) scale(1)';if(st.k==='prec')c.style.transform='translate(820px,150px) scale(1.1)';if(st.k==='ruis'||st.k==='infi')c.style.transform='translate(820px,150px) scale(.5)';
+    const pl=$('wPlic');pl.style.left=st.p[0]+'px';pl.style.top=st.p[1]+'px';if(st.k==='prec'&&W.cold)pl.classList.add('snow');if(st.k==='ruis')pl.classList.remove('snow');
+    say(T(st.a[0],st.a[1]),T(undefined,false));
+    vLater(()=>{W.busy=0;W.i++;if(W.i>=steps().length){W.cyc++;cycleDone();}else ask();},A?3600:2600);};
+  const cycleDone=()=>{award('n_eau');if(!A&&W.cold)award('n_neige');const st=vStar('eau');sfx.fanfare();burst($('wPlic'),['💧','✨'],8,90);
+    say(T('Bravo ! Plic a fait le tour : c\'est le cycle de l\'eau !'+(st?' Une étoile !':''),`Cycle complet !${st?' +1 étoile.':''} C'est toujours la même eau qui tourne depuis des milliards d'années : les dinosaures ont peut-être bu la même goutte que toi !`),T(undefined,'Bravo !'));
+    vLater(()=>{W.i=0;W.cold=!A&&Math.random()<.5;vW().innerHTML=svg();ask();},6500);};
+  vW().innerHTML=svg();ask();say(T('Voici Plic, une goutte d\'eau. Aide-la à voyager !','Voici Plic, une goutte d\'eau de mer. Suis son voyage : le cycle de l\'eau.'));
+  V.tap=e=>{if(W.busy)return;const st=steps()[W.i];
+    if(A){const w=e.target.closest('[data-w]');if(!w)return;if(w.dataset.w===st.t){W.ok++;play();}else say(['Touche le soleil : il est tout jaune !','Touche le ciel, en haut !','Touche le nuage !','Touche la rivière bleue !'][W.i]);return;}
+    const b=e.target.closest('[data-n]');if(!b)return;if(b.dataset.n===st.n){W.ok++;sfx.ding();play();}else{sfx.whine();say('Pas encore : '+st.n.toLowerCase()+' d\'abord. Indice : '+T('',st.a[1].split(':')[1].split('.')[0].trim())+'…',false);}};
+};
+/* les saisons */
+const SEAS={printemps:{e:'🌸',sky:'#bfe6ff',tree:'#ffb3d1',grd:'#8cdc6a',ani:'🐦',x:['Au printemps, les arbres fleurissent et les hirondelles reviennent.','Printemps : les jours rallongent, les bourgeons éclosent, les hirondelles reviennent d\'Afrique.'],good:'pull',sun:200},
+  ete:{e:'☀️',sky:'#8fd3ff',tree:'#3fa34d',grd:'#a6dc76',ani:'🦋',x:['En été, il fait chaud et les fruits mûrissent.','Été : les jours sont les plus longs, le soleil monte haut dans le ciel.'],good:'maillot',sun:90},
+  automne:{e:'🍂',sky:'#d6e2ee',tree:'#ff8a3a',grd:'#c9b46a',ani:'🍄',x:['En automne, les feuilles tombent et on ramasse les champignons.','Automne : les arbres perdent leurs feuilles pour économiser l\'eau pendant l\'hiver.'],good:'cire',sun:240},
+  hiver:{e:'❄️',sky:'#c9d6e6',tree:'none',grd:'#f2f6fb',ani:'🦔',x:['En hiver, il fait froid. Le hérisson dort jusqu\'au printemps !','Hiver : jours courts, soleil bas. Le hérisson hiberne : son cœur ralentit à quelques battements par minute.'],good:'bonnet',sun:300}};
+const SNAME={printemps:'le printemps',ete:'l\'été',automne:'l\'automne',hiver:'l\'hiver'};
+const OUTF={pull:'🧥 Pull léger',maillot:'🩱 Maillot et casquette',cire:'☔ Ciré et bottes',bonnet:'🧣 Bonnet et gants'};
+function seasonSVG(k,w=640){const S2=SEAS[k];return `<svg viewBox="0 0 640 420" width="${w}"><rect width="640" height="420" fill="${S2.sky}"/><circle cx="520" cy="${S2.sun*.6}" r="40" fill="#ffd25a"/><rect y="310" width="640" height="110" fill="${S2.grd}"/>
+  <rect x="190" y="180" width="34" height="140" rx="10" fill="#8a5a36"/><path d="M207 200 l-60 -60 M207 220 l70 -70 M207 190 v-80" stroke="#8a5a36" stroke-width="12" stroke-linecap="round"/>
+  ${S2.tree!=='none'?`<circle cx="207" cy="130" r="90" fill="${S2.tree}"/><circle cx="160" cy="110" r="50" fill="${S2.tree}"/><circle cx="260" cy="105" r="55" fill="${S2.tree}"/>`:''}
+  ${k==='printemps'?Array.from({length:10},(_,i)=>`<circle cx="${140+(i*37)%150}" cy="${70+(i*23)%110}" r="7" fill="#fff"/>`).join(''):''}${k==='ete'?Array.from({length:7},(_,i)=>`<circle cx="${150+(i*41)%130}" cy="${110+(i*29)%80}" r="9" fill="#e2263e"/>`).join(''):''}
+  ${k==='automne'?Array.from({length:8},(_,i)=>`<text x="${120+(i*67)%400}" y="${200+(i*31)%110}" font-size="26" class="leaf" style="animation-delay:${i*.4}s">🍂</text>`).join(''):''}
+  ${k==='hiver'?Array.from({length:30},(_,i)=>`<circle cx="${(i*71)%640}" cy="${(i*43)%300}" r="4" fill="#fff" class="flake" style="animation-delay:${(i%7)*.4}s"/>`).join('')+'<ellipse cx="460" cy="330" rx="70" ry="20" fill="#fff"/>':''}
+  <text x="430" y="${k==='hiver'?345:370}" font-size="56">${S2.ani}</text>${k==='hiver'?'<text x="440" y="300" font-size="28">💤</text>':''}${k==='printemps'?'<text x="330" y="90" font-size="40">🐦</text>':''}</svg>`;}
+VFN.nature_saisons=function(){
+  const A=isA(),Z={order:shuf(Object.keys(SEAS)),i:0,ok:0,step:'dress'};VIL.z=Z;
+  if(A){const draw=()=>{const k=Z.order[Z.i],opts=shuf([SEAS[k].good,...shuf(Object.values(SEAS).map(s=>s.good).filter(g=>g!==SEAS[k].good)).slice(0,2)]);
+      vW().innerHTML=`<div class="vseas"><div class="vseasL">${seasonSVG(k)}<div class="vseasn">${SEAS[k].e} ${SNAME[k]}</div></div><div class="vseasR"><div class="vav">${avatar(S.player)}</div><div class="vq">Qu'est-ce qu'on met ?</div><div class="vopts col">${opts.map(o=>`<button class="vopt big" data-o="${o}">${OUTF[o]}</button>`).join('')}</div><div class="vq">${'⭐'.repeat(Z.ok)}</div></div></div>`;
+      say(`C'est ${SNAME[k]} ! ${SEAS[k].x[0]} Qu'est-ce qu'on met ?`);};
+    draw();V.tap=e=>{const b=e.target.closest('[data-o]');if(!b)return;const k=Z.order[Z.i];
+      if(b.dataset.o!==SEAS[k].good){sfx.whine();say({maillot:'Brr, en maillot ? Il fait trop froid !',bonnet:'Un bonnet ? Tu vas avoir trop chaud !',cire:'Il ne pleut pas, pas besoin de ciré !',pull:'Hum, pas tout à fait…'}[b.dataset.o]);return;}
+      Z.ok++;sfx.ding();Z.i++;if(Z.i>=4){award('n_saisons');const st=vStar('saisons');sfx.fanfare();say('Bravo ! Printemps, été, automne, hiver : les quatre saisons !'+(st?' Une étoile !':''));Z.i=0;Z.ok=0;Z.order=shuf(Object.keys(SEAS));vLater(draw,4000);}else{say('Bien habillé !');vLater(draw,1500);}};return;}
+  /* Raf : la Terre penchée */
+  const POS=[{k:'juin',a:0},{k:'sept',a:90},{k:'dec',a:180},{k:'mars',a:270}];
+  const QZ=[{t:'Place la Terre pour l\'ÉTÉ en France.',pos:'juin'},{t:'Place la Terre pour l\'HIVER en France.',pos:'dec'},
+    {t:'Pourquoi fait-il plus chaud en été ?',o:['La Terre est plus près du Soleil','Les rayons arrivent plus droits et les jours sont plus longs','Le Soleil chauffe plus fort en été'],a:1,x:'L\'axe de la Terre est penché (23,4°). En été, notre moitié est penchée vers le Soleil : rayons plus droits, jours plus longs. La distance n\'y est pour rien : la Terre est même un peu plus près du Soleil en janvier !'},
+    {t:'En décembre, en Australie, c\'est…',o:['l\'hiver','l\'été','le printemps'],a:1,x:'En décembre, l\'hémisphère sud est penché vers le Soleil : c\'est l\'été en Australie. Le Père Noël y arrive en short !'},
+    {t:'À Paris, le 21 juin, combien d\'heures de jour environ ?',o:['8 heures','12 heures','16 heures'],a:2,x:'Environ 16 heures de jour le 21 juin, et seulement 8 heures le 21 décembre.'}];
+  const draw=()=>{const Q=QZ[Z.i];const sel=Z.sel;
+    const earth=(p)=>{const r=200,x=320+Math.cos(p.a*Math.PI/180)*r,y=230+Math.sin(p.a*Math.PI/180)*r*.45;const tilt=-23;const th=Math.atan2(y-230,x-320)*180/Math.PI;return `<g data-p="${p.k}" class="vearth ${sel===p.k?'sel':''}"><circle cx="${x}" cy="${y}" r="44" fill="transparent"/><circle cx="${x}" cy="${y}" r="30" fill="#4c8dff"/><g transform="translate(${x} ${y}) rotate(${th})"><path d="M0 -30 a30 30 0 0 1 0 60z" fill="#13235e" opacity=".75"/></g><g transform="translate(${x} ${y}) rotate(${tilt})"><line y1="-44" y2="44" stroke="#fff" stroke-width="3"/><circle cy="-14" r="5" fill="#ff5a5a"/></g></g>`;};
+    vW().innerHTML=`<div class="vorb"><svg viewBox="0 0 640 470"><rect width="640" height="470" fill="#141a33"/>${Array.from({length:30},(_,i)=>`<circle cx="${(i*97)%640}" cy="${(i*53)%470}" r="1.5" fill="#fff"/>`).join('')}
+      <ellipse cx="320" cy="230" rx="200" ry="90" fill="none" stroke="#5d6c8c" stroke-width="2" stroke-dasharray="6 6"/><circle cx="320" cy="230" r="48" fill="#ffd25a"/><text x="320" y="236" text-anchor="middle" font-size="16" font-weight="900" fill="#8a5a10">Soleil</text>
+      ${POS.map(earth).join('')}<text x="20" y="455" font-size="15" fill="#c9d2e3">Le point rouge = la France · l'axe garde toujours la même direction</text></svg>
+      <div class="vorbR"><div class="vq big">${Q.t}</div>${Q.o?`<div class="vopts col">${Q.o.map((o,i)=>`<button class="vopt" data-o="${i}">${o}</button>`).join('')}</div>`:'<div class="vq small">Touche une des 4 Terres.</div>'}<div class="vq">${'⭐'.repeat(Z.ok)} ${Z.i+1}/5</div></div></div>`;};
+  draw();say('Pourquoi y a-t-il des saisons ? Regarde la Terre tourner autour du Soleil : son axe est penché.',false);
+  V.tap=e=>{const Q=QZ[Z.i];if(!Q)return;let good=null,x='';
+    if(!Q.o){const p=e.target.closest('[data-p]');if(!p)return;Z.sel=p.dataset.p;good=p.dataset.p===Q.pos;x=good?(Q.pos==='juin'?'Oui : le pôle Nord et la France sont penchés vers le Soleil.':'Oui : notre moitié de Terre est penchée à l\'opposé du Soleil.'):'Regarde vers où penche le pôle Nord (en haut de l\'axe) : vers le Soleil = été.';}
+    else{const o=e.target.closest('[data-o]');if(!o)return;good=+o.dataset.o===Q.a;x=Q.x;}
+    if(good){Z.ok++;sfx.ding();}else sfx.whine();say((good?'Bravo ! ':'Non. ')+x,false);Z.i++;Z.sel=null;
+    if(Z.i>=QZ.length){if(Z.ok>=4)award('n_axe');award('n_saisons');const st=vStar('saisons');vLater(()=>{say(`${Z.ok}/5.${st?' +1 étoile.':''} Les saisons viennent de l'inclinaison de la Terre.`,false);Z.i=0;Z.ok=0;draw();},4200);}else vLater(draw,Q.o?4200:2200);};
+};
+/* la météo */
+const WX2={soleil:{e:'☀️',n:'Il fait beau',take:'lunettes'},pluie:{e:'🌧️',n:'Il pleut',take:'parapluie'},neige:{e:'❄️',n:'Il neige',take:'bonnet'},vent:{e:'💨',n:'Il y a du vent',take:'cerfvolant'},orage:{e:'⛈️',n:'Il y a de l\'orage',take:'maison'}};
+const TAKE={lunettes:'😎 Lunettes de soleil',parapluie:'☂️ Parapluie',bonnet:'🧤 Bonnet et gants',cerfvolant:'🪁 Cerf-volant',maison:'🏠 On reste à l\'abri'};
+VFN.nature_meteo=function(){
+  const A=isA(),M2={i:0,ok:0,step:1};VIL.mt=M2;
+  if(A){const draw=()=>{const k=M2.k,W2=WX2[k];
+      const win=`<div class="vwin wx-${k}"><div class="vwinsky">${k==='soleil'?'☀️':k==='orage'?'⛈️':k==='neige'?'🌨️':k==='pluie'?'🌧️':'🌬️'}</div>${k==='pluie'||k==='orage'?'<div class="vrainf"></div>':''}${k==='neige'?'<div class="vsnowf"></div>':''}${k==='vent'?'<div class="vwindf">🍃 🍂 🍃</div>':''}</div>`;
+      const opts=M2.step===1?shuf([k,...shuf(Object.keys(WX2).filter(x=>x!==k)).slice(0,2)]).map(o=>`<button class="vopt big vemo" data-w="${o}">${WX2[o].e}</button>`).join(''):shuf([W2.take,...shuf(Object.values(WX2).map(x=>x.take).filter(t=>t!==W2.take)).slice(0,2)]).map(o=>`<button class="vopt big" data-t="${o}">${TAKE[o]}</button>`).join('');
+      vW().innerHTML=`<div class="vmet">${win}<div class="vmetR"><div class="vq big">${M2.step===1?'Quel temps fait-il ?':'Qu\'est-ce qu\'on prend ?'}</div><div class="vopts col">${opts}</div><div class="vq">${'⭐'.repeat(M2.ok)}</div></div></div>`;
+      if(k==='orage'&&M2.step===1)SND.orage();if(k==='pluie'&&M2.step===1)SND.eau();};
+    const next=()=>{M2.k=shuf(Object.keys(WX2).filter(k=>k!==M2.k))[0];M2.step=1;draw();say('Regarde par la fenêtre. Quel temps fait-il ?');};
+    next();V.tap=e=>{const w=e.target.closest('[data-w]'),t=e.target.closest('[data-t]');
+      if(M2.step===1&&w){if(w.dataset.w!==M2.k){sfx.whine();say('Regarde bien par la fenêtre !');return;}sfx.ding();say(WX2[M2.k].n+' ! Qu\'est-ce qu\'on prend ?');M2.step=2;vLater(draw,500);return;}
+      if(M2.step===2&&t){if(t.dataset.t!==WX2[M2.k].take){sfx.whine();say('Hum, ce n\'est pas le meilleur choix…');return;}
+        M2.ok++;sfx.ding();say(M2.k==='orage'?'Oui ! Pendant l\'orage, on reste à l\'abri dans la maison.':'Bonne idée !');
+        if(M2.ok>=5){award('n_meteo');const st=vStar('meteo');sfx.fanfare();say('Bravo, tu es présentatrice météo !'.replace('présentatrice','présentatrice')+(st?' Une étoile !':''));M2.ok=0;}vLater(next,2200);}};return;}
+  /* Raf : la station météo */
+  const rounds=()=>{const r=n=>Math.floor(Math.random()*n);const T0=[-6,-2,3,8,14,21,27][r(7)],rain=[0,2,5,12,25][r(5)],dir=['nord','est','sud','ouest'][r(4)],p=[995,1002,1013,1025,1032][r(5)],trend=[-1,0,1][r(3)];return {T0,rain,dir,p,trend};};
+  const Qs=[
+    d=>({t:'Lis le thermomètre : quelle température ?',o:shuf([d.T0,d.T0+5,d.T0-4]).map(v=>v+' °C'),a:d.T0+' °C',x:d.T0<0?'Sous zéro : l\'eau gèle, attention au verglas !':'Le liquide monte quand il fait chaud : il se dilate.'}),
+    d=>({t:'Le pluviomètre : combien de pluie est tombée ?',o:shuf([d.rain,d.rain+8,Math.max(0,d.rain-1)+20]).map(v=>v+' mm'),a:d.rain+' mm',x:`${d.rain} mm de pluie = ${d.rain} litres d'eau sur chaque mètre carré.`}),
+    d=>({t:'La girouette : d\'où vient le vent ?',o:shuf(['nord','est','sud','ouest']).slice(0,3).concat([]).filter((v,i,a)=>a.indexOf(v)===i),a:d.dir,x:'La flèche de la girouette pointe vers l\'endroit d\'où vient le vent. En France, le vent d\'ouest vient de l\'océan et apporte souvent la pluie.'}),
+    d=>({t:`Baromètre : ${d.p} hPa, ${d.trend<0?'en forte baisse':d.trend>0?'en hausse':'stable'}. Quel temps demain ?`,o:['Beau temps','Pluie et vent','Neige garantie'],a:d.trend<0||d.p<1005?'Pluie et vent':'Beau temps',x:'Une pression qui baisse annonce une dépression : nuages, pluie et vent. Une pression haute (anticyclone) annonce du beau temps.'}),
+    d=>{const s=[3,6,9,12][Math.floor(Math.random()*4)];return {t:`Orage ! Tu comptes ${s} secondes entre l'éclair et le tonnerre. Il est à quelle distance ?`,o:shuf([s/3+' km',s+' km',s*3+' km']),a:s/3+' km',x:'La lumière arrive presque tout de suite, le son fait environ 340 m par seconde : 3 secondes = 1 km.'};}];
+  const draw=()=>{const d=M2.d,Q=M2.q;const ang={nord:0,est:90,sud:180,ouest:270}[d.dir];
+    if(!Q.o.includes(Q.a))Q.o[0]=Q.a;
+    vW().innerHTML=`<div class="vstat"><svg viewBox="0 0 700 500"><rect width="700" height="500" rx="20" fill="#e6f5ff"/>
+      <g><rect x="60" y="60" width="40" height="320" rx="20" fill="#fff" stroke="#5d6c8c" stroke-width="4"/>${Array.from({length:9},(_,i)=>`<line x1="100" y1="${340-i*35}" x2="116" y2="${340-i*35}" stroke="#2b2350" stroke-width="3"/><text x="122" y="${346-i*35}" font-size="16" font-weight="900">${-10+i*5}</text>`).join('')}<rect x="70" y="${340-(d.T0+10)*7}" width="20" height="${(d.T0+10)*7+30}" rx="10" fill="#e2263e"/><circle cx="80" cy="390" r="26" fill="#e2263e"/><text x="80" y="450" text-anchor="middle" font-size="18" font-weight="900">°C</text></g>
+      <g><path d="M220 80 h80 l-10 300 h-60z" fill="#fff" stroke="#5d6c8c" stroke-width="4"/><rect x="232" y="${380-d.rain*8}" width="56" height="${d.rain*8}" fill="#5aa9ff" opacity=".8"/>${[0,5,10,15,20,25,30].map(v=>`<line x1="296" y1="${380-v*8}" x2="306" y2="${380-v*8}" stroke="#2b2350" stroke-width="2"/><text x="310" y="${386-v*8}" font-size="14" font-weight="900">${v}</text>`).join('')}<text x="260" y="450" text-anchor="middle" font-size="18" font-weight="900">mm</text></g>
+      <g transform="translate(480 160)"><circle r="100" fill="#fff" stroke="#5d6c8c" stroke-width="4"/><text y="-74" text-anchor="middle" font-size="22" font-weight="900">N</text><text x="80" y="8" text-anchor="middle" font-size="22" font-weight="900">E</text><text y="92" text-anchor="middle" font-size="22" font-weight="900">S</text><text x="-80" y="8" text-anchor="middle" font-size="22" font-weight="900">O</text>
+        <g transform="rotate(${ang})"><line y1="40" y2="-60" stroke="#2b2350" stroke-width="6"/><path d="M0 -70 l-14 22 h28z" fill="#e2263e"/><path d="M0 40 l-18 26 h36z" fill="#2b2350"/></g></g>
+      <g transform="translate(480 400)"><rect x="-120" y="-50" width="240" height="90" rx="20" fill="#fff" stroke="#5d6c8c" stroke-width="4"/><text y="0" text-anchor="middle" font-size="30" font-weight="900">${d.p} hPa</text><text y="30" text-anchor="middle" font-size="22" font-weight="900" fill="${d.trend<0?'#e2263e':'#2b8c6f'}">${d.trend<0?'⬇️ baisse':d.trend>0?'⬆️ hausse':'➡️ stable'}</text></g></svg>
+      <div class="vstatR"><div class="vq big">${Q.t}</div><div class="vopts col">${Q.o.map(o=>`<button class="vopt" data-a="${o}">${o}</button>`).join('')}</div><div class="vq">${'⭐'.repeat(M2.ok)} ${M2.i+1}/5</div></div></div>`;};
+  const next=()=>{M2.d=rounds();M2.q=Qs[M2.i%Qs.length](M2.d);draw();};
+  next();say('La station météo : lis les instruments.',false);
+  V.tap=e=>{const b=e.target.closest('[data-a]');if(!b||M2.lock)return;const ok=b.dataset.a===M2.q.a;if(ok){M2.ok++;sfx.ding();}else sfx.whine();
+    say((ok?'Oui ! ':'Non, c\'est '+M2.q.a+'. ')+M2.q.x,false);M2.i++;M2.lock=1;
+    vLater(()=>{M2.lock=0;if(M2.i>=5){if(M2.ok>=4)award('n_station');award('n_meteo');const st=vStar('meteo');say(`${M2.ok}/5.${st?' +1 étoile.':''}`,false);M2.i=0;M2.ok=0;}next();},4200);};
+};
+/* qui mange qui ? */
+const FOODQ=[{a:'🐰',n:'le lapin',f:'🌿',fn:'de l\'herbe'},{a:'🐿️',n:'l\'écureuil',f:'🌰',fn:'des noisettes'},{a:'🐝',n:'l\'abeille',f:'🌸',fn:'le nectar des fleurs'},{a:'🦔',n:'le hérisson',f:'🐌',fn:'des escargots'},{a:'🐸',n:'la grenouille',f:'🪰',fn:'des mouches'},{a:'🐮',n:'la vache',f:'🌾',fn:'de l\'herbe et du foin'},{a:'🐦',n:'la mésange',f:'🐛',fn:'des chenilles'},{a:'🦉',n:'la chouette',f:'🐭',fn:'des souris'}];
+const CHAINS=[['☀️ Soleil','🌿 Herbe','🐰 Lapin','🦊 Renard'],['☀️ Soleil','🌿 Algues','🐟 Petit poisson','🐦 Héron'],['☀️ Soleil','🍃 Feuilles','🐛 Chenille','🐦 Mésange'],['☀️ Soleil','🌾 Graines','🐭 Souris','🦉 Chouette']];
+VFN.nature_eco=function(){
+  const A=isA(),E2={i:0,ok:0};VIL.e=E2;
+  if(A){const draw=()=>{const Q=E2.q;vW().innerHTML=`<div class="veco"><div class="vecoA">${Q.a}</div><div class="vq big">Qu'est-ce que mange ${Q.n} ?</div><div class="vopts">${Q.o.map(f=>`<button class="vopt huge" data-f="${f}">${f}</button>`).join('')}</div><div class="vq">${'⭐'.repeat(E2.ok)}</div></div>`;};
+    const next=()=>{const Q=FOODQ.filter(q=>q!==E2.q)[Math.floor(Math.random()*(FOODQ.length-1))];E2.q={...Q,o:shuf([Q.f,...shuf(FOODQ.filter(x=>x.f!==Q.f).map(x=>x.f)).slice(0,2)])};draw();say(`Qu'est-ce que mange ${Q.n} ?`);};
+    next();V.tap=e=>{const b=e.target.closest('[data-f]');if(!b)return;if(b.dataset.f!==E2.q.f){sfx.whine();say('Non, '+E2.q.n+' ne mange pas ça !');return;}
+      E2.ok++;sfx.crunch();burst(vW().querySelector('.vecoA'),['❤️','😋'],5,80);say(`Miam ! ${E2.q.n.charAt(0).toUpperCase()+E2.q.n.slice(1)} mange ${E2.q.fn}.`);
+      if(E2.ok>=6){award('n_chaine');const st=vStar('eco');sfx.fanfare();say('Bravo ! Tu sais qui mange qui dans la nature.'+(st?' Une étoile !':''));E2.ok=0;}vLater(next,2200);};return;}
+  /* Raf : chaînes alimentaires puis équilibre */
+  E2.ch=shuf(CHAINS).slice(0,3);E2.ci=0;
+  const drawChain=()=>{const C=E2.ch[E2.ci];E2.cards=E2.cards||shuf(C.slice());
+    vW().innerHTML=`<div class="veco"><div class="vq big">Construis la chaîne alimentaire : d'abord ce qui donne l'énergie, puis « … est mangé par … ».</div>
+      <div class="vchain">${E2.pick.map(c=>`<span class="vcard ok">${c}</span>`).join('<b>➜</b>')}${E2.pick.length?'<b>➜</b>':''}<span class="vcard ghost">?</span></div>
+      <div class="vopts">${E2.cards.filter(c=>!E2.pick.includes(c)).map(c=>`<button class="vopt big" data-c="${c}">${c}</button>`).join('')}</div><div class="vq">Chaîne ${E2.ci+1}/3</div></div>`;};
+  E2.pick=[];drawChain();say('Une chaîne alimentaire montre qui mange qui. La flèche veut dire « est mangé par ». Tout commence avec l\'énergie du Soleil.',false);
+  const SIM={avec:{G:[80,70,75,72,78,74,76,75],L:[20,26,24,22,25,23,24,24],R:[4,5,6,5,4,5,5,5]},sans:{G:[80,62,35,10,4,20,45,60],L:[20,34,56,70,30,8,6,9],R:[0,0,0,0,0,0,0,0]}};
+  const drawSim=()=>{const s=SIM[E2.mode],t=E2.t;const bar=(v,max,c,e)=>`<div class="vsimb"><div class="vsimf" style="height:${v/max*100}%;background:${c}"></div><span>${e}</span><b>${v}</b></div>`;
+    vW().innerHTML=`<div class="veco"><div class="vq big">L'équilibre de la prairie · saison ${t+1}/8</div><div class="vsim">${bar(s.G[t],100,'#3fbf55','🌿')}${bar(s.L[t],80,'#c9a27a','🐰')}${bar(s.R[t],10,'#ff7a3c','🦊')}</div>
+      ${E2.mode==='avec'&&t<7?'<button class="btn b-blue" data-s="next">⏩ Saison suivante</button>':E2.mode==='avec'?'<div class="vq">Stable : les renards mangent juste assez de lapins.</div><button class="btn b-orange" data-s="sans">🚫 Enlever les renards</button>':t<7?'<button class="btn b-blue" data-s="next">⏩ Saison suivante</button>':`<div class="vq">Que s'est-il passé ?</div><div class="vopts col">${E2.qo.map((o,i)=>`<button class="vopt" data-q="${i}">${o}</button>`).join('')}</div>`}</div>`;};
+  const startSim=()=>{E2.mode='avec';E2.t=0;E2.qo=shuf(['Sans renards, les lapins se multiplient, mangent toute l\'herbe, puis beaucoup meurent de faim','Sans renards, tout le monde va mieux, pour toujours','Les lapins ont mangé les renards']);drawSim();say('Maintenant, une prairie avec de l\'herbe, des lapins et des renards. Fais avancer les saisons.',false);};
+  V.tap=e=>{
+    if(E2.ci<3){const b=e.target.closest('[data-c]');if(!b)return;const C=E2.ch[E2.ci],c=b.dataset.c;
+      if(c===C[E2.pick.length]){E2.pick.push(c);sfx.pop();if(E2.pick.length===4){E2.ok++;sfx.ding();say('Bravo ! '+C.join(' → ').replace(/[^\p{L}\s→']/gu,'').replace(/\s+/g,' ')+'. Quand ils meurent, les décomposeurs (vers de terre, champignons) recyclent tout en engrais pour les plantes.',false);E2.ci++;E2.pick=[];E2.cards=null;
+        if(E2.ci>=3){award('n_chaine');vLater(startSim,4500);}else vLater(drawChain,3500);}else drawChain();}
+      else{sfx.whine();say(E2.pick.length?'Qui mange '+E2.pick[E2.pick.length-1].split(' ').slice(1).join(' ').toLowerCase()+' ?':'Par quoi commence toute chaîne ? Ce qui donne l\'énergie.',false);}return;}
+    const s=e.target.closest('[data-s]');if(s){if(s.dataset.s==='next'){E2.t++;sfx.click();drawSim();}else{E2.mode='sans';E2.t=0;sfx.click();drawSim();say('Les renards ont disparu. Fais avancer les saisons…',false);}return;}
+    const q=e.target.closest('[data-q]');if(q){const ok=E2.qo[+q.dataset.q].startsWith('Sans renards, les lapins');if(ok){award('n_equilibre');const st=vStar('eco');sfx.fanfare();say(`Exactement !${st?' +1 étoile.':''} Chaque espèce compte : les prédateurs aussi gardent la nature en équilibre.`,false);vLater(()=>{E2.ci=0;E2.ch=shuf(CHAINS).slice(0,3);E2.pick=[];E2.cards=null;drawChain();},6000);}else{sfx.whine();say('Regarde les barres : que deviennent l\'herbe puis les lapins ?',false);}}};
+};
+/* ===== LES TUYAUX ===== */
+const PD4=[[0,-1],[1,0],[0,1],[-1,0]];/* N E S O : bits 1 2 4 8 */
+const prot=m=>((m<<1)|(m>>3))&15;
+const PIECES=[5,10,3,6,12,9];
+function pipeOut(m,inS){/* inS = côté d'entrée 0..3 ; renvoie le côté de sortie ou -1 */
+  if(!(m&(1<<inS)))return -1;if(m===15)return (inS+2)%4;const o=[0,1,2,3].filter(s=>s!==inS&&(m&(1<<s)));return o.length===1?o[0]:-1;}
+function pipeG(x,y,s,m,wet,extra=''){const c=s/2,mid=[[c,0],[s,c],[c,s],[0,c]];
+  const base=[0,1,2,3].filter(i=>m&(1<<i)).map(i=>`M${c} ${c} L${mid[i][0]} ${mid[i][1]}`).join(' ');
+  let w='';if(wet){const a=mid[wet.i],b=mid[wet.o>=0?wet.o:wet.i],len=s,d=`M${a[0]} ${a[1]} L${c} ${c}${wet.o>=0?` L${b[0]} ${b[1]}`:''}`;w=`<path d="${d}" stroke="#3a8fe0" stroke-width="${s*.2}" fill="none" stroke-linejoin="round" stroke-dasharray="${len*Math.min(1,wet.p)} ${len*2}"/>`;}
+  return `<g transform="translate(${x} ${y})" ${extra}><rect width="${s}" height="${s}" rx="10" fill="#f2e6d0" stroke="#d9c6a6" stroke-width="2"/>${m?`<path d="${base}" stroke="#7d8aa6" stroke-width="${s*.34}" fill="none"/>${m===15?'':`<circle cx="${c}" cy="${c}" r="${s*.17}" fill="#7d8aa6"/>`}<path d="${base}" stroke="#c9d2e3" stroke-width="${s*.24}" fill="none"/>${m===15?'':`<circle cx="${c}" cy="${c}" r="${s*.12}" fill="#c9d2e3"/>`}${w}${[0,1,2,3].filter(i=>m&(1<<i)).map(i=>`<rect x="${i%2?(i===1?s-6:0):c-s*.2}" y="${i%2?c-s*.2:(i===2?s-6:0)}" width="${i%2?6:s*.4}" height="${i%2?s*.4:6}" fill="#5d6c8c"/>`).join('')}`:''}</g>`;}
+function pipeFlow(G,C,R,sr,tr){/* suit l'eau depuis la gauche de (0,sr) ; renvoie {path:[{c,r,i,o}],ok,leak:{c,r,side}} */
+  let c=0,r=sr,inS=3;const path=[];const seen=new Set();
+  for(let k=0;k<C*R*2+2;k++){
+    if(c<0||r<0||c>=C||r>=R){const prev=path[path.length-1];if(prev&&prev.c===C-1&&prev.r===tr&&prev.o===1)return {path,ok:true};return {path,ok:false,leak:prev?{c:prev.c,r:prev.r,side:prev.o}:null};}
+    const m=G[r][c],o=pipeOut(m,inS);
+    if(o<0){const prev=path[path.length-1];return {path,ok:false,leak:prev?{c:prev.c,r:prev.r,side:prev.o}:{c:0,r:sr,side:3},stopAt:{c,r}};}
+    const key=c+','+r+','+inS;if(seen.has(key))return {path,ok:false};seen.add(key);
+    path.push({c,r,i:inS,o});c+=PD4[o][0];r+=PD4[o][1];inS=(o+2)%4;}
+  return {path,ok:false};}
+const TLV={n:[[3,2],[3,3],[4,3],[4,3],[5,3]],r:[[4,3],[5,3],[5,4],[6,4],[6,4,1],[7,4,1],[7,5,1],[7,5,1]]};
+VFN.tuyaux_tourne=function(){
+  const A=isA(),T2={busy:0};VIL.t=T2;const v=V_();
+  const gen=()=>{const L=TLV[A?'n':'r'],lv=Math.min(v.tl%100,L.length-1),[C,R,cross]=L[lv];Object.assign(T2,{C,R,lv,sr:Math.floor(Math.random()*R),tr:Math.floor(Math.random()*R)});
+    /* chemin au hasard (recherche en profondeur) */
+    const vis=new Set(),path=[];const dfs=(c,r)=>{vis.add(c+','+r);path.push([c,r]);if(c===C-1&&r===T2.tr)return true;
+      for(const d of shuf([0,1,2,3])){const nc=c+PD4[d][0],nr=r+PD4[d][1];if(nc<0||nr<0||nc>=C||nr>=R||vis.has(nc+','+nr))continue;if(dfs(nc,nr))return true;}path.pop();return false;};
+    dfs(0,T2.sr);const G=Array.from({length:R},()=>Array(C).fill(0));
+    path.forEach(([c,r],i)=>{const sideTo=(a,b)=>PD4.findIndex(d=>d[0]===b[0]-a[0]&&d[1]===b[1]-a[1]);const inS=i===0?3:sideTo([c,r],path[i-1]),outS=i===path.length-1?1:sideTo([c,r],path[i+1]);G[r][c]=(1<<inS)|(1<<outS);});
+    for(let r=0;r<R;r++)for(let c=0;c<C;c++)if(!G[r][c])G[r][c]=cross&&Math.random()<.15?15:PIECES[Math.floor(Math.random()*6)];
+    for(let r=0;r<R;r++)for(let c=0;c<C;c++){const k=Math.floor(Math.random()*4);for(let i=0;i<k;i++)G[r][c]=prot(G[r][c]);}
+    if(pipeFlow(G,C,R,T2.sr,T2.tr).ok)G[T2.sr][0]=prot(G[T2.sr][0]);
+    T2.G=G;T2.wet=null;T2.s=Math.min(130,Math.floor(Math.min(700/C,520/R)));draw();
+    say(T('Tourne les tuyaux pour que l\'eau arrive à la fleur ! Puis ouvre le robinet.',`Niveau ${lv+1} : tourne les tuyaux pour relier le château d'eau à la maison, puis ouvre l'eau.`));};
+  const draw=()=>{const {C,R,s,G}=T2,ox=110,oy=(560-R*s)/2+20;T2.ox=ox;T2.oy=oy;
+    let cells='';for(let r=0;r<R;r++)for(let c=0;c<C;c++){const w=T2.wet&&T2.wet[c+','+r];cells+=pipeG(ox+c*s,oy+r*s,s,G[r][c],w,`data-pc="${c},${r}" class="pcell"`);}
+    const sy=oy+T2.sr*s+s/2,ty=oy+T2.tr*s+s/2,ex=ox+C*s;
+    vW().innerHTML=`<div class="vpipe"><svg viewBox="0 0 900 600" id="tSvg"><rect width="900" height="600" fill="#e8f0ff"/>
+      <g><rect x="8" y="${sy-70}" width="80" height="60" rx="10" fill="#9ec9ff" stroke="#4a6fa8" stroke-width="4"/><path d="M48 ${sy-10} V${sy} H${ox}" stroke="#7d8aa6" stroke-width="${s*.34}" fill="none"/><path d="M48 ${sy-10} V${sy} H${ox}" stroke="#3a8fe0" stroke-width="${s*.2}" fill="none"/><text x="48" y="${sy-32}" text-anchor="middle" font-size="16" font-weight="900" fill="#2f4a78">EAU</text></g>
+      ${cells}
+      <g><path d="M${ex} ${ty} H${ex+40}" stroke="#7d8aa6" stroke-width="${s*.34}"/><text x="${ex+70}" y="${ty+24}" text-anchor="middle" font-size="${A?64:56}" id="tGoal">${A?(T2.won?'🌻':'🌱'):(T2.won?'🚿':'🏠')}</text></g>
+      <g id="tLeak"></g></svg>
+      <div class="vpipeR"><div class="vq">Niveau ${T2.lv+1}/${TLV[A?'n':'r'].length}</div><button class="btn b-blue ${A?'cnudge':''}" data-t="go" style="height:110px;font-size:30px">💧 ${T('L\'eau !','Ouvrir l\'eau')}</button>
+      ${A?'':'<div class="vq small">La pression vient de la hauteur du château d\'eau : 10 mètres d\'eau au-dessus du robinet = 1 bar. Plus il est haut, plus l\'eau sort fort.</div>'}</div></div>`;};
+  const run=()=>{const f=pipeFlow(T2.G,T2.C,T2.R,T2.sr,T2.tr);T2.busy=1;T2.wet={};let k=0,p=0;const sp=A?.04:.06;
+    SND.eau();const myWet=T2.wet;vRaf(()=>{if(!$('tSvg')||T2.wet!==myWet)return false;if(k>=f.path.length){end(f);return false;}const st=f.path[k];p+=sp;T2.wet[st.c+','+st.r]={i:st.i,o:st.o,p};
+      const g=document.querySelector(`[data-pc="${st.c},${st.r}"]`);if(g)g.outerHTML=pipeG(T2.ox+st.c*T2.s,T2.oy+st.r*T2.s,T2.s,T2.G[st.r][st.c],T2.wet[st.c+','+st.r],`data-pc="${st.c},${st.r}" class="pcell"`);
+      if(p>=1){p=0;k++;}});};
+  const end=f=>{T2.busy=0;
+    if(f.ok){T2.won=1;draw();sfx.fanfare();burst($('tGoal'),['💧','✨','🌸'],8,90);const v=V_();v.tl++;saveDB();award('t_robinet');const st=vStar('tourne');
+      const L=TLV[A?'n':'r'];if(v.tl>=L.length)award('t_maitre');
+      say(T('Bravo ! L\'eau arrive à la fleur !'+(st?' Une étoile !':''),'L\'eau arrive à la maison !'+(st?' +1 étoile.':'')),T(undefined,'Bravo !'));T2.won=0;T2.busy=1;vLater(()=>{T2.busy=0;gen();},3200);return;}
+    sfx.splash();award('t_fuite');const L2=f.leak;if(L2){const x=T2.ox+L2.c*T2.s+T2.s/2+PD4[L2.side][0]*T2.s/2,y=T2.oy+L2.r*T2.s+T2.s/2+PD4[L2.side][1]*T2.s/2;$('tLeak').innerHTML=`<text x="${x}" y="${y+20}" text-anchor="middle" font-size="60" class="vsplash">💦</text>`;}
+    say(T('Oups ! Ça fuit ! Tourne les tuyaux et réessaie.','Fuite ! L\'eau sort là où le tuyau n\'est pas raccordé. Corrige et rouvre l\'eau.'),T(undefined,'Fuite !'));vLater(()=>{if(T2.busy)return;T2.wet=null;if($('tSvg'))draw();},1800);};
+  gen();
+  V.tap=e=>{if(T2.busy)return;if(e.target.closest('[data-t="go"]'))return run();const g=e.target.closest('[data-pc]');if(!g)return;const [c,r]=g.dataset.pc.split(',').map(Number);
+    T2.G[r][c]=prot(T2.G[r][c]);T2.wet=null;tone(500,700,.06,'triangle',.12);g.outerHTML=pipeG(T2.ox+c*T2.s,T2.oy+r*T2.s,T2.s,T2.G[r][c],null,`data-pc="${c},${r}" class="pcell"`);};
+};
+/* course contre l'eau (façon Pipe Mania) */
+VFN.tuyaux_course=function(){
+  const A=isA(),K={};VIL.k=K;
+  const start=()=>{const C=A?5:7,R=A?4:5,lv=K.lv||0;Object.assign(K,{C,R,lv,G:Array.from({length:R},()=>Array(C).fill(0)),rock:new Set(),sr:Math.floor(Math.random()*R),tr:Math.floor(Math.random()*R),q:[],cd:A?30:Math.max(10,18-lv*2),flow:null,state:'build',wet:{},s:Math.floor(Math.min(620/C,500/R)),press:0,swaps:0});
+    if(!A)for(let i=0;i<Math.min(4,lv+1);i++){const c=1+Math.floor(Math.random()*(C-2)),r=Math.floor(Math.random()*R);K.rock.add(c+','+r);}
+    for(let i=0;i<5;i++)K.q.push(newPiece());draw();
+    say(T('Pose les tuyaux de l\'eau jusqu\'à la fleur ! Touche une case.',`Course : pose les tuyaux avant que l'eau arrive ! ${K.cd} secondes.`));
+    vEvery(tick,100);};
+  const newPiece=()=>A?PIECES[Math.floor(Math.random()*6)]:(Math.random()<.1?15:PIECES[Math.floor(Math.random()*6)]);
+  const draw=()=>{const {C,R,s,G}=K,ox=130,oy=(540-R*s)/2+30;K.ox=ox;K.oy=oy;let cells='';
+    for(let r=0;r<R;r++)for(let c=0;c<C;c++){const key=c+','+r;cells+=K.rock.has(key)?`<g transform="translate(${ox+c*s} ${oy+r*s})"><rect width="${s}" height="${s}" rx="10" fill="#d9c6a6"/><text x="${s/2}" y="${s*.68}" text-anchor="middle" font-size="${s*.6}">🪨</text></g>`:pipeG(ox+c*s,oy+r*s,s,G[r][c],K.wet[key],`data-kc="${key}"`);}
+    const sy=oy+K.sr*s+s/2,ty=oy+K.tr*s+s/2,ex=ox+C*s;
+    vW().innerHTML=`<div class="vpipe"><svg viewBox="0 0 960 600" id="kSvg"><rect width="960" height="600" fill="#e8f0ff"/>
+      <g><path d="M40 ${sy} H${ox}" stroke="#7d8aa6" stroke-width="${s*.34}"/><path d="M40 ${sy} H${ox}" stroke="#3a8fe0" stroke-width="${s*.2}" stroke-dasharray="${K.state==='build'?'0 999':'999 0'}"/><circle cx="40" cy="${sy}" r="28" fill="#9ec9ff" stroke="#4a6fa8" stroke-width="4"/><text x="40" y="${sy+8}" text-anchor="middle" font-size="22">💧</text></g>
+      ${cells}<g><path d="M${ex} ${ty} H${ex+40}" stroke="#7d8aa6" stroke-width="${s*.34}"/><text x="${ex+75}" y="${ty+22}" text-anchor="middle" font-size="58" id="kGoal">${A?'🌱':'🏠'}</text></g><g id="kLeak"></g></svg>
+      <div class="vpipeR"><div class="vq">À poser</div><div class="vqueue">${K.q.slice(0,4).map((m,i)=>`<svg viewBox="0 0 80 80" class="${i===0?'next':''}">${pipeG(0,0,80,m)}</svg>`).join('')}</div>
+      <div class="vtimer" id="kT">${K.state==='build'?'⏳ '+Math.ceil(K.cd):'💧'}</div>${A?'':`<div class="vpress"><i id="kP" style="height:${K.press}%"></i><span>pression</span></div><div class="vq small">Niveau ${K.lv+1}</div>`}
+      ${K.state==='build'?`<button class="btn b-blue" data-k="now">💧 Ouvrir</button>`:''}</div></div>`;};
+  const redrawCell=(c,r)=>{const g=document.querySelector(`[data-kc="${c},${r}"]`);if(g)g.outerHTML=pipeG(K.ox+c*K.s,K.oy+r*K.s,K.s,K.G[r][c],K.wet[c+','+r],`data-kc="${c},${r}"`);};
+  const tick=()=>{if(K.state==='build'){K.cd-=.1;const t=$('kT');if(t)t.textContent='⏳ '+Math.max(0,Math.ceil(K.cd));if(K.cd<=0)openWater();return;}
+    if(K.state!=='flow')return;const F=K.flow;
+    if(F.wait){const m=(F.c>=0&&F.r>=0&&F.c<K.C&&F.r<K.R)?K.G[F.r][F.c]:0;if(m&&pipeOut(m,F.in)>=0){F.wait=0;F.p=0;F.out=pipeOut(m,F.in);}else{F.wt=(F.wt||0)+.1;if(A&&m&&F.wt>1.5){const g=document.querySelector(`[data-kc="${F.c},${F.r}"]`);if(g&&!g.classList.contains('cnudge'))g.classList.add('cnudge');}if(F.wt>8){F.wt=0;say(m?'Tourne le tuyau où l\'eau attend !':'L\'eau attend : pose un tuyau devant elle !');}return;}}
+    F.p+=0.1/F.dt;K.press=Math.min(100,K.press+(A?.2:.4));const pp=$('kP');if(pp)pp.style.height=K.press+'%';
+    K.wet[F.c+','+F.r]={i:F.in,o:F.out,p:F.p};redrawCell(F.c,F.r);
+    if(F.p>=1){K.wet[F.c+','+F.r].p=1;F.n++;const nc=F.c+PD4[F.out][0],nr=F.r+PD4[F.out][1],nin=(F.out+2)%4;
+      if(nc>=K.C&&nr===K.tr&&F.out===1)return win();
+      const inside=nc>=0&&nr>=0&&nc<K.C&&nr<K.R,m=inside&&!K.rock.has(nc+','+nr)?K.G[nr][nc]:0,o=m?pipeOut(m,nin):-1;
+      if(o<0){if(!inside&&!A)return lose(F.c,F.r,F.out);if(A&&inside&&!K.rock.has(nc+','+nr)&&!K.G[nr][nc]){Object.assign(F,{c:nc,r:nr,in:nin,out:-1,p:0,wait:1});if(!F.said){F.said=1;say('L\'eau attend : vite, pose un tuyau devant elle !');}return;}
+        if(A){const c2=inside&&!K.rock.has(nc+','+nr)?{nc,nr,nin}:null;const alt=[1,2,3].some(k=>{let m=K.G[F.r][F.c];for(let i=0;i<k;i++)m=prot(m);const o=pipeOut(m,F.in);return o>=0&&o!==F.out;});
+          if(!c2&&!alt){K.wet={};K.flow=null;K.state='build';K.cd=8;draw();say('Oups, l\'eau tape le mur ! On vide les tuyaux : tourne-les, et l\'eau repartira toute seule.');return;}
+          K.state='stuck';F.c2=c2;say(F.c2?'Oh, ce tuyau ne va pas dans le bon sens : touche-le pour le tourner !':'Oh oh, l\'eau va dans le mur ! Touche le dernier tuyau pour le tourner.');return;}
+        return lose(F.c,F.r,F.out);}
+      Object.assign(F,{c:nc,r:nr,in:nin,out:o,p:0});}};
+  const openWater=()=>{if(K.state!=='build')return;K.state='flow';const m=K.G[K.sr][0],o=m?pipeOut(m,3):-1;
+    K.flow={c:0,r:K.sr,in:3,out:o,p:0,dt:A?2.5:Math.max(1,2.2-K.lv*.3),n:0};SND.eau();draw();
+    if(o<0){if(A){K.flow.wait=1;say('L\'eau attend au début : pose un tuyau qui la fait entrer !');return;}return lose(-1,K.sr,1);}};
+  const win=()=>{K.state='won';sfx.fanfare();burst($('kGoal'),['💧','✨','🎉'],10,100);award('t_course');const st=vStar('course');
+    say(T('Bravo ! L\'eau est arrivée !'+(st?' Une étoile !':''),`Gagné ! ${K.flow.n} tuyaux traversés.${st?' +1 étoile.':''}`),T(undefined,'Gagné !'));K.lv=(K.lv||0)+1;vLater(()=>{vStop();bind();start();},3500);};
+  const lose=(c,r,side)=>{K.state='lost';sfx.splash();award('t_fuite');const x=K.ox+c*K.s+K.s/2+PD4[side][0]*K.s/2,y=K.oy+r*K.s+K.s/2+PD4[side][1]*K.s/2;const lk=$('kLeak');if(lk)lk.innerHTML=`<text x="${x}" y="${y+20}" text-anchor="middle" font-size="70" class="vsplash">💦</text>`;
+    say(T('Oups, l\'eau s\'échappe ! On recommence !','Fuite ! L\'eau sous pression jaillit par le tuyau ouvert. On recommence !'),T(undefined,'Fuite !'));vLater(()=>{vStop();bind();start();},3000);};
+  const bind=()=>{V.tap=e=>{
+    if(e.target.closest('[data-k="now"]')){K.cd=0;return;}
+    const g=e.target.closest('[data-kc]');if(!g)return;const [c,r]=g.dataset.kc.split(',').map(Number),key=c+','+r;
+    if(A&&K.state==='stuck'){const F=K.flow;
+      if(c===F.c&&r===F.r){let m=K.G[r][c];for(let i=0;i<4;i++){m=prot(m);const o=pipeOut(m,F.in);if(o>=0&&o!==F.out){K.G[r][c]=m;F.out=o;F.p=0;K.wet[key]={i:F.in,o,p:0};redrawCell(c,r);K.state='flow';tone(500,700,.06,'triangle',.12);return;}}return;}
+      if(F.c2&&c===F.c2.nc&&r===F.c2.nr){K.G[r][c]=prot(K.G[r][c]);tone(500,700,.06,'triangle',.12);redrawCell(c,r);const o=pipeOut(K.G[r][c],F.c2.nin);if(o>=0){Object.assign(F,{c:c,r:r,in:F.c2.nin,out:o,p:0});K.state='flow';}return;}
+      return;}
+    if(K.wet[key])return;
+    if(A&&K.G[r][c]){K.G[r][c]=prot(K.G[r][c]);tone(500,700,.06,'triangle',.12);redrawCell(c,r);return;}
+    if(K.state!=='build'&&K.state!=='flow')return;
+    if(K.G[r][c])K.swaps++;K.G[r][c]=K.q.shift();K.q.push(newPiece());sfx.stick();
+    if(K.flow&&K.flow.wait&&K.flow.c===c&&K.flow.r===r){const o=pipeOut(K.G[r][c],K.flow.in);if(o>=0){K.flow.out=o;}}
+    draw();};};
+  bind();start();
+};
 
 /* ---------- GARAGE : l'atelier de mécanique (la voiture reste au garage) ---------- */
 const PAINTS=['#ff5a5a','#ff9a3c','#ffd23a','#3fbf55','#4c8dff','#a77bf3','#ff7fb0','#2b2350','#ffffff'];
