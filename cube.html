@@ -75,6 +75,8 @@ button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outlin
 
 /* Level path */
 .path { display: flex; flex-direction: column; gap: 10px; }
+.pathh { margin: 14px 4px 0; font-family: var(--f-display); font-size: 1.15rem; }
+.pathh small { display: block; font-family: inherit; font-size: .85rem; font-weight: 600; color: var(--muted); }
 .node {
   display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 14px; text-align: left;
   background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px; box-shadow: var(--shadow);
@@ -124,7 +126,7 @@ ul.tips { margin: 0; padding-left: 20px; display: flex; flex-direction: column; 
 }
 .chip .m { font-family: var(--f-mono); font-weight: 700; font-size: 1.3rem; line-height: 1.1; }
 .chip .n { font-size: .68rem; color: var(--muted); font-weight: 700; text-align: center; line-height: 1.15; }
-.chip.blank > * { display: none; }
+.chip.blank > * { display: none !important; }
 .chip.given { border-style: dotted; opacity: .75; }
 .chip.blank, .chip.blank.wd { width: 64px; min-width: 64px; height: 58px; padding: 0; }
 .chip.blank { border-style: dashed; }
@@ -261,6 +263,7 @@ button.chip.now { border-color: var(--accent); background: color-mix(in srgb, va
 .mcard .mc { font-family: var(--f-display); font-weight: 700; font-size: 1.5rem; line-height: 1.15; text-wrap: balance; }
 .mcard .mc .sw { display: inline-block; width: 26px; height: 26px; border-radius: 7px; border: 3px solid #14161D; vertical-align: -5px; margin-right: 6px; }
 .mcard .md { font-weight: 800; color: var(--muted); }
+.mcard .x2n { display: inline-block; background: var(--ink); color: var(--bg); border-radius: 10px; padding: 0 8px; font-size: 1.2rem; vertical-align: 2px; }
 .twice { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-weight: 800; background: var(--yellow); color: #14161D; border-radius: 999px; padding: 3px 12px; }
 .twice i { width: 12px; height: 12px; border-radius: 50%; border: 2px solid #14161D; display: block; }
 .twice i.on { background: #14161D; }
@@ -301,6 +304,9 @@ button.chip.now { border-color: var(--accent); background: color-mix(in srgb, va
 .notasel { display: flex; flex-wrap: wrap; gap: 6px; }
 .notasel button { border: 1px solid var(--line); background: var(--surface); border-radius: 999px; padding: 6px 12px; font-weight: 800; font-size: .9rem; }
 .notasel button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+/* cibles tactiles d'au moins 44 px (doigts d'enfants) */
+.back, .home, .seg button, .tempo button, .notasel button { min-height: 44px; min-width: 44px; }
+.home { display: inline-flex; align-items: center; }
 .mnemo { width: 100%; border-collapse: collapse; }
 .mnemo td { padding: 6px 4px; border-bottom: 1px solid var(--line); vertical-align: middle; }
 .mnemo td:first-child { font-family: var(--f-mono); font-weight: 700; font-size: 1.3rem; width: 52px; }
@@ -330,7 +336,7 @@ const MOVES = {
   "B": "Derrière, le haut va à gauche", "B'": "Derrière, le haut va à droite", "B2": "Derrière 2 fois"
 };
 const PAD = ["R","R'","L","L'","U","U'","U2","D","D'","F","F'"];
-const COLORS = ["--white","--yellow","--red","--orange","--green","--blue","--red","--orange","--green","--yellow"];
+const COLORS = ["--white","--yellow","--red","--orange","--green","--blue","--red","--orange","--green","--yellow","--white","--yellow","--yellow","--orange","--blue","--red"];
 
 const LEVELS = [
   { name: "Connaître son cube", sub: "Les pièces et les mouvements",
@@ -427,6 +433,75 @@ const LEVELS = [
       { q: "Une arête blanche est en bas mais à l'envers. Tu…", a: ["la laisses", "la sors en haut puis la replaces", "démontes le cube"], r: 1 }
     ],
     challenge: "Mélange, puis fais la croix blanche directement en bas, sans marguerite, en moins d'une minute.", scramble: true, goal: 60000 }
+  ,
+  { name: "Coins express", sub: "Un coin blanc rangé en une seule formule", after: 8, expert: true,
+    tips: ["Blanc en bas. Mets le coin en haut, juste au-dessus de sa place (devant à droite), comme au niveau 3.", "Regarde où est son blanc : à droite, devant toi, ou sur le dessus.", "Blanc à droite : R U R'. Blanc devant : F' U' F. Blanc sur le dessus : R U2 R' U', puis R U R'.", "Un coin coincé en bas, mal placé ou mal tourné ? R U R' le remonte, puis tu le ranges."],
+    formulas: [
+      { name: "Blanc à droite", seq: ["R","U","R'"] },
+      { name: "Blanc devant", seq: ["F'","U'","F"] },
+      { name: "Blanc sur le dessus", seq: ["R","U2","R'","U'","R","U","R'"], chunks: [[4, "retourne le coin"], [3, "blanc à droite"]] }
+    ],
+    quiz: [
+      { q: "Le blanc du coin regarde à droite. Tu fais…", a: ["R U R'", "F' U' F", "R' D' R D"], r: 0 },
+      { q: "Le blanc du coin te regarde (devant). Tu fais…", a: ["R U R'", "F' U' F", "U R U' L'"], r: 1 },
+      { q: "Le blanc est sur le dessus du coin. La formule commence par…", a: ["R U2 R' U'", "F' U' F", "F R U"], r: 0 },
+      { q: "Pourquoi c'est plus rapide que la petite danse ?", a: ["Une seule formule, sans la répéter jusqu'à 5 fois", "Le cube tourne tout seul", "On ne regarde plus le cube"], r: 0 }
+    ],
+    challenge: "Mélange, fais la croix blanche, puis range les 4 coins blancs avec les formules express (sans répéter la petite danse).", scramble: true },
+  { name: "Croix jaune express", sub: "Le L en une seule formule", expert: true,
+    tips: ["Ligne à l'horizontale : F R U R' U' F' (ta formule du niveau 5).", "L : mets-le à 9 h et midi (derrière et à gauche), puis F U R U' R' F'. La croix est faite d'un coup !", "Point : fais la formule de la ligne, un L apparaît. Puis la formule du L.", "Pour t'en souvenir : la ligne a la petite danse normale (R U R' U'), le L a la danse qui commence par le haut (U R U' R')."],
+    formulas: [
+      { name: "La ligne", seq: ["F","R","U","R'","U'","F'"], chunks: [[1, "ouvre"], [4, "petite danse"], [1, "ferme"]] },
+      { name: "Le L", seq: ["F","U","R","U'","R'","F'"], chunks: [[1, "ouvre"], [4, "la danse qui commence par le haut"], [1, "ferme"]] }
+    ],
+    quiz: [
+      { q: "Tu vois un L jaune. Où le places-tu ?", a: ["Derrière et à gauche (9 h et midi)", "Devant et à droite", "N'importe où"], r: 0 },
+      { q: "Le L est bien placé. Tu fais…", a: ["F U R U' R' F'", "F R U R' U' F'", "R U R' U'"], r: 0 },
+      { q: "Tu vois juste un point jaune. Tu fais d'abord…", a: ["la formule de la ligne", "la formule du L", "le grand final"], r: 0 },
+      { q: "Qu'est-ce qui change entre la ligne et le L ?", a: ["La danse du milieu : elle commence par R pour la ligne, par U pour le L", "Rien du tout", "Le L se fait avec le bas"], r: 0 }
+    ],
+    challenge: "Mélange, fais les deux premiers étages, puis la croix jaune en une ou deux formules seulement.", scramble: true },
+  { name: "Le poisson", sub: "Toute la face jaune avec une seule formule", expert: true,
+    tips: ["La formule du poisson : R U R' U R U2 R'. Tu la connais presque : c'est celle des arêtes jaunes (niveau 6) sans le dernier U !", "1 coin jaune sur le dessus (on dirait un poisson) : mets-le devant à gauche, puis la formule.", "0 coin jaune sur le dessus : tourne le haut pour qu'un jaune regarde à gauche, sur le coin devant à gauche. Puis la formule.", "2 coins jaunes sur le dessus : tourne le haut pour qu'un jaune te regarde, sur le coin devant à gauche. Puis la formule.", "Recommence jusqu'à ce que tout le dessus soit jaune (3 fois au maximum). Les côtés sont mélangés : c'est normal, la suite les range."],
+    formulas: [{ name: "Le poisson", seq: ["R","U","R'","U","R","U2","R'"], chunks: [[4, "monte, haut, descend, haut"], [3, "monte, haut 2 fois, descend"]] }],
+    quiz: [
+      { q: "Un seul coin a son jaune sur le dessus. Où le mets-tu ?", a: ["Devant à gauche", "Derrière à droite", "Devant à droite"], r: 0 },
+      { q: "Aucun coin n'a son jaune sur le dessus. Tu tournes le haut pour que…", a: ["un jaune regarde à gauche, sur le coin devant à gauche", "un jaune soit en bas", "le cube soit rangé"], r: 0 },
+      { q: "Deux coins ont leur jaune sur le dessus. Tu tournes le haut pour que…", a: ["un jaune te regarde, sur le coin devant à gauche", "les deux soient derrière", "rien, tu fais le grand final"], r: 0 },
+      { q: "La formule du poisson ressemble à celle…", a: ["des arêtes jaunes, sans le dernier U", "de la croix jaune", "du grand final"], r: 0 }
+    ],
+    challenge: "Mélange, va jusqu'à la croix jaune, puis fais toute la face jaune avec le poisson (sans R' D' R D).", scramble: true },
+  { name: "Les phares", sub: "Les coins du haut en une formule : la T", expert: true,
+    tips: ["Toute la face jaune est faite. Regarde les côtés du haut : deux coins de la même couleur sur un même côté, ce sont des « phares ».", "Des phares sur un côté : tourne le haut pour les mettre à gauche, puis la formule T.", "Pas de phares du tout : fais la formule T une fois, des phares apparaissent. Puis recommence.", "Des phares sur les 4 côtés : les coins sont rangés. Tourne le haut pour les aligner avec les centres."],
+    formulas: [{ name: "La formule T", seq: ["R","U","R'","U'","R'","F","R2","U'","R'","U'","R","U","R'","F'"], chunks: [[4, "petite danse"], [4, "le pont"], [4, "la danse retournée"], [2, "on ferme"]] }],
+    quiz: [
+      { q: "Des « phares », c'est…", a: ["deux coins de la même couleur sur un même côté", "deux arêtes jaunes", "les deux centres blancs"], r: 0 },
+      { q: "Où mets-tu les phares avant la formule T ?", a: ["À gauche", "À droite", "Devant toi"], r: 0 },
+      { q: "Il n'y a pas de phares. Tu…", a: ["fais la formule T une fois, puis tu regardes encore", "recommences tout le cube", "fais le grand final"], r: 0 }
+    ],
+    challenge: "Mélange, va jusqu'à la face jaune, puis range les coins du haut avec la formule T.", scramble: true },
+  { name: "Les arêtes express", sub: "Dernière étape : 3 arêtes qui tournent", expert: true,
+    tips: ["Tourne le haut pour que les coins soient alignés avec les centres.", "Un côté est complet ? Tourne TOUT le cube (jaune toujours en haut) pour le mettre derrière toi.", "Regarde l'arête de devant : sa couleur est celle du centre de droite ? « Arêtes vers la droite ». Celle du centre de gauche ? « Arêtes vers la gauche ».", "Aucun côté complet : fais « Arêtes vers la droite » une fois, un côté complet apparaît. Puis recommence."],
+    formulas: [
+      { name: "Arêtes vers la droite", seq: ["R","U'","R","U","R","U","R","U'","R'","U'","R2"], chunks: [[2, "le départ"], [4, "deux fois monte-haut"], [2, "comme le départ"], [3, "l'arrivée"]] },
+      { name: "Arêtes vers la gauche", seq: ["R2","U","R","U","R'","U'","R'","U'","R'","U","R'"], chunks: [[3, "le départ"], [4, "la descente"], [4, "l'arrivée"]] }
+    ],
+    quiz: [
+      { q: "Avant de ranger les arêtes, le côté complet va…", a: ["derrière toi", "devant toi", "en bas"], r: 0 },
+      { q: "Pour le mettre derrière, tu tournes…", a: ["tout le cube, jaune toujours en haut", "seulement le haut", "seulement le bas"], r: 0 },
+      { q: "L'arête de devant a la couleur du centre de droite. Tu fais…", a: ["Arêtes vers la droite", "Arêtes vers la gauche", "La formule T"], r: 0 },
+      { q: "Aucun côté n'est complet. Tu…", a: ["fais « Arêtes vers la droite » une fois, puis tu regardes", "recommences tout le cube", "tournes le bas"], r: 0 }
+    ],
+    challenge: "Mélange et résous le cube en entier avec la méthode express (niveaux 10 à 14).", scramble: true },
+  { name: "Le défi des 2 minutes", sub: "Tout le cube, méthode express", expert: true,
+    tips: ["L'ordre express : croix blanche, coins express, 2e couronne, croix jaune express, poisson, phares, arêtes express.", "Pendant que tu tournes, cherche déjà des yeux la pièce suivante : c'est le secret des rapides.", "Le mode chrono et son bouton « Étape finie » te montrent où tu perds du temps."],
+    formulas: [],
+    quiz: [
+      { q: "Dans quel ordre ?", a: ["Croix, coins, couronne, croix jaune, poisson, phares, arêtes", "Poisson, croix, phares, coins", "Phares, croix jaune, couronne, coins"], r: 0 },
+      { q: "Le secret pour aller vite ?", a: ["Chercher la pièce suivante pendant que tu tournes", "Tourner au hasard très vite", "Fermer les yeux"], r: 0 },
+      { q: "Une étape te prend beaucoup de temps. Tu…", a: ["révises son niveau", "abandonnes", "sautes l'étape"], r: 0 }
+    ],
+    challenge: "Mélange et résous le cube en entier en moins de 2 minutes.", scramble: true, goal: 120000 }
 ];
 
 const FAM = window.FAM || { id: "", a: "Nana", r: "Raf", rf: "Rafael", ages: 1 };
@@ -457,7 +532,7 @@ function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e
 
 const drillDone = (i, f) => (S.levels[i].drills[f.name] || 0) >= 3;
 function levelDone(i) { const L = S.levels[i]; return L.quiz && L.streak >= 3 && LEVELS[i].formulas.every(f => drillDone(i, f)); }
-function unlocked(i) { return S.unlockAll || i === 0 || levelDone(i - 1); }
+function unlocked(i) { return S.unlockAll || i === 0 || levelDone(LEVELS[i].after != null ? LEVELS[i].after : i - 1); }
 function doneCount() { return LEVELS.filter((_, i) => levelDone(i)).length; }
 
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
@@ -631,7 +706,14 @@ const NLV = [
   { t: "Presque trois", c: "--red", need: 6, k: "fix", n: 3, stages: [[["R", "U"], 4, "watch", true, "pair"], [["R", "U"], 4, "watch", true], [["R", "U"], 4, "watch"]] },
   { t: "Trois tours", c: "--yellow", need: 4, k: "fix", n: 3, stages: [[["R", "U", "F"], 4, "watch", true], [["R", "U", "F"], 6, "watch"]] },
   { t: "La petite danse", c: "--red", need: 1, k: "dance", dances: 1 },
-  { t: "Le tour de magie", c: "--orange", need: 6, k: "dance", dances: 6 }
+  { t: "Le tour de magie", c: "--orange", need: 6, k: "dance", dances: 6 },
+  { t: "Les rayures", c: "--green", need: 2, k: "dance", dances: 2, seq: ["R2", "L2"], passes: ["On fait des rayures", "On répare"],
+    intro: "Prends ton cube tout neuf : jaune en haut, vert devant toi. On va faire des rayures ! Chaque côté tourne deux fois.",
+    mid: "Des rayures ! Maintenant, refais la même chose pour réparer ton cube.", win: "Ton cube est réparé ! Bravo " },
+  { t: "Quatre tours", c: "--blue", need: 4, k: "fix", n: 4, stages: [[["R", "U"], 4, "watch", true], [["R", "U", "F"], 6, "watch", true]] },
+  { t: "Le damier", c: "--yellow", need: 2, k: "dance", dances: 2, seq: ["R2", "L2", "U2", "D2", "F2", "B2"], passes: ["On fait un damier", "On répare"],
+    intro: "Cube tout neuf, jaune en haut, vert devant toi. On va dessiner un damier, comme un jeu de dames ! Six côtés, chacun deux fois.",
+    mid: "Un damier ! Refais les six mêmes mouvements pour réparer ton cube.", win: "Magie, ton cube est réparé ! Bravo " }
 ];
 const NCOL = { jaune: "#FFE234", blanc: "#FFFFFF", vert: "#189A55", bleu: "#2259E0", orange: "#FF5F00", rouge: "#E0363A" };
 const DANCE = ["R", "U", "R'", "U'"];
@@ -646,6 +728,7 @@ let NS = (() => {
     if (o.length === 5) done = [o[0], o[1], o[2], f, f, f, o[3], f, f, f, o[4], o[4]];
     else if (o.length === 9) done = [o[0], o[1], o[2], o[3], f, f, o[4], o[5], o[6], o[7], o[8], o[8]];
     if (done.length === 12) done = [...done.slice(0, 9), done[9], ...done.slice(9)];
+    if (done.length >= 13 && done.length < NLV.length) done = done.concat(NLV.slice(done.length).map(() => false));
     if (done.length !== NLV.length) return blankN();
     return { done, unlockAll: !!d.unlockAll, rev: d.rev || null };
   } catch (e) { return blankN(); }
@@ -693,7 +776,7 @@ function renderNanaMap() {
 }
 function moveCard(m, line2) {
   const i = mInfo(m);
-  return `<div class="mcard" style="border-color:${i.hex}">${faceIcon(m)}<div><div class="mc"><span class="sw" style="background:${i.hex}"></span>${esc(art(i.col))}</div><div class="md">${esc(i.dir)}</div>${line2 ? `<div class="md">${line2}</div>` : ""}</div></div>`;
+  return `<div class="mcard" style="border-color:${i.hex}">${faceIcon(m)}<div><div class="mc"><span class="sw" style="background:${i.hex}"></span>${esc(art(i.col))}${m.endsWith("2") ? ' <b class="x2n">×2</b>' : ""}</div><div class="md">${esc(i.dir)}</div>${line2 ? `<div class="md">${line2}</div>` : ""}</div></div>`;
 }
 function pileHTML() {
   // ce qui s'est passé, dans l'ordre ; on défait en partant du dernier
@@ -738,11 +821,11 @@ function renderNana() {
       : `<button class="btn good bigbtn" data-nreal="fixed">✔ Mon cube est réparé</button>`;
     if (NG.busyReal) opts = opts.replace(/<button /g, "<button disabled ");
   } else {
-    const total = L.dances, shown = NG.dstep > 0 ? DANCE[NG.dstep - 1] : null;
-    extra = `<div class="count">Danse ${Math.min(NG.dances + 1, total)} / ${total}</div>
-      <div class="dots">${DANCE.map((_, k) => `<i class="${k < NG.dstep ? "on" : ""}"></i>`).join("")}</div>
-      ${shown ? moveCard(shown, "À toi, fais pareil !") : moveCard(DANCE[0], "Le premier mouvement")}`;
-    opts = `<button class="btn bigbtn" data-ndance="1" ${NG.dancing ? "disabled" : ""}>${NG.dstep === 0 ? (NG.dances ? "▶ Danse suivante" : "▶ Montre-moi") : "▶ Mouvement suivant"}</button>
+    const total = L.dances, seq = L.seq || DANCE, shown = NG.dstep > 0 ? seq[NG.dstep - 1] : null;
+    extra = `<div class="count" ${L.passes ? 'style="font-size:1.8rem"' : ""}>${L.passes ? esc(L.passes[Math.min(NG.dances, total - 1)]) : `Danse ${Math.min(NG.dances + 1, total)} / ${total}`}</div>
+      <div class="dots">${seq.map((_, k) => `<i class="${k < NG.dstep ? "on" : ""}"></i>`).join("")}</div>
+      ${shown ? moveCard(shown, "À toi, fais pareil !") : moveCard(seq[0], "Le premier mouvement")}`;
+    opts = `<button class="btn bigbtn" data-ndance="1" ${NG.dancing ? "disabled" : ""}>${NG.dstep === 0 ? (NG.dances ? (L.passes ? "▶ On répare" : "▶ Danse suivante") : "▶ Montre-moi") : "▶ Mouvement suivant"}</button>
       ${shown ? `<button class="btn ghost bigbtn" data-nagain="1" ${NG.dancing ? "disabled" : ""}>🔁 Revoir</button>` : ""}`;
   }
   return `${top}<p class="nprompt">${esc(NG.prompt)}</p>${dots}${extra}${cube ? `<section class="card"><div class="vslot"></div></section>` : ""}${opts}`;
@@ -802,7 +885,7 @@ async function nNext() {
       await nWatch(g, r);
     } else {
       RC.apply(S.seq);
-      NG.prompt = src.same ? "Le même côté a tourné deux fois. Retrouve lequel !" : src.n === 1 ? "Quelle couleur a bougé ? Répare-le !" : `${src.n === 2 ? "Deux" : "Trois"} tours en cachette. Mène l'enquête !`;
+      NG.prompt = src.same ? "Le même côté a tourné deux fois. Retrouve lequel !" : src.n === 1 ? "Quelle couleur a bougé ? Répare-le !" : `${["", "", "Deux", "Trois", "Quatre"][src.n]} tours en cachette. Mène l'enquête !`;
       render(); say(NG.prompt);
     }
   } else if (L.k === "real") {
@@ -812,7 +895,7 @@ async function nNext() {
     else { NG.prompt = "Demande à papa ou maman de tourner un côté de ton cube. Puis répare-le !"; render(); say(NG.prompt); }
   } else {
     NG.dances = 0; NG.dstep = 0; NG.dancing = false;
-    NG.prompt = L.dances === 1 ? "Prends ton cube tout neuf : jaune en haut, vert devant toi. On apprend la petite danse, un mouvement à la fois." : "Six petites danses de suite, et ton cube redevient tout neuf. C'est magique !";
+    NG.prompt = L.intro || (L.dances === 1 ? "Prends ton cube tout neuf : jaune en haut, vert devant toi. On apprend la petite danse, un mouvement à la fois." : "Six petites danses de suite, et ton cube redevient tout neuf. C'est magique !");
     render(); say(NG.prompt);
   }
 }
@@ -909,9 +992,10 @@ async function nDance(again) {
   const L = NL();
   NG.dancing = true;
   let m;
-  if (again) { m = DANCE[NG.dstep - 1]; RC.apply([inv(m)]); }
-  else { m = DANCE[NG.dstep]; NG.dstep++; }
-  NG.prompt = again ? "Regarde encore." : `Mouvement ${NG.dstep} sur 4.`;
+  const seq = L.seq || DANCE;
+  if (again) { m = seq[NG.dstep - 1]; RC.apply([sinv(m)]); }
+  else { m = seq[NG.dstep]; NG.dstep++; }
+  NG.prompt = again ? "Regarde encore." : `Mouvement ${NG.dstep} sur ${seq.length}.`;
   render(); sayMove(m);
   RC.setQuiet(true); RC.setSpeed(2600); RC.setGuide(1400, true);
   const g = NG;
@@ -919,13 +1003,13 @@ async function nDance(again) {
   await RC.play([m]);
   if (NG !== g) return;
   NG.dancing = false;
-  if (NG.dstep >= 4) {
+  if (NG.dstep >= seq.length) {
     NG.dances++; NG.dstep = 0; NG.score = NG.dances;
     if (NG.dances >= L.dances) {
       NS.done[NG.level] = true; nsave(); NG.win = true; render();
-      say(L.dances === 1 ? "Bravo " + FAM.a + " ! Tu connais la petite danse !" : "Magie ! Ton cube est redevenu tout neuf. Bravo " + FAM.a + " !"); return;
+      say(L.win ? L.win + FAM.a + " !" : L.dances === 1 ? "Bravo " + FAM.a + " ! Tu connais la petite danse !" : "Magie ! Ton cube est redevenu tout neuf. Bravo " + FAM.a + " !"); return;
     }
-    NG.prompt = `Une danse de finie ! Plus que ${L.dances - NG.dances}.`; render(); say(NG.prompt); return;
+    NG.prompt = L.mid || `Une danse de finie ! Plus que ${L.dances - NG.dances}.`; render(); say(NG.prompt); return;
   }
   NG.prompt = "À toi, fais pareil sur ton cube !"; render();
 }
@@ -997,7 +1081,7 @@ const MDESC = {
   F: { f: "F", where: "devant toi", d: "comme les aiguilles d'une montre", di: "à l'envers des aiguilles d'une montre" },
   B: { f: "B", where: "derrière", d: "le haut part vers la gauche", di: "le haut part vers la droite" }
 };
-const mInfo = m => { const D = MDESC[m[0]]; return { col: FNAME[D.f], hex: FHEX[D.f], where: D.where, dir: m.endsWith("'") ? D.di : D.d }; };
+const mInfo = m => { const D = MDESC[m[0]]; return { col: FNAME[D.f], hex: FHEX[D.f], where: D.where, dir: m.endsWith("2") ? "deux fois" : m.endsWith("'") ? D.di : D.d }; };
 function faceIcon(m) {
   const hex = FHEX[m[0]], ink = "#14161D", base = m[0];
   const col = base === "R" ? 2 : base === "L" ? 0 : -1, row = base === "U" ? 0 : base === "D" ? 2 : -1;
@@ -1109,12 +1193,12 @@ function chunked(f, cell, mode = "labels") {
 }
 const TEMPOS = [["lent", "🐢 Lent", 1600], ["normal", "🚶 Normal", 900], ["rapide", "🐇 Rapide", 450]];
 let RG = null; // reconnaissance
-const recogFormulas = i => { const seen = new Set(), out = []; LEVELS.slice(3, i + 1).forEach(L => L.formulas.forEach(f => { if (!seen.has(f.name)) { seen.add(f.name); out.push(f); } })); return out; };
+const recogFormulas = i => { const seen = new Set(), out = []; LEVELS.slice(3, i + 1).forEach((L, j) => { if (LEVELS[i].expert || !L.expert) L.formulas.forEach(f => { const k = f.seq.join(" "); if (!seen.has(k)) { seen.add(k); out.push(f); } }); }); return out; };
 const invSeq = seq => seq.slice().reverse().map(m => m.endsWith("2") ? m : inv(m));
 function recogNext() {
   const pool = recogFormulas(RG.level), mine = LEVELS[RG.level].formulas;
-  const ans = rand(Math.random() < .6 ? mine : pool);
-  const opts = shuffle([ans, ...shuffle(pool.filter(f => f !== ans)).slice(0, 3)]);
+  const ans = rand(Math.random() < .6 ? mine : pool), key = ans.seq.join(" ");
+  const opts = shuffle([ans, ...shuffle(pool.filter(f => f.seq.join(" ") !== key)).slice(0, 3)]);
   RG.ans = ans; RG.opts = opts; RG.picked = null;
   RC.reset(); RC.setQuiet(false); RC.setSpeed(900); RC.setGuide(null, false); RC.apply(invSeq(ans.seq));
 }
@@ -1430,7 +1514,7 @@ function renderMap() {
     return `<button class="node" data-go="${i}" ${open ? "" : "disabled"} style="--c: var(${c})">
       <span class="num ${light ? "light" : ""}" style="${c === "--white" ? "border:2px solid var(--line)" : ""}">${i}</span>
       <span><span class="name">${esc(L.name)}</span><br><span class="sub">${esc(L.sub)}</span></span>${pill}</button>`;
-  }).join("");
+  }).map((h, i) => (i === 9 ? `<h3 class="pathh">Bonus</h3>` : i === 10 ? `<h3 class="pathh">La méthode express <small>pour aller plus vite, après le niveau 8</small></h3>` : "") + h).join("");
   return `
   <button class="home" data-go="who">← Qui joue ?</button>
   <header class="hero">
@@ -1478,7 +1562,7 @@ function renderLevel(i) {
   <div class="top"><button class="back" data-go="map">← Carte</button><span class="label">Niveau ${i}</span></div>
   <header class="hero"><h2>${esc(L.name)}</h2><p>${esc(L.sub)}</p></header>
   <div class="steps">${stepsHtml}</div>
-  ${levelDone(i) ? `<p class="celebrate">Niveau gagné ! ${i === 8 ? "Le mode chrono et le niveau bonus sont ouverts." : i < LEVELS.length - 1 ? "Le niveau " + (i + 1) + " est ouvert." : "Tu maîtrises la croix directe !"}</p>` : ""}
+  ${levelDone(i) ? `<p class="celebrate">Niveau gagné ! ${i === 8 ? "Le mode chrono, le niveau bonus et la méthode express sont ouverts." : i === 9 ? "Tu maîtrises la croix directe !" : i < LEVELS.length - 1 ? "Le niveau " + (i + 1) + " est ouvert." : "Moins de 2 minutes : tu es un vrai speedcubeur !"}</p>` : ""}
   ${timer ? `<section class="card defi"><strong>Mode défi : le tuto est caché.</strong><p style="color:var(--muted);margin:0">Arrête le chrono pour le revoir.</p></section>` : `
   <section class="card"><span class="label">Rappel</span><ul class="tips">${L.tips.map(t => `<li>${esc(t)}</li>`).join("")}</ul></section>
   ${i === 0 ? lettersCard() : ""}
@@ -1517,8 +1601,9 @@ function renderQuiz() {
       ${ok ? "" : "<p>Relis le rappel, puis réessaie. Il faut tout juste.</p>"}
       <div class="row"><button class="btn" data-go="${quiz.level}">Retour au niveau</button>${ok ? "" : `<button class="btn ghost" data-quiz="1">Réessayer</button>`}</div></section>`;
   }
-  const opts = q.a.map((a, k) => {
-    let cls = ""; if (quiz.picked != null) { if (k === q.r) cls = "right"; else if (k === quiz.picked) cls = "wrong"; }
+  const order = (quiz.perm && quiz.perm[quiz.idx]) || q.a.map((_, k) => k); // réponses mélangées : la bonne n'est pas toujours au même endroit
+  const opts = order.map(k => {
+    const a = q.a[k]; let cls = ""; if (quiz.picked != null) { if (k === q.r) cls = "right"; else if (k === quiz.picked) cls = "wrong"; }
     return `<button class="opt ${cls}" data-pick="${k}" ${quiz.picked != null ? "disabled" : ""}>${esc(a)}</button>`;
   }).join("");
   return `<div class="top"><button class="back" data-go="${quiz.level}">← Niveau ${quiz.level}</button><span class="qcount">Question ${quiz.idx + 1} / ${L.quiz.length}</span></div>
@@ -1527,13 +1612,14 @@ function renderQuiz() {
     <button class="btn" data-qnext="1">Suivant</button>` : ""}</section>`;
 }
 
+const padFor = f => PAD.concat([...new Set(f.seq)].filter(m => !PAD.includes(m)));
 function renderDrill() {
   const f = LEVELS[drill.level].formulas[drill.f], cnt = S.levels[drill.level].drills[f.name] || 0;
   const help = drill.rev ? 2 : Math.min(cnt, 2); // 0 = beaucoup d'aide, 2 = sans aide
   const mode = help === 0 ? "labels" : help === 1 ? "nolabels" : "flat";
   const slots = chunked(f, (m, k) => k < drill.pos ? chip(m, k < (drill.given || 0) ? "filled given" : "filled") : chip(m, "blank" + (k === drill.pos ? " next" : "")), mode);
   const helpTxt = drill.rev ? "Sans aide : c'est une révision." : help === 0 ? (f.chunks ? "Étoile 1 : les noms des morceaux t'aident." : "Étoile 1 : le premier mouvement est donné.") : help === 1 ? (f.chunks ? "Étoile 2 : les morceaux sont là, sans leurs noms." : "Étoile 2 : plus de mouvement donné.") : "Étoile 3 : sans aide, comme sur ton vrai cube.";
-  const keys = PAD.map(m => `<button class="${keyCls()}" data-key="${m}">${mvInner(m)}</button>`).join("");
+  const keys = padFor(f).map(m => `<button class="${keyCls()}" data-key="${m}">${mvInner(m)}</button>`).join("");
   const finished = drill.pos >= f.seq.length;
   return `<div class="top"><button class="back" data-go="${drill.rev ? "map" : drill.level}">← ${drill.rev ? "Carte" : "Niveau " + drill.level}</button>
     <div class="stars">${[0, 1, 2].map(s => `<i class="${s < cnt ? "on" : ""}"></i>`).join("")}</div></div>
@@ -1553,7 +1639,7 @@ function splitsHTML() {
   const d = sp.map((t, k) => t - (k ? sp[k - 1] : 0)), slow = d.indexOf(Math.max(...d));
   return `<section class="card"><span class="label">Dernier essai, étape par étape</span>
     <table class="splits">${d.map((t, k) => `<tr class="${k === slow ? "slow" : ""}"><td>${names[k]}</td><td>${fmt(t)}</td></tr>`).join("")}</table>
-    <p>Ton étape la plus lente : <strong>${names[slow]}</strong>. Pour gagner du temps, révise le niveau ${lvl[slow]}${slow === 3 ? " à 8" : ""}${slow === 0 ? " ou le niveau bonus « Croix directe »" : ""}.</p></section>`;
+    <p>Ton étape la plus lente : <strong>${names[slow]}</strong>. Pour gagner du temps, révise le niveau ${lvl[slow]}${slow === 3 ? " à 8, ou la méthode express (niveaux 11 à 14)" : ""}${slow === 0 ? " ou le niveau bonus « Croix directe »" : ""}${slow === 1 ? ", ou les coins express (niveau 10)" : ""}.</p></section>`;
 }
 function renderChrono() {
   const best = S.solves.length ? Math.min(...S.solves) : null;
@@ -1699,7 +1785,7 @@ document.addEventListener("click", e => {
   if (d.speed) { RC.setSpeed(Number(d.speed)); document.getElementById("app").querySelectorAll("[data-speed]").forEach(x => x.classList.toggle("on", x === b)); return; }
   if (d.go !== undefined) { if (view.screen === "level" && d.go !== String(view.level)) RC.reset(); return go(d.go); }
   if (b.id === "unlock") { S.unlockAll = !S.unlockAll; save(); return render(); }
-  if (d.quiz) { quiz = { level: view.level ?? quiz.level, idx: 0, score: 0, picked: null }; view = { screen: "quiz" }; return render(); }
+  if (d.quiz) { const lv = view.level ?? quiz.level; quiz = { level: lv, idx: 0, score: 0, picked: null, perm: LEVELS[lv].quiz.map(q => shuffle(q.a.map((_, k) => k))) }; view = { screen: "quiz" }; return render(); }
   if (d.pick !== undefined) { const q = LEVELS[quiz.level].quiz[quiz.idx]; quiz.picked = Number(d.pick); if (quiz.picked === q.r) quiz.score++; return render(); }
   if (d.qnext) {
     quiz.idx++; quiz.picked = null;
