@@ -4,6 +4,7 @@ Le numéro affiché en bas de l'accueil (« Version N · date »), sur l'écran 
 
 | Version | Date | Changements |
 |---|---|---|
+| 41 | 10/11/2026 | Wanji a son œil droit demi-vairon : moitié bleu, moitié marron. |
 | 40 | 10/11/2026 | Wanji redessiné d'après son portrait : tête de petit husky aux joues touffues, calotte brune jusqu'aux yeux avec ses deux « sourcils » crème, yeux bleus en amande, truffe brun foncé, grand jabot crème, longues pattes blanches, queue touffue posée au sol. |
 | 39 | 10/11/2026 | Wanji redessiné d'après ses photos : tête toute touffue, visage crème sans masque, calotte brun taupe avec la liste blanche, yeux bleus en amande, truffe brun rosé, robe abricot, queue en panache. Sa queue ne flotte plus à côté de lui (bug depuis la version 35). Panneau du village plus grand, bleu, écrit en blanc. |
 | 38 | 10/11/2026 | La maison redessinée : toit en tuiles, cheminée qui fume, pièces meublées (cuisine, labo, corps humain, chambre de l'album), grange de la fromagerie en planches, garage avec sa lampe, arbres, fleurs, montgolfière, cadenas dorés. Le jardin a un vrai décor : collines, arbres, barrière à piquets pointus, pelouse tondue et pâquerettes. |
