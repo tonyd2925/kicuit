@@ -40,6 +40,16 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 - **Annonce des ouvertures** : à l'arrivée sur la maison, `newUnlock()` annonce une seule nouveauté à la fois (fanfare, pièce qui pulse `.newroom`) d'après `UNLOCKS_ALL` (pièces et lieux du village) ; déjà annoncées dans `P().ann` (à la première fois, tout ce qui est déjà ouvert est marqué sans annonce). Badge « ! » sur le panneau du village (`hubVilBadge()`) et ruban « NOUVEAU » sur la carte tant que le lieu n'a pas été visité (`V_().seen`). Toucher Kicuit sur la maison dit combien d'étoiles manquent pour la prochaine ouverture (`nextLock()`).
 - Prochaine étape d'interface (en attente, ne pas faire sans accord) : un compteur « Jardin : x/10 ⭐ » sur la maison.
 
+## À faire plus tard (noté le 10/11 à la demande d'Anthony, ne pas commencer sans son accord)
+
+Ergonomie, points 2, 4, 5 et 6 de la liste proposée le 10/11 :
+- **2. Montrer le geste au lieu de l'expliquer** : une main animée qui fait le geste une fois (glisser, frotter, tourner) partout où un geste est attendu, comme dans le voyage du repas.
+- **4. Savoir où on en est** : une petite jauge ou des étoiles sous chaque bandeau de pièce sur la maison (le compteur « Jardin : x/10 ⭐ » étendu à toutes les pièces).
+- **5. Zones de toucher plus généreuses** : zone invisible plus large autour des objets fins (jardin, capot, circuit).
+- **6. Protéger des sorties accidentelles** : le garde-fou des onglets du corps humain (`askTab`) étendu au bouton maison et aux onglets des autres ateliers pour Nana.
+
+Direction artistique souhaitée par Anthony (image de référence fournie le 10/11) : passer du SVG plat à un rendu 2.5D « cozy / jouet » (façon Toca Boca) : ombres de contact, rayon de soleil chaud, plans séparés, frigo à clayettes avec étiquettes, bulle de dialogue ronde, micro-animations.
+
 ## Cuisine (faite, à faire évoluer)
 
 État actuel : frigo (9 ingrédients + 5e rangée `LIMITED`), saladier (retirer un ingrédient en le touchant), four, **plaque de cuisson avec poêle et casserole** (le micro-ondes a été retiré), Wanji, commandes, carnet de recettes (Raf).
