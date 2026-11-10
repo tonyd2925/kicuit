@@ -67,7 +67,7 @@ svg{display:block}
 .wj .e-happy,.wj .e-squint,.wj .m-open,.wj .m-yuck,.wj .cheeks{display:none}
 .wj.happy .e-open,.wj.happy .m-normal,.wj.yuck .e-open,.wj.yuck .m-normal,.wj.refuse .e-open,.wj.refuse .m-normal{display:none}
 .wj.happy .e-happy,.wj.happy .m-open,.wj.happy .cheeks,.wj.yuck .e-squint,.wj.yuck .m-yuck,.wj.refuse .e-squint,.wj.refuse .m-yuck{display:inline}
-.wj .wj-tail{transform-origin:168px 205px;animation:wag 1.4s ease-in-out infinite}
+.wj .wj-tail{transform-origin:166px 212px;animation:wag 1.4s ease-in-out infinite}
 .wj.happy .wj-tail{animation:wag .2s ease-in-out infinite}
 .wj .wj-head{transform-origin:120px 130px;transition:transform .35s}
 .wj.meh .wj-head{transform:rotate(-16deg)}
@@ -987,8 +987,8 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .vcomb{width:380px;height:440px;border-radius:20px;background:repeating-linear-gradient(60deg,#e8c46a 0 18px,#d9b050 18px 20px),#e8c46a;position:relative;overflow:hidden}
 .vcombt{position:absolute;top:8px;left:0;right:0;text-align:center;font-weight:900;font-size:17px;color:#6b4a10}.vup{position:absolute;top:34px;left:12px;font-weight:900;font-size:16px;color:#6b4a10}
 .vdbee{position:absolute;left:50%;top:55%;width:0;height:0;transform:rotate(var(--a))}.vwline{position:absolute;left:-2px;top:-90px;width:4px;height:180px;background:repeating-linear-gradient(#e2263e 0 8px,transparent 8px 14px)}
-.vwag{position:absolute;left:-30px;top:-24px;animation:wag var(--dur) ease-in-out infinite}
-@keyframes wag{0%{transform:translateY(80px) rotate(-90deg)}10%{transform:translateY(64px) rotate(-80deg)}20%{transform:translateY(48px) rotate(-100deg)}30%{transform:translateY(32px) rotate(-80deg)}40%{transform:translateY(16px) rotate(-100deg)}50%{transform:translateY(0) rotate(-80deg)}60%{transform:translateY(-16px) rotate(-100deg)}70%{transform:translateY(-32px) rotate(-80deg)}80%{transform:translateY(-48px) rotate(-100deg)}90%{transform:translateY(-64px) rotate(-80deg)}100%{transform:translateY(-80px) rotate(-90deg)}}
+.vwag{position:absolute;left:-30px;top:-24px;animation:vwag var(--dur) ease-in-out infinite}
+@keyframes vwag{0%{transform:translateY(80px) rotate(-90deg)}10%{transform:translateY(64px) rotate(-80deg)}20%{transform:translateY(48px) rotate(-100deg)}30%{transform:translateY(32px) rotate(-80deg)}40%{transform:translateY(16px) rotate(-100deg)}50%{transform:translateY(0) rotate(-80deg)}60%{transform:translateY(-16px) rotate(-100deg)}70%{transform:translateY(-32px) rotate(-80deg)}80%{transform:translateY(-48px) rotate(-100deg)}90%{transform:translateY(-64px) rotate(-80deg)}100%{transform:translateY(-80px) rotate(-90deg)}}
 .vdmap{width:420px;text-align:center}.vmapt{font-weight:900;font-size:18px;margin-bottom:6px}.vdmap svg{width:400px;height:400px}.vpt{cursor:pointer}
 .vframe{display:flex;height:100%}.vframe>svg{width:820px;height:100%}.vframeR{flex:1;padding:16px;display:flex;flex-direction:column;gap:12px;justify-content:center}.vframeR .vopt{min-height:56px;font-size:18px}
 .vmiel{display:flex;flex-direction:column;height:100%;align-items:center;padding:16px;gap:12px}
@@ -1053,8 +1053,8 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 <radialGradient id="w3Coat" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#c7ad97"/><stop offset=".55" stop-color="#a88d76"/><stop offset="1" stop-color="#7c6250"/></radialGradient>
 <radialGradient id="w3CoatD" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#a98d78"/><stop offset=".6" stop-color="#8d7262"/><stop offset="1" stop-color="#694f41"/></radialGradient>
 <radialGradient id="w3Cream" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#f7ecdc"/><stop offset="1" stop-color="#e2ccae"/></radialGradient>
-<radialGradient id="w3Cap" cx=".4" cy=".25" r=".9"><stop offset="0" stop-color="#8d7364"/><stop offset=".6" stop-color="#6b5548"/><stop offset="1" stop-color="#4c3b31"/></radialGradient>
-<radialGradient id="w3Nose" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#8f6156"/><stop offset=".6" stop-color="#5a3b33"/><stop offset="1" stop-color="#36231d"/></radialGradient>
+<radialGradient id="w3Apr" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#fff3e0"/><stop offset=".55" stop-color="#f3d3ab"/><stop offset="1" stop-color="#dcae80"/></radialGradient><radialGradient id="w3Cap" cx=".4" cy=".25" r=".9"><stop offset="0" stop-color="#b08c78"/><stop offset=".6" stop-color="#8f6f5e"/><stop offset="1" stop-color="#6c5144"/></radialGradient>
+<radialGradient id="w3Nose" cx=".35" cy=".3" r=".8"><stop offset="0" stop-color="#b98078"/><stop offset=".6" stop-color="#8a5a54"/><stop offset="1" stop-color="#5f3c38"/></radialGradient>
 <radialGradient id="w3Eye" cx=".4" cy=".35" r=".8"><stop offset="0" stop-color="#eef9fd"/><stop offset=".6" stop-color="#bfe0ee"/><stop offset="1" stop-color="#8dc2da"/></radialGradient>
 <radialGradient id="c3White" cx=".35" cy=".28" r=".9"><stop offset="0" stop-color="#ffffff"/><stop offset=".6" stop-color="#f6f3ec"/><stop offset="1" stop-color="#d8d0c2"/></radialGradient>
 <radialGradient id="c3Spot" cx=".35" cy=".3" r=".85"><stop offset="0" stop-color="#d47a52"/><stop offset=".6" stop-color="#b5532f"/><stop offset="1" stop-color="#8a3a20"/></radialGradient>
@@ -1385,33 +1385,35 @@ function kicuitSVG0(){return `<svg viewBox="0 0 200 250" class="kc"><ellipse cx=
 </g></svg>`}
 function wanjiSVG(){return wjAcc(wanjiSVG0(),ACC_().w);}
 function wanjiSVG0(){
-  /* Wanji, le vrai : pomsky brun taupe et crème, liste blanche sur le front, yeux bleu clair, collier noir et médaille. */
-  const fluff=(pts,r,c)=>pts.map(([x,y])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/>`).join('');
-  return `<svg viewBox="0 0 240 250" class="wj"><ellipse cx="120" cy="241" rx="90" ry="10" fill="url(#g3Shad)"/>
-<g class="wj-tail"><path d="M160 206 q72 -2 66 -80 q-6 -38 -36 -36 q24 26 9 56 q-14 30 -42 36z" fill="url(#w3Coat)" stroke="#5b4638" stroke-width="3"/><path d="M188 94 q34 -8 38 32 q-10 -6 -14 -2 q-6 -12 -24 -14z" fill="url(#w3Cream)"/><path d="M200 140 q8 -6 14 -18" stroke="#8d7262" stroke-width="3" fill="none" stroke-linecap="round"/></g>
-<ellipse cx="120" cy="184" rx="64" ry="54" fill="url(#w3Coat)" stroke="#5b4638" stroke-width="3"/>
-<path d="M66 170 q10 -26 30 -30 M174 170 q-10 -26 -30 -30" stroke="#8d7262" stroke-width="4" fill="none" stroke-linecap="round"/>
-<ellipse cx="120" cy="190" rx="40" ry="46" fill="url(#w3Cream)"/>
-${fluff([[82,152],[96,160],[110,164],[124,165],[138,162],[152,156],[90,172],[150,172]],15,'#f7ecdc')}
-<path d="M84 186 q8 8 16 2 M140 188 q8 8 16 -2 M108 204 q12 8 24 0" stroke="#e6d2b8" stroke-width="3" fill="none" stroke-linecap="round"/>
-<rect x="88" y="198" width="24" height="42" rx="12" fill="url(#w3Cream)" stroke="#5b4638" stroke-width="3"/>
-<rect x="128" y="198" width="24" height="42" rx="12" fill="url(#w3Cream)" stroke="#5b4638" stroke-width="3"/>
-<path d="M78 148 q42 24 84 0" stroke="#26262e" stroke-width="8" fill="none" stroke-linecap="round"/>
-<circle cx="120" cy="161" r="3" fill="#b9c0cc"/><ellipse cx="120" cy="172" rx="7.5" ry="10" fill="#e9ecf1" stroke="#8a96ad" stroke-width="2"/><ellipse cx="118" cy="169" rx="2" ry="3" fill="#fff"/>
+  /* Wanji, d'après ses photos : pomsky très touffu, visage et poitrail crème, calotte brun taupe avec liste blanche,
+     pas de masque autour des yeux bleu clair en amande, truffe brun rosé, robe abricot, queue en panache sur le dos, collier noir et médaille. */
+  const O='#5b4638';
+  const puff=(pts,fill)=>pts.map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r+2.6}" fill="${O}"/>`).join('')+pts.map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}"/>`).join('');
+  const soft=(pts,fill)=>pts.map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${fill}"/>`).join('');
+  return `<svg viewBox="0 0 240 250" class="wj"><ellipse cx="124" cy="241" rx="92" ry="10" fill="url(#g3Shad)"/>
+<g class="wj-tail"><path d="M150 226 Q214 232 226 176 Q234 128 200 112 Q182 106 180 124 Q198 132 194 158 Q188 190 150 196z" fill="url(#w3Apr)" stroke="${O}" stroke-width="3" stroke-linejoin="round"/><path d="M198 113 Q230 128 224 172 Q214 150 204 146 Q204 126 182 121 Q184 108 198 113z" fill="#fff7ea"/><path d="M176 206 q22 -8 30 -34 M190 214 q20 -12 26 -34" stroke="#d9a877" stroke-width="3" fill="none" stroke-linecap="round" opacity=".7"/></g>
+<ellipse cx="120" cy="188" rx="66" ry="52" fill="${O}"/><ellipse cx="120" cy="188" rx="63.2" ry="49.2" fill="url(#w3Apr)"/><path d="M64 176 q6 -22 22 -30 M176 176 q-6 -22 -22 -30 M62 200 q4 12 12 18 M178 200 q-4 12 -12 18" stroke="#d9a877" stroke-width="3" fill="none" stroke-linecap="round" opacity=".8"/>
+<ellipse cx="120" cy="194" rx="40" ry="44" fill="url(#w3Cream)"/>
+${soft([[84,156,15],[98,164,15],[112,168,15],[128,168,15],[142,164,15],[156,156,15],[92,178,14],[148,178,14],[120,184,15]],'#fbf4ea')}
+<path d="M88 190 q8 8 16 2 M136 192 q8 8 16 -2 M108 208 q12 8 24 0" stroke="#e6d2b8" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="88" y="200" width="25" height="41" rx="12.5" fill="url(#w3Cream)" stroke="${O}" stroke-width="3"/><path d="M96 236 v-5 M105 236 v-5" stroke="#d9c3a6" stroke-width="2" stroke-linecap="round"/>
+<rect x="127" y="200" width="25" height="41" rx="12.5" fill="url(#w3Cream)" stroke="${O}" stroke-width="3"/><path d="M135 236 v-5 M144 236 v-5" stroke="#d9c3a6" stroke-width="2" stroke-linecap="round"/>
+<path d="M80 150 q40 22 80 0" stroke="#26262e" stroke-width="8" fill="none" stroke-linecap="round"/>
+<circle cx="120" cy="163" r="3" fill="#b9c0cc"/><ellipse cx="120" cy="174" rx="7.5" ry="10" fill="#e9ecf1" stroke="#8a96ad" stroke-width="2"/><ellipse cx="118" cy="171" rx="2" ry="3" fill="#fff"/>
 <g class="wj-head">
-<path d="M58 86 L66 12 L116 56z" fill="url(#w3CoatD)" stroke="#5b4638" stroke-width="3" stroke-linejoin="round"/><path d="M70 72 L74 30 L100 58z" fill="#f3dcc8"/><path d="M76 64 L78 42 L92 58z" fill="#f2b3b0"/>
-<path d="M182 86 L174 12 L124 56z" fill="url(#w3CoatD)" stroke="#5b4638" stroke-width="3" stroke-linejoin="round"/><path d="M170 72 L166 30 L140 58z" fill="#f3dcc8"/><path d="M164 64 L162 42 L148 58z" fill="#f2b3b0"/>
-<ellipse cx="120" cy="100" rx="64" ry="55" fill="url(#w3Cream)" stroke="#5b4638" stroke-width="3"/>
-${fluff([[58,108],[56,122],[62,136],[182,108],[184,122],[178,136]],11,'#f7ecdc')}
-<path d="M57 100 q-1 -54 63 -56 q64 2 63 56 q-12 -12 -27 -10 q-14 -10 -26 -2 q-10 -6 -20 0 q-12 -8 -26 2 q-15 -2 -27 10z" fill="url(#w3Cap)"/>
-<path d="M115 44 q5 -2 10 0 l-1 36 q-4 5 -8 0z" fill="#fbf4ea"/><path d="M76 62 q18 -14 34 -16" stroke="#fff" stroke-width="5" opacity=".22" stroke-linecap="round" fill="none"/>
-<ellipse cx="94" cy="97" rx="17" ry="11" fill="url(#w3Cap)" transform="rotate(-14 94 97)"/><ellipse cx="146" cy="97" rx="17" ry="11" fill="url(#w3Cap)" transform="rotate(14 146 97)"/>
-<g class="e-open"><ellipse cx="96" cy="99" rx="10.5" ry="9" fill="url(#w3Eye)" stroke="#2a1f1a" stroke-width="2.5"/><circle cx="97" cy="99.5" r="4.5" fill="#1d1d24"/><circle cx="99.5" cy="96" r="2.4" fill="#fff"/><ellipse cx="144" cy="99" rx="10.5" ry="9" fill="url(#w3Eye)" stroke="#2a1f1a" stroke-width="2.5"/><circle cx="143" cy="99.5" r="4.5" fill="#1d1d24"/><circle cx="145.5" cy="96" r="2.4" fill="#fff"/></g>
+<path d="M58 92 Q48 44 70 26 Q80 20 90 28 Q108 42 114 64z" fill="url(#w3Coat)" stroke="${O}" stroke-width="3" stroke-linejoin="round"/><path d="M66 84 Q60 50 75 36 Q81 32 87 38 Q99 50 104 66z" fill="#fbe9d6"/><path d="M74 76 Q71 56 79 47 Q88 54 93 66z" fill="#f6c9bd"/><path d="M68 74 l9 -7 M71 82 l10 -7 M77 88 l9 -6" stroke="#fff" stroke-width="3.5" stroke-linecap="round" opacity=".9"/>
+<path d="M182 92 Q192 44 170 26 Q160 20 150 28 Q132 42 126 64z" fill="url(#w3Coat)" stroke="${O}" stroke-width="3" stroke-linejoin="round"/><path d="M174 84 Q180 50 165 36 Q159 32 153 38 Q141 50 136 66z" fill="#fbe9d6"/><path d="M166 76 Q169 56 161 47 Q152 54 147 66z" fill="#f6c9bd"/><path d="M172 74 l-9 -7 M169 82 l-10 -7 M163 88 l-9 -6" stroke="#fff" stroke-width="3.5" stroke-linecap="round" opacity=".9"/>
+<ellipse cx="120" cy="100" rx="65" ry="55" fill="${O}"/>${[[54,112,15],[58,130,15],[72,144,14],[186,112,15],[182,130,15],[168,144,14],[92,152,12],[148,152,12]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r+2.6}" fill="${O}"/>`).join('')}
+<ellipse cx="120" cy="100" rx="62.4" ry="52.4" fill="url(#w3Cream)"/>${soft([[54,112,15],[58,130,15],[72,144,14],[186,112,15],[182,130,15],[168,144,14],[92,152,12],[148,152,12]],'#fbf1e2')}
+<path d="M57.6 106 Q55 49 120 47.6 Q185 49 182.4 106 Q176 94 166 97 Q163 86 152 87 Q145 78 136 84 Q130 82 127 90 Q124 74 122.500 53 Q120 50 117.500 53 Q116 74 113 90 Q110 82 104 84 Q95 78 88 87 Q77 86 74 97 Q64 94 57.6 106z" fill="url(#w3Cap)"/>
+<path d="M74 66 q18 -14 32 -15" stroke="#fff" stroke-width="5" opacity=".2" stroke-linecap="round" fill="none"/>
+<path d="M62 118 q8 6 6 16 M178 118 q-8 6 -6 16" stroke="#ecd9bf" stroke-width="3" fill="none" stroke-linecap="round"/>
+<g class="e-open"><g transform="rotate(-10 96 99)"><ellipse cx="96" cy="99" rx="10.5" ry="8" fill="url(#w3Eye)" stroke="#2a1f1a" stroke-width="3"/><circle cx="96.5" cy="99" r="4.2" fill="#1d1d24"/><circle cx="99" cy="96" r="2.2" fill="#fff"/></g><g transform="rotate(10 144 99)"><ellipse cx="144" cy="99" rx="10.5" ry="8" fill="url(#w3Eye)" stroke="#2a1f1a" stroke-width="3"/><circle cx="143.5" cy="99" r="4.2" fill="#1d1d24"/><circle cx="146" cy="96" r="2.2" fill="#fff"/></g></g>
 <g class="e-happy" stroke="#2a1f1a" stroke-width="5" fill="none" stroke-linecap="round"><path d="M85 102 q11 -10 22 0"/><path d="M133 102 q11 -10 22 0"/></g>
 <g class="e-squint" stroke="#2a1f1a" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M86 92 l18 8 l-18 8"/><path d="M154 92 l-18 8 l18 8"/></g>
-<ellipse cx="120" cy="126" rx="28" ry="20" fill="#fbf4ea"/>
-<ellipse cx="120" cy="119" rx="10.5" ry="7.5" fill="url(#w3Nose)"/><ellipse cx="117" cy="116.5" rx="3.5" ry="2" fill="#fff" opacity=".35"/>
-<g class="m-normal" stroke="#3a2d26" stroke-width="3.5" fill="none" stroke-linecap="round"><path d="M120 126 v5 M120 131 q-8 10 -16 4 M120 131 q8 10 16 4"/></g>
+<ellipse cx="120" cy="126" rx="27" ry="20" fill="#fffaf2"/>
+<path d="M109.500 118 q0 -8 10.500 -8 q10.500 0 10.500 8 q0 7 -10.500 9 q-10.500 -2 -10.500 -9z" fill="url(#w3Nose)"/><ellipse cx="120" cy="116" rx="3" ry="4.500" fill="#f0a7a2" opacity=".85"/><ellipse cx="116" cy="114" rx="3" ry="1.800" fill="#fff" opacity=".4"/>
+<g class="m-normal" stroke="#3a2d26" stroke-width="3.5" fill="none" stroke-linecap="round"><path d="M120 127 v4 M120 131 q-8 10 -16 4 M120 131 q8 10 16 4"/></g>
 <g class="m-open"><path d="M103 130 q17 24 34 0z" fill="#7a3b3a"/><path d="M110 138 q10 18 20 0 q-10 -5 -20 0z" fill="#ff8a9a"/></g>
 <g class="m-yuck"><path d="M102 138 q6 -6 12 0 q6 6 12 0 q6 -6 12 0" stroke="#3a2d26" stroke-width="3.5" fill="none" stroke-linecap="round"/><path d="M121 140 q3 18 13 14 q5 -7 -3 -16z" fill="#ff8a9a"/></g>
 <g class="cheeks" fill="#f6a8a8" opacity=".6"><ellipse cx="76" cy="122" rx="9" ry="6"/><ellipse cx="164" cy="122" rx="9" ry="6"/></g>
@@ -2060,7 +2062,7 @@ function hubSVG(){
 <linearGradient id="hGarR" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8ea3e0"/><stop offset="1" stop-color="#5a70b8"/></linearGradient>
 <linearGradient id="hGarW" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff0d6"/><stop offset="1" stop-color="#f3cf9c"/></linearGradient>
 <linearGradient id="hDoor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f4f7fc"/><stop offset="1" stop-color="#c3cde0"/></linearGradient>
-<linearGradient id="hGlass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9f1ff"/><stop offset="1" stop-color="#8fc8f5"/></linearGradient>
+<linearGradient id="hSign" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5b8cff"/><stop offset="1" stop-color="#2f5fe0"/></linearGradient><linearGradient id="hGlass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9f1ff"/><stop offset="1" stop-color="#8fc8f5"/></linearGradient>
 <linearGradient id="hPath" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2c896"/><stop offset="1" stop-color="#f1dfb6"/></linearGradient>
 <linearGradient id="hFar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9ecc0"/><stop offset="1" stop-color="#a9dc98"/></linearGradient></defs>
 <rect width="1180" height="820" fill="url(#hsky)"/>
@@ -2076,7 +2078,7 @@ ${[[40,790],[250,800],[330,770],[470,792],[700,790],[760,812],[880,800],[1160,80
 ${daisy(312,792,'#fff')}${daisy(458,756,'#ffb3cc')}${daisy(716,768,'#fff')}${daisy(872,774,'#fff')}${daisy(742,800,'#ffb3cc')}${daisy(226,778,'#fff')}
 <ellipse cx="590" cy="714" rx="330" ry="20" fill="url(#g3Shad)"/><ellipse cx="1030" cy="710" rx="150" ry="14" fill="url(#g3Shad)"/><ellipse cx="152" cy="516" rx="150" ry="14" fill="url(#g3Shad)"/><ellipse cx="157" cy="750" rx="150" ry="12" fill="url(#g3Shad)"/>
 <path d="M560 700 q-20 60 -60 120 h160 q-40 -60 -60 -120z" fill="url(#hPath)"/><g fill="#d9bf8c" opacity=".8"><ellipse cx="588" cy="728" rx="16" ry="6"/><ellipse cx="572" cy="756" rx="20" ry="7"/><ellipse cx="600" cy="782" rx="24" ry="8"/><ellipse cx="560" cy="806" rx="26" ry="8"/></g>
-<g class="room" data-room="village"><rect x="1014" y="744" width="16" height="76" fill="url(#hWood)"/><path d="M930 724 h190 l30 28 l-30 28 h-190z" fill="#2b2350" opacity=".2"/><path d="M930 718 h190 l30 28 l-30 28 h-190z" fill="url(#hGold)" stroke="#c9881a" stroke-width="4" stroke-linejoin="round"/><path d="M938 726 h178" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".5"/><circle cx="944" cy="746" r="4" fill="#c9881a"/><text x="1034" y="756" text-anchor="middle" font-size="26" font-weight="900" fill="#5a3a1a" font-family="${F}">🏘️ Le village</text>${hubVilBadge()}<rect x="920" y="708" width="250" height="112" fill="transparent"/></g>
+<g class="room" data-room="village"><rect x="1010" y="770" width="20" height="50" rx="4" fill="url(#hWood)" stroke="#6e4526" stroke-width="3"/><g class="open-pulse"><path d="M892 728 h232 l46 36 l-46 36 h-232 a8 8 0 0 1 -8 -8 v-56 a8 8 0 0 1 8 -8z" fill="#2b2350" opacity=".25"/><path d="M892 720 h232 l46 36 l-46 36 h-232 a8 8 0 0 1 -8 -8 v-56 a8 8 0 0 1 8 -8z" fill="url(#hSign)" stroke="#2b2350" stroke-width="4" stroke-linejoin="round"/><path d="M896 728 h226 l36 28 l-36 28 h-226z" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round" opacity=".85"/><text x="1012" y="768" text-anchor="middle" font-size="33" font-weight="900" fill="#fff" stroke="#1d3f9a" stroke-width="1" font-family="${F}">🏘️ Le village</text></g>${hubVilBadge()}<rect x="880" y="708" width="300" height="112" fill="transparent"/></g>
 <g class="room" data-room="jardin"><rect x="22" y="524" width="270" height="226" rx="22" fill="#6fb04a"/><rect x="22" y="520" width="270" height="226" rx="22" fill="url(#hLawn)"/><ellipse cx="60" cy="566" rx="34" ry="24" fill="url(#hTree)"/><ellipse cx="252" cy="564" rx="36" ry="26" fill="url(#hTree)"/>${fence}<rect x="26" y="584" width="262" height="10" rx="3" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/><rect x="40" y="624" width="234" height="40" rx="14" fill="#55351c"/><rect x="40" y="620" width="234" height="40" rx="14" fill="url(#hSoil)"/><path d="M56 634 h202 M56 648 h202" stroke="#5a3a20" stroke-width="2" stroke-linecap="round" opacity=".5"/>${carrots}${flowers}${gardenOpen()?'':`<rect x="22" y="520" width="270" height="226" rx="22" fill="#fff" opacity=".45"/>${lockSVG(157,560)}`}<g class="${gardenOpen()?'open-pulse':''}">${banner(157,690,'Jardin',150)}</g><rect x="22" y="520" width="270" height="226" fill="transparent"/></g>
 <g class="room" data-room="fromage"><rect x="34" y="398" width="236" height="114" fill="url(#hBarn)"/><rect x="34" y="398" width="236" height="114" fill="url(#hPlank)"/><rect x="34" y="398" width="236" height="16" fill="#2b2350" opacity=".18"/><rect x="34" y="398" width="236" height="114" fill="none" stroke="#7d3424" stroke-width="5"/><path d="M20 404 L152 300 L284 404z" fill="url(#hBarnR)" stroke="#5a2418" stroke-width="5" stroke-linejoin="round"/><path d="M44 392 L152 308" stroke="#fff" stroke-width="5" opacity=".2" stroke-linecap="round"/><path d="M16 406 L152 298 L288 406" fill="none" stroke="#fff3e0" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="100" y="426" width="104" height="86" fill="#fff3e0"/><rect x="106" y="432" width="92" height="80" fill="#e8cfa6"/><path d="M106 432 L198 512 M198 432 L106 512" stroke="#fff3e0" stroke-width="7"/><rect x="149" y="432" width="6" height="80" fill="#fff3e0"/>
@@ -2117,7 +2119,7 @@ function newUnlock(){const p=P();const first=!p.ann;p.ann=p.ann||{};
   if(first)UNLOCKS_ALL.forEach(([k])=>{if((!k.startsWith('v_')||p.v)&&isOpen(k))p.ann[k]=1;});
   const f=UNLOCKS_ALL.find(([k])=>isOpen(k)&&!p.ann[k]);saveDB();if(!f)return null;p.ann[f[0]]=1;saveDB();
   return {k:f[0],t:f[1],v:f[0].startsWith('v_')};}
-function hubVilBadge(){if(!S.player)return '';const v=P().v||{},seen=v.seen||{};return Object.keys(VPL).some(k=>vOpen(k)&&!seen[k])?'<g class="vbadge"><circle cx="1140" cy="722" r="20" fill="#e2263e" stroke="#fff" stroke-width="4"/><text x="1140" y="731" text-anchor="middle" font-size="26" font-weight="900" fill="#fff">!</text></g>':'';}
+function hubVilBadge(){if(!S.player)return '';const v=P().v||{},seen=v.seen||{};return Object.keys(VPL).some(k=>vOpen(k)&&!seen[k])?'<g class="vbadge"><circle cx="1150" cy="722" r="20" fill="#e2263e" stroke="#fff" stroke-width="4"/><text x="1150" y="731" text-anchor="middle" font-size="26" font-weight="900" fill="#fff">!</text></g>':'';}
 $('hubArt').innerHTML=hubSVG();$('hubW').innerHTML=wanjiSVG();$('hubK').innerHTML=kicuitSVG();
 onTap($('hubArt'),e=>{
   if(lpFired){lpFired=false;return;}
@@ -5565,7 +5567,7 @@ function kcAcc(svg,a){
 }
 function wjAcc(svg,a){
   if(!a||a==='none')return svg;
-  if(a==='noeud')return svg.replace('<g class="wj-head">','<g transform="translate(150 152) rotate(-12)"><path d="M0 0 l-20 -12 q-5 12 0 24z M0 0 l20 -12 q5 12 0 24z" fill="#ff4d6d" stroke="#a8162c" stroke-width="3" stroke-linejoin="round"/><circle r="6" fill="#ff8fa3" stroke="#a8162c" stroke-width="2"/></g><g class="wj-head">');
+  if(a==='noeud')return svg.replace(/<\/g><\/svg>$/,'</g><g transform="translate(150 160) rotate(-12)"><path d="M0 0 l-20 -12 q-5 12 0 24z M0 0 l20 -12 q5 12 0 24z" fill="#ff4d6d" stroke="#a8162c" stroke-width="3" stroke-linejoin="round"/><circle r="6" fill="#ff8fa3" stroke="#a8162c" stroke-width="2"/></g></svg>');
   const add={paille:'<ellipse cx="120" cy="54" rx="74" ry="13" fill="#f3d27a" stroke="#c99b42" stroke-width="4"/><path d="M80 52 q4 -40 40 -42 q36 2 40 42z" fill="#f6dc8e" stroke="#c99b42" stroke-width="4"/><path d="M82 44 q38 10 76 0" stroke="#4c8dff" stroke-width="8" fill="none"/>',
     couronne:'<path d="M90 56 l-4 -34 l18 14 l16 -26 l16 26 l18 -14 l-4 34z" fill="#ffc83a" stroke="#c98a1a" stroke-width="4" stroke-linejoin="round"/><circle cx="120" cy="42" r="5" fill="#ff4d6d"/>',
     lunettes:'<g fill="rgba(160,230,255,.3)" stroke="#ff9a1a" stroke-width="5"><circle cx="96" cy="99" r="17"/><circle cx="144" cy="99" r="17"/></g><path d="M113 98 h14 M79 96 l-18 -4 M161 96 l18 -4" stroke="#ff9a1a" stroke-width="5" stroke-linecap="round"/>'}[a];
