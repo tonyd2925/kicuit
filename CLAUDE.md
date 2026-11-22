@@ -45,24 +45,11 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 - **Charte** (v43) : bloc CSS « Charte unique » en fin de style : boutons de choix (`.vopt .lopt .fopt .opt .schoice .gbtn .tool`) blancs, arrondi `--r`, ombre `--sh`, sélection = anneau orange + fond `--selbg`, onglet actif = anneau orange. Tout nouveau bouton de choix reprend une de ces classes.
 - Fondu `.screen.on` (`scrIn`, opacité seulement : ne jamais animer `transform` sur l'écran, `pos()` en dépend). Barre : 🏠 en haut à gauche, 🎁 toujours tout à droite, outils (📖, 📚, 🔊) à sa gauche.
 
-## À faire plus tard (noté le 10/11 à la demande d'Anthony, ne pas commencer sans son accord)
+## Graphisme et ergonomie (liste du 10/11, faite en v42-v44 le 22/11)
 
 Abandonné : la direction 2.5D « cozy / jouet » avec images de synthèse (PNG). On reste en SVG dessiné.
-
-**Graphisme**
-1. **Remplacer les emojis par de vrais dessins** : outils du jardin, aliments, onglets, boutons (les emojis changent d'aspect entre iPad et Android et jurent avec le reste) ; un jeu d'icônes SVG dans le style de Kicuit.
-2. **Mettre toutes les pièces au niveau de la maison** : vrai décor (étagères, fenêtre, sol, objets) pour la fromagerie, le labo, le corps humain et le garage, aujourd'hui presque vides avec des panneaux blancs.
-3. **Une seule palette et une seule typographie** : charte fixe (5 ou 6 couleurs, 2 tailles de bouton, 1 style de panneau) pour supprimer l'effet « patchwork » entre ateliers.
-4. **Transitions entre les écrans** : porte qui s'ouvre ou fondu rapide (attention : le zoom de caméra dans `go()` a été écarté car il cassait les minuteurs).
-5. **Récompenses plus spectaculaires** : l'étoile gagnée vole jusqu'au compteur ; une pièce qui s'ouvre se déverrouille à l'écran (le cadenas tombe).
-
-**Ergonomie**
-1. **Zéro lecture pour Nana** : une image par pièce et par action (bandeaux de la maison, objectifs du jardin, boutons) et une phrase dite au toucher.
-2. **Montrer le geste au lieu de l'expliquer** : une main animée qui fait le geste une fois (glisser, frotter, tourner) partout où un geste est attendu, comme dans le voyage du repas.
-3. **Une barre identique partout** : bouton maison, aide et son toujours au même endroit et à la même taille.
-4. **Savoir où on en est** : petite jauge ou étoiles sous chaque bandeau de pièce sur la maison (le compteur « Jardin : x/10 ⭐ » étendu à toutes les pièces).
-5. **Zones de toucher plus généreuses** : zone invisible plus large autour des objets fins (jardin, capot, circuit).
-6. **Protéger des sorties accidentelles** : le garde-fou des onglets du corps humain (`askTab`) étendu au bouton maison et aux onglets des autres ateliers pour Nana.
+- **Décor des ateliers** (v44) : `roomBgSVG(kind)` (corps, labo, garage, fromage) dans `#cBg`, `#lBg`, `#gaBg`, `#fBg` : papier peint à pois, plinthe et sol, petite scène en haut à droite entre la bulle et le cadeau (fenêtre et affiche du cœur, étagère de fioles et horloge, panneau d'outils, étagère de fromages). Panneau du labo en papier quadrillé.
+- **Main qui montre le geste** (v44) : `gesture(el, kind, to, key)` (`tap`, `swipe`, `swipeUp`, `swipeDown`, `rub`, `circle`, `drag`) ; Nana la voit à chaque fois, Raf une fois par partie (`GEST_SEEN`). Branchée sur : pochette, autocollant à glisser, remuer la casserole, retourner la crêpe, remuer le caillé, saler, squelette, dents, savon, désoperculer, extracteur. `go()` enlève les mains en cours.
 
 ## Cuisine (faite, à faire évoluer)
 

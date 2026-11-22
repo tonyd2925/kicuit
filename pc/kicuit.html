@@ -559,6 +559,10 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 #cTabs{position:absolute;left:20px;top:124px;width:292px;display:flex;flex-direction:column;gap:12px;z-index:6}
 .ctab{height:100px;border-radius:26px;background:rgba(255,255,255,.6);font-size:22px;font-weight:900;display:flex;align-items:center;gap:12px;padding:0 16px;text-align:left;line-height:1.1}
 .ctab span{font-size:46px;flex:none}
+.rbg{position:absolute;inset:0;pointer-events:none}
+.ghand{position:absolute;left:0;top:0;width:86px;height:86px;z-index:96;pointer-events:none;filter:drop-shadow(0 6px 6px rgba(0,0,0,.25))}
+.ghand .ic{width:86px;height:86px}
+#lWork{background-image:linear-gradient(rgba(76,141,255,.07) 1.5px,transparent 1.5px),linear-gradient(90deg,rgba(76,141,255,.07) 1.5px,transparent 1.5px);background-size:30px 30px}
 .ic{width:1.15em;height:1.15em;vertical-align:-.24em;flex:none;overflow:visible}
 .iconbtn .ic{width:54px;height:54px;vertical-align:0}
 .ctab span .ic{width:56px;height:56px}
@@ -1189,7 +1193,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
   </section>
 
   <section class="screen" id="s-fromage">
-    <svg viewBox="0 0 1180 820" class="full"><defs><pattern id="planks" width="90" height="820" patternUnits="userSpaceOnUse"><rect width="90" height="820" fill="#e2b77e"/><rect width="4" height="820" fill="#c99b62"/></pattern></defs><rect width="1180" height="820" fill="url(#planks)"/><rect y="96" width="1180" height="18" fill="#a8703f"/><rect x="0" y="640" width="310" height="180" fill="#f2d98a"/><rect x="0" y="300" width="310" height="10" fill="#a8703f"/><rect x="0" y="560" width="310" height="10" fill="#a8703f"/><rect x="300" y="300" width="10" height="340" fill="#a8703f"/></svg>
+    <svg viewBox="0 0 1180 820" class="full"><defs><pattern id="planks" width="90" height="820" patternUnits="userSpaceOnUse"><rect width="90" height="820" fill="#e2b77e"/><rect width="4" height="820" fill="#c99b62"/></pattern></defs><rect width="1180" height="820" fill="url(#planks)"/><rect y="96" width="1180" height="18" fill="#a8703f"/><rect x="0" y="640" width="310" height="180" fill="#f2d98a"/><rect x="0" y="300" width="310" height="10" fill="#a8703f"/><rect x="0" y="560" width="310" height="10" fill="#a8703f"/><rect x="300" y="300" width="10" height="340" fill="#a8703f"/></svg><div class="rbg" id="fBg" style="pointer-events:none"></div>
     <button class="iconbtn" id="fHome" style="left:20px;top:14px">🏠</button>
     <button class="iconbtn" id="fMapBtn" style="right:120px;top:14px">📚</button>
     <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
@@ -1206,7 +1210,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
     <div class="modal hidden" id="fMapM"><div class="card" id="fMapIn"></div></div>
   </section>
 
-  <section class="screen" id="s-corps">
+  <section class="screen" id="s-corps"><div class="rbg" id="cBg"></div>
     <button class="iconbtn" id="cHome" style="left:20px;top:14px">🏠</button>
     <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
     <div id="cTabs"></div>
@@ -1215,14 +1219,14 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
     <div id="cWork" class="hidden"></div>
   </section>
 
-  <section class="screen" id="s-labo">
+  <section class="screen" id="s-labo"><div class="rbg" id="lBg"></div>
     <button class="iconbtn" id="lHome" style="left:20px;top:14px">🏠</button>
     <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
     <div id="lTabs"></div>
     <div id="lWork"></div>
   </section>
 
-  <section class="screen" id="s-garage">
+  <section class="screen" id="s-garage"><div class="rbg" id="gaBg"></div>
     <button class="iconbtn" id="gaHome" style="left:20px;top:14px">🏠</button>
     <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
     <div id="gaTabs"></div>
@@ -1547,6 +1551,7 @@ flask:`<path d="M24 6 h16 M26 6 v18 L10 52 a5 5 0 0 0 5 6 h34 a5 5 0 0 0 5 -6 L3
 star:`${star(32,33,27)}<path d="M24 22 l6 -10" stroke="#fff" stroke-width="3.5" stroke-linecap="round" opacity=".8"/>`,
 album:`<rect x="12" y="8" width="40" height="50" rx="6" fill="#ff7a59" ${W}/><rect x="12" y="8" width="9" height="50" rx="3" fill="#e8553d" ${W}/>${star(37,32,12)}`,
 garage:`<path d="M6 28 L32 8 L58 28 V56 H6z" fill="#ffe8c4" ${W}/><path d="M4 29 L32 7 L60 29" fill="none" stroke="#4c6fd8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><rect x="14" y="32" width="36" height="24" rx="3" fill="#dfe4ee" ${W}/><path d="M14 40 H50 M14 48 H50" stroke="#aab3c8" stroke-width="3"/>`,
+point:`<path d="M26 6 a5 5 0 0 1 10 0 V30 l2 -1 a5 5 0 0 1 9 3 l1 0 a5 5 0 0 1 9 3 V46 c0 10 -8 16 -18 16 h-4 c-7 0 -11 -3 -15 -9 L8 40 a5 5 0 0 1 8 -6 l10 8z" fill="#ffd2b0" stroke="#3b2f5c" stroke-width="3.5" stroke-linejoin="round"/><path d="M38 30 v8 M47 34 v6" stroke="#d9a07a" stroke-width="3" stroke-linecap="round"/>`,
 check:`<path d="M12 34 L26 48 L52 18" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>`,
 play:`<path d="M20 12 L52 32 L20 52z" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>`
 };})();
@@ -1842,6 +1847,7 @@ function openPacks(){
       <div class="pglow"></div><div class="flap"><div class="tearline"></div></div><div class="swipeh">👆</div>
     </div><div class="pktip">${T('Glisse ton doigt sur les pointillés !','Déchire le long des pointillés ✂️')}</div></div>`;
   $('packM').classList.remove('hidden');
+  gesture(document.querySelector('#packM .tearline')||document.querySelector('#packM .packet'),isA()?'tap':'swipe',null,'pack');
   say(T('Déchire la pochette avec ton doigt !',`Pochette${n>1?` (${n} à ouvrir)`:''} : glisse le doigt sur les pointillés pour la déchirer.`));
   const pk=$('packet');let d=null;
   pk.addEventListener('pointerdown',e=>{if(PK.done)return;const q=stagePt(e);d={x:q.x,y:q.y,lx:q.x,ly:q.y,dist:0};pk.classList.add('touched');try{pk.setPointerCapture(e.pointerId)}catch(_){}});
@@ -1897,6 +1903,7 @@ const AL={page:'cuisine',target:null,sel:null};
 function enterAlbum(page,target){
   go('s-album');AL.page=page||AL.page;AL.target=target||null;AL.sel=null;renderAlbum();updGift();
   const p=P(),n=Object.keys(p.st).filter(k=>SID[k]).length;
+  if(target)setTimeout(()=>gesture(document.querySelector('#tray .titem'),'drag',document.querySelector('.slot.target'),'stick'),200);
   if(target)say(T("Fais-le glisser à sa place !","Glisse l'autocollant jusqu'à son emplacement."));
   else if(p.tray.length)say(T('Colle tes autocollants !','Des autocollants attendent en bas : glisse-les à leur place.'));
   else say(n?T(`Ton album : ${n} autocollant${n>1?'s':''} !`,`${n} autocollants sur ${VIS().length}. Touche une case vide pour un indice.`):T('Ton album est vide ! Joue pour gagner des pochettes.','Album vide : chaque réussite, dans la maison ou au village, rapporte une pochette.'),false);
@@ -2051,6 +2058,7 @@ function go(id){
   if(id!=='s-garage')try{gaStop()}catch(_){}
   try{vStop()}catch(_){}
   try{hideGAsk()}catch(_){}
+  document.querySelectorAll('.ghand').forEach(x=>x.remove());
   $('bubble').classList.toggle('wide',/^s-(marche|ruche|nature|tuyaux|village)$/.test(id));
   S.screen=id;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));
   $('bubble').style.display=(id==='s-start'||id==='s-profile')?'none':'flex';
@@ -2226,6 +2234,7 @@ document.querySelectorAll('#homeBtn,[id$="Home"]').forEach(b=>b.innerHTML=IC('ho
 document.querySelectorAll('[id$="Back"].iconbtn').forEach(b=>b.innerHTML=IC('village'));
 document.querySelectorAll('.gift').forEach(b=>{const bd=b.querySelector('.badge');b.innerHTML=IC('gift');b.appendChild(bd);});
 $('hatBtn').innerHTML=IC('hat');$('kBook').innerHTML=IC('book');$('fMapBtn').innerHTML=IC('books');$('parBtn').innerHTML=IC('gear');$('voiceBtn').innerHTML=IC('sound');
+$('cBg').innerHTML=roomBgSVG('corps');$('lBg').innerHTML=roomBgSVG('labo');$('gaBg').innerHTML=roomBgSVG('garage');$('fBg').innerHTML=roomBgSVG('fromage').replace(/<rect width="1180" height="820"[^>]*>|<rect y="7\d\d"[^>]*>|<rect y="690"[^>]*>/g,'');
 $('hubArt').innerHTML=hubSVG();$('hubW').innerHTML=wanjiSVG();$('hubK').innerHTML=kicuitSVG();
 onTap($('hubArt'),e=>{
   if(lpFired){lpFired=false;return;}
@@ -2450,12 +2459,13 @@ function setupGesture(kind,app){
     G.need=isA()?700:1800;
     pl.insertAdjacentHTML('beforeend','<div class="meter"><i></i></div>');
     pl.insertAdjacentHTML('beforeend',`<div class="cue" style="left:120px;top:-46px">${T('Remue avec ton doigt ! 🥄','Remue ! 🥄')}</div>`);
+    gesture($('casserole'),'circle',null,'stir');
     say(T('Remue avec ton doigt !','Remue dans la casserole pendant la cuisson !'),T('Remue avec ton doigt !','Remue !'));
   }else{
     pl.insertAdjacentHTML('beforeend',`<div class="cue hidden" id="flipCue" style="left:10px;top:20px">${kind==='flip'?'⬆ Retourne !':'⬆ Plie !'}</div>`);
   }
 }
-function flipPrompt(){const c=$('flipCue');if(!c)return;c.classList.remove('hidden');say(T(G.kind==='flip'?'Retourne la crêpe ! Glisse vers le haut !':"Plie l'omelette ! Glisse vers le haut !",G.kind==='flip'?'Retourne la crêpe : un coup sec vers le haut, pas trop fort !':"Plie l'omelette : glisse vers le haut."),T(G.kind==='flip'?'Retourne la crêpe ! Glisse vers le haut !':"Plie l'omelette !",G.kind==='flip'?'Retourne !':'Plie !'));G.flipOpen=true;}
+function flipPrompt(){const c=$('flipCue');if(!c)return;c.classList.remove('hidden');gesture($('poele'),'swipeUp',null,'flip');say(T(G.kind==='flip'?'Retourne la crêpe ! Glisse vers le haut !':"Plie l'omelette ! Glisse vers le haut !",G.kind==='flip'?'Retourne la crêpe : un coup sec vers le haut, pas trop fort !':"Plie l'omelette : glisse vers le haut."),T(G.kind==='flip'?'Retourne la crêpe ! Glisse vers le haut !':"Plie l'omelette !",G.kind==='flip'?'Retourne !':'Plie !'));G.flipOpen=true;}
 const cas=$('casserole'),poe=$('poele');
 cas.addEventListener('pointerdown',e=>{if(!G.on||G.kind!=='stir')return;G.last=stagePt(e);try{cas.setPointerCapture(e.pointerId)}catch(_){}
   let sp=document.querySelector('.spoon');if(!sp){$('plaque').insertAdjacentHTML('beforeend','<div class="spoon"><svg viewBox="0 0 34 92"><ellipse cx="17" cy="78" rx="12" ry="9" fill="#c98d5a"/><rect x="14" y="0" width="6" height="74" rx="3" fill="#c98d5a"/></svg></div>');}});
@@ -3226,6 +3236,7 @@ function runStep(){
   if(s==='cuisson'){
     FS.ct=32;
     W.innerHTML=`<div class="fstep"><h3>🥄 Cuis le caillé en remuant</h3><div class="cuve stir" id="fStir">${cuveSVG('caille','#f8e7b6')}</div><div class="rval" id="fCt">32 °C</div><div class="pfoot"><button class="btn b-orange" id="fGo">✋ Stop</button></div></div>`;
+    gesture($('fStir'),'circle',null,'fstir');
     say(T('Remue ! En chauffant, les grains rétrécissent et crachent leur eau.','Remue pour chauffer le caillé, arrête vers 54 °C : les grains rétrécissent et rejettent encore du petit-lait.'));
     return;
   }
@@ -3239,6 +3250,7 @@ function runStep(){
   if(s==='sel'){
     FS.meter=0;
     W.innerHTML=`<div class="fstep"><h3>🧂 Sale le fromage</h3><div class="rub" id="fRub">${cheeseSVG(id)}</div><div class="meter2"><i id="fRm"></i></div><div class="fhint2">${T('Frotte avec ton doigt !','Frotte le sel sur toute la croûte.')}</div>${A?'':'<div class="pfoot"><button class="btn b-grey" id="fNoSel">Sans sel</button></div>'}</div>`;
+    gesture($('fRub'),'rub',null,'fsel');
     say(T('Frotte le sel avec ton doigt !','Frotte le sel.'));
     return;
   }
@@ -3513,6 +3525,24 @@ function roomOpen(k){
   const p=P();p.open=p.open||{};return p.stars>=ROOM_REQ()[k]||!!p.open[k];
 }
 function addStar(){const p=P();p.stars++;saveDB();try{starFx(p.stars)}catch(_){}if(p.stars>=3)award('star3');if(p.stars>=5)award('star5');if(p.stars>=JARDIN)award('star10');if(p.stars>=20)award('star20');}
+/* main qui montre le geste (v44) : pour Nana à chaque fois, pour Raf la première fois de la partie */
+const GEST_SEEN=new Set();
+function gesture(el,kind='tap',to=null,key=null){
+  if(!el)return;if(!isA()){const k=key||kind+':'+(el.id||el.className);if(GEST_SEEN.has(k))return;GEST_SEEN.add(k);}
+  const scr=S.screen;
+  setTimeout(()=>{if(!el.isConnected||S.screen!==scr)return;document.querySelectorAll('.ghand').forEach(x=>x.remove());
+    const a=pos(el),b=to?(to.x!==undefined?to:pos(to)):null,h=document.createElement('div');h.className='ghand';h.innerHTML=IC('point');$('stage').appendChild(h);
+    const P_=(x,y,sc=1)=>({transform:`translate(${x-30}px,${y-6}px) scale(${sc})`});let fr;
+    if(kind==='swipeUp')fr=[P_(a.x,a.y+70),P_(a.x,a.y+70,.9),P_(a.x,a.y-90,.9),P_(a.x,a.y-90)];
+    else if(kind==='swipeDown')fr=[P_(a.x,a.y-70),P_(a.x,a.y-70,.9),P_(a.x,a.y+90,.9),P_(a.x,a.y+90)];
+    else if(kind==='swipe')fr=[P_(a.x-110,a.y),P_(a.x-110,a.y,.9),P_(a.x+110,a.y,.9),P_(a.x+110,a.y)];
+    else if(kind==='rub')fr=[0,1,2,3,4,5,6].map(i=>P_(a.x+(i%2?50:-50),a.y+(i-3)*12,.92));
+    else if(kind==='circle')fr=Array.from({length:13},(_,i)=>{const t=i/12*Math.PI*2;return P_(a.x+60*Math.cos(t),a.y+40*Math.sin(t),.92);});
+    else if(kind==='drag'&&b)fr=[P_(a.x,a.y),P_(a.x,a.y,.88),P_(b.x,b.y,.88),P_(b.x,b.y)];
+    else fr=[P_(a.x,a.y),P_(a.x,a.y,.8),P_(a.x,a.y)];
+    h.animate(fr,{duration:kind==='tap'?700:1500,iterations:kind==='tap'?3:2,easing:'ease-in-out'}).onfinish=()=>h.remove();
+  },700);
+}
 /* récompense : une étoile vole du dernier toucher jusqu'au compteur (celui de la maison, ou un compteur qui descend du haut) */
 let LASTPT={x:590,y:410},STARPOP_T=null;
 document.addEventListener('pointerdown',e=>{try{const s=$('stage').getBoundingClientRect();LASTPT={x:(e.clientX-s.left)/SCALE,y:(e.clientY-s.top)/SCALE};}catch(_){}},true);
@@ -3600,6 +3630,26 @@ function cEvery(fn,ms){const t=setInterval(fn,ms);CS.tm.push(t);return t;}
 function stopBeat(){clearTimeout(CS.beat);CS.beat=null;}
 function cStop(){hideAsk();CS.tm.forEach(t=>{clearTimeout(t);clearInterval(t);});CS.tm=[];cancelAnimationFrame(CS.raf);CS.raf=0;stopBeat();}
 function bonesList(){return isA()?BONES_NANA:BONES_RAF;}
+/* décor des ateliers (v44) : papier peint, plinthe et sol, et une petite scène en haut à droite (entre la bulle de Kicuit et le cadeau) */
+function roomBgSVG(kind){
+  const K='#3b2f5c',W=`stroke="${K}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"`;
+  const T={
+    corps:{wall:'#e4f1ff',dot:'#cfe3fb',floor:'#f3c9d3',floor2:'#e3a9b8'},
+    labo:{wall:'#e9eefc',dot:'#d6def5',floor:'#cfd9ee',floor2:'#b3c0dc'},
+    garage:{wall:'#dfe5ef',dot:'#c9d2e2',floor:'#9aa3b5',floor2:'#7d879b'},
+    fromage:{wall:'#f3dcb4',dot:'#e6c896',floor:'#c99b62',floor2:'#a8703f'}}[kind];
+  let scene='';
+  if(kind==='corps')scene=`<g transform="translate(858 8)"><rect x="0" y="0" width="120" height="92" rx="10" fill="#fff" ${W}/><rect x="8" y="8" width="104" height="76" rx="6" fill="#bfe6ff"/><circle cx="86" cy="28" r="12" fill="#ffd23f"/><path d="M8 70 q30 -24 56 -6 q22 -16 48 2 v18 h-104z" fill="#8fd16a"/><path d="M60 0 v92 M0 46 h120" stroke="#fff" stroke-width="6"/><rect x="0" y="0" width="120" height="92" rx="10" fill="none" ${W}/></g>
+<g transform="translate(996 14)"><rect x="0" y="0" width="64" height="80" rx="6" fill="#fff" ${W}/><path d="M32 64 c-20 -14 -18 -32 -8 -32 c5 0 8 4 8 4 c0 0 3 -4 8 -4 c10 0 12 18 -8 32z" fill="#ff4d6d" ${W}/><path d="M10 18 h44" stroke="#b9c3d8" stroke-width="3" stroke-linecap="round"/></g>`;
+  if(kind==='labo')scene=`<g transform="translate(856 10)"><rect x="0" y="58" width="200" height="10" rx="3" fill="#a8703f" ${W}/><path d="M14 58 v-30 h14 v30z" fill="#a5e6ff" ${W}/><path d="M40 58 l6 -24 h10 l6 24z" fill="#ffd27a" ${W}/><circle cx="84" cy="44" r="13" fill="#d0b3ff" ${W}/><rect x="80" y="20" width="8" height="12" fill="#eef9ff" ${W}/><path d="M108 58 v-38 h12 v38z" fill="#ff9fb8" ${W}/>
+  <g transform="translate(160 30)"><circle r="24" fill="#fff" ${W}/><path d="M0 0 v-14 M0 0 l10 6" stroke="${K}" stroke-width="3.5" stroke-linecap="round"/></g></g>`;
+  if(kind==='garage')scene=`<g transform="translate(852 6)"><rect x="0" y="0" width="210" height="96" rx="8" fill="#e8c99a" ${W}/>${Array.from({length:30},(_,i)=>`<circle cx="${14+(i%10)*20}" cy="${16+Math.floor(i/10)*30}" r="3" fill="#b38b5a"/>`).join('')}
+  <path d="M26 20 l-4 50 a6 6 0 0 0 12 0 l-4 -50z" fill="#aab3c8" ${W}/><path d="M58 18 a12 12 0 1 0 0.1 0 M58 30 v46" fill="none" stroke="#aab3c8" stroke-width="7" stroke-linecap="round"/><path d="M58 30 v46" stroke="${K}" stroke-width="2"/><rect x="84" y="18" width="20" height="40" rx="4" fill="#e8553d" ${W}/><rect x="90" y="56" width="8" height="26" fill="#5d6c8c" ${W}/>
+  <path d="M124 22 h34 l-6 14 h-22z" fill="#ffd23f" ${W}/><path d="M141 36 v40" stroke="#5d6c8c" stroke-width="7" stroke-linecap="round"/><circle cx="186" cy="48" r="20" fill="#3b3b48" ${W}/><circle cx="186" cy="48" r="9" fill="#c9d0de" ${W}/></g>`;
+  if(kind==='fromage')scene=`<g transform="translate(856 4)"><rect x="0" y="64" width="110" height="10" rx="3" fill="#7a4a2a" ${W}/><ellipse cx="28" cy="52" rx="24" ry="9" fill="#f2c27a" ${W}/><rect x="4" y="40" width="48" height="12" fill="#f2c27a"/><ellipse cx="28" cy="40" rx="24" ry="9" fill="#ffd98a" ${W}/><path d="M4 40 v12 M52 40 v12" ${W}/><ellipse cx="82" cy="54" rx="20" ry="8" fill="#ffd448" ${W}/><rect x="62" y="40" width="40" height="14" fill="#ffd448"/><ellipse cx="82" cy="40" rx="20" ry="8" fill="#ffe27a" ${W}/><path d="M62 40 v14 M102 40 v14" ${W}/><circle cx="74" cy="47" r="2.5" fill="#e0a91f"/><circle cx="90" cy="49" r="2" fill="#e0a91f"/></g>`;
+  return `<svg viewBox="0 0 1180 820" class="full roombg" preserveAspectRatio="none" aria-hidden="true"><defs><pattern id="rbp_${kind}" width="44" height="44" patternUnits="userSpaceOnUse"><rect width="44" height="44" fill="${T.wall}"/><circle cx="11" cy="11" r="4" fill="${T.dot}"/><circle cx="33" cy="33" r="4" fill="${T.dot}"/></pattern></defs>
+<rect width="1180" height="820" fill="url(#rbp_${kind})"/><rect y="700" width="1180" height="120" fill="${T.floor}"/><rect y="700" width="1180" height="8" fill="${T.floor2}"/><rect y="690" width="1180" height="12" fill="#fff" opacity=".6"/>${scene}</svg>`;
+}
 function enterCorps(){go('s-corps');C_();renderCTabs();openCTab(CS.tab);updGift();}
 function renderCTabs(){$('cTabs').innerHTML=CTABS.map(t=>`<button class="ctab ${t.id===CS.tab?'on':''}" data-t="${t.id}"><span>${IC(t.ic)||t.e}</span>${t.n}</button>`).join('');}
 onTap($('cTabs'),e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=b.dataset.t;
@@ -3660,6 +3710,7 @@ onTap($('cWork'),e=>{
 /* ===== 1. squelette ===== */
 function skelStart(){
   CS.placed={};CS.mode='puzzle';CS.quiz=null;renderCorps();
+  setTimeout(()=>{const el=document.querySelector('#s-corps .bone');if(!el)return;const i=bonesList().findIndex(b=>b.id===el.dataset.id);gesture(el,'drag',document.querySelectorAll('#cBoard .ghost-b')[i],'skel');},300);
   say(T('Remets les os à leur place ! Fais-les glisser sur le squelette.',"Reconstitue le squelette : glisse chaque os à sa place. Son nom s'affiche quand tu le prends."));
 }
 function renderCorps(){
@@ -4237,6 +4288,7 @@ function teethGame(){
   $('dPat').innerHTML=`<div style="position:relative"><svg class="teeth" viewBox="0 0 360 300"><ellipse cx="180" cy="150" rx="176" ry="146" fill="#e2566e"/><ellipse cx="180" cy="152" rx="146" ry="110" fill="#7a1f33"/>
     ${Array.from({length:16},(_,i)=>{const top=i<8,x=40+(i%8)*36,y=top?60:180;return `<g data-th="${i}"><rect x="${x}" y="${y}" width="32" height="56" rx="10" fill="#fff" stroke="#e6dccb" stroke-width="2"/><g class="dirt">${Array.from({length:need},(_,k)=>`<circle cx="${x+10+k*7}" cy="${y+(top?40:16)}" r="6" fill="#c9a24a"/>`).join('')}</g></g>`;}).join('')}</svg>
     ${Array.from({length:7},(_,i)=>`<span class="germ" id="gm${i}" style="left:${40+i*42}px;top:${i%2?190:110}px">🦠</span>`).join('')}<span class="brush hidden" id="dBrush">🪥</span><div class="dtimer" id="dTm"></div></div>`;
+  gesture(document.querySelector('[data-th="3"]'),'rub',null,'dents');
   say(T('Frotte toutes les dents avec la brosse !','Frotte chaque dent, en haut et en bas, jusqu\'à ce qu\'elles soient toutes blanches.'));
   const z=$('dPat'),br=$('dBrush'),R=A?64:40;let lp=null,last=0;
   const TC=Array.from({length:16},(_,i)=>({x:40+(i%8)*36+16,y:i<8?88:208}));
@@ -4259,6 +4311,7 @@ function handsGame(){
   const A=isA();DR.rub=0;
   $('dPat').innerHTML=`<div style="position:relative;width:340px;height:340px"><svg viewBox="0 0 340 340" style="width:100%;height:100%"><ellipse cx="120" cy="190" rx="70" ry="100" fill="#ffd8bd" stroke="#d9a886" stroke-width="4" transform="rotate(-12 120 190)"/><ellipse cx="220" cy="190" rx="70" ry="100" fill="#ffd8bd" stroke="#d9a886" stroke-width="4" transform="rotate(12 220 190)"/></svg>
   ${Array.from({length:10},(_,i)=>`<span class="germ" id="hg${i}" style="left:${70+(i%5)*44}px;top:${110+Math.floor(i/5)*90}px">🦠</span>`).join('')}<div class="dtimer" id="dTm">⏱️ 0 / 20 s</div></div>`;
+  gesture($('dPat'),'rub',null,'savon');
   say(T('Frotte, frotte, frotte avec le savon !','Frotte avec le savon : il faut 20 secondes, entre les doigts et sous les ongles.'));
   let lp=null;const z=$('dPat');
   z.onpointerdown=e=>{lp=stagePt(e);};
@@ -4856,7 +4909,7 @@ VFN.ruche_miel=function(){
     else if(s==='pots')mid=`<div class="vjars">${Array.from({length:4},(_,i)=>`<div class="vjar"><i style="height:${Math.max(0,Math.min(100,(Y.jars-i)*100))}%"></i><span>🍯</span></div>`).join('')}</div><button class="vopt cnudge" id="yTap">🚰 Robinet</button>`;
     else mid=`<div class="vbig">🍯🍯🍯🍯</div><div class="vq">${T('Tu as 4 pots de miel ! Tu peux les vendre au marché.','4 pots de 500 g. On laisse toujours assez de miel aux abeilles pour l\'hiver (environ 15 kg par ruche).')}</div><button class="btn b-orange" data-again="1">🔁 Encore une récolte</button>`;
     vW().innerHTML=`<div class="vmiel"><div class="vsteps">${Object.keys(STEP).slice(0,6).map((k,i)=>`<span class="${k===s?'on':Object.keys(STEP).indexOf(s)>i?'ok':''}">${i+1}</span>`).join('')}</div><div class="vq big">${T(STEP[s][0],STEP[s][1])}</div><div class="vmielm">${mid}</div></div>`;};
-  const go2=s=>{Y.step=s;draw();say(T(STEP[s][0],STEP[s][1]),T(undefined,false));};
+  const go2=s=>{Y.step=s;draw();say(T(STEP[s][0],STEP[s][1]),T(undefined,false));if(s==='desop')gesture($('yDes'),'rub',null,'desop');if(s==='extract')gesture($('yEx'),'circle',null,'extr');};
   go2('tenue');
   V.tap=e=>{const b=e.target.closest('[data-s],[data-fr],[data-again]');if(!b)return;
     if(b.dataset.again){if(performance.now()-(Y.finT||0)>1500)vOpenTab('ruche','miel');return;}

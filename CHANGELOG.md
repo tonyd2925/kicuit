@@ -4,6 +4,7 @@ Le numéro affiché en bas de l'accueil (« Version N · date »), sur l'écran 
 
 | Version | Date | Changements |
 |---|---|---|
+| 44 | 22/11/2026 | Décor pour le corps humain, le labo, le garage et la fromagerie (papier peint, sol, fenêtre, étagères, panneau d'outils). Une main animée montre le geste à faire : déchirer la pochette, glisser l'autocollant, remuer, retourner la crêpe, saler, remettre les os, brosser les dents, savonner, désoperculer, tourner l'extracteur. |
 | 43 | 22/11/2026 | Icônes dessinées à la place des emojis : boutons ronds (maison, village, cadeau, son, garde-robe, carnet, livres, réglages, météo du jardin), onglets du corps, du labo, du garage et du village, main et coccinelles du jardin, et une image sur chaque bandeau de la maison. Charte unique : tous les boutons de choix ont le même blanc, le même arrondi, la même ombre et la même sélection orange. |
 | 42 | 22/11/2026 | Navigation : fondu entre les écrans ; bouton cadeau toujours en haut à droite ; pour Nana, les boutons de sortie et les onglets demandent une confirmation (gros bouton vert) ; sur la maison, 5 étoiles sous chaque pièce montrent ce qui est déjà fait, et une jauge montre les étoiles qui manquent pour les pièces fermées ; chaque étoile gagnée vole jusqu'au compteur ; le cadenas tremble et tombe quand une pièce s'ouvre ; bornes du circuit plus faciles à toucher. |
 | 41 | 10/11/2026 | Wanji a son œil droit demi-vairon : moitié bleu, moitié marron. |
