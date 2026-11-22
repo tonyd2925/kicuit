@@ -4,6 +4,7 @@ Le numéro affiché en bas de l'accueil (« Version N · date »), sur l'écran 
 
 | Version | Date | Changements |
 |---|---|---|
+| 42 | 22/11/2026 | Navigation : fondu entre les écrans ; bouton cadeau toujours en haut à droite ; pour Nana, les boutons de sortie et les onglets demandent une confirmation (gros bouton vert) ; sur la maison, 5 étoiles sous chaque pièce montrent ce qui est déjà fait, et une jauge montre les étoiles qui manquent pour les pièces fermées ; chaque étoile gagnée vole jusqu'au compteur ; le cadenas tremble et tombe quand une pièce s'ouvre ; bornes du circuit plus faciles à toucher. |
 | 41 | 10/11/2026 | Wanji a son œil droit demi-vairon : moitié bleu, moitié marron. |
 | 40 | 10/11/2026 | Wanji redessiné d'après son portrait : tête de petit husky aux joues touffues, calotte brune jusqu'aux yeux avec ses deux « sourcils » crème, yeux bleus en amande, truffe brun foncé, grand jabot crème, longues pattes blanches, queue touffue posée au sol. |
 | 39 | 10/11/2026 | Wanji redessiné d'après ses photos : tête toute touffue, visage crème sans masque, calotte brun taupe avec la liste blanche, yeux bleus en amande, truffe brun rosé, robe abricot, queue en panache. Sa queue ne flotte plus à côté de lui (bug depuis la version 35). Panneau du village plus grand, bleu, écrit en blanc. |

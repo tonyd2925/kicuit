@@ -20,7 +20,14 @@ html,body{margin:0;height:100%;width:100%;overflow:hidden;background:#1d1838;ove
 body{position:fixed;inset:0}
 #stage{position:absolute;left:50%;top:50%;width:1180px;height:820px;transform-origin:center center;overflow:hidden;background:var(--cream)}
 .screen{position:absolute;inset:0;display:none}
-.screen.on{display:block}
+.screen.on{display:block;animation:scrIn .3s ease-out}
+@keyframes scrIn{from{opacity:0}to{opacity:1}}
+.gask{left:0;top:0}
+#starPop{position:absolute;right:220px;top:22px;height:68px;padding:0 20px;border-radius:34px;background:#fff;font-size:32px;font-weight:900;display:flex;align-items:center;gap:8px;box-shadow:0 6px 0 #d9d2e8,0 10px 20px rgba(0,0,0,.15);z-index:96;opacity:0;transform:translateY(-120px);transition:opacity .25s,transform .35s cubic-bezier(.3,1.5,.6,1);pointer-events:none}
+#starPop.show{opacity:1;transform:none}
+.starfly{position:absolute;left:0;top:0;width:70px;height:70px;z-index:97;pointer-events:none}
+#hubArt .lockdrop{transform-box:fill-box;transform-origin:center;animation:lockdrop 1.6s ease-in forwards}
+@keyframes lockdrop{0%{transform:rotate(0)}10%{transform:rotate(-14deg)}20%{transform:rotate(12deg)}30%{transform:rotate(-10deg)}40%{transform:rotate(8deg) translateY(-6px)}55%{transform:rotate(0) translateY(-20px)}100%{transform:translateY(260px) rotate(70deg);opacity:0}}
 .full{position:absolute;inset:0;width:100%;height:100%;display:block}
 .abs{position:absolute}
 .hidden{display:none!important}
@@ -111,8 +118,8 @@ svg{display:block}
 #hubArt .hsteam{animation:hsteam 2.6s ease-in-out infinite}@keyframes hsteam{0%,100%{opacity:.35}50%{opacity:.95}}
 @keyframes roompulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 #hubStars{position:absolute;right:220px;top:22px;height:68px;padding:0 20px;border-radius:34px;background:#fff;font-size:32px;font-weight:900;display:flex;align-items:center;gap:8px;box-shadow:0 6px 0 #d9d2e8;z-index:20}
-#hubW{left:330px;top:688px;width:120px;height:125px}
-#hubK{left:770px;top:690px;width:92px;height:118px}
+#hubW{left:330px;top:704px;width:120px;height:125px}
+#hubK{left:770px;top:706px;width:92px;height:118px}
 
 /* cuisine */
 #fridge{left:28px;top:148px;width:254px;height:572px}
@@ -608,7 +615,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 .cask{position:absolute;left:318px;width:150px;height:110px;border-radius:55px;background:linear-gradient(#7be08a,#3fb455);box-shadow:0 6px 0 #2a8a3c,0 10px 22px rgba(0,0,0,.2);color:#fff;font-size:44px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:6px;z-index:30;animation:askIn .25s cubic-bezier(.3,1.6,.6,1)}
 .cask span{font-size:44px}
 @keyframes askIn{from{transform:scale(.3)}}
-.ctab.wig{animation:wig .45s}
+.ctab.wig,.wig{animation:wig .45s}
 @keyframes wig{25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
 .vcount{font-size:22px;font-weight:900;display:flex;align-items:center;gap:12px;width:380px}
 .oeso{position:relative;width:180px;height:430px}
@@ -1041,7 +1048,7 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
 <body>
 <div id="rotate"><div class="ph">📱</div><div>Tourne l'iPad<br>à l'horizontale !</div></div>
 <div id="stage">
-<svg id="g3defs" width="0" height="0" style="position:absolute;left:0;top:0" aria-hidden="true"><defs>
+<svg id="g3defs" width="0" height="0" style="position:absolute;left:0;top:0" aria-hidden="true"><defs><linearGradient id="hStarG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff07a"/><stop offset="1" stop-color="#f5a623"/></linearGradient>
 <radialGradient id="g3Shad"><stop offset="0" stop-color="#2b2350" stop-opacity=".32"/><stop offset="1" stop-color="#2b2350" stop-opacity="0"/></radialGradient>
 <radialGradient id="k3Head" cx=".35" cy=".28" r=".85"><stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#e9eff9"/><stop offset="1" stop-color="#b4c2dd"/></radialGradient>
 <radialGradient id="k3Body" cx=".35" cy=".25" r=".9"><stop offset="0" stop-color="#f4f7fd"/><stop offset=".55" stop-color="#d3ddf0"/><stop offset="1" stop-color="#9eb0d2"/></radialGradient>
@@ -1113,8 +1120,8 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
     <div class="abs" id="hubK"></div>
     <button class="iconbtn" id="hubAv" style="left:20px;top:14px"></button>
     <div id="hubStars">⭐ <span id="hubStarN">0</span></div>
-    <button class="iconbtn gift hidden" style="right:120px;top:14px">🎁<span class="badge">0</span></button>
-    <button class="iconbtn" id="voiceBtn" style="right:20px;top:14px">🔊</button>
+    <button class="iconbtn gift hidden" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
+    <button class="iconbtn" id="voiceBtn" style="right:120px;top:14px">🔊</button>
     <button class="iconbtn" id="hatBtn">🎩</button>
     <div class="modal hidden" id="hatM"><div class="card wardrobe" id="hatIn"></div></div>
   </section>
@@ -1122,8 +1129,8 @@ input[type=range]::-moz-range-thumb{width:44px;height:44px;border-radius:50%;bac
   <section class="screen" id="s-kitchen">
     <div id="kArt"></div>
     <button class="iconbtn" id="kHome" style="left:20px;top:14px">🏠</button>
-    <button class="iconbtn gift hidden" id="kGift" style="right:120px;top:14px">🎁<span class="badge">0</span></button>
-    <button class="iconbtn" id="kBook" style="right:20px;top:14px">📖</button>
+    <button class="iconbtn gift hidden" id="kGift" style="right:20px;top:14px">🎁<span class="badge">0</span></button>
+    <button class="iconbtn" id="kBook" style="right:120px;top:14px">📖</button>
     <div class="abs" id="fridge">
       <div class="fr-top" id="frTop"></div>
       <div class="fr-main">
@@ -1846,7 +1853,7 @@ onTap($('apage'),e=>{
   sfx.click();
   say(s.secret?T("C'est une surprise ! Continue à jouer pour la trouver.",`Secret : ${s.how}.`):T(`Pour gagner celui-là : ${s.how.toLowerCase()} !`,`Indice : ${s.how}.`));
 });
-onTap($('aHome'),()=>{sfx.click();enterHub();});
+onTap($('aHome'),()=>nanaGuard($('aHome'),()=>{sfx.click();enterHub();}));
 
 /* glisser-déposer des autocollants */
 let DRAG=null;
@@ -1970,6 +1977,7 @@ function go(id){
   if(id!=='s-corps')try{cStop()}catch(_){}
   if(id!=='s-garage')try{gaStop()}catch(_){}
   try{vStop()}catch(_){}
+  try{hideGAsk()}catch(_){}
   $('bubble').classList.toggle('wide',/^s-(marche|ruche|nature|tuyaux|village)$/.test(id));
   S.screen=id;document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on',s.id===id));
   $('bubble').style.display=(id==='s-start'||id==='s-profile')?'none':'flex';
@@ -1991,6 +1999,16 @@ const ROOMS={
 };
 function lockSVG(x,y){return `<g transform="translate(${x} ${y})"><ellipse cy="36" rx="24" ry="5" fill="#2b2350" opacity=".18"/><path d="M-14 0 v-12 a14 14 0 0 1 28 0 v12" fill="none" stroke="#5d6c8c" stroke-width="7"/><path d="M-14 -4 v-8 a14 14 0 0 1 22 -11" fill="none" stroke="#aab6cf" stroke-width="2.5" stroke-linecap="round"/><rect x="-22" y="-2" width="44" height="34" rx="9" fill="url(#hGold)" stroke="#5d6c8c" stroke-width="4"/><rect x="-16" y="3" width="32" height="6" rx="3" fill="#fff" opacity=".45"/><circle cy="13" r="5" fill="#5d6c8c"/><rect x="-2" y="14" width="4" height="9" rx="2" fill="#5d6c8c"/></g>`}
 function banner(cx,y,txt,w=210){return `<g><rect x="${cx-w/2}" y="${y+4}" width="${w}" height="42" rx="16" fill="#2b2350" opacity=".2"/><rect x="${cx-w/2}" y="${y}" width="${w}" height="42" rx="16" fill="#fff" stroke="#2b2350" stroke-width="3"/><text x="${cx}" y="${y+30}" text-anchor="middle" font-size="24" font-weight="900" fill="#2b2350" font-family="ui-rounded,'Arial Rounded MT Bold',sans-serif">${txt}</text></g>`}
+/* progression visible sur la maison : 5 étoiles = part des autocollants de la pièce ; pièce fermée = jauge d'étoiles jusqu'à l'ouverture */
+const ROOM_STK={cuisine:s=>s.pg==='cuisine',jardin:s=>s.pg==='jardin',fromage:s=>s.pg==='fromage',corps:s=>s.pg==='corps',labo:s=>s.pg==='ateliers'&&s.id.startsWith('l_'),garage:s=>s.pg==='ateliers'&&s.id.startsWith('g_'),album:s=>true};
+function roomIsOpen(k){return k==='jardin'?gardenOpen():k==='fromage'?fromOpen():(ROOMS[k]&&ROOMS[k].open)||roomOpen(k);}
+function roomProg(k){const l=VIS().filter(ROOM_STK[k]);return {o:l.filter(x=>owned(x.id)).length,n:l.length};}
+function progSVG(k,cx,y){if(!S.player||!ROOM_STK[k])return '';
+  const star=(x,on)=>`<path transform="translate(${x} ${y+16}) scale(.34)" d="M0 -44 L12 -14 L44 -12 L19 8 L28 40 L0 22 L-28 40 L-19 8 L-44 -12 L-12 -14z" fill="${on?'url(#hStarG)':'#e4e0ee'}" stroke="${on?'#c9881a':'#b9b2cc'}" stroke-width="7" stroke-linejoin="round"/>`;
+  if(roomIsOpen(k)){const {o,n}=roomProg(k),f=n?Math.round(5*o/n):0,full=n&&o>=n;
+    return `<g class="rprog" pointer-events="none"><rect x="${cx-82}" y="${y+3}" width="164" height="33" rx="16.5" fill="#2b2350" opacity=".2"/><rect x="${cx-82}" y="${y}" width="164" height="33" rx="16.5" fill="${full?'#fff3c4':'#fff'}" stroke="${full?'#c9881a':'#2b2350'}" stroke-width="3"/>${[0,1,2,3,4].map(i=>star(cx-58+i*29,i<f)).join('')}</g>`;}
+  const need=ROOM_REQ()[k]||0,have=Math.min(P().stars,need),w=Math.round(78*(need?have/need:0));
+  return `<g class="rprog" pointer-events="none"><rect x="${cx-88}" y="${y+3}" width="176" height="33" rx="16.5" fill="#2b2350" opacity=".2"/><rect x="${cx-88}" y="${y}" width="176" height="33" rx="16.5" fill="#fff" stroke="#2b2350" stroke-width="3"/>${star(cx-66,true)}<rect x="${cx-46}" y="${y+10}" width="84" height="13" rx="6.5" fill="#e4e0ee"/><rect x="${cx-46}" y="${y+10}" width="${Math.round(84*(need?have/need:0))}" height="13" rx="6.5" fill="url(#hStarG)"/><text x="${cx+63}" y="${y+23}" text-anchor="middle" font-size="16" font-weight="900" fill="#2b2350" font-family="ui-rounded,'Arial Rounded MT Bold',sans-serif">${have}/${need}</text></g>`;}
 function roomInterior(k){
   const {x,y,h}=ROOMS[k];
   const floor=(c1,c2)=>`<rect x="${x}" y="${y+h-34}" width="266" height="34" fill="${c1}"/><rect x="${x}" y="${y+h-34}" width="266" height="5" fill="${c2}"/>`;
@@ -2026,9 +2044,10 @@ function roomInterior(k){
 <rect x="${x+16}" y="${y+84}" width="12" height="78" rx="5" fill="#8a6fd6"/><rect x="${x+20}" y="${y+146}" width="156" height="14" rx="5" fill="#6c5ce7"/><rect x="${x+24}" y="${y+104}" width="150" height="46" rx="12" fill="url(#hBed)"/><path d="M${x+84} ${y+104} h78 a12 12 0 0 1 12 12 v22 a12 12 0 0 1 -12 12 h-78z" fill="url(#hBlk)"/><path d="M${x+84} ${y+104} v46" stroke="#fff" stroke-width="4" opacity=".7"/><rect x="${x+28}" y="${y+94}" width="50" height="26" rx="10" fill="#fff" stroke="#d8d0f5" stroke-width="2.5"/>`;
   return '';
 }
-function hubSVG(){
+function hubSVG(){let h=hubSVG0();const pr=[];h=h.replace(/<g class="rprog"[\s\S]*?<\/g>/g,m=>{pr.push(m);return '';});return h.replace(/<\/svg>\s*$/,pr.join('')+'</svg>');}
+function hubSVG0(){
   const F="ui-rounded,'Arial Rounded MT Bold',sans-serif";
-  const rooms=Object.entries(ROOMS).map(([k,r])=>`<g class="room" data-room="${k}"><rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="${r.bg}"/>${roomInterior(k)}${r.open||roomOpen(k)?'':`<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="#fff" opacity=".5"/>${lockSVG(r.x+r.w/2,r.y+r.h/2-24)}`}<g class="${k==='cuisine'||(!r.open&&roomOpen(k))?'open-pulse':''}">${banner(r.x+r.w/2,r.y+r.h-50,r.n,k==='corps'||k==='labo'?226:180)}</g><rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="transparent"/></g>`).join('');
+  const rooms=Object.entries(ROOMS).map(([k,r])=>`<g class="room" data-room="${k}"><rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="${r.bg}"/>${roomInterior(k)}${r.open||roomOpen(k)?'':`<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="#fff" opacity=".5"/>${lockSVG(r.x+r.w/2,r.y+r.h/2-24)}`}<g class="${k==='cuisine'||(!r.open&&roomOpen(k))?'open-pulse':''}">${banner(r.x+r.w/2,r.y+r.h-50,r.n,k==='corps'||k==='labo'?226:180)}</g>${progSVG(k,r.x+r.w/2,r.y+r.h-16)}<rect x="${r.x}" y="${r.y}" width="${r.w}" height="${r.h}" fill="transparent"/></g>`).join('');
   const tree=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><rect x="-7" y="-10" width="14" height="60" rx="5" fill="#8a5a36"/><circle cx="-26" cy="-34" r="34" fill="url(#hTree)"/><circle cx="28" cy="-30" r="32" fill="url(#hTree)"/><circle cx="0" cy="-62" r="40" fill="url(#hTree)"/><ellipse cx="-14" cy="-78" rx="14" ry="8" fill="#fff" opacity=".22"/></g>`;
   const tuft=(x,y)=>`<path d="M${x} ${y} l-5 -13 l5 6 l2 -11 l3 11 l5 -6 l-5 13z" fill="#5fa83c"/>`;
   const daisy=(x,y,c)=>`<g transform="translate(${x} ${y})"><path d="M0 0 v10" stroke="#4d9a35" stroke-width="2.5"/>${[0,72,144,216,288].map(a=>`<ellipse rx="3" ry="5" cy="-5" fill="${c}" transform="rotate(${a})"/>`).join('')}<circle r="2.6" fill="#ffd25a"/></g>`;
@@ -2082,12 +2101,12 @@ ${daisy(312,792,'#fff')}${daisy(458,756,'#ffb3cc')}${daisy(716,768,'#fff')}${dai
 <ellipse cx="590" cy="714" rx="330" ry="20" fill="url(#g3Shad)"/><ellipse cx="1030" cy="710" rx="150" ry="14" fill="url(#g3Shad)"/><ellipse cx="152" cy="516" rx="150" ry="14" fill="url(#g3Shad)"/><ellipse cx="157" cy="750" rx="150" ry="12" fill="url(#g3Shad)"/>
 <path d="M560 700 q-20 60 -60 120 h160 q-40 -60 -60 -120z" fill="url(#hPath)"/><g fill="#d9bf8c" opacity=".8"><ellipse cx="588" cy="728" rx="16" ry="6"/><ellipse cx="572" cy="756" rx="20" ry="7"/><ellipse cx="600" cy="782" rx="24" ry="8"/><ellipse cx="560" cy="806" rx="26" ry="8"/></g>
 <g class="room" data-room="village"><rect x="1010" y="770" width="20" height="50" rx="4" fill="url(#hWood)" stroke="#6e4526" stroke-width="3"/><g class="open-pulse"><path d="M892 728 h232 l46 36 l-46 36 h-232 a8 8 0 0 1 -8 -8 v-56 a8 8 0 0 1 8 -8z" fill="#2b2350" opacity=".25"/><path d="M892 720 h232 l46 36 l-46 36 h-232 a8 8 0 0 1 -8 -8 v-56 a8 8 0 0 1 8 -8z" fill="url(#hSign)" stroke="#2b2350" stroke-width="4" stroke-linejoin="round"/><path d="M896 728 h226 l36 28 l-36 28 h-226z" fill="none" stroke="#fff" stroke-width="3" stroke-linejoin="round" opacity=".85"/><text x="1012" y="768" text-anchor="middle" font-size="33" font-weight="900" fill="#fff" stroke="#1d3f9a" stroke-width="1" font-family="${F}">🏘️ Le village</text></g>${hubVilBadge()}<rect x="880" y="708" width="300" height="112" fill="transparent"/></g>
-<g class="room" data-room="jardin"><rect x="22" y="524" width="270" height="226" rx="22" fill="#6fb04a"/><rect x="22" y="520" width="270" height="226" rx="22" fill="url(#hLawn)"/><ellipse cx="60" cy="566" rx="34" ry="24" fill="url(#hTree)"/><ellipse cx="252" cy="564" rx="36" ry="26" fill="url(#hTree)"/>${fence}<rect x="26" y="584" width="262" height="10" rx="3" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/><rect x="40" y="624" width="234" height="40" rx="14" fill="#55351c"/><rect x="40" y="620" width="234" height="40" rx="14" fill="url(#hSoil)"/><path d="M56 634 h202 M56 648 h202" stroke="#5a3a20" stroke-width="2" stroke-linecap="round" opacity=".5"/>${carrots}${flowers}${gardenOpen()?'':`<rect x="22" y="520" width="270" height="226" rx="22" fill="#fff" opacity=".45"/>${lockSVG(157,560)}`}<g class="${gardenOpen()?'open-pulse':''}">${banner(157,690,'Jardin',150)}</g><rect x="22" y="520" width="270" height="226" fill="transparent"/></g>
+<g class="room" data-room="jardin"><rect x="22" y="524" width="270" height="226" rx="22" fill="#6fb04a"/><rect x="22" y="520" width="270" height="226" rx="22" fill="url(#hLawn)"/><ellipse cx="60" cy="566" rx="34" ry="24" fill="url(#hTree)"/><ellipse cx="252" cy="564" rx="36" ry="26" fill="url(#hTree)"/>${fence}<rect x="26" y="584" width="262" height="10" rx="3" fill="#fff6e0" stroke="#c8a97a" stroke-width="2"/><rect x="40" y="624" width="234" height="40" rx="14" fill="#55351c"/><rect x="40" y="620" width="234" height="40" rx="14" fill="url(#hSoil)"/><path d="M56 634 h202 M56 648 h202" stroke="#5a3a20" stroke-width="2" stroke-linecap="round" opacity=".5"/>${carrots}${flowers}${gardenOpen()?'':`<rect x="22" y="520" width="270" height="226" rx="22" fill="#fff" opacity=".45"/>${lockSVG(157,560)}`}<g class="${gardenOpen()?'open-pulse':''}">${banner(157,690,'Jardin',150)}</g>${progSVG('jardin',157,725)}<rect x="22" y="520" width="270" height="226" fill="transparent"/></g>
 <g class="room" data-room="fromage"><rect x="34" y="398" width="236" height="114" fill="url(#hBarn)"/><rect x="34" y="398" width="236" height="114" fill="url(#hPlank)"/><rect x="34" y="398" width="236" height="16" fill="#2b2350" opacity=".18"/><rect x="34" y="398" width="236" height="114" fill="none" stroke="#7d3424" stroke-width="5"/><path d="M20 404 L152 300 L284 404z" fill="url(#hBarnR)" stroke="#5a2418" stroke-width="5" stroke-linejoin="round"/><path d="M44 392 L152 308" stroke="#fff" stroke-width="5" opacity=".2" stroke-linecap="round"/><path d="M16 406 L152 298 L288 406" fill="none" stroke="#fff3e0" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
 <rect x="100" y="426" width="104" height="86" fill="#fff3e0"/><rect x="106" y="432" width="92" height="80" fill="#e8cfa6"/><path d="M106 432 L198 512 M198 432 L106 512" stroke="#fff3e0" stroke-width="7"/><rect x="149" y="432" width="6" height="80" fill="#fff3e0"/>
 <circle cx="152" cy="360" r="23" fill="#fff3e0"/><circle cx="152" cy="360" r="18" fill="#ffe9a8" stroke="#7d3424" stroke-width="3"/><text x="152" y="368" text-anchor="middle" font-size="22">🧀</text>
 <g><rect x="42" y="478" width="30" height="34" rx="8" fill="url(#hPot)" stroke="#55627f" stroke-width="2.5"/><rect x="48" y="468" width="18" height="12" rx="4" fill="#c3ccdf" stroke="#55627f" stroke-width="2.5"/></g><g><rect x="226" y="484" width="38" height="28" rx="6" fill="#f2d16b" stroke="#c9a227" stroke-width="2.5"/><path d="M234 484 v28 M245 484 v28 M256 484 v28" stroke="#c9a227" stroke-width="2" opacity=".7"/></g>
-${fromOpen()?'':`<path d="M16 406 L152 298 L288 406 H270 V512 H34 V406z" fill="#fff" opacity=".5"/>${lockSVG(152,440)}`}<g class="${fromOpen()?'open-pulse':''}">${banner(152,454,'Fromagerie',170)}</g><rect x="20" y="300" width="264" height="212" fill="transparent"/></g>
+${fromOpen()?'':`<path d="M16 406 L152 298 L288 406 H270 V512 H34 V406z" fill="#fff" opacity=".5"/>${lockSVG(152,440)}`}<g class="${fromOpen()?'open-pulse':''}">${banner(152,454,'Fromagerie',170)}</g>${progSVG('fromage',152,489)}<rect x="20" y="300" width="264" height="212" fill="transparent"/></g>
 <g class="hsmoke" fill="#fff"><circle class="hsm" cx="782" cy="96" r="13"/><circle class="hsm" cx="782" cy="96" r="13" style="animation-delay:-1.7s"/><circle class="hsm" cx="782" cy="96" r="13" style="animation-delay:-3.4s"/></g>
 <rect x="760" y="114" width="44" height="90" fill="url(#hBarn)" stroke="#7d3424" stroke-width="4"/><path d="M762 140 h40 M762 164 h40 M782 116 v24 M772 140 v24 M792 164 v24" stroke="#7d3424" stroke-width="2" opacity=".5"/><rect x="752" y="104" width="60" height="16" rx="5" fill="#8f3a2a" stroke="#7d3424" stroke-width="3"/>
 <path d="M280 264 L590 96 L900 264z" fill="url(#h3Roof)"/><path d="M280 264 L590 96 L900 264z" fill="url(#hRoofT)"/><path d="M280 264 L590 96 L900 264z" fill="none" stroke="#a9412f" stroke-width="6" stroke-linejoin="round"/><path d="M308 252 L590 106" stroke="#fff" stroke-width="5" opacity=".3" stroke-linecap="round"/>
@@ -2103,7 +2122,7 @@ ${Object.values(ROOMS).map(r=>`<rect x="${r.x}" y="${r.y}" width="${r.w}" height
 <circle cx="1030" cy="456" r="17" fill="#fff4dc" stroke="#4a5d9a" stroke-width="3"/><text x="1030" y="463" text-anchor="middle" font-size="19">🔧</text>
 <ellipse cx="1030" cy="520" rx="60" ry="26" fill="url(#hGlowY)"/><path d="M1016 512 h28 l-6 -10 h-16z" fill="#5d6c8c"/><ellipse cx="1030" cy="514" rx="9" ry="5" fill="#ffe98a"/>
 <rect x="928" y="528" width="204" height="180" rx="10" fill="#8a96ad"/><rect x="934" y="534" width="192" height="172" rx="6" fill="url(#hDoor)"/>${[0,1,2,3,4].map(i=>`<line x1="934" y1="${562+i*28}" x2="1126" y2="${562+i*28}" stroke="#a9b4c9" stroke-width="3"/><line x1="934" y1="${565+i*28}" x2="1126" y2="${565+i*28}" stroke="#fff" stroke-width="2" opacity=".7"/>`).join('')}<rect x="1012" y="682" width="36" height="8" rx="4" fill="#7d8aa6"/>
-${roomOpen('garage')?'':`<path d="M886 488 L1030 404 L1172 488 H1156 V706 H904 V488z" fill="#fff" opacity=".5"/>${lockSVG(1030,580)}`}<g class="${roomOpen('garage')?'open-pulse':''}">${banner(1030,650,'Garage',150)}</g><rect x="886" y="404" width="286" height="302" fill="transparent"/></g>
+${roomOpen('garage')?'':`<path d="M886 488 L1030 404 L1172 488 H1156 V706 H904 V488z" fill="#fff" opacity=".5"/>${lockSVG(1030,580)}`}<g class="${roomOpen('garage')?'open-pulse':''}">${banner(1030,650,'Garage',150)}</g>${progSVG('garage',1030,685)}<rect x="886" y="404" width="286" height="302" fill="transparent"/></g>
 </svg>`}
 function enterHub(){
   go('s-hub');$('hubArt').innerHTML=hubSVG();$('hubAv').innerHTML=avatar(S.player);$('hubStarN').textContent=P().stars;$('voiceBtn').textContent=DB.voice?'🔊':'🔇';updGift();
@@ -2111,7 +2130,10 @@ function enterHub(){
   const nOpen=Object.keys(ROOM_REQ()).filter(roomOpen).length;
   say(T('Coucou '+KF.a+' ! '+(nOpen?'Où veux-tu jouer ?':'Touche la cuisine.'),'Salut '+KF.r+' ! '+(nOpen?'Choisis une pièce, ou va au village.':'La cuisine est ouverte.'))+pk,T('Coucou '+KF.a+' !'+pk,false));
   const nu=newUnlock();if(nu)setTimeout(()=>{if(S.screen!=='s-hub')return;sfx.fanfare();say(T(`Bravo ! ${nu.t} !${nu.v?' Touche le panneau du village.':''}`,`Nouveau : ${nu.t.charAt(0).toLowerCase()+nu.t.slice(1)} !`),T(undefined,'Nouveau !'));
-    const g=document.querySelector(`#hubArt [data-room="${nu.v?'village':nu.k}"]`);if(g){g.classList.add('newroom');setTimeout(()=>g.classList.remove('newroom'),6000);}},1300);
+    const g=document.querySelector(`#hubArt [data-room="${nu.v?'village':nu.k}"]`);if(g){g.classList.add('newroom');setTimeout(()=>g.classList.remove('newroom'),6000);}
+    const L=$('hubLock');if(L){L.classList.add('lockdrop');try{sfx.holo()}catch(_){}setTimeout(()=>{L.remove();const k2=nu.k;const at={jardin:[157,560],fromage:[152,440],garage:[1030,580]}[k2]||(ROOMS[k2]?[ROOMS[k2].x+ROOMS[k2].w/2,ROOMS[k2].y+ROOMS[k2].h/2-24]:null);if(at){const t=document.createElement('div');t.style.cssText=`position:absolute;left:${at[0]}px;top:${at[1]}px;width:2px;height:2px`;$('s-hub').appendChild(t);burst(t,['✨','⭐','🌟'],12,180);setTimeout(()=>t.remove(),1600);}},1500);}},1300);
+  if(nu&&!nu.v){const at={jardin:[157,560],fromage:[152,440],garage:[1030,580]}[nu.k]||(ROOMS[nu.k]?[ROOMS[nu.k].x+ROOMS[nu.k].w/2,ROOMS[nu.k].y+ROOMS[nu.k].h/2-24]:null);
+    if(at){const svg=$('hubArt').querySelector('svg');svg.insertAdjacentHTML('beforeend',`<g id="hubLock" pointer-events="none"><g transform="scale(1.4)" style="transform-origin:${at[0]}px ${at[1]}px;transform-box:view-box">${lockSVG(at[0],at[1])}</g></g>`);}}
   refreshMascots();if(accCheck())setTimeout(()=>{if(S.screen==='s-hub')say(T('Un nouvel accessoire t\'attend dans la garde-robe 🎩 !','Nouvel accessoire débloqué : ouvre la garde-robe 🎩.'),T(undefined,false));},nu?5200:2600);
 }
 /* annonce une pièce ou un lieu du village qui vient de s'ouvrir (une seule fois) */
@@ -2235,7 +2257,7 @@ function enterKitchen(){
   const R=RECIPES[S.k.order];
   say(T(`Wanji voudrait ${R.art} !`,`Commande du jour : ${R.n.toLowerCase()}. Trouve les ingrédients, l'ustensile et la bonne cuisson.`));
 }
-onTap($('kHome'),()=>{if(['cooking','feeding'].includes(S.k.phase))return;sfx.click();enterHub();});
+onTap($('kHome'),()=>{if(['cooking','feeding'].includes(S.k.phase))return;nanaGuard($('kHome'),()=>{sfx.click();enterHub();});});
 
 /* frigo */
 onTap($('frDoor'),()=>{$('frDoor').classList.add('open');sfx.pop();say(T('Touche un ingrédient !','Six ingrédients au maximum dans le saladier.'));});
@@ -2931,7 +2953,7 @@ function bouquetTap(e){
   say(T('Quel joli bouquet ! Il est dans la cuisine.','Bouquet posé à la fenêtre de la cuisine.'));
   return true;
 }
-onTap($('gHome'),()=>{sfx.click();leaveGarden();enterHub();});
+onTap($('gHome'),()=>nanaGuard($('gHome'),()=>{sfx.click();leaveGarden();enterHub();}));
 onTap($('gPanelCard'),bouquetTap);
 onTap($('gPanel'),e=>{if(e.target.id==='gPanel')$('gPanel').classList.add('hidden');});
 onTap($('gWanji'),()=>wanjiTap($('gWanji')));
@@ -3393,7 +3415,7 @@ async function fObjDone(){
   fNewObj();
 }
 onTap($('fObj'),()=>{const o=F_().obj;if(o)say(T(o.x+' !','Objectif : '+o.x+'.'),T(o.x+' !',false));});
-onTap($('fHome'),()=>{if(FS.ch&&!confirmLeave())return;sfx.click();clearInterval(FS.timer);FS.timer=null;enterHub();});
+onTap($('fHome'),()=>nanaGuard($('fHome'),()=>{if(FS.ch&&!confirmLeave())return;sfx.click();clearInterval(FS.timer);FS.timer=null;enterHub();}));
 function confirmLeave(){FS.ch=null;return true;}
 onTap($('fWanji2'),()=>wanjiTap($('fWanji2')));
 onTap($('fKicuit'),()=>{sfx.click();kicuitTap();const t=T(pick(['Marguerite donne du bon lait !','Le fromage, c\'est du lait qui a dormi !','Plus on enlève d\'eau, plus le fromage est dur !']),pick(['Il faut environ 10 litres de lait pour faire 1 kilo de comté.',"Les trous de l'emmental viennent de bulles de gaz faites par des bactéries.","Un fromage, c'est du lait dont on enlève l'eau : plus on en enlève, plus il est dur.","Le petit-lait, c'est l'eau verdâtre qui sort du caillé. Les cochons adorent !",'Le munster sent les chaussettes à cause de bactéries… qui vivent aussi sur nos pieds !']));say(t,t);});
@@ -3409,7 +3431,25 @@ function roomOpen(k){
   if(!S.player)return false;if(k==='jardin')return gardenOpen();if(k==='fromage')return fromOpen();
   const p=P();p.open=p.open||{};return p.stars>=ROOM_REQ()[k]||!!p.open[k];
 }
-function addStar(){const p=P();p.stars++;saveDB();if(p.stars>=3)award('star3');if(p.stars>=5)award('star5');if(p.stars>=JARDIN)award('star10');if(p.stars>=20)award('star20');}
+function addStar(){const p=P();p.stars++;saveDB();try{starFx(p.stars)}catch(_){}if(p.stars>=3)award('star3');if(p.stars>=5)award('star5');if(p.stars>=JARDIN)award('star10');if(p.stars>=20)award('star20');}
+/* récompense : une étoile vole du dernier toucher jusqu'au compteur (celui de la maison, ou un compteur qui descend du haut) */
+let LASTPT={x:590,y:410},STARPOP_T=null;
+document.addEventListener('pointerdown',e=>{try{const s=$('stage').getBoundingClientRect();LASTPT={x:(e.clientX-s.left)/SCALE,y:(e.clientY-s.top)/SCALE};}catch(_){}},true);
+const STAR_SVG='<svg viewBox="-50 -50 100 100" width="100%" height="100%"><path d="M0 -44 L12 -14 L44 -12 L19 8 L28 40 L0 22 L-28 40 L-19 8 L-44 -12 L-12 -14z" fill="url(#hStarG)" stroke="#c9881a" stroke-width="5" stroke-linejoin="round"/><path d="M-6 -30 L0 -40 L5 -28" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8"/></svg>';
+function starFx(n){
+  const onHub=S.screen==='s-hub';let pop=$('starPop');
+  if(!onHub){if(!pop){pop=document.createElement('div');pop.id='starPop';pop.innerHTML='⭐ <span></span>';$('stage').appendChild(pop);}
+    pop.querySelector('span').textContent=n-1;pop.classList.add('show');clearTimeout(STARPOP_T);}
+  const target=onHub?$('hubStars'):pop,a=LASTPT;
+  const d=document.createElement('div');d.className='starfly';d.innerHTML=STAR_SVG;$('stage').appendChild(d);
+  setTimeout(()=>{const b=pos(target),mx=(a.x+b.x)/2,my=Math.min(a.y,b.y)-160,fr=[];
+    for(let i=0;i<=16;i++){const t=i/16,x=(1-t)*(1-t)*a.x+2*(1-t)*t*mx+t*t*b.x,y=(1-t)*(1-t)*a.y+2*(1-t)*t*my+t*t*b.y;fr.push({transform:`translate(${x-35}px,${y-35}px) scale(${1.3-.6*t}) rotate(${360*t}deg)`});}
+    d.animate(fr,{duration:900,easing:'ease-in-out',fill:'forwards'}).onfinish=()=>{d.remove();
+      if(onHub)$('hubStarN').textContent=n;else pop.querySelector('span').textContent=n;
+      try{target.animate([{transform:target.style.transform||'none'},{transform:'scale(1.25)'},{transform:'none'}],{duration:380,easing:'ease-out'});}catch(_){}
+      try{sfx.ding()}catch(_){}
+      if(!onHub)STARPOP_T=setTimeout(()=>pop.classList.remove('show'),1800);};},onHub?0:250);
+}
 function firstStar(key){const p=P();p.firsts=p.firsts||{};if(p.firsts[key])return false;p.firsts[key]=1;addStar();return true;}
 /* glisser un élément de l'écran avec le doigt */
 function dragEl(el,{onMove,onUp,onDown}={}){
@@ -3485,6 +3525,19 @@ onTap($('cTabs'),e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=b
   if(isA()){if(t!==CS.tab)askTab(b,t);return;}
   sfx.click();CS.tab=t;renderCTabs();openCTab(t);});
 /* Nana : un onglet touché par mégarde (main posée sur le bord) ne change plus de jeu : il faut confirmer avec le gros bouton vert */
+/* Nana : un bouton de sortie ou un onglet touché par mégarde ne fait rien tout de suite ; un gros bouton vert ✔ apparaît 4 s à côté et c'est lui qui confirme */
+let GASK_T=null;
+function hideGAsk(){clearTimeout(GASK_T);const a=$('gAsk');if(a)a.remove();}
+function nanaGuard(btn,fn,{icon='🏠',below=true,tab=false}={}){
+  if(!S.player||!isA())return fn();
+  hideGAsk();sfx.click();btn.classList.remove('wig');void btn.offsetWidth;btn.classList.add('wig');
+  const scr=btn.closest('.screen')||$('stage'),r=btn.getBoundingClientRect(),c=pos(btn),w=r.width/SCALE,h=r.height/SCALE;
+  const d=document.createElement('button');d.id='gAsk';d.className='cask gask';d.innerHTML=`<span>${icon}</span>✔`;
+  const L=below?c.x-75:c.x+w/2+16,T=below?c.y+h/2+12:c.y-55;
+  d.style.left=Math.max(10,Math.min(1020,L))+'px';d.style.top=Math.max(10,Math.min(700,T))+'px';scr.appendChild(d);
+  onTap(d,()=>{hideGAsk();fn();});GASK_T=setTimeout(hideGAsk,4000);
+  say(tab?'Tu veux changer de jeu ? Touche le bouton vert.':'Tu veux partir ? Touche le bouton vert.');
+}
 function hideAsk(){clearTimeout(CS.askT);const a=$('cAsk');if(a)a.remove();}
 function askTab(b,t){
   hideAsk();sfx.click();b.classList.remove('wig');void b.offsetWidth;b.classList.add('wig');
@@ -3500,7 +3553,7 @@ function openCTab(t){
   $('cWork').classList.toggle('hidden',t==='squelette');$('cWork').innerHTML='';
   ({squelette:skelStart,voyage:voyStart,coeur:runStart,sens:sensStart,docteur:docStart})[t]();
 }
-onTap($('cHome'),()=>{sfx.click();cStop();document.querySelectorAll('#s-corps .bone').forEach(x=>x.remove());enterHub();});
+onTap($('cHome'),()=>nanaGuard($('cHome'),()=>{sfx.click();cStop();document.querySelectorAll('#s-corps .bone').forEach(x=>x.remove());enterHub();}));
 /* un seul aiguillage pour les boutons de la zone de travail */
 onTap($('cWork'),e=>{
   const g=k=>e.target.closest(k);let b;
@@ -4141,9 +4194,9 @@ const LS={tab:'circuit'};
 function L_(){const p=P();p.l=p.l||{circ:0,gear:0,float:{},pred:0,mag:{},cols:{},light:0};return p.l;}
 function enterLabo(){go('s-labo');L_();renderLTabs();openLTab(LS.tab);updGift();}
 function renderLTabs(){$('lTabs').innerHTML=LTABS.map(t=>`<button class="ltab ${t.id===LS.tab?'on':''}" data-t="${t.id}">${t.e} ${t.n}</button>`).join('');}
-onTap($('lTabs'),e=>{const b=e.target.closest('[data-t]');if(!b)return;sfx.click();LS.tab=b.dataset.t;renderLTabs();openLTab(LS.tab);});
+onTap($('lTabs'),e=>{const b=e.target.closest('[data-t]');if(!b)return;const t=b.dataset.t,go_=()=>{sfx.click();LS.tab=t;renderLTabs();openLTab(LS.tab);};if(t!==LS.tab)nanaGuard(b,go_,{below:true,tab:true,icon:(LTABS.find(x=>x.id===t)||{}).e||'▶'});else go_();});
 function openLTab(t){$('lWork').innerHTML='';({circuit:circuitStart,flotte:flotteStart,aimant:aimantStart,couleur:couleurStart,engrenage:gearStart})[t]();}
-onTap($('lHome'),()=>{sfx.click();enterHub();});
+onTap($('lHome'),()=>nanaGuard($('lHome'),()=>{sfx.click();enterHub();}));
 
 /* ===== circuit électrique ===== */
 /* composants : pile (B+ / B-), ampoule (a/b), ampoule 2, interrupteur, LED (p = patte +, n = patte −) */
@@ -4189,7 +4242,7 @@ function renderCircuit(){
   <svg id="cSvg" viewBox="0 0 1000 470" class="board"><defs><radialGradient id="glowY"><stop offset="0" stop-color="#fff36b" stop-opacity=".9"/><stop offset="1" stop-color="#fff36b" stop-opacity="0"/></radialGradient><radialGradient id="glowR"><stop offset="0" stop-color="#ff6a6a" stop-opacity=".9"/><stop offset="1" stop-color="#ff6a6a" stop-opacity="0"/></radialGradient></defs>
   <rect x="110" y="120" width="120" height="240" rx="18" fill="${r.short?'#ff7a59':'#ffc83a'}" stroke="#2b2350" stroke-width="4"/><rect x="110" y="120" width="120" height="80" rx="18" fill="#2b2350"/><text x="170" y="270" text-anchor="middle" font-size="22" font-weight="900" fill="#2b2350">4,5 V</text>
   ${lv.c.map(lamp).join('')}${wires}${ghosts}${flow}
-  ${T_.map(t=>`<g class="term" data-t="${t.id}"><circle cx="${t.x}" cy="${t.y}" r="${CL.sel===t.id?20:15}" fill="${t.id==='B+'||t.l==='+'?'#e2263e':t.id==='B-'||t.l==='−'?'#2f62c2':'#5d6c8c'}" stroke="#fff" stroke-width="4"/>${t.l?`<text x="${t.x}" y="${t.y+6}" text-anchor="middle" font-size="18" font-weight="900" fill="#fff">${t.l}</text>`:''}<circle cx="${t.x}" cy="${t.y}" r="34" fill="transparent"/></g>`).join('')}
+  ${T_.map(t=>`<g class="term" data-t="${t.id}"><circle cx="${t.x}" cy="${t.y}" r="34" fill="transparent"/><circle cx="${t.x}" cy="${t.y}" r="${CL.sel===t.id?20:15}" fill="${t.id==='B+'||t.l==='+'?'#e2263e':t.id==='B-'||t.l==='−'?'#2f62c2':'#5d6c8c'}" stroke="#fff" stroke-width="4"/>${t.l?`<text x="${t.x}" y="${t.y+6}" text-anchor="middle" font-size="18" font-weight="900" fill="#fff">${t.l}</text>`:''}<circle cx="${t.x}" cy="${t.y}" r="34" fill="transparent"/></g>`).join('')}
   ${r.short?'<text x="170" y="100" text-anchor="middle" font-size="40">⚡🔥</text>':''}</svg>
   <div class="lfoot"><span class="ghint">${T('Touche le fil qui clignote 🔌','Touche deux bornes pour tirer un fil. Touche un fil pour l\'enlever.')}</span>${G?'':'<button class="btn b-grey" id="cClear">🧹 Enlever les fils</button>'}${done?`<button class="btn b-orange" id="cNext">Niveau suivant ▶</button>`:''}</div>`;
   if(r.short&&!CL.wasShort){sfx.alert();award('l_court');say(T('Oh non, un court-circuit ! La pile chauffe. Enlève ce fil !','Court-circuit : le courant passe directement du + au − sans traverser de lampe. La pile chauffe dangereusement !'),T(undefined,'Court-circuit !'));}
@@ -4423,8 +4476,8 @@ const vDone=k=>{const v=V_();v.done[k]=(v.done[k]||0)+1;saveDB();return v.done[k
   onTap(w,e=>{if(V.tap)V.tap(e);});
   w.addEventListener('pointerdown',e=>{if(V.down)V.down(e);});
   w.addEventListener('pointermove',e=>{if(V.move)V.move(e);});
-  onTap($(k+'Tabs'),e=>{const b=e.target.closest('[data-vt]');if(!b)return;sfx.click();VIL.tab[k]=b.dataset.vt;vTabs(k);vOpenTab(k,VIL.tab[k]);});
-  onTap($(k+'Back'),()=>{sfx.click();vStop();enterVillage();});
+  onTap($(k+'Tabs'),e=>{const b=e.target.closest('[data-vt]');if(!b)return;const t=b.dataset.vt,go_=()=>{sfx.click();VIL.tab[k]=t;vTabs(k);vOpenTab(k,t);};if(t!==VIL.tab[k])nanaGuard(b,go_,{below:true,tab:true,icon:'▶'});else go_();});
+  onTap($(k+'Back'),()=>nanaGuard($(k+'Back'),()=>{sfx.click();vStop();enterVillage();},{icon:'🏘️'}));
 });
 document.addEventListener('pointerup',e=>{if(V.up&&VIL.cur&&S.screen==='s-'+VIL.cur)V.up(e);});
 document.addEventListener('pointercancel',e=>{if(V.up&&VIL.cur&&S.screen==='s-'+VIL.cur)V.up(e);});
@@ -4467,7 +4520,7 @@ onTap($('vilArt'),e=>{if(vlpF){vlpF=false;return;}const g=e.target.closest('[dat
 $('vilArt').addEventListener('pointerdown',e=>{const g=e.target.closest('[data-vp]');if(!g||vOpen(g.dataset.vp))return;const k=g.dataset.vp;clearTimeout(vlpT);vlpF=false;
   vlpT=setTimeout(()=>{vlpF=true;V_().open[k]=true;saveDB();sfx.holo();$('vilArt').innerHTML=villageSVG();say('Mode parent : '+VPL[k].n.toLowerCase()+' est ouvert.','Mode parent');},3000);});
 ['pointerup','pointercancel','pointerleave'].forEach(ev=>$('vilArt').addEventListener(ev,()=>clearTimeout(vlpT)));
-onTap($('vilHome'),()=>{sfx.click();enterHub();});
+onTap($('vilHome'),()=>nanaGuard($('vilHome'),()=>{sfx.click();enterHub();}));
 
 /* pièces et billets en euros */
 const EURO=[[2000,'20 €'],[1000,'10 €'],[500,'5 €'],[200,'2 €'],[100,'1 €'],[50,'50 c'],[20,'20 c'],[10,'10 c'],[5,'5 c']];
@@ -5051,9 +5104,9 @@ const gsnd={
 const GTABS=[['start','🔑 Démarrer'],['moteur','⚙️ Moteur'],['capot','🔧 Capot'],['lum','💡 Lumières'],['pneu','🛞 Pneu'],['peinture','🎨 Peinture']];
 function enterGarage(){go('s-garage');CAR_();GAD();renderGaTabs();openGaTab(GA.tab);updGift();}
 function renderGaTabs(){$('gaTabs').innerHTML=GTABS.map(([k,n])=>`<button class="ltab ${GA.tab===k?'on':''}" data-gt="${k}">${n}</button>`).join('');}
-onTap($('gaTabs'),e=>{const b=e.target.closest('[data-gt]');if(!b)return;sfx.click();GA.tab=b.dataset.gt;renderGaTabs();openGaTab(GA.tab);});
+onTap($('gaTabs'),e=>{const b=e.target.closest('[data-gt]');if(!b)return;const t=b.dataset.gt,go_=()=>{sfx.click();GA.tab=t;renderGaTabs();openGaTab(GA.tab);};if(t!==GA.tab)nanaGuard(b,go_,{below:true,tab:true,icon:'▶'});else go_();});
 function openGaTab(t){gaStop();$('gaWork').innerHTML='';({start:startTab,moteur:motorTab,capot:hoodTab,lum:lumTab,pneu:tyreTab,peinture:paintTab})[t]();}
-onTap($('gaHome'),()=>{sfx.click();gaStop();enterHub();});
+onTap($('gaHome'),()=>nanaGuard($('gaHome'),()=>{sfx.click();gaStop();enterHub();}));
 onTap($('gaWork'),e=>{if(GA.tap)GA.tap(e);});
 $('gaWork').addEventListener('pointerdown',e=>{if(GA.down)GA.down(e);});
 $('gaWork').addEventListener('pointermove',e=>{if(GA.move)GA.move(e);});

@@ -38,7 +38,10 @@ En ligne : https://tonyd2925.github.io/kicuit/ (GitHub Pages, branche `main`, ra
 - Les ateliers donnent aussi des étoiles « premières fois » via `firstStar(clé)` (squelette, chaque niveau de circuit et d'engrenage, flotte, aimant, couleurs, lumière, activités du garage `ga_*`) : une seule fois par clé.
 - Tous les ateliers sont construits : Cuisine, Jardin, Fromagerie, Corps humain, Laboratoire, Garage.
 - **Annonce des ouvertures** : à l'arrivée sur la maison, `newUnlock()` annonce une seule nouveauté à la fois (fanfare, pièce qui pulse `.newroom`) d'après `UNLOCKS_ALL` (pièces et lieux du village) ; déjà annoncées dans `P().ann` (à la première fois, tout ce qui est déjà ouvert est marqué sans annonce). Badge « ! » sur le panneau du village (`hubVilBadge()`) et ruban « NOUVEAU » sur la carte tant que le lieu n'a pas été visité (`V_().seen`). Toucher Kicuit sur la maison dit combien d'étoiles manquent pour la prochaine ouverture (`nextLock()`).
-- Prochaine étape d'interface (en attente, ne pas faire sans accord) : un compteur « Jardin : x/10 ⭐ » sur la maison.
+- **Progression sur la maison** (v42) : `progSVG(k,cx,y)` sous chaque bandeau : 5 étoiles = part des autocollants de la pièce (`ROOM_STK`, `roomProg`) ; pièce fermée = jauge étoiles/seuil. `hubSVG()` remonte les `.rprog` en fin de dessin (au-dessus des poutres). Quand une pièce s'ouvre, `#hubLock` est dessiné puis tombe (`.lockdrop`).
+- **Étoile qui vole** (v42) : `addStar()` appelle `starFx()` : une étoile part du dernier toucher (`LASTPT`) vers `#hubStars` ou vers `#starPop` (compteur qui descend du haut hors de la maison).
+- **Garde-fou de Nana** (v42) : `nanaGuard(btn, fn, {icon, tab})` sur tous les boutons maison/retour et les onglets du labo, du garage et du village (le corps garde `askTab`) : un premier toucher fait apparaître un ✔ vert 4 s sous le bouton. `go()` appelle `hideGAsk()`.
+- Fondu `.screen.on` (`scrIn`, opacité seulement : ne jamais animer `transform` sur l'écran, `pos()` en dépend). Barre : 🏠 en haut à gauche, 🎁 toujours tout à droite, outils (📖, 📚, 🔊) à sa gauche.
 
 ## À faire plus tard (noté le 10/11 à la demande d'Anthony, ne pas commencer sans son accord)
 
